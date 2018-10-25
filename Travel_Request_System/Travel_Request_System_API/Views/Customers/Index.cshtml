@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Travel_Request_System_API.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cust_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cust_City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Working_Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cust_Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opening_Amt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Receive_Amt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment_Amt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Outstanding_Amt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Agent.Agent_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cust_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cust_City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Working_Area)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cust_Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Opening_Amt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Receive_Amt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment_Amt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Outstanding_Amt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Agent.Agent_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Cust_Code }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Cust_Code }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Cust_Code })
+        </td>
+    </tr>
+}
+
+</table>

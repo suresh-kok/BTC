@@ -25,5 +25,7 @@ namespace Travel_Request_System_API.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Agent> Agents { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
     }
 }
