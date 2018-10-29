@@ -11,7 +11,7 @@ namespace BTC_Web_API.Controllers
     public class TravelController : ApiController
     {
         private IBTCBusiness BusinessObj = new BTCBusiness();
-
+        IHttpActionResult httpActionResult = (IHttpActionResult)new HttpResponseMessage();
         [Route("GetEmployee")]
         public string GetEmployee()
         {
@@ -99,12 +99,12 @@ namespace BTC_Web_API.Controllers
         }
 
         [Route("SaveEmployee")]
-        public string SaveEmployee(HttpRequestMessage obj)
+        public IHttpActionResult SaveEmployee(HttpRequestMessage obj)
         {
             var value = obj.Content.ReadAsStringAsync().Result;
             var EmpData = new JavaScriptSerializer().Deserialize(value, typeof(HRW_Employee));
             var json = new JavaScriptSerializer().Serialize(BusinessObj.SaveEmployee((HRW_Employee)EmpData));
-            return json;
+            return httpActionResult;
         }
 
         [Route("GetEmployees")]
@@ -115,19 +115,19 @@ namespace BTC_Web_API.Controllers
         }
 
         [Route("SaveRequest")]
-        public string SaveRequest(HttpRequestMessage obj)
+        public IHttpActionResult SaveRequest(HttpRequestMessage obj)
         {
             var value = obj.Content.ReadAsStringAsync().Result;
             var TravelRequestData = new JavaScriptSerializer().Deserialize(value, typeof(ORG_TravelRequest));
             var json = new JavaScriptSerializer().Serialize(BusinessObj.SaveRequest((ORG_TravelRequest)TravelRequestData));
-            return json;
+            return httpActionResult;
         }
 
         [Route("DeleteRequest")]
-        public string DeleteRequest(int TravelRequestID)
+        public IHttpActionResult DeleteRequest(int TravelRequestID)
         {
             var json = new JavaScriptSerializer().Serialize(BusinessObj.DeleteRequest(TravelRequestID));
-            return json;
+            return httpActionResult;
         }
 
         [Route("GetTravelRequest")]
@@ -145,40 +145,40 @@ namespace BTC_Web_API.Controllers
         }
 
         [Route("IsJobGradeValid")]
-        public string IsJobGradeValid(string JobGrade)
+        public IHttpActionResult IsJobGradeValid(string JobGrade)
         {
             var json = new JavaScriptSerializer().Serialize(BusinessObj.IsJobGradeValid(JobGrade));
-            return json;
+            return httpActionResult;
         }
 
         [Route("ApproveRequest")]
-        public string ApproveRequest(string RequestID, int ApproverID, bool IsApproved)
+        public IHttpActionResult ApproveRequest(string RequestID, int ApproverID, bool IsApproved)
         {
             var json = new JavaScriptSerializer().Serialize(BusinessObj.ApproveRequest(RequestID, ApproverID, IsApproved));
-            return json;
+            return httpActionResult;
         }
 
         [Route("HRApproval")]
-        public string HRApproval(int RequestID)
+        public IHttpActionResult HRApproval(int RequestID)
         {
             var json = new JavaScriptSerializer().Serialize(BusinessObj.HRApproval(RequestID));
-            return json;
+            return httpActionResult;
         }
 
         [Route("SaveQuote")]
-        public string SaveQuote(HttpRequestMessage obj)
+        public IHttpActionResult SaveQuote(HttpRequestMessage obj)
         {
             var value = obj.Content.ReadAsStringAsync().Result;
             var QuoteData = new JavaScriptSerializer().Deserialize(value, typeof(ORG_Quote));
             var json = new JavaScriptSerializer().Serialize(BusinessObj.SaveQuote((ORG_Quote)QuoteData));
-            return json;
+            return httpActionResult;
         }
 
         [Route("DeleteQuote")]
-        public string DeleteQuote(int QuoteID)
+        public IHttpActionResult DeleteQuote(int QuoteID)
         {
             var json = new JavaScriptSerializer().Serialize(BusinessObj.DeleteQuote(QuoteID));
-            return json;
+            return httpActionResult;
         }
 
         [Route("GetQuote")]
@@ -205,19 +205,19 @@ namespace BTC_Web_API.Controllers
         }
 
         [Route("SaveLPO")]
-        public string SaveLPO(HttpRequestMessage obj)
+        public IHttpActionResult SaveLPO(HttpRequestMessage obj)
         {
             var value = obj.Content.ReadAsStringAsync().Result;
             var LPOData = new JavaScriptSerializer().Deserialize(value, typeof(ORG_LPO));
             var json = new JavaScriptSerializer().Serialize(BusinessObj.SaveLPO((ORG_LPO)LPOData));
-            return json;
+            return httpActionResult;
         }
 
         [Route("DeleteLPO")]
-        public string DeleteLPO(int LPOID)
+        public IHttpActionResult DeleteLPO(int LPOID)
         {
             var json = new JavaScriptSerializer().Serialize(BusinessObj.DeleteLPO(LPOID));
-            return json;
+            return httpActionResult;
         }
 
         [Route("GetLPO")]
@@ -235,19 +235,19 @@ namespace BTC_Web_API.Controllers
         }
 
         [Route("SaveTravelAgency")]
-        public string SaveTravelAgency(HttpRequestMessage obj)
+        public IHttpActionResult SaveTravelAgency(HttpRequestMessage obj)
         {
             var value = obj.Content.ReadAsStringAsync().Result;
             var TravelAgencyData = new JavaScriptSerializer().Deserialize(value, typeof(ORG_TravelAgency));
             var json = new JavaScriptSerializer().Serialize(BusinessObj.SaveTravelAgency((ORG_TravelAgency)TravelAgencyData));
-            return json;
+            return httpActionResult;
         }
 
         [Route("DeleteTravelAgency")]
-        public string DeleteTravelAgency(int TravelAgencyID)
+        public IHttpActionResult DeleteTravelAgency(int TravelAgencyID)
         {
             var json = new JavaScriptSerializer().Serialize(BusinessObj.DeleteTravelAgency(TravelAgencyID));
-            return json;
+            return httpActionResult;
         }
 
         [Route("GetTravelAgency")]
@@ -265,12 +265,12 @@ namespace BTC_Web_API.Controllers
         }
 
         [Route("SaveNotification")]
-        public string SaveNotification(HttpRequestMessage obj)
+        public IHttpActionResult SaveNotification(HttpRequestMessage obj)
         {
             var value = obj.Content.ReadAsStringAsync().Result;
             var NotificationData = new JavaScriptSerializer().Deserialize(value, typeof(HRW_Notification));
             var json = new JavaScriptSerializer().Serialize(BusinessObj.SaveNotification((HRW_Notification)NotificationData));
-            return json;
+            return httpActionResult;
         }
 
         [Route("DeleteNotification")]

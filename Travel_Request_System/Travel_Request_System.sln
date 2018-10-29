@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Travel_Request_System", "Travel_Request_System\Travel_Request_System.csproj", "{46AF7DCF-EA90-4FC4-A911-0E1D9128DC5C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travel_Request_System_API", "Travel_Request_System_API\Travel_Request_System_API.csproj", "{9F2F1E0C-E807-4525-AB83-CB5ABA8427D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTC_Web_API", "BTC_Web_API\BTC_Web_API.csproj", "{94E5D9D2-CAF0-4B39-93DC-3DDEE2F8EE9D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Travel_Request_System", "Travel_Request_System\Travel_Request_System.csproj", "{4C2EF50F-B707-45D7-99E9-1294B2A8D984}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travel_Request_System_UI", "Travel_Request_System_UI\Travel_Request_System_UI.csproj", "{43CBE327-ACB3-47C6-9134-EE8AAC32FE34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{46AF7DCF-EA90-4FC4-A911-0E1D9128DC5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46AF7DCF-EA90-4FC4-A911-0E1D9128DC5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46AF7DCF-EA90-4FC4-A911-0E1D9128DC5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46AF7DCF-EA90-4FC4-A911-0E1D9128DC5C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9F2F1E0C-E807-4525-AB83-CB5ABA8427D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F2F1E0C-E807-4525-AB83-CB5ABA8427D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F2F1E0C-E807-4525-AB83-CB5ABA8427D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +25,14 @@ Global
 		{94E5D9D2-CAF0-4B39-93DC-3DDEE2F8EE9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94E5D9D2-CAF0-4B39-93DC-3DDEE2F8EE9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94E5D9D2-CAF0-4B39-93DC-3DDEE2F8EE9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C2EF50F-B707-45D7-99E9-1294B2A8D984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C2EF50F-B707-45D7-99E9-1294B2A8D984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C2EF50F-B707-45D7-99E9-1294B2A8D984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C2EF50F-B707-45D7-99E9-1294B2A8D984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43CBE327-ACB3-47C6-9134-EE8AAC32FE34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43CBE327-ACB3-47C6-9134-EE8AAC32FE34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43CBE327-ACB3-47C6-9134-EE8AAC32FE34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43CBE327-ACB3-47C6-9134-EE8AAC32FE34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
