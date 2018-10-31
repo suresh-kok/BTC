@@ -1,0 +1,48 @@
+﻿<header class="main-header">
+    @* BEGIN Logo *@
+    <a href="@Url.Action("Index", "Home")" class="logo">
+        @* Mini logo for sidebar 50x50 pixels *@
+        <span class="logo-mini"><b>BTC</b></span>
+        @* Logo for regular state and mobile devices *@
+        <span class="logo-lg"><b>BTC</b></span>
+    </a>
+    @* END Logo *@
+    @* BEGIN Header *@
+    <nav class="navbar navbar-static-top" role="navigation">
+        <div class="navbar-header">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <a href="../../index2.html" class="navbar-brand"><b>Travel Request System</b></a>
+        </div>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                @if (ViewBag.messages != null && ViewBag.messages)
+                {
+                    @Html.Partial("_Messages");
+                }
+                @if (ViewBag.notifications != null && ViewBag.notifications)
+                {
+                    @Html.Partial("_Notifications");
+                }
+                @if (ViewBag.tasks != null && ViewBag.tasks)
+                {
+                    @Html.Partial("_Tasks");
+                }
+                @if (ViewBag.userdetails != null && ViewBag.userdetails)
+                {
+                    @Html.Partial("_UserAccount");
+                }
+                else
+                {
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-header" data-toggle="dropdown">
+                            <img src="~/Content/img/guest.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs">Guest User</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+</header>

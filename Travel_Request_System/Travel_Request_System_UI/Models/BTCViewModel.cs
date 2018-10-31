@@ -68,6 +68,13 @@ namespace Travel_Request_System.Models
 
     public class ApproveObject { }
 
+    public class UserProfile
+    {
+        public string UserID;
+        public string UserName;
+        public string Password;
+        public string IsActive;
+    }
 
 
 }

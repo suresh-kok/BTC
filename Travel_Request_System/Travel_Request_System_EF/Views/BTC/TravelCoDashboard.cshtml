@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Travel Coordinator Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_DetailsGrid")
+
+
+@section Scripts {
+    <script>
+        (function ($) {
+            $(function () {
+                $('#detailsGrid1').DataTable({
+                    'paging': true,
+                    'lengthChange': false,
+                    'searching': false,
+                    'ordering': true,
+                    'info': true,
+                    'autoWidth': true
+                })
+            })
+        })(jQuery);
+    </script>
+}
