@@ -2,7 +2,7 @@
 <li class="dropdown notifications-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-bell-o"></i>
-        @if (ViewBag.NotificationsList == null || (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0))
+        @if (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0)
         {
             <span class="label label-warning">@ViewBag.NotificationsList.Count</span>
         }
@@ -12,7 +12,7 @@
         }
     </a>
     <ul class="dropdown-menu">
-        @if (ViewBag.NotificationsList == null || (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0))
+        @if (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0)
         {
             <li class="header">You have @ViewBag.NotificationsList.Count notifications</li>
         }
@@ -24,7 +24,7 @@
             <ul class="menu">
                 <li>
                     <a href="@Url.Action("ViewTravelRequests", "BTC")">
-                        @if (ViewBag.NotificationsList == null || (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0))
+                        @if (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0)
                         {
                             <i class="fa fa-users text-aqua"></i><span>@ViewBag.NotificationsList.Count Updates for you</span>
                         }

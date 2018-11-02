@@ -15,16 +15,16 @@
         @* BEGIN Menu *@
         <ul class="sidebar-menu" data-widget="tree">
             @*<li class="list-header">Navigation Links</li>*@
-            @if (ViewBag.LoggedOut != null && ViewBag.LoggedOut)
+            @if (ViewBag.LoggedOut == null || (ViewBag.LoggedOut != null && ViewBag.LoggedOut))
             {
                 <li>
-                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-link"></i> <span>Home</span></a>
+                    <a href="@Url.Action("Index", "Account")"><i class="fa fa-link"></i> <span>Home</span></a>
                 </li>
             }
-            @if (ViewBag.LoggedOut != null && ViewBag.LoggedOut)
+            @if (ViewBag.LoggedOut == null || (ViewBag.LoggedOut != null && ViewBag.LoggedOut))
             {
                 <li>
-                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-link"></i> <span>Login</span></a>
+                    <a href="@Url.Action("Index", "Account")"><i class="fa fa-link"></i> <span>Login</span></a>
                 </li>
             }
             @if ((ViewBag.IsEmployee != null && ViewBag.IsEmployee) ||

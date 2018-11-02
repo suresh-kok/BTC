@@ -1,9 +1,7 @@
-﻿using Travel_Request_System_EF.DataAccess;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Security;
+using Travel_Request_System_EF.DataAccess;
 
 namespace Travel_Request_System_EF.CustomAuthentication
 {
@@ -19,7 +17,7 @@ namespace Travel_Request_System_EF.CustomAuthentication
         /// <returns></returns>
         public override bool ValidateUser(string username, string password)
         {
-            if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 return false;
             }
@@ -67,7 +65,7 @@ namespace Travel_Request_System_EF.CustomAuthentication
                             where string.Compare(username, us.Username, StringComparison.OrdinalIgnoreCase) == 0
                             select us).FirstOrDefault();
 
-                if(user == null)
+                if (user == null)
                 {
                     return null;
                 }

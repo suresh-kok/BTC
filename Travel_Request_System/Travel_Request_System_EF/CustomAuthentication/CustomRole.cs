@@ -44,13 +44,11 @@ namespace Travel_Request_System_EF.CustomAuthentication
                 
                 if(selectedUser != null)
                 {
-                    userRoles = new[] { selectedUser.Roles.Select(r=>r.RoleName).ToString() };
+                    userRoles = selectedUser.Roles.Select(r=>r.RoleName).ToArray();
                 }
 
                 return userRoles.ToArray();
             }
-
-
         }
 
 

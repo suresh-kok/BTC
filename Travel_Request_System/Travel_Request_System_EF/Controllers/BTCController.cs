@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.Security;
 using Travel_Request_System_EF.CustomAuthentication;
 using Travel_Request_System_EF.Models.ViewModel;
 
@@ -7,9 +8,20 @@ namespace Travel_Request_System_EF.Controllers
 {
     public class BTCController : Controller
     {
+        private static MembershipUser user;
+        private static string[] roles;
+
+        public BTCController()
+        {
+            user = Membership.GetUser();
+            CustomRole customRole = new CustomRole();
+            roles = customRole.GetRolesForUser(user.UserName);
+            IsLoggedIn(true, roles[0]);
+        }
+
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction(roles[0] + "Dashboard", "BTC");
         }
 
         [CustomAuthorize(Roles = "Employee")]

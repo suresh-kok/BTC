@@ -1179,7 +1179,7 @@
     <Content Include="Views\Shared\_TravelRequestDetails.cshtml" />
     <Content Include="Views\BTC\ViewTravelRequests.cshtml" />
     <Content Include="Views\BTC\EmployeeDetails.cshtml" />
-    <Content Include="Views\Home\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\BTC\ManageEmployees.cshtml" />
     <Content Include="Views\BTC\OrganisationalChart.cshtml" />
     <Content Include="Views\BTC\AdminDashboard.cshtml" />
@@ -1188,6 +1188,7 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

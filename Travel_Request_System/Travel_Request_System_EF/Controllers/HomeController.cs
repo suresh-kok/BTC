@@ -1,15 +1,11 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using System.Web.Security;
-using Travel_Request_System_EF.Models;
-using Travel_Request_System_EF.Models.ViewModel;
+﻿using System.Web.Mvc;
 
 namespace Travel_Request_System_EF.Controllers
 {
     public class HomeController : Controller
     {
-        private HRWorksEntities HRWorks = new HRWorksEntities();
-        private SessionContext context = new SessionContext();
+        //private HRWorksEntities HRWorks = new HRWorksEntities();
+        //private SessionContext context = new SessionContext();
 
         public ActionResult Index()
         {
@@ -50,39 +46,39 @@ namespace Travel_Request_System_EF.Controllers
         //    return View("Index");
         //}
 
-        [HttpPost]
-        public ActionResult Index(LoginViewModel user)
-        {
-            if (ModelState.IsValid)
-            {
-                var res = HRWorks.BTCLoginInfoes.Where(a => a.UserName == user.UserName && a.Password == user.Password && a.AccountLocked == false).FirstOrDefault();
-                if (res != null && res.BTCEmployeeId > 0)
-                {
-                    context.SetAuthenticationToken(res.HREmployeeID.ToString(), false, user);
+        //[HttpPost]
+        //public ActionResult Index(LoginViewModel user)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var res = HRWorks.BTCLoginInfoes.Where(a => a.UserName == user.UserName && a.Password == user.Password && a.AccountLocked == false).FirstOrDefault();
+        //        if (res != null && res.BTCEmployeeId > 0)
+        //        {
+        //            context.SetAuthenticationToken(res.HREmployeeID.ToString(), false, user);
 
-                    Session["UserID"] = res.BTCEmployeeId.ToString();
-                    Session["UserName"] = res.UserName.ToString();
-                    Session["HREmployeeID"] = res.HREmployeeID.ToString();
-                    return RedirectToAction("Index", "BTC");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                }
-            }
+        //            Session["UserID"] = res.BTCEmployeeId.ToString();
+        //            Session["UserName"] = res.UserName.ToString();
+        //            Session["HREmployeeID"] = res.HREmployeeID.ToString();
+        //            return RedirectToAction("Index", "BTC");
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("", "The user name or password provided is incorrect.");
+        //        }
+        //    }
 
-            return View("Index");
-        }
+        //    return View("Index");
+        //}
 
-        public ActionResult Logout()
-        {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
-        }
+        //public ActionResult Logout()
+        //{
+        //    FormsAuthentication.SignOut();
+        //    return RedirectToAction("Index", "Home");
+        //}
 
-        public ActionResult ChangePassword()
-        {
-            return View();
-        }
+        //public ActionResult ChangePassword()
+        //{
+        //    return View();
+        //}
     }
 }

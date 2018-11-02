@@ -23,7 +23,7 @@ namespace Travel_Request_System_EF
 
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
         {
-            HttpCookie authCookie = Request.Cookies["Cookie1"];
+            HttpCookie authCookie = Request.Cookies["authCookie"];
             if (authCookie != null)
             {
                 FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);

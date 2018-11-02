@@ -22,6 +22,26 @@ namespace Travel_Request_System_EF.Controllers
             return View();
         }
 
+        public ActionResult LogOut()
+        {
+            HttpCookie cookie = new HttpCookie("authCookie", "");
+            cookie.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(cookie);
+
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Account", null);
+        }
+
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult Login(string ReturnUrl = "")
         {
@@ -51,14 +71,16 @@ namespace Travel_Request_System_EF.Controllers
                             RoleName = user.Roles.Select(r => r.RoleName).ToList()
                         };
 
-                        string userData = JsonConvert.SerializeObject(userModel);
                         FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket
                             (
-                            1, loginView.UserName, DateTime.Now, DateTime.Now.AddMinutes(15), false, userData
+                            1, loginView.UserName, DateTime.Now, DateTime.Now.AddMinutes(15), false, JsonConvert.SerializeObject(userModel)
                             );
 
                         string enTicket = FormsAuthentication.Encrypt(authTicket);
-                        HttpCookie faCookie = new HttpCookie("Cookie1", enTicket);
+                        HttpCookie faCookie = new HttpCookie("authCookie", enTicket)
+                        {
+                            Expires = authTicket.Expiration
+                        };
                         Response.Cookies.Add(faCookie);
                     }
 
@@ -154,16 +176,6 @@ namespace Travel_Request_System_EF.Controllers
             return View();
         }
 
-        public ActionResult LogOut()
-        {
-            HttpCookie cookie = new HttpCookie("Cookie1", "");
-            cookie.Expires = DateTime.Now.AddYears(-1);
-            Response.Cookies.Add(cookie);
-
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Account", null);
-        }
-
         [NonAction]
         public void VerificationEmail(string email, string activationCode)
         {
@@ -199,5 +211,113 @@ namespace Travel_Request_System_EF.Controllers
                 smtp.Send(message);
             }
         }
+
+        [HttpPost]
+        public ActionResult ChangePasswordClick(string oldPassword, string newPassword)
+        {
+            bool statusReset = false;
+            string messageReset = string.Empty;
+
+            if (ModelState.IsValid)
+            {
+                var user = Membership.GetUser();
+
+                if (user == null || (user != null && string.Compare(oldPassword, user.GetPassword(), StringComparison.OrdinalIgnoreCase) != 0))
+                {
+                    ModelState.AddModelError("Warning", "Sorry: The old password is incorrect");
+                    return View();
+                }
+                else
+                {
+                    if (user.ChangePassword(oldPassword, newPassword))
+                    {
+                        messageReset = "Your account has password has been changed.";
+                        statusReset = true;
+                    }
+                    else
+                    {
+                        messageReset = "Something Went Wrong!";
+                        statusReset = false;
+                    }
+                }
+            }
+            else
+            {
+                messageReset = "Something Went Wrong!";
+            }
+            ViewBag.Message = messageReset;
+            ViewBag.Status = statusReset;
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ForgotPasswordClick(string EmailID)
+        {
+            bool statusReset = false;
+            string messageReset = string.Empty;
+
+            if (ModelState.IsValid)
+            {
+                // Email Verification
+                string userName = Membership.GetUserNameByEmail(EmailID);
+                if (string.IsNullOrEmpty(userName))
+                {
+                    ModelState.AddModelError("Warning Email", "Sorry: Email does not Exist");
+                    return View();
+                }
+                else
+                {
+                    var user = Membership.GetUser(userName);
+                    //Verification Email
+                    ForgotPasswordEmail(user.Email, user.UserName, user.GetPassword());
+                    messageReset = "Your account has password has been sent to your email.";
+                    statusReset = true;
+                }
+            }
+            else
+            {
+                messageReset = "Something Wrong!";
+            }
+            ViewBag.Message = messageReset;
+            ViewBag.Status = statusReset;
+
+            return View();
+        }
+
+        [NonAction]
+        public void ForgotPasswordEmail(string email, string userName, string password)
+        {
+            var fromEmail = new MailAddress("noreply@btc.com", "Travel Request information");
+            var toEmail = new MailAddress(email);
+
+            var fromEmailPassword = "******************";
+            string subject = "Travel Request Password information !";
+
+            string body = "<br/> This mail is an auto-generated Email to your response to Forgot Password" + "<br/>" +
+                "UserName: " + userName + "<br/> Password: " + password + "<br/>";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
+            };
+
+            using (var message = new MailMessage(fromEmail, toEmail)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+
+            })
+            {
+                smtp.Send(message);
+            }
+        }
+
     }
 }
