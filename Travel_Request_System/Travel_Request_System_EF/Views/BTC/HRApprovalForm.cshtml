@@ -6,28 +6,37 @@
 @using (Html.BeginForm())
 {
     @Html.Partial("_TravelRequestDetails");
-
-<div class="row" style="margin-bottom:15px">
-    <div class="col-sm-2">
-    </div>
-    <div class="col-sm-3">
-        <div class="form-group">
-            <input type="submit" class="form-control btn btn-info" value="Approve" />
+    <div class="row" style="margin-bottom:15px">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label class="col-sm-3">Remarks / Comments</label>
+                <div class="col-sm-12">
+                    <textarea class="form-control" rows="5" placeholder="Enter Comments..." id="comments" name="commentss"></textarea>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-sm-3">
-        <div class="form-group">
-            <input type="button" class="form-control btn btn-info" value="Reject" />
+    <div class="row" style="margin-bottom:15px">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <input type="submit" class="form-control btn btn-info" value="Approve" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <input type="button" class="form-control btn btn-info" value="Reject" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <input type="button" class="form-control btn btn-info" value="Override & Approve" />
+            </div>
+        </div>
+        <div class="col-sm-1">
         </div>
     </div>
-    <div class="col-sm-3">
-        <div class="form-group">
-            <input type="button" class="form-control btn btn-info" value="Override & Approve" />
-        </div>
-    </div>
-    <div class="col-sm-1">
-    </div>
-</div>
 }
 
 @section Scripts {

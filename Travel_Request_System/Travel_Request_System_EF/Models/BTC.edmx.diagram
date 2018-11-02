@@ -38,6 +38,12 @@
         <AssociationConnector Association="HRWorksModel.FK_ORG_EntityMaster_ORG_EntityType" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksModel.FK_ORG_EntityTypeParam_ORG_EntityType" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksModel.FK__TravelReq__Trave__03BB8E22" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HRWorksModel.Role" Width="1.5" PointX="9.625" PointY="1.5" />
+        <EntityTypeShape EntityType="HRWorksModel.User" Width="1.5" PointX="7.375" PointY="1" />
+        <AssociationConnector Association="HRWorksModel.FK_UserRoles" />
+        <EntityTypeShape EntityType="HRWorksModel.UserRole" Width="1.5" PointX="11.875" PointY="1.5" />
+        <AssociationConnector Association="HRWorksModel.FK__UserRoles__RoleI__5D2BD0E6" />
+        <AssociationConnector Association="HRWorksModel.FK__UserRoles__UserI__5E1FF51F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

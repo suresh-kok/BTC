@@ -155,8 +155,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BTCController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="CustomAuthentication\CustomAuthorizeAttribute.cs" />
+    <Compile Include="CustomAuthentication\CustomMembership.cs" />
+    <Compile Include="CustomAuthentication\CustomMembershipUser.cs" />
+    <Compile Include="CustomAuthentication\CustomPrincipal.cs" />
+    <Compile Include="CustomAuthentication\CustomRole.cs" />
+    <Compile Include="DataAccess\AuthenticationDB.cs" />
+    <Compile Include="DataAccess\Role.cs" />
+    <Compile Include="DataAccess\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,14 +222,27 @@
     <Compile Include="Models\ORG_EntityTypeParam.cs">
       <DependentUpon>BTC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>BTC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TravelRequest.cs">
       <DependentUpon>BTC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TravelRequestDetail.cs">
       <DependentUpon>BTC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>BTC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserRole.cs">
+      <DependentUpon>BTC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewModel\Constants.cs" />
+    <Compile Include="Models\ViewModel\LoginView.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModel\NotificationsGridDetails.cs" />
+    <Compile Include="Models\ViewModel\SessionContext.cs" />
+    <Compile Include="Models\ViewModel\TravelRequestDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1056,6 +1080,7 @@
       <LastGenOutput>BTC.Context.cs</LastGenOutput>
       <DependentUpon>BTC.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\BTC.edmx.sql" />
     <Content Include="Models\BTC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BTC.edmx</DependentUpon>
@@ -1152,9 +1177,22 @@
     <Content Include="Views\BTC\Reports.cshtml" />
     <Content Include="Views\BTC\TravelRequest.cshtml" />
     <Content Include="Views\Shared\_TravelRequestDetails.cshtml" />
+    <Content Include="Views\BTC\ViewTravelRequests.cshtml" />
+    <Content Include="Views\BTC\EmployeeDetails.cshtml" />
+    <Content Include="Views\Home\ChangePassword.cshtml" />
+    <Content Include="Views\BTC\ManageEmployees.cshtml" />
+    <Content Include="Views\BTC\OrganisationalChart.cshtml" />
+    <Content Include="Views\BTC\AdminDashboard.cshtml" />
+    <Content Include="Views\BTC\ManageUsers.cshtml" />
+    <Content Include="Views\Account\ActivationAccount.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Registration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Error\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

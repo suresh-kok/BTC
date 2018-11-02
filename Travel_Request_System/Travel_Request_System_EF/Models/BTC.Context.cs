@@ -39,5 +39,8 @@ namespace Travel_Request_System_EF.Models
         public virtual DbSet<ORG_EntityTypeParam> ORG_EntityTypeParam { get; set; }
         public virtual DbSet<TravelRequest> TravelRequests { get; set; }
         public virtual DbSet<TravelRequestDetail> TravelRequestDetails { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
     }
 }
