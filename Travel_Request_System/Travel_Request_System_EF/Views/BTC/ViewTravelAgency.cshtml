@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "View Travel Agency";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Travel_Request_System_EF.Models.TravelAgency
+
+<aside class="right-side">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Details</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
+                            @if (Model == null || (Model.AgencyID == 0))
+                            {
+                            <tr>
+                                <td colspan="10">No Record's found.</td>
+                            </tr>
+                            }
+                            else
+                            {
+                            <thead>
+                                <tr class="danger">
+                                    <th data-defaultsign="_19">
+                                        @Html.DisplayNameFor(model => model.AgencyCode)
+                                    </th>
+                                    <th data-defaultsign="AZ">
+                                        @Html.DisplayNameFor(model => model.CompanyName)
+                                    </th>
+                                    <th data-defaultsign="AZ">
+                                        @Html.DisplayNameFor(model => model.Address)
+                                    </th>
+                                    <th data-defaultsign="month">
+                                        @Html.DisplayNameFor(model => model.Telephone)
+                                    </th>
+                                    <th data-firstsort="desc">
+                                        @Html.DisplayNameFor(model => model.Fax)
+                                    </th>
+                                    <th data-defaultsign="AZ">
+                                        @Html.DisplayNameFor(model => model.Mobile)
+                                    </th>
+                                    <th data-defaultsort="disabled">
+                                        @Html.DisplayNameFor(model => model.Landline)
+                                    </th>
+                                    <th data-defaultsort="disabled">
+                                        @Html.DisplayNameFor(model => model.ContactPerson)
+                                    </th>
+                                    <th data-defaultsort="disabled">
+                                        @Html.DisplayNameFor(model => model.Email)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => model.AgencyCode)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.CompanyName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Telephone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Fax)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Mobile)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Landline)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ContactPerson)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Email)
+                                    </td>
+                                </tr>
+                            </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</aside>
+
+<div class="row" style="margin-bottom:15px">
+    <div class="col-md-6">
+        <div class="form-group">
+            <div class="col-md-3">
+                @Html.ActionLink("Edit", "EditTravelAgency", new { id = Model.AgencyID }, new { @class = "form-control btn btn-info" })
+            </div>
+            <div class="col-md-3">
+                @Html.ActionLink("Back to List", "ManageTravelAgency", null, new { @class = "form-control btn btn-info" })
+            </div>
+        </div>
+    </div>
+</div>
+

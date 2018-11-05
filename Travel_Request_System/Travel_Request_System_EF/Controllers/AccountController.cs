@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using Travel_Request_System_EF.CustomAuthentication;
 using Travel_Request_System_EF.DataAccess;
 using Travel_Request_System_EF.Models.ViewModel;
-using User = Travel_Request_System_EF.DataAccess.User;
+using User = Travel_Request_System_EF.Models.User;
 
 namespace Travel_Request_System_EF.Controllers
 {
@@ -24,8 +24,10 @@ namespace Travel_Request_System_EF.Controllers
 
         public ActionResult LogOut()
         {
-            HttpCookie cookie = new HttpCookie("authCookie", "");
-            cookie.Expires = DateTime.Now.AddYears(-1);
+            HttpCookie cookie = new HttpCookie("authCookie", "")
+            {
+                Expires = DateTime.Now.AddYears(-1)
+            };
             Response.Cookies.Add(cookie);
 
             FormsAuthentication.SignOut();
@@ -94,7 +96,7 @@ namespace Travel_Request_System_EF.Controllers
                     }
                 }
             }
-            ModelState.AddModelError("", "Something Wrong : Username or Password invalid ^_^ ");
+            ModelState.AddModelError("", "Something Wrong : Username or Password invalid");
             return View(loginView);
         }
 

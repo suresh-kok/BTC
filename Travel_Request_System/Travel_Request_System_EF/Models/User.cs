@@ -18,7 +18,6 @@ namespace Travel_Request_System_EF.Models
         public User()
         {
             this.Roles = new HashSet<Role>();
-            this.UserRoles = new HashSet<UserRole>();
         }
     
         public int UserId { get; set; }
@@ -32,7 +31,5 @@ namespace Travel_Request_System_EF.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Roles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

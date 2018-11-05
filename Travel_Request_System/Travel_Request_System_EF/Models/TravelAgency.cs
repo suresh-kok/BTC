@@ -12,13 +12,17 @@ namespace Travel_Request_System_EF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserRole
+    public partial class TravelAgency
     {
-        public int UserRoleID { get; set; }
-        public Nullable<int> RoleID { get; set; }
-        public Nullable<int> UserID { get; set; }
-    
-        public virtual Role Role { get; set; }
-        public virtual User User { get; set; }
+        public int AgencyID { get; set; }
+        public string AgencyCode { get; set; }
+        public string CompanyName { get; set; }
+        public string Address { get; set; }
+        public string Telephone { get; set; }
+        public string Fax { get; set; }
+        public string Mobile { get; set; }
+        public string Landline { get; set; }
+        public string ContactPerson { get; set; }
+        public string Email { get; set; }
     }
 }

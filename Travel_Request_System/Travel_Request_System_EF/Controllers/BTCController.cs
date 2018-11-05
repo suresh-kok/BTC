@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
 using Travel_Request_System_EF.CustomAuthentication;
+using Travel_Request_System_EF.Models;
 using Travel_Request_System_EF.Models.ViewModel;
 
 namespace Travel_Request_System_EF.Controllers
@@ -10,6 +14,7 @@ namespace Travel_Request_System_EF.Controllers
     {
         private static MembershipUser user;
         private static string[] roles;
+        private HRWorksEntities db = new HRWorksEntities();
 
         public BTCController()
         {
@@ -24,11 +29,23 @@ namespace Travel_Request_System_EF.Controllers
             return RedirectToAction(roles[0] + "Dashboard", "BTC");
         }
 
+        #region Employee
+
         [CustomAuthorize(Roles = "Employee")]
         public ActionResult EmployeeDashboard()
         {
             return View();
         }
+
+        [CustomAuthorize(Roles = "Employee")]
+        public ActionResult TravelRequest()
+        {
+            return View();
+        }
+
+        #endregion
+
+        #region HR
 
         [CustomAuthorize(Roles = "HR")]
         public ActionResult HRDashboard()
@@ -37,11 +54,31 @@ namespace Travel_Request_System_EF.Controllers
             return View();
         }
 
+        [CustomAuthorize(Roles = "HR")]
+        public ActionResult HRApprovalForm()
+        {
+            return View();
+        }
+
+        #endregion
+
+        #region Manager
+
         [CustomAuthorize(Roles = "Manager")]
         public ActionResult ManagerDashboard()
         {
             return View();
         }
+
+        [CustomAuthorize(Roles = "Manager")]
+        public ActionResult ManagerApprovalForm()
+        {
+            return View();
+        }
+
+        #endregion
+
+        #region TravelCo
 
         [CustomAuthorize(Roles = "TravelCo")]
         public ActionResult TravelCoDashboard()
@@ -49,14 +86,30 @@ namespace Travel_Request_System_EF.Controllers
             return View();
         }
 
-        [CustomAuthorize(Roles = "Admin")]
-        public ActionResult AdminDashboard()
+        [CustomAuthorize(Roles = "TravelCo")]
+        public ActionResult ManageRFQ()
         {
             return View();
         }
 
-        [CustomAuthorize(Roles = "Manager")]
-        public ActionResult ManageEmployees()
+        [CustomAuthorize(Roles = "TravelCo")]
+        public ActionResult ManagerLPO()
+        {
+            return View();
+        }
+
+        [CustomAuthorize(Roles = "TravelCo")]
+        public ActionResult ManagerQuotations()
+        {
+            return View();
+        }
+
+        #endregion
+
+        #region Admin
+
+        [CustomAuthorize(Roles = "Admin")]
+        public ActionResult AdminDashboard()
         {
             return View();
         }
@@ -72,42 +125,122 @@ namespace Travel_Request_System_EF.Controllers
         {
             return View();
         }
+        [CustomAuthorize(Roles = "Admin")]
+        public async Task<ActionResult> ManageTravelAgency()
+        {
+            return View(await db.TravelAgencies.ToListAsync());
+        }
 
-        [CustomAuthorize(Roles = "Employee")]
-        public ActionResult TravelRequest()
+        [CustomAuthorize(Roles = "Admin")]
+        public ActionResult CreateTravelAgency()
         {
             return View();
         }
 
-        [CustomAuthorize(Roles = "Manager")]
-        public ActionResult ManagerApprovalForm()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateTravelAgency([Bind(Include = "AgencyID,AgencyCode,CompanyName,Address,Telephone,Fax,Mobile,Landline,ContactPerson,Email")] TravelAgency travelAgency)
+        {
+            if (ModelState.IsValid)
+            {
+                db.TravelAgencies.Add(travelAgency);
+                await db.SaveChangesAsync();
+                return RedirectToAction("ManageTravelAgency");
+            }
+
+            return View(travelAgency);
+        }
+
+        [CustomAuthorize(Roles = "Admin")]
+        public async Task<ActionResult> EditTravelAgency(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TravelAgency travelAgency = await db.TravelAgencies.FindAsync(id);
+            if (travelAgency == null)
+            {
+                return HttpNotFound();
+            }
+            return View(travelAgency);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditTravelAgency([Bind(Include = "AgencyID,AgencyCode,CompanyName,Address,Telephone,Fax,Mobile,Landline,ContactPerson,Email")] TravelAgency travelAgency)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(travelAgency).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("ManageTravelAgency");
+            }
+            return View(travelAgency);
+        }
+
+        [CustomAuthorize(Roles = "Admin")]
+        public async Task<ActionResult> ViewTravelAgency(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TravelAgency travelAgency = await db.TravelAgencies.FindAsync(id);
+            if (travelAgency == null)
+            {
+                return HttpNotFound();
+            }
+            return View(travelAgency);
+        }
+
+        public async Task<ActionResult> DeleteTravelAgency(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TravelAgency travelAgency = await db.TravelAgencies.FindAsync(id);
+            if (travelAgency == null)
+            {
+                return HttpNotFound();
+            }
+            return View(travelAgency);
+        }
+
+        [HttpPost, ActionName("DeleteTravelAgency")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            TravelAgency travelAgency = await db.TravelAgencies.FindAsync(id);
+            db.TravelAgencies.Remove(travelAgency);
+            await db.SaveChangesAsync();
+            return RedirectToAction("ManageTravelAgency");
+        }
+
+        public async Task<ActionResult> TravelAgencyDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TravelAgency travelAgency = await db.TravelAgencies.FindAsync(id);
+            if (travelAgency == null)
+            {
+                return HttpNotFound();
+            }
+            return View(travelAgency);
+        }
+
+        [CustomAuthorize(Roles = "Admin")]
+        public ActionResult ManageEmployees()
         {
             return View();
         }
 
-        [CustomAuthorize(Roles = "HR")]
-        public ActionResult HRApprovalForm()
-        {
-            return View();
-        }
+        #endregion
 
-        [CustomAuthorize(Roles = "TravelCo")]
-        public ActionResult ManageRFQ()
-        {
-            return View();
-        }
-
-        [CustomAuthorize(Roles = "TravelCo")]
-        public ActionResult ManagaTravelAgency()
-        {
-            return View();
-        }
-
-        [CustomAuthorize(Roles = "TravelCo")]
-        public ActionResult ManagerLPO()
-        {
-            return View();
-        }
+        #region MultiRole
 
         [CustomAuthorize(Roles = "Manager,HR,Admin,TravelCo")]
         public ActionResult Reports()
@@ -126,6 +259,10 @@ namespace Travel_Request_System_EF.Controllers
         {
             return View();
         }
+
+        #endregion
+
+        #region General
 
         private void GetRole(long hREmployeeID, out string role)
         {
@@ -180,5 +317,7 @@ namespace Travel_Request_System_EF.Controllers
                     break;
             }
         }
+
+        #endregion
     }
 }

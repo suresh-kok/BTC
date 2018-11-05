@@ -29,22 +29,24 @@
                                         <th data-defaultsort="disabled">Country</th>
                                     </tr>
                                 </thead>
-                                if (ViewBag.NotificationsList != null)
-                                {
-                                    foreach (var item in ViewBag.NotificationsList)
+                                <tbody>
+                                    @if (ViewBag.NotificationsList != null)
                                     {
-                                    <tr>
-                                        <td>@item.EmployeeID</td>
-                                        <td>@item.Name</td>
-                                        <td>@item.Title</td>
-                                        <td>@item.BirthDate</td>
-                                        <td>@item.Address</td>
-                                        <td>@item.City</td>
-                                        <td>@item.Country</td>
-                                    </tr>
+                                        foreach (var item in ViewBag.NotificationsList)
+                                        {
+                                            <tr>
+                                                <td>@item.EmployeeID</td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Title</td>
+                                                <td>@item.BirthDate</td>
+                                                <td>@item.Address</td>
+                                                <td>@item.City</td>
+                                                <td>@item.Country</td>
+                                            </tr>
                                         }
                                     }
-                                }
+                                </tbody>
+                            }
                         </table>
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->

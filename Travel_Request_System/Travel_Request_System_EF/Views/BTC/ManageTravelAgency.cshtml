@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Travel_Request_System_EF.Models.TravelAgency>
+@{
+    ViewBag.Title = "Manage Travel Agencies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            @Html.ActionLink("Create New Travel Agent", "CreateTravelAgency", null, new { @class = "form-control btn btn-info" })
+        </div>
+    </div>
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
+    </div>
+</div>
+
+<aside class="right-side">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Details</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
+                            @if (Model == null || (Model.Count() == 0))
+                            {
+                                <tr>
+                                    <td colspan="10">No Record's found.</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.AgencyCode)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CompanyName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Address)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Telephone)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Fax)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Mobile)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Landline)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ContactPerson)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Email)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.AgencyCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CompanyName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Address)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Telephone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Fax)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Mobile)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Landline)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ContactPerson)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            <span class="glyphicon">
+                                                @Html.ActionLink("  Edit", "EditTravelAgency", new { id = item.AgencyID }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                                            </span>
+                                            <span class="glyphicon">
+                                                @Html.ActionLink("  Details", "ViewTravelAgency", new { id = item.AgencyID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                                            </span>
+                                            <span class="glyphicon">
+                                                @Html.ActionLink("  Delete", "DeleteTravelAgency", new { id = item.AgencyID }, new { @class = "form-control btn btn-info glyphicon-remove" })
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</aside>
+
+

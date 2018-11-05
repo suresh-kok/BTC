@@ -99,7 +99,7 @@
                     <a href="@Url.Action("ManageRFQ", "BTC")"><i class="fa fa-link"></i> <span>Manage RFQ</span></a>
                 </li>
             }
-            @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)
+            @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
             {
                 <li>
                     <a href="@Url.Action("ManageTravelAgency", "BTC")"><i class="fa fa-link"></i> <span>Manage Travel Agencies</span></a>

@@ -1,5 +1,5 @@
 ﻿using System;
-using Travel_Request_System_EF.DataAccess;
+using Travel_Request_System_EF.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

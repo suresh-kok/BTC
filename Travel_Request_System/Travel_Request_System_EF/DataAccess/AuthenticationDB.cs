@@ -1,17 +1,12 @@
-﻿using Travel_Request_System_EF.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Configuration;
+﻿using System.Data.Entity;
+using Travel_Request_System_EF.Models;
 
 namespace Travel_Request_System_EF.DataAccess
 {
     public class AuthenticationDB : DbContext
     {
         public AuthenticationDB()
-            :base("AuthenticationDB")
+            : base("AuthenticationDB")
         {
 
         }

@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-@model Travel_Request_System_EF.Models.ViewModel.LoginViewModel
+@model Travel_Request_System_EF.Models.ViewModel.LoginView
 
 <div class="row">
     <div class="col-xs-12 col-md-7">
@@ -27,34 +27,34 @@
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 </div>
             </div>
-            @using (Html.BeginForm("Login", "Account",new { LoginView = Model}, FormMethod.Post))
+            @using (Html.BeginForm("Login", "Account", new { LoginView = Model }, FormMethod.Post))
             {
                 <div class="box-body">
                     <div>
                         @*<div>
-                            <div class="form-group">
-                                <label>Login Type &emsp;</label>
-                                <select class="selectpicker">
-                                    <option>Employee</option>
-                                    <option>Human Resources</option>
-                                    <option>Travel Coordinator</option>
-                                </select>
-                            </div>
-                        </div>*@
+                                <div class="form-group">
+                                    <label>Login Type &emsp;</label>
+                                    <select class="selectpicker">
+                                        <option>Employee</option>
+                                        <option>Human Resources</option>
+                                        <option>Travel Coordinator</option>
+                                    </select>
+                                </div>
+                            </div>*@
                         <div>
                             <div class="form-group">
                                 <label>User Name</label>
                                 @*<input type="text" class="form-control pull-right" id="Uname" name="Uname"/>*@
-                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control pull-right", placeholder = "Username" })*
-                                @Html.ValidationMessageFor(model => model.UserName)
+                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control pull-right margin-bottom", placeholder = "Username" })*
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div>
                             <div class="form-group">
                                 <label>Password</label>
                                 @*<input type="password" class="form-control pull-right" />*@
-                                @Html.PasswordFor(model => model.Password, new { @class = "form-control pull-right", placeholder = "Password" })*
-                                @Html.ValidationMessageFor(model => model.Password)
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control pull-right margin-bottom", placeholder = "Password" })*
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                             </div>
                         </div><br />
                         <div>
@@ -64,9 +64,10 @@
                         </div>
                         <div>
                             <div class="form-group">
-                                <input type="button" class="form-control btn-link" onclick="@("window.location.href='" + @Url.Action("ForgotPassword", "Account") + "'");" value="Forgot Password ?" />
+                                <input type="button" class="form-control btn-link no-border" onclick="@("window.location.href='" + @Url.Action("ForgotPassword", "Account") + "'");" value="Forgot Password ?" />
                             </div>
                         </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     </div>
                 </div>
             }

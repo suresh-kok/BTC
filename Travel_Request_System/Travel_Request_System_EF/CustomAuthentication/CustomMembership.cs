@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Security;
 using Travel_Request_System_EF.DataAccess;
+using Travel_Request_System_EF.Models;
 
 namespace Travel_Request_System_EF.CustomAuthentication
 {
@@ -61,7 +62,7 @@ namespace Travel_Request_System_EF.CustomAuthentication
         {
             using (AuthenticationDB dbContext = new AuthenticationDB())
             {
-                var user = (from us in dbContext.Users
+                User user = (from us in dbContext.Users
                             where string.Compare(username, us.Username, StringComparison.OrdinalIgnoreCase) == 0
                             select us).FirstOrDefault();
 

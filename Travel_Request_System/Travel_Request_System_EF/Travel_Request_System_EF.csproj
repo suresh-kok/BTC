@@ -159,6 +159,7 @@
     <Compile Include="Controllers\BTCController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TravelAgenciesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CustomAuthentication\CustomAuthorizeAttribute.cs" />
     <Compile Include="CustomAuthentication\CustomMembership.cs" />
@@ -166,8 +167,6 @@
     <Compile Include="CustomAuthentication\CustomPrincipal.cs" />
     <Compile Include="CustomAuthentication\CustomRole.cs" />
     <Compile Include="DataAccess\AuthenticationDB.cs" />
-    <Compile Include="DataAccess\Role.cs" />
-    <Compile Include="DataAccess\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,6 +224,9 @@
     <Compile Include="Models\Role.cs">
       <DependentUpon>BTC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TravelAgency.cs">
+      <DependentUpon>BTC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TravelRequest.cs">
       <DependentUpon>BTC.tt</DependentUpon>
     </Compile>
@@ -234,14 +236,10 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>BTC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserRole.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ViewModel\Constants.cs" />
+    <Compile Include="Models\ViewModel\EmployeeDetails.cs" />
     <Compile Include="Models\ViewModel\LoginView.cs" />
-    <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\NotificationsGridDetails.cs" />
-    <Compile Include="Models\ViewModel\SessionContext.cs" />
     <Compile Include="Models\ViewModel\TravelRequestDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1172,7 +1170,6 @@
     <Content Include="Views\BTC\ManagerApprovalForm.cshtml" />
     <Content Include="Views\BTC\HRApprovalForm.cshtml" />
     <Content Include="Views\BTC\ManageRFQ.cshtml" />
-    <Content Include="Views\BTC\ManagaTravelAgency.cshtml" />
     <Content Include="Views\BTC\ManagerLPO.cshtml" />
     <Content Include="Views\BTC\Reports.cshtml" />
     <Content Include="Views\BTC\TravelRequest.cshtml" />
@@ -1189,6 +1186,17 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\BTC\ManagerQuotations.cshtml" />
+    <Content Include="Views\TravelAgencies\Create.cshtml" />
+    <Content Include="Views\TravelAgencies\Delete.cshtml" />
+    <Content Include="Views\TravelAgencies\Details.cshtml" />
+    <Content Include="Views\TravelAgencies\Edit.cshtml" />
+    <Content Include="Views\TravelAgencies\Index.cshtml" />
+    <Content Include="Views\BTC\ManageTravelAgency.cshtml" />
+    <Content Include="Views\BTC\CreateTravelAgency.cshtml" />
+    <Content Include="Views\BTC\EditTravelAgency.cshtml" />
+    <Content Include="Views\BTC\DeleteTravelAgency.cshtml" />
+    <Content Include="Views\BTC\ViewTravelAgency.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
