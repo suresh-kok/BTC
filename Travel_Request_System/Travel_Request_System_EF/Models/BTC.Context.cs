@@ -25,10 +25,11 @@ namespace Travel_Request_System_EF.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BTCEmployeeInfo> BTCEmployeeInfoes { get; set; }
-        public virtual DbSet<BTCLoginInfo> BTCLoginInfoes { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
+        public virtual DbSet<TravelAgency> TravelAgencies { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<HRW_Company> HRW_Company { get; set; }
         public virtual DbSet<HRW_EmpEntityParamValues> HRW_EmpEntityParamValues { get; set; }
         public virtual DbSet<HRW_Employee> HRW_Employee { get; set; }
@@ -38,9 +39,5 @@ namespace Travel_Request_System_EF.Models
         public virtual DbSet<ORG_EntityType> ORG_EntityType { get; set; }
         public virtual DbSet<ORG_EntityTypeParam> ORG_EntityTypeParam { get; set; }
         public virtual DbSet<TravelRequest> TravelRequests { get; set; }
-        public virtual DbSet<TravelRequestDetail> TravelRequestDetails { get; set; }
-        public virtual DbSet<TravelAgency> TravelAgencies { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -8,6 +8,9 @@ namespace Travel_Request_System_EF.CustomAuthentication
 {
     public class CustomMembership : MembershipProvider
     {
+        public CustomMembership()
+        {
+        }
 
 
         /// <summary>
@@ -63,8 +66,8 @@ namespace Travel_Request_System_EF.CustomAuthentication
             using (AuthenticationDB dbContext = new AuthenticationDB())
             {
                 User user = (from us in dbContext.Users
-                            where string.Compare(username, us.Username, StringComparison.OrdinalIgnoreCase) == 0
-                            select us).FirstOrDefault();
+                             where string.Compare(username, us.Username, StringComparison.OrdinalIgnoreCase) == 0
+                             select us).FirstOrDefault();
 
                 if (user == null)
                 {
@@ -185,7 +188,28 @@ namespace Travel_Request_System_EF.CustomAuthentication
 
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword))
+            {
+                return false;
+            }
+
+            using (AuthenticationDB dbContext = new AuthenticationDB())
+            {
+                var user = (from us in dbContext.Users
+                            where string.Compare(username, us.Username, StringComparison.OrdinalIgnoreCase) == 0
+                            && string.Compare(oldPassword, us.Password, StringComparison.OrdinalIgnoreCase) == 0
+                            && us.IsActive == true
+                            select us).FirstOrDefault();
+
+                if (user == null)
+                {
+                    return false;
+                }
+
+                user.Password = newPassword;
+                dbContext.SaveChanges();
+                return true;
+            }
         }
 
         public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer)
@@ -220,7 +244,14 @@ namespace Travel_Request_System_EF.CustomAuthentication
 
         public override string GetPassword(string username, string answer)
         {
-            throw new NotImplementedException();
+            using (AuthenticationDB dbContext = new AuthenticationDB())
+            {
+                var strPass = (from us in dbContext.Users
+                               where string.Compare(username, us.Username, StringComparison.OrdinalIgnoreCase) == 0
+                               select us).FirstOrDefault();
+
+                return strPass.Password;
+            }
         }
 
         public override MembershipUser GetUser(object providerUserKey, bool userIsOnline)

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{string HomeURL;}
+@if (ViewBag.LoggedOut == null || (ViewBag.LoggedOut != null && ViewBag.LoggedOut))
+{
+    HomeURL = Url.Action("Index", "Account");
+}
+else
+{
+    HomeURL = Url.Action("Index", "BTC");
+}
+
+<div style="background-color: #A52A2A; color: White; height: 10px;">
+</div>
+<div style="background-color: #F5F5DC; color: black; height: 170px;">
+    <div style=" padding:20px;">
+        <h3>
+            Application Error:
+        </h3>
+        <h4>
+            Sorry, The Page, You are Looking for is not found.
+        </h4>
+        <a href="@HomeURL"><h6>Go Back To Home Page</h6></a>
+        <br />
+        <br />
+    </div>
+</div>
+<div style="background-color: #A52A2A; color: White; height: 20px;">
+</div>

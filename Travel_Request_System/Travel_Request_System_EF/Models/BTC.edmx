@@ -5,29 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="HRWorksModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="BTCEmployeeInfoes">
-          <Key>
-            <PropertyRef Name="BTCEmployeeInfoId" />
-          </Key>
-          <Property Name="BTCEmployeeInfoId" Type="int" Nullable="false" />
-          <Property Name="BTCEmployeeId" Type="int" Nullable="false" />
-          <Property Name="HREmployeeID" Type="bigint" Nullable="false" />
-        </EntityType>
-        <EntityType Name="BTCLoginInfoes">
-          <Key>
-            <PropertyRef Name="BTCEmployeeId" />
-          </Key>
-          <Property Name="BTCEmployeeId" Type="int" Nullable="false" />
-          <Property Name="HREmployeeID" Type="bigint" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="nvarchar" MaxLength="20" />
-          <Property Name="LastLoginDate" Type="datetime" />
-          <Property Name="LoginFailedCount" Type="int" />
-          <Property Name="LoginIPAddress" Type="nvarchar" MaxLength="20" />
-          <Property Name="CustomerTimeZone" Type="nvarchar" MaxLength="20" />
-          <Property Name="LastAccessedDate" Type="datetime" />
-          <Property Name="AccountLocked" Type="bit" />
-        </EntityType>
         <EntityType Name="Cities">
           <Key>
             <PropertyRef Name="CityID" />
@@ -35,7 +12,6 @@
           <Property Name="CityID" Type="int" Nullable="false" />
           <Property Name="CityDesc" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="GradeLevel" Type="int" />
         </EntityType>
         <EntityType Name="Currencies">
           <Key>
@@ -199,6 +175,7 @@
           </Key>
           <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="TravelAgency">
           <Key>
@@ -215,48 +192,56 @@
           <Property Name="ContactPerson" Type="nvarchar" MaxLength="100" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="TravelRequestDetails">
-          <Key>
-            <PropertyRef Name="TravelRequestDetailsID" />
-          </Key>
-          <Property Name="TravelRequestDetailsID" Type="int" Nullable="false" />
-          <Property Name="TravelRequestID" Type="int" Nullable="false" />
-          <Property Name="OriginPort" Type="int" Nullable="false" />
-          <Property Name="DestinationPort" Type="int" Nullable="false" />
-          <Property Name="TicketClass" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="DailyAllowance" Type="int" />
-          <Property Name="Currency" Type="int" />
-          <Property Name="TravelDays" Type="int" />
-          <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
-          <Property Name="PurposeOfVisit" Type="varchar(max)" />
-        </EntityType>
         <EntityType Name="TravelRequests">
           <Key>
             <PropertyRef Name="TravelRequestID" />
           </Key>
           <Property Name="TravelRequestID" Type="int" Nullable="false" />
-          <Property Name="BTCEmployeeId" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="ApplicationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PortOfOriginID" Type="int" />
+          <Property Name="PortOfDestinationID" Type="int" />
+          <Property Name="TicketClass" Type="nvarchar" MaxLength="100" />
+          <Property Name="DailyAllowance" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CurrencyID" Type="int" />
+          <Property Name="TravelDays" Type="int" />
+          <Property Name="TravelRemarks" Type="nvarchar(max)" />
+          <Property Name="PurposeOfVisit" Type="nvarchar(max)" />
           <Property Name="DepartureDate" Type="datetime" />
-          <Property Name="ReutrnDate" Type="datetime" />
+          <Property Name="DepartureTime" Type="time" Precision="7" />
+          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="ReturnTime" Type="time" Precision="7" />
           <Property Name="FirstBusinessDay" Type="datetime" />
           <Property Name="LastBusinessDay" Type="datetime" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
           <Property Name="AirTicketManagement" Type="nvarchar" MaxLength="50" />
           <Property Name="HotelName" Type="nvarchar" MaxLength="50" />
-          <Property Name="TravelAllowance" Type="nvarchar" MaxLength="50" />
+          <Property Name="TravelAllowance" Type="decimal" Precision="10" Scale="2" />
           <Property Name="HotelStay" Type="nvarchar" MaxLength="50" />
           <Property Name="HotelCategory" Type="nvarchar" MaxLength="50" />
           <Property Name="RoomCategory" Type="nvarchar" MaxLength="50" />
           <Property Name="RoomType" Type="nvarchar" MaxLength="50" />
-          <Property Name="AdditionalAllowance" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionalAllowance" Type="decimal" Precision="10" Scale="2" />
           <Property Name="AirportPickUp" Type="nvarchar" MaxLength="50" />
-          <Property Name="PickUpBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="PickUpLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="PickUpDate" Type="datetime" />
+          <Property Name="PickUpTime" Type="time" Precision="7" />
+          <Property Name="DropOffLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="DropOffDate" Type="datetime" />
+          <Property Name="DropOffTime" Type="time" Precision="7" />
+          <Property Name="PreferrefVehicle" Type="nvarchar" MaxLength="100" />
           <Property Name="CheckInDate" Type="datetime" />
           <Property Name="CheckOutDate" Type="datetime" />
+          <Property Name="CheckInTime" Type="time" Precision="7" />
+          <Property Name="CheckOutTime" Type="time" Precision="7" />
           <Property Name="ApprovalLevel" Type="int" Nullable="false" />
           <Property Name="ApprovalBy" Type="int" />
           <Property Name="ApprovalRemarks" Type="varchar(max)" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="UserRoles">
           <Key>
@@ -278,100 +263,66 @@
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="HREmployeeID" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
-        <Association Name="FK__BTCEmploy__BTCEm__690797E6">
-          <End Role="BTCLoginInfoes" Type="Self.BTCLoginInfoes" Multiplicity="1" />
-          <End Role="BTCEmployeeInfoes" Type="Self.BTCEmployeeInfoes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BTCLoginInfoes">
-              <PropertyRef Name="BTCEmployeeId" />
-            </Principal>
-            <Dependent Role="BTCEmployeeInfoes">
-              <PropertyRef Name="BTCEmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BTCEmploy__HREmp__69FBBC1F">
-          <End Role="HRW_Employee" Type="Self.HRW_Employee" Multiplicity="1" />
-          <End Role="BTCEmployeeInfoes" Type="Self.BTCEmployeeInfoes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HRW_Employee">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="BTCEmployeeInfoes">
-              <PropertyRef Name="HREmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TravelReq__Appro__6DCC4D03">
-          <End Role="BTCLoginInfoes" Type="Self.BTCLoginInfoes" Multiplicity="0..1" />
+        <Association Name="FK__TravelReq__ApprovalBy">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="TravelRequests" Type="Self.TravelRequests" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BTCLoginInfoes">
-              <PropertyRef Name="BTCEmployeeId" />
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TravelRequests">
               <PropertyRef Name="ApprovalBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TravelReq__BTCEm__6CD828CA">
-          <End Role="BTCLoginInfoes" Type="Self.BTCLoginInfoes" Multiplicity="1" />
-          <End Role="TravelRequests" Type="Self.TravelRequests" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BTCLoginInfoes">
-              <PropertyRef Name="BTCEmployeeId" />
-            </Principal>
-            <Dependent Role="TravelRequests">
-              <PropertyRef Name="BTCEmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TravelReq__Curre__0697FACD">
+        <Association Name="FK__TravelReq_Currency">
           <End Role="Currencies" Type="Self.Currencies" Multiplicity="0..1" />
-          <End Role="TravelRequestDetails" Type="Self.TravelRequestDetails" Multiplicity="*" />
+          <End Role="TravelRequests" Type="Self.TravelRequests" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Currencies">
               <PropertyRef Name="CurrencyID" />
             </Principal>
-            <Dependent Role="TravelRequestDetails">
-              <PropertyRef Name="Currency" />
+            <Dependent Role="TravelRequests">
+              <PropertyRef Name="CurrencyID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TravelReq__Desti__05A3D694">
-          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
-          <End Role="TravelRequestDetails" Type="Self.TravelRequestDetails" Multiplicity="*" />
+        <Association Name="FK__TravelReq_PortOfD">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+          <End Role="TravelRequests" Type="Self.TravelRequests" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cities">
               <PropertyRef Name="CityID" />
             </Principal>
-            <Dependent Role="TravelRequestDetails">
-              <PropertyRef Name="DestinationPort" />
+            <Dependent Role="TravelRequests">
+              <PropertyRef Name="PortOfDestinationID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TravelReq__Origi__04AFB25B">
-          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
-          <End Role="TravelRequestDetails" Type="Self.TravelRequestDetails" Multiplicity="*" />
+        <Association Name="FK__TravelReq_PortOfO">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+          <End Role="TravelRequests" Type="Self.TravelRequests" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cities">
               <PropertyRef Name="CityID" />
             </Principal>
-            <Dependent Role="TravelRequestDetails">
-              <PropertyRef Name="OriginPort" />
+            <Dependent Role="TravelRequests">
+              <PropertyRef Name="PortOfOriginID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TravelReq__Trave__03BB8E22">
-          <End Role="TravelRequests" Type="Self.TravelRequests" Multiplicity="1" />
-          <End Role="TravelRequestDetails" Type="Self.TravelRequestDetails" Multiplicity="*" />
+        <Association Name="FK__TravelReq_UserID">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="TravelRequests" Type="Self.TravelRequests" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TravelRequests">
-              <PropertyRef Name="TravelRequestID" />
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
             </Principal>
-            <Dependent Role="TravelRequestDetails">
-              <PropertyRef Name="TravelRequestID" />
+            <Dependent Role="TravelRequests">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -532,8 +483,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HRWorksModelStoreContainer">
-          <EntitySet Name="BTCEmployeeInfoes" EntityType="Self.BTCEmployeeInfoes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BTCLoginInfoes" EntityType="Self.BTCLoginInfoes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HRW_Company" EntityType="Self.HRW_Company" Schema="dbo" store:Type="Tables" />
@@ -546,41 +495,28 @@
           <EntitySet Name="ORG_EntityTypeParam" EntityType="Self.ORG_EntityTypeParam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TravelAgency" EntityType="Self.TravelAgency" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TravelRequestDetails" EntityType="Self.TravelRequestDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TravelRequests" EntityType="Self.TravelRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__BTCEmploy__BTCEm__690797E6" Association="Self.FK__BTCEmploy__BTCEm__690797E6">
-            <End Role="BTCLoginInfoes" EntitySet="BTCLoginInfoes" />
-            <End Role="BTCEmployeeInfoes" EntitySet="BTCEmployeeInfoes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BTCEmploy__HREmp__69FBBC1F" Association="Self.FK__BTCEmploy__HREmp__69FBBC1F">
-            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
-            <End Role="BTCEmployeeInfoes" EntitySet="BTCEmployeeInfoes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TravelReq__Appro__6DCC4D03" Association="Self.FK__TravelReq__Appro__6DCC4D03">
-            <End Role="BTCLoginInfoes" EntitySet="BTCLoginInfoes" />
+          <AssociationSet Name="FK__TravelReq__ApprovalBy" Association="Self.FK__TravelReq__ApprovalBy">
+            <End Role="Users" EntitySet="Users" />
             <End Role="TravelRequests" EntitySet="TravelRequests" />
           </AssociationSet>
-          <AssociationSet Name="FK__TravelReq__BTCEm__6CD828CA" Association="Self.FK__TravelReq__BTCEm__6CD828CA">
-            <End Role="BTCLoginInfoes" EntitySet="BTCLoginInfoes" />
-            <End Role="TravelRequests" EntitySet="TravelRequests" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TravelReq__Curre__0697FACD" Association="Self.FK__TravelReq__Curre__0697FACD">
+          <AssociationSet Name="FK__TravelReq_Currency" Association="Self.FK__TravelReq_Currency">
             <End Role="Currencies" EntitySet="Currencies" />
-            <End Role="TravelRequestDetails" EntitySet="TravelRequestDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TravelReq__Desti__05A3D694" Association="Self.FK__TravelReq__Desti__05A3D694">
-            <End Role="Cities" EntitySet="Cities" />
-            <End Role="TravelRequestDetails" EntitySet="TravelRequestDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TravelReq__Origi__04AFB25B" Association="Self.FK__TravelReq__Origi__04AFB25B">
-            <End Role="Cities" EntitySet="Cities" />
-            <End Role="TravelRequestDetails" EntitySet="TravelRequestDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TravelReq__Trave__03BB8E22" Association="Self.FK__TravelReq__Trave__03BB8E22">
             <End Role="TravelRequests" EntitySet="TravelRequests" />
-            <End Role="TravelRequestDetails" EntitySet="TravelRequestDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TravelReq_PortOfD" Association="Self.FK__TravelReq_PortOfD">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="TravelRequests" EntitySet="TravelRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TravelReq_PortOfO" Association="Self.FK__TravelReq_PortOfO">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="TravelRequests" EntitySet="TravelRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TravelReq_UserID" Association="Self.FK__TravelReq_UserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TravelRequests" EntitySet="TravelRequests" />
           </AssociationSet>
           <AssociationSet Name="FK__UserRoles__RoleI__6D6238AF" Association="Self.FK__UserRoles__RoleI__6D6238AF">
             <End Role="Roles" EntitySet="Roles" />
@@ -639,34 +575,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HRWorksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="BTCEmployeeInfo">
-          <Key>
-            <PropertyRef Name="BTCEmployeeInfoId" />
-          </Key>
-          <Property Name="BTCEmployeeInfoId" Type="Int32" Nullable="false" />
-          <Property Name="BTCEmployeeId" Type="Int32" Nullable="false" />
-          <Property Name="HREmployeeID" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="BTCLoginInfo" Relationship="Self.FK__BTCEmploy__BTCEm__690797E6" FromRole="BTCEmployeeInfo" ToRole="BTCLoginInfo" />
-          <NavigationProperty Name="HRW_Employee" Relationship="Self.FK__BTCEmploy__HREmp__69FBBC1F" FromRole="BTCEmployeeInfo" ToRole="HRW_Employee" />
-        </EntityType>
-        <EntityType Name="BTCLoginInfo">
-          <Key>
-            <PropertyRef Name="BTCEmployeeId" />
-          </Key>
-          <Property Name="BTCEmployeeId" Type="Int32" Nullable="false" />
-          <Property Name="HREmployeeID" Type="Int64" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
-          <Property Name="LoginFailedCount" Type="Int32" />
-          <Property Name="LoginIPAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerTimeZone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="LastAccessedDate" Type="DateTime" Precision="3" />
-          <Property Name="AccountLocked" Type="Boolean" />
-          <NavigationProperty Name="BTCEmployeeInfoes" Relationship="Self.FK__BTCEmploy__BTCEm__690797E6" FromRole="BTCLoginInfo" ToRole="BTCEmployeeInfo" />
-          <NavigationProperty Name="TravelRequests" Relationship="Self.FK__TravelReq__Appro__6DCC4D03" FromRole="BTCLoginInfo" ToRole="TravelRequest" />
-          <NavigationProperty Name="TravelRequests1" Relationship="Self.FK__TravelReq__BTCEm__6CD828CA" FromRole="BTCLoginInfo" ToRole="TravelRequest" />
-        </EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="CityID" />
@@ -674,10 +582,9 @@
           <Property Name="CityID" Type="Int32" Nullable="false" />
           <Property Name="CityDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="GradeLevel" Type="Int32" />
-          <NavigationProperty Name="TravelRequestDetails" Relationship="Self.FK__TravelReq__Desti__05A3D694" FromRole="City" ToRole="TravelRequestDetails" />
-          <NavigationProperty Name="TravelRequestDetails1" Relationship="Self.FK__TravelReq__Origi__04AFB25B" FromRole="City" ToRole="TravelRequestDetails" />
-        </EntityType>
+          <NavigationProperty Name="TravelRequests" Relationship="HRWorksModel.FK__TravelReq_PortOfD" FromRole="City" ToRole="TravelRequest" />
+          <NavigationProperty Name="TravelRequests1" Relationship="HRWorksModel.FK__TravelReq_PortOfO" FromRole="City" ToRole="TravelRequest" />
+          </EntityType>
         <EntityType Name="Currency">
           <Key>
             <PropertyRef Name="CurrencyID" />
@@ -685,548 +592,11 @@
           <Property Name="CurrencyID" Type="Int32" Nullable="false" />
           <Property Name="CurrencyDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="TravelRequestDetails" Relationship="Self.FK__TravelReq__Curre__0697FACD" FromRole="Currency" ToRole="TravelRequestDetails" />
+          <NavigationProperty Name="TravelRequests" Relationship="HRWorksModel.FK__TravelReq_Currency" FromRole="Currency" ToRole="TravelRequest" />
         </EntityType>
-        <EntityType Name="HRW_Company">
-          <Key>
-            <PropertyRef Name="CompanyCode" />
-          </Key>
-          <Property Name="TransactType" Type="Int32" Nullable="false" />
-          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
-          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MenuID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ReportName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="HRW_Employee" Relationship="Self.FK_HRW_Employee_HRW_Company" FromRole="HRW_Company" ToRole="HRW_Employee" />
-          <NavigationProperty Name="ORG_ChartMaster" Relationship="Self.FK_ORG_ChartMaster_HRW_Company" FromRole="HRW_Company" ToRole="ORG_ChartMaster" />
-        </EntityType>
-        <EntityType Name="HRW_EmpEntityParamValues">
-          <Key>
-            <PropertyRef Name="EmpEntityParamID" />
-          </Key>
-          <Property Name="TransactType" Type="Int32" Nullable="false" />
-          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
-          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MenuID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmpEntityParamID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeId" Type="Int64" />
-          <Property Name="EntityID" Type="Int64" />
-          <Property Name="EntityTypeParamID" Type="Int64" Nullable="false" />
-          <Property Name="ParamValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ParamValueEntityID" Type="Int64" />
-          <Property Name="EmpEntityParamIDLink" Type="Int64" />
-          <Property Name="ESSID" Type="Int64" />
-          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="HRW_EmpEntityParamValues1" Relationship="Self.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" FromRole="HRW_EmpEntityParamValues" ToRole="HRW_EmpEntityParamValues1" />
-          <NavigationProperty Name="HRW_EmpEntityParamValues2" Relationship="Self.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" FromRole="HRW_EmpEntityParamValues1" ToRole="HRW_EmpEntityParamValues" />
-          <NavigationProperty Name="ORG_EntityMaster" Relationship="Self.FK_HRW_EmpEntityParamValues_ORG_EntityMaster" FromRole="HRW_EmpEntityParamValues" ToRole="ORG_EntityMaster" />
-          <NavigationProperty Name="ORG_EntityMaster1" Relationship="Self.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" FromRole="HRW_EmpEntityParamValues" ToRole="ORG_EntityMaster" />
-          <NavigationProperty Name="ORG_EntityTypeParam" Relationship="Self.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" FromRole="HRW_EmpEntityParamValues" ToRole="ORG_EntityTypeParam" />
-        </EntityType>
-        <EntityType Name="HRW_Employee">
-          <Key>
-            <PropertyRef Name="EmployeeID" />
-          </Key>
-          <Property Name="TransactType" Type="Int32" Nullable="false" />
-          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
-          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MenuID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmployeeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmployeeCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Salutation" Type="Int32" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
-          <Property Name="HireDate" Type="DateTime" Precision="3" />
-          <Property Name="TerminationDate" Type="DateTime" Precision="3" />
-          <Property Name="PrevEmpID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="RecordType" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PAFRecordID" Type="Int64" />
-          <Property Name="EmpStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="BTCEmployeeInfoes" Relationship="Self.FK__BTCEmploy__HREmp__69FBBC1F" FromRole="HRW_Employee" ToRole="BTCEmployeeInfo" />
-          <NavigationProperty Name="HRW_Company" Relationship="Self.FK_HRW_Employee_HRW_Company" FromRole="HRW_Employee" ToRole="HRW_Company" />
-          <NavigationProperty Name="ORG_EmpEntityLink" Relationship="Self.FK_ORG_EmpEntityLink_HRW_Employee" FromRole="HRW_Employee" ToRole="ORG_EmpEntityLink" />
-        </EntityType>
-        <EntityType Name="ORG_ChartMaster">
-          <Key>
-            <PropertyRef Name="OrgChartId" />
-          </Key>
-          <Property Name="TransactType" Type="Int32" Nullable="false" />
-          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
-          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MenuID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="OrgChartId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ChartRecordType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="ManagerEmployeeID" Type="Int64" />
-          <Property Name="IsChartDataReady" Type="Boolean" />
-          <Property Name="OrgChartBy" Type="Int64" />
-          <NavigationProperty Name="HRW_Company" Relationship="Self.FK_ORG_ChartMaster_HRW_Company" FromRole="ORG_ChartMaster" ToRole="HRW_Company" />
-          <NavigationProperty Name="ORG_EntityType" Relationship="Self.FK_ORG_EntityType_ORG_ChartMaster" FromRole="ORG_ChartMaster" ToRole="ORG_EntityType" />
-        </EntityType>
-        <EntityType Name="ORG_EmpEntityLink">
-          <Key>
-            <PropertyRef Name="EmpEntityId" />
-          </Key>
-          <Property Name="TransactType" Type="Int32" Nullable="false" />
-          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
-          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MenuID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmpEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeId" Type="Int64" Nullable="false" />
-          <Property Name="EntityId" Type="Int64" Nullable="false" />
-          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EffectiveTo" Type="DateTime" Precision="3" />
-          <Property Name="RecordStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="HRW_Employee" Relationship="Self.FK_ORG_EmpEntityLink_HRW_Employee" FromRole="ORG_EmpEntityLink" ToRole="HRW_Employee" />
-          <NavigationProperty Name="ORG_EntityMaster" Relationship="Self.FK_ORG_EmpEntityLink_ORG_EntityMaster" FromRole="ORG_EmpEntityLink" ToRole="ORG_EntityMaster" />
-        </EntityType>
-        <EntityType Name="ORG_EntityMaster">
-          <Key>
-            <PropertyRef Name="EntityId" />
-          </Key>
-          <Property Name="TransactType" Type="Int32" Nullable="false" />
-          <Property Name="TransactUserID" Type="Int64" />
-          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MenuID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EntityTypeId" Type="Int64" />
-          <Property Name="EntityCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Parent" Type="Int64" />
-          <Property Name="EffectiveFrom" Type="DateTime" Precision="3" />
-          <Property Name="EffectiveTo" Type="DateTime" Precision="3" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IncludeEmployees" Type="Boolean" Nullable="false" />
-          <Property Name="SortOrder" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="HRW_EmpEntityParamValues" Relationship="Self.FK_HRW_EmpEntityParamValues_ORG_EntityMaster" FromRole="ORG_EntityMaster" ToRole="HRW_EmpEntityParamValues" />
-          <NavigationProperty Name="HRW_EmpEntityParamValues1" Relationship="Self.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" FromRole="ORG_EntityMaster" ToRole="HRW_EmpEntityParamValues" />
-          <NavigationProperty Name="ORG_EmpEntityLink" Relationship="Self.FK_ORG_EmpEntityLink_ORG_EntityMaster" FromRole="ORG_EntityMaster" ToRole="ORG_EmpEntityLink" />
-          <NavigationProperty Name="ORG_EntityType" Relationship="Self.FK_ORG_EntityMaster_ORG_EntityType" FromRole="ORG_EntityMaster" ToRole="ORG_EntityType" />
-        </EntityType>
-        <EntityType Name="ORG_EntityType">
-          <Key>
-            <PropertyRef Name="EntityTypeId" />
-          </Key>
-          <Property Name="TransactType" Type="Int32" Nullable="false" />
-          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
-          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MenuID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EntityTypeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrgChartId" Type="Int64" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IsMandatory" Type="Boolean" Nullable="false" />
-          <Property Name="IsCodeRequired" Type="Boolean" Nullable="false" />
-          <Property Name="SortOrder" Type="Int32" Nullable="false" />
-          <Property Name="EntityGroup" Type="Int32" Nullable="false" />
-          <Property Name="MasterEntityTypeId" Type="Int64" />
-          <Property Name="HaveDataSecurity" Type="Boolean" Nullable="false" />
-          <Property Name="ShowInReportFilter" Type="Boolean" Nullable="false" />
-          <Property Name="RestrictDuplicate" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ORG_ChartMaster" Relationship="Self.FK_ORG_EntityType_ORG_ChartMaster" FromRole="ORG_EntityType" ToRole="ORG_ChartMaster" />
-          <NavigationProperty Name="ORG_EntityMaster" Relationship="Self.FK_ORG_EntityMaster_ORG_EntityType" FromRole="ORG_EntityType" ToRole="ORG_EntityMaster" />
-          <NavigationProperty Name="ORG_EntityTypeParam" Relationship="Self.FK_ORG_EntityTypeParam_ORG_EntityType" FromRole="ORG_EntityType" ToRole="ORG_EntityTypeParam" />
-        </EntityType>
-        <EntityType Name="ORG_EntityTypeParam">
-          <Key>
-            <PropertyRef Name="EntityTypeParamID" />
-          </Key>
-          <Property Name="TransactType" Type="Int32" Nullable="false" />
-          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
-          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MenuID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EntityTypeParamID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EntityTypeId" Type="Int64" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DataType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="DataTypeEntityID" Type="Int64" />
-          <Property Name="SortOrder" Type="Int32" Nullable="false" />
-          <Property Name="ParamLinkLevel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IsMandatory" Type="Boolean" Nullable="false" />
-          <Property Name="CheckDuplicate" Type="Int32" />
-          <Property Name="Validations" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ESSFieldAccessRight" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="DataTypeProperty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DataTypeProperty1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="HRW_EmpEntityParamValues" Relationship="Self.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" FromRole="ORG_EntityTypeParam" ToRole="HRW_EmpEntityParamValues" />
-          <NavigationProperty Name="ORG_EntityType" Relationship="Self.FK_ORG_EntityTypeParam_ORG_EntityType" FromRole="ORG_EntityTypeParam" ToRole="ORG_EntityType" />
-        </EntityType>
-        <EntityType Name="TravelRequest">
-          <Key>
-            <PropertyRef Name="TravelRequestID" />
-          </Key>
-          <Property Name="TravelRequestID" Type="Int32" Nullable="false" />
-          <Property Name="BTCEmployeeId" Type="Int32" Nullable="false" />
-          <Property Name="ApplicationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DepartureDate" Type="DateTime" Precision="3" />
-          <Property Name="ReutrnDate" Type="DateTime" Precision="3" />
-          <Property Name="FirstBusinessDay" Type="DateTime" Precision="3" />
-          <Property Name="LastBusinessDay" Type="DateTime" Precision="3" />
-          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="AirTicketManagement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TravelAllowance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HotelStay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HotelCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RoomCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RoomType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AdditionalAllowance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AirportPickUp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PickUpBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CheckInDate" Type="DateTime" Precision="3" />
-          <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
-          <Property Name="ApprovalLevel" Type="Int32" Nullable="false" />
-          <Property Name="ApprovalBy" Type="Int32" />
-          <Property Name="ApprovalRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="BTCLoginInfo" Relationship="Self.FK__TravelReq__Appro__6DCC4D03" FromRole="TravelRequest" ToRole="BTCLoginInfo" />
-          <NavigationProperty Name="BTCLoginInfo1" Relationship="Self.FK__TravelReq__BTCEm__6CD828CA" FromRole="TravelRequest" ToRole="BTCLoginInfo" />
-          <NavigationProperty Name="TravelRequestDetails" Relationship="Self.FK__TravelReq__Trave__03BB8E22" FromRole="TravelRequest" ToRole="TravelRequestDetails" />
-        </EntityType>
-        <EntityType Name="TravelRequestDetail">
-          <Key>
-            <PropertyRef Name="TravelRequestDetailsID" />
-          </Key>
-          <Property Name="TravelRequestDetailsID" Type="Int32" Nullable="false" />
-          <Property Name="TravelRequestID" Type="Int32" Nullable="false" />
-          <Property Name="OriginPort" Type="Int32" Nullable="false" />
-          <Property Name="DestinationPort" Type="Int32" Nullable="false" />
-          <Property Name="TicketClass" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DailyAllowance" Type="Int32" />
-          <Property Name="Currency" Type="Int32" />
-          <Property Name="TravelDays" Type="Int32" />
-          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PurposeOfVisit" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="City" Relationship="Self.FK__TravelReq__Desti__05A3D694" FromRole="TravelRequestDetails" ToRole="City" />
-          <NavigationProperty Name="City1" Relationship="Self.FK__TravelReq__Origi__04AFB25B" FromRole="TravelRequestDetails" ToRole="City" />
-          <NavigationProperty Name="Currency1" Relationship="Self.FK__TravelReq__Curre__0697FACD" FromRole="TravelRequestDetails" ToRole="Currency" />
-          <NavigationProperty Name="TravelRequest" Relationship="Self.FK__TravelReq__Trave__03BB8E22" FromRole="TravelRequestDetails" ToRole="TravelRequest" />
-        </EntityType>
-        <Association Name="FK__BTCEmploy__BTCEm__690797E6">
-          <End Role="BTCLoginInfo" Type="Self.BTCLoginInfo" Multiplicity="1" />
-          <End Role="BTCEmployeeInfo" Type="Self.BTCEmployeeInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BTCLoginInfo">
-              <PropertyRef Name="BTCEmployeeId" />
-            </Principal>
-            <Dependent Role="BTCEmployeeInfo">
-              <PropertyRef Name="BTCEmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BTCEmploy__HREmp__69FBBC1F">
-          <End Role="HRW_Employee" Type="Self.HRW_Employee" Multiplicity="1" />
-          <End Role="BTCEmployeeInfo" Type="Self.BTCEmployeeInfo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HRW_Employee">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="BTCEmployeeInfo">
-              <PropertyRef Name="HREmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TravelReq__Appro__6DCC4D03">
-          <End Role="BTCLoginInfo" Type="Self.BTCLoginInfo" Multiplicity="0..1" />
-          <End Role="TravelRequest" Type="Self.TravelRequest" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BTCLoginInfo">
-              <PropertyRef Name="BTCEmployeeId" />
-            </Principal>
-            <Dependent Role="TravelRequest">
-              <PropertyRef Name="ApprovalBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TravelReq__BTCEm__6CD828CA">
-          <End Role="BTCLoginInfo" Type="Self.BTCLoginInfo" Multiplicity="1" />
-          <End Role="TravelRequest" Type="Self.TravelRequest" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BTCLoginInfo">
-              <PropertyRef Name="BTCEmployeeId" />
-            </Principal>
-            <Dependent Role="TravelRequest">
-              <PropertyRef Name="BTCEmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TravelReq__Desti__05A3D694">
-          <End Role="City" Type="Self.City" Multiplicity="1" />
-          <End Role="TravelRequestDetails" Type="Self.TravelRequestDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="CityID" />
-            </Principal>
-            <Dependent Role="TravelRequestDetails">
-              <PropertyRef Name="DestinationPort" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TravelReq__Origi__04AFB25B">
-          <End Role="City" Type="Self.City" Multiplicity="1" />
-          <End Role="TravelRequestDetails" Type="Self.TravelRequestDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="CityID" />
-            </Principal>
-            <Dependent Role="TravelRequestDetails">
-              <PropertyRef Name="OriginPort" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TravelReq__Curre__0697FACD">
-          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
-          <End Role="TravelRequestDetails" Type="Self.TravelRequestDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Currency">
-              <PropertyRef Name="CurrencyID" />
-            </Principal>
-            <Dependent Role="TravelRequestDetails">
-              <PropertyRef Name="Currency" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HRW_Employee_HRW_Company">
-          <End Role="HRW_Company" Type="Self.HRW_Company" Multiplicity="1" />
-          <End Role="HRW_Employee" Type="Self.HRW_Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HRW_Company">
-              <PropertyRef Name="CompanyCode" />
-            </Principal>
-            <Dependent Role="HRW_Employee">
-              <PropertyRef Name="CompanyCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ORG_ChartMaster_HRW_Company">
-          <End Role="HRW_Company" Type="Self.HRW_Company" Multiplicity="1" />
-          <End Role="ORG_ChartMaster" Type="Self.ORG_ChartMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HRW_Company">
-              <PropertyRef Name="CompanyCode" />
-            </Principal>
-            <Dependent Role="ORG_ChartMaster">
-              <PropertyRef Name="CompanyCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues">
-          <End Role="HRW_EmpEntityParamValues" Type="Self.HRW_EmpEntityParamValues" Multiplicity="0..1" />
-          <End Role="HRW_EmpEntityParamValues1" Type="Self.HRW_EmpEntityParamValues" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HRW_EmpEntityParamValues">
-              <PropertyRef Name="EmpEntityParamID" />
-            </Principal>
-            <Dependent Role="HRW_EmpEntityParamValues1">
-              <PropertyRef Name="EmpEntityParamIDLink" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster">
-          <End Role="ORG_EntityMaster" Type="Self.ORG_EntityMaster" Multiplicity="0..1" />
-          <End Role="HRW_EmpEntityParamValues" Type="Self.HRW_EmpEntityParamValues" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ORG_EntityMaster">
-              <PropertyRef Name="EntityId" />
-            </Principal>
-            <Dependent Role="HRW_EmpEntityParamValues">
-              <PropertyRef Name="EntityID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster1">
-          <End Role="ORG_EntityMaster" Type="Self.ORG_EntityMaster" Multiplicity="0..1" />
-          <End Role="HRW_EmpEntityParamValues" Type="Self.HRW_EmpEntityParamValues" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ORG_EntityMaster">
-              <PropertyRef Name="EntityId" />
-            </Principal>
-            <Dependent Role="HRW_EmpEntityParamValues">
-              <PropertyRef Name="ParamValueEntityID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam">
-          <End Role="ORG_EntityTypeParam" Type="Self.ORG_EntityTypeParam" Multiplicity="1" />
-          <End Role="HRW_EmpEntityParamValues" Type="Self.HRW_EmpEntityParamValues" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ORG_EntityTypeParam">
-              <PropertyRef Name="EntityTypeParamID" />
-            </Principal>
-            <Dependent Role="HRW_EmpEntityParamValues">
-              <PropertyRef Name="EntityTypeParamID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ORG_EmpEntityLink_HRW_Employee">
-          <End Role="HRW_Employee" Type="Self.HRW_Employee" Multiplicity="1" />
-          <End Role="ORG_EmpEntityLink" Type="Self.ORG_EmpEntityLink" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HRW_Employee">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="ORG_EmpEntityLink">
-              <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ORG_EntityType_ORG_ChartMaster">
-          <End Role="ORG_ChartMaster" Type="Self.ORG_ChartMaster" Multiplicity="1" />
-          <End Role="ORG_EntityType" Type="Self.ORG_EntityType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ORG_ChartMaster">
-              <PropertyRef Name="OrgChartId" />
-            </Principal>
-            <Dependent Role="ORG_EntityType">
-              <PropertyRef Name="OrgChartId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ORG_EmpEntityLink_ORG_EntityMaster">
-          <End Role="ORG_EntityMaster" Type="Self.ORG_EntityMaster" Multiplicity="1" />
-          <End Role="ORG_EmpEntityLink" Type="Self.ORG_EmpEntityLink" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ORG_EntityMaster">
-              <PropertyRef Name="EntityId" />
-            </Principal>
-            <Dependent Role="ORG_EmpEntityLink">
-              <PropertyRef Name="EntityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ORG_EntityMaster_ORG_EntityType">
-          <End Role="ORG_EntityType" Type="Self.ORG_EntityType" Multiplicity="0..1" />
-          <End Role="ORG_EntityMaster" Type="Self.ORG_EntityMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ORG_EntityType">
-              <PropertyRef Name="EntityTypeId" />
-            </Principal>
-            <Dependent Role="ORG_EntityMaster">
-              <PropertyRef Name="EntityTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ORG_EntityTypeParam_ORG_EntityType">
-          <End Role="ORG_EntityType" Type="Self.ORG_EntityType" Multiplicity="1" />
-          <End Role="ORG_EntityTypeParam" Type="Self.ORG_EntityTypeParam" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ORG_EntityType">
-              <PropertyRef Name="EntityTypeId" />
-            </Principal>
-            <Dependent Role="ORG_EntityTypeParam">
-              <PropertyRef Name="EntityTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TravelReq__Trave__03BB8E22">
-          <End Role="TravelRequest" Type="Self.TravelRequest" Multiplicity="1" />
-          <End Role="TravelRequestDetails" Type="Self.TravelRequestDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TravelRequest">
-              <PropertyRef Name="TravelRequestID" />
-            </Principal>
-            <Dependent Role="TravelRequestDetails">
-              <PropertyRef Name="TravelRequestID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="HRWorksEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BTCEmployeeInfoes" EntityType="Self.BTCEmployeeInfo" />
-          <EntitySet Name="BTCLoginInfoes" EntityType="Self.BTCLoginInfo" />
           <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="Currencies" EntityType="Self.Currency" />
-          <EntitySet Name="HRW_Company" EntityType="Self.HRW_Company" />
-          <EntitySet Name="HRW_EmpEntityParamValues" EntityType="Self.HRW_EmpEntityParamValues" />
-          <EntitySet Name="HRW_Employee" EntityType="Self.HRW_Employee" />
-          <EntitySet Name="ORG_ChartMaster" EntityType="Self.ORG_ChartMaster" />
-          <EntitySet Name="ORG_EmpEntityLink" EntityType="Self.ORG_EmpEntityLink" />
-          <EntitySet Name="ORG_EntityMaster" EntityType="Self.ORG_EntityMaster" />
-          <EntitySet Name="ORG_EntityType" EntityType="Self.ORG_EntityType" />
-          <EntitySet Name="ORG_EntityTypeParam" EntityType="Self.ORG_EntityTypeParam" />
-          <EntitySet Name="TravelRequests" EntityType="Self.TravelRequest" />
-          <EntitySet Name="TravelRequestDetails" EntityType="Self.TravelRequestDetail" />
-          <AssociationSet Name="FK__BTCEmploy__BTCEm__690797E6" Association="Self.FK__BTCEmploy__BTCEm__690797E6">
-            <End Role="BTCLoginInfo" EntitySet="BTCLoginInfoes" />
-            <End Role="BTCEmployeeInfo" EntitySet="BTCEmployeeInfoes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BTCEmploy__HREmp__69FBBC1F" Association="Self.FK__BTCEmploy__HREmp__69FBBC1F">
-            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
-            <End Role="BTCEmployeeInfo" EntitySet="BTCEmployeeInfoes" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TravelReq__Appro__6DCC4D03" Association="Self.FK__TravelReq__Appro__6DCC4D03">
-            <End Role="BTCLoginInfo" EntitySet="BTCLoginInfoes" />
-            <End Role="TravelRequest" EntitySet="TravelRequests" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TravelReq__BTCEm__6CD828CA" Association="Self.FK__TravelReq__BTCEm__6CD828CA">
-            <End Role="BTCLoginInfo" EntitySet="BTCLoginInfoes" />
-            <End Role="TravelRequest" EntitySet="TravelRequests" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TravelReq__Desti__05A3D694" Association="Self.FK__TravelReq__Desti__05A3D694">
-            <End Role="City" EntitySet="Cities" />
-            <End Role="TravelRequestDetails" EntitySet="TravelRequestDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TravelReq__Origi__04AFB25B" Association="Self.FK__TravelReq__Origi__04AFB25B">
-            <End Role="City" EntitySet="Cities" />
-            <End Role="TravelRequestDetails" EntitySet="TravelRequestDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TravelReq__Curre__0697FACD" Association="Self.FK__TravelReq__Curre__0697FACD">
-            <End Role="Currency" EntitySet="Currencies" />
-            <End Role="TravelRequestDetails" EntitySet="TravelRequestDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HRW_Employee_HRW_Company" Association="Self.FK_HRW_Employee_HRW_Company">
-            <End Role="HRW_Company" EntitySet="HRW_Company" />
-            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ORG_ChartMaster_HRW_Company" Association="Self.FK_ORG_ChartMaster_HRW_Company">
-            <End Role="HRW_Company" EntitySet="HRW_Company" />
-            <End Role="ORG_ChartMaster" EntitySet="ORG_ChartMaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" Association="Self.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues">
-            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
-            <End Role="HRW_EmpEntityParamValues1" EntitySet="HRW_EmpEntityParamValues" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster" Association="Self.FK_HRW_EmpEntityParamValues_ORG_EntityMaster">
-            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
-            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" Association="Self.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1">
-            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
-            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" Association="Self.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam">
-            <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
-            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ORG_EmpEntityLink_HRW_Employee" Association="Self.FK_ORG_EmpEntityLink_HRW_Employee">
-            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
-            <End Role="ORG_EmpEntityLink" EntitySet="ORG_EmpEntityLink" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ORG_EntityType_ORG_ChartMaster" Association="Self.FK_ORG_EntityType_ORG_ChartMaster">
-            <End Role="ORG_ChartMaster" EntitySet="ORG_ChartMaster" />
-            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ORG_EmpEntityLink_ORG_EntityMaster" Association="Self.FK_ORG_EmpEntityLink_ORG_EntityMaster">
-            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
-            <End Role="ORG_EmpEntityLink" EntitySet="ORG_EmpEntityLink" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ORG_EntityMaster_ORG_EntityType" Association="Self.FK_ORG_EntityMaster_ORG_EntityType">
-            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
-            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ORG_EntityTypeParam_ORG_EntityType" Association="Self.FK_ORG_EntityTypeParam_ORG_EntityType">
-            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
-            <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TravelReq__Trave__03BB8E22" Association="Self.FK__TravelReq__Trave__03BB8E22">
-            <End Role="TravelRequest" EntitySet="TravelRequests" />
-            <End Role="TravelRequestDetails" EntitySet="TravelRequestDetails" />
-          </AssociationSet>
           <EntitySet Name="TravelAgencies" EntityType="HRWorksModel.TravelAgency" />
           <EntitySet Name="Roles" EntityType="HRWorksModel.Role" />
           <EntitySet Name="Users" EntityType="HRWorksModel.User" />
@@ -1234,7 +604,80 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="HRW_Company" EntityType="HRWorksModel.HRW_Company" />
+          <EntitySet Name="HRW_EmpEntityParamValues" EntityType="HRWorksModel.HRW_EmpEntityParamValues" />
+          <EntitySet Name="HRW_Employee" EntityType="HRWorksModel.HRW_Employee" />
+          <EntitySet Name="ORG_ChartMaster" EntityType="HRWorksModel.ORG_ChartMaster" />
+          <EntitySet Name="ORG_EmpEntityLink" EntityType="HRWorksModel.ORG_EmpEntityLink" />
+          <EntitySet Name="ORG_EntityMaster" EntityType="HRWorksModel.ORG_EntityMaster" />
+          <EntitySet Name="ORG_EntityType" EntityType="HRWorksModel.ORG_EntityType" />
+          <EntitySet Name="ORG_EntityTypeParam" EntityType="HRWorksModel.ORG_EntityTypeParam" />
+          <AssociationSet Name="FK_HRW_Employee_HRW_Company" Association="HRWorksModel.FK_HRW_Employee_HRW_Company">
+            <End Role="HRW_Company" EntitySet="HRW_Company" />
+            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_ChartMaster_HRW_Company" Association="HRWorksModel.FK_ORG_ChartMaster_HRW_Company">
+            <End Role="HRW_Company" EntitySet="HRW_Company" />
+            <End Role="ORG_ChartMaster" EntitySet="ORG_ChartMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" Association="HRWorksModel.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues">
+            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
+            <End Role="HRW_EmpEntityParamValues1" EntitySet="HRW_EmpEntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster" Association="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityMaster">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" Association="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" Association="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam">
+            <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
+            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EmpEntityLink_HRW_Employee" Association="HRWorksModel.FK_ORG_EmpEntityLink_HRW_Employee">
+            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
+            <End Role="ORG_EmpEntityLink" EntitySet="ORG_EmpEntityLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityType_ORG_ChartMaster" Association="HRWorksModel.FK_ORG_EntityType_ORG_ChartMaster">
+            <End Role="ORG_ChartMaster" EntitySet="ORG_ChartMaster" />
+            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EmpEntityLink_ORG_EntityMaster" Association="HRWorksModel.FK_ORG_EmpEntityLink_ORG_EntityMaster">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="ORG_EmpEntityLink" EntitySet="ORG_EmpEntityLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityMaster_ORG_EntityType" Association="HRWorksModel.FK_ORG_EntityMaster_ORG_EntityType">
+            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityTypeParam_ORG_EntityType" Association="HRWorksModel.FK_ORG_EntityTypeParam_ORG_EntityType">
+            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
+            <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
+          </AssociationSet>
+          <EntitySet Name="TravelRequests" EntityType="HRWorksModel.TravelRequest" />
+          <AssociationSet Name="FK__TravelReq_PortOfD" Association="HRWorksModel.FK__TravelReq_PortOfD">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="TravelRequest" EntitySet="TravelRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TravelReq_PortOfO" Association="HRWorksModel.FK__TravelReq_PortOfO">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="TravelRequest" EntitySet="TravelRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TravelReq_Currency" Association="HRWorksModel.FK__TravelReq_Currency">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="TravelRequest" EntitySet="TravelRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TravelReq__ApprovalBy" Association="HRWorksModel.FK__TravelReq__ApprovalBy">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TravelRequest" EntitySet="TravelRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TravelReq_UserID" Association="HRWorksModel.FK__TravelReq_UserID">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TravelRequest" EntitySet="TravelRequests" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="TravelAgency">
           <Key>
             <PropertyRef Name="AgencyID" />
@@ -1257,6 +700,7 @@
           <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="HRWorksModel.UserRoles" FromRole="Role" ToRole="User" />
+          <Property Name="IsDeleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -1271,49 +715,445 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="ActivationCode" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Roles" Relationship="HRWorksModel.UserRoles" FromRole="User" ToRole="Role" />
-        </EntityType>
+          <Property Name="HREmployeeID" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="TravelRequests" Relationship="HRWorksModel.FK__TravelReq__ApprovalBy" FromRole="User" ToRole="TravelRequest" />
+          <NavigationProperty Name="TravelRequests1" Relationship="HRWorksModel.FK__TravelReq_UserID" FromRole="User" ToRole="TravelRequest" />
+          </EntityType>
         <Association Name="UserRoles">
           <End Type="HRWorksModel.Role" Role="Role" Multiplicity="*" />
           <End Type="HRWorksModel.User" Role="User" Multiplicity="*" />
         </Association>
-      </Schema>
+        <EntityType Name="HRW_Company">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HRW_Employee" Relationship="HRWorksModel.FK_HRW_Employee_HRW_Company" FromRole="HRW_Company" ToRole="HRW_Employee" />
+          <NavigationProperty Name="ORG_ChartMaster" Relationship="HRWorksModel.FK_ORG_ChartMaster_HRW_Company" FromRole="HRW_Company" ToRole="ORG_ChartMaster" />
+        </EntityType>
+        <EntityType Name="HRW_EmpEntityParamValues">
+          <Key>
+            <PropertyRef Name="EmpEntityParamID" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpEntityParamID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int64" />
+          <Property Name="EntityID" Type="Int64" />
+          <Property Name="EntityTypeParamID" Type="Int64" Nullable="false" />
+          <Property Name="ParamValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ParamValueEntityID" Type="Int64" />
+          <Property Name="EmpEntityParamIDLink" Type="Int64" />
+          <Property Name="ESSID" Type="Int64" />
+          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HRW_EmpEntityParamValues1" Relationship="HRWorksModel.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" FromRole="HRW_EmpEntityParamValues" ToRole="HRW_EmpEntityParamValues1" />
+          <NavigationProperty Name="HRW_EmpEntityParamValues2" Relationship="HRWorksModel.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" FromRole="HRW_EmpEntityParamValues1" ToRole="HRW_EmpEntityParamValues" />
+          <NavigationProperty Name="ORG_EntityMaster" Relationship="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityMaster" FromRole="HRW_EmpEntityParamValues" ToRole="ORG_EntityMaster" />
+          <NavigationProperty Name="ORG_EntityMaster1" Relationship="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" FromRole="HRW_EmpEntityParamValues" ToRole="ORG_EntityMaster" />
+          <NavigationProperty Name="ORG_EntityTypeParam" Relationship="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" FromRole="HRW_EmpEntityParamValues" ToRole="ORG_EntityTypeParam" />
+        </EntityType>
+        <EntityType Name="HRW_Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Salutation" Type="Int32" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="HireDate" Type="DateTime" Precision="3" />
+          <Property Name="TerminationDate" Type="DateTime" Precision="3" />
+          <Property Name="PrevEmpID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecordType" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PAFRecordID" Type="Int64" />
+          <Property Name="EmpStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HRW_Company" Relationship="HRWorksModel.FK_HRW_Employee_HRW_Company" FromRole="HRW_Employee" ToRole="HRW_Company" />
+          <NavigationProperty Name="ORG_EmpEntityLink" Relationship="HRWorksModel.FK_ORG_EmpEntityLink_HRW_Employee" FromRole="HRW_Employee" ToRole="ORG_EmpEntityLink" />
+        </EntityType>
+        <EntityType Name="ORG_ChartMaster">
+          <Key>
+            <PropertyRef Name="OrgChartId" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrgChartId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChartRecordType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ManagerEmployeeID" Type="Int64" />
+          <Property Name="IsChartDataReady" Type="Boolean" />
+          <Property Name="OrgChartBy" Type="Int64" />
+          <NavigationProperty Name="HRW_Company" Relationship="HRWorksModel.FK_ORG_ChartMaster_HRW_Company" FromRole="ORG_ChartMaster" ToRole="HRW_Company" />
+          <NavigationProperty Name="ORG_EntityType" Relationship="HRWorksModel.FK_ORG_EntityType_ORG_ChartMaster" FromRole="ORG_ChartMaster" ToRole="ORG_EntityType" />
+        </EntityType>
+        <EntityType Name="ORG_EmpEntityLink">
+          <Key>
+            <PropertyRef Name="EmpEntityId" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int64" Nullable="false" />
+          <Property Name="EntityId" Type="Int64" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EffectiveTo" Type="DateTime" Precision="3" />
+          <Property Name="RecordStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HRW_Employee" Relationship="HRWorksModel.FK_ORG_EmpEntityLink_HRW_Employee" FromRole="ORG_EmpEntityLink" ToRole="HRW_Employee" />
+          <NavigationProperty Name="ORG_EntityMaster" Relationship="HRWorksModel.FK_ORG_EmpEntityLink_ORG_EntityMaster" FromRole="ORG_EmpEntityLink" ToRole="ORG_EntityMaster" />
+        </EntityType>
+        <EntityType Name="ORG_EntityMaster">
+          <Key>
+            <PropertyRef Name="EntityId" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityTypeId" Type="Int64" />
+          <Property Name="EntityCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Parent" Type="Int64" />
+          <Property Name="EffectiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="EffectiveTo" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IncludeEmployees" Type="Boolean" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HRW_EmpEntityParamValues" Relationship="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityMaster" FromRole="ORG_EntityMaster" ToRole="HRW_EmpEntityParamValues" />
+          <NavigationProperty Name="HRW_EmpEntityParamValues1" Relationship="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" FromRole="ORG_EntityMaster" ToRole="HRW_EmpEntityParamValues" />
+          <NavigationProperty Name="ORG_EmpEntityLink" Relationship="HRWorksModel.FK_ORG_EmpEntityLink_ORG_EntityMaster" FromRole="ORG_EntityMaster" ToRole="ORG_EmpEntityLink" />
+          <NavigationProperty Name="ORG_EntityType" Relationship="HRWorksModel.FK_ORG_EntityMaster_ORG_EntityType" FromRole="ORG_EntityMaster" ToRole="ORG_EntityType" />
+        </EntityType>
+        <EntityType Name="ORG_EntityType">
+          <Key>
+            <PropertyRef Name="EntityTypeId" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EntityTypeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrgChartId" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsMandatory" Type="Boolean" Nullable="false" />
+          <Property Name="IsCodeRequired" Type="Boolean" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="EntityGroup" Type="Int32" Nullable="false" />
+          <Property Name="MasterEntityTypeId" Type="Int64" />
+          <Property Name="HaveDataSecurity" Type="Boolean" Nullable="false" />
+          <Property Name="ShowInReportFilter" Type="Boolean" Nullable="false" />
+          <Property Name="RestrictDuplicate" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ORG_ChartMaster" Relationship="HRWorksModel.FK_ORG_EntityType_ORG_ChartMaster" FromRole="ORG_EntityType" ToRole="ORG_ChartMaster" />
+          <NavigationProperty Name="ORG_EntityMaster" Relationship="HRWorksModel.FK_ORG_EntityMaster_ORG_EntityType" FromRole="ORG_EntityType" ToRole="ORG_EntityMaster" />
+          <NavigationProperty Name="ORG_EntityTypeParam" Relationship="HRWorksModel.FK_ORG_EntityTypeParam_ORG_EntityType" FromRole="ORG_EntityType" ToRole="ORG_EntityTypeParam" />
+        </EntityType>
+        <EntityType Name="ORG_EntityTypeParam">
+          <Key>
+            <PropertyRef Name="EntityTypeParamID" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EntityTypeParamID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityTypeId" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DataType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DataTypeEntityID" Type="Int64" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="ParamLinkLevel" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsMandatory" Type="Boolean" Nullable="false" />
+          <Property Name="CheckDuplicate" Type="Int32" />
+          <Property Name="Validations" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESSFieldAccessRight" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DataTypeProperty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataTypeProperty1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HRW_EmpEntityParamValues" Relationship="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" FromRole="ORG_EntityTypeParam" ToRole="HRW_EmpEntityParamValues" />
+          <NavigationProperty Name="ORG_EntityType" Relationship="HRWorksModel.FK_ORG_EntityTypeParam_ORG_EntityType" FromRole="ORG_EntityTypeParam" ToRole="ORG_EntityType" />
+        </EntityType>
+        <Association Name="FK_HRW_Employee_HRW_Company">
+          <End Type="HRWorksModel.HRW_Company" Role="HRW_Company" Multiplicity="1" />
+          <End Type="HRWorksModel.HRW_Employee" Role="HRW_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Company">
+              <PropertyRef Name="CompanyCode" />
+            </Principal>
+            <Dependent Role="HRW_Employee">
+              <PropertyRef Name="CompanyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_ChartMaster_HRW_Company">
+          <End Type="HRWorksModel.HRW_Company" Role="HRW_Company" Multiplicity="1" />
+          <End Type="HRWorksModel.ORG_ChartMaster" Role="ORG_ChartMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Company">
+              <PropertyRef Name="CompanyCode" />
+            </Principal>
+            <Dependent Role="ORG_ChartMaster">
+              <PropertyRef Name="CompanyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues">
+          <End Type="HRWorksModel.HRW_EmpEntityParamValues" Role="HRW_EmpEntityParamValues" Multiplicity="0..1" />
+          <End Type="HRWorksModel.HRW_EmpEntityParamValues" Role="HRW_EmpEntityParamValues1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_EmpEntityParamValues">
+              <PropertyRef Name="EmpEntityParamID" />
+            </Principal>
+            <Dependent Role="HRW_EmpEntityParamValues1">
+              <PropertyRef Name="EmpEntityParamIDLink" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster">
+          <End Type="HRWorksModel.ORG_EntityMaster" Role="ORG_EntityMaster" Multiplicity="0..1" />
+          <End Type="HRWorksModel.HRW_EmpEntityParamValues" Role="HRW_EmpEntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="HRW_EmpEntityParamValues">
+              <PropertyRef Name="EntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster1">
+          <End Type="HRWorksModel.ORG_EntityMaster" Role="ORG_EntityMaster" Multiplicity="0..1" />
+          <End Type="HRWorksModel.HRW_EmpEntityParamValues" Role="HRW_EmpEntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="HRW_EmpEntityParamValues">
+              <PropertyRef Name="ParamValueEntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam">
+          <End Type="HRWorksModel.ORG_EntityTypeParam" Role="ORG_EntityTypeParam" Multiplicity="1" />
+          <End Type="HRWorksModel.HRW_EmpEntityParamValues" Role="HRW_EmpEntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityTypeParam">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Principal>
+            <Dependent Role="HRW_EmpEntityParamValues">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EmpEntityLink_HRW_Employee">
+          <End Type="HRWorksModel.HRW_Employee" Role="HRW_Employee" Multiplicity="1" />
+          <End Type="HRWorksModel.ORG_EmpEntityLink" Role="ORG_EmpEntityLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="ORG_EmpEntityLink">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityType_ORG_ChartMaster">
+          <End Type="HRWorksModel.ORG_ChartMaster" Role="ORG_ChartMaster" Multiplicity="1" />
+          <End Type="HRWorksModel.ORG_EntityType" Role="ORG_EntityType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_ChartMaster">
+              <PropertyRef Name="OrgChartId" />
+            </Principal>
+            <Dependent Role="ORG_EntityType">
+              <PropertyRef Name="OrgChartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EmpEntityLink_ORG_EntityMaster">
+          <End Type="HRWorksModel.ORG_EntityMaster" Role="ORG_EntityMaster" Multiplicity="1" />
+          <End Type="HRWorksModel.ORG_EmpEntityLink" Role="ORG_EmpEntityLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="ORG_EmpEntityLink">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityMaster_ORG_EntityType">
+          <End Type="HRWorksModel.ORG_EntityType" Role="ORG_EntityType" Multiplicity="0..1" />
+          <End Type="HRWorksModel.ORG_EntityMaster" Role="ORG_EntityMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityType">
+              <PropertyRef Name="EntityTypeId" />
+            </Principal>
+            <Dependent Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityTypeParam_ORG_EntityType">
+          <End Type="HRWorksModel.ORG_EntityType" Role="ORG_EntityType" Multiplicity="1" />
+          <End Type="HRWorksModel.ORG_EntityTypeParam" Role="ORG_EntityTypeParam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityType">
+              <PropertyRef Name="EntityTypeId" />
+            </Principal>
+            <Dependent Role="ORG_EntityTypeParam">
+              <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TravelRequest">
+          <Key>
+            <PropertyRef Name="TravelRequestID" />
+          </Key>
+          <Property Name="TravelRequestID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PortOfOriginID" Type="Int32" />
+          <Property Name="PortOfDestinationID" Type="Int32" />
+          <Property Name="TicketClass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DailyAllowance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CurrencyID" Type="Int32" />
+          <Property Name="TravelDays" Type="Int32" />
+          <Property Name="TravelRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PurposeOfVisit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureDate" Type="DateTime" Precision="3" />
+          <Property Name="DepartureTime" Type="Time" Precision="7" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+          <Property Name="ReturnTime" Type="Time" Precision="7" />
+          <Property Name="FirstBusinessDay" Type="DateTime" Precision="3" />
+          <Property Name="LastBusinessDay" Type="DateTime" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AirTicketManagement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TravelAllowance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HotelStay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalAllowance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="AirportPickUp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpDate" Type="DateTime" Precision="3" />
+          <Property Name="PickUpTime" Type="Time" Precision="7" />
+          <Property Name="DropOffLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DropOffDate" Type="DateTime" Precision="3" />
+          <Property Name="DropOffTime" Type="Time" Precision="7" />
+          <Property Name="PreferrefVehicle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInDate" Type="DateTime" Precision="3" />
+          <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
+          <Property Name="CheckInTime" Type="Time" Precision="7" />
+          <Property Name="CheckOutTime" Type="Time" Precision="7" />
+          <Property Name="ApprovalLevel" Type="Int32" Nullable="false" />
+          <Property Name="ApprovalBy" Type="Int32" />
+          <Property Name="ApprovalRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="City" Relationship="HRWorksModel.FK__TravelReq_PortOfD" FromRole="TravelRequest" ToRole="City" />
+          <NavigationProperty Name="City1" Relationship="HRWorksModel.FK__TravelReq_PortOfO" FromRole="TravelRequest" ToRole="City" />
+          <NavigationProperty Name="Currency" Relationship="HRWorksModel.FK__TravelReq_Currency" FromRole="TravelRequest" ToRole="Currency" />
+          <NavigationProperty Name="User" Relationship="HRWorksModel.FK__TravelReq__ApprovalBy" FromRole="TravelRequest" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="HRWorksModel.FK__TravelReq_UserID" FromRole="TravelRequest" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__TravelReq_PortOfD">
+          <End Type="HRWorksModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="HRWorksModel.TravelRequest" Role="TravelRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="TravelRequest">
+              <PropertyRef Name="PortOfDestinationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TravelReq_PortOfO">
+          <End Type="HRWorksModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="HRWorksModel.TravelRequest" Role="TravelRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="TravelRequest">
+              <PropertyRef Name="PortOfOriginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TravelReq_Currency">
+          <End Type="HRWorksModel.Currency" Role="Currency" Multiplicity="0..1" />
+          <End Type="HRWorksModel.TravelRequest" Role="TravelRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="TravelRequest">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TravelReq__ApprovalBy">
+          <End Type="HRWorksModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="HRWorksModel.TravelRequest" Role="TravelRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TravelRequest">
+              <PropertyRef Name="ApprovalBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TravelReq_UserID">
+          <End Type="HRWorksModel.User" Role="User" Multiplicity="1" />
+          <End Type="HRWorksModel.TravelRequest" Role="TravelRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TravelRequest">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="HRWorksModelStoreContainer" CdmEntityContainer="HRWorksEntities">
-    <EntitySetMapping Name="BTCEmployeeInfoes">
-      <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.BTCEmployeeInfo)">
-        <MappingFragment StoreEntitySet="BTCEmployeeInfoes">
-          <ScalarProperty Name="BTCEmployeeInfoId" ColumnName="BTCEmployeeInfoId" />
-          <ScalarProperty Name="BTCEmployeeId" ColumnName="BTCEmployeeId" />
-          <ScalarProperty Name="HREmployeeID" ColumnName="HREmployeeID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="BTCLoginInfoes">
-      <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.BTCLoginInfo)">
-        <MappingFragment StoreEntitySet="BTCLoginInfoes">
-          <ScalarProperty Name="BTCEmployeeId" ColumnName="BTCEmployeeId" />
-          <ScalarProperty Name="HREmployeeID" ColumnName="HREmployeeID" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-          <ScalarProperty Name="LoginFailedCount" ColumnName="LoginFailedCount" />
-          <ScalarProperty Name="LoginIPAddress" ColumnName="LoginIPAddress" />
-          <ScalarProperty Name="CustomerTimeZone" ColumnName="CustomerTimeZone" />
-          <ScalarProperty Name="LastAccessedDate" ColumnName="LastAccessedDate" />
-          <ScalarProperty Name="AccountLocked" ColumnName="AccountLocked" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Cities">
       <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.City)">
         <MappingFragment StoreEntitySet="Cities">
           <ScalarProperty Name="CityID" ColumnName="CityID" />
           <ScalarProperty Name="CityDesc" ColumnName="CityDesc" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="GradeLevel" ColumnName="GradeLevel" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1323,207 +1163,6 @@
           <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
           <ScalarProperty Name="CurrencyDesc" ColumnName="CurrencyDesc" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HRW_Company">
-      <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.HRW_Company)">
-        <MappingFragment StoreEntitySet="HRW_Company">
-          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-          <ScalarProperty Name="TransactType" ColumnName="TransactType" />
-          <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
-          <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
-          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-          <ScalarProperty Name="ReportName" ColumnName="ReportName" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HRW_EmpEntityParamValues">
-      <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.HRW_EmpEntityParamValues)">
-        <MappingFragment StoreEntitySet="HRW_EmpEntityParamValues">
-          <ScalarProperty Name="EmpEntityParamID" ColumnName="EmpEntityParamID" />
-          <ScalarProperty Name="TransactType" ColumnName="TransactType" />
-          <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
-          <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
-          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-          <ScalarProperty Name="EntityID" ColumnName="EntityID" />
-          <ScalarProperty Name="EntityTypeParamID" ColumnName="EntityTypeParamID" />
-          <ScalarProperty Name="ParamValue" ColumnName="ParamValue" />
-          <ScalarProperty Name="ParamValueEntityID" ColumnName="ParamValueEntityID" />
-          <ScalarProperty Name="EmpEntityParamIDLink" ColumnName="EmpEntityParamIDLink" />
-          <ScalarProperty Name="ESSID" ColumnName="ESSID" />
-          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HRW_Employee">
-      <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.HRW_Employee)">
-        <MappingFragment StoreEntitySet="HRW_Employee">
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="TransactType" ColumnName="TransactType" />
-          <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
-          <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
-          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-          <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FullName" ColumnName="FullName" />
-          <ScalarProperty Name="Salutation" ColumnName="Salutation" />
-          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-          <ScalarProperty Name="HireDate" ColumnName="HireDate" />
-          <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
-          <ScalarProperty Name="PrevEmpID" ColumnName="PrevEmpID" />
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-          <ScalarProperty Name="RecordType" ColumnName="RecordType" />
-          <ScalarProperty Name="PAFRecordID" ColumnName="PAFRecordID" />
-          <ScalarProperty Name="EmpStatus" ColumnName="EmpStatus" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ORG_ChartMaster">
-      <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.ORG_ChartMaster)">
-        <MappingFragment StoreEntitySet="ORG_ChartMaster">
-          <ScalarProperty Name="OrgChartId" ColumnName="OrgChartId" />
-          <ScalarProperty Name="TransactType" ColumnName="TransactType" />
-          <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
-          <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
-          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="ChartRecordType" ColumnName="ChartRecordType" />
-          <ScalarProperty Name="ManagerEmployeeID" ColumnName="ManagerEmployeeID" />
-          <ScalarProperty Name="IsChartDataReady" ColumnName="IsChartDataReady" />
-          <ScalarProperty Name="OrgChartBy" ColumnName="OrgChartBy" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ORG_EmpEntityLink">
-      <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.ORG_EmpEntityLink)">
-        <MappingFragment StoreEntitySet="ORG_EmpEntityLink">
-          <ScalarProperty Name="EmpEntityId" ColumnName="EmpEntityId" />
-          <ScalarProperty Name="TransactType" ColumnName="TransactType" />
-          <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
-          <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
-          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-          <ScalarProperty Name="EntityId" ColumnName="EntityId" />
-          <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
-          <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
-          <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ORG_EntityMaster">
-      <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.ORG_EntityMaster)">
-        <MappingFragment StoreEntitySet="ORG_EntityMaster">
-          <ScalarProperty Name="EntityId" ColumnName="EntityId" />
-          <ScalarProperty Name="TransactType" ColumnName="TransactType" />
-          <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
-          <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
-          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-          <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
-          <ScalarProperty Name="EntityCode" ColumnName="EntityCode" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Parent" ColumnName="Parent" />
-          <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
-          <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IncludeEmployees" ColumnName="IncludeEmployees" />
-          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ORG_EntityType">
-      <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.ORG_EntityType)">
-        <MappingFragment StoreEntitySet="ORG_EntityType">
-          <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
-          <ScalarProperty Name="TransactType" ColumnName="TransactType" />
-          <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
-          <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
-          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-          <ScalarProperty Name="OrgChartId" ColumnName="OrgChartId" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
-          <ScalarProperty Name="IsCodeRequired" ColumnName="IsCodeRequired" />
-          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-          <ScalarProperty Name="EntityGroup" ColumnName="EntityGroup" />
-          <ScalarProperty Name="MasterEntityTypeId" ColumnName="MasterEntityTypeId" />
-          <ScalarProperty Name="HaveDataSecurity" ColumnName="HaveDataSecurity" />
-          <ScalarProperty Name="ShowInReportFilter" ColumnName="ShowInReportFilter" />
-          <ScalarProperty Name="RestrictDuplicate" ColumnName="RestrictDuplicate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ORG_EntityTypeParam">
-      <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.ORG_EntityTypeParam)">
-        <MappingFragment StoreEntitySet="ORG_EntityTypeParam">
-          <ScalarProperty Name="EntityTypeParamID" ColumnName="EntityTypeParamID" />
-          <ScalarProperty Name="TransactType" ColumnName="TransactType" />
-          <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
-          <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
-          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-          <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="DataType" ColumnName="DataType" />
-          <ScalarProperty Name="DataTypeEntityID" ColumnName="DataTypeEntityID" />
-          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-          <ScalarProperty Name="ParamLinkLevel" ColumnName="ParamLinkLevel" />
-          <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
-          <ScalarProperty Name="CheckDuplicate" ColumnName="CheckDuplicate" />
-          <ScalarProperty Name="Validations" ColumnName="Validations" />
-          <ScalarProperty Name="ESSFieldAccessRight" ColumnName="ESSFieldAccessRight" />
-          <ScalarProperty Name="DataTypeProperty" ColumnName="DataTypeProperty" />
-          <ScalarProperty Name="DataTypeProperty1" ColumnName="DataTypeProperty1" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TravelRequests">
-      <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.TravelRequest)">
-        <MappingFragment StoreEntitySet="TravelRequests">
-          <ScalarProperty Name="TravelRequestID" ColumnName="TravelRequestID" />
-          <ScalarProperty Name="BTCEmployeeId" ColumnName="BTCEmployeeId" />
-          <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
-          <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
-          <ScalarProperty Name="ReutrnDate" ColumnName="ReutrnDate" />
-          <ScalarProperty Name="FirstBusinessDay" ColumnName="FirstBusinessDay" />
-          <ScalarProperty Name="LastBusinessDay" ColumnName="LastBusinessDay" />
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-          <ScalarProperty Name="AirTicketManagement" ColumnName="AirTicketManagement" />
-          <ScalarProperty Name="HotelName" ColumnName="HotelName" />
-          <ScalarProperty Name="TravelAllowance" ColumnName="TravelAllowance" />
-          <ScalarProperty Name="HotelStay" ColumnName="HotelStay" />
-          <ScalarProperty Name="HotelCategory" ColumnName="HotelCategory" />
-          <ScalarProperty Name="RoomCategory" ColumnName="RoomCategory" />
-          <ScalarProperty Name="RoomType" ColumnName="RoomType" />
-          <ScalarProperty Name="AdditionalAllowance" ColumnName="AdditionalAllowance" />
-          <ScalarProperty Name="AirportPickUp" ColumnName="AirportPickUp" />
-          <ScalarProperty Name="PickUpBy" ColumnName="PickUpBy" />
-          <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
-          <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
-          <ScalarProperty Name="ApprovalLevel" ColumnName="ApprovalLevel" />
-          <ScalarProperty Name="ApprovalBy" ColumnName="ApprovalBy" />
-          <ScalarProperty Name="ApprovalRemarks" ColumnName="ApprovalRemarks" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TravelRequestDetails">
-      <EntityTypeMapping TypeName="IsTypeOf(HRWorksModel.TravelRequestDetail)">
-        <MappingFragment StoreEntitySet="TravelRequestDetails">
-          <ScalarProperty Name="TravelRequestDetailsID" ColumnName="TravelRequestDetailsID" />
-          <ScalarProperty Name="TravelRequestID" ColumnName="TravelRequestID" />
-          <ScalarProperty Name="OriginPort" ColumnName="OriginPort" />
-          <ScalarProperty Name="DestinationPort" ColumnName="DestinationPort" />
-          <ScalarProperty Name="TicketClass" ColumnName="TicketClass" />
-          <ScalarProperty Name="DailyAllowance" ColumnName="DailyAllowance" />
-          <ScalarProperty Name="Currency" ColumnName="Currency" />
-          <ScalarProperty Name="TravelDays" ColumnName="TravelDays" />
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-          <ScalarProperty Name="PurposeOfVisit" ColumnName="PurposeOfVisit" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1546,6 +1185,7 @@
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="HRWorksModel.Role">
               <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>
@@ -1554,6 +1194,8 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="HRWorksModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="HREmployeeID" ColumnName="HREmployeeID" />
                 <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -1573,6 +1215,214 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleID" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="HRW_Company">
+            <EntityTypeMapping TypeName="HRWorksModel.HRW_Company">
+              <MappingFragment StoreEntitySet="HRW_Company">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_EmpEntityParamValues">
+            <EntityTypeMapping TypeName="HRWorksModel.HRW_EmpEntityParamValues">
+              <MappingFragment StoreEntitySet="HRW_EmpEntityParamValues">
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="ESSID" ColumnName="ESSID" />
+                <ScalarProperty Name="EmpEntityParamIDLink" ColumnName="EmpEntityParamIDLink" />
+                <ScalarProperty Name="ParamValueEntityID" ColumnName="ParamValueEntityID" />
+                <ScalarProperty Name="ParamValue" ColumnName="ParamValue" />
+                <ScalarProperty Name="EntityTypeParamID" ColumnName="EntityTypeParamID" />
+                <ScalarProperty Name="EntityID" ColumnName="EntityID" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmpEntityParamID" ColumnName="EmpEntityParamID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_Employee">
+            <EntityTypeMapping TypeName="HRWorksModel.HRW_Employee">
+              <MappingFragment StoreEntitySet="HRW_Employee">
+                <ScalarProperty Name="EmpStatus" ColumnName="EmpStatus" />
+                <ScalarProperty Name="PAFRecordID" ColumnName="PAFRecordID" />
+                <ScalarProperty Name="RecordType" ColumnName="RecordType" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="PrevEmpID" ColumnName="PrevEmpID" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_ChartMaster">
+            <EntityTypeMapping TypeName="HRWorksModel.ORG_ChartMaster">
+              <MappingFragment StoreEntitySet="ORG_ChartMaster">
+                <ScalarProperty Name="OrgChartBy" ColumnName="OrgChartBy" />
+                <ScalarProperty Name="IsChartDataReady" ColumnName="IsChartDataReady" />
+                <ScalarProperty Name="ManagerEmployeeID" ColumnName="ManagerEmployeeID" />
+                <ScalarProperty Name="ChartRecordType" ColumnName="ChartRecordType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="OrgChartId" ColumnName="OrgChartId" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_EmpEntityLink">
+            <EntityTypeMapping TypeName="HRWorksModel.ORG_EmpEntityLink">
+              <MappingFragment StoreEntitySet="ORG_EmpEntityLink">
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmpEntityId" ColumnName="EmpEntityId" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_EntityMaster">
+            <EntityTypeMapping TypeName="HRWorksModel.ORG_EntityMaster">
+              <MappingFragment StoreEntitySet="ORG_EntityMaster">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="IncludeEmployees" ColumnName="IncludeEmployees" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EntityCode" ColumnName="EntityCode" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_EntityType">
+            <EntityTypeMapping TypeName="HRWorksModel.ORG_EntityType">
+              <MappingFragment StoreEntitySet="ORG_EntityType">
+                <ScalarProperty Name="RestrictDuplicate" ColumnName="RestrictDuplicate" />
+                <ScalarProperty Name="ShowInReportFilter" ColumnName="ShowInReportFilter" />
+                <ScalarProperty Name="HaveDataSecurity" ColumnName="HaveDataSecurity" />
+                <ScalarProperty Name="MasterEntityTypeId" ColumnName="MasterEntityTypeId" />
+                <ScalarProperty Name="EntityGroup" ColumnName="EntityGroup" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="IsCodeRequired" ColumnName="IsCodeRequired" />
+                <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OrgChartId" ColumnName="OrgChartId" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_EntityTypeParam">
+            <EntityTypeMapping TypeName="HRWorksModel.ORG_EntityTypeParam">
+              <MappingFragment StoreEntitySet="ORG_EntityTypeParam">
+                <ScalarProperty Name="DataTypeProperty1" ColumnName="DataTypeProperty1" />
+                <ScalarProperty Name="DataTypeProperty" ColumnName="DataTypeProperty" />
+                <ScalarProperty Name="ESSFieldAccessRight" ColumnName="ESSFieldAccessRight" />
+                <ScalarProperty Name="Validations" ColumnName="Validations" />
+                <ScalarProperty Name="CheckDuplicate" ColumnName="CheckDuplicate" />
+                <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
+                <ScalarProperty Name="ParamLinkLevel" ColumnName="ParamLinkLevel" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="DataTypeEntityID" ColumnName="DataTypeEntityID" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="EntityTypeParamID" ColumnName="EntityTypeParamID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TravelRequests">
+            <EntityTypeMapping TypeName="HRWorksModel.TravelRequest">
+              <MappingFragment StoreEntitySet="TravelRequests">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="ApprovalRemarks" ColumnName="ApprovalRemarks" />
+                <ScalarProperty Name="ApprovalBy" ColumnName="ApprovalBy" />
+                <ScalarProperty Name="ApprovalLevel" ColumnName="ApprovalLevel" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="PreferrefVehicle" ColumnName="PreferrefVehicle" />
+                <ScalarProperty Name="DropOffTime" ColumnName="DropOffTime" />
+                <ScalarProperty Name="DropOffDate" ColumnName="DropOffDate" />
+                <ScalarProperty Name="DropOffLocation" ColumnName="DropOffLocation" />
+                <ScalarProperty Name="PickUpTime" ColumnName="PickUpTime" />
+                <ScalarProperty Name="PickUpDate" ColumnName="PickUpDate" />
+                <ScalarProperty Name="PickUpLocation" ColumnName="PickUpLocation" />
+                <ScalarProperty Name="AirportPickUp" ColumnName="AirportPickUp" />
+                <ScalarProperty Name="AdditionalAllowance" ColumnName="AdditionalAllowance" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="RoomCategory" ColumnName="RoomCategory" />
+                <ScalarProperty Name="HotelCategory" ColumnName="HotelCategory" />
+                <ScalarProperty Name="HotelStay" ColumnName="HotelStay" />
+                <ScalarProperty Name="TravelAllowance" ColumnName="TravelAllowance" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="AirTicketManagement" ColumnName="AirTicketManagement" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="LastBusinessDay" ColumnName="LastBusinessDay" />
+                <ScalarProperty Name="FirstBusinessDay" ColumnName="FirstBusinessDay" />
+                <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="PurposeOfVisit" ColumnName="PurposeOfVisit" />
+                <ScalarProperty Name="TravelRemarks" ColumnName="TravelRemarks" />
+                <ScalarProperty Name="TravelDays" ColumnName="TravelDays" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="DailyAllowance" ColumnName="DailyAllowance" />
+                <ScalarProperty Name="TicketClass" ColumnName="TicketClass" />
+                <ScalarProperty Name="PortOfDestinationID" ColumnName="PortOfDestinationID" />
+                <ScalarProperty Name="PortOfOriginID" ColumnName="PortOfOriginID" />
+                <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TravelRequestID" ColumnName="TravelRequestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

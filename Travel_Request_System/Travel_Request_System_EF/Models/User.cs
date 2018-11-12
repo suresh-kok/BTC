@@ -18,6 +18,8 @@ namespace Travel_Request_System_EF.Models
         public User()
         {
             this.Roles = new HashSet<Role>();
+            this.TravelRequests = new HashSet<TravelRequest>();
+            this.TravelRequests1 = new HashSet<TravelRequest>();
         }
     
         public int UserId { get; set; }
@@ -28,8 +30,14 @@ namespace Travel_Request_System_EF.Models
         public string Password { get; set; }
         public bool IsActive { get; set; }
         public System.Guid ActivationCode { get; set; }
+        public Nullable<int> HREmployeeID { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Roles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TravelRequest> TravelRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TravelRequest> TravelRequests1 { get; set; }
     }
 }

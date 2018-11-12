@@ -4,45 +4,39 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b48a8c1705224c71b74bd7bb8e7ec9fa" Name="Diagram1">
-        <EntityTypeShape EntityType="HRWorksModel.BTCEmployeeInfo" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.BTCLoginInfo" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.City" Width="1.5" PointX="5.25" PointY="24.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.Currency" Width="1.5" PointX="5.25" PointY="27.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.HRW_Company" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.HRW_EmpEntityParamValues" Width="1.5" PointX="9.75" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.HRW_Employee" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.ORG_ChartMaster" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.ORG_EmpEntityLink" Width="1.5" PointX="9.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.ORG_EntityMaster" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.ORG_EntityType" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.ORG_EntityTypeParam" Width="1.5" PointX="7.5" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.TravelRequest" Width="1.5" PointX="5.25" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksModel.TravelRequestDetail" Width="1.5" PointX="7.5" PointY="18.875" IsExpanded="true" />
-        <AssociationConnector Association="HRWorksModel.FK__BTCEmploy__BTCEm__690797E6" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK__BTCEmploy__HREmp__69FBBC1F" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK__TravelReq__Appro__6DCC4D03" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK__TravelReq__BTCEm__6CD828CA" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK__TravelReq__Desti__05A3D694" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK__TravelReq__Origi__04AFB25B" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK__TravelReq__Curre__0697FACD" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK_HRW_Employee_HRW_Company" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK_ORG_ChartMaster_HRW_Company" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityMaster" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK_ORG_EmpEntityLink_HRW_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK_ORG_EntityType_ORG_ChartMaster" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK_ORG_EmpEntityLink_ORG_EntityMaster" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK_ORG_EntityMaster_ORG_EntityType" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK_ORG_EntityTypeParam_ORG_EntityType" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksModel.FK__TravelReq__Trave__03BB8E22" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="HRWorksModel.TravelAgency" Width="1.5" PointX="12.375" PointY="4.75" />
-        <EntityTypeShape EntityType="HRWorksModel.Role" Width="1.5" PointX="10" PointY="1.625" />
-        <EntityTypeShape EntityType="HRWorksModel.User" Width="1.5" PointX="12.25" PointY="1.125" />
+      <Diagram DiagramId="b48a8c1705224c71b74bd7bb8e7ec9fa" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="HRWorksModel.City" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRWorksModel.Currency" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRWorksModel.TravelAgency" Width="1.5" PointX="5.125" PointY="2.375" />
+        <EntityTypeShape EntityType="HRWorksModel.Role" Width="1.5" PointX="0.75" PointY="4.5" />
+        <EntityTypeShape EntityType="HRWorksModel.User" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="HRWorksModel.UserRoles" />
-      </Diagram>
+        <EntityTypeShape EntityType="HRWorksModel.HRW_Company" Width="1.5" PointX="5.375" PointY="8.625" />
+        <EntityTypeShape EntityType="HRWorksModel.HRW_EmpEntityParamValues" Width="1.5" PointX="13.875" PointY="5.125" />
+        <EntityTypeShape EntityType="HRWorksModel.HRW_Employee" Width="1.5" PointX="7.125" PointY="13" />
+        <EntityTypeShape EntityType="HRWorksModel.ORG_ChartMaster" Width="1.5" PointX="7.125" PointY="5.5" />
+        <EntityTypeShape EntityType="HRWorksModel.ORG_EmpEntityLink" Width="1.5" PointX="13.875" PointY="11.375" />
+        <EntityTypeShape EntityType="HRWorksModel.ORG_EntityMaster" Width="1.5" PointX="11.625" PointY="7.75" />
+        <EntityTypeShape EntityType="HRWorksModel.ORG_EntityType" Width="1.5" PointX="9.375" PointY="5.125" />
+        <EntityTypeShape EntityType="HRWorksModel.ORG_EntityTypeParam" Width="1.5" PointX="11.625" PointY="2.375" />
+        <AssociationConnector Association="HRWorksModel.FK_HRW_Employee_HRW_Company" />
+        <AssociationConnector Association="HRWorksModel.FK_ORG_ChartMaster_HRW_Company" />
+        <AssociationConnector Association="HRWorksModel.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" />
+        <AssociationConnector Association="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityMaster" />
+        <AssociationConnector Association="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" />
+        <AssociationConnector Association="HRWorksModel.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" />
+        <AssociationConnector Association="HRWorksModel.FK_ORG_EmpEntityLink_HRW_Employee" />
+        <AssociationConnector Association="HRWorksModel.FK_ORG_EntityType_ORG_ChartMaster" />
+        <AssociationConnector Association="HRWorksModel.FK_ORG_EmpEntityLink_ORG_EntityMaster" />
+        <AssociationConnector Association="HRWorksModel.FK_ORG_EntityMaster_ORG_EntityType" />
+        <AssociationConnector Association="HRWorksModel.FK_ORG_EntityTypeParam_ORG_EntityType" />
+        <EntityTypeShape EntityType="HRWorksModel.TravelRequest" Width="1.5" PointX="3" PointY="6.25" />
+        <AssociationConnector Association="HRWorksModel.FK__TravelReq_PortOfD" />
+        <AssociationConnector Association="HRWorksModel.FK__TravelReq_PortOfO" />
+        <AssociationConnector Association="HRWorksModel.FK__TravelReq_Currency" />
+        <AssociationConnector Association="HRWorksModel.FK__TravelReq__ApprovalBy" />
+        <AssociationConnector Association="HRWorksModel.FK__TravelReq_UserID" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

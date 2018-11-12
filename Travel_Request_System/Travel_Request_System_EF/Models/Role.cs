@@ -22,6 +22,7 @@ namespace Travel_Request_System_EF.Models
     
         public int RoleId { get; set; }
         public string RoleName { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }

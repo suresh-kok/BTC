@@ -196,9 +196,15 @@
             <div class="box-body">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#tab_1" data-toggle="tab">Enter Travel Details</a></li>
-                        <li><a href="#tab_2" data-toggle="tab">View Details</a></li>
-                        <li><a href="#tab_3" data-toggle="tab">Purpose of Visit</a></li>
+                        <li class="active">
+                            <a href="#tab_1" data-toggle="tab">Enter Travel Details</a>
+                        </li>
+                        <li>
+                            <a href="#tab_2" data-toggle="tab">View Details</a>
+                        </li>
+                        <li>
+                            <a href="#tab_3" data-toggle="tab">Purpose of Visit</a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1">
@@ -657,14 +663,14 @@
                                         <option value="1">No</option>
                                     </select>
                                     @*<label>
-                                        <input type="radio" class="flat-red auto-submit-star {split:4}" name="apr" id="aprYes" onclick="alert('test');"> Yes
-                                    </label>
-                                    &emsp;
-                                    &emsp;
-                                    &emsp;
-                                    <label>
-                                        <input type="radio" name="apr" id="aprNo" onclick="alert('test');"> No
-                                    </label>*@
+                                            <input type="radio" class="flat-red auto-submit-star {split:4}" name="apr" id="aprYes" onclick="alert('test');"> Yes
+                                        </label>
+                                        &emsp;
+                                        &emsp;
+                                        &emsp;
+                                        <label>
+                                            <input type="radio" name="apr" id="aprNo" onclick="alert('test');"> No
+                                        </label>*@
                                 </div>
                             </div>
                         </div>
@@ -752,7 +758,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div><div class="row" style="margin-bottom:15px">
+                    </div>
+                    <div class="row" style="margin-bottom:15px">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-3">Drop Off Location</label>
@@ -815,6 +822,7 @@
             </div>
         </div>
     </div>
+
     <div class="col-xs-12 col-md-12">
         <div class="box box-default">
             <div class="box-header with-border">
@@ -887,14 +895,13 @@
         });
 
         function funcpickup(e) {
-            if (e==1) {
-            //if ($("#aprYes").is(":checked")) {
+            if (e == 1) {
+                //if ($("#aprYes").is(":checked")) {
                 $('#PickUpDetailsDiv').show()
             }
             else {
                 $('#PickUpDetailsDiv').hide()
             }
-        }        
-
+        }
     </script>
 }

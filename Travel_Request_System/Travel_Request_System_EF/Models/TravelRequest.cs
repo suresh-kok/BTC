@@ -14,39 +14,57 @@ namespace Travel_Request_System_EF.Models
     
     public partial class TravelRequest
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TravelRequest()
-        {
-            this.TravelRequestDetails = new HashSet<TravelRequestDetail>();
-        }
-    
         public int TravelRequestID { get; set; }
-        public int BTCEmployeeId { get; set; }
+        public int UserID { get; set; }
         public string ApplicationNumber { get; set; }
+        public Nullable<int> PortOfOriginID { get; set; }
+        public Nullable<int> PortOfDestinationID { get; set; }
+        public string TicketClass { get; set; }
+        public Nullable<decimal> DailyAllowance { get; set; }
+        public Nullable<int> CurrencyID { get; set; }
+        public Nullable<int> TravelDays { get; set; }
+        public string TravelRemarks { get; set; }
+        public string PurposeOfVisit { get; set; }
         public Nullable<System.DateTime> DepartureDate { get; set; }
-        public Nullable<System.DateTime> ReutrnDate { get; set; }
+        public Nullable<System.TimeSpan> DepartureTime { get; set; }
+        public Nullable<System.DateTime> ReturnDate { get; set; }
+        public Nullable<System.TimeSpan> ReturnTime { get; set; }
         public Nullable<System.DateTime> FirstBusinessDay { get; set; }
         public Nullable<System.DateTime> LastBusinessDay { get; set; }
         public string Remarks { get; set; }
         public string AirTicketManagement { get; set; }
         public string HotelName { get; set; }
-        public string TravelAllowance { get; set; }
+        public Nullable<decimal> TravelAllowance { get; set; }
         public string HotelStay { get; set; }
         public string HotelCategory { get; set; }
         public string RoomCategory { get; set; }
         public string RoomType { get; set; }
-        public string AdditionalAllowance { get; set; }
+        public Nullable<decimal> AdditionalAllowance { get; set; }
         public string AirportPickUp { get; set; }
-        public string PickUpBy { get; set; }
+        public string PickUpLocation { get; set; }
+        public Nullable<System.DateTime> PickUpDate { get; set; }
+        public Nullable<System.TimeSpan> PickUpTime { get; set; }
+        public string DropOffLocation { get; set; }
+        public Nullable<System.DateTime> DropOffDate { get; set; }
+        public Nullable<System.TimeSpan> DropOffTime { get; set; }
+        public string PreferrefVehicle { get; set; }
         public Nullable<System.DateTime> CheckInDate { get; set; }
         public Nullable<System.DateTime> CheckOutDate { get; set; }
+        public Nullable<System.TimeSpan> CheckInTime { get; set; }
+        public Nullable<System.TimeSpan> CheckOutTime { get; set; }
         public int ApprovalLevel { get; set; }
         public Nullable<int> ApprovalBy { get; set; }
         public string ApprovalRemarks { get; set; }
+        public Nullable<System.DateTime> CreateOn { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public Nullable<int> ModifiedBy { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
-        public virtual BTCLoginInfo BTCLoginInfo { get; set; }
-        public virtual BTCLoginInfo BTCLoginInfo1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TravelRequestDetail> TravelRequestDetails { get; set; }
+        public virtual City City { get; set; }
+        public virtual City City1 { get; set; }
+        public virtual Currency Currency { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

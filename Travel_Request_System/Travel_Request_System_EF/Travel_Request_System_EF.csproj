@@ -159,8 +159,7 @@
     <Compile Include="Controllers\BTCController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TravelAgenciesController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\TravelRequestsController.cs" />
     <Compile Include="CustomAuthentication\CustomAuthorizeAttribute.cs" />
     <Compile Include="CustomAuthentication\CustomMembership.cs" />
     <Compile Include="CustomAuthentication\CustomMembershipUser.cs" />
@@ -170,6 +169,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mail\MailAttachment.cs" />
+    <Compile Include="Mail\SendMail.cs" />
     <Compile Include="Models\BTC.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -184,12 +185,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BTC.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BTCEmployeeInfo.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BTCLoginInfo.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\City.cs">
       <DependentUpon>BTC.tt</DependentUpon>
@@ -230,9 +225,6 @@
     <Compile Include="Models\TravelRequest.cs">
       <DependentUpon>BTC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TravelRequestDetail.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>BTC.tt</DependentUpon>
     </Compile>
@@ -240,7 +232,7 @@
     <Compile Include="Models\ViewModel\EmployeeDetails.cs" />
     <Compile Include="Models\ViewModel\LoginView.cs" />
     <Compile Include="Models\ViewModel\NotificationsGridDetails.cs" />
-    <Compile Include="Models\ViewModel\TravelRequestDetails.cs" />
+    <Compile Include="Models\ViewModel\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1149,7 +1141,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -1176,32 +1167,35 @@
     <Content Include="Views\Shared\_TravelRequestDetails.cshtml" />
     <Content Include="Views\BTC\ViewTravelRequests.cshtml" />
     <Content Include="Views\BTC\EmployeeDetails.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\BTC\ChangePassword.cshtml" />
     <Content Include="Views\BTC\ManageEmployees.cshtml" />
     <Content Include="Views\BTC\OrganisationalChart.cshtml" />
     <Content Include="Views\BTC\AdminDashboard.cshtml" />
-    <Content Include="Views\BTC\ManageUsers.cshtml" />
     <Content Include="Views\Account\ActivationAccount.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\BTC\ManagerQuotations.cshtml" />
-    <Content Include="Views\TravelAgencies\Create.cshtml" />
-    <Content Include="Views\TravelAgencies\Delete.cshtml" />
-    <Content Include="Views\TravelAgencies\Details.cshtml" />
-    <Content Include="Views\TravelAgencies\Edit.cshtml" />
-    <Content Include="Views\TravelAgencies\Index.cshtml" />
     <Content Include="Views\BTC\ManageTravelAgency.cshtml" />
     <Content Include="Views\BTC\CreateTravelAgency.cshtml" />
     <Content Include="Views\BTC\EditTravelAgency.cshtml" />
     <Content Include="Views\BTC\DeleteTravelAgency.cshtml" />
     <Content Include="Views\BTC\ViewTravelAgency.cshtml" />
+    <Content Include="Views\BTC\CreateUser.cshtml" />
+    <Content Include="Views\BTC\DeleteUser.cshtml" />
+    <Content Include="Views\BTC\ViewUserDetails.cshtml" />
+    <Content Include="Views\BTC\EditUser.cshtml" />
+    <Content Include="Views\BTC\ManageUsers.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\TravelRequests\Create.cshtml" />
+    <Content Include="Views\TravelRequests\Delete.cshtml" />
+    <Content Include="Views\TravelRequests\Details.cshtml" />
+    <Content Include="Views\TravelRequests\Edit.cshtml" />
+    <Content Include="Views\TravelRequests\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Error\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

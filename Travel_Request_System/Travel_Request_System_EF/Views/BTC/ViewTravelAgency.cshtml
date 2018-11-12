@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "View Travel Agency";
+    ViewBag.Title = "Travel Agency Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,80 +13,80 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Details</h3>
+                        <h3 class="box-title">Travel Agency Details</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive">
                         <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
                             @if (Model == null || (Model.AgencyID == 0))
                             {
-                            <tr>
-                                <td colspan="10">No Record's found.</td>
-                            </tr>
+                                <tr>
+                                    <td colspan="10">No Record's found.</td>
+                                </tr>
                             }
                             else
                             {
-                            <thead>
-                                <tr class="danger">
-                                    <th data-defaultsign="_19">
-                                        @Html.DisplayNameFor(model => model.AgencyCode)
-                                    </th>
-                                    <th data-defaultsign="AZ">
-                                        @Html.DisplayNameFor(model => model.CompanyName)
-                                    </th>
-                                    <th data-defaultsign="AZ">
-                                        @Html.DisplayNameFor(model => model.Address)
-                                    </th>
-                                    <th data-defaultsign="month">
-                                        @Html.DisplayNameFor(model => model.Telephone)
-                                    </th>
-                                    <th data-firstsort="desc">
-                                        @Html.DisplayNameFor(model => model.Fax)
-                                    </th>
-                                    <th data-defaultsign="AZ">
-                                        @Html.DisplayNameFor(model => model.Mobile)
-                                    </th>
-                                    <th data-defaultsort="disabled">
-                                        @Html.DisplayNameFor(model => model.Landline)
-                                    </th>
-                                    <th data-defaultsort="disabled">
-                                        @Html.DisplayNameFor(model => model.ContactPerson)
-                                    </th>
-                                    <th data-defaultsort="disabled">
-                                        @Html.DisplayNameFor(model => model.Email)
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(model => model.AgencyCode)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.CompanyName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.Address)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.Telephone)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.Fax)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.Mobile)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.Landline)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.ContactPerson)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.Email)
-                                    </td>
-                                </tr>
-                            </tbody>
+                                <thead>
+                                    <tr class="info">
+                                        <th data-defaultsign="_19">
+                                            @Html.DisplayNameFor(model => model.AgencyCode)
+                                        </th>
+                                        <th data-defaultsign="AZ">
+                                            @Html.DisplayNameFor(model => model.CompanyName)
+                                        </th>
+                                        <th data-defaultsign="AZ">
+                                            @Html.DisplayNameFor(model => model.Address)
+                                        </th>
+                                        <th data-defaultsign="month">
+                                            @Html.DisplayNameFor(model => model.Telephone)
+                                        </th>
+                                        <th data-firstsort="desc">
+                                            @Html.DisplayNameFor(model => model.Fax)
+                                        </th>
+                                        <th data-defaultsign="AZ">
+                                            @Html.DisplayNameFor(model => model.Mobile)
+                                        </th>
+                                        <th data-defaultsort="disabled">
+                                            @Html.DisplayNameFor(model => model.Landline)
+                                        </th>
+                                        <th data-defaultsort="disabled">
+                                            @Html.DisplayNameFor(model => model.ContactPerson)
+                                        </th>
+                                        <th data-defaultsort="disabled">
+                                            @Html.DisplayNameFor(model => model.Email)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(model => model.AgencyCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.CompanyName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.Address)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.Telephone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.Fax)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.Mobile)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.Landline)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.ContactPerson)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.Email)
+                                        </td>
+                                    </tr>
+                                </tbody>
                             }
                         </table>
                     </div>

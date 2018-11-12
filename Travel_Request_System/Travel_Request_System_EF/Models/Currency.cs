@@ -17,7 +17,7 @@ namespace Travel_Request_System_EF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Currency()
         {
-            this.TravelRequestDetails = new HashSet<TravelRequestDetail>();
+            this.TravelRequests = new HashSet<TravelRequest>();
         }
     
         public int CurrencyID { get; set; }
@@ -25,6 +25,6 @@ namespace Travel_Request_System_EF.Models
         public Nullable<bool> IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TravelRequestDetail> TravelRequestDetails { get; set; }
+        public virtual ICollection<TravelRequest> TravelRequests { get; set; }
     }
 }

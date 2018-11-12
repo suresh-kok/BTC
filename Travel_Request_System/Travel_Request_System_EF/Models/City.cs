@@ -17,18 +17,17 @@ namespace Travel_Request_System_EF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public City()
         {
-            this.TravelRequestDetails = new HashSet<TravelRequestDetail>();
-            this.TravelRequestDetails1 = new HashSet<TravelRequestDetail>();
+            this.TravelRequests = new HashSet<TravelRequest>();
+            this.TravelRequests1 = new HashSet<TravelRequest>();
         }
     
         public int CityID { get; set; }
         public string CityDesc { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<int> GradeLevel { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TravelRequestDetail> TravelRequestDetails { get; set; }
+        public virtual ICollection<TravelRequest> TravelRequests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TravelRequestDetail> TravelRequestDetails1 { get; set; }
+        public virtual ICollection<TravelRequest> TravelRequests1 { get; set; }
     }
 }

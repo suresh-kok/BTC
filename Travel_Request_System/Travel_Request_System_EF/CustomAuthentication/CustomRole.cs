@@ -1,9 +1,8 @@
-﻿using Travel_Request_System_EF.DataAccess;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using Travel_Request_System_EF.DataAccess;
 
 namespace Travel_Request_System_EF.CustomAuthentication
 {
@@ -41,10 +40,10 @@ namespace Travel_Request_System_EF.CustomAuthentication
                                     where string.Compare(us.Username, username, StringComparison.OrdinalIgnoreCase) == 0
                                     select us).FirstOrDefault();
 
-                
-                if(selectedUser != null)
+
+                if (selectedUser != null)
                 {
-                    userRoles = selectedUser.Roles.Select(r=>r.RoleName).ToArray();
+                    userRoles = selectedUser.Roles.Select(r => r.RoleName).ToArray();
                 }
 
                 return userRoles.ToArray();

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Newtonsoft.Json;
 using Travel_Request_System_EF.CustomAuthentication;
 using Travel_Request_System_EF.DataAccess;
+using Travel_Request_System_EF.Mail;
 using Travel_Request_System_EF.Models.ViewModel;
 using User = Travel_Request_System_EF.Models.User;
 
@@ -32,11 +31,6 @@ namespace Travel_Request_System_EF.Controllers
 
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Account", null);
-        }
-
-        public ActionResult ChangePassword()
-        {
-            return View();
         }
 
         public ActionResult ForgotPassword()
@@ -184,73 +178,12 @@ namespace Travel_Request_System_EF.Controllers
             var url = string.Format("/Account/ActivationAccount/{0}", activationCode);
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
 
-            var fromEmail = new MailAddress("mehdi.rami2012@gmail.com", "Activation Account - AKKA");
-            var toEmail = new MailAddress(email);
+            SendMail mail = new SendMail();
+            mail.ToAddresses.Add(email);
+            mail.MailSubject = "Activation Account !";
+            mail.MailBody = "<br/> Please click on the following link in order to activate your account" + "<br/><a href='" + link + "'> Activation Account ! </a>";
 
-            var fromEmailPassword = "******************";
-            string subject = "Activation Account !";
-
-            string body = "<br/> Please click on the following link in order to activate your account" + "<br/><a href='" + link + "'> Activation Account ! </a>";
-
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
-            };
-
-            using (var message = new MailMessage(fromEmail, toEmail)
-            {
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true
-
-            })
-            {
-                smtp.Send(message);
-            }
-        }
-
-        [HttpPost]
-        public ActionResult ChangePasswordClick(string oldPassword, string newPassword)
-        {
-            bool statusReset = false;
-            string messageReset = string.Empty;
-
-            if (ModelState.IsValid)
-            {
-                var user = Membership.GetUser();
-
-                if (user == null || (user != null && string.Compare(oldPassword, user.GetPassword(), StringComparison.OrdinalIgnoreCase) != 0))
-                {
-                    ModelState.AddModelError("Warning", "Sorry: The old password is incorrect");
-                    return View();
-                }
-                else
-                {
-                    if (user.ChangePassword(oldPassword, newPassword))
-                    {
-                        messageReset = "Your account has password has been changed.";
-                        statusReset = true;
-                    }
-                    else
-                    {
-                        messageReset = "Something Went Wrong!";
-                        statusReset = false;
-                    }
-                }
-            }
-            else
-            {
-                messageReset = "Something Went Wrong!";
-            }
-            ViewBag.Message = messageReset;
-            ViewBag.Status = statusReset;
-
-            return View();
+            mail.Send();
         }
 
         [HttpGet]
@@ -290,35 +223,13 @@ namespace Travel_Request_System_EF.Controllers
         [NonAction]
         public void ForgotPasswordEmail(string email, string userName, string password)
         {
-            var fromEmail = new MailAddress("noreply@btc.com", "Travel Request information");
-            var toEmail = new MailAddress(email);
-
-            var fromEmailPassword = "******************";
-            string subject = "Travel Request Password information !";
-
-            string body = "<br/> This mail is an auto-generated Email to your response to Forgot Password" + "<br/>" +
+            SendMail mail = new SendMail();
+            mail.ToAddresses.Add(email);
+            mail.MailSubject = "Travel Request Password information !";
+            mail.MailBody = "<br/> This mail is an auto-generated Email to your response to Forgot Password" + "<br/>" +
                 "UserName: " + userName + "<br/> Password: " + password + "<br/>";
 
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
-            };
-
-            using (var message = new MailMessage(fromEmail, toEmail)
-            {
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true
-
-            })
-            {
-                smtp.Send(message);
-            }
+            mail.Send();
         }
 
     }

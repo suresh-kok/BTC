@@ -1,0 +1,93 @@
+﻿@model Travel_Request_System_EF.Models.User
+
+@{
+    ViewBag.Title = "User Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<aside class="right-side">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">User Details</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
+                            @if (Model == null || (Model.UserId == 0))
+                            {
+                                <tr>
+                                    <td colspan="10">No Record's found.</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <thead>
+                                    <tr class="info">
+                                        <th>
+                                            <label>Role</label>
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Username)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.LastName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Email)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IsActive)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @ViewBag.RoleName
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.Username)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.FirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.LastName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => model.IsActive)
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</aside>
+
+<div class="row" style="margin-bottom:15px">
+    <div class="col-md-6">
+        <div class="form-group">
+            <div class="col-md-3">
+                @Html.ActionLink("Edit", "EditUser", new { id = Model.UserId }, new { @class = "form-control btn btn-info" })
+            </div>
+            <div class="col-md-3">
+                @Html.ActionLink("Back to List", "ManageUsers", null, new { @class = "form-control btn btn-info" })
+            </div>
+        </div>
+    </div>
+</div>
+
+

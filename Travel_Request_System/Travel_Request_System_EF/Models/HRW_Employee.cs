@@ -17,7 +17,6 @@ namespace Travel_Request_System_EF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HRW_Employee()
         {
-            this.BTCEmployeeInfoes = new HashSet<BTCEmployeeInfo>();
             this.ORG_EmpEntityLink = new HashSet<ORG_EmpEntityLink>();
         }
     
@@ -42,8 +41,6 @@ namespace Travel_Request_System_EF.Models
         public Nullable<long> PAFRecordID { get; set; }
         public string EmpStatus { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BTCEmployeeInfo> BTCEmployeeInfoes { get; set; }
         public virtual HRW_Company HRW_Company { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORG_EmpEntityLink> ORG_EmpEntityLink { get; set; }
