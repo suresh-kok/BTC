@@ -321,6 +321,7 @@
     <Content Include="Content\js\adminlte.js" />
     <Content Include="Content\js\app.js" />
     <Content Include="Content\js\app.min.js" />
+    <Content Include="Content\js\BTC.js" />
     <Content Include="Content\js\dataTables.bootstrap.min.js" />
     <Content Include="Content\js\dataTables.responsive.min.js" />
     <Content Include="Content\js\demo.js" />
@@ -1193,6 +1194,7 @@
     <Content Include="Views\TravelRequests\Details.cshtml" />
     <Content Include="Views\TravelRequests\Edit.cshtml" />
     <Content Include="Views\TravelRequests\Index.cshtml" />
+    <Content Include="Views\Shared\_Modal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

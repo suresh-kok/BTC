@@ -5,252 +5,117 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            @Html.ActionLink("Create New Travel Request", "Create", null, new { @class = "form-control btn btn-info" })
+        </div>
+    </div>
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PortOfOriginID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TicketClass)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DailyAllowance)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TravelDays)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TravelRemarks)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PurposeOfVisit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DepartureDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstBusinessDay)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastBusinessDay)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Remarks)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AirTicketManagement)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HotelName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TravelAllowance)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HotelStay)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HotelCategory)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RoomCategory)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RoomType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AdditionalAllowance)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AirportPickUp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PickUpLocation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PickUpDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DropOffLocation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DropOffDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PreferrefVehicle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CheckInDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CheckOutDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApprovalLevel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApprovalRemarks)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReturnDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City.CityDesc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Currency.CurrencyDesc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Username)
-        </th>
-        <th></th>
-    </tr>
+<aside class="right-side">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Details</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
+                            @if (Model == null || (Model.Count() == 0))
+                            {
+                                <tr>
+                                    <td colspan="10">No Record's found.</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ApplicationNumber)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PortOfOriginID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TicketClass)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TravelDays)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DepartureDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ReturnDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.AirTicketManagement)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreateOn)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreatedBy)
+                                    </th>
+                                </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PortOfOriginID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TicketClass)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DailyAllowance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TravelDays)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TravelRemarks)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PurposeOfVisit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartureDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstBusinessDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastBusinessDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Remarks)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AirTicketManagement)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HotelName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TravelAllowance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HotelStay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HotelCategory)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoomCategory)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoomType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdditionalAllowance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AirportPickUp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PickUpLocation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PickUpDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DropOffLocation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DropOffDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PreferrefVehicle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CheckInDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CheckOutDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApprovalLevel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApprovalRemarks)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReturnDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City.CityDesc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Currency.CurrencyDesc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Username)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TravelRequestID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TravelRequestID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TravelRequestID })
-        </td>
-    </tr>
-}
-
-</table>
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelitem => item.ApplicationNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelitem => item.PortOfOriginID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelitem => item.TicketClass)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelitem => item.TravelDays)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelitem => item.DepartureDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelitem => item.ReturnDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelitem => item.AirTicketManagement)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelitem => item.CreateOn)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelitem => item.CreatedBy)
+                                        </td>
+                                        <td>
+                                            <span class="glyphicon">
+                                                @Html.ActionLink("  Edit", "Edit", new { id = item.TravelRequestID }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                                            </span>
+                                            <span class="glyphicon">
+                                                @Html.ActionLink("  Details", "Details", new { id = item.TravelRequestID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                                            </span>
+                                            <span class="glyphicon">
+                                                @Html.ActionLink("  Delete", "Delete", new { id = item.TravelRequestID }, new { @class = "form-control btn btn-info glyphicon-remove" })
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</aside>

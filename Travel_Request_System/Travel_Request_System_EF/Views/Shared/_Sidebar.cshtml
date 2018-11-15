@@ -68,7 +68,7 @@
             @if (ViewBag.IsEmployee != null && ViewBag.IsEmployee)
             {
                 <li>
-                    <a href="@Url.Action("TravelRequest", "BTC")"><i class="fa fa-link"></i> <span>Raise Travel Request</span></a>
+                    <a href="@Url.Action("Create", "TravelRequests")"><i class="fa fa-link"></i> <span>Raise Travel Request</span></a>
                 </li>
             }
             @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
@@ -90,7 +90,7 @@
                 (ViewBag.IsAdmin != null && ViewBag.IsAdmin))
             {
                 <li>
-                    <a href="@Url.Action("ViewTravelRequests", "BTC")"><i class="fa fa-link"></i> <span>View Travel Requests</span></a>
+                    <a href="@Url.Action("Index", "TravelRequests")"><i class="fa fa-link"></i> <span>View Travel Requests</span></a>
                 </li>
             }
             @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)

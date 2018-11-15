@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div style="height:2200px">
+<div id="detailsDiv" style="height:2400px">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -227,7 +227,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Ticket Class</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" id="ticketClass">
+                                    <select class="form-control" name="ticketClass">
                                         <option>Any</option>
                                         <option>Business Class</option>
                                         <option>Economy Class</option>
@@ -261,7 +261,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Currency</label>
                                 <div class="col-sm-9">
-                                    @Html.DropDownListFor(model => model.PortOfOriginID, ((IEnumerable<Travel_Request_System_EF.Models.Currency>)ViewBag.CurrencyID).Select(m => new SelectListItem { Text = m.CurrencyDesc, Value = m.CurrencyID.ToString() }), htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.CurrencyID, ((IEnumerable<Travel_Request_System_EF.Models.Currency>)ViewBag.CurrencyID).Select(m => new SelectListItem { Text = m.CurrencyDesc, Value = m.CurrencyID.ToString() }), htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.CurrencyID, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -346,8 +346,8 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
-                                                @Html.EditorFor(model => model.DepartureDate, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                @Html.ValidationMessageFor(model => model.DepartureDate, "", new { @class = "text-danger" })
+                                                @Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                                @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
@@ -362,8 +362,8 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
-                                                @Html.EditorFor(model => model.ReturnDate, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                @Html.ValidationMessageFor(model => model.ReturnDate, "", new { @class = "text-danger" })
+                                                @Html.EditorFor(model => model.ReturnTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                                @Html.ValidationMessageFor(model => model.ReturnTime, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
@@ -405,8 +405,8 @@
                                 <div class="form-group">
                                     <label class="col-sm-2">Remarks</label>
                                     <div class="col-sm-12">
-                                        @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "3" })
-                                        @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                                        @Html.TextAreaFor(model => model.TravelRemarks, htmlAttributes: new { @class = "form-control", @rows = "3", @placeholder = "Enter Travel Remarks..." })
+                                        @Html.ValidationMessageFor(model => model.TravelRemarks, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
@@ -435,13 +435,13 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="atrBTC" name="atr" class="flat-red" checked> BTC
+                                                <input type="radio" id="atrBTC" name="airTicketManagement" value="BTC" class="flat-red" checked> BTC
                                             </label>
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             <label>
-                                                <input type="radio" id="atrOther" name="atr" class="flat-red"> Other
+                                                <input type="radio" id="atrOther" name="airTicketManagement" value="Other" class="flat-red"> Other
                                             </label>
                                         </div>
                                     </div>
@@ -464,13 +464,13 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="taBTC" name="ta" class="flat-red" checked> BTC
+                                                <input type="radio" id="taBTC" name="travelAllowance" value="BTC" class="flat-red" checked> BTC
                                             </label>
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             <label>
-                                                <input type="radio" id="taOther" name="ta" class="flat-red"> Other
+                                                <input type="radio" id="taOther" name="travelAllowance" value="Other" class="flat-red"> Other
                                             </label>
                                         </div>
                                     </div>
@@ -498,13 +498,13 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="hsBTC" name="hs" class="flat-red" checked> BTC
+                                                <input type="radio" id="hsBTC" name="hotelStay" value="BTC" class="flat-red" checked> BTC
                                             </label>
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             <label>
-                                                <input type="radio" id="hsOther" name="hs" class="flat-red"> Other
+                                                <input type="radio" id="hsOther" name="hotelStay" value="Other" class="flat-red"> Other
                                             </label>
                                         </div>
                                     </div>
@@ -519,8 +519,8 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
-                                                @Html.EditorFor(model => model.CheckInDate, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                @Html.ValidationMessageFor(model => model.CheckInDate, "", new { @class = "text-danger" })
+                                                @Html.EditorFor(model => model.CheckInTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                                @Html.ValidationMessageFor(model => model.CheckInTime, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
@@ -532,7 +532,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Hotel Category</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" id="hotelCategory">
+                                        <select class="form-control" name="hotelCategory">
                                             <option>Any</option>
                                             <option>1 Star Rated Hotels</option>
                                             <option>2 Star Rated Hotels</option>
@@ -563,7 +563,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Room Category</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" id="roomCategory">
+                                        <select class="form-control" name="roomCategory">
                                             <option>Any</option>
                                             <option>Standard</option>
                                             <option>Deluxe</option>
@@ -581,8 +581,8 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
-                                                @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                @Html.ValidationMessageFor(model => model.CheckOutDate, "", new { @class = "text-danger" })
+                                                @Html.EditorFor(model => model.CheckOutTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                                @Html.ValidationMessageFor(model => model.CheckOutTime, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
                                     </div>
@@ -594,7 +594,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Room Type</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" id="roomType">
+                                        <select class="form-control" name="roomType">
                                             <option>Single</option>
                                             <option>Twin</option>
                                         </select>
@@ -605,7 +605,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Airport Pickup</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" onchange="funcpickup(this.selectedIndex);">
+                                        <select class="form-control" name="airportPickUp" onchange="funcpickup(this.selectedIndex);">
                                             <option value="-1">----</option>
                                             <option value="0">Yes</option>
                                             <option value="1">No</option>
@@ -648,7 +648,7 @@
                                     <label class="col-sm-3">Pick Up Location</label>
                                     <div class="col-sm-9">
                                         <div class="form-group">
-                                            <input type="text" class="form-control pull-right" id="pickUpLocation" name="pickUpLocation" />
+                                            @Html.EditorFor(model => model.PickUpLocation, new { htmlAttributes = new { @class = "form-control" } })
                                         </div>
                                     </div>
                                 </div>
@@ -662,7 +662,8 @@
                                     <label class="col-sm-3">Pick Up Date</label>
                                     <div class="col-sm-9">
                                         <div class="form-group">
-                                            <input type="text" class="form-control pull-right datepicker" id="pickUpDate" name="pickUpDate" />
+                                            @Html.EditorFor(model => model.PickUpDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                            @Html.ValidationMessageFor(model => model.PickUpDate, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
@@ -690,7 +691,7 @@
                                     <label class="col-sm-3">Drop Off Location</label>
                                     <div class="col-sm-9">
                                         <div class="form-group">
-                                            <input type="text" class="form-control pull-right" id="dropOffLocation" name="dropOffLocation" />
+                                            @Html.EditorFor(model => model.DropOffLocation, new { htmlAttributes = new { @class = "form-control" } })
                                         </div>
                                     </div>
                                 </div>
@@ -703,9 +704,10 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Drop Off Date</label>
                                     <div class="col-sm-9">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control pull-right datepicker" id="dropOffDate" name="dropOffDate" />
-                                        </div>
+                                        <dAiv class="form-group">
+                                            @Html.EditorFor(model => model.DropOffDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                            @Html.ValidationMessageFor(model => model.DropOffDate, "", new { @class = "text-danger" })
+                                        </dAiv>
                                     </div>
                                 </div>
                             </div>
@@ -713,7 +715,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Drop Off Time</label>
                                     <div class="col-sm-9">
-                                        <div class="bootstrap-timepicker">
+                                        <div class="bootstrap-timepicker" data-date-format="DD:MM:YYYY HH:mm">
                                             <div class="input-group time">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
@@ -732,7 +734,7 @@
                                     <label class="col-sm-3">Preferred Vehicle Type</label>
                                     <div class="col-sm-9">
                                         <div class="form-group">
-                                            <select class="form-control">
+                                            <select class="form-control" name="preferredVehicle">
                                                 <option>option 1</option>
                                                 <option>option 2</option>
                                                 <option>option 3</option>
@@ -767,7 +769,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <textarea class="form-control" rows="2" placeholder="Enter ..." id="PickUpRemarks" name="PickUpRemarks"></textarea>
+                                        @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "4", @placeholder = "Enter Travel Request Remarks..." })
                                     </div>
                                 </div>
                             </div>
@@ -787,8 +789,7 @@
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <input type="button" class="form-control btn btn-info" value="Reset" />
-
+                    @Html.ActionLink("Reset", "Create", "TravelRequests", new { @class = "form-control btn btn-info" })
                 </div>
             </div>
             <div class="col-sm-3">
@@ -796,34 +797,11 @@
         </div>
     }
 </div>
+
 @section Scripts {
     <script>
-        $(document).ready(function () {
-
-            $(function () {
-                $('#detailsGrid1').DataTable({
-                    'paging': true,
-                    'lengthChange': false,
-                    'searching': false,
-                    'ordering': true,
-                    'info': true,
-                    'autoWidth': true
-                })
-            })
-
-            $(function () {
-                $('.select2').select2()
-            })
-
-            $('.timepicker').timepicker({
-                showInputs: false
-            })
-
-        });
-
         function funcpickup(e) {
             if (e == 1) {
-                //if ($("#aprYes").is(":checked")) {
                 $('#PickUpDetailsDiv').show()
             }
             else {

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Travel_Request_System_EF.Controllers
@@ -9,8 +6,15 @@ namespace Travel_Request_System_EF.Controllers
     public class ErrorController : Controller
     {
         // GET: Error
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult Index(int statusCode, Exception exception)
         {
+            Response.StatusCode = statusCode;
+            ViewBag.StatusCode = statusCode + " Error";
             return View();
         }
     }

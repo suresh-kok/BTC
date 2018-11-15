@@ -34,7 +34,7 @@ namespace Travel_Request_System_EF.Models
         public string Remarks { get; set; }
         public string AirTicketManagement { get; set; }
         public string HotelName { get; set; }
-        public Nullable<decimal> TravelAllowance { get; set; }
+        public string TravelAllowance { get; set; }
         public string HotelStay { get; set; }
         public string HotelCategory { get; set; }
         public string RoomCategory { get; set; }
@@ -47,7 +47,7 @@ namespace Travel_Request_System_EF.Models
         public string DropOffLocation { get; set; }
         public Nullable<System.DateTime> DropOffDate { get; set; }
         public Nullable<System.TimeSpan> DropOffTime { get; set; }
-        public string PreferrefVehicle { get; set; }
+        public string PreferredVehicle { get; set; }
         public Nullable<System.DateTime> CheckInDate { get; set; }
         public Nullable<System.DateTime> CheckOutDate { get; set; }
         public Nullable<System.TimeSpan> CheckInTime { get; set; }

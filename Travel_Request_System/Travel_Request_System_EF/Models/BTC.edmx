@@ -216,7 +216,7 @@
           <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
           <Property Name="AirTicketManagement" Type="nvarchar" MaxLength="50" />
           <Property Name="HotelName" Type="nvarchar" MaxLength="50" />
-          <Property Name="TravelAllowance" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="TravelAllowance" Type="nvarchar" MaxLength="50" />
           <Property Name="HotelStay" Type="nvarchar" MaxLength="50" />
           <Property Name="HotelCategory" Type="nvarchar" MaxLength="50" />
           <Property Name="RoomCategory" Type="nvarchar" MaxLength="50" />
@@ -229,7 +229,7 @@
           <Property Name="DropOffLocation" Type="nvarchar" MaxLength="500" />
           <Property Name="DropOffDate" Type="datetime" />
           <Property Name="DropOffTime" Type="time" Precision="7" />
-          <Property Name="PreferrefVehicle" Type="nvarchar" MaxLength="100" />
+          <Property Name="PreferredVehicle" Type="nvarchar" MaxLength="100" />
           <Property Name="CheckInDate" Type="datetime" />
           <Property Name="CheckOutDate" Type="datetime" />
           <Property Name="CheckInTime" Type="time" Precision="7" />
@@ -1050,7 +1050,7 @@
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="AirTicketManagement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TravelAllowance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="TravelAllowance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HotelStay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HotelCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RoomCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1063,7 +1063,7 @@
           <Property Name="DropOffLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="DropOffDate" Type="DateTime" Precision="3" />
           <Property Name="DropOffTime" Type="Time" Precision="7" />
-          <Property Name="PreferrefVehicle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PreferredVehicle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CheckInDate" Type="DateTime" Precision="3" />
           <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
           <Property Name="CheckInTime" Type="Time" Precision="7" />
@@ -1386,7 +1386,7 @@
                 <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
                 <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
                 <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
-                <ScalarProperty Name="PreferrefVehicle" ColumnName="PreferrefVehicle" />
+                <ScalarProperty Name="PreferredVehicle" ColumnName="PreferredVehicle" />
                 <ScalarProperty Name="DropOffTime" ColumnName="DropOffTime" />
                 <ScalarProperty Name="DropOffDate" ColumnName="DropOffDate" />
                 <ScalarProperty Name="DropOffLocation" ColumnName="DropOffLocation" />
