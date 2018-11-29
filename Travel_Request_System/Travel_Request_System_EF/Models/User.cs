@@ -19,8 +19,8 @@ namespace Travel_Request_System_EF.Models
         {
             this.Quotations = new HashSet<Quotation>();
             this.RFQs = new HashSet<RFQ>();
-            this.TravelRequests = new HashSet<TravelRequest>();
-            this.TravelRequests1 = new HashSet<TravelRequest>();
+            this.TravelRequestsApprover = new HashSet<TravelRequest>();
+            this.TravelRequestsUser = new HashSet<TravelRequest>();
             this.Roles = new HashSet<Role>();
         }
     
@@ -40,10 +40,11 @@ namespace Travel_Request_System_EF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RFQ> RFQs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TravelRequest> TravelRequests { get; set; }
+        public virtual ICollection<TravelRequest> TravelRequestsApprover { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TravelRequest> TravelRequests1 { get; set; }
+        public virtual ICollection<TravelRequest> TravelRequestsUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Roles { get; set; }
+        public virtual TravelRequest TravelRequestCreatedBy { get; set; }
     }
 }

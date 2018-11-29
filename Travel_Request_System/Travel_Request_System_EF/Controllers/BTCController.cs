@@ -28,7 +28,7 @@ namespace Travel_Request_System_EF.Controllers
             using (HRWorksEntities db = new HRWorksEntities())
             {
                 User userobj = new User();
-                userobj = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
+                userobj = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequestsUser).Include(a => a.TravelRequestsUser).Include(a => a.TravelRequestCreatedBy).FirstOrDefault();
                 ViewBag.FirstName = userobj.FirstName;
                 ViewBag.LastName = userobj.LastName;
                 ViewBag.RoleName = roles.ToList()[0];

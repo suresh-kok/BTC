@@ -11,10 +11,7 @@ namespace Travel_Request_System_EF.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using Travel_Request_System_EF.Models.DataAnnotations;
-
-    [MetadataType(typeof(TravelRequestMetaData))]
+    
     public partial class TravelRequest
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +20,7 @@ namespace Travel_Request_System_EF.Models
             this.Quotations = new HashSet<Quotation>();
             this.RFQs = new HashSet<RFQ>();
         }
-
+    
         public int TravelRequestID { get; set; }
         public int UserID { get; set; }
         public string ApplicationNumber { get; set; }
@@ -71,15 +68,16 @@ namespace Travel_Request_System_EF.Models
         public Nullable<int> ModifiedBy { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public bool IsSubmitted { get; set; }
-
-        public virtual City City { get; set; }
-        public virtual City City1 { get; set; }
+    
+        public virtual City DestinationCity { get; set; }
+        public virtual City OriginCity { get; set; }
         public virtual Currency Currency { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Quotation> Quotations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RFQ> RFQs { get; set; }
+        public virtual User ApproverUser { get; set; }
         public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
+        public virtual User CreatedByUser { get; set; }
     }
 }

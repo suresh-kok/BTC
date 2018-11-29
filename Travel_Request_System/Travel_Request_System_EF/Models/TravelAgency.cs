@@ -11,8 +11,7 @@ namespace Travel_Request_System_EF.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class TravelAgency
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +20,7 @@ namespace Travel_Request_System_EF.Models
             this.Quotations = new HashSet<Quotation>();
             this.RFQs = new HashSet<RFQ>();
         }
-
-        [Key]
+    
         public int AgencyID { get; set; }
         public string AgencyCode { get; set; }
         public string CompanyName { get; set; }

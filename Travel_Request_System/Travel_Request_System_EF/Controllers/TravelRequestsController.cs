@@ -29,7 +29,7 @@ namespace Travel_Request_System_EF.Controllers
             using (HRWorksEntities db = new HRWorksEntities())
             {
                 User userobj = new User();
-                userobj = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
+                userobj = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequestsApprover).Include(a => a.TravelRequestsUser).Include(a => a.TravelRequestCreatedBy).FirstOrDefault();
                 ViewBag.FirstName = userobj.FirstName;
                 ViewBag.LastName = userobj.LastName;
                 ViewBag.RoleName = roles.ToList()[0];
@@ -38,7 +38,7 @@ namespace Travel_Request_System_EF.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var travelRequests = db.TravelRequests.Include(t => t.City).Include(t => t.Currency).Include(t => t.User);
+            var travelRequests = db.TravelRequests.Include(t => t.DestinationCity).Include(t => t.OriginCity).Include(t => t.Currency).Include(t => t.User);
             return View(await travelRequests.ToListAsync());
         }
 
@@ -293,7 +293,7 @@ namespace Travel_Request_System_EF.Controllers
 
             using (HRWorksEntities db = new HRWorksEntities())
             {
-                travelRequest.ModifiedBy = (db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault()).UserId;
+                travelRequest.ModifiedBy = (db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequestsUser).Include(a => a.TravelRequestsApprover).Include(a => a.TravelRequestCreatedBy).FirstOrDefault()).UserId;
                 travelRequest.ModifiedOn = DateTime.Now;
                 travelRequest.UserID = (int)travelRequest.ModifiedBy;
             }

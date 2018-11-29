@@ -1123,6 +1123,7 @@
       <DependentUpon>HRWorksEntities.edmx</DependentUpon>
       <LastGenOutput>HRWorksEntities.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\HRWorksEntities.edmx.sql" />
     <Content Include="Models\HRWorksEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>HRWorksEntities.edmx</DependentUpon>
