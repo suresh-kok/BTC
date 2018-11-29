@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Travel_Request_System_EF.Models;
 
 namespace Travel_Request_System_EF.Controllers
 {
@@ -14,7 +15,7 @@ namespace Travel_Request_System_EF.Controllers
             ViewBag.tasks = false;
             ViewBag.userdetails = false;
             ViewBag.LoggedOut = true;
-            return View();
+            return View(new User());
         }
 
         public ActionResult About()

@@ -11,9 +11,18 @@ namespace Travel_Request_System_EF.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TravelAgency
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TravelAgency()
+        {
+            this.Quotations = new HashSet<Quotation>();
+            this.RFQs = new HashSet<RFQ>();
+        }
+
+        [Key]
         public int AgencyID { get; set; }
         public string AgencyCode { get; set; }
         public string CompanyName { get; set; }
@@ -24,5 +33,10 @@ namespace Travel_Request_System_EF.Models
         public string Landline { get; set; }
         public string ContactPerson { get; set; }
         public string Email { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Quotation> Quotations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RFQ> RFQs { get; set; }
     }
 }

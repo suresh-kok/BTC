@@ -8,4 +8,22 @@
         public const string TravelCorordinator = "TravelCo";
         public const string Admin = "Admin";
     }
+
+    public enum ProcessingStatus
+    {
+        NotProcessed,
+        BeingProcessed,
+        Processed
+    }
+
+    public enum ProcessingSections
+    {
+        AT = 1,
+        HS,
+        PC,
+        ATHS,
+        ATPC,
+        HSPC,
+        ATHSPC
+    }
 }

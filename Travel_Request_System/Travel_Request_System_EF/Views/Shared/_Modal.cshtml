@@ -56,7 +56,12 @@
                     <h4 class="modal-title">Information !</h4>
                 </div>
                 <div class="modal-body">
-                    <p>@ViewBag.InfoMessage</p>
+                    <p>Info</p>
+                    @foreach (string error in ViewBag.InfoMessage)
+                    {
+                        @Html.Label(error)
+                        <br />
+                    }
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>                    
@@ -79,7 +84,12 @@
                     <h4 class="modal-title">Warning !!</h4>
                 </div>
                 <div class="modal-body">
-                    <p>@ViewBag.WarningMessage</p>
+                    <p>Warning</p>
+                    @foreach (string error in ViewBag.WarningMessage)
+                    {
+                        @Html.Label(error)
+                        <br />
+                    }
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>                    
@@ -125,7 +135,12 @@
                     <h4 class="modal-title">Error!!</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Error Occoured : @ViewBag.ErrorMessage</p>
+                    <p>Error Occoured</p>
+                    @foreach (string error in ViewBag.ErrorMessage)
+                    {
+                    <span>@error</span>
+                        <br />
+                    }
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>

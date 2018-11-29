@@ -25,6 +25,14 @@ namespace Travel_Request_System_EF.Controllers
             CustomRole customRole = new CustomRole();
             roles = customRole.GetRolesForUser(user.UserName);
             IsLoggedIn(roles.ToList());
+            using (HRWorksEntities db = new HRWorksEntities())
+            {
+                User userobj = new User();
+                userobj = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
+                ViewBag.FirstName = userobj.FirstName;
+                ViewBag.LastName = userobj.LastName;
+                ViewBag.RoleName = roles.ToList()[0];
+            }
         }
 
         public ActionResult Index()
@@ -570,13 +578,6 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.IsTravelCo = Val;
             }
         }
-
-        private string GenerateNextRFQ(string currentRFQ)
-        {
-            string[] RFQno = currentRFQ.Split('-');
-            return RFQno[0] + '-' + RFQno[1] + '-' + RFQno[2] + '-' + (Convert.ToInt32(RFQno[3]) + 1);
-        }
-
 
         [NonAction]
         public void VerificationEmail(string email, string activationCode)

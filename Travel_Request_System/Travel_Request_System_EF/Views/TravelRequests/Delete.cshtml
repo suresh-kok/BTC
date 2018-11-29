@@ -290,7 +290,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Departure Date</label>
                                 <div class="col-sm-9">
-                                    @string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.DepartureDate).ToString()))
+                                    @if (Model.DepartureDate != null)
+                                    {
+                                        string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.DepartureDate).ToString()));
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -298,7 +301,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Return Date</label>
                                 <div class="col-sm-9">
-                                    @string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.ReturnDate).ToString()))
+                                    @if (Model.ReturnDate != null)
+                                    {
+                                        string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.ReturnDate).ToString()));
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -308,7 +314,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Preferred Departure Time</label>
                                 <div class="col-sm-9">
-                                    @string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.DepartureTime).ToString()))
+                                    @if (Model.DepartureTime != null)
+                                    {
+                                        string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.DepartureTime).ToString()));
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -316,7 +325,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Preferred Return Time</label>
                                 <div class="col-sm-9">
-                                    @string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.ReturnTime).ToString()))
+                                    @if (Model.ReturnTime != null)
+                                    {
+                                        string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.ReturnTime).ToString()));
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -326,7 +338,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3">First Day of Business</label>
                                 <div class="col-sm-9">
-                                    @string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.FirstBusinessDay).ToString()))
+                                    @if (Model.FirstBusinessDay != null)
+                                    {
+                                        string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.FirstBusinessDay).ToString()));
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -334,7 +349,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Last Day of Business</label>
                                 <div class="col-sm-9">
-                                    @string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.LastBusinessDay).ToString()))
+                                    @if (Model.LastBusinessDay != null)
+                                    {
+                                        string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.LastBusinessDay).ToString()));
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -398,7 +416,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Check In Date</label>
                                 <div class="col-sm-9">
-                                    @string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.CheckInDate).ToString()))
+                                    @if (Model.CheckInDate != null)
+                                    {
+                                        string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.CheckInDate).ToString()));
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -416,7 +437,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Check In Time</label>
                                 <div class="col-sm-9">
-                                    @string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.CheckInTime).ToString()))
+                                    @if (Model.CheckInTime != null)
+                                    {
+                                        string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.CheckInTime).ToString()));
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -434,7 +458,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Check Out Date</label>
                                 <div class="col-sm-9">
-                                    @string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.CheckOutDate).ToString()))
+                                    @if (Model.CheckOutDate != null)
+                                    {
+                                        string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.CheckOutDate).ToString()));
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -452,7 +479,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Check Out Time</label>
                                 <div class="col-sm-9">
-                                    @string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.CheckOutTime).ToString()))
+                                    @if (Model.CheckOutTime != null)
+                                    {
+                                        string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.CheckOutTime).ToString()));
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -535,8 +565,10 @@
                                 <label class="col-sm-3">Pick Up Date</label>
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        @string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.PickUpDate).ToString()))
-
+                                        @if (Model.PickUpDate != null)
+                                        {
+                                            string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.PickUpDate).ToString()));
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -545,7 +577,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Pick Up Time</label>
                                 <div class="col-sm-9">
-                                    @string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.PickUpTime).ToString()))
+                                    @if (Model.PickUpTime != null)
+                                    {
+                                        string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.PickUpTime).ToString()));
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -570,7 +605,10 @@
                                 <label class="col-sm-3">Drop Off Date</label>
                                 <div class="col-sm-9">
                                     <dAiv class="form-group">
-                                        @string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.DropOffDate).ToString()))
+                                        @if (Model.DropOffDate != null)
+                                        {
+                                            string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.DropOffDate).ToString()));
+                                        }
                                     </dAiv>
                                 </div>
                             </div>
@@ -579,7 +617,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Drop Off Time</label>
                                 <div class="col-sm-9">
-                                    @string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.DropOffTime).ToString()))
+                                    @if (Model.DropOffTime != null)
+                                    {
+                                        string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.DropOffTime).ToString()));
+                                    }
                                 </div>
                             </div>
                         </div>

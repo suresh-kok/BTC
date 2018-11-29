@@ -5,10 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div style="height:2400px">
+<div style="height:auto">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.TravelRequestID)
 
         <div class="col-xs-12 col-md-12">
             <div class="box box-default">
@@ -28,7 +30,7 @@
                                     <label class="col-sm-3">Application/ Form No.</label>
                                     <div class="col-sm-9">
                                         @Html.EditorFor(model => model.ApplicationNumber, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.ApplicationNumber, "", new { @class = "text-danger" })
+                                        @*@Html.ValidationMessageFor(model => model.ApplicationNumber, null , new { @class = "text-danger" })*@
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +43,7 @@
                                     <label class="col-sm-3">Employee ID</label>
                                     <div class="col-sm-9">
                                         @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+                                        @*@Html.ValidationMessageFor(model => model.UserID, null , new { @class = "text-danger" })*@
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +210,7 @@
                                     @*@Html.DropDownList("PortOfOriginID", ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).Select(m => new SelectListItem { Text = m.CityDesc, Value = m.CityID.ToString() }))*@
 
                                     @Html.DropDownListFor(model => model.PortOfOriginID, ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).Select(m => new SelectListItem { Text = m.CityDesc, Value = m.CityID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
-                                    @*@Html.ValidationMessageFor(model => model.PortOfOriginID, "", new { @class = "text-danger" })*@
+                                    @*@Html.ValidationMessageFor(model => model.PortOfOriginID, null , new { @class = "text-danger" })*@
                                 </div>
                             </div>
                         </div>
@@ -216,8 +218,8 @@
                             <div class="form-group">
                                 <label class="col-sm-3">Port Of Destination</label>
                                 <div class="col-sm-9">
-                                    @Html.DropDownListFor(model => model.PortOfDestinationID, ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).Select(m => new SelectListItem { Text = m.CityDesc, Value = m.CityID.ToString()}), htmlAttributes: new { @class = "form-control select2" })
-                                    @*@Html.ValidationMessageFor(model => model.PortOfDestinationID, "", new { @class = "text-danger" })*@
+                                    @Html.DropDownListFor(model => model.PortOfDestinationID, ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).Select(m => new SelectListItem { Text = m.CityDesc, Value = m.CityID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
+                                    @*@Html.ValidationMessageFor(model => model.PortOfDestinationID, null , new { @class = "text-danger" })*@
                                 </div>
                             </div>
                         </div>
@@ -242,7 +244,7 @@
                                 <label class="col-sm-3">Travel Days</label>
                                 <div class="col-sm-9">
                                     @Html.EditorFor(model => model.TravelDays, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.TravelDays, "", new { @class = "text-danger" })
+                                    @*@Html.ValidationMessageFor(model => model.TravelDays, null , new { @class = "text-danger" })*@
                                 </div>
                             </div>
                         </div>
@@ -253,7 +255,7 @@
                                 <label class="col-sm-3">Daily Allowance</label>
                                 <div class="col-sm-9">
                                     @Html.EditorFor(model => model.DailyAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1.00" } })
-                                    @Html.ValidationMessageFor(model => model.DailyAllowance, "", new { @class = "text-danger" })
+                                    @*@Html.ValidationMessageFor(model => model.DailyAllowance, null , new { @class = "text-danger" })*@
                                 </div>
                             </div>
                         </div>
@@ -262,7 +264,7 @@
                                 <label class="col-sm-3">Currency</label>
                                 <div class="col-sm-9">
                                     @Html.DropDownListFor(model => model.CurrencyID, ((IEnumerable<Travel_Request_System_EF.Models.Currency>)ViewBag.CurrencyID).Select(m => new SelectListItem { Text = m.CurrencyDesc, Value = m.CurrencyID.ToString() }), htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.CurrencyID, "", new { @class = "text-danger" })
+                                    @*@Html.ValidationMessageFor(model => model.CurrencyID, null , new { @class = "text-danger" })*@
                                 </div>
                             </div>
                         </div>
@@ -273,7 +275,7 @@
                                     <label class="col-sm-2">Remarks</label>
                                     <div class="col-sm-12">
                                         @Html.TextAreaFor(model => model.TravelRemarks, htmlAttributes: new { @class = "form-control", @rows = "3" })
-                                        @Html.ValidationMessageFor(model => model.TravelRemarks, "", new { @class = "text-danger" })
+                                        @Html.ValidationMessageFor(model => model.TravelRemarks, null , new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
@@ -284,7 +286,7 @@
                                 <label class="col-sm-3">Purpose of Visit</label>
                                 <div class="col-sm-12">
                                     @Html.TextAreaFor(model => model.PurposeOfVisit, htmlAttributes: new { @class = "form-control", @rows = "4" })
-                                    @Html.ValidationMessageFor(model => model.PurposeOfVisit, "", new { @class = "text-danger" })
+                                    @*@Html.ValidationMessageFor(model => model.PurposeOfVisit, null , new { @class = "text-danger" })*@
                                 </div>
                             </div>
                         </div>
@@ -316,7 +318,7 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             @Html.EditorFor(model => model.DepartureDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                            @Html.ValidationMessageFor(model => model.DepartureDate, "", new { @class = "text-danger" })
+                                            @*@Html.ValidationMessageFor(model => model.DepartureDate, null , new { @class = "text-danger" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -330,7 +332,7 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             @Html.EditorFor(model => model.ReturnDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                            @Html.ValidationMessageFor(model => model.ReturnDate, "", new { @class = "text-danger" })
+                                            @*@Html.ValidationMessageFor(model => model.ReturnDate, null , new { @class = "text-danger" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -341,13 +343,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Preferred Departure Time</label>
                                     <div class="col-sm-9">
-                                        <div class="bootstrap-timepicker">
+                                        <div class="bootstrap-timepicker" data-date-format="HH:mm">
                                             <div class="input-group time">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
                                                 @Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
+                                                @*@Html.ValidationMessageFor(model => model.DepartureTime, null , new { @class = "text-danger" })*@
                                             </div>
                                         </div>
                                     </div>
@@ -357,13 +359,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Preferred Return Time</label>
                                     <div class="col-sm-9">
-                                        <div class="bootstrap-timepicker">
+                                        <div class="bootstrap-timepicker" data-date-format="HH:mm">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
                                                 @Html.EditorFor(model => model.ReturnTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                @Html.ValidationMessageFor(model => model.ReturnTime, "", new { @class = "text-danger" })
+                                                @*@Html.ValidationMessageFor(model => model.ReturnTime, null , new { @class = "text-danger" })*@
                                             </div>
                                         </div>
                                     </div>
@@ -380,7 +382,7 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             @Html.EditorFor(model => model.FirstBusinessDay, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                            @Html.ValidationMessageFor(model => model.FirstBusinessDay, "", new { @class = "text-danger" })
+                                            @*@Html.ValidationMessageFor(model => model.FirstBusinessDay, null , new { @class = "text-danger" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -394,7 +396,7 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             @Html.EditorFor(model => model.LastBusinessDay, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                            @Html.ValidationMessageFor(model => model.LastBusinessDay, "", new { @class = "text-danger" })
+                                            @*@Html.ValidationMessageFor(model => model.LastBusinessDay, null , new { @class = "text-danger" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -406,7 +408,7 @@
                                     <label class="col-sm-2">Remarks</label>
                                     <div class="col-sm-12">
                                         @Html.TextAreaFor(model => model.TravelRemarks, htmlAttributes: new { @class = "form-control", @rows = "3", @placeholder = "Enter Travel Remarks..." })
-                                        @Html.ValidationMessageFor(model => model.TravelRemarks, "", new { @class = "text-danger" })
+                                        @*@Html.ValidationMessageFor(model => model.TravelRemarks, null , new { @class = "text-danger" })*@
                                     </div>
                                 </div>
                             </div>
@@ -435,7 +437,7 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="atrBTC" name="airTicketManagement" value="BTC" class="flat-red"  @(Model.AirTicketManagement == "BTC" ? " checked" : "")> BTC
+                                                <input type="radio" id="atrBTC" name="airTicketManagement" value="BTC" class="flat-red" @(Model.AirTicketManagement == "BTC" ? " checked" : "")> BTC
                                             </label>
                                             &emsp;
                                             &emsp;
@@ -452,7 +454,7 @@
                                     <label class="col-sm-3">Hotel Name</label>
                                     <div class="col-sm-9">
                                         @Html.EditorFor(model => model.HotelName, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.HotelName, "", new { @class = "text-danger" })
+                                        @*@Html.ValidationMessageFor(model => model.HotelName, null , new { @class = "text-danger" })*@
                                     </div>
                                 </div>
                             </div>
@@ -464,7 +466,7 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="taBTC" name="travelAllowance" value="BTC" class="flat-red"  @(Model.TravelAllowance == "BTC" ? " checked" : "")> BTC
+                                                <input type="radio" id="taBTC" name="travelAllowance" value="BTC" class="flat-red" @(Model.TravelAllowance == "BTC" ? " checked" : "")> BTC
                                             </label>
                                             &emsp;
                                             &emsp;
@@ -485,7 +487,7 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             @Html.EditorFor(model => model.CheckInDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                            @Html.ValidationMessageFor(model => model.CheckInDate, "", new { @class = "text-danger" })
+                                            @*@Html.ValidationMessageFor(model => model.CheckInDate, null , new { @class = "text-danger" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -514,13 +516,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Check In Time</label>
                                     <div class="col-sm-9">
-                                        <div class="bootstrap-timepicker">
+                                        <div class="bootstrap-timepicker" data-date-format="HH:mm">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
                                                 @Html.EditorFor(model => model.CheckInTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                @Html.ValidationMessageFor(model => model.CheckInTime, "", new { @class = "text-danger" })
+                                                @*@Html.ValidationMessageFor(model => model.CheckInTime, null , new { @class = "text-danger" })*@
                                             </div>
                                         </div>
                                     </div>
@@ -552,7 +554,7 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                            @Html.ValidationMessageFor(model => model.CheckOutDate, "", new { @class = "text-danger" })
+                                            @*@Html.ValidationMessageFor(model => model.CheckOutDate, null , new { @class = "text-danger" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -576,13 +578,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Check Out Time</label>
                                     <div class="col-sm-9">
-                                        <div class="bootstrap-timepicker">
+                                        <div class="bootstrap-timepicker" data-date-format="HH:mm">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
                                                 @Html.EditorFor(model => model.CheckOutTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                @Html.ValidationMessageFor(model => model.CheckOutTime, "", new { @class = "text-danger" })
+                                                @*@Html.ValidationMessageFor(model => model.CheckOutTime, null , new { @class = "text-danger" })*@
                                             </div>
                                         </div>
                                     </div>
@@ -619,8 +621,8 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Additional Expenses</label>
                                     <div class="col-sm-9">
-                                        @Html.EditorFor(model => model.AdditionalAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00"} })
-                                        @Html.ValidationMessageFor(model => model.AdditionalAllowance, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(model => model.AdditionalAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00" } })
+                                        @*@Html.ValidationMessageFor(model => model.AdditionalAllowance, null , new { @class = "text-danger" })*@
                                     </div>
                                 </div>
                             </div>
@@ -661,9 +663,12 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Pick Up Date</label>
                                     <div class="col-sm-9">
-                                        <div class="form-group">
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
                                             @Html.EditorFor(model => model.PickUpDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                            @Html.ValidationMessageFor(model => model.PickUpDate, "", new { @class = "text-danger" })
+                                            @*@Html.ValidationMessageFor(model => model.PickUpDate, null , new { @class = "text-danger" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -672,13 +677,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Pick Up Time</label>
                                     <div class="col-sm-9">
-                                        <div class="bootstrap-timepicker">
+                                        <div class="bootstrap-timepicker" data-date-format="HH:mm">
                                             <div class="input-group time">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
                                                 @Html.EditorFor(model => model.PickUpTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                @Html.ValidationMessageFor(model => model.PickUpTime, "", new { @class = "text-danger" })
+                                                @*@Html.ValidationMessageFor(model => model.PickUpTime, null , new { @class = "text-danger" })*@
                                             </div>
                                         </div>
                                     </div>
@@ -704,10 +709,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Drop Off Date</label>
                                     <div class="col-sm-9">
-                                        <dAiv class="form-group">
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
                                             @Html.EditorFor(model => model.DropOffDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                            @Html.ValidationMessageFor(model => model.DropOffDate, "", new { @class = "text-danger" })
-                                        </dAiv>
+                                            @*@Html.ValidationMessageFor(model => model.DropOffDate, null , new { @class = "text-danger" })*@
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -715,13 +723,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Drop Off Time</label>
                                     <div class="col-sm-9">
-                                        <div class="bootstrap-timepicker" data-date-format="DD:MM:YYYY HH:mm">
+                                        <div class="bootstrap-timepicker" data-date-format="HH:mm">
                                             <div class="input-group time">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-clock-o"></i>
                                                 </div>
                                                 @Html.EditorFor(model => model.DropOffTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                @Html.ValidationMessageFor(model => model.DropOffTime, "", new { @class = "text-danger" })
+                                                @*@Html.ValidationMessageFor(model => model.DropOffTime, null , new { @class = "text-danger" })*@
                                             </div>
                                         </div>
                                     </div>

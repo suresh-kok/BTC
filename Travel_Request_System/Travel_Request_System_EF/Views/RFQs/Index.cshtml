@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Travel_Request_System_EF.Models.RFQ>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Processing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProcessingSection)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TravelAgency.AgencyCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TravelRequest.ApplicationNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Username)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Processing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProcessingSection)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TravelAgency.AgencyCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TravelRequest.ApplicationNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Username)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RFQID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RFQID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RFQID })
+        </td>
+    </tr>
+}
+
+</table>

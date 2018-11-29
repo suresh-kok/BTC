@@ -51,6 +51,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FoolproofValidation, Version=0.9.5851.39121, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Foolproof.0.9.4518\lib\net45\FoolproofValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.13\lib\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -158,8 +167,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BTCController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ExportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LPOController.cs" />
+    <Compile Include="Controllers\QuotationController.cs" />
+    <Compile Include="Controllers\RFQsController.cs" />
     <Compile Include="Controllers\TravelRequestsController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="CustomAuthentication\CustomAuthorizeAttribute.cs" />
     <Compile Include="CustomAuthentication\CustomMembership.cs" />
     <Compile Include="CustomAuthentication\CustomMembershipUser.cs" />
@@ -171,71 +185,109 @@
     </Compile>
     <Compile Include="Mail\MailAttachment.cs" />
     <Compile Include="Mail\SendMail.cs" />
-    <Compile Include="Models\BTC.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BTC.Context.tt</DependentUpon>
+    <Compile Include="Models\ATQuotation.cs">
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BTC.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BTC.tt</DependentUpon>
+    <Compile Include="Models\Attachment.cs">
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BTC.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BTC.edmx</DependentUpon>
+    <Compile Include="Models\AttachmentsLink.cs">
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\City.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Currency.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataAnnotations\CustomDataAnnotationAttributes.cs" />
+    <Compile Include="Models\DataAnnotations\TravelRequestMetaData.cs" />
+    <Compile Include="Models\HRWorksEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HRWorksEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HRWorksEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HRWorksEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HRWorksEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\HRW_Company.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HRW_EmpEntityParamValues.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HRW_Employee.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HSQuotation.cs">
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LPO.cs">
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ORG_ChartMaster.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ORG_EmpEntityLink.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ORG_EntityMaster.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ORG_EntityType.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ORG_EntityTypeParam.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PCQuotation.cs">
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Quotation.cs">
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RFQ.cs">
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Role.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TravelAgency.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TravelRequest.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>BTC.tt</DependentUpon>
+      <DependentUpon>HRWorksEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\ATQuotation.cs" />
     <Compile Include="Models\ViewModel\Constants.cs" />
     <Compile Include="Models\ViewModel\EmployeeDetails.cs" />
+    <Compile Include="Models\ViewModel\HSQuotation.cs" />
     <Compile Include="Models\ViewModel\LoginView.cs" />
+    <Compile Include="Models\ViewModel\LPO.cs" />
     <Compile Include="Models\ViewModel\NotificationsGridDetails.cs" />
+    <Compile Include="Models\ViewModel\PCQuotation.cs" />
+    <Compile Include="Models\ViewModel\Quotation.cs" />
+    <Compile Include="Models\ViewModel\RFQView.cs" />
     <Compile Include="Models\ViewModel\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Client Scripts\mvcfoolproof.unobtrusive.js" />
+    <Content Include="Client Scripts\mvcfoolproof.unobtrusive.min.js" />
+    <Content Include="Client Scripts\MvcFoolproofJQueryValidation.js" />
+    <Content Include="Client Scripts\MvcFoolproofJQueryValidation.min.js" />
+    <Content Include="Client Scripts\MvcFoolproofValidation.js" />
+    <Content Include="Client Scripts\MvcFoolproofValidation.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1066,28 +1118,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\BTC.Context.tt">
+    <Content Include="Models\HRWorksEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BTC.Context.cs</LastGenOutput>
-      <DependentUpon>BTC.edmx</DependentUpon>
+      <DependentUpon>HRWorksEntities.edmx</DependentUpon>
+      <LastGenOutput>HRWorksEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\BTC.edmx.sql" />
-    <Content Include="Models\BTC.tt">
+    <Content Include="Models\HRWorksEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BTC.edmx</DependentUpon>
-      <LastGenOutput>BTC.cs</LastGenOutput>
+      <DependentUpon>HRWorksEntities.edmx</DependentUpon>
+      <LastGenOutput>HRWorksEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EntityDeploy Include="Models\BTC.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BTC.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BTC.edmx.diagram">
-      <DependentUpon>BTC.edmx</DependentUpon>
     </Content>
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
@@ -1122,6 +1166,14 @@
     <Content Include="Content\js\plugins\sweetalert\.gitignore" />
     <Content Include="Content\js\plugins\sweetalert\.jshintrc" />
     <Content Include="Content\js\plugins\sweetalert\.travis.yml" />
+    <EntityDeploy Include="Models\HRWorksEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HRWorksEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\HRWorksEntities.edmx.diagram">
+      <DependentUpon>HRWorksEntities.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1133,7 +1185,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1195,9 +1249,25 @@
     <Content Include="Views\TravelRequests\Edit.cshtml" />
     <Content Include="Views\TravelRequests\Index.cshtml" />
     <Content Include="Views\Shared\_Modal.cshtml" />
+    <Content Include="Views\Upload\UploadFile.cshtml" />
+    <Content Include="Views\RFQs\Create.cshtml" />
+    <Content Include="Views\RFQs\Delete.cshtml" />
+    <Content Include="Views\RFQs\Details.cshtml" />
+    <Content Include="Views\RFQs\Edit.cshtml" />
+    <Content Include="Views\RFQs\Index.cshtml" />
+    <Content Include="Views\RFQs\RFQProcessing.cshtml" />
+    <Content Include="Views\RFQs\RFQMerger.cshtml" />
+    <Content Include="Views\RFQs\PreviewRFQ.cshtml" />
+    <Content Include="Views\RFQs\RFQFinalPreview.cshtml" />
+    <Content Include="Views\RFQs\RFQPostMerger.cshtml" />
+    <Content Include="Views\Quotation\Index.cshtml" />
+    <Content Include="Views\Quotation\Quotations.cshtml" />
+    <Content Include="Views\Quotation\AddQuotation.cshtml" />
+    <Content Include="Views\LPO\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Export\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

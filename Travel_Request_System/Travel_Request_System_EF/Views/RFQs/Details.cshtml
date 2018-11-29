@@ -1,0 +1,75 @@
+﻿@model Travel_Request_System_EF.Models.RFQ
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RFQ</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Processing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Processing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProcessingSection)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProcessingSection)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TravelAgency.AgencyCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TravelAgency.AgencyCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TravelRequest.ApplicationNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TravelRequest.ApplicationNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RFQID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

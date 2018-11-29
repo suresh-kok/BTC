@@ -25,19 +25,27 @@ namespace Travel_Request_System_EF.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ATQuotation> ATQuotations { get; set; }
+        public virtual DbSet<Attachment> Attachments { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
-        public virtual DbSet<TravelAgency> TravelAgencies { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<HRW_Company> HRW_Company { get; set; }
         public virtual DbSet<HRW_EmpEntityParamValues> HRW_EmpEntityParamValues { get; set; }
         public virtual DbSet<HRW_Employee> HRW_Employee { get; set; }
+        public virtual DbSet<HSQuotation> HSQuotations { get; set; }
+        public virtual DbSet<LPO> LPOes { get; set; }
         public virtual DbSet<ORG_ChartMaster> ORG_ChartMaster { get; set; }
         public virtual DbSet<ORG_EmpEntityLink> ORG_EmpEntityLink { get; set; }
         public virtual DbSet<ORG_EntityMaster> ORG_EntityMaster { get; set; }
         public virtual DbSet<ORG_EntityType> ORG_EntityType { get; set; }
         public virtual DbSet<ORG_EntityTypeParam> ORG_EntityTypeParam { get; set; }
+        public virtual DbSet<PCQuotation> PCQuotations { get; set; }
+        public virtual DbSet<Quotation> Quotations { get; set; }
+        public virtual DbSet<RFQ> RFQs { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<TravelAgency> TravelAgencies { get; set; }
         public virtual DbSet<TravelRequest> TravelRequests { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<AttachmentsLink> AttachmentsLinks { get; set; }
     }
 }

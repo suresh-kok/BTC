@@ -66,50 +66,59 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.CreatedBy)
                                     </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreatedBy)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IsSubmitted)
+                                    </th>
                                 </tr>
 
                                 foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelitem => item.ApplicationNumber)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelitem => item.PortOfOriginID)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelitem => item.TicketClass)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelitem => item.TravelDays)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelitem => item.DepartureDate)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelitem => item.ReturnDate)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelitem => item.AirTicketManagement)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelitem => item.CreateOn)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelitem => item.CreatedBy)
-                                        </td>
-                                        <td>
-                                            <span class="glyphicon">
-                                                @Html.ActionLink("  Edit", "Edit", new { id = item.TravelRequestID }, new { @class = "form-control btn btn-info glyphicon-edit" })
-                                            </span>
-                                            <span class="glyphicon">
-                                                @Html.ActionLink("  Details", "Details", new { id = item.TravelRequestID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
-                                            </span>
-                                            <span class="glyphicon">
-                                                @Html.ActionLink("  Delete", "Delete", new { id = item.TravelRequestID }, new { @class = "form-control btn btn-info glyphicon-remove" })
-                                            </span>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.ApplicationNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.PortOfOriginID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.TicketClass)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.TravelDays)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.DepartureDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.ReturnDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.AirTicketManagement)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.CreateOn)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.CreatedBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.IsSubmitted)
+                                    </td>
+                                    <td>
+                                        <span class="glyphicon">
+                                            @Html.ActionLink("  Edit", "Edit", new { id = item.TravelRequestID }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                                        </span>
+                                        <span class="glyphicon">
+                                            @Html.ActionLink("  Details", "Details", new { id = item.TravelRequestID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                                        </span>
+                                        <span class="glyphicon">
+                                            @Html.ActionLink("  Delete", "Delete", new { id = item.TravelRequestID }, new { @class = "form-control btn btn-info glyphicon-remove" })
+                                        </span>
+                                    </td>
+                                </tr>
                                 }
                             }
                         </table>
