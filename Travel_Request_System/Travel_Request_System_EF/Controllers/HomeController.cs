@@ -15,7 +15,7 @@ namespace Travel_Request_System_EF.Controllers
             ViewBag.tasks = false;
             ViewBag.userdetails = false;
             ViewBag.LoggedOut = true;
-            return View(new User());
+            return View(new Users());
         }
 
         public ActionResult About()

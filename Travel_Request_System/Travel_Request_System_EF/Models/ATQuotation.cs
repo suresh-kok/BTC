@@ -14,13 +14,7 @@ namespace Travel_Request_System_EF.Models
     
     public partial class ATQuotation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ATQuotation()
-        {
-            this.LPOes = new HashSet<LPO>();
-        }
-    
-        public int ATQuotationID { get; set; }
+        public int ID { get; set; }
         public int QuotationID { get; set; }
         public string TicketClass { get; set; }
         public Nullable<int> OriginID { get; set; }
@@ -34,10 +28,8 @@ namespace Travel_Request_System_EF.Models
         public Nullable<decimal> Amount { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
     
-        public virtual City DestinationCity { get; set; }
-        public virtual City OriginCity { get; set; }
+        public virtual City City { get; set; }
+        public virtual City City1 { get; set; }
         public virtual Quotation Quotation { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LPO> LPOes { get; set; }
     }
 }

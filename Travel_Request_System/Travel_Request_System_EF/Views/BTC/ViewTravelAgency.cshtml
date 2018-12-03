@@ -17,7 +17,7 @@
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive">
                         <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
-                            @if (Model == null || (Model.AgencyID == 0))
+                            @if (Model == null || (Model.ID == 0))
                             {
                                 <tr>
                                     <td colspan="10">No Record's found.</td>
@@ -100,7 +100,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <div class="col-md-3">
-                @Html.ActionLink("Edit", "EditTravelAgency", new { id = Model.AgencyID }, new { @class = "form-control btn btn-info" })
+                @Html.ActionLink("Edit", "EditTravelAgency", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
             </div>
             <div class="col-md-3">
                 @Html.ActionLink("Back to List", "ManageTravelAgency", null, new { @class = "form-control btn btn-info" })

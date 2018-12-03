@@ -16,8 +16,9 @@ namespace Travel_Request_System_EF.Controllers
     [CustomAuthorize(Roles = "Employee")]
     public class TravelRequestsController : Controller
     {
-        private HRWorksEntities db = new HRWorksEntities();
+        private BTCEntities db = new BTCEntities();
         private static MembershipUser user;
+        private static Users dbuser;
         private static string[] roles;
 
         public TravelRequestsController()
@@ -26,19 +27,18 @@ namespace Travel_Request_System_EF.Controllers
             CustomRole customRole = new CustomRole();
             roles = customRole.GetRolesForUser(user.UserName);
             IsLoggedIn(roles.ToList());
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                User userobj = new User();
-                userobj = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequestsApprover).Include(a => a.TravelRequestsUser).Include(a => a.TravelRequestCreatedBy).FirstOrDefault();
-                ViewBag.FirstName = userobj.FirstName;
-                ViewBag.LastName = userobj.LastName;
+                dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
+                ViewBag.FirstName = dbuser.FirstName;
+                ViewBag.LastName = dbuser.LastName;
                 ViewBag.RoleName = roles.ToList()[0];
             }
         }
 
         public async Task<ActionResult> Index()
         {
-            var travelRequests = db.TravelRequests.Include(t => t.DestinationCity).Include(t => t.OriginCity).Include(t => t.Currency).Include(t => t.User);
+            var travelRequests = db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency);
             return View(await travelRequests.ToListAsync());
         }
 
@@ -52,7 +52,7 @@ namespace Travel_Request_System_EF.Controllers
                     return View();
                     //return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid Travel Request ID");
                 }
-                TravelRequest travelRequest = await db.TravelRequests.FindAsync(id);
+                TravelRequests travelRequest = await db.TravelRequests.FindAsync(id);
                 if (travelRequest == null)
                 {
                     ViewBag.ErrorMessage = "Invalid Travel Request ID";
@@ -60,8 +60,8 @@ namespace Travel_Request_System_EF.Controllers
                     //return HttpNotFound("Invalid Travel Request ID");
                 }
 
-                ViewBag.Cities = db.Cities.ToList();
-                ViewBag.CurrencyID = db.Currencies.ToList();
+                ViewBag.Cities = db.City.ToList();
+                ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
                 return View(travelRequest);
             }
@@ -73,10 +73,10 @@ namespace Travel_Request_System_EF.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Cities = db.Cities.ToList();
-            ViewBag.CurrencyID = db.Currencies.ToList();
+            ViewBag.Cities = db.City.ToList();
+            ViewBag.Currencies = db.Currency.ToList();
             ViewBag.ApprovalBy = db.Users.ToList();
-            ViewBag.applicationNumber = db.TravelRequests.Count() > 0 ? GenerateNextRFQ(db.TravelRequests.OrderByDescending(a => a.TravelRequestID).FirstOrDefault().ApplicationNumber) : "HRD-BTC-CC-0001";
+            ViewBag.applicationNumber = db.TravelRequests.Count() > 0 ? GenerateNextRFQ(db.TravelRequests.OrderByDescending(a => a.ID).FirstOrDefault().ApplicationNumber) : "HRD-BTC-CC-0001";
 
             checkErrorMessages();
             return View();
@@ -84,9 +84,12 @@ namespace Travel_Request_System_EF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SubmitTravelRequest([Bind(Include = "TravelRequestID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequest travelRequest, FormCollection collection)
+        public async Task<ActionResult> SubmitTravelRequest([Bind(Include = "ID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequests travelRequest, FormCollection collection)
         {
             MapUserValues(ref travelRequest, ref collection);
+            travelRequest.CreatedBy = dbuser.ID;
+            travelRequest.ApplicationNumber = string.IsNullOrEmpty(collection["applicationNumber"]) ? "" : collection["applicationNumber"].ToString();
+
             if (ModelState.IsValid)
             {
                 travelRequest.IsSubmitted = true;
@@ -105,8 +108,8 @@ namespace Travel_Request_System_EF.Controllers
                 TempData["ErrorMessage"] = sberr.ToList();
             }
 
-            ViewBag.Cities = db.Cities.ToList();
-            ViewBag.CurrencyID = db.Currencies.ToList();
+            ViewBag.Cities = db.City.ToList();
+            ViewBag.Currencies = db.Currency.ToList();
             ViewBag.ApprovalBy = db.Users.ToList();
 
             return RedirectToAction("Create", travelRequest);
@@ -114,9 +117,12 @@ namespace Travel_Request_System_EF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SaveTravelRequest([Bind(Include = "TravelRequestID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequest travelRequest, FormCollection collection)
+        public async Task<ActionResult> SaveTravelRequest([Bind(Include = "ID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequests travelRequest, FormCollection collection)
         {
             MapUserValues(ref travelRequest, ref collection);
+            travelRequest.CreatedBy = dbuser.ID;
+            travelRequest.ApplicationNumber = string.IsNullOrEmpty(collection["applicationNumber"]) ? "" : collection["applicationNumber"].ToString();
+
             if (ModelState.IsValid)
             {
                 travelRequest.IsSubmitted = false;
@@ -135,8 +141,8 @@ namespace Travel_Request_System_EF.Controllers
                 TempData["ErrorMessage"] = sberr.ToList();
             }
 
-            ViewBag.Cities = db.Cities.ToList();
-            ViewBag.CurrencyID = db.Currencies.ToList();
+            ViewBag.Cities = db.City.ToList();
+            ViewBag.Currencies = db.Currency.ToList();
             ViewBag.ApprovalBy = db.Users.ToList();
 
             return RedirectToAction("Create", travelRequest);
@@ -148,14 +154,14 @@ namespace Travel_Request_System_EF.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TravelRequest travelRequest = await db.TravelRequests.FindAsync(id);
+            TravelRequests travelRequest = await db.TravelRequests.FindAsync(id);
             if (travelRequest == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.Cities = db.Cities.ToList();
-            ViewBag.CurrencyID = db.Currencies.ToList();
+            ViewBag.Cities = db.City.ToList();
+            ViewBag.Currencies = db.Currency.ToList();
             ViewBag.ApprovalBy = db.Users.ToList();
 
             checkErrorMessages();
@@ -164,7 +170,7 @@ namespace Travel_Request_System_EF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "TravelRequestID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequest travelRequest, FormCollection collection)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequests travelRequest, FormCollection collection)
         {
             MapUserValues(ref travelRequest, ref collection);
             if (ModelState.IsValid)
@@ -184,8 +190,8 @@ namespace Travel_Request_System_EF.Controllers
                 TempData["ErrorMessage"] = sberr.ToList();
             }
 
-            ViewBag.Cities = db.Cities.ToList();
-            ViewBag.CurrencyID = db.Currencies.ToList();
+            ViewBag.Cities = db.City.ToList();
+            ViewBag.Currencies = db.Currency.ToList();
             ViewBag.ApprovalBy = db.Users.ToList();
 
             checkErrorMessages();
@@ -198,14 +204,14 @@ namespace Travel_Request_System_EF.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TravelRequest travelRequest = await db.TravelRequests.FindAsync(id);
+            TravelRequests travelRequest = await db.TravelRequests.FindAsync(id);
             if (travelRequest == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.Cities = db.Cities.ToList();
-            ViewBag.CurrencyID = db.Currencies.ToList();
+            ViewBag.Cities = db.City.ToList();
+            ViewBag.Currencies = db.Currency.ToList();
             ViewBag.ApprovalBy = db.Users.ToList();
 
             checkErrorMessages();
@@ -216,7 +222,7 @@ namespace Travel_Request_System_EF.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            TravelRequest travelRequest = await db.TravelRequests.FindAsync(id);
+            TravelRequests travelRequest = await db.TravelRequests.FindAsync(id);
             db.TravelRequests.Remove(travelRequest);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -266,9 +272,8 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        private void MapUserValues(ref TravelRequest travelRequest, ref FormCollection collection)
+        private void MapUserValues(ref TravelRequests travelRequest, ref FormCollection collection)
         {
-            travelRequest.ApplicationNumber = string.IsNullOrEmpty(collection["applicationNumber"]) ? "" : collection["applicationNumber"].ToString();
             travelRequest.AirportPickUp = string.IsNullOrEmpty(collection["airportPickUp"]) ? "" : collection["airportPickUp"].ToString();
             travelRequest.AirTicketManagement = string.IsNullOrEmpty(collection["airTicketManagement"]) ? "" : collection["airTicketManagement"].ToString();
             travelRequest.HotelCategory = string.IsNullOrEmpty(collection["hotelCategory"]) ? "" : collection["hotelCategory"].ToString();
@@ -291,12 +296,8 @@ namespace Travel_Request_System_EF.Controllers
             travelRequest.ReturnTime = string.IsNullOrEmpty(collection["returnTime"]) ? new TimeSpan() : DateTime.ParseExact(collection["returnTime"],
                                 "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
 
-            using (HRWorksEntities db = new HRWorksEntities())
-            {
-                travelRequest.ModifiedBy = (db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequestsUser).Include(a => a.TravelRequestsApprover).Include(a => a.TravelRequestCreatedBy).FirstOrDefault()).UserId;
-                travelRequest.ModifiedOn = DateTime.Now;
-                travelRequest.UserID = (int)travelRequest.ModifiedBy;
-            }
+            travelRequest.ModifiedBy = dbuser.ID;
+            travelRequest.ModifiedOn = DateTime.Now;
         }
 
         private string GenerateNextRFQ(string currentRFQ)
@@ -305,7 +306,7 @@ namespace Travel_Request_System_EF.Controllers
             return RFQno[0] + '-' + RFQno[1] + '-' + RFQno[2] + '-' + String.Format("{0:D4}", (Convert.ToInt32(RFQno[3]) + 1));
         }
 
-        private void PrintTravelRequest(TravelRequest travelRequest)
+        private void PrintTravelRequest(TravelRequests travelRequest)
         {
 
         }

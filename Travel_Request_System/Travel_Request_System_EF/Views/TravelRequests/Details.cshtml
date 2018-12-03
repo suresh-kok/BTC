@@ -1,4 +1,4 @@
-﻿@model Travel_Request_System_EF.Models.TravelRequest
+﻿@model Travel_Request_System_EF.Models.TravelRequests
 
 @{
     /**/
@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Employee ID</label>
                             <div class="col-sm-9">
-                                @Html.DisplayFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
+                                @*@Html.DisplayFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })*@
                             </div>
                         </div>
                     </div>
@@ -202,7 +202,7 @@
                             <label class="col-sm-3">Port Of Origin</label>
                             <div class="col-sm-9">
                                 @{
-                                    var po = ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).FirstOrDefault(rt => rt.CityID == Model.PortOfOriginID).CityDesc.ToString();
+                                    var po = ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).FirstOrDefault(rt => rt.ID == Model.PortOfOriginID).CityDesc.ToString();
                                 }
                                 @po
                             </div>
@@ -213,7 +213,7 @@
                             <label class="col-sm-3">Port Of Destination</label>
                             <div class="col-sm-9">
                                 @{
-                                    var pd = ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).FirstOrDefault(rt => rt.CityID == Model.PortOfDestinationID).CityDesc.ToString();
+                                    var pd = ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).FirstOrDefault(rt => rt.ID == Model.PortOfDestinationID).CityDesc.ToString();
                                 }
                                 @pd
                             </div>
@@ -252,7 +252,7 @@
                             <label class="col-sm-3">Currency</label>
                             <div class="col-sm-9">
                                 @{
-                                    var cr = ((IEnumerable<Travel_Request_System_EF.Models.Currency>)ViewBag.CurrencyID).FirstOrDefault(rt => rt.CurrencyID == Model.CurrencyID).CurrencyDesc.ToString();
+                                    var cr = ((IEnumerable<Travel_Request_System_EF.Models.Currency>)ViewBag.Currencies).FirstOrDefault(rt => rt.ID == Model.CurrencyID).CurrencyDesc.ToString();
                                 }
                                 @cr
                             </div>
@@ -662,7 +662,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-3">
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.TravelRequestID }, new { @class = "form-control btn btn-info" })
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
                 </div>
                 <div class="col-md-3">
                     @Html.ActionLink("Back to List", "Index", null, new { @class = "form-control btn btn-info" })
@@ -671,9 +671,6 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <div class="col-sm-3">
-                    @Html.ActionLink("Reset", "Create", "TravelRequests", new { @class = "form-control btn btn-info" })
-                </div>
                 <div class="col-sm-3">
                     <a href="javascript:window.print()">Click to Print This Page</a>
 

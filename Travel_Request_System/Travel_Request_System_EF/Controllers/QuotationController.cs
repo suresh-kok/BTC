@@ -6,7 +6,7 @@ namespace Travel_Request_System_EF.Controllers
 {
     public class QuotationController : Controller
     {
-        private HRWorksEntities db = new HRWorksEntities();
+        private BTCEntities db = new BTCEntities();
 
         // GET: Quotation
         public ActionResult Index()
@@ -16,16 +16,16 @@ namespace Travel_Request_System_EF.Controllers
 
         public ActionResult AddQuotation()
         {
-            ViewBag.Cities = db.Cities.ToList();
-            ViewBag.CurrencyID = db.Currencies.ToList();
+            ViewBag.Cities = db.City.ToList();
+            ViewBag.CurrencyID = db.Currency.ToList();
             ViewBag.ApprovalBy = db.Users.ToList();
 
             Quotation quotation = new Quotation();
-            quotation.ATQuotations.Add(new ATQuotation());
-            quotation.HSQuotations.Add(new HSQuotation());
-            quotation.PCQuotations.Add(new PCQuotation());
-            quotation.LPOes.Add(new LPO());
-            quotation.TravelRequest = new TravelRequest();
+            quotation.ATQuotation.Add(new ATQuotation());
+            quotation.HSQuotation.Add(new HSQuotation());
+            quotation.PCQuotation.Add(new PCQuotation());
+            quotation.LPO.Add(new LPO());
+            quotation.TravelRequests = new TravelRequests();
             return View(quotation);
         }
     }

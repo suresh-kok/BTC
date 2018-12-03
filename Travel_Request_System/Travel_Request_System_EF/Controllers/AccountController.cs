@@ -8,7 +8,7 @@ using Travel_Request_System_EF.CustomAuthentication;
 using Travel_Request_System_EF.DataAccess;
 using Travel_Request_System_EF.Mail;
 using Travel_Request_System_EF.Models.ViewModel;
-using User = Travel_Request_System_EF.Models.User;
+using User = Travel_Request_System_EF.Models.Users;
 
 namespace Travel_Request_System_EF.Controllers
 {

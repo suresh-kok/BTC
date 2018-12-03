@@ -12,16 +12,12 @@ namespace Travel_Request_System_EF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LPO
+    public partial class AttachmentLink
     {
         public int ID { get; set; }
-        public string LPONo { get; set; }
-        public Nullable<int> RFQID { get; set; }
-        public Nullable<int> QuotationID { get; set; }
-        public string Remarks { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public string AttachmentFor { get; set; }
+        public int AttachmentForID { get; set; }
     
-        public virtual Quotation Quotation { get; set; }
-        public virtual RFQ RFQ { get; set; }
+        public virtual Attachments Attachments { get; set; }
     }
 }

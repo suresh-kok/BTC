@@ -9,61 +9,61 @@ using Travel_Request_System_EF.Models.ViewModel;
 
 namespace Travel_Request_System_EF.Controllers
 {
-    public class RFQsController : Controller
+    public class RFQController : Controller
     {
-        private HRWorksEntities db = new HRWorksEntities();
+        private BTCEntities db = new BTCEntities();
 
-        // GET: RFQs
+        // GET: RFQ
         public async Task<ActionResult> Index()
         {
-            var rFQs = db.RFQs.Include(r => r.TravelAgency).Include(r => r.TravelRequest).Include(r => r.User);
-            return View(await rFQs.ToListAsync());
+            var RFQ = db.RFQ.Include(r => r.TravelAgency).Include(r => r.TravelRequests).Include(r => r.Users);
+            return View(await RFQ.ToListAsync());
         }
 
-        // POST: RFQs/Create
+        // POST: RFQ/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "RFQID,TravelAgencyID,TravelRequestID,UserID,Remarks,Processing,ProcessingSection,IsDeleted")] RFQ rFQ)
+        public async Task<ActionResult> Create([Bind(Include = "ID,TravelAgencyID,TravelRequestID,UserID,Remarks,Processing,ProcessingSection,IsDeleted")] RFQ rFQ)
         {
             if (ModelState.IsValid)
             {
-                db.RFQs.Add(rFQ);
+                db.RFQ.Add(rFQ);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "AgencyID", "AgencyCode", rFQ.TravelAgencyID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgency, "AgencyID", "AgencyCode", rFQ.TravelAgencyID);
             ViewBag.TravelRequestID = new SelectList(db.TravelRequests, "TravelRequestID", "ApplicationNumber", rFQ.TravelRequestID);
             ViewBag.UserID = new SelectList(db.Users, "UserId", "Username", rFQ.UserID);
             return View(rFQ);
         }
 
-        // GET: RFQs/Edit/5
+        // GET: RFQ/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RFQ rFQ = await db.RFQs.FindAsync(id);
+            RFQ rFQ = await db.RFQ.FindAsync(id);
             if (rFQ == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "AgencyID", "AgencyCode", rFQ.TravelAgencyID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgency, "AgencyID", "AgencyCode", rFQ.TravelAgencyID);
             ViewBag.TravelRequestID = new SelectList(db.TravelRequests, "TravelRequestID", "ApplicationNumber", rFQ.TravelRequestID);
             ViewBag.UserID = new SelectList(db.Users, "UserId", "Username", rFQ.UserID);
             return View(rFQ);
         }
 
-        // POST: RFQs/Edit/5
+        // POST: RFQ/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "RFQID,TravelAgencyID,TravelRequestID,UserID,Remarks,Processing,ProcessingSection,IsDeleted")] RFQ rFQ)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,TravelAgencyID,TravelRequestID,UserID,Remarks,Processing,ProcessingSection,IsDeleted")] RFQ rFQ)
         {
             if (ModelState.IsValid)
             {
@@ -71,20 +71,20 @@ namespace Travel_Request_System_EF.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "AgencyID", "AgencyCode", rFQ.TravelAgencyID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgency, "AgencyID", "AgencyCode", rFQ.TravelAgencyID);
             ViewBag.TravelRequestID = new SelectList(db.TravelRequests, "TravelRequestID", "ApplicationNumber", rFQ.TravelRequestID);
             ViewBag.UserID = new SelectList(db.Users, "UserId", "Username", rFQ.UserID);
             return View(rFQ);
         }
 
-        // GET: RFQs/Delete/5
+        // GET: RFQ/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RFQ rFQ = await db.RFQs.FindAsync(id);
+            RFQ rFQ = await db.RFQ.FindAsync(id);
             if (rFQ == null)
             {
                 return HttpNotFound();
@@ -92,13 +92,13 @@ namespace Travel_Request_System_EF.Controllers
             return View(rFQ);
         }
 
-        // POST: RFQs/Delete/5
+        // POST: RFQ/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            RFQ rFQ = await db.RFQs.FindAsync(id);
-            db.RFQs.Remove(rFQ);
+            RFQ rFQ = await db.RFQ.FindAsync(id);
+            db.RFQ.Remove(rFQ);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -116,21 +116,21 @@ namespace Travel_Request_System_EF.Controllers
         public async Task<ActionResult> RFQProcessing(int? id)
         {
 
-            ViewBag.Cities = db.Cities.ToList();
-            ViewBag.CurrencyID = db.Currencies.ToList();
+            ViewBag.Cities = db.City.ToList();
+            ViewBag.CurrencyID = db.Currency.ToList();
             ViewBag.ApprovalBy = db.Users.ToList();
 
-            TravelRequest travelRequest = await db.TravelRequests.FindAsync(id);
+            TravelRequests travelRequest = await db.TravelRequests.FindAsync(id);
             return View(travelRequest);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public void RFQProcessing(TravelRequest travelRequest, FormCollection formCollection)
+        public void RFQProcessing(TravelRequests travelRequest, FormCollection formCollection)
         {
             RFQ rfq = new RFQ
             {
-                TravelRequestID = travelRequest.TravelRequestID,
+                TravelRequestID = travelRequest.ID,
                 TravelAgencyID = 3,
                 UserID = 1
             };
@@ -167,22 +167,22 @@ namespace Travel_Request_System_EF.Controllers
                 }
             }
             rfq.Processing = (int)ProcessingStatus.BeingProcessed;
-            db.RFQs.Add(rfq);
+            db.RFQ.Add(rfq);
             db.SaveChanges();
-            //RedirectToAction("RFQMerger", rFQ.RFQID);
+            //RedirectToAction("RFQMerger", rFQ.ID);
         }
 
         public async Task<ActionResult> RFQMerger(int? id)
         {
-            ViewBag.TravelAgencies = db.TravelAgencies.ToList();
+            ViewBag.TravelAgency = db.TravelAgency.ToList();
 
-            List<RFQ> rfqlist = db.RFQs.Where(a => a.TravelRequestID == id).ToList();
+            List<RFQ> rfqlist = db.RFQ.Where(a => a.TravelRequestID == id).ToList();
             return View(rfqlist);
         }
 
         public async Task<ActionResult> RFQPostMerger(int? id)
         {
-            ViewBag.TravelAgencies = db.TravelAgencies.ToList();
+            ViewBag.TravelAgency = db.TravelAgency.ToList();
 
             List<RFQ> rfqlist = new List<RFQ>();
             rfqlist.Add(new RFQ() { TravelAgencyID = 3, TravelRequestID = 1 });
@@ -191,22 +191,21 @@ namespace Travel_Request_System_EF.Controllers
 
         public async Task<ActionResult> RFQFinalPreview(int? id)
         {
-            ViewBag.Cities = db.Cities.ToList();
-            ViewBag.CurrencyID = db.Currencies.ToList();
+            ViewBag.Cities = db.City.ToList();
+            ViewBag.CurrencyID = db.Currency.ToList();
             ViewBag.ApprovalBy = db.Users.ToList();
-            ViewBag.TravelAgencies = db.TravelAgencies.ToList();
+            ViewBag.TravelAgency = db.TravelAgency.ToList();
 
             RFQ rFQ = new RFQ();
             rFQ.TravelAgency = new TravelAgency();
             rFQ.TravelAgencyID = 3;
-            rFQ.TravelRequest = new TravelRequest()
+            rFQ.TravelRequests = new TravelRequests()
             {
                 PortOfDestinationID = 1,
                 PortOfOriginID = 1,
-                CurrencyID = 1,
-                UserID = 1,
+                CurrencyID = 1
             };
-            rFQ.User = new User();
+            rFQ.Users = new Users();
             return View(rFQ);
         }
     }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Travel_Request_System_EF.Models.TravelRequest>
+﻿@model IEnumerable<Travel_Request_System_EF.Models.TravelRequests>
 
 @{
     ViewBag.Title = "Index";
@@ -109,13 +109,13 @@
                                     </td>
                                     <td>
                                         <span class="glyphicon">
-                                            @Html.ActionLink("  Edit", "Edit", new { id = item.TravelRequestID }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                                            @Html.ActionLink("  Edit", "Edit", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-edit" })
                                         </span>
                                         <span class="glyphicon">
-                                            @Html.ActionLink("  Details", "Details", new { id = item.TravelRequestID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                                            @Html.ActionLink("  Details", "Details", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
                                         </span>
                                         <span class="glyphicon">
-                                            @Html.ActionLink("  Delete", "Delete", new { id = item.TravelRequestID }, new { @class = "form-control btn btn-info glyphicon-remove" })
+                                            @Html.ActionLink("  Delete", "Delete", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove" })
                                         </span>
                                     </td>
                                 </tr>

@@ -8,7 +8,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
     {
         [DisplayName("Travel Request ID")]
         [Required(ErrorMessage = "Travel Request ID is Required")]
-        public int TravelRequestID { get; set; }
+        public int ID { get; set; }
 
         [DisplayName("User ID")]
         [Required(ErrorMessage = "user ID is Required")]

@@ -17,14 +17,15 @@ namespace Travel_Request_System_EF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Currency()
         {
-            this.TravelRequests = new HashSet<TravelRequest>();
+            this.TravelRequests = new HashSet<TravelRequests>();
         }
     
-        public int CurrencyID { get; set; }
+        public int ID { get; set; }
         public string CurrencyDesc { get; set; }
+        public string CurrencySymbol { get; set; }
         public Nullable<bool> IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TravelRequest> TravelRequests { get; set; }
+        public virtual ICollection<TravelRequests> TravelRequests { get; set; }
     }
 }

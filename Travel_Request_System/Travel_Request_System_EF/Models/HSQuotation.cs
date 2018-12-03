@@ -14,13 +14,7 @@ namespace Travel_Request_System_EF.Models
     
     public partial class HSQuotation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public HSQuotation()
-        {
-            this.LPOes = new HashSet<LPO>();
-        }
-    
-        public int HSQuotationID { get; set; }
+        public int ID { get; set; }
         public int QuotationID { get; set; }
         public string TravelSector { get; set; }
         public string HotelName { get; set; }
@@ -35,7 +29,5 @@ namespace Travel_Request_System_EF.Models
         public Nullable<bool> IsDeleted { get; set; }
     
         public virtual Quotation Quotation { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LPO> LPOes { get; set; }
     }
 }

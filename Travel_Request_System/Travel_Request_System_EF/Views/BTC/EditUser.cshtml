@@ -1,4 +1,4 @@
-﻿@model Travel_Request_System_EF.Models.User
+﻿@model Travel_Request_System_EF.Models.Users
 
 @{
     ViewBag.Title = "Edit User";
@@ -19,7 +19,7 @@
             <div class="box-body">
                 <div>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.UserId)
+                    @Html.HiddenFor(model => model.ID)
                     <div class="row" style="margin-bottom:15px">
                         <div class="form-group">
                             <label class="control-label col-md-2">Role</label>

@@ -13,10 +13,10 @@ namespace Travel_Request_System_EF.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HRWorksEntities : DbContext
+    public partial class BTCEntities : DbContext
     {
-        public HRWorksEntities()
-            : base("name=HRWorksEntities")
+        public BTCEntities()
+            : base("name=BTCEntities")
         {
         }
     
@@ -25,27 +25,27 @@ namespace Travel_Request_System_EF.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ATQuotation> ATQuotations { get; set; }
-        public virtual DbSet<Attachment> Attachments { get; set; }
-        public virtual DbSet<City> Cities { get; set; }
-        public virtual DbSet<Currency> Currencies { get; set; }
+        public virtual DbSet<ATQuotation> ATQuotation { get; set; }
+        public virtual DbSet<AttachmentLink> AttachmentLink { get; set; }
+        public virtual DbSet<Attachments> Attachments { get; set; }
+        public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<Currency> Currency { get; set; }
         public virtual DbSet<HRW_Company> HRW_Company { get; set; }
         public virtual DbSet<HRW_EmpEntityParamValues> HRW_EmpEntityParamValues { get; set; }
         public virtual DbSet<HRW_Employee> HRW_Employee { get; set; }
-        public virtual DbSet<HSQuotation> HSQuotations { get; set; }
-        public virtual DbSet<LPO> LPOes { get; set; }
+        public virtual DbSet<HSQuotation> HSQuotation { get; set; }
+        public virtual DbSet<LPO> LPO { get; set; }
         public virtual DbSet<ORG_ChartMaster> ORG_ChartMaster { get; set; }
         public virtual DbSet<ORG_EmpEntityLink> ORG_EmpEntityLink { get; set; }
         public virtual DbSet<ORG_EntityMaster> ORG_EntityMaster { get; set; }
         public virtual DbSet<ORG_EntityType> ORG_EntityType { get; set; }
         public virtual DbSet<ORG_EntityTypeParam> ORG_EntityTypeParam { get; set; }
-        public virtual DbSet<PCQuotation> PCQuotations { get; set; }
-        public virtual DbSet<Quotation> Quotations { get; set; }
-        public virtual DbSet<RFQ> RFQs { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<TravelAgency> TravelAgencies { get; set; }
-        public virtual DbSet<TravelRequest> TravelRequests { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<AttachmentsLink> AttachmentsLinks { get; set; }
+        public virtual DbSet<PCQuotation> PCQuotation { get; set; }
+        public virtual DbSet<Quotation> Quotation { get; set; }
+        public virtual DbSet<RFQ> RFQ { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<TravelAgency> TravelAgency { get; set; }
+        public virtual DbSet<TravelRequests> TravelRequests { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

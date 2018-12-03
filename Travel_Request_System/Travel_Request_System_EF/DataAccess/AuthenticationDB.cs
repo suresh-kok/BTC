@@ -13,18 +13,18 @@ namespace Travel_Request_System_EF.DataAccess
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
+            modelBuilder.Entity<Users>()
                 .HasMany(u => u.Roles)
                 .WithMany(r => r.Users)
                 .Map(m =>
                 {
-                    m.ToTable("UserRoles");
+                    m.ToTable("UserRole");
                     m.MapLeftKey("UserId");
                     m.MapRightKey("RoleId");
                 });
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
+        public DbSet<Users> Users { get; set; }
+        public DbSet<Roles> Roles { get; set; }
     }
 }

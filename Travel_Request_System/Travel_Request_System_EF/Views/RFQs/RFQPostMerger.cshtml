@@ -42,7 +42,7 @@
                                             <td>
                                                 <div class="form-group">
                                                     @{
-                                                        var ta = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgencies).FirstOrDefault(rt => rt.AgencyID == item.TravelAgencyID).CompanyName.ToString();
+                                                        var ta = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgencies).FirstOrDefault(rt => rt.ID == item.TravelAgencyID).CompanyName.ToString();
                                                     }
                                                     @ta
                                                 </div>

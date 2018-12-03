@@ -1,4 +1,4 @@
-﻿@model Travel_Request_System_EF.Models.User
+﻿@model Travel_Request_System_EF.Models.Users
 
 @{
     ViewBag.Title = "User Details";
@@ -16,7 +16,7 @@
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive">
                         <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
-                            @if (Model == null || (Model.UserId == 0))
+                            @if (Model == null || (Model.ID == 0))
                             {
                                 <tr>
                                     <td colspan="10">No Record's found.</td>
@@ -81,7 +81,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <div class="col-md-3">
-                @Html.ActionLink("Edit", "EditUser", new { id = Model.UserId }, new { @class = "form-control btn btn-info" })
+                @Html.ActionLink("Edit", "EditUser", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
             </div>
             <div class="col-md-3">
                 @Html.ActionLink("Back to List", "ManageUsers", null, new { @class = "form-control btn btn-info" })

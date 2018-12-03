@@ -17,13 +17,13 @@ namespace Travel_Request_System_EF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Quotation()
         {
-            this.ATQuotations = new HashSet<ATQuotation>();
-            this.HSQuotations = new HashSet<HSQuotation>();
-            this.LPOes = new HashSet<LPO>();
-            this.PCQuotations = new HashSet<PCQuotation>();
+            this.ATQuotation = new HashSet<ATQuotation>();
+            this.HSQuotation = new HashSet<HSQuotation>();
+            this.LPO = new HashSet<LPO>();
+            this.PCQuotation = new HashSet<PCQuotation>();
         }
     
-        public int QuotationID { get; set; }
+        public int ID { get; set; }
         public int TravelAgencyID { get; set; }
         public int TravelRequestID { get; set; }
         public int UserID { get; set; }
@@ -31,15 +31,15 @@ namespace Travel_Request_System_EF.Models
         public Nullable<bool> IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ATQuotation> ATQuotations { get; set; }
+        public virtual ICollection<ATQuotation> ATQuotation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HSQuotation> HSQuotations { get; set; }
+        public virtual ICollection<HSQuotation> HSQuotation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LPO> LPOes { get; set; }
+        public virtual ICollection<LPO> LPO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PCQuotation> PCQuotations { get; set; }
+        public virtual ICollection<PCQuotation> PCQuotation { get; set; }
         public virtual TravelAgency TravelAgency { get; set; }
-        public virtual TravelRequest TravelRequest { get; set; }
-        public virtual User User { get; set; }
+        public virtual TravelRequests TravelRequests { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

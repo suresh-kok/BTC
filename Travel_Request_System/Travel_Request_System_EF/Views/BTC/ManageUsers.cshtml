@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Travel_Request_System_EF.Models.User>
+﻿@model IEnumerable<Travel_Request_System_EF.Models.Users>
 
 @{
     ViewBag.Title = "Manage Users";
@@ -82,13 +82,13 @@
                                         </td>
                                         <td>
                                             <span class="glyphicon">
-                                                @Html.ActionLink("  Edit", "EditUser", new { id = item.UserId }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                                                @Html.ActionLink("  Edit", "EditUser", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-edit" })
                                             </span>
                                             <span class="glyphicon">
-                                                @Html.ActionLink("  Details", "ViewUserDetails", new { id = item.UserId }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                                                @Html.ActionLink("  Details", "ViewUserDetails", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
                                             </span>
                                             <span class="glyphicon">
-                                                @Html.ActionLink("  Delete", "DeleteUser", new { id = item.UserId }, new { @class = "form-control btn btn-info glyphicon-remove" })
+                                                @Html.ActionLink("  Delete", "DeleteUser", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove" })
                                             </span>
                                         </td>
                                     </tr>

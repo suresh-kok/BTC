@@ -42,7 +42,7 @@
                                     foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@item.RFQID</td>
+                                            <td>@item.ID</td>
                                             <td>@{
                                                 if(item.ProcessingSection == 1)
                                                 {
@@ -75,7 +75,7 @@
                                             }</td>
                                             <td>
                                                 <div class="form-group">
-                                                    @Html.DropDownListFor(model => item.TravelAgencyID, ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgencies).Select(m => new SelectListItem { Text = m.CompanyName, Value = m.AgencyID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
+                                                    @Html.DropDownListFor(model => item.TravelAgencyID, ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgencies).Select(m => new SelectListItem { Text = m.CompanyName, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
                                                 </div>
                                             </td>
                                             <td>

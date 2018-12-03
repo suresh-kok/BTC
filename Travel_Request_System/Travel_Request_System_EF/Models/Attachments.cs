@@ -12,12 +12,12 @@ namespace Travel_Request_System_EF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AttachmentsLink
+    public partial class Attachments
     {
-        public int AttachmentID { get; set; }
-        public string AttachmentFor { get; set; }
-        public int AttachmentForID { get; set; }
+        public int ID { get; set; }
+        public string FilePath { get; set; }
+        public string FileType { get; set; }
     
-        public virtual Attachment Attachment { get; set; }
+        public virtual AttachmentLink AttachmentLink { get; set; }
     }
 }

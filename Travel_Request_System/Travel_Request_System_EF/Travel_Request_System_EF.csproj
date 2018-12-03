@@ -186,87 +186,87 @@
     <Compile Include="Mail\MailAttachment.cs" />
     <Compile Include="Mail\SendMail.cs" />
     <Compile Include="Models\ATQuotation.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Attachment.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+    <Compile Include="Models\AttachmentLink.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AttachmentsLink.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+    <Compile Include="Models\Attachments.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\City.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Currency.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DataAnnotations\CustomDataAnnotationAttributes.cs" />
     <Compile Include="Models\DataAnnotations\TravelRequestMetaData.cs" />
-    <Compile Include="Models\HRWorksEntities.Context.cs">
+    <Compile Include="Models\HRWorks.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HRWorksEntities.Context.tt</DependentUpon>
+      <DependentUpon>HRWorks.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HRWorksEntities.cs">
+    <Compile Include="Models\HRWorks.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HRWorksEntities.Designer.cs">
+    <Compile Include="Models\HRWorks.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HRWorksEntities.edmx</DependentUpon>
+      <DependentUpon>HRWorks.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\HRW_Company.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HRW_EmpEntityParamValues.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HRW_Employee.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HSQuotation.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LPO.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ORG_ChartMaster.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ORG_EmpEntityLink.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ORG_EntityMaster.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ORG_EntityType.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ORG_EntityTypeParam.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PCQuotation.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Quotation.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RFQ.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Role.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+    <Compile Include="Models\Roles.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TravelAgency.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TravelRequest.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+    <Compile Include="Models\TravelRequests.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>HRWorksEntities.tt</DependentUpon>
+    <Compile Include="Models\Users.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModel\ATQuotation.cs" />
     <Compile Include="Models\ViewModel\Constants.cs" />
@@ -1118,16 +1118,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\HRWorksEntities.Context.tt">
+    <Content Include="Models\HRWorks.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HRWorksEntities.edmx</DependentUpon>
-      <LastGenOutput>HRWorksEntities.Context.cs</LastGenOutput>
+      <DependentUpon>HRWorks.edmx</DependentUpon>
+      <LastGenOutput>HRWorks.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\HRWorksEntities.edmx.sql" />
-    <Content Include="Models\HRWorksEntities.tt">
+    <Content Include="Models\HRWorks.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HRWorksEntities.edmx</DependentUpon>
-      <LastGenOutput>HRWorksEntities.cs</LastGenOutput>
+      <DependentUpon>HRWorks.edmx</DependentUpon>
+      <LastGenOutput>HRWorks.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1167,12 +1166,12 @@
     <Content Include="Content\js\plugins\sweetalert\.gitignore" />
     <Content Include="Content\js\plugins\sweetalert\.jshintrc" />
     <Content Include="Content\js\plugins\sweetalert\.travis.yml" />
-    <EntityDeploy Include="Models\HRWorksEntities.edmx">
+    <EntityDeploy Include="Models\HRWorks.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HRWorksEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>HRWorks.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\HRWorksEntities.edmx.diagram">
-      <DependentUpon>HRWorksEntities.edmx</DependentUpon>
+    <Content Include="Models\HRWorks.edmx.diagram">
+      <DependentUpon>HRWorks.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

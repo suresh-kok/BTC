@@ -12,17 +12,16 @@ namespace Travel_Request_System_EF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TravelRequest
+    public partial class TravelRequests
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TravelRequest()
+        public TravelRequests()
         {
-            this.Quotations = new HashSet<Quotation>();
-            this.RFQs = new HashSet<RFQ>();
+            this.Quotation = new HashSet<Quotation>();
+            this.RFQ = new HashSet<RFQ>();
         }
     
-        public int TravelRequestID { get; set; }
-        public int UserID { get; set; }
+        public int ID { get; set; }
         public string ApplicationNumber { get; set; }
         public Nullable<int> PortOfOriginID { get; set; }
         public Nullable<int> PortOfDestinationID { get; set; }
@@ -55,6 +54,7 @@ namespace Travel_Request_System_EF.Models
         public Nullable<System.DateTime> DropOffDate { get; set; }
         public Nullable<System.TimeSpan> DropOffTime { get; set; }
         public string PreferredVehicle { get; set; }
+        public string TravelSector { get; set; }
         public Nullable<System.DateTime> CheckInDate { get; set; }
         public Nullable<System.DateTime> CheckOutDate { get; set; }
         public Nullable<System.TimeSpan> CheckInTime { get; set; }
@@ -69,15 +69,14 @@ namespace Travel_Request_System_EF.Models
         public Nullable<bool> IsDeleted { get; set; }
         public bool IsSubmitted { get; set; }
     
-        public virtual City DestinationCity { get; set; }
-        public virtual City OriginCity { get; set; }
+        public virtual City City { get; set; }
+        public virtual City City1 { get; set; }
         public virtual Currency Currency { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Quotation> Quotations { get; set; }
+        public virtual ICollection<Quotation> Quotation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RFQ> RFQs { get; set; }
-        public virtual User ApproverUser { get; set; }
-        public virtual User User { get; set; }
-        public virtual User CreatedByUser { get; set; }
+        public virtual ICollection<RFQ> RFQ { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual Users Users1 { get; set; }
     }
 }

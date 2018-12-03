@@ -10,6 +10,7 @@ using Travel_Request_System_EF.CustomAuthentication;
 using Travel_Request_System_EF.Mail;
 using Travel_Request_System_EF.Models;
 using Travel_Request_System_EF.Models.ViewModel;
+using Roles = Travel_Request_System_EF.Models.Roles;
 
 namespace Travel_Request_System_EF.Controllers
 {
@@ -25,10 +26,10 @@ namespace Travel_Request_System_EF.Controllers
             CustomRole customRole = new CustomRole();
             roles = customRole.GetRolesForUser(user.UserName);
             IsLoggedIn(roles.ToList());
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                User userobj = new User();
-                userobj = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequestsUser).Include(a => a.TravelRequestsUser).Include(a => a.TravelRequestCreatedBy).FirstOrDefault();
+                Users userobj = new Users();
+                userobj = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
                 ViewBag.FirstName = userobj.FirstName;
                 ViewBag.LastName = userobj.LastName;
                 ViewBag.RoleName = roles.ToList()[0];
@@ -133,9 +134,9 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         public async Task<ActionResult> ManageTravelAgency()
         {
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                return View(await db.TravelAgencies.ToListAsync());
+                return View(await db.TravelAgency.ToListAsync());
             }
         }
 
@@ -148,13 +149,13 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateTravelAgency([Bind(Include = "AgencyID,AgencyCode,CompanyName,Address,Telephone,Fax,Mobile,Landline,ContactPerson,Email")] TravelAgency travelAgency)
+        public async Task<ActionResult> CreateTravelAgency([Bind(Include = "ID,AgencyCode,CompanyName,Address,Telephone,Fax,Mobile,Landline,ContactPerson,Email")] TravelAgency travelAgency)
         {
             if (ModelState.IsValid)
             {
-                using (HRWorksEntities db = new HRWorksEntities())
+                using (BTCEntities db = new BTCEntities())
                 {
-                    db.TravelAgencies.Add(travelAgency);
+                    db.TravelAgency.Add(travelAgency);
                     await db.SaveChangesAsync();
                     return RedirectToAction("ManageTravelAgency");
                 }
@@ -170,9 +171,9 @@ namespace Travel_Request_System_EF.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                TravelAgency travelAgency = await db.TravelAgencies.FindAsync(id);
+                TravelAgency travelAgency = await db.TravelAgency.FindAsync(id);
                 if (travelAgency == null)
                 {
                     return HttpNotFound();
@@ -184,11 +185,11 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditTravelAgency([Bind(Include = "AgencyID,AgencyCode,CompanyName,Address,Telephone,Fax,Mobile,Landline,ContactPerson,Email")] TravelAgency travelAgency)
+        public async Task<ActionResult> EditTravelAgency([Bind(Include = "ID,AgencyCode,CompanyName,Address,Telephone,Fax,Mobile,Landline,ContactPerson,Email")] TravelAgency travelAgency)
         {
             if (ModelState.IsValid)
             {
-                using (HRWorksEntities db = new HRWorksEntities())
+                using (BTCEntities db = new BTCEntities())
                 {
                     db.Entry(travelAgency).State = EntityState.Modified;
                     await db.SaveChangesAsync();
@@ -205,9 +206,9 @@ namespace Travel_Request_System_EF.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                TravelAgency travelAgency = await db.TravelAgencies.FindAsync(id);
+                TravelAgency travelAgency = await db.TravelAgency.FindAsync(id);
                 if (travelAgency == null)
                 {
                     return HttpNotFound();
@@ -223,9 +224,9 @@ namespace Travel_Request_System_EF.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                TravelAgency travelAgency = await db.TravelAgencies.FindAsync(id);
+                TravelAgency travelAgency = await db.TravelAgency.FindAsync(id);
                 if (travelAgency == null)
                 {
                     return HttpNotFound();
@@ -239,10 +240,10 @@ namespace Travel_Request_System_EF.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteTravelAgencyConfirmed(int id)
         {
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                TravelAgency travelAgency = await db.TravelAgencies.FindAsync(id);
-                db.TravelAgencies.Remove(travelAgency);
+                TravelAgency travelAgency = await db.TravelAgency.FindAsync(id);
+                db.TravelAgency.Remove(travelAgency);
                 await db.SaveChangesAsync();
                 return RedirectToAction("ManageTravelAgency");
             }
@@ -255,9 +256,9 @@ namespace Travel_Request_System_EF.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                TravelAgency travelAgency = await db.TravelAgencies.FindAsync(id);
+                TravelAgency travelAgency = await db.TravelAgency.FindAsync(id);
                 if (travelAgency == null)
                 {
                     return HttpNotFound();
@@ -275,8 +276,8 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         public ActionResult ManageUsers()
         {
-            List<User> usersList = new List<User>();
-            using (HRWorksEntities db = new HRWorksEntities())
+            List<Users> usersList = new List<Users>();
+            using (BTCEntities db = new BTCEntities())
             {
                 usersList = db.Users.Include(a => a.Roles).ToList();
             }
@@ -291,9 +292,9 @@ namespace Travel_Request_System_EF.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                User user = await db.Users.FindAsync(id);
+                Users user = await db.Users.FindAsync(id);
                 if (user == null)
                 {
                     return HttpNotFound();
@@ -306,9 +307,9 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         public ActionResult CreateUser()
         {
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                List<Role> allRoles = db.Roles.ToList();
+                List<Roles> allRoles = db.Roles.ToList();
                 ViewBag.allRoles = allRoles;
                 return View();
             }
@@ -317,7 +318,7 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateUser([Bind(Include = "UserId,Username,FirstName,LastName,Email,Password,IsActive,ActivationCode")] User userObj, FormCollection form)
+        public ActionResult CreateUser([Bind(Include = "ID,Username,FirstName,LastName,Email,Password,IsActive,ActivationCode")] Users userObj, FormCollection form)
         {
             bool statusRegistration = false;
             string messageRegistration = string.Empty;
@@ -333,10 +334,10 @@ namespace Travel_Request_System_EF.Controllers
                     return RedirectToAction("CreateUser", userObj);
                 }
 
-                using (HRWorksEntities db = new HRWorksEntities())
+                using (BTCEntities db = new BTCEntities())
                 {
-                    var role = db.Roles.Where(a => a.RoleId == DDLValue).FirstOrDefault();
-                    var user = new User()
+                    var role = db.Roles.Where(a => a.ID == DDLValue).FirstOrDefault();
+                    var user = new Users()
                     {
                         Username = userObj.Username,
                         FirstName = userObj.FirstName,
@@ -373,9 +374,9 @@ namespace Travel_Request_System_EF.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                User user = await db.Users.FindAsync(id);
+                Users user = await db.Users.FindAsync(id);
                 if (user == null)
                 {
                     return HttpNotFound();
@@ -388,15 +389,15 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditUser([Bind(Include = "UserId,Username,FirstName,LastName,Email,Password,IsActive,ActivationCode")] User user, FormCollection form)
+        public async Task<ActionResult> EditUser([Bind(Include = "ID,Username,FirstName,LastName,Email,Password,IsActive,ActivationCode")] Users user, FormCollection form)
         {
             if (ModelState.IsValid)
             {
                 int DDLValue = Convert.ToInt32(form["RoleID"].ToString());
 
-                using (HRWorksEntities db = new HRWorksEntities())
+                using (BTCEntities db = new BTCEntities())
                 {
-                    var role = db.Roles.Where(a => a.RoleId == DDLValue).FirstOrDefault();
+                    var role = db.Roles.Where(a => a.ID == DDLValue).FirstOrDefault();
                     if (!user.Roles.Contains(role))
                     {
                         user.Roles.Add(role);
@@ -417,9 +418,9 @@ namespace Travel_Request_System_EF.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                User user = await db.Users.FindAsync(id);
+                Users user = await db.Users.FindAsync(id);
                 if (user == null)
                 {
                     return HttpNotFound();
@@ -434,9 +435,9 @@ namespace Travel_Request_System_EF.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteUserConfirmed(int id)
         {
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                User user = await db.Users.FindAsync(id);
+                Users user = await db.Users.FindAsync(id);
                 db.Users.Remove(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("ManageUsers");
@@ -516,25 +517,25 @@ namespace Travel_Request_System_EF.Controllers
             return RedirectToAction("ChangePassword");
         }
 
-        private List<TravelRequest> ViewMyTravelRequests()
+        private List<TravelRequests> ViewMyTravelRequests()
         {
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
-                return db.TravelRequests.Where(a => a.UserID == (db.Users.Where(u => u.Username == user.UserName).FirstOrDefault()).UserId).OrderBy(a => a.CreateOn).ToList();
+                return db.TravelRequests.Where(a => a.CreatedBy == (db.Users.Where(u => u.Username == user.UserName).FirstOrDefault()).ID).OrderBy(a => a.CreateOn).ToList();
             }
         }
 
-        private List<TravelRequest> ViewApprovalTravelRequests(int level)
+        private List<TravelRequests> ViewApprovalTravelRequests(int level)
         {
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
                 return db.TravelRequests.Where(a => a.ApprovalLevel == level).ToList();
             }
         }
 
-        private List<TravelRequest> ViewAllTravelRequests()
+        private List<TravelRequests> ViewAllTravelRequests()
         {
-            using (HRWorksEntities db = new HRWorksEntities())
+            using (BTCEntities db = new BTCEntities())
             {
                 return db.TravelRequests.OrderBy(a => a.CreateOn).ToList();
             }

@@ -1,4 +1,4 @@
-﻿@model Travel_Request_System_EF.Models.User
+﻿@model Travel_Request_System_EF.Models.Users
 
 @{
     ViewBag.Title = "Create";
@@ -26,7 +26,7 @@
                             <label class = "control-label col-md-2">Role</label>
                             <div class="col-md-10">
                                 <div class="dropdown">
-                                    @Html.DropDownList("RoleID", ((IEnumerable<Travel_Request_System_EF.Models.Role>)ViewBag.allRoles).Select(m => new SelectListItem { Text = m.RoleName, Value = m.RoleId.ToString() }))
+                                    @Html.DropDownList("RoleID", ((IEnumerable<Travel_Request_System_EF.Models.Roles>)ViewBag.allRoles).Select(m => new SelectListItem { Text = m.RoleName, Value = m.ID.ToString() }))
                                     @*@Html.ValidationMessageFor(Model => Model.roleDet, "", new { @class = "text-danger" })*@
                                 </div>
                             </div>

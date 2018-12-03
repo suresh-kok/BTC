@@ -65,7 +65,7 @@ namespace Travel_Request_System_EF.CustomAuthentication
         {
             using (AuthenticationDB dbContext = new AuthenticationDB())
             {
-                User user = (from us in dbContext.Users
+                Users user = (from us in dbContext.Users
                              where string.Compare(username, us.Username, StringComparison.OrdinalIgnoreCase) == 0
                              select us).FirstOrDefault();
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using Roles = Travel_Request_System_EF.Models.Roles;
 
 namespace Travel_Request_System_EF.CustomAuthentication
 {
@@ -14,13 +15,13 @@ namespace Travel_Request_System_EF.CustomAuthentication
         public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public ICollection<Role> Roles { get; set; }
+        public ICollection<Roles> Roles { get; set; }
 
         #endregion
 
-        public CustomMembershipUser(User user):base("CustomMembership", user.Username, user.UserId, user.Email, string.Empty, string.Empty, true, false, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now)
+        public CustomMembershipUser(Users user):base("CustomMembership", user.Username, user.ID, user.Email, string.Empty, string.Empty, true, false, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now)
         {
-            UserId = user.UserId;
+            UserId = user.ID;
             FirstName = user.FirstName;
             LastName = user.LastName;
             Roles = user.Roles;

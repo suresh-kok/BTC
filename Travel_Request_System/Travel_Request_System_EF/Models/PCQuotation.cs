@@ -14,13 +14,7 @@ namespace Travel_Request_System_EF.Models
     
     public partial class PCQuotation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PCQuotation()
-        {
-            this.LPOes = new HashSet<LPO>();
-        }
-    
-        public int PCQuotationID { get; set; }
+        public int ID { get; set; }
         public int QuotationID { get; set; }
         public string TravelSector { get; set; }
         public string PickupLocation { get; set; }
@@ -33,8 +27,6 @@ namespace Travel_Request_System_EF.Models
         public Nullable<decimal> Amount { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LPO> LPOes { get; set; }
         public virtual Quotation Quotation { get; set; }
     }
 }

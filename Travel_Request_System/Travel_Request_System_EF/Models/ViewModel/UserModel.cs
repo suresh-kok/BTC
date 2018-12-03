@@ -2,7 +2,7 @@
 {
     public class UserModel
     {
-        public User userDet;
-        public Role roleDet;
+        public Users userDet;
+        public Roles roleDet;
     }
 }
