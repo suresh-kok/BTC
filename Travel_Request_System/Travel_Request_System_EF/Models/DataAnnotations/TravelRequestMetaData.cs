@@ -10,10 +10,6 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         [Required(ErrorMessage = "Travel Request ID is Required")]
         public int ID { get; set; }
 
-        [DisplayName("User ID")]
-        [Required(ErrorMessage = "user ID is Required")]
-        public int UserID { get; set; }
-
         [DisplayName("Application Number")]
         [Required(ErrorMessage = "Application Number is Required")]
         public string ApplicationNumber { get; set; }
@@ -46,6 +42,10 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         [DisplayName("Travel Remarks")]
         [MaxLength(500)]
         public string TravelRemarks { get; set; }
+
+        [DisplayName("Travel Sector")]
+        [MaxLength(500)]
+        public string TravelSector { get; set; }
 
         [DisplayName("Purpose Of Visit")]
         [Required(ErrorMessage = "Purpose Of Visit is Required")]

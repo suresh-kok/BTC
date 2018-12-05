@@ -26,4 +26,14 @@
         HSPC,
         ATHSPC
     }
+
+    public enum ApprovalLevels
+    {
+        ToBeApproved = 1,
+        ApprovedByManager,
+        RejectedByManager,
+        ApprovedByHR,
+        RejectedByHR,
+        ApprovedbyTravelCo
+    }
 }

@@ -9,7 +9,7 @@ using Travel_Request_System_EF.Models.ViewModel;
 
 namespace Travel_Request_System_EF.Controllers
 {
-    public class RFQController : Controller
+    public class RFQsController : Controller
     {
         private BTCEntities db = new BTCEntities();
 

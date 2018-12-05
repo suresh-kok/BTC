@@ -201,6 +201,7 @@
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DataAnnotations\CustomDataAnnotationAttributes.cs" />
+    <Compile Include="Models\DataAnnotations\TravelAgencyMetadata.cs" />
     <Compile Include="Models\DataAnnotations\TravelRequestMetaData.cs" />
     <Compile Include="Models\HRWorks.Context.cs">
       <AutoGen>True</AutoGen>
@@ -320,6 +321,7 @@
     <Content Include="Content\css\icheck\red.min.css" />
     <Content Include="Content\css\icheck\yellow.css" />
     <Content Include="Content\css\icheck\yellow.min.css" />
+    <Content Include="Content\css\print.css" />
     <Content Include="Content\css\skins\skin-black-light.css" />
     <Content Include="Content\css\skins\skin-black-light.min.css" />
     <Content Include="Content\css\skins\skin-black.css" />
@@ -1267,6 +1269,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Reports\" />
     <Folder Include="Views\Export\" />
   </ItemGroup>
   <ItemGroup>

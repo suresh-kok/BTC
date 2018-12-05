@@ -26,13 +26,12 @@ namespace Travel_Request_System_EF.Controllers
             user = Membership.GetUser();
             CustomRole customRole = new CustomRole();
             roles = customRole.GetRolesForUser(user.UserName);
+            ViewBag.RoleDetails = roles.ToList()[0];
             IsLoggedIn(roles.ToList());
             using (BTCEntities db = new BTCEntities())
             {
                 dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
-                ViewBag.FirstName = dbuser.FirstName;
-                ViewBag.LastName = dbuser.LastName;
-                ViewBag.RoleName = roles.ToList()[0];
+                ViewBag.UserDetails = dbuser;
             }
         }
 
@@ -65,9 +64,9 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.ApprovalBy = db.Users.ToList();
                 return View(travelRequest);
             }
-            catch (System.Exception)
+            catch (Exception e)
             {
-                throw;
+                throw e;
             }
         }
 
@@ -93,6 +92,7 @@ namespace Travel_Request_System_EF.Controllers
             if (ModelState.IsValid)
             {
                 travelRequest.IsSubmitted = true;
+                travelRequest.ApprovalLevel = (int)ApprovalLevels.ToBeApproved;
                 db.TravelRequests.Add(travelRequest);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -244,7 +244,6 @@ namespace Travel_Request_System_EF.Controllers
             ViewBag.messages = Val;
             ViewBag.notifications = Val;
             ViewBag.tasks = Val;
-            ViewBag.userdetails = Val;
             ViewBag.IsEmployee = !Val;
             ViewBag.IsHR = !Val;
             ViewBag.IsTravelCo = !Val;
@@ -306,9 +305,15 @@ namespace Travel_Request_System_EF.Controllers
             return RFQno[0] + '-' + RFQno[1] + '-' + RFQno[2] + '-' + String.Format("{0:D4}", (Convert.ToInt32(RFQno[3]) + 1));
         }
 
-        private void PrintTravelRequest(TravelRequests travelRequest)
+        public ActionResult PrintTravelRequest(TravelRequests travelRequest)
         {
+            TravelRequests travelRequest1 = db.TravelRequests.Find(1);
 
+            ViewBag.Cities = db.City.ToList();
+            ViewBag.Currencies = db.Currency.ToList();
+            ViewBag.ApprovalBy = db.Users.ToList();
+
+            return View();
         }
 
         private void checkErrorMessages()

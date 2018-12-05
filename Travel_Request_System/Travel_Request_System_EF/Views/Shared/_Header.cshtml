@@ -26,7 +26,7 @@
         </div>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                @if (ViewBag.messages != null && ViewBag.messages)
+                @*@if (ViewBag.messages != null && ViewBag.messages)
                 {
                     @Html.Partial("_Messages");
                 }
@@ -37,8 +37,8 @@
                 @if (ViewBag.tasks != null && ViewBag.tasks)
                 {
                     @Html.Partial("_Tasks");
-                }
-                @if (ViewBag.userdetails != null && ViewBag.userdetails)
+                }*@
+                @if (ViewBag.UserDetails != null)
                 {
                     @Html.Partial("_UserAccount");
                 }

@@ -19,20 +19,19 @@ namespace Travel_Request_System_EF.Controllers
     {
         private static MembershipUser user;
         private static string[] roles;
+        private static Users dbuser;
 
         public BTCController()
         {
             user = Membership.GetUser();
             CustomRole customRole = new CustomRole();
             roles = customRole.GetRolesForUser(user.UserName);
+            ViewBag.RoleDetails = roles.ToList()[0];
             IsLoggedIn(roles.ToList());
             using (BTCEntities db = new BTCEntities())
             {
-                Users userobj = new Users();
-                userobj = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
-                ViewBag.FirstName = userobj.FirstName;
-                ViewBag.LastName = userobj.LastName;
-                ViewBag.RoleName = roles.ToList()[0];
+                dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
+                ViewBag.UserDetails = dbuser;
             }
         }
 
@@ -62,14 +61,107 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "HR")]
         public ActionResult HRDashboard()
         {
-            return View(ViewApprovalTravelRequests(2));
+            return View(ViewApprovalTravelRequests((int)ApprovalLevels.ApprovedByManager));
         }
 
         [CustomAuthorize(Roles = "HR")]
-        public ActionResult HRApprovalForm()
+        public ActionResult HRApprovalForm(int id)
         {
-            return View();
+            try
+            {
+                if (id <= 0)
+                {
+                    ViewBag.ErrorMessage = "No Travel Request ID";
+                    return View();
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid Travel Request ID");
+                }
+                using (BTCEntities db = new BTCEntities())
+                {
+                    TravelRequests travelRequest = db.TravelRequests.Find(id);
+                    if (travelRequest == null)
+                    {
+                        ViewBag.ErrorMessage = "Invalid Travel Request ID";
+                        return View();
+                        //return HttpNotFound("Invalid Travel Request ID");
+                    }
+
+                    ViewBag.Cities = db.City.ToList();
+                    ViewBag.Currencies = db.Currency.ToList();
+                    ViewBag.ApprovalBy = db.Users.ToList();
+                    return View(travelRequest);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ApproveHRRequest(TravelRequests travelRequest, FormCollection collection)
+        {
+            using (BTCEntities db = new BTCEntities())
+            {
+                if (ModelState.IsValid)
+                {
+                    travelRequest.ApprovalLevel = (int)ApprovalLevels.ApprovedByHR;
+                    db.TravelRequests.Add(travelRequest);
+                    db.SaveChanges();
+                    NotificationEmail(travelRequest, true);
+                    return RedirectToAction("HRDashboard");
+                }
+                else
+                {
+                    var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                    List<string> sberr = new List<string>();
+                    foreach (var item in errlist)
+                    {
+                        sberr.Add(item[0].ErrorMessage);
+                    }
+                    TempData["ErrorMessage"] = sberr.ToList();
+                }
+
+                ViewBag.Cities = db.City.ToList();
+                ViewBag.Currencies = db.Currency.ToList();
+                ViewBag.ApprovalBy = db.Users.ToList();
+                return View(travelRequest);
+            }
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RejectHRRequest(TravelRequests travelRequest, FormCollection collection)
+        {
+            using (BTCEntities db = new BTCEntities())
+            {
+                if (ModelState.IsValid)
+                {
+                    travelRequest.ApprovalLevel = (int)ApprovalLevels.RejectedByHR;
+                    db.TravelRequests.Add(travelRequest);
+                    db.SaveChanges();
+                    NotificationEmail(travelRequest, false);
+                    return RedirectToAction("HRDashboard");
+                }
+                else
+                {
+                    var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                    List<string> sberr = new List<string>();
+                    foreach (var item in errlist)
+                    {
+                        sberr.Add(item[0].ErrorMessage);
+                    }
+                    TempData["ErrorMessage"] = sberr.ToList();
+                }
+
+                ViewBag.Cities = db.City.ToList();
+                ViewBag.Currencies = db.Currency.ToList();
+                ViewBag.ApprovalBy = db.Users.ToList();
+                return View(travelRequest);
+            }
+        }
+
 
         #endregion
 
@@ -78,13 +170,105 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Manager")]
         public ActionResult ManagerDashboard()
         {
-            return View(ViewApprovalTravelRequests(1));
+            return View(ViewApprovalTravelRequests((int)ApprovalLevels.ToBeApproved));
         }
 
         [CustomAuthorize(Roles = "Manager")]
-        public ActionResult ManagerApprovalForm()
+        public ActionResult ManagerApprovalForm(int id)
         {
-            return View();
+            try
+            {
+                if (id <= 0)
+                {
+                    ViewBag.ErrorMessage = "No Travel Request ID";
+                    return View();
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid Travel Request ID");
+                }
+                using (BTCEntities db = new BTCEntities())
+                {
+                    TravelRequests travelRequest = db.TravelRequests.Find(id);
+                    if (travelRequest == null)
+                    {
+                        ViewBag.ErrorMessage = "Invalid Travel Request ID";
+                        return View();
+                        //return HttpNotFound("Invalid Travel Request ID");
+                    }
+
+                    ViewBag.Cities = db.City.ToList();
+                    ViewBag.Currencies = db.Currency.ToList();
+                    ViewBag.ApprovalBy = db.Users.ToList();
+                    return View(travelRequest);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ApproveManagerRequest(TravelRequests travelRequest, FormCollection collection)
+        {
+            using (BTCEntities db = new BTCEntities())
+            {
+                if (ModelState.IsValid)
+                {
+                    travelRequest.ApprovalLevel = (int)ApprovalLevels.ApprovedByManager;
+                    db.TravelRequests.Add(travelRequest);
+                    db.SaveChanges();
+                    NotificationEmail(travelRequest, true);
+                    return RedirectToAction("ManagerDashboard");
+                }
+                else
+                {
+                    var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                    List<string> sberr = new List<string>();
+                    foreach (var item in errlist)
+                    {
+                        sberr.Add(item[0].ErrorMessage);
+                    }
+                    TempData["ErrorMessage"] = sberr.ToList();
+                }
+
+                ViewBag.Cities = db.City.ToList();
+                ViewBag.Currencies = db.Currency.ToList();
+                ViewBag.ApprovalBy = db.Users.ToList();
+                return View(travelRequest);
+            }
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RejectManagerRequest(TravelRequests travelRequest, FormCollection collection)
+        {
+            using (BTCEntities db = new BTCEntities())
+            {
+                if (ModelState.IsValid)
+                {
+                    travelRequest.ApprovalLevel = (int)ApprovalLevels.RejectedByManager;
+                    db.TravelRequests.Add(travelRequest);
+                    db.SaveChanges();
+                    NotificationEmail(travelRequest, false);
+                    return RedirectToAction("ManagerDashboard");
+                }
+                else
+                {
+                    var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                    List<string> sberr = new List<string>();
+                    foreach (var item in errlist)
+                    {
+                        sberr.Add(item[0].ErrorMessage);
+                    }
+                    TempData["ErrorMessage"] = sberr.ToList();
+                }
+
+                ViewBag.Cities = db.City.ToList();
+                ViewBag.Currencies = db.Currency.ToList();
+                ViewBag.ApprovalBy = db.Users.ToList();
+                return View(travelRequest);
+            }
         }
 
         #endregion
@@ -94,7 +278,7 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "TravelCo")]
         public ActionResult TravelCoDashboard()
         {
-            return View();
+            return View(ViewApprovalTravelRequests((int)ApprovalLevels.ApprovedByHR));
         }
 
         [CustomAuthorize(Roles = "TravelCo")]
@@ -143,7 +327,14 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         public ActionResult CreateTravelAgency()
         {
-            return View();
+            using (BTCEntities db = new BTCEntities())
+            {
+                TravelAgency travelAgency = new TravelAgency();
+                travelAgency.AgencyCode = db.TravelAgency.Count() > 0 ? GenerateNextAgencyID(db.TravelAgency.OrderByDescending(a => a.ID).FirstOrDefault().AgencyCode) : "HRD-BTC-0HQ-001";
+
+                checkErrorMessages();
+                return View(travelAgency);
+            }
         }
 
         [CustomAuthorize(Roles = "Admin")]
@@ -157,10 +348,22 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     db.TravelAgency.Add(travelAgency);
                     await db.SaveChangesAsync();
+
                     return RedirectToAction("ManageTravelAgency");
                 }
             }
+            else
+            {
+                var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                List<string> sberr = new List<string>();
+                foreach (var item in errlist)
+                {
+                    sberr.Add(item[0].ErrorMessage);
+                }
+                TempData["ErrorMessage"] = sberr.ToList();
+            }
 
+            checkErrorMessages();
             return View(travelAgency);
         }
 
@@ -196,6 +399,17 @@ namespace Travel_Request_System_EF.Controllers
                     return RedirectToAction("ManageTravelAgency");
                 }
             }
+            else
+            {
+                var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                List<string> sberr = new List<string>();
+                foreach (var item in errlist)
+                {
+                    sberr.Add(item[0].ErrorMessage);
+                }
+                TempData["ErrorMessage"] = sberr.ToList();
+            }
+            checkErrorMessages();
             return View(travelAgency);
         }
 
@@ -231,6 +445,8 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     return HttpNotFound();
                 }
+
+                checkErrorMessages();
                 return View(travelAgency);
             }
         }
@@ -521,7 +737,7 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                return db.TravelRequests.Where(a => a.CreatedBy == (db.Users.Where(u => u.Username == user.UserName).FirstOrDefault()).ID).OrderBy(a => a.CreateOn).ToList();
+                return db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Where(a => a.CreatedBy == (db.Users.Where(u => u.Username == user.UserName).FirstOrDefault()).ID).OrderBy(a => a.CreateOn).ToList();
             }
         }
 
@@ -529,7 +745,7 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                return db.TravelRequests.Where(a => a.ApprovalLevel == level).ToList();
+                return db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Where(a => a.ApprovalLevel == level).ToList();
             }
         }
 
@@ -537,7 +753,7 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                return db.TravelRequests.OrderBy(a => a.CreateOn).ToList();
+                return db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).OrderBy(a => a.CreateOn).ToList();
             }
         }
 
@@ -552,7 +768,6 @@ namespace Travel_Request_System_EF.Controllers
             ViewBag.messages = Val;
             ViewBag.notifications = Val;
             ViewBag.tasks = Val;
-            ViewBag.userdetails = Val;
             ViewBag.IsEmployee = !Val;
             ViewBag.IsHR = !Val;
             ViewBag.IsTravelCo = !Val;
@@ -593,6 +808,41 @@ namespace Travel_Request_System_EF.Controllers
 
             mail.Send();
         }
+
+        public void NotificationEmail(TravelRequests travelRequests, bool IsApproved)
+        {
+            var url = string.Format("/TravelRequests/Details/{0}", travelRequests.ID);
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
+
+            SendMail mail = new SendMail();
+            mail.ToAddresses.Add(travelRequests.Users1.Email);
+            if (IsApproved)
+            {
+                mail.MailSubject = "Travel Request " + travelRequests.ApplicationNumber + " Approved!";
+            }
+            else
+            {
+                mail.MailSubject = "Travel Request " + travelRequests.ApplicationNumber + " Rejected!";
+            }
+            mail.MailBody = "<br/> Please click on the following link to view the details of the Travel Request." + "<br/>Travel Request: <a href='" + link + "'>" + travelRequests.ApplicationNumber + "</a>";
+
+            mail.Send();
+        }
+
+        private string GenerateNextAgencyID(string currentID)
+        {
+            string[] RFQno = currentID.Split('-');
+            return RFQno[0] + '-' + RFQno[1] + '-' + RFQno[2] + '-' + String.Format("{0:D4}", (Convert.ToInt32(RFQno[3]) + 1));
+        }
+
+        private void checkErrorMessages()
+        {
+            if (TempData["ErrorMessage"] != null)
+            {
+                ViewBag.ErrorMessage = TempData["ErrorMessage"];
+            }
+        }
+
         #endregion
     }
 }

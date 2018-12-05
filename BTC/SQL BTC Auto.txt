@@ -1,0 +1,1065 @@
+USE [master]
+GO
+/****** Object:  Database [BTC]    Script Date: 11/30/2018 4:47:27 PM ******/
+CREATE DATABASE [BTC]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'BTC', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.ROOT\MSSQL\DATA\BTC.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'BTC_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.ROOT\MSSQL\DATA\BTC_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [BTC] SET COMPATIBILITY_LEVEL = 140
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [BTC].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [BTC] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [BTC] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [BTC] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [BTC] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [BTC] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [BTC] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [BTC] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [BTC] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [BTC] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [BTC] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [BTC] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [BTC] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [BTC] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [BTC] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [BTC] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [BTC] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [BTC] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [BTC] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [BTC] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [BTC] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [BTC] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [BTC] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [BTC] SET RECOVERY FULL 
+GO
+ALTER DATABASE [BTC] SET  MULTI_USER 
+GO
+ALTER DATABASE [BTC] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [BTC] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [BTC] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [BTC] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [BTC] SET DELAYED_DURABILITY = DISABLED 
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'BTC', N'ON'
+GO
+ALTER DATABASE [BTC] SET QUERY_STORE = OFF
+GO
+USE [BTC]
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET IDENTITY_CACHE = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET LEGACY_CARDINALITY_ESTIMATION = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET MAXDOP = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET PARAMETER_SNIFFING = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = PRIMARY;
+GO
+USE [BTC]
+GO
+/****** Object:  Table [dbo].[ATQuotations]    Script Date: 11/30/2018 4:47:27 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ATQuotations](
+	[ATQuotationID] [int] IDENTITY(1,1) NOT NULL,
+	[QuotationID] [int] NOT NULL,
+	[TicketClass] [nvarchar](100) NULL,
+	[OriginID] [int] NULL,
+	[DestinationID] [int] NULL,
+	[DepartureDate] [datetime] NULL,
+	[DepartureTime] [time](7) NULL,
+	[ReturnDate] [datetime] NULL,
+	[ReturnTime] [time](7) NULL,
+	[Airlines] [nvarchar](100) NULL,
+	[TicketNo] [nvarchar](100) NULL,
+	[Amount] [decimal](10, 2) NULL,
+	[IsDeleted] [bit] NULL,
+ CONSTRAINT [PK_ATQuotations] PRIMARY KEY CLUSTERED([ATQuotationID])
+ )
+GO
+/****** Object:  Table [dbo].[AttachmentLinks]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AttachmentLinks](
+	[AttachmentID] [int] NOT NULL,
+	[AttachmentFor] [nvarchar](100) NOT NULL,
+	[AttachmentForID] [int] NOT NULL,
+ CONSTRAINT [PK_AttachmentLinks] PRIMARY KEY CLUSTERED 
+(
+	[AttachmentID] ASC,
+	[AttachmentFor] ASC,
+	[AttachmentForID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Attachments]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Attachments](
+	[AttachmentID] [int] IDENTITY(1,1) NOT NULL,
+	[FilePath] [nvarchar](250) NOT NULL,
+	[FileType] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Attachments] PRIMARY KEY CLUSTERED 
+(
+	[AttachmentID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Cities]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cities](
+	[CityID] [int] IDENTITY(1,1) NOT NULL,
+	[CityDesc] [nvarchar](250) NOT NULL,
+	[Country] [nvarchar](100) NULL,
+	[IsActive] [bit] NULL,
+ CONSTRAINT [PK_Cities] PRIMARY KEY CLUSTERED 
+(
+	[CityID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Currencies]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Currencies](
+	[CurrencyID] [int] IDENTITY(1,1) NOT NULL,
+	[CurrencyDesc] [nvarchar](100) NOT NULL,
+	[CurrencySymbol] [nvarchar](10) NOT NULL,
+	[IsActive] [bit] NULL,
+ CONSTRAINT [PK_Currencies] PRIMARY KEY CLUSTERED 
+(
+	[CurrencyID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HRW_Company]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HRW_Company](
+	[TransactType] [int] NOT NULL,
+	[TransactUserID] [bigint] NOT NULL,
+	[TransactDateTime] [datetime] NOT NULL,
+	[MenuID] [varchar](50) NOT NULL,
+	[CompanyCode] [varchar](10) NOT NULL,
+	[DisplayName] [nvarchar](50) NULL,
+	[ReportName] [nvarchar](50) NULL,
+	[Address] [nvarchar](1000) NULL,
+ CONSTRAINT [PK_HRW_Company] PRIMARY KEY CLUSTERED 
+(
+	[CompanyCode] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HRW_EmpEntityParamValues]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HRW_EmpEntityParamValues](
+	[TransactType] [int] NOT NULL,
+	[TransactUserID] [bigint] NOT NULL,
+	[TransactDateTime] [datetime] NOT NULL,
+	[MenuID] [varchar](50) NOT NULL,
+	[EmpEntityParamID] [bigint] IDENTITY(1,1) NOT NULL,
+	[EmployeeId] [bigint] NULL,
+	[EntityID] [bigint] NULL,
+	[EntityTypeParamID] [bigint] NOT NULL,
+	[ParamValue] [nvarchar](500) NULL,
+	[ParamValueEntityID] [bigint] NULL,
+	[EmpEntityParamIDLink] [bigint] NULL,
+	[ESSID] [bigint] NULL,
+	[CompanyCode] [varchar](10) NULL,
+ CONSTRAINT [PK_HRW_EmpEntityParamValues] PRIMARY KEY CLUSTERED 
+(
+	[EmpEntityParamID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HRW_Employee]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HRW_Employee](
+	[TransactType] [int] NOT NULL,
+	[TransactUserID] [bigint] NOT NULL,
+	[TransactDateTime] [datetime] NOT NULL,
+	[MenuID] [varchar](50) NOT NULL,
+	[EmployeeID] [bigint] IDENTITY(1,1) NOT NULL,
+	[CompanyCode] [varchar](10) NOT NULL,
+	[EmployeeCode] [varchar](20) NOT NULL,
+	[FirstName] [nvarchar](50) NULL,
+	[MiddleName] [nvarchar](50) NULL,
+	[LastName] [nvarchar](50) NULL,
+	[FullName] [nvarchar](150) NULL,
+	[Salutation] [int] NULL,
+	[DateOfBirth] [datetime] NULL,
+	[HireDate] [datetime] NULL,
+	[TerminationDate] [datetime] NULL,
+	[PrevEmpID] [varchar](20) NULL,
+	[Remarks] [nvarchar](100) NULL,
+	[RecordType] [varchar](5) NOT NULL,
+	[PAFRecordID] [bigint] NULL,
+	[EmpStatus] [varchar](100) NULL,
+ CONSTRAINT [PK_HRW_Employee] PRIMARY KEY CLUSTERED 
+(
+	[EmployeeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HSQuotations]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HSQuotations](
+	[HSQuotationID] [int] IDENTITY(1,1) NOT NULL,
+	[QuotationID] [int] NOT NULL,
+	[TravelSector] [nvarchar](250) NULL,
+	[HotelName] [nvarchar](250) NULL,
+	[HotelCategory] [nvarchar](100) NULL,
+	[RoomCategory] [nvarchar](100) NULL,
+	[RoomType] [nvarchar](100) NULL,
+	[CheckInDate] [datetime] NULL,
+	[CheckInTime] [time](7) NULL,
+	[CheckOutDate] [datetime] NULL,
+	[CheckOutTime] [time](7) NULL,
+	[Amount] [decimal](10, 2) NULL,
+	[IsDeleted] [bit] NULL,
+ CONSTRAINT [PK_HSQuotations] PRIMARY KEY CLUSTERED 
+(
+	[HSQuotationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[LPOes]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[LPOes](
+	[LPOID] [int] IDENTITY(1,1) NOT NULL,
+	[LPONo] [nvarchar](100) NULL,
+	[RFQID] [int] NULL,
+	[QuotationID] [int] NULL,
+	[Remarks] [nvarchar](500) NULL,
+	[IsDeleted] [bit] NULL,
+ CONSTRAINT [PK_LPOes] PRIMARY KEY CLUSTERED 
+(
+	[LPOID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ORG_ChartMaster]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ORG_ChartMaster](
+	[TransactType] [int] NOT NULL,
+	[TransactUserID] [bigint] NOT NULL,
+	[TransactDateTime] [datetime] NOT NULL,
+	[MenuID] [varchar](50) NOT NULL,
+	[OrgChartId] [bigint] IDENTITY(1,1) NOT NULL,
+	[CompanyCode] [varchar](10) NOT NULL,
+	[Description] [nvarchar](50) NOT NULL,
+	[ChartRecordType] [varchar](1) NULL,
+	[ManagerEmployeeID] [bigint] NULL,
+	[IsChartDataReady] [bit] NULL,
+	[OrgChartBy] [bigint] NULL,
+ CONSTRAINT [PK_ORG_ChartMaster] PRIMARY KEY CLUSTERED 
+(
+	[OrgChartId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ORG_EmpEntityLink]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ORG_EmpEntityLink](
+	[TransactType] [int] NOT NULL,
+	[TransactUserID] [bigint] NOT NULL,
+	[TransactDateTime] [datetime] NOT NULL,
+	[MenuID] [varchar](50) NOT NULL,
+	[EmpEntityId] [bigint] IDENTITY(1,1) NOT NULL,
+	[EmployeeId] [bigint] NOT NULL,
+	[EntityId] [bigint] NOT NULL,
+	[EffectiveFrom] [datetime] NOT NULL,
+	[EffectiveTo] [datetime] NULL,
+	[RecordStatus] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_ORG_EmpEntityLink] PRIMARY KEY CLUSTERED 
+(
+	[EmpEntityId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ORG_EntityMaster]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ORG_EntityMaster](
+	[TransactType] [int] NOT NULL,
+	[TransactUserID] [bigint] NULL,
+	[TransactDateTime] [datetime] NOT NULL,
+	[MenuID] [varchar](50) NOT NULL,
+	[EntityId] [bigint] IDENTITY(1,1) NOT NULL,
+	[EntityTypeId] [bigint] NULL,
+	[EntityCode] [varchar](20) NULL,
+	[Description] [nvarchar](200) NOT NULL,
+	[Parent] [bigint] NULL,
+	[EffectiveFrom] [datetime] NULL,
+	[EffectiveTo] [datetime] NULL,
+	[IsActive] [bit] NOT NULL,
+	[IncludeEmployees] [bit] NOT NULL,
+	[SortOrder] [int] NOT NULL,
+ CONSTRAINT [PK_ORG_EntityMaster] PRIMARY KEY CLUSTERED 
+(
+	[EntityId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ORG_EntityType]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ORG_EntityType](
+	[TransactType] [int] NOT NULL,
+	[TransactUserID] [bigint] NOT NULL,
+	[TransactDateTime] [datetime] NOT NULL,
+	[MenuID] [varchar](50) NOT NULL,
+	[EntityTypeId] [bigint] IDENTITY(1,1) NOT NULL,
+	[OrgChartId] [bigint] NOT NULL,
+	[Description] [nvarchar](50) NOT NULL,
+	[IsMandatory] [bit] NOT NULL,
+	[IsCodeRequired] [bit] NOT NULL,
+	[SortOrder] [int] NOT NULL,
+	[EntityGroup] [int] NOT NULL,
+	[MasterEntityTypeId] [bigint] NULL,
+	[HaveDataSecurity] [bit] NOT NULL,
+	[ShowInReportFilter] [bit] NOT NULL,
+	[RestrictDuplicate] [bit] NOT NULL,
+ CONSTRAINT [PK_ORG_EntityType] PRIMARY KEY CLUSTERED 
+(
+	[EntityTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ORG_EntityTypeParam]    Script Date: 11/30/2018 4:47:28 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ORG_EntityTypeParam](
+	[TransactType] [int] NOT NULL,
+	[TransactUserID] [bigint] NOT NULL,
+	[TransactDateTime] [datetime] NOT NULL,
+	[MenuID] [varchar](50) NOT NULL,
+	[EntityTypeParamID] [bigint] IDENTITY(1,1) NOT NULL,
+	[EntityTypeId] [bigint] NOT NULL,
+	[Description] [nvarchar](500) NULL,
+	[DataType] [varchar](30) NULL,
+	[DataTypeEntityID] [bigint] NULL,
+	[SortOrder] [int] NOT NULL,
+	[ParamLinkLevel] [varchar](10) NOT NULL,
+	[IsMandatory] [bit] NOT NULL,
+	[CheckDuplicate] [int] NULL,
+	[Validations] [varchar](50) NULL,
+	[ESSFieldAccessRight] [varchar](1) NULL,
+	[DataTypeProperty] [varchar](50) NULL,
+	[DataTypeProperty1] [varchar](300) NULL,
+ CONSTRAINT [PK_ORG_EntityTypeParam] PRIMARY KEY CLUSTERED 
+(
+	[EntityTypeParamID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PCQuotations]    Script Date: 11/30/2018 4:47:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PCQuotations](
+	[PCQuotationID] [int] IDENTITY(1,1) NOT NULL,
+	[QuotationID] [int] NOT NULL,
+	[TravelSector] [nvarchar](250) NULL,
+	[PickupLocation] [nvarchar](250) NULL,
+	[DropoffLocation] [nvarchar](250) NULL,
+	[PreferredVehicle] [nvarchar](250) NULL,
+	[PickUpDate] [datetime] NULL,
+	[PickUpTime] [time](7) NULL,
+	[DropOffDate] [datetime] NULL,
+	[DropOffTime] [time](7) NULL,
+	[Amount] [decimal](10, 2) NULL,
+	[IsDeleted] [bit] NULL,
+ CONSTRAINT [PK_PCQuotations] PRIMARY KEY CLUSTERED 
+(
+	[PCQuotationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Quotations]    Script Date: 11/30/2018 4:47:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Quotations](
+	[QuotationID] [int] IDENTITY(1,1) NOT NULL,
+	[TravelAgencyID] [int] NOT NULL,
+	[TravelRequestID] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[Remarks] [nvarchar](max) NULL,
+	[IsDeleted] [bit] NULL,
+ CONSTRAINT [PK_Quotations] PRIMARY KEY CLUSTERED 
+(
+	[QuotationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RFQs]    Script Date: 11/30/2018 4:47:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RFQs](
+	[RFQID] [int] IDENTITY(1,1) NOT NULL,
+	[TravelAgencyID] [int] NOT NULL,
+	[TravelRequestID] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[Remarks] [nvarchar](max) NULL,
+	[Processing] [int] NOT NULL,
+	[ProcessingSection] [int] NOT NULL,
+	[IsDeleted] [bit] NULL,
+ CONSTRAINT [PK_RFQs] PRIMARY KEY CLUSTERED 
+(
+	[RFQID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Roles]    Script Date: 11/30/2018 4:47:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Roles](
+	[RoleId] [int] IDENTITY(1,1) NOT NULL,
+	[RoleName] [nvarchar](max) NOT NULL,
+	[IsDeleted] [bit] NULL,
+ CONSTRAINT [PK_Roles] PRIMARY KEY CLUSTERED 
+(
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TravelAgencies]    Script Date: 11/30/2018 4:47:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TravelAgencies](
+	[AgencyID] [int] IDENTITY(1,1) NOT NULL,
+	[AgencyCode] [nvarchar](25) NULL,
+	[CompanyName] [nvarchar](100) NULL,
+	[Address] [varchar](max) NULL,
+	[Telephone] [nvarchar](20) NULL,
+	[Fax] [nvarchar](20) NULL,
+	[Mobile] [nvarchar](20) NULL,
+	[Landline] [nvarchar](20) NULL,
+	[ContactPerson] [nvarchar](100) NULL,
+	[Email] [nvarchar](100) NULL,
+ CONSTRAINT [PK_TravelAgencies] PRIMARY KEY CLUSTERED 
+(
+	[AgencyID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TravelRequests]    Script Date: 11/30/2018 4:47:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TravelRequests](
+	[TravelRequestID] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[ApplicationNumber] [nvarchar](50) NOT NULL,
+	[PortOfOriginID] [int] NULL,
+	[PortOfDestinationID] [int] NULL,
+	[TicketClass] [nvarchar](100) NULL,
+	[DailyAllowance] [decimal](10, 2) NULL,
+	[CurrencyID] [int] NULL,
+	[TravelDays] [int] NULL,
+	[TravelRemarks] [nvarchar](max) NULL,
+	[PurposeOfVisit] [nvarchar](max) NULL,
+	[DepartureDate] [datetime] NULL,
+	[DepartureTime] [time](7) NULL,
+	[ReturnDate] [datetime] NULL,
+	[ReturnTime] [time](7) NULL,
+	[FirstBusinessDay] [datetime] NULL,
+	[LastBusinessDay] [datetime] NULL,
+	[Remarks] [nvarchar](500) NULL,
+	[AirTicketManagement] [nvarchar](50) NULL,
+	[HotelName] [nvarchar](50) NULL,
+	[TravelAllowance] [nvarchar](50) NULL,
+	[HotelStay] [nvarchar](50) NULL,
+	[HotelCategory] [nvarchar](50) NULL,
+	[RoomCategory] [nvarchar](50) NULL,
+	[RoomType] [nvarchar](50) NULL,
+	[AdditionalAllowance] [decimal](10, 2) NULL,
+	[AirportPickUp] [nvarchar](50) NULL,
+	[PickUpLocation] [nvarchar](500) NULL,
+	[PickUpDate] [datetime] NULL,
+	[PickUpTime] [time](7) NULL,
+	[DropOffLocation] [nvarchar](500) NULL,
+	[DropOffDate] [datetime] NULL,
+	[DropOffTime] [time](7) NULL,
+	[PreferredVehicle] [nvarchar](100) NULL,
+	[CheckInDate] [datetime] NULL,
+	[CheckOutDate] [datetime] NULL,
+	[CheckInTime] [time](7) NULL,
+	[CheckOutTime] [time](7) NULL,
+	[ApprovalLevel] [int] NOT NULL,
+	[ApprovalBy] [int] NULL,
+	[ApprovalRemarks] [varchar](max) NULL,
+	[CreateOn] [datetime] NULL,
+	[CreatedBy] [int] NULL,
+	[ModifiedOn] [datetime] NULL,
+	[ModifiedBy] [int] NULL,
+	[IsDeleted] [bit] NULL,
+	[IsSubmitted] [bit] NOT NULL,
+ CONSTRAINT [PK_TravelRequests] PRIMARY KEY CLUSTERED 
+(
+	[TravelRequestID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserRole]    Script Date: 11/30/2018 4:47:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserRole](
+	[RoleId] [int] NOT NULL,
+	[UserId] [int] NOT NULL,
+ CONSTRAINT [PK_UserRole] PRIMARY KEY CLUSTERED 
+(
+	[RoleId] ASC,
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 11/30/2018 4:47:29 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[UserId] [int] IDENTITY(1,1) NOT NULL,
+	[Username] [nvarchar](max) NOT NULL,
+	[FirstName] [nvarchar](max) NOT NULL,
+	[LastName] [nvarchar](max) NOT NULL,
+	[Email] [nvarchar](max) NOT NULL,
+	[Password] [nvarchar](max) NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[ActivationCode] [uniqueidentifier] NOT NULL,
+	[HREmployeeID] [bigint] NULL,
+	[IsDeleted] [bit] NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Cities] ON 
+GO
+INSERT [dbo].[Cities] ([CityID], [CityDesc], [Country], [IsActive]) VALUES (1, N'Delhi', NULL, 1)
+GO
+INSERT [dbo].[Cities] ([CityID], [CityDesc], [Country], [IsActive]) VALUES (2, N'Bangalore', NULL, 1)
+GO
+INSERT [dbo].[Cities] ([CityID], [CityDesc], [Country], [IsActive]) VALUES (3, N'Chennai', NULL, 1)
+GO
+INSERT [dbo].[Cities] ([CityID], [CityDesc], [Country], [IsActive]) VALUES (4, N'Mumbai', NULL, 1)
+GO
+INSERT [dbo].[Cities] ([CityID], [CityDesc], [Country], [IsActive]) VALUES (5, N'Trivandrum', NULL, 1)
+GO
+SET IDENTITY_INSERT [dbo].[Cities] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Currencies] ON 
+GO
+INSERT [dbo].[Currencies] ([CurrencyID], [CurrencyDesc], [CurrencySymbol], [IsActive]) VALUES (1, N'Dollar USD', N'$', 1)
+GO
+INSERT [dbo].[Currencies] ([CurrencyID], [CurrencyDesc], [CurrencySymbol], [IsActive]) VALUES (2, N'Rupees', N'Rs', 1)
+GO
+INSERT [dbo].[Currencies] ([CurrencyID], [CurrencyDesc], [CurrencySymbol], [IsActive]) VALUES (3, N'Euro', N'Eu', 1)
+GO
+SET IDENTITY_INSERT [dbo].[Currencies] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Roles] ON 
+GO
+INSERT [dbo].[Roles] ([RoleId], [RoleName], [IsDeleted]) VALUES (1, N'Admin', 0)
+GO
+INSERT [dbo].[Roles] ([RoleId], [RoleName], [IsDeleted]) VALUES (2, N'Employee', 0)
+GO
+INSERT [dbo].[Roles] ([RoleId], [RoleName], [IsDeleted]) VALUES (3, N'HR', 0)
+GO
+INSERT [dbo].[Roles] ([RoleId], [RoleName], [IsDeleted]) VALUES (4, N'TravelCo', 0)
+GO
+INSERT [dbo].[Roles] ([RoleId], [RoleName], [IsDeleted]) VALUES (5, N'Manager', 0)
+GO
+SET IDENTITY_INSERT [dbo].[Roles] OFF
+GO
+INSERT [dbo].[TravelRequests] ([TravelRequestID], [UserID], [ApplicationNumber], [PortOfOriginID], [PortOfDestinationID], [TicketClass], [DailyAllowance], [CurrencyID], [TravelDays], [TravelRemarks], [PurposeOfVisit], [DepartureDate], [DepartureTime], [ReturnDate], [ReturnTime], [FirstBusinessDay], [LastBusinessDay], [Remarks], [AirTicketManagement], [HotelName], [TravelAllowance], [HotelStay], [HotelCategory], [RoomCategory], [RoomType], [AdditionalAllowance], [AirportPickUp], [PickUpLocation], [PickUpDate], [PickUpTime], [DropOffLocation], [DropOffDate], [DropOffTime], [PreferredVehicle], [CheckInDate], [CheckOutDate], [CheckInTime], [CheckOutTime], [ApprovalLevel], [ApprovalBy], [ApprovalRemarks], [CreateOn], [CreatedBy], [ModifiedOn], [ModifiedBy], [IsDeleted], [IsSubmitted]) VALUES (0, 1, N'HRD-BTC-CC-0001', 1, 1, N'Any', CAST(0.00 AS Decimal(10, 2)), 1, NULL, NULL, NULL, NULL, CAST(N'12:45:00' AS Time), NULL, CAST(N'12:45:00' AS Time), NULL, NULL, NULL, N'BTC', NULL, N'BTC', N'BTC', N'Any', N'Any', N'Single', CAST(0.00 AS Decimal(10, 2)), N'-1', NULL, NULL, CAST(N'12:45:00' AS Time), NULL, NULL, CAST(N'12:45:00' AS Time), N'option 1', NULL, NULL, CAST(N'12:45:00' AS Time), CAST(N'12:45:00' AS Time), 0, NULL, NULL, NULL, 1, CAST(N'2018-11-30T12:45:07.880' AS DateTime), 1, NULL, 0)
+GO
+INSERT [dbo].[UserRole] ([RoleId], [UserId]) VALUES (1, 1)
+GO
+INSERT [dbo].[UserRole] ([RoleId], [UserId]) VALUES (2, 1)
+GO
+INSERT [dbo].[UserRole] ([RoleId], [UserId]) VALUES (3, 1)
+GO
+INSERT [dbo].[UserRole] ([RoleId], [UserId]) VALUES (4, 1)
+GO
+INSERT [dbo].[UserRole] ([RoleId], [UserId]) VALUES (5, 1)
+GO
+SET IDENTITY_INSERT [dbo].[Users] ON 
+GO
+INSERT [dbo].[Users] ([UserId], [Username], [FirstName], [LastName], [Email], [Password], [IsActive], [ActivationCode], [HREmployeeID], [IsDeleted]) VALUES (1, N'admin', N'F Admin', N'L Admin', N'Admin@admingmail.com', N'admin', 1, N'8e046ed2-3c81-4de5-8699-9401ac8c7069', 0, 0)
+GO
+INSERT [dbo].[Users] ([UserId], [Username], [FirstName], [LastName], [Email], [Password], [IsActive], [ActivationCode], [HREmployeeID], [IsDeleted]) VALUES (3, N'employee', N'F employee', N'L employee', N'employee@employeegmail.com', N'employee', 1, N'3b618d43-e3b1-4946-bda7-bf63b0738b68', 0, 0)
+GO
+INSERT [dbo].[Users] ([UserId], [Username], [FirstName], [LastName], [Email], [Password], [IsActive], [ActivationCode], [HREmployeeID], [IsDeleted]) VALUES (4, N'travelco', N'F travelco', N'L travelco', N'travelco@travelcogmail.com', N'travelco', 1, N'b1c7508d-deb2-4f4d-aea5-4453a29fcc1e', 0, 0)
+GO
+INSERT [dbo].[Users] ([UserId], [Username], [FirstName], [LastName], [Email], [Password], [IsActive], [ActivationCode], [HREmployeeID], [IsDeleted]) VALUES (5, N'Manager', N'F manager', N'L manager', N'manager@managergmail.com', N'manager', 1, N'88392ac0-899b-4ef4-a45d-fea9081b028c', 0, 0)
+GO
+INSERT [dbo].[Users] ([UserId], [Username], [FirstName], [LastName], [Email], [Password], [IsActive], [ActivationCode], [HREmployeeID], [IsDeleted]) VALUES (6, N'HR', N'F HR', N'L HR', N'HR@HRgmail.com', N'HR', 1, N'4b8aec95-ae58-4e85-b790-746c58df6def', 0, 0)
+GO
+INSERT [dbo].[Users] ([UserId], [Username], [FirstName], [LastName], [Email], [Password], [IsActive], [ActivationCode], [HREmployeeID], [IsDeleted]) VALUES (7, N'TravelCo', N'F TravelCo', N'L TravelCo', N'TravelCo@TravelCogmail.com', N'TravelCo', 1, N'332ce16f-1768-49e4-a298-fe35097e6d61', 0, 0)
+GO
+SET IDENTITY_INSERT [dbo].[Users] OFF
+GO
+/****** Object:  Index [IX_fk_ATQuotation_DestinationID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_ATQuotation_DestinationID] ON [dbo].[ATQuotations]
+(
+	[DestinationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_fk_ATQuotation_OriginID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_ATQuotation_OriginID] ON [dbo].[ATQuotations]
+(
+	[OriginID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_fk_ATQuotation_QuotationID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_ATQuotation_QuotationID] ON [dbo].[ATQuotations]
+(
+	[QuotationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues] ON [dbo].[HRW_EmpEntityParamValues]
+(
+	[EmpEntityParamIDLink] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK_HRW_EmpEntityParamValues_ORG_EntityMaster]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK_HRW_EmpEntityParamValues_ORG_EntityMaster] ON [dbo].[HRW_EmpEntityParamValues]
+(
+	[EntityID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK_HRW_EmpEntityParamValues_ORG_EntityMaster1]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK_HRW_EmpEntityParamValues_ORG_EntityMaster1] ON [dbo].[HRW_EmpEntityParamValues]
+(
+	[ParamValueEntityID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam] ON [dbo].[HRW_EmpEntityParamValues]
+(
+	[EntityTypeParamID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_FK_HRW_Employee_HRW_Company]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK_HRW_Employee_HRW_Company] ON [dbo].[HRW_Employee]
+(
+	[CompanyCode] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_fk_HSQuotation_QuotationID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_HSQuotation_QuotationID] ON [dbo].[HSQuotations]
+(
+	[QuotationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_fk_LPO_QuotationID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_LPO_QuotationID] ON [dbo].[LPOes]
+(
+	[QuotationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_fk_LPO_RFQID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_LPO_RFQID] ON [dbo].[LPOes]
+(
+	[RFQID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_FK_ORG_ChartMaster_HRW_Company]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK_ORG_ChartMaster_HRW_Company] ON [dbo].[ORG_ChartMaster]
+(
+	[CompanyCode] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK_ORG_EmpEntityLink_HRW_Employee]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK_ORG_EmpEntityLink_HRW_Employee] ON [dbo].[ORG_EmpEntityLink]
+(
+	[EmployeeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK_ORG_EmpEntityLink_ORG_EntityMaster]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK_ORG_EmpEntityLink_ORG_EntityMaster] ON [dbo].[ORG_EmpEntityLink]
+(
+	[EntityId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK_ORG_EntityMaster_ORG_EntityType]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK_ORG_EntityMaster_ORG_EntityType] ON [dbo].[ORG_EntityMaster]
+(
+	[EntityTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK_ORG_EntityType_ORG_ChartMaster]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK_ORG_EntityType_ORG_ChartMaster] ON [dbo].[ORG_EntityType]
+(
+	[OrgChartId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK_ORG_EntityTypeParam_ORG_EntityType]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK_ORG_EntityTypeParam_ORG_EntityType] ON [dbo].[ORG_EntityTypeParam]
+(
+	[EntityTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_fk_PCQuotation_QuotationID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_PCQuotation_QuotationID] ON [dbo].[PCQuotations]
+(
+	[QuotationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_fk_Quotation_TravelAgencyID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_Quotation_TravelAgencyID] ON [dbo].[Quotations]
+(
+	[TravelAgencyID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_fk_Quotation_TravelRequestID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_Quotation_TravelRequestID] ON [dbo].[Quotations]
+(
+	[TravelRequestID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_fk_Quotation_UserID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_Quotation_UserID] ON [dbo].[Quotations]
+(
+	[UserID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_fk_RFQ_TravelAgencyID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_RFQ_TravelAgencyID] ON [dbo].[RFQs]
+(
+	[TravelAgencyID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_fk_RFQ_TravelRequestID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_RFQ_TravelRequestID] ON [dbo].[RFQs]
+(
+	[TravelRequestID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_fk_RFQ_UserID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_fk_RFQ_UserID] ON [dbo].[RFQs]
+(
+	[UserID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK__TravelReq__ApprovalBy]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK__TravelReq__ApprovalBy] ON [dbo].[TravelRequests]
+(
+	[ApprovalBy] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK__TravelReq_CreatedBy]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK__TravelReq_CreatedBy] ON [dbo].[TravelRequests]
+(
+	[CreatedBy] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK__TravelReq_Currency]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK__TravelReq_Currency] ON [dbo].[TravelRequests]
+(
+	[CurrencyID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK__TravelReq_PortOfD]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK__TravelReq_PortOfD] ON [dbo].[TravelRequests]
+(
+	[PortOfDestinationID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK__TravelReq_PortOfO]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK__TravelReq_PortOfO] ON [dbo].[TravelRequests]
+(
+	[PortOfOriginID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK__TravelReq_UserID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK__TravelReq_UserID] ON [dbo].[TravelRequests]
+(
+	[UserID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_FK_UserRole_User]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IX_FK_UserRole_User] ON [dbo].[UserRole]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IK_FK__Users_HREmployeeID]    Script Date: 11/30/2018 4:47:29 PM ******/
+CREATE NONCLUSTERED INDEX [IK_FK__Users_HREmployeeID] ON [dbo].[Users]
+(
+	[HREmployeeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[ATQuotations]  WITH CHECK ADD  CONSTRAINT [fk_ATQuotation_DestinationID] FOREIGN KEY([DestinationID])
+REFERENCES [dbo].[Cities] ([CityID])
+GO
+ALTER TABLE [dbo].[ATQuotations] CHECK CONSTRAINT [fk_ATQuotation_DestinationID]
+GO
+ALTER TABLE [dbo].[ATQuotations]  WITH CHECK ADD  CONSTRAINT [fk_ATQuotation_OriginID] FOREIGN KEY([OriginID])
+REFERENCES [dbo].[Cities] ([CityID])
+GO
+ALTER TABLE [dbo].[ATQuotations] CHECK CONSTRAINT [fk_ATQuotation_OriginID]
+GO
+ALTER TABLE [dbo].[ATQuotations]  WITH CHECK ADD  CONSTRAINT [fk_ATQuotation_QuotationID] FOREIGN KEY([QuotationID])
+REFERENCES [dbo].[Quotations] ([QuotationID])
+GO
+ALTER TABLE [dbo].[ATQuotations] CHECK CONSTRAINT [fk_ATQuotation_QuotationID]
+GO
+ALTER TABLE [dbo].[AttachmentLinks]  WITH CHECK ADD  CONSTRAINT [fk_RFQ_AttachmentID] FOREIGN KEY([AttachmentID])
+REFERENCES [dbo].[Attachments] ([AttachmentID])
+GO
+ALTER TABLE [dbo].[AttachmentLinks] CHECK CONSTRAINT [fk_RFQ_AttachmentID]
+GO
+ALTER TABLE [dbo].[HRW_EmpEntityParamValues]  WITH CHECK ADD  CONSTRAINT [FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues] FOREIGN KEY([EmpEntityParamIDLink])
+REFERENCES [dbo].[HRW_EmpEntityParamValues] ([EmpEntityParamID])
+GO
+ALTER TABLE [dbo].[HRW_EmpEntityParamValues] CHECK CONSTRAINT [FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues]
+GO
+ALTER TABLE [dbo].[HRW_EmpEntityParamValues]  WITH CHECK ADD  CONSTRAINT [FK_HRW_EmpEntityParamValues_ORG_EntityMaster] FOREIGN KEY([EntityID])
+REFERENCES [dbo].[ORG_EntityMaster] ([EntityId])
+GO
+ALTER TABLE [dbo].[HRW_EmpEntityParamValues] CHECK CONSTRAINT [FK_HRW_EmpEntityParamValues_ORG_EntityMaster]
+GO
+ALTER TABLE [dbo].[HRW_EmpEntityParamValues]  WITH CHECK ADD  CONSTRAINT [FK_HRW_EmpEntityParamValues_ORG_EntityMaster1] FOREIGN KEY([ParamValueEntityID])
+REFERENCES [dbo].[ORG_EntityMaster] ([EntityId])
+GO
+ALTER TABLE [dbo].[HRW_EmpEntityParamValues] CHECK CONSTRAINT [FK_HRW_EmpEntityParamValues_ORG_EntityMaster1]
+GO
+ALTER TABLE [dbo].[HRW_EmpEntityParamValues]  WITH CHECK ADD  CONSTRAINT [FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam] FOREIGN KEY([EntityTypeParamID])
+REFERENCES [dbo].[ORG_EntityTypeParam] ([EntityTypeParamID])
+GO
+ALTER TABLE [dbo].[HRW_EmpEntityParamValues] CHECK CONSTRAINT [FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam]
+GO
+ALTER TABLE [dbo].[HRW_Employee]  WITH CHECK ADD  CONSTRAINT [FK_HRW_Employee_HRW_Company] FOREIGN KEY([CompanyCode])
+REFERENCES [dbo].[HRW_Company] ([CompanyCode])
+GO
+ALTER TABLE [dbo].[HRW_Employee] CHECK CONSTRAINT [FK_HRW_Employee_HRW_Company]
+GO
+ALTER TABLE [dbo].[HSQuotations]  WITH CHECK ADD  CONSTRAINT [fk_HSQuotation_QuotationID] FOREIGN KEY([QuotationID])
+REFERENCES [dbo].[Quotations] ([QuotationID])
+GO
+ALTER TABLE [dbo].[HSQuotations] CHECK CONSTRAINT [fk_HSQuotation_QuotationID]
+GO
+ALTER TABLE [dbo].[LPOes]  WITH CHECK ADD  CONSTRAINT [fk_LPO_QuotationID] FOREIGN KEY([QuotationID])
+REFERENCES [dbo].[Quotations] ([QuotationID])
+GO
+ALTER TABLE [dbo].[LPOes] CHECK CONSTRAINT [fk_LPO_QuotationID]
+GO
+ALTER TABLE [dbo].[LPOes]  WITH CHECK ADD  CONSTRAINT [fk_LPO_RFQID] FOREIGN KEY([RFQID])
+REFERENCES [dbo].[RFQs] ([RFQID])
+GO
+ALTER TABLE [dbo].[LPOes] CHECK CONSTRAINT [fk_LPO_RFQID]
+GO
+ALTER TABLE [dbo].[ORG_ChartMaster]  WITH CHECK ADD  CONSTRAINT [FK_ORG_ChartMaster_HRW_Company] FOREIGN KEY([CompanyCode])
+REFERENCES [dbo].[HRW_Company] ([CompanyCode])
+GO
+ALTER TABLE [dbo].[ORG_ChartMaster] CHECK CONSTRAINT [FK_ORG_ChartMaster_HRW_Company]
+GO
+ALTER TABLE [dbo].[ORG_EmpEntityLink]  WITH CHECK ADD  CONSTRAINT [FK_ORG_EmpEntityLink_HRW_Employee] FOREIGN KEY([EmployeeId])
+REFERENCES [dbo].[HRW_Employee] ([EmployeeID])
+GO
+ALTER TABLE [dbo].[ORG_EmpEntityLink] CHECK CONSTRAINT [FK_ORG_EmpEntityLink_HRW_Employee]
+GO
+ALTER TABLE [dbo].[ORG_EmpEntityLink]  WITH CHECK ADD  CONSTRAINT [FK_ORG_EmpEntityLink_ORG_EntityMaster] FOREIGN KEY([EntityId])
+REFERENCES [dbo].[ORG_EntityMaster] ([EntityId])
+GO
+ALTER TABLE [dbo].[ORG_EmpEntityLink] CHECK CONSTRAINT [FK_ORG_EmpEntityLink_ORG_EntityMaster]
+GO
+ALTER TABLE [dbo].[ORG_EntityMaster]  WITH CHECK ADD  CONSTRAINT [FK_ORG_EntityMaster_ORG_EntityType] FOREIGN KEY([EntityTypeId])
+REFERENCES [dbo].[ORG_EntityType] ([EntityTypeId])
+GO
+ALTER TABLE [dbo].[ORG_EntityMaster] CHECK CONSTRAINT [FK_ORG_EntityMaster_ORG_EntityType]
+GO
+ALTER TABLE [dbo].[ORG_EntityType]  WITH CHECK ADD  CONSTRAINT [FK_ORG_EntityType_ORG_ChartMaster] FOREIGN KEY([OrgChartId])
+REFERENCES [dbo].[ORG_ChartMaster] ([OrgChartId])
+GO
+ALTER TABLE [dbo].[ORG_EntityType] CHECK CONSTRAINT [FK_ORG_EntityType_ORG_ChartMaster]
+GO
+ALTER TABLE [dbo].[ORG_EntityTypeParam]  WITH CHECK ADD  CONSTRAINT [FK_ORG_EntityTypeParam_ORG_EntityType] FOREIGN KEY([EntityTypeId])
+REFERENCES [dbo].[ORG_EntityType] ([EntityTypeId])
+GO
+ALTER TABLE [dbo].[ORG_EntityTypeParam] CHECK CONSTRAINT [FK_ORG_EntityTypeParam_ORG_EntityType]
+GO
+ALTER TABLE [dbo].[PCQuotations]  WITH CHECK ADD  CONSTRAINT [fk_PCQuotation_QuotationID] FOREIGN KEY([QuotationID])
+REFERENCES [dbo].[Quotations] ([QuotationID])
+GO
+ALTER TABLE [dbo].[PCQuotations] CHECK CONSTRAINT [fk_PCQuotation_QuotationID]
+GO
+ALTER TABLE [dbo].[Quotations]  WITH CHECK ADD  CONSTRAINT [fk_Quotation_TravelAgencyID] FOREIGN KEY([TravelAgencyID])
+REFERENCES [dbo].[TravelAgencies] ([AgencyID])
+GO
+ALTER TABLE [dbo].[Quotations] CHECK CONSTRAINT [fk_Quotation_TravelAgencyID]
+GO
+ALTER TABLE [dbo].[Quotations]  WITH CHECK ADD  CONSTRAINT [fk_Quotation_TravelRequestID] FOREIGN KEY([TravelRequestID])
+REFERENCES [dbo].[TravelRequests] ([TravelRequestID])
+GO
+ALTER TABLE [dbo].[Quotations] CHECK CONSTRAINT [fk_Quotation_TravelRequestID]
+GO
+ALTER TABLE [dbo].[Quotations]  WITH CHECK ADD  CONSTRAINT [fk_Quotation_UserID] FOREIGN KEY([UserID])
+REFERENCES [dbo].[Users] ([UserId])
+GO
+ALTER TABLE [dbo].[Quotations] CHECK CONSTRAINT [fk_Quotation_UserID]
+GO
+ALTER TABLE [dbo].[RFQs]  WITH CHECK ADD  CONSTRAINT [fk_RFQ_TravelAgencyID] FOREIGN KEY([TravelAgencyID])
+REFERENCES [dbo].[TravelAgencies] ([AgencyID])
+GO
+ALTER TABLE [dbo].[RFQs] CHECK CONSTRAINT [fk_RFQ_TravelAgencyID]
+GO
+ALTER TABLE [dbo].[RFQs]  WITH CHECK ADD  CONSTRAINT [fk_RFQ_TravelRequestID] FOREIGN KEY([TravelRequestID])
+REFERENCES [dbo].[TravelRequests] ([TravelRequestID])
+GO
+ALTER TABLE [dbo].[RFQs] CHECK CONSTRAINT [fk_RFQ_TravelRequestID]
+GO
+ALTER TABLE [dbo].[RFQs]  WITH CHECK ADD  CONSTRAINT [fk_RFQ_UserID] FOREIGN KEY([UserID])
+REFERENCES [dbo].[Users] ([UserId])
+GO
+ALTER TABLE [dbo].[RFQs] CHECK CONSTRAINT [fk_RFQ_UserID]
+GO
+ALTER TABLE [dbo].[TravelRequests]  WITH CHECK ADD  CONSTRAINT [FK__TravelReq__ApprovalBy] FOREIGN KEY([ApprovalBy])
+REFERENCES [dbo].[Users] ([UserId])
+GO
+ALTER TABLE [dbo].[TravelRequests] CHECK CONSTRAINT [FK__TravelReq__ApprovalBy]
+GO
+ALTER TABLE [dbo].[TravelRequests]  WITH CHECK ADD  CONSTRAINT [FK__TravelReq_CreatedBy] FOREIGN KEY([CreatedBy])
+REFERENCES [dbo].[Users] ([UserId])
+GO
+ALTER TABLE [dbo].[TravelRequests] CHECK CONSTRAINT [FK__TravelReq_CreatedBy]
+GO
+ALTER TABLE [dbo].[TravelRequests]  WITH CHECK ADD  CONSTRAINT [FK__TravelReq_Currency] FOREIGN KEY([CurrencyID])
+REFERENCES [dbo].[Currencies] ([CurrencyID])
+GO
+ALTER TABLE [dbo].[TravelRequests] CHECK CONSTRAINT [FK__TravelReq_Currency]
+GO
+ALTER TABLE [dbo].[TravelRequests]  WITH CHECK ADD  CONSTRAINT [FK__TravelReq_PortOfD] FOREIGN KEY([PortOfDestinationID])
+REFERENCES [dbo].[Cities] ([CityID])
+GO
+ALTER TABLE [dbo].[TravelRequests] CHECK CONSTRAINT [FK__TravelReq_PortOfD]
+GO
+ALTER TABLE [dbo].[TravelRequests]  WITH CHECK ADD  CONSTRAINT [FK__TravelReq_PortOfO] FOREIGN KEY([PortOfOriginID])
+REFERENCES [dbo].[Cities] ([CityID])
+GO
+ALTER TABLE [dbo].[TravelRequests] CHECK CONSTRAINT [FK__TravelReq_PortOfO]
+GO
+ALTER TABLE [dbo].[TravelRequests]  WITH CHECK ADD  CONSTRAINT [FK__TravelReq_UserID] FOREIGN KEY([UserID])
+REFERENCES [dbo].[Users] ([UserId])
+GO
+ALTER TABLE [dbo].[TravelRequests] CHECK CONSTRAINT [FK__TravelReq_UserID]
+GO
+ALTER TABLE [dbo].[UserRole]  WITH CHECK ADD  CONSTRAINT [FK_UserRole_Role] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[Roles] ([RoleId])
+GO
+ALTER TABLE [dbo].[UserRole] CHECK CONSTRAINT [FK_UserRole_Role]
+GO
+ALTER TABLE [dbo].[UserRole]  WITH CHECK ADD  CONSTRAINT [FK_UserRole_User] FOREIGN KEY([UserId])
+REFERENCES [dbo].[Users] ([UserId])
+GO
+ALTER TABLE [dbo].[UserRole] CHECK CONSTRAINT [FK_UserRole_User]
+GO
+ALTER TABLE [dbo].[Users]  WITH NOCHECK ADD  CONSTRAINT [FK__Users_HREmployeeID] FOREIGN KEY([HREmployeeID])
+REFERENCES [dbo].[HRW_Employee] ([EmployeeID])
+GO
+ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK__Users_HREmployeeID]
+GO
+USE [master]
+GO
+ALTER DATABASE [BTC] SET  READ_WRITE 
+GO

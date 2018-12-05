@@ -1,12 +1,5 @@
 ﻿@model Travel_Request_System_EF.Models.TravelRequests
 
-@{
-    /**/
-
-    ViewBag.Title = "Travel Request Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
 <div id="detailsDiv" style="height:2150px">
     <div class="col-xs-12 col-md-12">
         <div class="box box-default">
@@ -264,7 +257,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Purpose of Visit</label>
                             <div class="col-sm-12">
-                                @Html.TextAreaFor(model => model.PurposeOfVisit, htmlAttributes: new { @class = "form-control", @rows = "4" })
+                                @Html.TextAreaFor(model => model.PurposeOfVisit, htmlAttributes: new { @class = "form-control", @rows = "4",@readonly = "readonly" })
                             </div>
                         </div>
                     </div>
@@ -361,7 +354,7 @@
                         <div class="form-group">
                             <label class="col-sm-2">Remarks</label>
                             <div class="col-sm-12">
-                                @Html.TextAreaFor(model => model.TravelRemarks, htmlAttributes: new { @class = "form-control", @rows = "3", @placeholder = "Enter Travel Remarks..." })
+                                @Html.TextAreaFor(model => model.TravelRemarks, htmlAttributes: new { @class = "form-control", @rows = "3", @placeholder = "Enter Travel Remarks...", @readonly = "readonly" })
                             </div>
                         </div>
                     </div>
@@ -649,7 +642,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <div class="col-sm-12">
-                                @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "4", @placeholder = "Enter Travel Request Remarks..." })
+                                @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "4", @placeholder = "Enter Travel Request Remarks...", @readonly = "readonly" })
                             </div>
                         </div>
                     </div>
@@ -659,27 +652,33 @@
     </div>
 
     <div class="row" style="margin-bottom:15px">
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="col-md-3">
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6">
+            @if (Model.IsSubmitted != true)
+            {
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
+                    </div>
                 </div>
-                <div class="col-md-3">
+            }
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <a href="javascript:window.print()">Click to Print This Page</a>
+                    @*@Html.ActionLink("Print", "PrintTravelRequest", "TravelRequests", new { @class = "form-control btn btn-info" })*@
+                    @Html.ActionLink("Print", "GenerateAspose")
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
                     @Html.ActionLink("Back to List", "Index", null, new { @class = "form-control btn btn-info" })
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <div class="col-sm-3">
-                    <a href="javascript:window.print()">Click to Print This Page</a>
-
-                    @*@Html.ActionLink("Print", "PrintTravelRequest", "TravelRequests", new { @class = "form-control btn btn-info" })*@
-                </div>
-            </div>
+        <div class="col-sm-3">
         </div>
     </div>
-
 </div>
 @section Scripts {
     <script type="text/javascript">
@@ -689,8 +688,5 @@
         else {
             $('#PickUpDetailsDiv').hide()
         }
-
-        $('#detailsDiv').find('textarea').attr('disabled', 'disabled');
-
     </script>
 }

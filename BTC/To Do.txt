@@ -1,0 +1,69 @@
+To Do
+- Home Page Images and Text content
+- Dashboard grid fill with proper Queries
+- Raise Travel Request - Save function
+- Raise Travel Request - Submit function
+- Raise Travel Request - Application No display
+- Raise Travel Request - Align Save Submit Reset 
+- View Travel Request - columns with Draft Status column
+- View Travel Request - remove edit and delete if submitted
+- View Travel Request - display data instead of ID
+- Profile info model - Show required details
+- Notification icons - remove
+- Settings icon - Add Change theme colors
+- Manage Travel Agencies - Grid Details
+- Manage Travel Agencies - Agency Code format
+- Manage Travel Agencies - Set inactive
+- Approve Request - Manager
+- Approve Request - HR
+- Approve Request - Send Mail
+
+- Manage RFQ - Get list of RFQ
+- RFQ Processing - Add selections to Merge Table
+- RFQ Processing Merge - Remove merge table entries
+- RFQ Processing Merge - Preview
+- RFQ Processing Merge - Select Travel Agency
+- RFQ Processing Merge - Add Attachments
+- Create RFQ - Preview and save with Remarks
+- RFQ Post Merge - Grid entries
+- RFQ Post Merge - Email as PDF
+- RFQ Post Merge - Final Preview
+- Manage Quotations - Grid Details
+- Manage Quotations - RFQ details read only
+- Manage Quotations - Quotations Table
+- Manage Quotations - AT Quotations
+- Manage Quotations - HS Quotations
+- Manage Quotations - PC Quotations
+- Manage Quotations - File Attachments
+- Manage Quotations - No Edit or Delete after adding quotation
+- Manage Quotations - Read-only preview 
+- Manage LPO - Travel Request Grid Details
+- Manage LPO - View Travel Requests
+- Manage LPO - Select RFQ and associated Quotations
+- Manage LPO - Add to grid
+- Manage LPO - Create Travel Grid
+- Manage LPO - Create LPO
+- Manage LPO - LPO Grid Details
+- Manage LPO - PDF of Travel Grid
+- Manage LPO - Intimate Employee
+
+- Load Information for Employee
+- Join Employee Tables to User Tables
+- Raise Travel Request - Replace Airport Pick up with Checkbox
+- View Travel Request - Print Travel Request
+- View Personal Details - load details
+- View Personal Details - Decide details to be shown
+- Raise Travel Request - Find Approval Levels to send notification
+- Profile info model - Fix collapsible modal
+- Organizational Chart
+- Reports - Print Grid
+- Report - Add filters
+- Report - Period wise Travel Request
+- Report - Travel Agency Checklist
+- Report - Travel Agency Quotes Summary
+- Report - Travel Agency Quotes Register
+- Report - Approved Travel Quote Summary
+- Report - Approved Travel Quote Register
+- Report - LPO Register
+- Report - LPO Summary
+- Manage Visa

@@ -38,8 +38,8 @@ namespace Travel_Request_System_EF.Models
         public virtual ICollection<LPO> LPO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PCQuotation> PCQuotation { get; set; }
-        public virtual TravelAgency TravelAgency { get; set; }
         public virtual TravelRequests TravelRequests { get; set; }
         public virtual Users Users { get; set; }
+        public virtual TravelAgency TravelAgency { get; set; }
     }
 }

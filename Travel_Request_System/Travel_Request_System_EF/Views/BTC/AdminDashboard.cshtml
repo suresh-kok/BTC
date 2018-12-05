@@ -4,26 +4,11 @@
 }
 
 <h3>Employee Details</h3>
-@Html.Partial("_DetailsGrid")
+@*@Html.Partial("_DetailsGrid")*@
 
 
 <h3>User Details</h3>
-@Html.Partial("_DetailsGrid")
+@*@Html.Partial("_DetailsGrid")*@
 
-@section Scripts {
-    <script>
-        (function ($) {
-            $(function () {
-                $('#detailsGrid1').DataTable({
-                    'paging': true,
-                    'lengthChange': false,
-                    'searching': false,
-                    'ordering': true,
-                    'info': true,
-                    'autoWidth': true
-                })
-            })
-        })(jQuery);
-    </script>
-}
+
 

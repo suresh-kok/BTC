@@ -17,7 +17,7 @@ namespace Travel_Request_System_EF
                   .Include("~/Content/css/AdminLTE.css")
                   .Include("~/Content/js/plugins/select2/select2.css")
                   .Include("~/Content/js/plugins/timepicker/bootstrap-timepicker.css")
-                  .Include("~/Content/css/skins/skin-blue.css"));
+                  .Include("~/Content/css/skins/skin*"));
 
             bundles.Add(new ScriptBundle("~/Bundles/js")
                 .Include("~/Content/js/BTC.js")

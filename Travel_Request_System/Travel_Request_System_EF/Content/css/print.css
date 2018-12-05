@@ -1,0 +1,43 @@
+﻿@media print {
+
+    /* added */
+    body * {
+        float: none !important;
+    }
+
+    #detailsDiv {
+        -webkit-print-color-adjust: exact;
+    }
+
+    /* original code  */
+    .no-print {
+        display: none;
+    }
+
+    .left-side,
+    .header,
+    .content-header {
+        display: none;
+    }
+
+    .right-side {
+        margin: 0;
+    }
+
+    /* Added custom code to prevent page-break in box */
+    .box {
+        display: inline-block;
+        page-break-inside: avoid !important;
+        page-break-before: auto;
+    }
+
+    .table-responsive {
+        overflow: auto;
+    }
+
+
+    .table-responsive > .table tr th,
+    .table-responsive > .table tr td {
+        white-space: normal !important;
+    }
+}

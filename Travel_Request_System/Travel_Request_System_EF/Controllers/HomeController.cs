@@ -13,7 +13,6 @@ namespace Travel_Request_System_EF.Controllers
             ViewBag.messages = false;
             ViewBag.notifications = false;
             ViewBag.tasks = false;
-            ViewBag.userdetails = false;
             ViewBag.LoggedOut = true;
             return View(new Users());
         }

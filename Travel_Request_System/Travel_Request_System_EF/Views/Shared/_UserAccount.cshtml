@@ -3,26 +3,26 @@
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <img src="~/Content/img/guest.jpg" class="user-image" alt="User Image">
-        <span class="hidden-xs">@(ViewBag.FirstName + " " + ViewBag.LastName)</span>
+        <span class="hidden-xs">@(ViewBag.UserDetails.FirstName + " " + ViewBag.UserDetails.LastName)</span>
     </a>
     <ul class="dropdown-menu">
         <li class="user-header">
             <img src="~/Content/img/guest.jpg" class="img-circle" alt="User Image">
             <p>
-                @(ViewBag.FirstName  + " " + ViewBag.LastName)
-                <small>@ViewBag.RoleName</small>
+                @(ViewBag.UserDetails.FirstName  + " " + ViewBag.UserDetails.LastName)
+                <small>@ViewBag.RoleDetails</small>
             </p>
         </li>
         <li class="user-body">
             <div class="row">
                 <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
+                    <a href="#">Total Travel Requests: @(ViewBag.UserDetails.TravelRequests1.Count)</a>
                 </div>
                 <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
+                    <a href="#">Total Submitted Requests: @((ViewBag.UserDetails.TravelRequests1 as ICollection<Travel_Request_System_EF.Models.TravelRequests>).Where(a => a.IsSubmitted == true).Count())</a>
                 </div>
                 <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
+                    <a href="#">Total Submitted Requests: @((ViewBag.UserDetails.TravelRequests1 as ICollection<Travel_Request_System_EF.Models.TravelRequests>).Where(a => a.IsSubmitted == false).Count())</a>
                 </div>
             </div>
         </li>

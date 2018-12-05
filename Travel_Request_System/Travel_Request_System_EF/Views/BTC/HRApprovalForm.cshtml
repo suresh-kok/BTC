@@ -1,40 +1,38 @@
-﻿
+﻿@model Travel_Request_System_EF.Models.TravelRequests
+
 @{
     ViewBag.Title = "HR Approval";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using (Html.BeginForm())
+
+@using (Html.BeginForm(Model))
 {
-    @Html.Partial("_TravelRequestDetails");
+    @Html.Partial("_TravelRequestDetails", Model);
+
     <div class="row" style="margin-bottom:15px">
         <div class="col-sm-12">
             <div class="form-group">
                 <label class="col-sm-3">Remarks / Comments</label>
                 <div class="col-sm-12">
-                    <textarea class="form-control" rows="5" placeholder="Enter Comments..." id="comments" name="commentss"></textarea>
+                    @Html.TextAreaFor(model => model.ApprovalRemarks, htmlAttributes: new { @class = "form-control", @rows = "5", @placeholder = "Enter Comments..." })
                 </div>
             </div>
         </div>
     </div>
     <div class="row" style="margin-bottom:15px">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
         </div>
         <div class="col-sm-3">
             <div class="form-group">
-                <input type="submit" class="form-control btn btn-info" value="Approve" />
+                <input type="submit" class="form-control btn btn-info btn-primary" value="Approve" formaction="ApproveHRRequest" />
             </div>
         </div>
         <div class="col-sm-3">
             <div class="form-group">
-                <input type="button" class="form-control btn btn-info" value="Reject" />
+                <input type="submit" class="form-control btn btn-info btn-primary" value="Reject" formaction="RejectHRRequest" />
             </div>
         </div>
         <div class="col-sm-3">
-            <div class="form-group">
-                <input type="button" class="form-control btn btn-info" value="Override & Approve" />
-            </div>
-        </div>
-        <div class="col-sm-1">
         </div>
     </div>
 }

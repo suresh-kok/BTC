@@ -1,70 +1,90 @@
 ﻿@model IEnumerable<Travel_Request_System_EF.Models.RFQ>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Manage RFQ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<aside class="right-side">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">RFQ List</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
+                            @if (Model == null || (Model.Count() == 0))
+                            {
+                                <tr>
+                                    <td colspan="10">No Record's found.</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Remarks)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Processing)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ProcessingSection)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IsDeleted)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TravelAgency.AgencyCode)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TravelRequests.ApplicationNumber)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Users.Username)
+                                    </th>
+                                    <th></th>
+                                </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Remarks)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Processing)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProcessingSection)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TravelAgency.AgencyCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TravelRequest.ApplicationNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Username)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Remarks)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Processing)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProcessingSection)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TravelAgency.AgencyCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TravelRequest.ApplicationNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Username)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RFQID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RFQID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RFQID })
-        </td>
-    </tr>
-}
-
-</table>
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Remarks)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Processing)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProcessingSection)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IsDeleted)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TravelAgency.AgencyCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TravelRequests.ApplicationNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Users.Username)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section>
+</aside>

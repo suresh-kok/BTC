@@ -1,0 +1,982 @@
+USE [BTC]
+GO
+
+CREATE TABLE [dbo].[City] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[CityDesc] [nvarchar](250) NOT NULL
+	,[Country] [nvarchar](100) NULL
+	,[IsActive] [bit] NULL
+	,CONSTRAINT [PK_Cities] PRIMARY KEY CLUSTERED ([ID])
+	)
+GO
+
+CREATE TABLE [dbo].[Currency] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[CurrencyDesc] [nvarchar](100) NOT NULL
+	,[CurrencySymbol] [nvarchar](10) NOT NULL
+	,[IsActive] [bit] NULL
+	,CONSTRAINT [PK_Currencies] PRIMARY KEY CLUSTERED ([ID])
+	)
+GO
+
+CREATE TABLE [dbo].[HRW_Company] (
+	[TransactType] [int] NOT NULL
+	,[TransactUserID] [bigint] NOT NULL
+	,[TransactDateTime] [datetime] NOT NULL
+	,[MenuID] [varchar](50) NOT NULL
+	,[CompanyCode] [varchar](10) NOT NULL
+	,[DisplayName] [nvarchar](50) NULL
+	,[ReportName] [nvarchar](50) NULL
+	,[Address] [nvarchar](1000) NULL
+	,CONSTRAINT [PK_HRW_Company] PRIMARY KEY CLUSTERED ([CompanyCode])
+	)
+GO
+
+CREATE TABLE [dbo].[HRW_Employee] (
+	[TransactType] [int] NOT NULL
+	,[TransactUserID] [bigint] NOT NULL
+	,[TransactDateTime] [datetime] NOT NULL
+	,[MenuID] [varchar](50) NOT NULL
+	,[EmployeeID] [bigint] IDENTITY(1, 1) NOT NULL
+	,[CompanyCode] [varchar](10) NOT NULL
+	,[EmployeeCode] [varchar](20) NOT NULL
+	,[FirstName] [nvarchar](50) NULL
+	,[MiddleName] [nvarchar](50) NULL
+	,[LastName] [nvarchar](50) NULL
+	,[FullName] [nvarchar](150) NULL
+	,[Salutation] [int] NULL
+	,[DateOfBirth] [datetime] NULL
+	,[HireDate] [datetime] NULL
+	,[TerminationDate] [datetime] NULL
+	,[PrevEmpID] [varchar](20) NULL
+	,[Remarks] [nvarchar](100) NULL
+	,[RecordType] [varchar](5) NOT NULL
+	,[PAFRecordID] [bigint] NULL
+	,[EmpStatus] [varchar](100) NULL
+	,CONSTRAINT [PK_HRW_Employee] PRIMARY KEY CLUSTERED ([EmployeeID])
+	,CONSTRAINT [FK_HRW_Employee_HRW_Company] FOREIGN KEY ([CompanyCode]) REFERENCES [dbo].[HRW_Company]([CompanyCode])
+	,
+	)
+GO
+
+CREATE TABLE [dbo].[ORG_ChartMaster] (
+	[TransactType] [int] NOT NULL
+	,[TransactUserID] [bigint] NOT NULL
+	,[TransactDateTime] [datetime] NOT NULL
+	,[MenuID] [varchar](50) NOT NULL
+	,[OrgChartId] [bigint] IDENTITY(1, 1) NOT NULL
+	,[CompanyCode] [varchar](10) NOT NULL
+	,[Description] [nvarchar](50) NOT NULL
+	,[ChartRecordType] [varchar](1) NULL
+	,[ManagerEmployeeID] [bigint] NULL
+	,[IsChartDataReady] [bit] NULL
+	,[OrgChartBy] [bigint] NULL
+	,CONSTRAINT [PK_ORG_ChartMaster] PRIMARY KEY CLUSTERED ([OrgChartId])
+	,CONSTRAINT [FK_ORG_ChartMaster_HRW_Company] FOREIGN KEY ([CompanyCode]) REFERENCES [dbo].[HRW_Company]([CompanyCode])
+	)
+GO
+
+CREATE TABLE [dbo].[ORG_EntityType] (
+	[TransactType] [int] NOT NULL
+	,[TransactUserID] [bigint] NOT NULL
+	,[TransactDateTime] [datetime] NOT NULL
+	,[MenuID] [varchar](50) NOT NULL
+	,[EntityTypeId] [bigint] IDENTITY(1, 1) NOT NULL
+	,[OrgChartId] [bigint] NOT NULL
+	,[Description] [nvarchar](50) NOT NULL
+	,[IsMandatory] [bit] NOT NULL
+	,[IsCodeRequired] [bit] NOT NULL
+	,[SortOrder] [int] NOT NULL
+	,[EntityGroup] [int] NOT NULL
+	,[MasterEntityTypeId] [bigint] NULL
+	,[HaveDataSecurity] [bit] NOT NULL
+	,[ShowInReportFilter] [bit] NOT NULL
+	,[RestrictDuplicate] [bit] NOT NULL
+	,CONSTRAINT [PK_ORG_EntityType] PRIMARY KEY CLUSTERED ([EntityTypeId])
+	,CONSTRAINT [FK_ORG_EntityType_ORG_ChartMaster] FOREIGN KEY ([OrgChartId]) REFERENCES [dbo].[ORG_ChartMaster]([OrgChartId])
+	)
+GO
+
+CREATE TABLE [dbo].[ORG_EntityMaster] (
+	[TransactType] [int] NOT NULL
+	,[TransactUserID] [bigint] NULL
+	,[TransactDateTime] [datetime] NOT NULL
+	,[MenuID] [varchar](50) NOT NULL
+	,[EntityId] [bigint] IDENTITY(1, 1) NOT NULL
+	,[EntityTypeId] [bigint] NULL
+	,[EntityCode] [varchar](20) NULL
+	,[Description] [nvarchar](200) NOT NULL
+	,[Parent] [bigint] NULL
+	,[EffectiveFrom] [datetime] NULL
+	,[EffectiveTo] [datetime] NULL
+	,[IsActive] [bit] NOT NULL
+	,[IncludeEmployees] [bit] NOT NULL
+	,[SortOrder] [int] NOT NULL
+	,CONSTRAINT [PK_ORG_EntityMaster] PRIMARY KEY CLUSTERED ([EntityId])
+	,CONSTRAINT [FK_ORG_EntityMaster_ORG_EntityType] FOREIGN KEY ([EntityTypeId]) REFERENCES [dbo].[ORG_EntityType]([EntityTypeId])
+	,
+	)
+GO
+
+CREATE TABLE [dbo].[ORG_EmpEntityLink] (
+	[TransactType] [int] NOT NULL
+	,[TransactUserID] [bigint] NOT NULL
+	,[TransactDateTime] [datetime] NOT NULL
+	,[MenuID] [varchar](50) NOT NULL
+	,[EmpEntityId] [bigint] IDENTITY(1, 1) NOT NULL
+	,[EmployeeId] [bigint] NOT NULL
+	,[EntityId] [bigint] NOT NULL
+	,[EffectiveFrom] [datetime] NOT NULL
+	,[EffectiveTo] [datetime] NULL
+	,[RecordStatus] [varchar](50) NOT NULL
+	,CONSTRAINT [PK_ORG_EmpEntityLink] PRIMARY KEY CLUSTERED ([EmpEntityId])
+	,CONSTRAINT [FK_ORG_EmpEntityLink_HRW_Employee] FOREIGN KEY ([EmployeeId]) REFERENCES [dbo].[HRW_Employee]([EmployeeID])
+	,CONSTRAINT [FK_ORG_EmpEntityLink_ORG_EntityMaster] FOREIGN KEY ([EntityId]) REFERENCES [dbo].[ORG_EntityMaster]([EntityId])
+	,
+	)
+GO
+
+CREATE TABLE [dbo].[ORG_EntityTypeParam] (
+	[TransactType] [int] NOT NULL
+	,[TransactUserID] [bigint] NOT NULL
+	,[TransactDateTime] [datetime] NOT NULL
+	,[MenuID] [varchar](50) NOT NULL
+	,[EntityTypeParamID] [bigint] IDENTITY(1, 1) NOT NULL
+	,[EntityTypeId] [bigint] NOT NULL
+	,[Description] [nvarchar](500) NULL
+	,[DataType] [varchar](30) NULL
+	,[DataTypeEntityID] [bigint] NULL
+	,[SortOrder] [int] NOT NULL
+	,[ParamLinkLevel] [varchar](10) NOT NULL
+	,[IsMandatory] [bit] NOT NULL
+	,[CheckDuplicate] [int] NULL
+	,[Validations] [varchar](50) NULL
+	,[ESSFieldAccessRight] [varchar](1) NULL
+	,[DataTypeProperty] [varchar](50) NULL
+	,[DataTypeProperty1] [varchar](300) NULL
+	,CONSTRAINT [PK_ORG_EntityTypeParam] PRIMARY KEY CLUSTERED ([EntityTypeParamID])
+	,CONSTRAINT [FK_ORG_EntityTypeParam_ORG_EntityType] FOREIGN KEY ([EntityTypeId]) REFERENCES [dbo].[ORG_EntityType]([EntityTypeId])
+	)
+GO
+
+CREATE TABLE [dbo].[HRW_EmpEntityParamValues] (
+	[TransactType] [int] NOT NULL
+	,[TransactUserID] [bigint] NOT NULL
+	,[TransactDateTime] [datetime] NOT NULL
+	,[MenuID] [varchar](50) NOT NULL
+	,[EmpEntityParamID] [bigint] IDENTITY(1, 1) NOT NULL
+	,[EmployeeId] [bigint] NULL
+	,[EntityID] [bigint] NULL
+	,[EntityTypeParamID] [bigint] NOT NULL
+	,[ParamValue] [nvarchar](500) NULL
+	,[ParamValueEntityID] [bigint] NULL
+	,[EmpEntityParamIDLink] [bigint] NULL
+	,[ESSID] [bigint] NULL
+	,[CompanyCode] [varchar](10) NULL
+	,CONSTRAINT [PK_HRW_EmpEntityParamValues] PRIMARY KEY CLUSTERED ([EmpEntityParamID])
+	,CONSTRAINT [FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues] FOREIGN KEY ([EmpEntityParamIDLink]) REFERENCES [dbo].[HRW_EmpEntityParamValues]([EmpEntityParamID])
+	,CONSTRAINT [FK_HRW_EmpEntityParamValues_ORG_EntityMaster] FOREIGN KEY ([EntityID]) REFERENCES [dbo].[ORG_EntityMaster]([EntityId])
+	,CONSTRAINT [FK_HRW_EmpEntityParamValues_ORG_EntityMaster1] FOREIGN KEY ([ParamValueEntityID]) REFERENCES [dbo].[ORG_EntityMaster]([EntityId])
+	,CONSTRAINT [FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam] FOREIGN KEY ([EntityTypeParamID]) REFERENCES [dbo].[ORG_EntityTypeParam]([EntityTypeParamID])
+	)
+GO
+
+CREATE TABLE [dbo].[Attachments] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[FilePath] [nvarchar](250) NOT NULL
+	,[FileType] [nvarchar](50) NOT NULL
+	,CONSTRAINT [PK_Attachments] PRIMARY KEY CLUSTERED ([ID])
+	)
+GO
+
+CREATE TABLE [dbo].[AttachmentLink] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[AttachmentFor] [nvarchar](100) NOT NULL
+	,[AttachmentForID] [int] NOT NULL
+	,CONSTRAINT [PK_AttachmentLink] PRIMARY KEY CLUSTERED ([ID])
+	,CONSTRAINT [fk_RFQ_AttachmentID] FOREIGN KEY ([ID]) REFERENCES [dbo].[Attachments]([ID])
+	)
+GO
+
+CREATE TABLE [dbo].[Users] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[Username] [nvarchar](max) NOT NULL
+	,[FirstName] [nvarchar](max) NOT NULL
+	,[LastName] [nvarchar](max) NOT NULL
+	,[Email] [nvarchar](max) NOT NULL
+	,[Password] [nvarchar](max) NOT NULL
+	,[IsActive] [bit] NOT NULL
+	,[ActivationCode] [uniqueidentifier] NOT NULL
+	,[HREmployeeID] [bigint] NULL
+	,[IsDeleted] [bit] NULL
+	,CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([ID])
+	,CONSTRAINT [FK__Users_HREmployeeID] FOREIGN KEY ([HREmployeeID]) REFERENCES [dbo].[HRW_Employee]([EmployeeID])
+	)
+GO
+
+CREATE TABLE [dbo].[Roles] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[RoleName] [nvarchar](max) NOT NULL
+	,[IsDeleted] [bit] NULL
+	,CONSTRAINT [PK_Roles] PRIMARY KEY CLUSTERED ([ID])
+	)
+GO
+
+CREATE TABLE [dbo].[TravelAgency] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[AgencyCode] [nvarchar](25) NULL
+	,[CompanyName] [nvarchar](100) NULL
+	,[Address] [varchar](max) NULL
+	,[Telephone] [nvarchar](20) NULL
+	,[Fax] [nvarchar](20) NULL
+	,[Mobile] [nvarchar](20) NULL
+	,[Landline] [nvarchar](20) NULL
+	,[ContactPerson] [nvarchar](100) NULL
+	,[Email] [nvarchar](100) NULL
+	,CONSTRAINT [PK_TravelAgency] PRIMARY KEY CLUSTERED ([ID])
+	)
+GO
+
+CREATE TABLE [dbo].[UserRole] (
+	[UserID] [int] NOT NULL
+	,[RoleID] [int] NOT NULL
+	,CONSTRAINT [PK_UserRole] PRIMARY KEY CLUSTERED (
+		[UserID]
+		,[RoleID]
+		)
+	,CONSTRAINT [FK_UserRole_Role] FOREIGN KEY ([RoleID]) REFERENCES [dbo].[Roles]([ID])
+	,CONSTRAINT [FK_UserRole_User] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users]([ID])
+	)
+GO
+
+CREATE TABLE [dbo].[TravelRequests] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[ApplicationNumber] [nvarchar](50) NOT NULL
+	,[PortOfOriginID] [int] NULL
+	,[PortOfDestinationID] [int] NULL
+	,[TicketClass] [nvarchar](100) NULL
+	,[DailyAllowance] [decimal](10, 2) NULL
+	,[CurrencyID] [int] NULL
+	,[TravelDays] [int] NULL
+	,[TravelRemarks] [nvarchar](max) NULL
+	,[PurposeOfVisit] [nvarchar](max) NULL
+	,[DepartureDate] [datetime] NULL
+	,[DepartureTime] [time](7) NULL
+	,[ReturnDate] [datetime] NULL
+	,[ReturnTime] [time](7) NULL
+	,[FirstBusinessDay] [datetime] NULL
+	,[LastBusinessDay] [datetime] NULL
+	,[Remarks] [nvarchar](500) NULL
+	,[AirTicketManagement] [nvarchar](50) NULL
+	,[HotelName] [nvarchar](50) NULL
+	,[TravelAllowance] [nvarchar](50) NULL
+	,[HotelStay] [nvarchar](50) NULL
+	,[HotelCategory] [nvarchar](50) NULL
+	,[RoomCategory] [nvarchar](50) NULL
+	,[RoomType] [nvarchar](50) NULL
+	,[AdditionalAllowance] [decimal](10, 2) NULL
+	,[AirportPickUp] [nvarchar](50) NULL
+	,[PickUpLocation] [nvarchar](500) NULL
+	,[PickUpDate] [datetime] NULL
+	,[PickUpTime] [time](7) NULL
+	,[DropOffLocation] [nvarchar](500) NULL
+	,[DropOffDate] [datetime] NULL
+	,[DropOffTime] [time](7) NULL
+	,[PreferredVehicle] [nvarchar](250) NULL
+	,[TravelSector] [nvarchar](250) NULL
+	,[CheckInDate] [datetime] NULL
+	,[CheckOutDate] [datetime] NULL
+	,[CheckInTime] [time](7) NULL
+	,[CheckOutTime] [time](7) NULL
+	,[ApprovalLevel] [int] NOT NULL
+	,[ApprovalBy] [int] NULL
+	,[ApprovalRemarks] [varchar](max) NULL
+	,[CreateOn] [datetime] NULL
+	,[CreatedBy] [int] NULL
+	,[ModifiedOn] [datetime] NULL
+	,[ModifiedBy] [int] NULL
+	,[IsDeleted] [bit] NULL
+	,[IsSubmitted] [bit] NOT NULL
+	,CONSTRAINT [PK_TravelRequests] PRIMARY KEY CLUSTERED ([ID])
+	,CONSTRAINT [FK__TravelReq__ApprovalBy] FOREIGN KEY ([ApprovalBy]) REFERENCES [dbo].[Users]([ID])
+	,CONSTRAINT [FK__TravelReq_CreatedBy] FOREIGN KEY ([CreatedBy]) REFERENCES [dbo].[Users]([ID])
+	,CONSTRAINT [FK__TravelReq_Currency] FOREIGN KEY ([CurrencyID]) REFERENCES [dbo].[Currency]([ID])
+	,CONSTRAINT [FK__TravelReq_PortOfD] FOREIGN KEY ([PortOfDestinationID]) REFERENCES [dbo].[City]([ID])
+	,CONSTRAINT [FK__TravelReq_PortOfO] FOREIGN KEY ([PortOfOriginID]) REFERENCES [dbo].[City]([ID])
+	,
+	)
+GO
+
+CREATE TABLE [dbo].[RFQ] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[TravelAgencyID] [int] NOT NULL
+	,[TravelRequestID] [int] NOT NULL
+	,[UserID] [int] NOT NULL
+	,[Remarks] [nvarchar](max) NULL
+	,[Processing] [int] NOT NULL
+	,[ProcessingSection] [int] NOT NULL
+	,[IsDeleted] [bit] NULL
+	,CONSTRAINT [PK_RFQ] PRIMARY KEY CLUSTERED ([ID])
+	,CONSTRAINT [fk_RFQ_TravelAgencyID] FOREIGN KEY ([TravelAgencyID]) REFERENCES [dbo].[TravelAgency]([ID])
+	,CONSTRAINT [fk_RFQ_TravelRequestID] FOREIGN KEY ([TravelRequestID]) REFERENCES [dbo].[TravelRequests]([ID])
+	,CONSTRAINT [fk_RFQ_UserID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users]([ID])
+	)
+GO
+
+CREATE TABLE [dbo].[Quotation] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[TravelAgencyID] [int] NOT NULL
+	,[TravelRequestID] [int] NOT NULL
+	,[UserID] [int] NOT NULL
+	,[Remarks] [nvarchar](max) NULL
+	,[IsDeleted] [bit] NULL
+	,CONSTRAINT [PK_Quotation] PRIMARY KEY CLUSTERED ([ID])
+	,CONSTRAINT [fk_Quotation_TravelAgencyID] FOREIGN KEY ([TravelAgencyID]) REFERENCES [dbo].[TravelAgency]([ID])
+	,CONSTRAINT [fk_Quotation_TravelRequestID] FOREIGN KEY ([TravelRequestID]) REFERENCES [dbo].[TravelRequests]([ID])
+	,CONSTRAINT [fk_Quotation_UserID] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users]([ID])
+	)
+GO
+
+CREATE TABLE [dbo].[LPO] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[LPONo] [nvarchar](100) NULL
+	,[RFQID] [int] NULL
+	,[QuotationID] [int] NULL
+	,[Remarks] [nvarchar](500) NULL
+	,[IsDeleted] [bit] NULL
+	,CONSTRAINT [PK_LPO] PRIMARY KEY CLUSTERED ([ID])
+	,CONSTRAINT [fk_LPO_QuotationID] FOREIGN KEY ([QuotationID]) REFERENCES [dbo].[Quotation]([ID])
+	,CONSTRAINT [fk_LPO_RFQID] FOREIGN KEY ([RFQID]) REFERENCES [dbo].[RFQ]([ID])
+	)
+GO
+
+CREATE TABLE [dbo].[ATQuotation] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[QuotationID] [int] NOT NULL
+	,[TicketClass] [nvarchar](100) NULL
+	,[OriginID] [int] NULL
+	,[DestinationID] [int] NULL
+	,[DepartureDate] [datetime] NULL
+	,[DepartureTime] [time](7) NULL
+	,[ReturnDate] [datetime] NULL
+	,[ReturnTime] [time](7) NULL
+	,[Airlines] [nvarchar](100) NULL
+	,[TicketNo] [nvarchar](100) NULL
+	,[Amount] [decimal](10, 2) NULL
+	,[IsDeleted] [bit] NULL
+	,CONSTRAINT [PK_ATQuotation] PRIMARY KEY CLUSTERED ([ID])
+	,CONSTRAINT [fk_ATQuotation_DestinationID] FOREIGN KEY ([DestinationID]) REFERENCES [dbo].[City]([ID])
+	,CONSTRAINT [fk_ATQuotation_OriginID] FOREIGN KEY ([OriginID]) REFERENCES [dbo].[City]([ID])
+	,CONSTRAINT [fk_ATQuotation_QuotationID] FOREIGN KEY ([QuotationID]) REFERENCES [dbo].[Quotation]([ID])
+	)
+GO
+
+CREATE TABLE [dbo].[HSQuotation] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[QuotationID] [int] NOT NULL
+	,[TravelSector] [nvarchar](250) NULL
+	,[HotelName] [nvarchar](250) NULL
+	,[HotelCategory] [nvarchar](100) NULL
+	,[RoomCategory] [nvarchar](100) NULL
+	,[RoomType] [nvarchar](100) NULL
+	,[CheckInDate] [datetime] NULL
+	,[CheckInTime] [time](7) NULL
+	,[CheckOutDate] [datetime] NULL
+	,[CheckOutTime] [time](7) NULL
+	,[Amount] [decimal](10, 2) NULL
+	,[IsDeleted] [bit] NULL
+	,CONSTRAINT [PK_HSQuotation] PRIMARY KEY CLUSTERED ([ID])
+	,CONSTRAINT [fk_HSQuotation_QuotationID] FOREIGN KEY ([QuotationID]) REFERENCES [dbo].[Quotation]([ID])
+	)
+GO
+
+CREATE TABLE [dbo].[PCQuotation] (
+	[ID] [int] IDENTITY(1, 1) NOT NULL
+	,[QuotationID] [int] NOT NULL
+	,[TravelSector] [nvarchar](250) NULL
+	,[PickupLocation] [nvarchar](250) NULL
+	,[DropoffLocation] [nvarchar](250) NULL
+	,[PreferredVehicle] [nvarchar](250) NULL
+	,[PickUpDate] [datetime] NULL
+	,[PickUpTime] [time](7) NULL
+	,[DropOffDate] [datetime] NULL
+	,[DropOffTime] [time](7) NULL
+	,[Amount] [decimal](10, 2) NULL
+	,[IsDeleted] [bit] NULL
+	,CONSTRAINT [PK_PCQuotation] PRIMARY KEY CLUSTERED ([ID])
+	,CONSTRAINT [fk_PCQuotation_QuotationID] FOREIGN KEY ([QuotationID]) REFERENCES [dbo].[Quotation]([ID])
+	)
+GO
+
+INSERT INTO [dbo].[HRW_Company] (
+	[TransactType]
+	,[TransactUserID]
+	,[TransactDateTime]
+	,[MenuID]
+	,[CompanyCode]
+	,[DisplayName]
+	,[ReportName]
+	,[Address]
+	)
+VALUES (
+	1
+	,1
+	,GETDATE()
+	,'Menu'
+	,'Company'
+	,'Display'
+	,'Report'
+	,'Address'
+	)
+GO
+
+INSERT INTO [dbo].[HRW_Employee] (
+	[TransactType]
+	,[TransactUserID]
+	,[TransactDateTime]
+	,[MenuID]
+	,[CompanyCode]
+	,[EmployeeCode]
+	,[FirstName]
+	,[MiddleName]
+	,[LastName]
+	,[FullName]
+	,[Salutation]
+	,[DateOfBirth]
+	,[HireDate]
+	,[TerminationDate]
+	,[PrevEmpID]
+	,[Remarks]
+	,[RecordType]
+	,[PAFRecordID]
+	,[EmpStatus]
+	)
+VALUES (
+	1
+	,1
+	,GETDATE()
+	,'Menu'
+	,'Company'
+	,'Employee'
+	,'Employee First Name'
+	,'Employee Middle Name'
+	,'Employee Last Name'
+	,'Employee Full Name'
+	,1
+	,GETDATE()
+	,GETDATE()
+	,GETDATE()
+	,''
+	,''
+	,''
+	,1
+	,''
+	)
+GO
+
+SET IDENTITY_INSERT [dbo].[City] ON
+GO
+
+INSERT [dbo].[City] (
+	[ID]
+	,[CityDesc]
+	,[Country]
+	,[IsActive]
+	)
+VALUES (
+	1
+	,N'Delhi'
+	,NULL
+	,1
+	)
+GO
+
+INSERT [dbo].[City] (
+	[ID]
+	,[CityDesc]
+	,[Country]
+	,[IsActive]
+	)
+VALUES (
+	2
+	,N'Bangalore'
+	,NULL
+	,1
+	)
+GO
+
+INSERT [dbo].[City] (
+	[ID]
+	,[CityDesc]
+	,[Country]
+	,[IsActive]
+	)
+VALUES (
+	3
+	,N'Chennai'
+	,NULL
+	,1
+	)
+GO
+
+INSERT [dbo].[City] (
+	[ID]
+	,[CityDesc]
+	,[Country]
+	,[IsActive]
+	)
+VALUES (
+	4
+	,N'Mumbai'
+	,NULL
+	,1
+	)
+GO
+
+INSERT [dbo].[City] (
+	[ID]
+	,[CityDesc]
+	,[Country]
+	,[IsActive]
+	)
+VALUES (
+	5
+	,N'Trivandrum'
+	,NULL
+	,1
+	)
+GO
+
+SET IDENTITY_INSERT [dbo].[City] OFF
+GO
+
+SET IDENTITY_INSERT [dbo].[Currency] ON
+GO
+
+INSERT [dbo].[Currency] (
+	[ID]
+	,[CurrencyDesc]
+	,[CurrencySymbol]
+	,[IsActive]
+	)
+VALUES (
+	1
+	,N'Dollar USD'
+	,N'$'
+	,1
+	)
+GO
+
+INSERT [dbo].[Currency] (
+	[ID]
+	,[CurrencyDesc]
+	,[CurrencySymbol]
+	,[IsActive]
+	)
+VALUES (
+	2
+	,N'Rupees'
+	,N'Rs'
+	,1
+	)
+GO
+
+INSERT [dbo].[Currency] (
+	[ID]
+	,[CurrencyDesc]
+	,[CurrencySymbol]
+	,[IsActive]
+	)
+VALUES (
+	3
+	,N'Euro'
+	,N'Eu'
+	,1
+	)
+GO
+
+SET IDENTITY_INSERT [dbo].[Currency] OFF
+GO
+
+SET IDENTITY_INSERT [dbo].[Roles] ON
+GO
+
+INSERT [dbo].[Roles] (
+	[ID]
+	,[RoleName]
+	,[IsDeleted]
+	)
+VALUES (
+	1
+	,N'Admin'
+	,0
+	)
+GO
+
+INSERT [dbo].[Roles] (
+	[ID]
+	,[RoleName]
+	,[IsDeleted]
+	)
+VALUES (
+	2
+	,N'Employee'
+	,0
+	)
+GO
+
+INSERT [dbo].[Roles] (
+	[ID]
+	,[RoleName]
+	,[IsDeleted]
+	)
+VALUES (
+	3
+	,N'HR'
+	,0
+	)
+GO
+
+INSERT [dbo].[Roles] (
+	[ID]
+	,[RoleName]
+	,[IsDeleted]
+	)
+VALUES (
+	4
+	,N'TravelCo'
+	,0
+	)
+GO
+
+INSERT [dbo].[Roles] (
+	[ID]
+	,[RoleName]
+	,[IsDeleted]
+	)
+VALUES (
+	5
+	,N'Manager'
+	,0
+	)
+GO
+
+SET IDENTITY_INSERT [dbo].[Roles] OFF
+GO
+
+SET IDENTITY_INSERT [dbo].[Users] ON
+GO
+
+INSERT [dbo].[Users] (
+	[ID]
+	,[Username]
+	,[FirstName]
+	,[LastName]
+	,[Email]
+	,[Password]
+	,[IsActive]
+	,[ActivationCode]
+	,[HREmployeeID]
+	,[IsDeleted]
+	)
+VALUES (
+	1
+	,N'admin'
+	,N'F Admin'
+	,N'L Admin'
+	,N'Admin@admingmail.com'
+	,N'admin'
+	,1
+	,N'8e046ed2-3c81-4de5-8699-9401ac8c7069'
+	,1
+	,0
+	)
+GO
+
+INSERT [dbo].[Users] (
+	[ID]
+	,[Username]
+	,[FirstName]
+	,[LastName]
+	,[Email]
+	,[Password]
+	,[IsActive]
+	,[ActivationCode]
+	,[HREmployeeID]
+	,[IsDeleted]
+	)
+VALUES (
+	3
+	,N'employee'
+	,N'F employee'
+	,N'L employee'
+	,N'employee@employeegmail.com'
+	,N'employee'
+	,1
+	,N'3b618d43-e3b1-4946-bda7-bf63b0738b68'
+	,1
+	,0
+	)
+GO
+
+INSERT [dbo].[Users] (
+	[ID]
+	,[Username]
+	,[FirstName]
+	,[LastName]
+	,[Email]
+	,[Password]
+	,[IsActive]
+	,[ActivationCode]
+	,[HREmployeeID]
+	,[IsDeleted]
+	)
+VALUES (
+	4
+	,N'travelco'
+	,N'F travelco'
+	,N'L travelco'
+	,N'travelco@travelcogmail.com'
+	,N'travelco'
+	,1
+	,N'b1c7508d-deb2-4f4d-aea5-4453a29fcc1e'
+	,1
+	,0
+	)
+GO
+
+INSERT [dbo].[Users] (
+	[ID]
+	,[Username]
+	,[FirstName]
+	,[LastName]
+	,[Email]
+	,[Password]
+	,[IsActive]
+	,[ActivationCode]
+	,[HREmployeeID]
+	,[IsDeleted]
+	)
+VALUES (
+	5
+	,N'Manager'
+	,N'F manager'
+	,N'L manager'
+	,N'manager@managergmail.com'
+	,N'manager'
+	,1
+	,N'88392ac0-899b-4ef4-a45d-fea9081b028c'
+	,1
+	,0
+	)
+GO
+
+INSERT [dbo].[Users] (
+	[ID]
+	,[Username]
+	,[FirstName]
+	,[LastName]
+	,[Email]
+	,[Password]
+	,[IsActive]
+	,[ActivationCode]
+	,[HREmployeeID]
+	,[IsDeleted]
+	)
+VALUES (
+	6
+	,N'HR'
+	,N'F HR'
+	,N'L HR'
+	,N'HR@HRgmail.com'
+	,N'HR'
+	,1
+	,N'4b8aec95-ae58-4e85-b790-746c58df6def'
+	,1
+	,0
+	)
+GO
+
+INSERT [dbo].[Users] (
+	[ID]
+	,[Username]
+	,[FirstName]
+	,[LastName]
+	,[Email]
+	,[Password]
+	,[IsActive]
+	,[ActivationCode]
+	,[HREmployeeID]
+	,[IsDeleted]
+	)
+VALUES (
+	7
+	,N'TravelCo'
+	,N'F TravelCo'
+	,N'L TravelCo'
+	,N'TravelCo@TravelCogmail.com'
+	,N'TravelCo'
+	,1
+	,N'332ce16f-1768-49e4-a298-fe35097e6d61'
+	,1
+	,0
+	)
+GO
+
+SET IDENTITY_INSERT [dbo].[Users] OFF
+GO
+
+SET IDENTITY_INSERT [dbo].[TravelRequests] ON
+GO
+
+INSERT [dbo].[TravelRequests] (
+	[ID]
+	,[ApplicationNumber]
+	,[PortOfOriginID]
+	,[PortOfDestinationID]
+	,[TicketClass]
+	,[DailyAllowance]
+	,[CurrencyID]
+	,[TravelDays]
+	,[TravelRemarks]
+	,[PurposeOfVisit]
+	,[DepartureDate]
+	,[DepartureTime]
+	,[ReturnDate]
+	,[ReturnTime]
+	,[FirstBusinessDay]
+	,[LastBusinessDay]
+	,[Remarks]
+	,[AirTicketManagement]
+	,[HotelName]
+	,[TravelAllowance]
+	,[HotelStay]
+	,[HotelCategory]
+	,[RoomCategory]
+	,[RoomType]
+	,[AdditionalAllowance]
+	,[AirportPickUp]
+	,[PickUpLocation]
+	,[PickUpDate]
+	,[PickUpTime]
+	,[DropOffLocation]
+	,[DropOffDate]
+	,[DropOffTime]
+	,[PreferredVehicle]
+	,[CheckInDate]
+	,[CheckOutDate]
+	,[CheckInTime]
+	,[CheckOutTime]
+	,[ApprovalLevel]
+	,[ApprovalBy]
+	,[ApprovalRemarks]
+	,[CreateOn]
+	,[CreatedBy]
+	,[ModifiedOn]
+	,[ModifiedBy]
+	,[IsDeleted]
+	,[IsSubmitted]
+	)
+VALUES (
+	1
+	,N'HRD-BTC-CC-0001'
+	,1
+	,1
+	,N'Any'
+	,CAST(0.00 AS DECIMAL(10, 2))
+	,1
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,CAST(N'12:45:00' AS TIME)
+	,NULL
+	,CAST(N'12:45:00' AS TIME)
+	,NULL
+	,NULL
+	,NULL
+	,N'BTC'
+	,NULL
+	,N'BTC'
+	,N'BTC'
+	,N'Any'
+	,N'Any'
+	,N'Single'
+	,CAST(0.00 AS DECIMAL(10, 2))
+	,N'-1'
+	,NULL
+	,NULL
+	,CAST(N'12:45:00' AS TIME)
+	,NULL
+	,NULL
+	,CAST(N'12:45:00' AS TIME)
+	,N'option 1'
+	,NULL
+	,NULL
+	,CAST(N'12:45:00' AS TIME)
+	,CAST(N'12:45:00' AS TIME)
+	,0
+	,NULL
+	,NULL
+	,NULL
+	,1
+	,CAST(N'2018-11-30T12:45:07.880' AS DATETIME)
+	,1
+	,NULL
+	,0
+	)
+GO
+
+SET IDENTITY_INSERT [dbo].[TravelRequests] OFF
+GO
+
+INSERT [dbo].[UserRole] (
+	[RoleID]
+	,[UserID]
+	)
+VALUES (
+	1
+	,1
+	)
+GO
+
+INSERT [dbo].[UserRole] (
+	[RoleID]
+	,[UserID]
+	)
+VALUES (
+	2
+	,1
+	)
+GO
+
+INSERT [dbo].[UserRole] (
+	[RoleID]
+	,[UserID]
+	)
+VALUES (
+	3
+	,1
+	)
+GO
+
+INSERT [dbo].[UserRole] (
+	[RoleID]
+	,[UserID]
+	)
+VALUES (
+	4
+	,1
+	)
+GO
+
+INSERT [dbo].[UserRole] (
+	[RoleID]
+	,[UserID]
+	)
+VALUES (
+	5
+	,1
+	)
+GO
+

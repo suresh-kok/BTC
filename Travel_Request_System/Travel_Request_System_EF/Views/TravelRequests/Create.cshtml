@@ -28,7 +28,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-4">Application/ Form No.</label>
                                     <div class="col-sm-8">
-                                        @Html.TextBox("applicationNumber", (String)ViewBag.applicationNumber, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                                        @Html.TextBox("applicationNumber", (String)ViewBag.applicationNumber, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly", @style = "border: none" })
                                     </div>
                                 </div>
                             </div>
@@ -204,7 +204,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-3">Port Of Origin</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-9 btn-danger">
                                     @Html.DropDownListFor(model => model.PortOfOriginID, ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).Select(m => new SelectListItem { Text = m.CityDesc, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
                                     @*@Html.ValidationMessageFor(model => model.PortOfOriginID, null , new { @class = "text-danger" })*@
                                 </div>
@@ -213,7 +213,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-3">Port Of Destination</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-9 btn-danger">
                                     @Html.DropDownListFor(model => model.PortOfDestinationID, ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).Select(m => new SelectListItem { Text = m.CityDesc, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
                                     @*@Html.ValidationMessageFor(model => model.PortOfDestinationID, null , new { @class = "text-danger" })*@
                                 </div>
@@ -238,7 +238,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-3">Travel Days</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-9 btn-danger">
                                     @Html.EditorFor(model => model.TravelDays, new { htmlAttributes = new { @class = "form-control" } })
                                     @*@Html.ValidationMessageFor(model => model.TravelDays, null, new { @class = "text-danger" })*@
                                 </div>
@@ -258,7 +258,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-3">Currency</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-9 btn-danger">
                                     @Html.DropDownListFor(model => model.CurrencyID, ((IEnumerable<Travel_Request_System_EF.Models.Currency>)ViewBag.Currencies).Select(m => new SelectListItem { Text = m.CurrencyDesc, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control" })
                                     @*@Html.ValidationMessageFor(model => model.CurrencyID, null, new { @class = "text-danger" })*@
                                 </div>
@@ -280,7 +280,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label class="col-sm-3">Purpose of Visit</label>
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 btn-danger">
                                     @Html.TextAreaFor(model => model.PurposeOfVisit, htmlAttributes: new { @class = "form-control", @rows = "4" })
                                     @*@Html.ValidationMessageFor(model => model.PurposeOfVisit, null, new { @class = "text-danger" })*@
                                 </div>
@@ -308,7 +308,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-sm-3">Departure Date</label>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-9 btn-danger">
                                         <div class="input-group date">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
@@ -322,7 +322,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-sm-3">Return Date</label>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-9 btn-danger">
                                         <div class="input-group date">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
@@ -602,7 +602,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-sm-3">Airport Pickup</label>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-9 btn-danger">
                                         <select class="form-control" name="airportPickUp" onchange="funcpickup(this.selectedIndex);">
                                             <option value="-1">----</option>
                                             <option value="0">Yes</option>
@@ -658,7 +658,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-sm-3">Pick Up Date</label>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-9 btn-danger">
                                         <div class="input-group date">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
@@ -704,7 +704,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-sm-3">Drop Off Date</label>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-9 btn-danger">
                                         <div class="input-group date">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
@@ -786,17 +786,21 @@
         <div class="row" style="margin-bottom:15px">
             <div class="col-sm-3">
             </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <input type="submit" class="form-control btn btn-info btn-primary" value="Save" formaction="SaveTravelRequest" />
+            <div class="col-sm-6">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input type="submit" class="form-control btn btn-info btn-primary" value="Save" formaction="SaveTravelRequest" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="submit" class="form-control btn btn-info btn-primary" value="Submit" formaction="SubmitTravelRequest" />
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input type="submit" class="form-control btn btn-info btn-primary" value="Submit" formaction="SubmitTravelRequest" />
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    @Html.ActionLink("Reset", "Create", "TravelRequests", new { @class = "form-control btn btn-info" })
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        @Html.ActionLink("Reset", "Create", "TravelRequests", new { @class = "form-control btn btn-info" })
+                    </div>
                 </div>
             </div>
             <div class="col-sm-3">

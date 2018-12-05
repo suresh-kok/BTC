@@ -16,10 +16,7 @@ namespace Travel_Request_System_EF.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        public ActionResult Index()
-        {
-            return View();
-        }
+        public ActionResult Index() => View();
 
         public ActionResult LogOut()
         {
@@ -33,10 +30,7 @@ namespace Travel_Request_System_EF.Controllers
             return RedirectToAction("Login", "Account", null);
         }
 
-        public ActionResult ForgotPassword()
-        {
-            return View();
-        }
+        public ActionResult ForgotPassword() => View();
 
         [HttpGet]
         public ActionResult Login(string ReturnUrl = "")
@@ -69,7 +63,7 @@ namespace Travel_Request_System_EF.Controllers
 
                         FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket
                             (
-                            1, loginView.UserName, DateTime.Now, DateTime.Now.AddMinutes(15), false, JsonConvert.SerializeObject(userModel)
+                            1, loginView.UserName, DateTime.Now, DateTime.Now.AddMinutes(15), loginView.RememberMe, JsonConvert.SerializeObject(userModel)
                             );
 
                         string enTicket = FormsAuthentication.Encrypt(authTicket);

@@ -6,95 +6,120 @@
 
 @model Travel_Request_System_EF.Models.TravelAgency
 
-<aside class="right-side">
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Travel Agency Details</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body table-responsive">
-                        <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
-                            @if (Model == null || (Model.ID == 0))
-                            {
-                                <tr>
-                                    <td colspan="10">No Record's found.</td>
-                                </tr>
-                            }
-                            else
-                            {
-                                <thead>
-                                    <tr class="info">
-                                        <th data-defaultsign="_19">
-                                            @Html.DisplayNameFor(model => model.AgencyCode)
-                                        </th>
-                                        <th data-defaultsign="AZ">
-                                            @Html.DisplayNameFor(model => model.CompanyName)
-                                        </th>
-                                        <th data-defaultsign="AZ">
-                                            @Html.DisplayNameFor(model => model.Address)
-                                        </th>
-                                        <th data-defaultsign="month">
-                                            @Html.DisplayNameFor(model => model.Telephone)
-                                        </th>
-                                        <th data-firstsort="desc">
-                                            @Html.DisplayNameFor(model => model.Fax)
-                                        </th>
-                                        <th data-defaultsign="AZ">
-                                            @Html.DisplayNameFor(model => model.Mobile)
-                                        </th>
-                                        <th data-defaultsort="disabled">
-                                            @Html.DisplayNameFor(model => model.Landline)
-                                        </th>
-                                        <th data-defaultsort="disabled">
-                                            @Html.DisplayNameFor(model => model.ContactPerson)
-                                        </th>
-                                        <th data-defaultsort="disabled">
-                                            @Html.DisplayNameFor(model => model.Email)
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(model => model.AgencyCode)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.CompanyName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.Address)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.Telephone)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.Fax)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.Mobile)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.Landline)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.ContactPerson)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.Email)
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            }
-                        </table>
+<div class="col-xs-12 col-sm-12">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Travel Agency Information</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div>
+                @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+                <div class="row" style="margin-bottom:15px">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AgencyCode, htmlAttributes: new { @class = "control-label col-sm-2" })
+                        <div class="col-sm-10">
+                            @Html.DisplayFor(model => model.AgencyCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-sm-2" })
+                        <div class="col-sm-10">
+                            @Html.DisplayFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "col-sm-3" })
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(model => model.Address, htmlAttributes: new { @class = "form-control", @rows = "4", @readonly = "readonly" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="form-group">
+                        <h3 style="text-align:center">Company Contact Details</h3>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Telephone, htmlAttributes: new { @class = "control-label col-sm-2" })
+                            <div class="col-sm-10">
+                                @Html.DisplayFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ContactPerson, htmlAttributes: new { @class = "control-label col-sm-2" })
+                            <div class="col-sm-10">
+                                @Html.DisplayFor(model => model.ContactPerson, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Fax, htmlAttributes: new { @class = "control-label col-sm-2" })
+                            <div class="col-sm-10">
+                                @Html.DisplayFor(model => model.Fax, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label col-sm-2" })
+                            <div class="col-sm-10">
+                                @Html.DisplayFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-sm-2" })
+                            <div class="col-sm-10">
+                                @Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Landline, htmlAttributes: new { @class = "control-label col-sm-2" })
+                            <div class="col-sm-10">
+                                @Html.DisplayFor(model => model.Landline, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</aside>
+    </div>
+</div>
 
 <div class="row" style="margin-bottom:15px">
     <div class="col-md-6">

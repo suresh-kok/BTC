@@ -1,55 +1,666 @@
-﻿<aside class="right-side">
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Details</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body table-responsive">
-                        <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
-                            @if (ViewBag.NotificationsList == null || (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0))
-                            {
-                                <tr>
-                                    <td colspan="10">No Record's found.</td>
-                                </tr>
-                            }
-                            else
-                            {
-                                <thead>
-                                    <tr class="info">
-                                        <th data-defaultsign="_19"> Employee ID</th>
-                                        <th data-defaultsign="AZ">Name</th>
-                                        <th data-defaultsign="AZ">Title</th>
-                                        <th data-defaultsign="month">Birth Date</th>
-                                        <th data-firstsort="desc">Address</th>
-                                        <th data-defaultsign="AZ">City</th>
-                                        <th data-defaultsort="disabled">Country</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if (ViewBag.NotificationsList != null)
-                                    {
-                                        foreach (var item in ViewBag.NotificationsList)
-                                        {
-                                            <tr>
-                                                <td>@item.EmployeeID</td>
-                                                <td>@item.Name</td>
-                                                <td>@item.Title</td>
-                                                <td>@item.BirthDate</td>
-                                                <td>@item.Address</td>
-                                                <td>@item.City</td>
-                                                <td>@item.Country</td>
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
-                            }
-                        </table>
-                    </div><!-- /.box-body -->
-                </div><!-- /.box -->
+﻿@model Travel_Request_System_EF.Models.TravelRequests
+
+<div id="detailsDiv" style="height:2150px">
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Employee Information</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-8">
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-sm-3">Application/ Form No.</label>
+                            <div class="col-sm-9" style="">
+                                @Html.DisplayFor(model => model.ApplicationNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-bottom:15px">
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Employee ID</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">BTC Employee Code</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Employee Name</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.FirstName + " " + model.User.LastName, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Employee Position Code</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Designation</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Department</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Department Head</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Cost Center</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Cost Center Head</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Passport Number</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Passport Epiry</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Qatar ID</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Qatar Expiry</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Location</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Section</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Contact Details</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-</aside>
+    </div>
+
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Air Travel Details</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div style="margin-bottom:15px">
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Port Of Origin</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var po = ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).FirstOrDefault(rt => rt.ID == Model.PortOfOriginID).CityDesc.ToString();
+                                }
+                                @po
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Port Of Destination</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var pd = ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).FirstOrDefault(rt => rt.ID == Model.PortOfDestinationID).CityDesc.ToString();
+                                }
+                                @pd
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Ticket Class</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.TicketClass, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Travel Days</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.TravelDays, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Daily Allowance</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.DailyAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1.00", @Value = "0.00" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Currency</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var cr = ((IEnumerable<Travel_Request_System_EF.Models.Currency>)ViewBag.Currencies).FirstOrDefault(rt => rt.ID == Model.CurrencyID).CurrencyDesc.ToString();
+                                }
+                                @cr
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-3">Purpose of Visit</label>
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(model => model.PurposeOfVisit, htmlAttributes: new { @class = "form-control", @rows = "4" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Additional Travel Details</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div style="margin-bottom:15px">
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Departure Date</label>
+                            <div class="col-sm-9">
+                                @if (Model.DepartureDate != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.DepartureDate.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Return Date</label>
+                            <div class="col-sm-9">
+                                @if (Model.ReturnDate != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.ReturnDate.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Preferred Departure Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.DepartureTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.DepartureTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Preferred Return Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.ReturnTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.ReturnTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">First Day of Business</label>
+                            <div class="col-sm-9">
+                                @if (Model.FirstBusinessDay != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.FirstBusinessDay.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Last Day of Business</label>
+                            <div class="col-sm-9">
+                                @if (Model.LastBusinessDay != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.LastBusinessDay.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-2">Remarks</label>
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(model => model.TravelRemarks, htmlAttributes: new { @class = "form-control", @rows = "3", @placeholder = "Enter Travel Remarks..." })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Accomodation Details</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div style="margin-bottom:15px">
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Air Ticket Arrangement</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.AirTicketManagement, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Hotel Name</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.HotelName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Travel Allowance</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.TravelAllowance, new { htmlAttributes = new { @class = "form-control" } })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Check In Date</label>
+                            <div class="col-sm-9">
+                                @if (Model.CheckInDate != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.CheckInDate.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Hotel Stay</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.HotelStay, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Check In Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.CheckInTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.CheckInTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Hotel Category</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.HotelCategory, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Check Out Date</label>
+                            <div class="col-sm-9">
+                                @if (Model.CheckOutDate != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.CheckOutDate.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Room Category</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.RoomCategory, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Check Out Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.CheckOutTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.CheckOutTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Room Type</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.RoomType, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Airport Pickup</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var ap = Model.AirportPickUp;
+
+                                    string apVal;
+                                    if (Convert.ToInt32(ap) == 0)
+                                    {
+                                        apVal = "Yes";
+                                    }
+                                    else
+                                    {
+                                        apVal = "No";
+                                    }
+                                }
+                                <label id="airportpic">@apVal</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Additional Expenses</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.AdditionalAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00", @Value = "0.00" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="PickUpDetailsDiv" class="col-xs-12 col-md-12" style="display:none">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Pick Up Details</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div style="margin-bottom:15px">
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Pick Up Location</label>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    @Html.DisplayFor(model => model.PickUpLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Pick Up Date</label>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    @if (Model.PickUpDate != null)
+                                    {
+                                        @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.PickUpDate.ToString()))));
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Pick Up Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.PickUpTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.PickUpTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Drop Off Location</label>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    @Html.DisplayFor(model => model.DropOffLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Drop Off Date</label>
+                            <div class="col-sm-9">
+                                <dAiv class="form-group">
+                                    @if (Model.DropOffDate != null)
+                                    {
+                                        @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.DropOffDate.ToString()))));
+                                    }
+                                </dAiv>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Drop Off Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.DropOffTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.DropOffTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Preferred Vehicle Type</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.PreferredVehicle, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Remarks</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "4", @placeholder = "Enter Travel Request Remarks..." })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        if ($('#airportpic').text() == "Yes") {
+            $('#PickUpDetailsDiv').show()
+        }
+        else {
+            $('#PickUpDetailsDiv').hide()
+        }
+
+        $('#detailsDiv').find('textarea').attr('disabled', 'disabled');
+
+    </script>
+}

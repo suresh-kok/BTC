@@ -1,4 +1,5 @@
-﻿@model List<Travel_Request_System_EF.Models.TravelRequests>
+﻿@model IEnumerable<Travel_Request_System_EF.Models.TravelRequests>
+@using Travel_Request_System_EF.Models.ViewModel
 
 @{
     ViewBag.Title = "Employee Dashboard";
@@ -16,7 +17,7 @@
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive">
                         <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
-                            @if (Model == null || (Model != null && Model.Count == 0))
+                            @if (Model == null || (Model.Count() == 0))
                             {
                                 <tr>
                                     <td colspan="10">No Record's found.</td>
@@ -24,34 +25,117 @@
                             }
                             else
                             {
-                                <thead>
-                                    <tr class="info">
-                                        <th>Application Number</th>
-                                        <th>Destination</th>
-                                        <th>Travel Days</th>
-                                        <th>Departure Date</th>
-                                        <th>Return Date</th>
-                                        <th>Air Ticket Management</th>
-                                        <th>Airport PickUp</th>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ApplicationNumber)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PortOfOriginID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PortOfDestinationID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TravelDays)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DepartureDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ReturnDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.AirTicketManagement)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreateOn)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IsSubmitted)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ApprovalLevel)
+                                    </th>
+                                </tr>
+
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.ActionLink(item.ApplicationNumber, "Details", "TravelRequests", new { @item.ID }, null)
+                                        </td>
+                                        <td>
+                                            @(new HtmlString(item.City.CityDesc + " ," + item.City.Country))
+                                        </td>
+                                        <td>
+                                            @(new HtmlString(item.City1.CityDesc + " ," + item.City1.Country))
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelitem => item.TravelDays)
+                                        </td>
+                                        <td>
+                                            @if (item.DepartureDate != null)
+                                            {
+                                                @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.DepartureDate.ToString()))));
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.ReturnDate != null)
+                                            {
+                                                @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.ReturnDate.ToString()))));
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.AirTicketManagement == "1")
+                                            {
+                                                @(new HtmlString("BTC"))
+                                            }
+                                            else
+                                            {
+                                                @(new HtmlString("Others"))
+                                            }
+                                        </td>
+                                        <td>
+                                            @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.CreateOn.ToString()))));
+                                        </td>
+                                        <td>
+                                            @if (item.IsSubmitted != true)
+                                            {
+                                                @(new HtmlString("Draft"))
+                                            }
+                                            else
+                                            {
+                                                @(new HtmlString("Submitted"))
+                                            }
+                                        </td>
+                                        <td>
+                                            @switch (item.ApprovalLevel)
+                                            {
+                                                case (int)ApprovalLevels.ToBeApproved:
+                                                    @(new HtmlString("To Be Approved"))
+                                                    break;
+                                                case (int)ApprovalLevels.ApprovedByManager:
+                                                    @(new HtmlString("Approved By Manager"))
+                                                    break;
+                                                case (int)ApprovalLevels.RejectedByManager:
+                                                    @(new HtmlString("Rejected By Manager"))
+                                                    break;
+                                                case (int)ApprovalLevels.ApprovedByHR:
+                                                    @(new HtmlString("Approved By HR"))
+                                                    break;
+                                                case (int)ApprovalLevels.RejectedByHR:
+                                                    @(new HtmlString("Rejected By HR"))
+                                                    break;
+                                                case (int)ApprovalLevels.ApprovedbyTravelCo:
+                                                    @(new HtmlString("Approved By Travel Co"))
+                                                    break;
+                                                default:
+                                                    @(new HtmlString("Unknown"))
+                                                    break;
+                                            }
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @if (Model != null)
-                                    {
-                                        foreach (var item in Model)
-                                        {
-                                            <tr>
-                                                <td>@item.ApplicationNumber</td>
-                                                <td>@item.PortOfDestinationID</td>
-                                                <td>@item.TravelDays</td>
-                                                <td>@item.DepartureDate</td>
-                                                <td>@item.ReturnDate</td>
-                                                <td>@item.AirTicketManagement</td>
-                                                <td>@item.AirportPickUp</td>
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
+                                }
                             }
                         </table>
                     </div><!-- /.box-body -->

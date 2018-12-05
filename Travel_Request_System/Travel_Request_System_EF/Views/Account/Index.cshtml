@@ -32,15 +32,15 @@
                 <div class="box-body">
                     <div>
                         @*<div>
-                                <div class="form-group">
-                                    <label>Login Type &emsp;</label>
-                                    <select class="selectpicker">
-                                        <option>Employee</option>
-                                        <option>Human Resources</option>
-                                        <option>Travel Coordinator</option>
-                                    </select>
-                                </div>
-                            </div>*@
+            <div class="form-group">
+                <label>Login Type &emsp;</label>
+                <select class="selectpicker">
+                    <option>Employee</option>
+                    <option>Human Resources</option>
+                    <option>Travel Coordinator</option>
+                </select>
+            </div>
+        </div>*@
                         <div>
                             <div class="form-group">
                                 <label>User Name</label>
@@ -56,7 +56,14 @@
                                 @Html.PasswordFor(model => model.Password, new { @class = "form-control pull-right margin-bottom", placeholder = "Password" })*
                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                             </div>
-                        </div><br />
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.RememberMe)
+                                <label>Remember Me  </label>
+                                @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                         <div>
                             <div class="form-group">
                                 <input type="submit" class="form-control pull-right btn btn-primary" value="Login" />

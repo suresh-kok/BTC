@@ -44,8 +44,8 @@ namespace Travel_Request_System_EF.Models
         public virtual DbSet<Quotation> Quotation { get; set; }
         public virtual DbSet<RFQ> RFQ { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
-        public virtual DbSet<TravelAgency> TravelAgency { get; set; }
         public virtual DbSet<TravelRequests> TravelRequests { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<TravelAgency> TravelAgency { get; set; }
     }
 }
