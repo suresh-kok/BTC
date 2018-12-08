@@ -1,8 +1,109 @@
-﻿
+﻿@model IEnumerable<Travel_Request_System_EF.Models.RFQ>
+@using Travel_Request_System_EF.Models 
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Manage Quotations";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div id="detailsDiv" style="height:auto">
 
+    <aside class="right-side">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">RFQ Merge Table</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-condensed table-bordered">
+                                @if (Model == null || (Model.Count() == 0))
+                                {
+                                    <tr>
+                                        <td colspan="10">No Record's found.</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr class="success">
+                                        <th>RFQ #</th>
+                                        <th>Merged Sections</th>
+                                        <th>Travel Agency</th>
+                                        <th>Attachments</th>
+                                        <th>Action</th>
+                                        <th>
+                                        </th>
+                                    </tr>
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.TravelRequests.ApplicationNumber</td>
+                                            <td>
+                                                @{
+                                                    if (item.ProcessingSection == 1)
+                                                    {
+                                                        @("AT");
+                                                    }
+                                                    else if (item.ProcessingSection == 2)
+                                                    {
+                                                        @("HS");
+                                                    }
+                                                    else if (item.ProcessingSection == 3)
+                                                    {
+                                                        @("PC");
+                                                    }
+                                                    else if (item.ProcessingSection == 4)
+                                                    {
+                                                        @("AT + HS");
+                                                    }
+                                                    else if (item.ProcessingSection == 5)
+                                                    {
+                                                        @("AT + PC");
+                                                    }
+                                                    else if (item.ProcessingSection == 6)
+                                                    {
+                                                        @("HS + PC");
+                                                    }
+                                                    else if (item.ProcessingSection == 7)
+                                                    {
+                                                        @("AT + HS + PC");
+                                                    }
+                                                }
+                                            </td>
+                                            <td>
+                                                @{
+                                                    var po = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).FirstOrDefault(rt => rt.ID == item.TravelAgencyID).AgencyCode.ToString();
+                                                }
+                                                @po
+                                            </td>
+                                            <td>
+                                                @{
+                                                    int att = 0;
+                                                    using (var dbvar = new BTCEntities())
+                                                    {
+                                                        att = dbvar.AttachmentLink.Where(a => a.AttachmentFor.Contains(item.TravelRequests.ApplicationNumber)).Count();
+                                                    }
+                                                }
+                                                @att
+                                            </td>
+                                            <td>
+                                                <span class="glyphicon">
+                                                    @Html.ActionLink("  View Details", "Quotation", new { id = item.ID }, new { @class = "form-control btn btn-info  glyphicon-envelope" })
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </section>
+    </aside>
+
+    @Html.Partial("_TravelRequestDetails", Model.FirstOrDefault().TravelRequests)
+
+</div>

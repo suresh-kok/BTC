@@ -16,7 +16,6 @@ namespace Travel_Request_System_EF.Controllers
     [CustomAuthorize(Roles = "Employee")]
     public class TravelRequestsController : Controller
     {
-        private BTCEntities db = new BTCEntities();
         private static MembershipUser user;
         private static Users dbuser;
         private static string[] roles;
@@ -37,13 +36,16 @@ namespace Travel_Request_System_EF.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var travelRequests = db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency);
-            return View(await travelRequests.ToListAsync());
+            using (BTCEntities db = new BTCEntities())
+            {
+                var travelRequests = db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency).Include(t => t.Users1).Include(t => t.Users);
+                return View(await travelRequests.ToListAsync());
+            }
         }
 
         public async Task<ActionResult> Details(int? id)
         {
-            try
+            using (BTCEntities db = new BTCEntities())
             {
                 if (id == null)
                 {
@@ -64,177 +66,486 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.ApprovalBy = db.Users.ToList();
                 return View(travelRequest);
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
         }
 
         public ActionResult Create()
         {
-            ViewBag.Cities = db.City.ToList();
-            ViewBag.Currencies = db.Currency.ToList();
-            ViewBag.ApprovalBy = db.Users.ToList();
-            ViewBag.applicationNumber = db.TravelRequests.Count() > 0 ? GenerateNextRFQ(db.TravelRequests.OrderByDescending(a => a.ID).FirstOrDefault().ApplicationNumber) : "HRD-BTC-CC-0001";
+            using (BTCEntities db = new BTCEntities())
+            {
+                ViewBag.Cities = db.City.ToList();
+                ViewBag.Currencies = db.Currency.ToList();
+                ViewBag.ApprovalBy = db.Users.ToList();
+                ViewBag.applicationNumber = db.TravelRequests.Count() > 0 ? GenerateNextRFQ(db.TravelRequests.OrderByDescending(a => a.ID).FirstOrDefault().ApplicationNumber) : "HRD-BTC-CC-0001";
 
-            checkErrorMessages();
-            return View();
+                checkErrorMessages();
+                return View();
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SubmitTravelRequest([Bind(Include = "ID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequests travelRequest, FormCollection collection)
         {
-            MapUserValues(ref travelRequest, ref collection);
-            travelRequest.CreatedBy = dbuser.ID;
-            travelRequest.ApplicationNumber = string.IsNullOrEmpty(collection["applicationNumber"]) ? "" : collection["applicationNumber"].ToString();
-
-            if (ModelState.IsValid)
+            using (var dbcontext = new BTCEntities())
             {
+                MapUserValues(ref travelRequest, ref collection);
+                travelRequest.CreatedBy = dbuser.ID;
+                travelRequest.CreateOn = DateTime.Now;
+                travelRequest.ApplicationNumber = string.IsNullOrEmpty(collection["applicationNumber"]) ? "" : collection["applicationNumber"].ToString();
                 travelRequest.IsSubmitted = true;
                 travelRequest.ApprovalLevel = (int)ApprovalLevels.ToBeApproved;
-                db.TravelRequests.Add(travelRequest);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
-                List<string> sberr = new List<string>();
-                foreach (var item in errlist)
+
+                if (ModelState.IsValid)
                 {
-                    sberr.Add(item[0].ErrorMessage);
+                    if (travelRequest.ID > 0)
+                    {
+                        var travelRequestData = dbcontext.TravelRequests.Where(x => x.ID == travelRequest.ID).FirstOrDefault();
+                        travelRequestData.AdditionalAllowance = travelRequest.AdditionalAllowance;
+                        travelRequestData.AirportPickUp = travelRequest.AirportPickUp;
+                        travelRequestData.AirTicketManagement = travelRequest.AirTicketManagement;
+                        travelRequestData.ApprovalBy = travelRequest.ApprovalBy;
+                        travelRequestData.ApprovalLevel = travelRequest.ApprovalLevel;
+                        travelRequestData.ApprovalRemarks = travelRequest.ApprovalRemarks;
+                        travelRequestData.CheckInDate = travelRequest.CheckInDate;
+                        travelRequestData.CheckInTime = travelRequest.CheckInTime;
+                        travelRequestData.CheckOutDate = travelRequest.CheckOutDate;
+                        travelRequestData.CheckOutTime = travelRequest.CheckOutTime;
+                        travelRequestData.CreatedBy = travelRequest.CreatedBy;
+                        travelRequestData.CreateOn = travelRequest.CreateOn;
+                        travelRequestData.CurrencyID = travelRequest.CurrencyID;
+                        travelRequestData.DailyAllowance = travelRequest.DailyAllowance;
+                        travelRequestData.DepartureDate = travelRequest.DepartureDate;
+                        travelRequestData.DepartureTime = travelRequest.DepartureTime;
+                        travelRequestData.DropOffDate = travelRequest.DropOffDate;
+                        travelRequestData.DropOffLocation = travelRequest.DropOffLocation;
+                        travelRequestData.DropOffTime = travelRequest.DropOffTime;
+                        travelRequestData.FirstBusinessDay = travelRequest.FirstBusinessDay;
+                        travelRequestData.HotelCategory = travelRequest.HotelCategory;
+                        travelRequestData.HotelName = travelRequest.HotelName;
+                        travelRequestData.HotelStay = travelRequest.HotelStay;
+                        travelRequestData.LastBusinessDay = travelRequest.LastBusinessDay;
+                        travelRequestData.IsSubmitted = travelRequest.IsSubmitted;
+                        travelRequestData.ModifiedBy = travelRequest.ModifiedBy;
+                        travelRequestData.ModifiedOn = travelRequest.ModifiedOn;
+                        travelRequestData.PickUpDate = travelRequest.PickUpDate;
+                        travelRequestData.PickUpLocation = travelRequest.PickUpLocation;
+                        travelRequestData.PickUpTime = travelRequest.PickUpTime;
+                        travelRequestData.PortOfDestinationID = travelRequest.PortOfDestinationID;
+                        travelRequestData.PortOfOriginID = travelRequest.PortOfOriginID;
+                        travelRequestData.PreferredVehicle = travelRequest.PreferredVehicle;
+                        travelRequestData.PurposeOfVisit = travelRequest.PurposeOfVisit;
+                        travelRequestData.Remarks = travelRequest.Remarks;
+                        travelRequestData.ReturnDate = travelRequest.ReturnDate;
+                        travelRequestData.ReturnTime = travelRequest.ReturnTime;
+                        travelRequestData.RoomCategory = travelRequest.RoomCategory;
+                        travelRequestData.RoomType = travelRequest.RoomType;
+                        travelRequestData.TicketClass = travelRequest.TicketClass;
+                        travelRequestData.TravelAllowance = travelRequest.TravelAllowance;
+                        travelRequestData.TravelDays = travelRequest.TravelDays;
+                        travelRequestData.TravelRemarks = travelRequest.TravelRemarks;
+                        travelRequestData.TravelSector = travelRequest.TravelSector;
+
+                        dbcontext.Entry(travelRequestData).State = EntityState.Modified;
+                        dbcontext.TravelRequests.Attach(travelRequestData);
+                        dbcontext.Entry(travelRequestData).Property(x => x.AdditionalAllowance).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.AirportPickUp).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.AirTicketManagement).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ApprovalBy).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ApprovalLevel).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ApprovalRemarks).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CheckInDate).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CheckInTime).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CheckOutDate).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CheckOutTime).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CreatedBy).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CreateOn).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CurrencyID).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.DailyAllowance).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.DepartureDate).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.DepartureTime).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.DropOffDate).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.DropOffLocation).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.DropOffTime).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.FirstBusinessDay).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.HotelCategory).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.HotelName).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.HotelStay).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.LastBusinessDay).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.IsSubmitted).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ModifiedBy).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ModifiedOn).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PickUpDate).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PickUpLocation).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PickUpTime).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PortOfDestinationID).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PortOfOriginID).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PreferredVehicle).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PurposeOfVisit).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.Remarks).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ReturnDate).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ReturnTime).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.RoomCategory).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.RoomType).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.TicketClass).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.TravelAllowance).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.TravelDays).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.TravelRemarks).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.TravelSector).IsModified = true;
+                    }
+                    else
+                    {
+                        dbcontext.TravelRequests.Add(travelRequest);
+                    }
+                    await dbcontext.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
-                TempData["ErrorMessage"] = sberr.ToList();
+                else
+                {
+                    var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                    List<string> sberr = new List<string>();
+                    foreach (var item in errlist)
+                    {
+                        sberr.Add(item[0].ErrorMessage);
+                    }
+                    TempData["ErrorMessage"] = sberr.ToList();
+                }
+
+                ViewBag.Cities = dbcontext.City.ToList();
+                ViewBag.Currencies = dbcontext.Currency.ToList();
+                ViewBag.ApprovalBy = dbcontext.Users.ToList();
+
+                return RedirectToAction("Create", travelRequest);
             }
-
-            ViewBag.Cities = db.City.ToList();
-            ViewBag.Currencies = db.Currency.ToList();
-            ViewBag.ApprovalBy = db.Users.ToList();
-
-            return RedirectToAction("Create", travelRequest);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SaveTravelRequest([Bind(Include = "ID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequests travelRequest, FormCollection collection)
         {
-            MapUserValues(ref travelRequest, ref collection);
-            travelRequest.CreatedBy = dbuser.ID;
-            travelRequest.ApplicationNumber = string.IsNullOrEmpty(collection["applicationNumber"]) ? "" : collection["applicationNumber"].ToString();
-
-            if (ModelState.IsValid)
+            using (var dbcontext = new BTCEntities())
             {
+                MapUserValues(ref travelRequest, ref collection);
+                travelRequest.CreatedBy = dbuser.ID;
+                travelRequest.CreateOn = DateTime.Now;
                 travelRequest.IsSubmitted = false;
-                db.TravelRequests.Add(travelRequest);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
-                List<string> sberr = new List<string>();
-                foreach (var item in errlist)
+                travelRequest.ApplicationNumber = string.IsNullOrEmpty(collection["applicationNumber"]) ? "" : collection["applicationNumber"].ToString();
+
+                if (ModelState.IsValid)
                 {
-                    sberr.Add(item[0].ErrorMessage);
+                    if (travelRequest.ID > 0)
+                    {
+                        var travelRequestData = dbcontext.TravelRequests.Where(x => x.ID == travelRequest.ID).FirstOrDefault();
+                        travelRequestData.AdditionalAllowance = travelRequest.AdditionalAllowance;
+                        travelRequestData.AirportPickUp = travelRequest.AirportPickUp;
+                        travelRequestData.AirTicketManagement = travelRequest.AirTicketManagement;
+                        travelRequestData.ApprovalBy = travelRequest.ApprovalBy;
+                        travelRequestData.ApprovalLevel = travelRequest.ApprovalLevel;
+                        travelRequestData.ApprovalRemarks = travelRequest.ApprovalRemarks;
+                        travelRequestData.CheckInDate = travelRequest.CheckInDate;
+                        travelRequestData.CheckInTime = travelRequest.CheckInTime;
+                        travelRequestData.CheckOutDate = travelRequest.CheckOutDate;
+                        travelRequestData.CheckOutTime = travelRequest.CheckOutTime;
+                        travelRequestData.CreatedBy = travelRequest.CreatedBy;
+                        travelRequestData.CreateOn = travelRequest.CreateOn;
+                        travelRequestData.CurrencyID = travelRequest.CurrencyID;
+                        travelRequestData.DailyAllowance = travelRequest.DailyAllowance;
+                        travelRequestData.DepartureDate = travelRequest.DepartureDate;
+                        travelRequestData.DepartureTime = travelRequest.DepartureTime;
+                        travelRequestData.DropOffDate = travelRequest.DropOffDate;
+                        travelRequestData.DropOffLocation = travelRequest.DropOffLocation;
+                        travelRequestData.DropOffTime = travelRequest.DropOffTime;
+                        travelRequestData.FirstBusinessDay = travelRequest.FirstBusinessDay;
+                        travelRequestData.HotelCategory = travelRequest.HotelCategory;
+                        travelRequestData.HotelName = travelRequest.HotelName;
+                        travelRequestData.HotelStay = travelRequest.HotelStay;
+                        travelRequestData.LastBusinessDay = travelRequest.LastBusinessDay;
+                        travelRequestData.IsSubmitted = travelRequest.IsSubmitted;
+                        travelRequestData.ModifiedBy = travelRequest.ModifiedBy;
+                        travelRequestData.ModifiedOn = travelRequest.ModifiedOn;
+                        travelRequestData.PickUpDate = travelRequest.PickUpDate;
+                        travelRequestData.PickUpLocation = travelRequest.PickUpLocation;
+                        travelRequestData.PickUpTime = travelRequest.PickUpTime;
+                        travelRequestData.PortOfDestinationID = travelRequest.PortOfDestinationID;
+                        travelRequestData.PortOfOriginID = travelRequest.PortOfOriginID;
+                        travelRequestData.PreferredVehicle = travelRequest.PreferredVehicle;
+                        travelRequestData.PurposeOfVisit = travelRequest.PurposeOfVisit;
+                        travelRequestData.Remarks = travelRequest.Remarks;
+                        travelRequestData.ReturnDate = travelRequest.ReturnDate;
+                        travelRequestData.ReturnTime = travelRequest.ReturnTime;
+                        travelRequestData.RoomCategory = travelRequest.RoomCategory;
+                        travelRequestData.RoomType = travelRequest.RoomType;
+                        travelRequestData.TicketClass = travelRequest.TicketClass;
+                        travelRequestData.TravelAllowance = travelRequest.TravelAllowance;
+                        travelRequestData.TravelDays = travelRequest.TravelDays;
+                        travelRequestData.TravelRemarks = travelRequest.TravelRemarks;
+                        travelRequestData.TravelSector = travelRequest.TravelSector;
+
+
+                        dbcontext.Entry(travelRequestData).State = EntityState.Modified;
+                        dbcontext.TravelRequests.Attach(travelRequestData);
+                        dbcontext.Entry(travelRequestData).Property(x => x.AdditionalAllowance).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.AirportPickUp).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.AirTicketManagement).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ApprovalBy).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ApprovalLevel).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ApprovalRemarks).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CheckInDate).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CheckInTime).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CheckOutDate).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CheckOutTime).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CreatedBy).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CreateOn).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.CurrencyID).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.DailyAllowance).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.DepartureDate).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.DepartureTime).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.DropOffDate).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.DropOffLocation).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.DropOffTime).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.FirstBusinessDay).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.HotelCategory).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.HotelName).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.HotelStay).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.LastBusinessDay).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.IsSubmitted).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ModifiedBy).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ModifiedOn).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PickUpDate).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PickUpLocation).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PickUpTime).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PortOfDestinationID).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PortOfOriginID).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PreferredVehicle).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.PurposeOfVisit).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.Remarks).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ReturnDate).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.ReturnTime).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.RoomCategory).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.RoomType).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.TicketClass).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.TravelAllowance).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.TravelDays).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.TravelRemarks).IsModified = true;
+                        dbcontext.Entry(travelRequestData).Property(x => x.TravelSector).IsModified = true;
+                    }
+                    else
+                    {
+                        dbcontext.TravelRequests.Add(travelRequest);
+                    }
+                    await dbcontext.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
-                TempData["ErrorMessage"] = sberr.ToList();
+                else
+                {
+                    var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                    List<string> sberr = new List<string>();
+                    foreach (var item in errlist)
+                    {
+                        sberr.Add(item[0].ErrorMessage);
+                    }
+                    TempData["ErrorMessage"] = sberr.ToList();
+                }
+
+                ViewBag.Cities = dbcontext.City.ToList();
+                ViewBag.Currencies = dbcontext.Currency.ToList();
+                ViewBag.ApprovalBy = dbcontext.Users.ToList();
+
+                return RedirectToAction("Create", travelRequest);
+
             }
-
-            ViewBag.Cities = db.City.ToList();
-            ViewBag.Currencies = db.Currency.ToList();
-            ViewBag.ApprovalBy = db.Users.ToList();
-
-            return RedirectToAction("Create", travelRequest);
         }
 
         public async Task<ActionResult> Edit(int? id)
         {
-            if (id == null)
+            using (var db = new BTCEntities())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TravelRequests travelRequest = await db.TravelRequests.FindAsync(id);
-            if (travelRequest == null)
-            {
-                return HttpNotFound();
-            }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                TravelRequests travelRequest = await db.TravelRequests.FindAsync(id);
+                if (travelRequest == null)
+                {
+                    return HttpNotFound();
+                }
 
-            ViewBag.Cities = db.City.ToList();
-            ViewBag.Currencies = db.Currency.ToList();
-            ViewBag.ApprovalBy = db.Users.ToList();
+                ViewBag.Cities = db.City.ToList();
+                ViewBag.Currencies = db.Currency.ToList();
+                ViewBag.ApprovalBy = db.Users.ToList();
 
-            checkErrorMessages();
-            return View(travelRequest);
+                checkErrorMessages();
+                return View(travelRequest);
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequests travelRequest, FormCollection collection)
         {
-            MapUserValues(ref travelRequest, ref collection);
-            if (ModelState.IsValid)
+            using (var dbcontext = new BTCEntities())
             {
-                db.Entry(travelRequest).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
-                List<string> sberr = new List<string>();
-                foreach (var item in errlist)
+                MapUserValues(ref travelRequest, ref collection);
+                travelRequest.CreatedBy = dbuser.ID;
+                travelRequest.CreateOn = DateTime.Now;
+                travelRequest.IsSubmitted = false;
+                travelRequest.ApplicationNumber = string.IsNullOrEmpty(collection["applicationNumber"]) ? "" : collection["applicationNumber"].ToString();
+
+                if (ModelState.IsValid)
                 {
-                    sberr.Add(item[0].ErrorMessage);
+                    var travelRequestData = dbcontext.TravelRequests.Where(x => x.ID == travelRequest.ID).FirstOrDefault();
+                    travelRequestData.AdditionalAllowance = travelRequest.AdditionalAllowance;
+                    travelRequestData.AirportPickUp = travelRequest.AirportPickUp;
+                    travelRequestData.AirTicketManagement = travelRequest.AirTicketManagement;
+                    travelRequestData.ApprovalBy = travelRequest.ApprovalBy;
+                    travelRequestData.ApprovalLevel = travelRequest.ApprovalLevel;
+                    travelRequestData.ApprovalRemarks = travelRequest.ApprovalRemarks;
+                    travelRequestData.CheckInDate = travelRequest.CheckInDate;
+                    travelRequestData.CheckInTime = travelRequest.CheckInTime;
+                    travelRequestData.CheckOutDate = travelRequest.CheckOutDate;
+                    travelRequestData.CheckOutTime = travelRequest.CheckOutTime;
+                    travelRequestData.CreatedBy = travelRequest.CreatedBy;
+                    travelRequestData.CreateOn = travelRequest.CreateOn;
+                    travelRequestData.CurrencyID = travelRequest.CurrencyID;
+                    travelRequestData.DailyAllowance = travelRequest.DailyAllowance;
+                    travelRequestData.DepartureDate = travelRequest.DepartureDate;
+                    travelRequestData.DepartureTime = travelRequest.DepartureTime;
+                    travelRequestData.DropOffDate = travelRequest.DropOffDate;
+                    travelRequestData.DropOffLocation = travelRequest.DropOffLocation;
+                    travelRequestData.DropOffTime = travelRequest.DropOffTime;
+                    travelRequestData.FirstBusinessDay = travelRequest.FirstBusinessDay;
+                    travelRequestData.HotelCategory = travelRequest.HotelCategory;
+                    travelRequestData.HotelName = travelRequest.HotelName;
+                    travelRequestData.HotelStay = travelRequest.HotelStay;
+                    travelRequestData.LastBusinessDay = travelRequest.LastBusinessDay;
+                    travelRequestData.IsSubmitted = travelRequest.IsSubmitted;
+                    travelRequestData.ModifiedBy = travelRequest.ModifiedBy;
+                    travelRequestData.ModifiedOn = travelRequest.ModifiedOn;
+                    travelRequestData.PickUpDate = travelRequest.PickUpDate;
+                    travelRequestData.PickUpLocation = travelRequest.PickUpLocation;
+                    travelRequestData.PickUpTime = travelRequest.PickUpTime;
+                    travelRequestData.PortOfDestinationID = travelRequest.PortOfDestinationID;
+                    travelRequestData.PortOfOriginID = travelRequest.PortOfOriginID;
+                    travelRequestData.PreferredVehicle = travelRequest.PreferredVehicle;
+                    travelRequestData.PurposeOfVisit = travelRequest.PurposeOfVisit;
+                    travelRequestData.Remarks = travelRequest.Remarks;
+                    travelRequestData.ReturnDate = travelRequest.ReturnDate;
+                    travelRequestData.ReturnTime = travelRequest.ReturnTime;
+                    travelRequestData.RoomCategory = travelRequest.RoomCategory;
+                    travelRequestData.RoomType = travelRequest.RoomType;
+                    travelRequestData.TicketClass = travelRequest.TicketClass;
+                    travelRequestData.TravelAllowance = travelRequest.TravelAllowance;
+                    travelRequestData.TravelDays = travelRequest.TravelDays;
+                    travelRequestData.TravelRemarks = travelRequest.TravelRemarks;
+                    travelRequestData.TravelSector = travelRequest.TravelSector;
+
+
+                    dbcontext.Entry(travelRequestData).State = EntityState.Modified;
+                    dbcontext.TravelRequests.Attach(travelRequestData);
+                    dbcontext.Entry(travelRequestData).Property(x => x.AdditionalAllowance).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.AirportPickUp).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.AirTicketManagement).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.ApprovalBy).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.ApprovalLevel).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.ApprovalRemarks).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.CheckInDate).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.CheckInTime).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.CheckOutDate).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.CheckOutTime).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.CreatedBy).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.CreateOn).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.CurrencyID).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.DailyAllowance).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.DepartureDate).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.DepartureTime).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.DropOffDate).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.DropOffLocation).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.DropOffTime).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.FirstBusinessDay).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.HotelCategory).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.HotelName).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.HotelStay).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.LastBusinessDay).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.IsSubmitted).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.ModifiedBy).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.ModifiedOn).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.PickUpDate).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.PickUpLocation).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.PickUpTime).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.PortOfDestinationID).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.PortOfOriginID).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.PreferredVehicle).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.PurposeOfVisit).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.Remarks).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.ReturnDate).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.ReturnTime).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.RoomCategory).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.RoomType).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.TicketClass).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.TravelAllowance).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.TravelDays).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.TravelRemarks).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.TravelSector).IsModified = true;
+
+                    await dbcontext.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
-                TempData["ErrorMessage"] = sberr.ToList();
+                else
+                {
+                    var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                    List<string> sberr = new List<string>();
+                    foreach (var item in errlist)
+                    {
+                        sberr.Add(item[0].ErrorMessage);
+                    }
+                    TempData["ErrorMessage"] = sberr.ToList();
+                }
+
+                ViewBag.Cities = dbcontext.City.ToList();
+                ViewBag.Currencies = dbcontext.Currency.ToList();
+                ViewBag.ApprovalBy = dbcontext.Users.ToList();
+
+                checkErrorMessages();
+                return View(travelRequest);
             }
-
-            ViewBag.Cities = db.City.ToList();
-            ViewBag.Currencies = db.Currency.ToList();
-            ViewBag.ApprovalBy = db.Users.ToList();
-
-            checkErrorMessages();
-            return View(travelRequest);
         }
 
         public async Task<ActionResult> Delete(int? id)
         {
-            if (id == null)
+            using (var db = new BTCEntities())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TravelRequests travelRequest = await db.TravelRequests.FindAsync(id);
-            if (travelRequest == null)
-            {
-                return HttpNotFound();
-            }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                TravelRequests travelRequest = await db.TravelRequests.FindAsync(id);
+                if (travelRequest == null)
+                {
+                    return HttpNotFound();
+                }
 
-            ViewBag.Cities = db.City.ToList();
-            ViewBag.Currencies = db.Currency.ToList();
-            ViewBag.ApprovalBy = db.Users.ToList();
+                ViewBag.Cities = db.City.ToList();
+                ViewBag.Currencies = db.Currency.ToList();
+                ViewBag.ApprovalBy = db.Users.ToList();
 
-            checkErrorMessages();
-            return View(travelRequest);
+                checkErrorMessages();
+                return View(travelRequest);
+            }
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            TravelRequests travelRequest = await db.TravelRequests.FindAsync(id);
-            db.TravelRequests.Remove(travelRequest);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+            using (var db = new BTCEntities())
             {
-                db.Dispose();
+                TravelRequests travelRequest = await db.TravelRequests.FindAsync(id);
+                travelRequest.IsDeleted = true;
+                db.TravelRequests.Attach(travelRequest);
+                db.Entry(travelRequest).State = EntityState.Modified;
+                db.Entry(travelRequest).Property(x => x.IsDeleted).IsModified = true;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
             }
-            base.Dispose(disposing);
         }
 
         private void IsLoggedIn(List<string> Role)
@@ -307,13 +618,16 @@ namespace Travel_Request_System_EF.Controllers
 
         public ActionResult PrintTravelRequest(TravelRequests travelRequest)
         {
-            TravelRequests travelRequest1 = db.TravelRequests.Find(1);
+            using (var db = new BTCEntities())
+            {
+                TravelRequests travelRequest1 = db.TravelRequests.Find(1);
 
-            ViewBag.Cities = db.City.ToList();
-            ViewBag.Currencies = db.Currency.ToList();
-            ViewBag.ApprovalBy = db.Users.ToList();
+                ViewBag.Cities = db.City.ToList();
+                ViewBag.Currencies = db.Currency.ToList();
+                ViewBag.ApprovalBy = db.Users.ToList();
 
-            return View();
+                return View();
+            }
         }
 
         private void checkErrorMessages()

@@ -1,551 +1,105 @@
 ﻿@model Travel_Request_System_EF.Models.RFQ
 
 @{
-    ViewBag.Title = "PreviewRFQ";
+    ViewBag.Title = "Preview RFQ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="detailsDiv" style="height:2150px">
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+<div id="detailsDiv" style="height:auto">
 
-        <div class="col-xs-12 col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Employee Information</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-8">
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-sm-3">Application/ Form No.</label>
-                                <div class="col-sm-9" style="">
-                                    @Html.DisplayFor(model => model.TravelRequest.ApplicationNumber, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin-bottom:15px">
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Employee ID</label>
-                                <div class="col-sm-9">
-                                    @Html.DisplayFor(model => model.TravelRequest.UserID, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">BTC Employee Code</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Employee Name</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.FirstName + " " + model.TravelRequest.User.LastName, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Employee Position Code</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Designation</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Department</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Department Head</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Cost Center</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Cost Center Head</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Passport Number</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Passport Epiry</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Qatar ID</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Qatar Expiry</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Location</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Section</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Contact Details</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DisplayFor(model => model.TravelRequest.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        </div>
-                    </div>
+    @Html.Partial("_TravelRequestDetails", Model.TravelRequests)
+
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Remarks</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 </div>
             </div>
-        </div>
-
-        <div class="col-xs-12 col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Air Travel Details</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div style="margin-bottom:15px">
-                    </div>
+            <div class="box-body">
+                @using (Html.BeginForm("FileUpload", "RFQs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
                     <div class="row" style="margin-bottom:15px">
                         <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Port Of Origin</label>
-                                <div class="col-sm-9">
-                                    @{
-                                        var po = ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).FirstOrDefault(rt => rt.CityID == Model.TravelRequest.PortOfOriginID).CityDesc.ToString();
-                                    }
-                                    @po
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Port Of Destination</label>
-                                <div class="col-sm-9">
-                                    @{
-                                        var pd = ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).FirstOrDefault(rt => rt.CityID == Model.TravelRequest.PortOfDestinationID).CityDesc.ToString();
-                                    }
-                                    @pd
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Ticket Class</label>
-                                <div class="col-sm-9">
-                                    @Html.DisplayFor(model => model.TravelRequest.TicketClass, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Airlines</label>
-                                <div class="col-sm-9">
-                                    @Html.DisplayFor(model => model.TravelRequest.ApplicationNumber, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Departure Date</label>
-                                <div class="col-sm-9">
-                                    @if (Model.TravelRequest.DepartureDate != null)
-                                    {
-                                        string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.TravelRequest.DepartureDate).ToString()));
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Return Date</label>
-                                <div class="col-sm-9">
-                                    @if (Model.TravelRequest.ReturnDate != null)
-                                    {
-                                        string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.TravelRequest.ReturnDate).ToString()));
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Preferred Departure Time</label>
-                                <div class="col-sm-9">
-                                    @if (Model.TravelRequest.DepartureTime != null)
-                                    {
-                                        string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.TravelRequest.DepartureTime).ToString()));
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Preferred Return Time</label>
-                                <div class="col-sm-9">
-                                    @if (Model.TravelRequest.ReturnTime != null)
-                                    {
-                                        string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.TravelRequest.ReturnTime).ToString()));
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Hotel Stay Details</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div style="margin-bottom:15px">
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Travel Sector</label>
-                                <div class="col-sm-9">
-                                    @Html.DisplayFor(model => model.TravelRequest.AirTicketManagement, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Hotel Name</label>
-                                <div class="col-sm-9">
-                                    @Html.DisplayFor(model => model.TravelRequest.HotelName, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Check In Date</label>
-                                <div class="col-sm-9">
-                                    @if (Model.TravelRequest.CheckInDate != null)
-                                    {
-                                        string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.TravelRequest.CheckInDate).ToString()));
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Check In Time</label>
-                                <div class="col-sm-9">
-                                    @if (Model.TravelRequest.CheckInTime != null)
-                                    {
-                                        string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.TravelRequest.CheckInTime).ToString()));
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Hotel Category</label>
-                                <div class="col-sm-9">
-                                    @Html.DisplayFor(model => model.TravelRequest.HotelCategory, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Check Out Date</label>
-                                <div class="col-sm-9">
-                                    @if (Model.TravelRequest.CheckOutDate != null)
-                                    {
-                                        string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.TravelRequest.CheckOutDate).ToString()));
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Room Category</label>
-                                <div class="col-sm-9">
-                                    @Html.DisplayFor(model => model.TravelRequest.RoomCategory, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Check Out Time</label>
-                                <div class="col-sm-9">
-                                    @if (Model.TravelRequest.CheckOutTime != null)
-                                    {
-                                        string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.TravelRequest.CheckOutTime).ToString()));
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Room Type</label>
-                                <div class="col-sm-9">
-                                    @Html.DisplayFor(model => model.TravelRequest.RoomType, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Airpot Pick Up Details</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div style="margin-bottom:15px">
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Travel Sector</label>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        @Html.DisplayFor(model => model.TravelRequest.PickUpLocation, new { htmlAttributes = new { @class = "form-control" } })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Pick Up Location</label>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        @Html.DisplayFor(model => model.TravelRequest.PickUpLocation, new { htmlAttributes = new { @class = "form-control" } })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Pick Up Date</label>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        @if (Model.TravelRequest.PickUpDate != null)
-                                        {
-                                            string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.TravelRequest.PickUpDate).ToString()));
-                                        }
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Pick Up Time</label>
-                                <div class="col-sm-9">
-                                    @if (Model.TravelRequest.PickUpTime != null)
-                                    {
-                                        string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.TravelRequest.PickUpTime).ToString()));
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Drop Off Location</label>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        @Html.DisplayFor(model => model.TravelRequest.DropOffLocation, new { htmlAttributes = new { @class = "form-control" } })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Preferred Vehicle Type</label>
-                                <div class="col-sm-9">
-                                    @Html.DisplayFor(model => model.TravelRequest.PreferredVehicle, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Drop Off Date</label>
-                                <div class="col-sm-9">
-                                    <dAiv class="form-group">
-                                        @if (Model.TravelRequest.DropOffDate != null)
-                                        {
-                                            string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Html.DisplayFor(model => model.TravelRequest.DropOffDate).ToString()));
-                                        }
-                                    </dAiv>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Drop Off Time</label>
-                                <div class="col-sm-9">
-                                    @if (Model.TravelRequest.DropOffTime != null)
-                                    {
-                                        string.Format("{0:hh:mm tt}", Convert.ToDateTime(Html.DisplayFor(model => model.TravelRequest.DropOffTime).ToString()));
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Remarks</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="col-sm-3">Travel Agency</label>
-                                <div class="col-sm-9">
-                                    @{
-                                        var ta = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgencies).FirstOrDefault(rt => rt.AgencyID == Model.TravelAgencyID).CompanyName.ToString();
-                                    }
-                                    @ta
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label class="col-sm-3">Attachment</label>
                                 <div class="col-sm-9">
+                                    <input type="file" class="btn btn-default" id="filenames" name="file" />
+                                </div>
+                            </div>
+                        </div><div class="col-sm-6">
+                            <button type="submit" name="Save" class="btn btn-info">Upload Files</button>
+                        </div>
+                    </div>
+                }
+                @if (ViewBag.fileUploader != null && ViewBag.fileUploader.Count > 0)
+                {
+                    <div class="row" style="margin-bottom:15px">
+                        <aside class="right-side">
+                            <!-- Main content -->
+                            <section class="content">
+                                <div class="container text-center">
+                                    <div class="col-xs-11">
+                                        <div class="box with-border">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Details</h3>
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body table-responsive">
+                                                <table id="uloadTable" class="table table-bordered table-hover table-responsive">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>File Name</th>
+                                                            <th>Uploaded Date</th>
+                                                            <th>Uploaded By</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewBag.fileUploader)
+                                                        {
+                                                            <tr id="@item.FileName">
+                                                                <td>@item.FileName</td>
+                                                                <td>@item.UploadedDate.ToShortDateString()</td>
+                                                                <td>@(new HtmlString(item.Users.FirstName + " " + item.Users.LastName))</td>
+                                                                <td style="text-align: center">
+                                                                    @Html.ActionLink("  Open File", "OpenFile", new { fileName = item.FileName }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                                                                </td>
+                                                                <td>
 
+                                                                    @using (Html.BeginForm("RemoveUploadFile", "RFQs", new { fileName = item.FileName }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                                    {
+                                                                        @Html.AntiForgeryToken()
+                                                                        <button type="submit" class="form-control btn btn-info glyphicon-edit">Delete File</button>
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </aside>
+                    </div>
+                }
+                @using (Html.BeginForm("PreviewRFQ", "RFQs", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row" style="margin-bottom:15px">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3">Travel Agency</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownListFor(model => model.TravelAgencyID, ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).Select(m => new SelectListItem { Text = m.AgencyCode, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6"></div>
                     </div>
                     <div class="row" style="margin-bottom:15px">
                         <div class="col-sm-12">
@@ -558,18 +112,63 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="row" style="margin-bottom:15px">
+                        <div class="col-md-3">
+                            <input type="submit" class="form-control btn btn-info btn-primary" value="Create RFQ" />
+                        </div>
+                        <div class="col-md-9">
+                        </div>
+                    </div>
+                }
             </div>
         </div>
-
-        <div class="row" style="margin-bottom:15px">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="submit" class="form-control btn btn-info btn-primary" value="Create RFQ" />
-                </div>
-            </div>
-        </div>
-
-    }
     </div>
+</div>
 
+@section Scripts {
+    <script type="text/javascript">
+                                //$(document).ready(function () {
+                                //    $('#uloadTable td a.Deletefilelink').click(function () {
+                                //        event.preventDefault();
+
+                                //        var filename = $(this).parent().parent().attr('id');
+                                //        $(this).parent().parent().remove();
+
+                                //        $.ajax({
+                                //            type: "post",
+                                //            url: "/FileUpload/RemoveUploadFile?fileName=" + filename,
+                                //            datatype: "json",
+                                //            traditional: true,
+                                //            success: function (data) {
+                                //                alert('File Deleted');
+                                //                if (data == 0) {
+                                //                    $('#uloadTable').remove();
+                                //                }
+                                //            }
+                                //        });
+                                //    });
+                                //});
+
+                                //$("#uploadFileForm").on('submit', function (event) {
+                                //    event.preventDefault();
+                                //    // create form data
+                                //    var formData = new FormData();
+                                //    //grab the file that was provided by the user
+                                //    var file = $('#filenames')[0].files[0];
+                                //    // Loop through each of the selected files.
+                                //    formData.append('file', file);
+                                //    if (file) {
+                                //        // Perform the ajax post
+                                //        $.ajax({
+                                //            url: '/RFQs/FileUpload',
+                                //            data: formData,
+                                //            processData: false,
+                                //            contentType: false,
+                                //            type: 'POST',
+                                //            success: function (data) {
+                                //            }
+                                //        });
+                                //    }
+                                //});
+    </script>
+}

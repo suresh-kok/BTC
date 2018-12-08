@@ -36,8 +36,11 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FilePath" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="FileType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UploadedDate" Type="datetime" Nullable="false" />
+          <Property Name="UploadedBy" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -267,9 +270,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TravelAgencyID" Type="int" Nullable="false" />
-          <Property Name="TravelRequestID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="TravelAgencyID" Type="int" />
+          <Property Name="TravelRequestID" Type="int" />
+          <Property Name="UserID" Type="int" />
           <Property Name="Remarks" Type="nvarchar(max)" />
           <Property Name="Processing" Type="int" Nullable="false" />
           <Property Name="ProcessingSection" Type="int" Nullable="false" />
@@ -433,7 +436,7 @@
               <PropertyRef Name="PortOfOriginID" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
+        </Association>        
         <Association Name="fk_ATQuotation_DestinationID">
           <End Role="City" Type="Self.City" Multiplicity="0..1" />
           <End Role="ATQuotation" Type="Self.ATQuotation" Multiplicity="*" />
@@ -467,6 +470,18 @@
             </Principal>
             <Dependent Role="ATQuotation">
               <PropertyRef Name="QuotationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attachments_UploadedBy">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Attachments" Type="Self.Attachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attachments">
+              <PropertyRef Name="UploadedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -688,18 +703,18 @@
         </Association>
         <Association Name="fk_RFQ_AttachmentID">
           <End Role="Attachments" Type="Self.Attachments" Multiplicity="1" />
-          <End Role="AttachmentLink" Type="Self.AttachmentLink" Multiplicity="0..1" />
+          <End Role="AttachmentLink" Type="Self.AttachmentLink" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Attachments">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="AttachmentLink">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="AttachmentForID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_RFQ_TravelAgencyID">
-          <End Role="TravelAgency" Type="Self.TravelAgency" Multiplicity="1" />
+          <End Role="TravelAgency" Type="Self.TravelAgency" Multiplicity="0..1" />
           <End Role="RFQ" Type="Self.RFQ" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TravelAgency">
@@ -711,7 +726,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_RFQ_TravelRequestID">
-          <End Role="TravelRequests" Type="Self.TravelRequests" Multiplicity="1" />
+          <End Role="TravelRequests" Type="Self.TravelRequests" Multiplicity="0..1" />
           <End Role="RFQ" Type="Self.RFQ" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TravelRequests">
@@ -723,7 +738,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_RFQ_UserID">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="RFQ" Type="Self.RFQ" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -813,6 +828,10 @@
           <AssociationSet Name="fk_ATQuotation_QuotationID" Association="Self.fk_ATQuotation_QuotationID">
             <End Role="Quotation" EntitySet="Quotation" />
             <End Role="ATQuotation" EntitySet="ATQuotation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attachments_UploadedBy" Association="Self.FK_Attachments_UploadedBy">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Attachments" EntitySet="Attachments" />
           </AssociationSet>
           <AssociationSet Name="FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" Association="Self.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues">
             <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
@@ -936,24 +955,6 @@
           <NavigationProperty Name="City1" Relationship="Self.fk_ATQuotation_OriginID" FromRole="ATQuotation" ToRole="City" />
           <NavigationProperty Name="Quotation" Relationship="Self.fk_ATQuotation_QuotationID" FromRole="ATQuotation" ToRole="Quotation" />
         </EntityType>
-        <EntityType Name="AttachmentLink">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AttachmentFor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AttachmentForID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Attachments" Relationship="Self.fk_RFQ_AttachmentID" FromRole="AttachmentLink" ToRole="Attachments" />
-        </EntityType>
-        <EntityType Name="Attachments">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FilePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FileType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AttachmentLink" Relationship="Self.fk_RFQ_AttachmentID" FromRole="Attachments" ToRole="AttachmentLink" />
-        </EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="ID" />
@@ -1072,7 +1073,7 @@
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Quotation" Relationship="Self.fk_LPO_QuotationID" FromRole="LPO" ToRole="Quotation" />
-          <NavigationProperty Name="RFQ" Relationship="Self.fk_LPO_RFQID" FromRole="LPO" ToRole="RFQ" />
+          <NavigationProperty Name="RFQ" Relationship="HRWorksEntities.fk_LPO_RFQID" FromRole="LPO" ToRole="RFQ" />
         </EntityType>
         <EntityType Name="ORG_ChartMaster">
           <Key>
@@ -1215,23 +1216,6 @@
           <NavigationProperty Name="Users" Relationship="Self.fk_Quotation_UserID" FromRole="Quotation" ToRole="Users" />
           <NavigationProperty Name="TravelAgency" Relationship="HRWorksEntities.fk_Quotation_TravelAgencyID" FromRole="Quotation" ToRole="TravelAgency" />
         </EntityType>
-        <EntityType Name="RFQ">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TravelAgencyID" Type="Int32" Nullable="false" />
-          <Property Name="TravelRequestID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Processing" Type="Int32" Nullable="false" />
-          <Property Name="ProcessingSection" Type="Int32" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <NavigationProperty Name="LPO" Relationship="Self.fk_LPO_RFQID" FromRole="RFQ" ToRole="LPO" />
-          <NavigationProperty Name="TravelRequests" Relationship="Self.fk_RFQ_TravelRequestID" FromRole="RFQ" ToRole="TravelRequests" />
-          <NavigationProperty Name="Users" Relationship="Self.fk_RFQ_UserID" FromRole="RFQ" ToRole="Users" />
-          <NavigationProperty Name="TravelAgency" Relationship="HRWorksEntities.fk_RFQ_TravelAgencyID" FromRole="RFQ" ToRole="TravelAgency" />
-        </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="ID" />
@@ -1296,9 +1280,9 @@
           <NavigationProperty Name="City1" Relationship="Self.FK__TravelReq_PortOfO" FromRole="TravelRequests" ToRole="City" />
           <NavigationProperty Name="Currency" Relationship="Self.FK__TravelReq_Currency" FromRole="TravelRequests" ToRole="Currency" />
           <NavigationProperty Name="Quotation" Relationship="Self.fk_Quotation_TravelRequestID" FromRole="TravelRequests" ToRole="Quotation" />
-          <NavigationProperty Name="RFQ" Relationship="Self.fk_RFQ_TravelRequestID" FromRole="TravelRequests" ToRole="RFQ" />
           <NavigationProperty Name="Users" Relationship="Self.FK__TravelReq__ApprovalBy" FromRole="TravelRequests" ToRole="Users" />
           <NavigationProperty Name="Users1" Relationship="Self.FK__TravelReq_CreatedBy" FromRole="TravelRequests" ToRole="Users" />
+          <NavigationProperty Name="RFQ" Relationship="HRWorksEntities.fk_RFQ_TravelRequestID" FromRole="TravelRequests" ToRole="RFQ" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -1315,10 +1299,11 @@
           <Property Name="HREmployeeID" Type="Int64" />
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Quotation" Relationship="Self.fk_Quotation_UserID" FromRole="Users" ToRole="Quotation" />
-          <NavigationProperty Name="RFQ" Relationship="Self.fk_RFQ_UserID" FromRole="Users" ToRole="RFQ" />
           <NavigationProperty Name="TravelRequests" Relationship="Self.FK__TravelReq__ApprovalBy" FromRole="Users" ToRole="TravelRequests" />
           <NavigationProperty Name="TravelRequests1" Relationship="Self.FK__TravelReq_CreatedBy" FromRole="Users" ToRole="TravelRequests" />
           <NavigationProperty Name="Roles" Relationship="Self.UserRole" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="RFQ" Relationship="HRWorksEntities.fk_RFQ_UserID" FromRole="Users" ToRole="RFQ" />
+          <NavigationProperty Name="Attachments" Relationship="HRWorksEntities.FK_Attachments_UploadedBy" FromRole="Users" ToRole="Attachments" />
         </EntityType>
         <Association Name="fk_ATQuotation_DestinationID">
           <End Role="City" Type="Self.City" Multiplicity="0..1" />
@@ -1353,18 +1338,6 @@
             </Principal>
             <Dependent Role="ATQuotation">
               <PropertyRef Name="QuotationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_RFQ_AttachmentID">
-          <End Role="Attachments" Type="Self.Attachments" Multiplicity="1" />
-          <End Role="AttachmentLink" Type="Self.AttachmentLink" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Attachments">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="AttachmentLink">
-              <PropertyRef Name="ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1512,18 +1485,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_LPO_RFQID">
-          <End Role="RFQ" Type="Self.RFQ" Multiplicity="0..1" />
-          <End Role="LPO" Type="Self.LPO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RFQ">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="LPO">
-              <PropertyRef Name="RFQID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ORG_EntityType_ORG_ChartMaster">
           <End Role="ORG_ChartMaster" Type="Self.ORG_ChartMaster" Multiplicity="1" />
           <End Role="ORG_EntityType" Type="Self.ORG_EntityType" Multiplicity="*" />
@@ -1608,30 +1569,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_RFQ_TravelRequestID">
-          <End Role="TravelRequests" Type="Self.TravelRequests" Multiplicity="1" />
-          <End Role="RFQ" Type="Self.RFQ" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TravelRequests">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="RFQ">
-              <PropertyRef Name="TravelRequestID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_RFQ_UserID">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="RFQ" Type="Self.RFQ" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="RFQ">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__TravelReq__ApprovalBy">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="TravelRequests" Type="Self.TravelRequests" Multiplicity="*" />
@@ -1662,8 +1599,6 @@
         </Association>
         <EntityContainer Name="BTCEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ATQuotation" EntityType="Self.ATQuotation" />
-          <EntitySet Name="AttachmentLink" EntityType="Self.AttachmentLink" />
-          <EntitySet Name="Attachments" EntityType="Self.Attachments" />
           <EntitySet Name="City" EntityType="Self.City" />
           <EntitySet Name="Currency" EntityType="Self.Currency" />
           <EntitySet Name="HRW_Company" EntityType="Self.HRW_Company" />
@@ -1678,7 +1613,6 @@
           <EntitySet Name="ORG_EntityTypeParam" EntityType="Self.ORG_EntityTypeParam" />
           <EntitySet Name="PCQuotation" EntityType="Self.PCQuotation" />
           <EntitySet Name="Quotation" EntityType="Self.Quotation" />
-          <EntitySet Name="RFQ" EntityType="Self.RFQ" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="TravelRequests" EntityType="Self.TravelRequests" />
           <EntitySet Name="Users" EntityType="Self.Users" />
@@ -1693,10 +1627,6 @@
           <AssociationSet Name="fk_ATQuotation_QuotationID" Association="Self.fk_ATQuotation_QuotationID">
             <End Role="Quotation" EntitySet="Quotation" />
             <End Role="ATQuotation" EntitySet="ATQuotation" />
-          </AssociationSet>
-          <AssociationSet Name="fk_RFQ_AttachmentID" Association="Self.fk_RFQ_AttachmentID">
-            <End Role="Attachments" EntitySet="Attachments" />
-            <End Role="AttachmentLink" EntitySet="AttachmentLink" />
           </AssociationSet>
           <AssociationSet Name="FK__TravelReq_PortOfD" Association="Self.FK__TravelReq_PortOfD">
             <End Role="City" EntitySet="City" />
@@ -1746,10 +1676,6 @@
             <End Role="Quotation" EntitySet="Quotation" />
             <End Role="LPO" EntitySet="LPO" />
           </AssociationSet>
-          <AssociationSet Name="fk_LPO_RFQID" Association="Self.fk_LPO_RFQID">
-            <End Role="RFQ" EntitySet="RFQ" />
-            <End Role="LPO" EntitySet="LPO" />
-          </AssociationSet>
           <AssociationSet Name="FK_ORG_EntityType_ORG_ChartMaster" Association="Self.FK_ORG_EntityType_ORG_ChartMaster">
             <End Role="ORG_ChartMaster" EntitySet="ORG_ChartMaster" />
             <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
@@ -1778,14 +1704,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Quotation" EntitySet="Quotation" />
           </AssociationSet>
-          <AssociationSet Name="fk_RFQ_TravelRequestID" Association="Self.fk_RFQ_TravelRequestID">
-            <End Role="TravelRequests" EntitySet="TravelRequests" />
-            <End Role="RFQ" EntitySet="RFQ" />
-          </AssociationSet>
-          <AssociationSet Name="fk_RFQ_UserID" Association="Self.fk_RFQ_UserID">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="RFQ" EntitySet="RFQ" />
-          </AssociationSet>
           <AssociationSet Name="FK__TravelReq__ApprovalBy" Association="Self.FK__TravelReq__ApprovalBy">
             <End Role="Users" EntitySet="Users" />
             <End Role="TravelRequests" EntitySet="TravelRequests" />
@@ -1798,7 +1716,12 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="RFQ" EntityType="HRWorksEntities.RFQ" />
           <EntitySet Name="TravelAgency" EntityType="HRWorksEntities.TravelAgency" />
+          <AssociationSet Name="fk_LPO_RFQID" Association="HRWorksEntities.fk_LPO_RFQID">
+            <End Role="RFQ" EntitySet="RFQ" />
+            <End Role="LPO" EntitySet="LPO" />
+          </AssociationSet>
           <AssociationSet Name="fk_Quotation_TravelAgencyID" Association="HRWorksEntities.fk_Quotation_TravelAgencyID">
             <End Role="TravelAgency" EntitySet="TravelAgency" />
             <End Role="Quotation" EntitySet="Quotation" />
@@ -1807,7 +1730,42 @@
             <End Role="TravelAgency" EntitySet="TravelAgency" />
             <End Role="RFQ" EntitySet="RFQ" />
           </AssociationSet>
+          <AssociationSet Name="fk_RFQ_TravelRequestID" Association="HRWorksEntities.fk_RFQ_TravelRequestID">
+            <End Role="TravelRequests" EntitySet="TravelRequests" />
+            <End Role="RFQ" EntitySet="RFQ" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RFQ_UserID" Association="HRWorksEntities.fk_RFQ_UserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RFQ" EntitySet="RFQ" />
+          </AssociationSet>
+          <EntitySet Name="Attachments" EntityType="HRWorksEntities.Attachments" />
+          <AssociationSet Name="FK_Attachments_UploadedBy" Association="HRWorksEntities.FK_Attachments_UploadedBy">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Attachments" EntitySet="Attachments" />
+          </AssociationSet>
+          <EntitySet Name="AttachmentLink" EntityType="HRWorksEntities.AttachmentLink" />
+          <AssociationSet Name="fk_RFQ_AttachmentID" Association="HRWorksEntities.fk_RFQ_AttachmentID">
+            <End Role="Attachments" EntitySet="Attachments" />
+            <End Role="AttachmentLink" EntitySet="AttachmentLink" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="RFQ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TravelAgencyID" Type="Int32" />
+          <Property Name="TravelRequestID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Processing" Type="Int32" Nullable="false" />
+          <Property Name="ProcessingSection" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="LPO" Relationship="HRWorksEntities.fk_LPO_RFQID" FromRole="RFQ" ToRole="LPO" />
+          <NavigationProperty Name="TravelAgency" Relationship="HRWorksEntities.fk_RFQ_TravelAgencyID" FromRole="RFQ" ToRole="TravelAgency" />
+          <NavigationProperty Name="TravelRequests" Relationship="HRWorksEntities.fk_RFQ_TravelRequestID" FromRole="RFQ" ToRole="TravelRequests" />
+          <NavigationProperty Name="Users" Relationship="HRWorksEntities.fk_RFQ_UserID" FromRole="RFQ" ToRole="Users" />
+        </EntityType>
         <EntityType Name="TravelAgency">
           <Key>
             <PropertyRef Name="ID" />
@@ -1826,6 +1784,18 @@
           <NavigationProperty Name="Quotation" Relationship="HRWorksEntities.fk_Quotation_TravelAgencyID" FromRole="TravelAgency" ToRole="Quotation" />
           <NavigationProperty Name="RFQ" Relationship="HRWorksEntities.fk_RFQ_TravelAgencyID" FromRole="TravelAgency" ToRole="RFQ" />
         </EntityType>
+        <Association Name="fk_LPO_RFQID">
+          <End Type="HRWorksEntities.RFQ" Role="RFQ" Multiplicity="0..1" />
+          <End Type="HRWorksEntities.LPO" Role="LPO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RFQ">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LPO">
+              <PropertyRef Name="RFQID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Quotation_TravelAgencyID">
           <End Type="HRWorksEntities.TravelAgency" Role="TravelAgency" Multiplicity="1" />
           <End Type="HRWorksEntities.Quotation" Role="Quotation" Multiplicity="*" />
@@ -1839,7 +1809,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_RFQ_TravelAgencyID">
-          <End Type="HRWorksEntities.TravelAgency" Role="TravelAgency" Multiplicity="1" />
+          <End Type="HRWorksEntities.TravelAgency" Role="TravelAgency" Multiplicity="0..1" />
           <End Type="HRWorksEntities.RFQ" Role="RFQ" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TravelAgency">
@@ -1847,6 +1817,76 @@
             </Principal>
             <Dependent Role="RFQ">
               <PropertyRef Name="TravelAgencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RFQ_TravelRequestID">
+          <End Type="HRWorksEntities.TravelRequests" Role="TravelRequests" Multiplicity="0..1" />
+          <End Type="HRWorksEntities.RFQ" Role="RFQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TravelRequests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RFQ">
+              <PropertyRef Name="TravelRequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RFQ_UserID">
+          <End Type="HRWorksEntities.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="HRWorksEntities.RFQ" Role="RFQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RFQ">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Attachments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FilePath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UploadedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UploadedBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="HRWorksEntities.FK_Attachments_UploadedBy" FromRole="Attachments" ToRole="Users" />
+          <NavigationProperty Name="AttachmentLink" Relationship="HRWorksEntities.fk_RFQ_AttachmentID" FromRole="Attachments" ToRole="AttachmentLink" />
+        </EntityType>
+        <Association Name="FK_Attachments_UploadedBy">
+          <End Type="HRWorksEntities.Users" Role="Users" Multiplicity="1" />
+          <End Type="HRWorksEntities.Attachments" Role="Attachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attachments">
+              <PropertyRef Name="UploadedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AttachmentLink">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttachmentFor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AttachmentForID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Attachments" Relationship="HRWorksEntities.fk_RFQ_AttachmentID" FromRole="AttachmentLink" ToRole="Attachments" />
+        </EntityType>
+        <Association Name="fk_RFQ_AttachmentID">
+          <End Type="HRWorksEntities.Attachments" Role="Attachments" Multiplicity="1" />
+          <End Type="HRWorksEntities.AttachmentLink" Role="AttachmentLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attachments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AttachmentLink">
+              <PropertyRef Name="AttachmentForID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1872,24 +1912,6 @@
                 <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AttachmentLink">
-            <EntityTypeMapping TypeName="HRWorksEntities.AttachmentLink">
-              <MappingFragment StoreEntitySet="AttachmentLink">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="AttachmentFor" ColumnName="AttachmentFor" />
-                <ScalarProperty Name="AttachmentForID" ColumnName="AttachmentForID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Attachments">
-            <EntityTypeMapping TypeName="HRWorksEntities.Attachments">
-              <MappingFragment StoreEntitySet="Attachments">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
-                <ScalarProperty Name="FileType" ColumnName="FileType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2130,20 +2152,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RFQ">
-            <EntityTypeMapping TypeName="HRWorksEntities.RFQ">
-              <MappingFragment StoreEntitySet="RFQ">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="TravelAgencyID" ColumnName="TravelAgencyID" />
-                <ScalarProperty Name="TravelRequestID" ColumnName="TravelRequestID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Processing" ColumnName="Processing" />
-                <ScalarProperty Name="ProcessingSection" ColumnName="ProcessingSection" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="HRWorksEntities.Roles">
               <MappingFragment StoreEntitySet="Roles">
@@ -2230,6 +2238,20 @@
               <ScalarProperty Name="ID" ColumnName="UserID" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="RFQ">
+            <EntityTypeMapping TypeName="HRWorksEntities.RFQ">
+              <MappingFragment StoreEntitySet="RFQ">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ProcessingSection" ColumnName="ProcessingSection" />
+                <ScalarProperty Name="Processing" ColumnName="Processing" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TravelRequestID" ColumnName="TravelRequestID" />
+                <ScalarProperty Name="TravelAgencyID" ColumnName="TravelAgencyID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TravelAgency">
             <EntityTypeMapping TypeName="HRWorksEntities.TravelAgency">
               <MappingFragment StoreEntitySet="TravelAgency">
@@ -2243,6 +2265,27 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="AgencyCode" ColumnName="AgencyCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attachments">
+            <EntityTypeMapping TypeName="HRWorksEntities.Attachments">
+              <MappingFragment StoreEntitySet="Attachments">
+                <ScalarProperty Name="UploadedBy" ColumnName="UploadedBy" />
+                <ScalarProperty Name="UploadedDate" ColumnName="UploadedDate" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttachmentLink">
+            <EntityTypeMapping TypeName="HRWorksEntities.AttachmentLink">
+              <MappingFragment StoreEntitySet="AttachmentLink">
+                <ScalarProperty Name="AttachmentForID" ColumnName="AttachmentForID" />
+                <ScalarProperty Name="AttachmentFor" ColumnName="AttachmentFor" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

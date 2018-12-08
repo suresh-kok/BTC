@@ -106,6 +106,7 @@ namespace Travel_Request_System_EF.Controllers
                 if (ModelState.IsValid)
                 {
                     travelRequest.ApprovalLevel = (int)ApprovalLevels.ApprovedByHR;
+                    travelRequest.ApprovalRemarks = "HR Remarks: " + dbuser.FirstName + " " + dbuser.LastName + " Updated On: " + DateTime.Now.ToLongDateString() + travelRequest.ApprovalRemarks;
                     db.TravelRequests.Add(travelRequest);
                     db.SaveChanges();
                     NotificationEmail(travelRequest, true);
@@ -139,6 +140,7 @@ namespace Travel_Request_System_EF.Controllers
                 if (ModelState.IsValid)
                 {
                     travelRequest.ApprovalLevel = (int)ApprovalLevels.RejectedByHR;
+                    travelRequest.ApprovalRemarks = "HR Remarks: " + dbuser.FirstName + " " + dbuser.LastName + " Updated On: " + DateTime.Now.ToLongDateString() + travelRequest.ApprovalRemarks;
                     db.TravelRequests.Add(travelRequest);
                     db.SaveChanges();
                     NotificationEmail(travelRequest, false);
@@ -215,6 +217,7 @@ namespace Travel_Request_System_EF.Controllers
                 if (ModelState.IsValid)
                 {
                     travelRequest.ApprovalLevel = (int)ApprovalLevels.ApprovedByManager;
+                    travelRequest.ApprovalRemarks = "Manager Remarks: " + dbuser.FirstName + " " + dbuser.LastName + " Updated On: " + DateTime.Now.ToLongDateString() + travelRequest.ApprovalRemarks;
                     db.TravelRequests.Add(travelRequest);
                     db.SaveChanges();
                     NotificationEmail(travelRequest, true);
@@ -248,6 +251,7 @@ namespace Travel_Request_System_EF.Controllers
                 if (ModelState.IsValid)
                 {
                     travelRequest.ApprovalLevel = (int)ApprovalLevels.RejectedByManager;
+                    travelRequest.ApprovalRemarks = "Manager Remarks: " + dbuser.FirstName + " " + dbuser.LastName + " Updated On: " + DateTime.Now.ToLongDateString() + travelRequest.ApprovalRemarks;
                     db.TravelRequests.Add(travelRequest);
                     db.SaveChanges();
                     NotificationEmail(travelRequest, false);

@@ -1,941 +1,684 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>
-        Travel Request Details -
-        AdminLTE
-    </title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <link href="Content/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="Content/css/bootstrap.css" rel="stylesheet" />
-    <link href="Content/css/bootstrap-select.css" rel="stylesheet" />
-    <link href="Content/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
-    <link href="Content/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="Content/css/icheck/blue.min.css" rel="stylesheet" />
-    <link href="Content/css/AdminLTE.css" rel="stylesheet" />
-    <link href="Content/js/plugins/select2/select2.css" rel="stylesheet" />
-    <link href="Content/js/plugins/timepicker/bootstrap-timepicker.css" rel="stylesheet" />
-    <link href="Content/css/skins/skin-blue.css" rel="stylesheet" />
+﻿@model Travel_Request_System_EF.Models.TravelRequests
+@using  Travel_Request_System_EF.Models.ViewModel
 
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-        <header class="main-header">
-            <a href="/BTC" class="logo">
-                <span class="logo-mini"><b>BTC</b></span>
-                <span class="logo-lg"><b>BTC</b></span>
-            </a>
-
-            <nav class="navbar navbar-static-top" role="navigation">
-                <div class="navbar-header">
-                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                    </a>
-                    <a href="/BTC" class="navbar-brand"><b>Travel Request System</b></a>
+<div id="detailsDiv" style="height:auto">
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default collapsed-box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Employee Information</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
                 </div>
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="label label-success">4</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 4 messages</li>
-                                <li>
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                </div>
-                                                <h4>
-                                                    Support Team
-                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                </h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">See All Messages</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">0</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have no new updates</li>
-                                <li>
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="/BTC/ViewTravelRequests">
-                                                <i class="fa fa-users text-aqua"></i>
-                                                <span class="label label-warning">No New Updates</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="/BTC/ViewTravelRequests">View all</a></li>
-                            </ul>
-                        </li>
-
-
-                        <li class="dropdown tasks-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">9</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 9 tasks</li>
-                                <li>
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="#">
-                                                <h3>
-                                                    Design some buttons
-                                                    <small class="pull-right">20%</small>
-                                                </h3>
-                                                <div class="progress xs">
-
-                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">20% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer">
-                                    <a href="#">View all tasks</a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
-                                <span class="hidden-xs">F Admin L Admin</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="user-header">
-
-                                    <p>
-                                        F Admin L Admin
-                                        <small>Admin</small>
-                                    </p>
-                                </li>
-                                <li class="user-body">
-                                    <div class="row">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Followers</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Sales</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="/BTC/EmployeeDetails" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="/" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li>
-                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                        </li>
-
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <aside class="main-sidebar">
-            <section class="sidebar">
-
-
-
-
-                <ul class="sidebar-menu" data-widget="tree">
-
-                    <li>
-                        <a href="/BTC/EmployeeDashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a>
-                    </li>
-                    <li>
-                        <a href="/TravelRequests/Create"><i class="fa fa-link"></i> <span>Raise Travel Request</span></a>
-                    </li>
-                    <li>
-                        <a href="/BTC/ManageEmployees"><i class="fa fa-link"></i> <span>Manage Employees</span></a>
-                    </li>
-                    <li>
-                        <a href="/BTC/ManageUsers"><i class="fa fa-link"></i> <span>Manage Users</span></a>
-                    </li>
-                    <li>
-                        <a href="/TravelRequests"><i class="fa fa-link"></i> <span>View Travel Requests</span></a>
-                    </li>
-                    <li>
-                        <a href="/BTC/ManageRFQ"><i class="fa fa-link"></i> <span>Manage RFQ</span></a>
-                    </li>
-                    <li>
-                        <a href="/BTC/ManageTravelAgency"><i class="fa fa-link"></i> <span>Manage Travel Agencies</span></a>
-                    </li>
-                    <li>
-                        <a href="/BTC/ManageLPO"><i class="fa fa-link"></i> <span>Manage LPO</span></a>
-                    </li>
-                    <li>
-                        <a href="/BTC/Reports"><i class="fa fa-link"></i> <span>Reports</span></a>
-                    </li>
-                    <li>
-                        <a href="/BTC/EmployeeDetails"><i class="fa fa-link"></i> <span>View Personal Details</span></a>
-                    </li>
-                    <li>
-                        <a href="/BTC/OrganisationalChart"><i class="fa fa-link"></i> <span>Organisational Chart</span></a>
-                    </li>
-                    <li>
-                        <a href="/BTC/ChangePassword"><i class="fa fa-link"></i> <span>Change Password</span></a>
-                    </li>
-                </ul>
-
-            </section>
-        </aside>
-
-
-        <div class="content-wrapper">
-            <section class="content-header">
-                <h1>
-                    Travel Request Details
-                    <small></small>
-                </h1>
-            </section>
-
-            <section class="content">
-
-
-
-                <div id="detailsDiv" style="height:2150px">
-                    <div class="col-xs-12 col-md-12">
-                        <div class="box box-default">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Employee Information</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                </div>
-                            </div>
-                            <div class="box-body">
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-8">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Application/ Form No.</label>
-                                            <div class="col-sm-9" style="">
-                                                HRD-BTC-CC-0001
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="margin-bottom:15px">
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Employee ID</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">BTC Employee Code</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Employee Name</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Employee Position Code</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Designation</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Department</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Department Head</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Cost Center</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Cost Center Head</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Passport Number</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Passport Epiry</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Qatar ID</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Qatar Expiry</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Location</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Section</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Contact Details</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-md-12">
-                        <div class="box box-default">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Air Travel Details</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                </div>
-                            </div>
-                            <div class="box-body">
-                                <div style="margin-bottom:15px">
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Port Of Origin</label>
-                                            <div class="col-sm-9">
-
-                                                Delhi
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Port Of Destination</label>
-                                            <div class="col-sm-9">
-
-                                                Delhi
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Ticket Class</label>
-                                            <div class="col-sm-9">
-                                                Any
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Travel Days</label>
-                                            <div class="col-sm-9">
-                                                5
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Daily Allowance</label>
-                                            <div class="col-sm-9">
-                                                0.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Currency</label>
-                                            <div class="col-sm-9">
-
-                                                Dollar USD
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Purpose of Visit</label>
-                                            <div class="col-sm-12">
-                                                <textarea class="form-control" cols="20" id="PurposeOfVisit" name="PurposeOfVisit" rows="4">
-</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-md-12">
-                        <div class="box box-default">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Additional Travel Details</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                </div>
-                            </div>
-                            <div class="box-body">
-                                <div style="margin-bottom:15px">
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Departure Date</label>
-                                            <div class="col-sm-9">
-                                                01 Dec 2018
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Return Date</label>
-                                            <div class="col-sm-9">
-                                                29 Oct 2018
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Preferred Departure Time</label>
-                                            <div class="col-sm-9">
-                                                12:45 AM
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Preferred Return Time</label>
-                                            <div class="col-sm-9">
-                                                12:45 AM
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">First Day of Business</label>
-                                            <div class="col-sm-9">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Last Day of Business</label>
-                                            <div class="col-sm-9">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label class="col-sm-2">Remarks</label>
-                                            <div class="col-sm-12">
-                                                <textarea class="form-control" cols="20" id="TravelRemarks" name="TravelRemarks" placeholder="Enter Travel Remarks..." rows="3">
-</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-md-12">
-                        <div class="box box-default">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Accomodation Details</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                </div>
-                            </div>
-                            <div class="box-body">
-                                <div style="margin-bottom:15px">
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Air Ticket Arrangement</label>
-                                            <div class="col-sm-9">
-                                                BTC
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Hotel Name</label>
-                                            <div class="col-sm-9">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Travel Allowance</label>
-                                            <div class="col-sm-9">
-                                                BTC
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Check In Date</label>
-                                            <div class="col-sm-9">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Hotel Stay</label>
-                                            <div class="col-sm-9">
-                                                BTC
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Check In Time</label>
-                                            <div class="col-sm-9">
-                                                12:45 AM
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Hotel Category</label>
-                                            <div class="col-sm-9">
-                                                Any
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Check Out Date</label>
-                                            <div class="col-sm-9">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Room Category</label>
-                                            <div class="col-sm-9">
-                                                Any
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Check Out Time</label>
-                                            <div class="col-sm-9">
-                                                12:45 AM
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Room Type</label>
-                                            <div class="col-sm-9">
-                                                Single
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Airport Pickup</label>
-                                            <div class="col-sm-9">
-
-                                                <label id="airportpic">No</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Additional Expenses</label>
-                                            <div class="col-sm-9">
-                                                0.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="PickUpDetailsDiv" class="col-xs-12 col-md-12" style="display:none">
-                        <div class="box box-default">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Pick Up Details</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                </div>
-                            </div>
-                            <div class="box-body">
-                                <div style="margin-bottom:15px">
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Pick Up Location</label>
-                                            <div class="col-sm-9">
-                                                <div class="form-group">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Pick Up Date</label>
-                                            <div class="col-sm-9">
-                                                <div class="form-group">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Pick Up Time</label>
-                                            <div class="col-sm-9">
-                                                12:45 AM
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Drop Off Location</label>
-                                            <div class="col-sm-9">
-                                                <div class="form-group">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Drop Off Date</label>
-                                            <div class="col-sm-9">
-                                                <dAiv class="form-group">
-                                                </dAiv>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Drop Off Time</label>
-                                            <div class="col-sm-9">
-                                                12:45 AM
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-3">Preferred Vehicle Type</label>
-                                            <div class="col-sm-9">
-                                                option 1
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-md-12">
-                        <div class="box box-default">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Remarks</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                </div>
-                            </div>
-                            <div class="box-body">
-                                <div class="row" style="margin-bottom:15px">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <textarea class="form-control" cols="20" id="Remarks" name="Remarks" placeholder="Enter Travel Request Remarks..." rows="4">
-</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-3">
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <a href="javascript:window.print()">Click to Print This Page</a>
-
-                                    <a href="/TravelRequests/GenerateAspose">Print</a>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <a class="form-control btn btn-info" href="/TravelRequests">Back to List</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-        </div>
-
-
-
-        <aside class="control-sidebar control-sidebar-dark">
-
-            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-                <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-            </ul>
-
-            <div class="tab-content">
-
-                <div class="tab-pane active" id="control-sidebar-home-tab">
-                    <h3 class="control-sidebar-heading">Recent Activity</h3>
-                    <ul class="control-sidebar-menu">
-                        <li>
-                            <a href="javascript::;">
-                                <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-                                <div class="menu-info">
-                                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                                    <p>Will be 23 on April 24th</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                    <ul class="control-sidebar-menu">
-                        <li>
-                            <a href="javascript::;">
-                                <h4 class="control-sidebar-subheading">
-                                    Custom Template Design
-                                    <span class="pull-right-container">
-                                        <span class="label label-danger pull-right">70%</span>
-                                    </span>
-                                </h4>
-
-                                <div class="progress progress-xxs">
-                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-
-                <div class="tab-pane" id="control-sidebar-settings-tab">
-                    <form method="post">
-                        <h3 class="control-sidebar-heading">General Settings</h3>
-
-                        <div class="form-group">
-                            <label class="control-sidebar-subheading">
-                                Report panel usage
-                                <input type="checkbox" class="pull-right" checked>
-                            </label>
-
-                            <p>
-                                Some information about this general settings option
-                            </p>
-                        </div>
-                    </form>
-                </div>
-
             </div>
-        </aside>
-
-        <div class="control-sidebar-bg"></div>
+            <div class="box-body">
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-8">
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-sm-3">Application/ Form No.</label>
+                            <div class="col-sm-9" style="">
+                                @Html.DisplayFor(model => model.ApplicationNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-bottom:15px">
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Employee ID</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">BTC Employee Code</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Employee Name</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.FirstName + " " + model.User.LastName, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Employee Position Code</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Designation</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Department</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Department Head</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Cost Center</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Cost Center Head</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Passport Number</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Passport Epiry</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Qatar ID</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Qatar Expiry</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Location</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Section</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Contact Details</label>
+                            <div class="col-sm-9">
+                                @*@Html.DisplayFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default collapsed-box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Air Travel Details</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div style="margin-bottom:15px">
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Port Of Origin</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var po = ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).FirstOrDefault(rt => rt.ID == Model.PortOfOriginID).CityDesc.ToString();
+                                }
+                                @po
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Port Of Destination</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var pd = ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).FirstOrDefault(rt => rt.ID == Model.PortOfDestinationID).CityDesc.ToString();
+                                }
+                                @pd
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Ticket Class</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.TicketClass, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Travel Days</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.TravelDays, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Daily Allowance</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.DailyAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1.00", @Value = "0.00" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Currency</label>
+                            <div class="col-sm-9">
+                                @*@{
+                                        var cr = ((IEnumerable<Travel_Request_System_EF.Models.Currency>)ViewBag.Currencies).FirstOrDefault(rt => rt.ID == Model.CurrencyID).CurrencyDesc.ToString();
+                                    }
+                                    @cr*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-3">Purpose of Visit</label>
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(model => model.PurposeOfVisit, htmlAttributes: new { @class = "form-control", @rows = "4" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script src="/Scripts/jquery-3.3.1.js"></script>
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default collapsed-box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Additional Travel Details</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div style="margin-bottom:15px">
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Departure Date</label>
+                            <div class="col-sm-9">
+                                @if (Model.DepartureDate != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.DepartureDate.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Return Date</label>
+                            <div class="col-sm-9">
+                                @if (Model.ReturnDate != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.ReturnDate.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Preferred Departure Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.DepartureTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.DepartureTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Preferred Return Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.ReturnTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.ReturnTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">First Day of Business</label>
+                            <div class="col-sm-9">
+                                @if (Model.FirstBusinessDay != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.FirstBusinessDay.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Last Day of Business</label>
+                            <div class="col-sm-9">
+                                @if (Model.LastBusinessDay != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.LastBusinessDay.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-2">Remarks</label>
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(model => model.TravelRemarks, htmlAttributes: new { @class = "form-control", @rows = "3", @placeholder = "Enter Travel Remarks..." })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default collapsed-box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Accomodation Details</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div style="margin-bottom:15px">
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Air Ticket Arrangement</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.AirTicketManagement, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Hotel Name</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.HotelName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Travel Allowance</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.TravelAllowance, new { htmlAttributes = new { @class = "form-control" } })
 
-    <script src="Content/js/BTC.js"></script>
-    <script src="Content/js/plugins/bootstrap/bootstrap.js"></script>
-    <script src="Content/js/plugins/fastclick/fastclick.js"></script>
-    <script src="Content/js/plugins/slimscroll/jquery.slimscroll.js"></script>
-    <script src="Content/js/plugins/bootstrap-select/bootstrap-select.js"></script>
-    <script src="Content/js/plugins/moment/moment.js"></script>
-    <script src="Content/js/plugins/datepicker/bootstrap-datepicker.js"></script>
-    <script src="Content/js/plugins/datatables/jquery.dataTables.js"></script>
-    <script src="Content/js/plugins/datatables/dataTables.bootstrap.js"></script>
-    <script src="Content/js/plugins/select2/select2.full.js"></script>
-    <script src="Content/js/plugins/timepicker/bootstrap-timepicker.js"></script>
-    <script src="Content/js/plugins/icheck/icheck.js"></script>
-    <script src="Content/js/plugins/inputmask/jquery.inputmask.bundle.js"></script>
-    <script src="Content/js/adminlte.js"></script>
-    <script src="Content/js/init.js"></script>
-    <script src="/Scripts/bootstrap.js"></script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Check In Date</label>
+                            <div class="col-sm-9">
+                                @if (Model.CheckInDate != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.CheckInDate.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Hotel Stay</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.HotelStay, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Check In Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.CheckInTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.CheckInTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Hotel Category</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.HotelCategory, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Check Out Date</label>
+                            <div class="col-sm-9">
+                                @if (Model.CheckOutDate != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.CheckOutDate.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Room Category</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.RoomCategory, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Check Out Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.CheckOutTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.CheckOutTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Room Type</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.RoomType, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Airport Pickup</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var ap = Model.AirportPickUp;
 
+                                    string apVal;
+                                    if (Convert.ToInt32(ap) == 0)
+                                    {
+                                        apVal = "Yes";
+                                    }
+                                    else
+                                    {
+                                        apVal = "No";
+                                    }
+                                }
+                                <label id="airportpic">@apVal</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Additional Expenses</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.AdditionalAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00", @Value = "0.00" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div id="PickUpDetailsDiv" class="col-xs-12 col-md-12" style="display:none">
+        <div class="box box-default collapsed-box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Pick Up Details</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div style="margin-bottom:15px">
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Pick Up Location</label>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    @Html.DisplayFor(model => model.PickUpLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Pick Up Date</label>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    @if (Model.PickUpDate != null)
+                                    {
+                                        @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.PickUpDate.ToString()))));
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Pick Up Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.PickUpTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.PickUpTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Drop Off Location</label>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    @Html.DisplayFor(model => model.DropOffLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Drop Off Date</label>
+                            <div class="col-sm-9">
+                                <dAiv class="form-group">
+                                    @if (Model.DropOffDate != null)
+                                    {
+                                        @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.DropOffDate.ToString()))));
+                                    }
+                                </dAiv>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Drop Off Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.DropOffTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.DropOffTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Preferred Vehicle Type</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.PreferredVehicle, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default collapsed-box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Remarks</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "4", @placeholder = "Enter Travel Request Remarks..." })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.ApprovalLevel > (int)ApprovalLevels.ToBeApproved)
+    {
+        <div class="col-xs-12 col-md-12">
+            <div class="box box-default collapsed-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Approval Remarks</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="row" style="margin-bottom:15px">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    @Html.TextAreaFor(model => model.ApprovalRemarks, htmlAttributes: new { @class = "form-control", @rows = "4", @placeholder = "Enter Travel Request Remarks..." })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    
+</div>
+@section Scripts {
     <script type="text/javascript">
         if ($('#airportpic').text() == "Yes") {
             $('#PickUpDetailsDiv').show()
@@ -947,8 +690,4 @@
         $('#detailsDiv').find('textarea').attr('disabled', 'disabled');
 
     </script>
-
-
-
-</body>
-</html>
+}

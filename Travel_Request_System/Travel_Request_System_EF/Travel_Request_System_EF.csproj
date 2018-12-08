@@ -272,6 +272,7 @@
     <Compile Include="Models\ViewModel\ATQuotation.cs" />
     <Compile Include="Models\ViewModel\Constants.cs" />
     <Compile Include="Models\ViewModel\EmployeeDetails.cs" />
+    <Compile Include="Models\ViewModel\FileUploadModel.cs" />
     <Compile Include="Models\ViewModel\HSQuotation.cs" />
     <Compile Include="Models\ViewModel\LoginView.cs" />
     <Compile Include="Models\ViewModel\LPO.cs" />
@@ -1251,7 +1252,6 @@
     <Content Include="Views\TravelRequests\Edit.cshtml" />
     <Content Include="Views\TravelRequests\Index.cshtml" />
     <Content Include="Views\Shared\_Modal.cshtml" />
-    <Content Include="Views\Upload\UploadFile.cshtml" />
     <Content Include="Views\RFQs\Create.cshtml" />
     <Content Include="Views\RFQs\Delete.cshtml" />
     <Content Include="Views\RFQs\Details.cshtml" />
@@ -1266,6 +1266,9 @@
     <Content Include="Views\Quotation\Quotations.cshtml" />
     <Content Include="Views\Quotation\AddQuotation.cshtml" />
     <Content Include="Views\LPO\Index.cshtml" />
+    <Content Include="Views\FileUpload\FileUpload.cshtml" />
+    <Content Include="Views\Shared\_Attachments.cshtml" />
+    <Content Include="Views\Quotation\AddATQuotation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

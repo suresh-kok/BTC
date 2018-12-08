@@ -17,7 +17,6 @@ To Do
 - Approve Request - Manager
 - Approve Request - HR
 - Approve Request - Send Mail
-
 - Manage RFQ - Get list of RFQ
 - RFQ Processing - Add selections to Merge Table
 - RFQ Processing Merge - Remove merge table entries
@@ -26,8 +25,9 @@ To Do
 - RFQ Processing Merge - Add Attachments
 - Create RFQ - Preview and save with Remarks
 - RFQ Post Merge - Grid entries
-- RFQ Post Merge - Email as PDF
 - RFQ Post Merge - Final Preview
+
+- RFQ Post Merge - Email as PDF
 - Manage Quotations - Grid Details
 - Manage Quotations - RFQ details read only
 - Manage Quotations - Quotations Table

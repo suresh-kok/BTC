@@ -21,9 +21,9 @@ namespace Travel_Request_System_EF.Models
         }
     
         public int ID { get; set; }
-        public int TravelAgencyID { get; set; }
-        public int TravelRequestID { get; set; }
-        public int UserID { get; set; }
+        public Nullable<int> TravelAgencyID { get; set; }
+        public Nullable<int> TravelRequestID { get; set; }
+        public Nullable<int> UserID { get; set; }
         public string Remarks { get; set; }
         public int Processing { get; set; }
         public int ProcessingSection { get; set; }
@@ -31,8 +31,8 @@ namespace Travel_Request_System_EF.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LPO> LPO { get; set; }
+        public virtual TravelAgency TravelAgency { get; set; }
         public virtual TravelRequests TravelRequests { get; set; }
         public virtual Users Users { get; set; }
-        public virtual TravelAgency TravelAgency { get; set; }
     }
 }

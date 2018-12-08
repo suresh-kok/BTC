@@ -6,8 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="4ff0d28f02a2493fa5e0d34653eccd54" Name="Diagram1">
         <EntityTypeShape EntityType="HRWorksEntities.ATQuotation" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksEntities.AttachmentLink" Width="1.5" PointX="11" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksEntities.Attachments" Width="1.5" PointX="8.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="HRWorksEntities.City" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HRWorksEntities.Currency" Width="1.5" PointX="3.75" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HRWorksEntities.HRW_Company" Width="1.5" PointX="1.5" PointY="21.625" IsExpanded="true" />
@@ -22,14 +20,12 @@
         <EntityTypeShape EntityType="HRWorksEntities.ORG_EntityTypeParam" Width="1.5" PointX="8.25" PointY="28.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HRWorksEntities.PCQuotation" Width="1.5" PointX="10.5" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HRWorksEntities.Quotation" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRWorksEntities.RFQ" Width="1.5" PointX="11.25" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HRWorksEntities.Roles" Width="1.5" PointX="1.5" PointY="25.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HRWorksEntities.TravelRequests" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HRWorksEntities.Users" Width="1.5" PointX="3.75" PointY="17.25" IsExpanded="true" />
         <AssociationConnector Association="HRWorksEntities.fk_ATQuotation_DestinationID" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.fk_ATQuotation_OriginID" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.fk_ATQuotation_QuotationID" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksEntities.fk_RFQ_AttachmentID" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.FK__TravelReq_PortOfD" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.FK__TravelReq_PortOfO" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.FK__TravelReq_Currency" ManuallyRouted="false" />
@@ -42,7 +38,6 @@
         <AssociationConnector Association="HRWorksEntities.FK_ORG_EmpEntityLink_HRW_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.fk_HSQuotation_QuotationID" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.fk_LPO_QuotationID" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksEntities.fk_LPO_RFQID" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityType_ORG_ChartMaster" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.FK_ORG_EmpEntityLink_ORG_EntityMaster" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityMaster_ORG_EntityType" ManuallyRouted="false" />
@@ -51,13 +46,20 @@
         <AssociationConnector Association="HRWorksEntities.fk_Quotation_TravelRequestID" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.fk_Quotation_UserID" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.fk_RFQ_ID" ManuallyRouted="false" />
-        <AssociationConnector Association="HRWorksEntities.fk_RFQ_UserID" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.FK__TravelReq__ApprovalBy" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.FK__TravelReq_CreatedBy" ManuallyRouted="false" />
         <AssociationConnector Association="HRWorksEntities.UserRole" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="HRWorksEntities.TravelAgency" Width="1.5" PointX="6.125" PointY="1.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.RFQ" Width="1.5" PointX="8.25" PointY="15.125" />
+        <EntityTypeShape EntityType="HRWorksEntities.TravelAgency" Width="1.5" PointX="6" PointY="1.125" />
+        <AssociationConnector Association="HRWorksEntities.fk_LPO_RFQID" />
         <AssociationConnector Association="HRWorksEntities.fk_Quotation_TravelAgencyID" />
         <AssociationConnector Association="HRWorksEntities.fk_RFQ_TravelAgencyID" />
+        <AssociationConnector Association="HRWorksEntities.fk_RFQ_TravelRequestID" />
+        <AssociationConnector Association="HRWorksEntities.fk_RFQ_UserID" />
+        <EntityTypeShape EntityType="HRWorksEntities.Attachments" Width="1.5" PointX="6" PointY="34.125" />
+        <AssociationConnector Association="HRWorksEntities.FK_Attachments_UploadedBy" />
+        <EntityTypeShape EntityType="HRWorksEntities.AttachmentLink" Width="1.5" PointX="8.25" PointY="34.5" />
+        <AssociationConnector Association="HRWorksEntities.fk_RFQ_AttachmentID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

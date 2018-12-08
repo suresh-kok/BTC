@@ -1,9 +1,136 @@
-﻿@model IEnumerable<Travel_Request_System_EF.Models.RFQ>
+﻿@model IEnumerable<Travel_Request_System_EF.Models.TravelRequests>
+@using Travel_Request_System_EF.Models.ViewModel
 
 @{
     ViewBag.Title = "Manage RFQ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@*<aside class="right-side">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">RFQ List</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body table-responsive">
+                            <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
+                                @if (Model == null || (Model.Count() == 0))
+                                {
+                                    <tr>
+                                        <td colspan="10">No Record's found.</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TravelRequests.ApplicationNumber)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ProcessingSection)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TravelAgency.AgencyCode)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Processing)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IsDeleted)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TravelRequests.ApplicationNumber)
+                                            </td>
+                                            <td>
+                                                @switch (item.ProcessingSection)
+                                                {
+                                                    case (int)ProcessingSections.AT:
+                                                        @(new HtmlString("AT"))
+                                                        break;
+                                                    case (int)ProcessingSections.ATHS:
+                                                        @(new HtmlString("AT + HS"))
+                                                        break;
+                                                    case (int)ProcessingSections.ATHSPC:
+                                                        @(new HtmlString("AT + HS + PC"))
+                                                        break;
+                                                    case (int)ProcessingSections.ATPC:
+                                                        @(new HtmlString("AT + PC"))
+                                                        break;
+                                                    case (int)ProcessingSections.HS:
+                                                        @(new HtmlString("HS"))
+                                                        break;
+                                                    case (int)ProcessingSections.HSPC:
+                                                        @(new HtmlString("HS + PC"))
+                                                        break;
+                                                    case (int)ProcessingSections.PC:
+                                                        @(new HtmlString("PC"))
+                                                        break;
+                                                    default:
+                                                        @(new HtmlString("None"))
+                                                        break;
+                                                }
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TravelAgency.AgencyCode)
+                                            </td>
+                                            <td>
+                                                @switch (item.Processing)
+                                                {
+                                                    case (int)ProcessingStatus.NotProcessed:
+                                                        @(new HtmlString("Not Processed"))
+                                                        break;
+                                                    case (int)ProcessingStatus.BeingProcessed:
+                                                        @(new HtmlString("Being Processed"))
+                                                        break;
+                                                    case (int)ProcessingStatus.Processed:
+                                                        @(new HtmlString("Processed"))
+                                                        break;
+                                                    default:
+                                                        @(new HtmlString("Not Processed"))
+                                                        break;
+                                                }
+                                            </td>
+                                            <td>
+
+                                                @if ((bool)item.IsDeleted)
+                                                {
+                                                    @(new HtmlString("Yes"))
+                                                }
+                                                else
+                                                {
+                                                    @(new HtmlString("No"))
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (!((bool)item.IsDeleted) && (item.Processing == (int)ProcessingStatus.NotProcessed))
+                                                {<span class="glyphicon">
+                                                        @Html.ActionLink("Preview RFQ", "PreviewRFQ", new { id = item.ID }, new { @class = "form-control btn btn-info" })
+                                                    </span>
+                                                    <span class="glyphicon">
+                                                        @Html.ActionLink("Delete RFQ", "DeleteRFQ", new { id = item.ID }, new { @class = "form-control btn btn-info" })
+                                                    </span>
+                                                }
+                                            </td>
+                                            <td rowspan="@Model.Count()">Finded segment in @Html.ActionLink("Merger Table", "RFQMerger", new { id = Model.First().TravelRequestID }, new { @class = "form-control btn btn-info" })</td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </section>
+    </aside>*@
 
 <aside class="right-side">
     <!-- Main content -->
@@ -26,58 +153,120 @@
                             {
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Remarks)
+                                        @(new HtmlString("Merge Table"))
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Processing)
+                                        @(new HtmlString("Application Number"))
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.ProcessingSection)
+                                        @(new HtmlString("Processing Section"))
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.IsDeleted)
+                                        @(new HtmlString("Agency Code"))
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.TravelAgency.AgencyCode)
+                                        @(new HtmlString("Processing Status"))
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.TravelRequests.ApplicationNumber)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Users.Username)
+                                        @(new HtmlString("Is Deleted"))
                                     </th>
                                     <th></th>
                                 </tr>
-
                                 foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Remarks)
+                                        <td rowspan="@item.RFQ.Count()">
+                                            @Html.ActionLink("Merge Table "+ @item.ApplicationNumber, "RFQMerger", new { id = item.ID }, new { @class = "form-control btn btn-info" })
                                         </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Processing)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ProcessingSection)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IsDeleted)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TravelAgency.AgencyCode)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TravelRequests.ApplicationNumber)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Users.Username)
-                                        </td>
-                                        <td>
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                                        </td>
+                                        @if (@item.RFQ.Count() > 0)
+                                        {
+                                            int i = 0; 
+                                            foreach (var rfqInfo in item.RFQ)
+                                            {
+                                                if (i > 0)
+                                                {
+                                                @:</tr><tr>
+                                                }
+                                                i++;
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => rfqInfo.TravelRequests.ApplicationNumber)
+                                                </td>
+                                                <td>
+                                                    @switch (rfqInfo.ProcessingSection)
+                                                    {
+                                                        case (int)ProcessingSections.AT:
+                                                            @(new HtmlString("AT"))
+                                                            break;
+                                                        case (int)ProcessingSections.ATHS:
+                                                            @(new HtmlString("AT + HS"))
+                                                            break;
+                                                        case (int)ProcessingSections.ATHSPC:
+                                                            @(new HtmlString("AT + HS + PC"))
+                                                            break;
+                                                        case (int)ProcessingSections.ATPC:
+                                                            @(new HtmlString("AT + PC"))
+                                                            break;
+                                                        case (int)ProcessingSections.HS:
+                                                            @(new HtmlString("HS"))
+                                                            break;
+                                                        case (int)ProcessingSections.HSPC:
+                                                            @(new HtmlString("HS + PC"))
+                                                            break;
+                                                        case (int)ProcessingSections.PC:
+                                                            @(new HtmlString("PC"))
+                                                            break;
+                                                        default:
+                                                            @(new HtmlString("None"))
+                                                            break;
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @*@Html.DisplayFor(modelItem => rfqInfo.TravelAgency.AgencyCode)*@
+                                                </td>
+                                                <td>
+                                                    @switch (rfqInfo.Processing)
+                                                    {
+                                                        case (int)ProcessingStatus.NotProcessed:
+                                                            @(new HtmlString("Not Processed"))
+                                                            break;
+                                                        case (int)ProcessingStatus.BeingProcessed:
+                                                            @(new HtmlString("Being Processed"))
+                                                            break;
+                                                        case (int)ProcessingStatus.Processed:
+                                                            @(new HtmlString("Processed"))
+                                                            break;
+                                                        default:
+                                                            @(new HtmlString("Not Processed"))
+                                                            break;
+                                                    }
+                                                </td>
+                                                <td>
+
+                                                    @if ((bool)rfqInfo.IsDeleted)
+                                                    {
+                                                        @(new HtmlString("Yes"))
+                                                    }
+                                                    else
+                                                    {
+                                                        @(new HtmlString("No"))
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (!((bool)rfqInfo.IsDeleted) && (rfqInfo.Processing == (int)ProcessingStatus.NotProcessed))
+                                                    {<span class="glyphicon">
+                                                            @Html.ActionLink("Preview RFQ", "PreviewRFQ", new { id = rfqInfo.ID }, new { @class = "form-control btn btn-info" })
+                                                        </span>
+                                                        <span class="glyphicon">
+                                                            @Html.ActionLink("Delete RFQ", "DeleteRFQ", new { id = rfqInfo.ID }, new { @class = "form-control btn btn-info" })
+                                                        </span>
+                                                    }
+                                                </td>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <td colspan="6">No data</td>
+                                        }
                                     </tr>
                                 }
                             }
