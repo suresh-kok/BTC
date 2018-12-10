@@ -17,7 +17,6 @@ namespace Travel_Request_System_EF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TravelAgency()
         {
-            this.Quotation = new HashSet<Quotation>();
             this.RFQ = new HashSet<RFQ>();
         }
     
@@ -33,8 +32,6 @@ namespace Travel_Request_System_EF.Models
         public string Email { get; set; }
         public Nullable<bool> IsActive { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Quotation> Quotation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RFQ> RFQ { get; set; }
     }

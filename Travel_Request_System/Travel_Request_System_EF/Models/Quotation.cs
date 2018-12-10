@@ -24,10 +24,7 @@ namespace Travel_Request_System_EF.Models
         }
     
         public int ID { get; set; }
-        public int TravelAgencyID { get; set; }
         public int TravelRequestID { get; set; }
-        public int UserID { get; set; }
-        public string Remarks { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -39,7 +36,5 @@ namespace Travel_Request_System_EF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PCQuotation> PCQuotation { get; set; }
         public virtual TravelRequests TravelRequests { get; set; }
-        public virtual Users Users { get; set; }
-        public virtual TravelAgency TravelAgency { get; set; }
     }
 }

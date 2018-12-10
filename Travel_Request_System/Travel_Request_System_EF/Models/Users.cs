@@ -17,7 +17,6 @@ namespace Travel_Request_System_EF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
-            this.Quotation = new HashSet<Quotation>();
             this.TravelRequests = new HashSet<TravelRequests>();
             this.TravelRequests1 = new HashSet<TravelRequests>();
             this.Roles = new HashSet<Roles>();
@@ -36,8 +35,6 @@ namespace Travel_Request_System_EF.Models
         public Nullable<long> HREmployeeID { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Quotation> Quotation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TravelRequests> TravelRequests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

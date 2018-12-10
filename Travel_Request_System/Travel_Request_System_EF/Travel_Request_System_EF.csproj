@@ -1269,6 +1269,9 @@
     <Content Include="Views\FileUpload\FileUpload.cshtml" />
     <Content Include="Views\Shared\_Attachments.cshtml" />
     <Content Include="Views\Quotation\AddATQuotation.cshtml" />
+    <Content Include="Views\Quotation\AddHSQuotation.cshtml" />
+    <Content Include="Views\Quotation\AddPCQuotation.cshtml" />
+    <Content Include="Views\LPO\LPOProcessing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

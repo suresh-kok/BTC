@@ -26,8 +26,6 @@ To Do
 - Create RFQ - Preview and save with Remarks
 - RFQ Post Merge - Grid entries
 - RFQ Post Merge - Final Preview
-
-- RFQ Post Merge - Email as PDF
 - Manage Quotations - Grid Details
 - Manage Quotations - RFQ details read only
 - Manage Quotations - Quotations Table
@@ -35,8 +33,9 @@ To Do
 - Manage Quotations - HS Quotations
 - Manage Quotations - PC Quotations
 - Manage Quotations - File Attachments
-- Manage Quotations - No Edit or Delete after adding quotation
 - Manage Quotations - Read-only preview 
+
+- Manage Quotations - No Edit or Delete after adding quotation
 - Manage LPO - Travel Request Grid Details
 - Manage LPO - View Travel Requests
 - Manage LPO - Select RFQ and associated Quotations
@@ -67,3 +66,4 @@ To Do
 - Report - LPO Register
 - Report - LPO Summary
 - Manage Visa
+- RFQ Post Merge - Email as PDF

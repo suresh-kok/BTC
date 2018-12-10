@@ -1,13 +1,13 @@
-﻿@model Travel_Request_System_EF.Models.ATQuotation
+﻿@model Travel_Request_System_EF.Models.HSQuotation
 
 @{
-    ViewBag.Title = "Add AT Quotation";
+    ViewBag.Title = "Add HS Quotation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="form-horizontal">
     @Html.ValidationSummary(true, null, new { @class = "text-danger" })
-    @using (Html.BeginForm("AddATQuotation", "Quotation", new { ATQuotation = Model }, FormMethod.Post))
+    @using (Html.BeginForm("AddHSQuotation", "Quotation", new { ATQuotation = Model }, FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <input type="hidden" value="@Model.ID" name="Id" />
@@ -25,107 +25,94 @@
         <div class="row" style="margin-bottom:15px">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label class="col-sm-3">Ticket Class</label>
-                        <div class="col-sm-9">
-                            <select class="form-control" name="ticketClass">
-                                <option @(Model.TicketClass == "Any" ? " selected" : "")>Any</option>
-                                <option @(Model.TicketClass == "Business Class" ? " selected" : "")>Business Class</option>
-                                <option @(Model.TicketClass == "Economy Class" ? " selected" : "")>Economy Class</option>
-                                <option @(Model.TicketClass == "Preminum Economy Class" ? " selected" : "")>Preminum Economy Class</option>
-                                <option @(Model.TicketClass == "First Class" ? " selected" : "")>First Class</option>
-                            </select>
-                        </div>
-                        @*@Html.ValidationMessageFor(model => model.CurrencyID, null, new { @class = "text-danger" })*@
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label class="col-sm-3">Airlines</label>
+                    <label class="col-sm-3">Travel Sector</label>
                     <div class="col-sm-9">
-                        @Html.EditorFor(model => model.Airlines, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.TravelSector, new { htmlAttributes = new { @class = "form-control" } })
                         @*@Html.ValidationMessageFor(model => model.DailyAllowance, null, new { @class = "text-danger" })*@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row" style="margin-bottom:15px">
             <div class="col-sm-6">
-                <div class="form-group">
-                    <label class="col-sm-3">Port Of Origin</label>
-                    <div class="col-sm-9">
-                        @Html.DropDownListFor(model => model.OriginID, ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).Select(m => new SelectListItem { Text = m.CityDesc, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
-                        @*@Html.ValidationMessageFor(model => model.PortOfOriginID, null , new { @class = "text-danger" })*@
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label class="col-sm-3">Port Of Destination</label>
-                    <div class="col-sm-9">
-                        @Html.DropDownListFor(model => model.DestinationID, ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).Select(m => new SelectListItem { Text = m.CityDesc, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
-                        @*@Html.ValidationMessageFor(model => model.PortOfOriginID, null , new { @class = "text-danger" })*@
-                    </div>
-                </div>
             </div>
         </div>
         <div class="row" style="margin-bottom:15px">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label class="col-sm-3">Departure Date</label>
+                    <label class="col-sm-3">Hotel Name</label>
+                    <div class="col-sm-9">
+                        @Html.EditorFor(model => model.HotelName, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.ValidationMessageFor(model => model.HotelName, null , new { @class = "text-danger" })*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3">Hotel Category</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" name="hotelCategory">
+                            <option @(Model.HotelCategory == "Any" ? " selected" : "")>Any</option>
+                            <option @(Model.HotelCategory == "1 Star Rated Hotels" ? " checked" : "")>1 Star Rated Hotels</option>
+                            <option @(Model.HotelCategory == "2 Star Rated Hotels" ? " checked" : "")>2 Star Rated Hotels</option>
+                            <option @(Model.HotelCategory == "3 Star Rated Hotels" ? " checked" : "")>3 Star Rated Hotels</option>
+                            <option @(Model.HotelCategory == "4 Star Rated Hotels" ? " checked" : "")>4 Star Rated Hotels</option>
+                            <option @(Model.HotelCategory == "5 or Star Rated Hotels" ? " checked" : "")>5 or Above Star Rated Hotels</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3">Room Category</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" name="roomCategory">
+                            <option @(Model.RoomCategory == "Any" ? " selected" : "")>Any</option>
+                            <option @(Model.RoomCategory == "Standard" ? " selected" : "")>Standard</option>
+                            <option @(Model.RoomCategory == "Deluxe" ? " selected" : "")>Deluxe</option>
+                            <option @(Model.RoomCategory == "Suite" ? " selected" : "")>Suite</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3">Room Type</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" name="roomType">
+                            <option @(Model.RoomType == "Single" ? " selected" : "")>Single</option>
+                            <option @(Model.RoomType == "Twin" ? " selected" : "")>Twin</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3">Check In Date</label>
                     <div class="col-sm-9">
                         <div class="input-group date">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            @Html.EditorFor(model => model.DepartureDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                            @*@Html.ValidationMessageFor(model => model.DepartureDate, null, new { @class = "text-danger" })*@
+                            @Html.EditorFor(model => model.CheckInDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                            @*@Html.ValidationMessageFor(model => model.CheckInDate, null , new { @class = "text-danger" })*@
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label class="col-sm-3">Return Date</label>
+                    <label class="col-sm-3">Check In Time</label>
                     <div class="col-sm-9">
-                        <div class="input-group date">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </div>
-                            @Html.EditorFor(model => model.ReturnDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                            @*@Html.ValidationMessageFor(model => model.ReturnDate, null, new { @class = "text-danger" })*@
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row" style="margin-bottom:15px">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label class="col-sm-3">Preferred Departure Time</label>
-                    <div class="col-sm-9">
-                        <div class="bootstrap-timepicker">
-                            <div class="input-group time">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-clock-o"></i>
-                                </div>
-                                @Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control  timepicker", @name = "departureTime" } })
-                                @*@Html.ValidationMessageFor(model => model.DepartureTime, null, new { @class = "text-danger" })*@
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label class="col-sm-3">Preferred Return Time</label>
-                    <div class="col-sm-9">
-                        <div class="bootstrap-timepicker">
+                        <div class="bootstrap-timepicker" data-date-format="HH:mm">
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fa fa-clock-o"></i>
                                 </div>
-                                @Html.EditorFor(model => model.ReturnTime, new { htmlAttributes = new { @class = "form-control  timepicker", @name = "returnTime" } })
-                                @*@Html.ValidationMessageFor(model => model.ReturnTime, null, new { @class = "text-danger" })*@
+                                @Html.EditorFor(model => model.CheckInTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                @*@Html.ValidationMessageFor(model => model.CheckInTime, null , new { @class = "text-danger" })*@
                             </div>
                         </div>
                     </div>
@@ -135,19 +122,42 @@
         <div class="row" style="margin-bottom:15px">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label class="col-sm-3">Ticket Np</label>
+                    <label class="col-sm-3">Check Out Date</label>
                     <div class="col-sm-9">
-                        @Html.EditorFor(model => model.TicketNo, new { htmlAttributes = new { @class = "form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.CurrencyID, null, new { @class = "text-danger" })*@
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            @Html.EditorFor(model => model.CheckOutDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                            @*@Html.ValidationMessageFor(model => model.CheckOutDate, null , new { @class = "text-danger" })*@
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label class="col-sm-3">Amount</label>
+                    <label class="col-sm-3">Check Out Time</label>
                     <div class="col-sm-9">
-                        @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "1.00", @Value = "0.00" } })
-                        @*@Html.ValidationMessageFor(model => model.DailyAllowance, null, new { @class = "text-danger" })*@
+                        <div class="bootstrap-timepicker" data-date-format="HH:mm">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-clock-o"></i>
+                                </div>
+                                @Html.EditorFor(model => model.CheckOutTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                @*@Html.ValidationMessageFor(model => model.CheckOutTime, null , new { @class = "text-danger" })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-3">Additional Expenses</label>
+                    <div class="col-sm-9">
+                        @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00" } })
+                        @*@Html.ValidationMessageFor(model => model.AdditionalAllowance, null , new { @class = "text-danger" })*@
                     </div>
                 </div>
             </div>

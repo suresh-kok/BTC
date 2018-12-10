@@ -1,0 +1,35 @@
+﻿@model Travel_Request_System_EF.Models.LPO
+
+@{
+    ViewBag.Title = "LPO Processing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="margin-bottom:15px">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label class="col-sm-3">Port Of Origin</label>
+            <div class="col-sm-9">
+                @Html.DropDownListFor(model => model.RFQID, ((IEnumerable<Travel_Request_System_EF.Models.RFQ>)ViewBag.RFQs).Select(m => new SelectListItem { Text = m.TravelRequests.ApplicationNumber, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
+                @*@Html.ValidationMessageFor(model => model.PortOfOriginID, null , new { @class = "text-danger" })*@
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label class="col-sm-3">Port Of Destination</label>
+            <div class="col-sm-9">
+                @Html.DropDownListFor(model => model.QuotationID, ((IEnumerable<Travel_Request_System_EF.Models.Quotation>)ViewBag.Quotations).Select(m => new SelectListItem { Text = m.TravelRequests.ApplicationNumber, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
+                @*@Html.ValidationMessageFor(model => model.PortOfOriginID, null , new { @class = "text-danger" })*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="detailsDiv" style="height:auto">
+
+    @Html.AntiForgeryToken()
+
+    @Html.Partial("_TravelRequestDetails", Model.RFQ.TravelRequests);
+
+</div>

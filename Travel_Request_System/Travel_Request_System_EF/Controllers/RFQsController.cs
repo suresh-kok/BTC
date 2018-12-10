@@ -309,20 +309,50 @@ namespace Travel_Request_System_EF.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    MasterRFQ.Processing = (int)ProcessingStatus.BeingProcessed;
-                    MasterRFQ.UserID = dbuser.ID;
-                    MasterRFQ.Remarks = rfq.Remarks;
-                    MasterRFQ.TravelAgencyID = rfq.TravelAgencyID;
-                    MasterRFQ.IsDeleted = rfq.IsDeleted;
+                    var dbrfq = db.RFQ.Find(rfq.ID);
 
-                    db.RFQ.Attach(MasterRFQ);
-                    var entry = db.Entry(MasterRFQ);
+                    dbrfq.Processing = (int)ProcessingStatus.BeingProcessed;
+                    dbrfq.UserID = dbuser.ID;
+                    dbrfq.Remarks = rfq.Remarks;
+                    dbrfq.TravelAgencyID = rfq.TravelAgencyID;
+                    dbrfq.IsDeleted = rfq.IsDeleted;
+
+                    db.RFQ.Attach(dbrfq);
+                    var entry = db.Entry(dbrfq);
                     entry.Property(a => a.Remarks).IsModified = true;
                     entry.Property(a => a.UserID).IsModified = true;
                     entry.Property(a => a.Processing).IsModified = true;
                     entry.Property(a => a.TravelAgencyID).IsModified = true;
                     entry.Property(a => a.IsDeleted).IsModified = true;
                     db.SaveChanges();
+
+                    Quotation quote = new Quotation
+                    {
+                        TravelRequestID = (int)dbrfq.TravelRequestID
+                    };
+
+                    db.Quotation.Add(quote);
+                    db.SaveChanges();
+
+
+                    ATQuotation ATquote = new ATQuotation()
+                    {
+                        QuotationID = quote.ID
+                    };
+                    db.ATQuotation.Add(ATquote);
+                    HSQuotation HSquote = new HSQuotation()
+                    {
+                        QuotationID = quote.ID
+                    };
+                    db.HSQuotation.Add(HSquote);
+                    PCQuotation PCquote = new PCQuotation()
+                    {
+                        QuotationID = quote.ID
+                    };
+                    db.PCQuotation.Add(PCquote);
+                    db.SaveChanges();
+
+                    MasterRFQ = dbrfq;
                     return RedirectToAction("Index");
                 }
                 else
