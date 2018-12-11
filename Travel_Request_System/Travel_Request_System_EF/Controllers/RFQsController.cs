@@ -429,7 +429,8 @@ namespace Travel_Request_System_EF.Controllers
                     List<Attachments> uploadFileModel = new List<Attachments>();
 
                     fileName = Path.GetFileName(Request.Files[0].FileName);
-                    destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/"), fileName);
+                    destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + MasterRFQ.TravelRequests.ApplicationNumber) + "/", fileName);
+                    Directory.CreateDirectory(destinationPath);
                     Request.Files[0].SaveAs(destinationPath);
 
 

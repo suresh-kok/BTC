@@ -22,4 +22,14 @@
     //    public string PassportNumber { get; set; }
     //    public string PassportExpiry { get; set; }
     //}
+
+    public class QuotationListViewModel
+    {
+        public int QuotationID { get; set; }
+        public int RFQID { get; set; }
+        public int TravelRequestID { get; set; }
+        public int QuotationType { get; set; }
+        public int QuotationTypeID { get; set; }
+        public string QuotationName { get; set; }
+    }
 }

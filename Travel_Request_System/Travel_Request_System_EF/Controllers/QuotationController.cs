@@ -291,11 +291,12 @@ namespace Travel_Request_System_EF.Controllers
                     string destinationPath = string.Empty;
                     List<Attachments> uploadFileModel = new List<Attachments>();
 
-                    fileName = Path.GetFileName(Request.Files[0].FileName);
-                    destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/"), fileName);
-                    Request.Files[0].SaveAs(destinationPath);
-
                     setQuotation(pageNo, out attachmentsForVal, out attachmentsForIDVal, out retrunToVal);
+
+                    fileName = Path.GetFileName(Request.Files[0].FileName);
+                    destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + attachmentsForVal) + "/", fileName);
+                    Directory.CreateDirectory(destinationPath); Request.Files[0].SaveAs(destinationPath);
+
                     var isFileNameRepete = (db.Attachments.AsEnumerable().Where(x => x.FileName == fileName).ToList());
                     if (isFileNameRepete == null || isFileNameRepete.Count <= 0)
                     {
