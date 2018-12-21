@@ -17,8 +17,8 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                var travelRequests = db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency).Include(t => t.RFQ).Include(t => t.Users).Include(t => t.Users1);
-                return View(await travelRequests.ToListAsync());
+                var lpos = db.LPO.Include(t => t.Quotation).Include(t => t.RFQ);
+                return View(await lpos.ToListAsync());
             }
         }
 
@@ -26,10 +26,16 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                var RFQList = await db.RFQ.Include(a => a.TravelRequests).Where(a => a.Processing == (int)ProcessingStatus.Processed).Distinct().ToListAsync();
+                db.Configuration.LazyLoadingEnabled = false;
+                db.Configuration.ProxyCreationEnabled = true;
+                var RFQList = await db.RFQ.Include(a => a.TravelRequests).Include(a=>a.LPO).Include(a => a.TravelAgency).Include(a => a.Users).Include(a => a.Quotation).Include("Quotation.ATQuotation").Include("Quotation.HSQuotation").Include("Quotation.PCQuotation").Where(a => a.Processing == (int)ProcessingStatus.Processed).Distinct().ToListAsync();
                 ViewBag.RFQList = RFQList;
+                ViewBag.TravelAgency = db.TravelAgency.ToList();
+                ViewBag.Cities = db.City.ToList();
+                ViewBag.Currencies = db.Currency.ToList();
+                ViewBag.ApprovalBy = db.Users.ToList();
 
-                return View();
+                return View(RFQList.ToList());
             }
         }
 
@@ -84,6 +90,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     QuotationID = 0,
                     RFQID = RFQIDVal,
+
                     TravelRequestID = 0,
                     QuotationType = 0,
                     QuotationTypeID = 0,
@@ -93,6 +100,15 @@ namespace Travel_Request_System_EF.Controllers
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string result = javaScriptSerializer.Serialize(lstquotes);
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<ActionResult> LPOCreation(int id)
+        {
+            using (BTCEntities db = new BTCEntities())
+            {
+                var LPO = await db.LPO.Where(a => a.ID == id).FirstOrDefaultAsync();
+                return View(LPO);
+            }
         }
     }
 }

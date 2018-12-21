@@ -17,8 +17,8 @@ namespace Travel_Request_System_EF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TravelRequests()
         {
-            this.Quotation = new HashSet<Quotation>();
             this.RFQ = new HashSet<RFQ>();
+            this.Quotation = new HashSet<Quotation>();
         }
     
         public int ID { get; set; }
@@ -72,11 +72,11 @@ namespace Travel_Request_System_EF.Models
         public virtual City City { get; set; }
         public virtual City City1 { get; set; }
         public virtual Currency Currency { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Quotation> Quotation { get; set; }
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RFQ> RFQ { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Quotation> Quotation { get; set; }
     }
 }

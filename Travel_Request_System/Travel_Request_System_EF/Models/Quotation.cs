@@ -26,6 +26,7 @@ namespace Travel_Request_System_EF.Models
         public int ID { get; set; }
         public int TravelRequestID { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
+        public Nullable<int> RFQID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ATQuotation> ATQuotation { get; set; }
@@ -35,6 +36,7 @@ namespace Travel_Request_System_EF.Models
         public virtual ICollection<LPO> LPO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PCQuotation> PCQuotation { get; set; }
+        public virtual RFQ RFQ { get; set; }
         public virtual TravelRequests TravelRequests { get; set; }
     }
 }

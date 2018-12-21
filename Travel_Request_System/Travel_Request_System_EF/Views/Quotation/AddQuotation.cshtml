@@ -81,7 +81,7 @@
                                                     </td>
                                                     <td>
                                                         <span class="glyphicon">
-                                                            @Html.ActionLink("  View to Add Details", "AddHSQuotation", new { id = Model.ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
+                                                            @Html.ActionLink("  View to Add Details", "AddHSQuotation", new { id = Model.TravelRequests.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
                                                         </span>
                                                     </td>
                                                     <td>
@@ -102,7 +102,7 @@
                                                     </td>
                                                     <td>
                                                         <span class="glyphicon">
-                                                            @Html.ActionLink("  View to Add Details", "AddPCQuotation", new { id = Model.ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
+                                                            @Html.ActionLink("  View to Add Details", "AddPCQuotation", new { id = Model.TravelRequests.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
                                                         </span>
                                                     </td>
                                                     <td>

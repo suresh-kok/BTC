@@ -27,6 +27,7 @@ namespace Travel_Request_System_EF.Models
         public string TicketNo { get; set; }
         public Nullable<decimal> Amount { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
+        public string QuotationName { get; set; }
     
         public virtual City City { get; set; }
         public virtual City City1 { get; set; }

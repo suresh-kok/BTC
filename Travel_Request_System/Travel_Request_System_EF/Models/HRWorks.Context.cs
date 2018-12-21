@@ -28,18 +28,9 @@ namespace Travel_Request_System_EF.Models
         public virtual DbSet<ATQuotation> ATQuotation { get; set; }
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Currency> Currency { get; set; }
-        public virtual DbSet<HRW_Company> HRW_Company { get; set; }
-        public virtual DbSet<HRW_EmpEntityParamValues> HRW_EmpEntityParamValues { get; set; }
-        public virtual DbSet<HRW_Employee> HRW_Employee { get; set; }
         public virtual DbSet<HSQuotation> HSQuotation { get; set; }
         public virtual DbSet<LPO> LPO { get; set; }
-        public virtual DbSet<ORG_ChartMaster> ORG_ChartMaster { get; set; }
-        public virtual DbSet<ORG_EmpEntityLink> ORG_EmpEntityLink { get; set; }
-        public virtual DbSet<ORG_EntityMaster> ORG_EntityMaster { get; set; }
-        public virtual DbSet<ORG_EntityType> ORG_EntityType { get; set; }
-        public virtual DbSet<ORG_EntityTypeParam> ORG_EntityTypeParam { get; set; }
         public virtual DbSet<PCQuotation> PCQuotation { get; set; }
-        public virtual DbSet<Quotation> Quotation { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<TravelRequests> TravelRequests { get; set; }
         public virtual DbSet<Users> Users { get; set; }
@@ -47,5 +38,6 @@ namespace Travel_Request_System_EF.Models
         public virtual DbSet<TravelAgency> TravelAgency { get; set; }
         public virtual DbSet<Attachments> Attachments { get; set; }
         public virtual DbSet<AttachmentLink> AttachmentLink { get; set; }
+        public virtual DbSet<Quotation> Quotation { get; set; }
     }
 }

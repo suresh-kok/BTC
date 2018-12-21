@@ -21,7 +21,7 @@ namespace Travel_Request_System_EF.Models
         public string Remarks { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
     
-        public virtual Quotation Quotation { get; set; }
         public virtual RFQ RFQ { get; set; }
+        public virtual Quotation Quotation { get; set; }
     }
 }

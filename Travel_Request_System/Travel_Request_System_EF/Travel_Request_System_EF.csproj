@@ -218,34 +218,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HRWorks.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\HRW_Company.cs">
-      <DependentUpon>HRWorks.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\HRW_EmpEntityParamValues.cs">
-      <DependentUpon>HRWorks.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\HRW_Employee.cs">
-      <DependentUpon>HRWorks.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\HSQuotation.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LPO.cs">
-      <DependentUpon>HRWorks.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ORG_ChartMaster.cs">
-      <DependentUpon>HRWorks.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ORG_EmpEntityLink.cs">
-      <DependentUpon>HRWorks.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ORG_EntityMaster.cs">
-      <DependentUpon>HRWorks.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ORG_EntityType.cs">
-      <DependentUpon>HRWorks.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ORG_EntityTypeParam.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PCQuotation.cs">
@@ -1272,6 +1248,7 @@
     <Content Include="Views\Quotation\AddHSQuotation.cshtml" />
     <Content Include="Views\Quotation\AddPCQuotation.cshtml" />
     <Content Include="Views\LPO\LPOProcessing.cshtml" />
+    <Content Include="Views\LPO\LPOCreation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

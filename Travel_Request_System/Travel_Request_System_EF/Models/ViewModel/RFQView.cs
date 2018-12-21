@@ -10,7 +10,6 @@ namespace Travel_Request_System_EF.Models.ViewModel
         public string ApplicationNumber { get; set; }
         public TravelAgency travelAgency { get; set; }
         public TravelRequests travelRequest { get; set; }
-        public HRW_Employee employee { get; set; }
         public string Remarks { get; set; }
         public List<string> RFQAttachment { get; set; }
 

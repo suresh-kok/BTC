@@ -1,4 +1,4 @@
-﻿@model Travel_Request_System_EF.Models.LPO
+﻿@model List<Travel_Request_System_EF.Models.RFQ>
 
 @{
     ViewBag.Title = "LPO Processing";
@@ -7,216 +7,307 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 
-<style type="text/css">
-    .no-js #loader {
-        display: none;
-    }
-
-    .js #loader {
-        display: block;
-        position: absolute;
-        left: 100px;
-        top: 0;
-    }
-
-    .se-pre-con {
-        position: fixed;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        height: 100%;
-        z-index: 9999;
-        background: url(../../Content/img/Preloader_2.gif) center no-repeat #fff;
-    }
-</style>
-
-<div class="se-pre-con"></div>
-
-<div class="col-xs-12 col-md-12">
-    <div id="target" class="box box-default">
-        <div class="box-header with-border">
-            <h3 class="box-title">Employee Information</h3>
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+@*<div class="col-xs-12 col-md-12">
+        <div id="target" class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Employee Information</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
             </div>
-        </div>
-        <div class="box-body">
-            <div>
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Select RFQ #</label>
-                            <div class="col-sm-9">
-                                @*@Html.DropDownListFor(model => model.RFQID, ((IEnumerable<Travel_Request_System_EF.Models.RFQ>)ViewBag.RFQs).Select(m => new SelectListItem { Text = m.TravelRequests.ApplicationNumber, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })*@
-                                @*@Html.ValidationMessageFor(model => model.PortOfOriginID, null , new { @class = "text-danger" })*@
-                                <select class="form-control" id="RFQDropDown" onchange="getQuotationList()">
-                                    <option value="-1">--Select RFQ # --</option>
-                                    @foreach (var item in ViewBag.RFQList)
-                                    {<text>
-                                            @{
-                                                string ps = "";
-                                                if (item.ProcessingSection == 1)
-                                                {
-                                                    ps = "AT";
+            <div class="box-body">
+                <div>
+                    <div class="row" style="margin-bottom:15px">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3">Select RFQ #</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownListFor(model => model.RFQID, ((IEnumerable<Travel_Request_System_EF.Models.RFQ>)ViewBag.RFQs).Select(m => new SelectListItem { Text = m.TravelRequests.ApplicationNumber, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
+                                    <select class="form-control" id="RFQDropDown" onchange="getQuotationList()">
+                                        <option value="-1">--Select RFQ # --</option>
+                                        @foreach (var item in ViewBag.RFQList)
+                                        {<text>
+                                                @{
+                                                    string ps = "";
+                                                    if (item.ProcessingSection == 1)
+                                                    {
+                                                        ps = "AT";
+                                                    }
+                                                    else if (item.ProcessingSection == 2)
+                                                    {
+                                                        ps = "HS";
+                                                    }
+                                                    else if (item.ProcessingSection == 3)
+                                                    {
+                                                        ps = "PC";
+                                                    }
+                                                    else if (item.ProcessingSection == 4)
+                                                    {
+                                                        ps = "AT + HS";
+                                                    }
+                                                    else if (item.ProcessingSection == 5)
+                                                    {
+                                                        ps = "AT + PC";
+                                                    }
+                                                    else if (item.ProcessingSection == 6)
+                                                    {
+                                                        ps = "HS + PC";
+                                                    }
+                                                    else if (item.ProcessingSection == 7)
+                                                    {
+                                                        ps = "AT + HS + PC";
+                                                    }
                                                 }
-                                                else if (item.ProcessingSection == 2)
-                                                {
-                                                    ps = "HS";
-                                                }
-                                                else if (item.ProcessingSection == 3)
-                                                {
-                                                    ps = "PC";
-                                                }
-                                                else if (item.ProcessingSection == 4)
-                                                {
-                                                    ps = "AT + HS";
-                                                }
-                                                else if (item.ProcessingSection == 5)
-                                                {
-                                                    ps = "AT + PC";
-                                                }
-                                                else if (item.ProcessingSection == 6)
-                                                {
-                                                    ps = "HS + PC";
-                                                }
-                                                else if (item.ProcessingSection == 7)
-                                                {
-                                                    ps = "AT + HS + PC";
-                                                }
-                                            }
-                                            <option value="@item.ID">@item.TravelRequests.ApplicationNumber // @ps</option>
-                                    </text>
-                                }
-                                </select><br /><br />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Select Quotation #</label>
-                            <div class="col-sm-9">
-                                @*@Html.DropDownListFor(model => model.QuotationID, ((IEnumerable<Travel_Request_System_EF.Models.Quotation>)ViewBag.Quotations).Select(m => new SelectListItem { Text = m.TravelRequests.ApplicationNumber, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })*@
-                                @*@Html.ValidationMessageFor(model => model.PortOfOriginID, null , new { @class = "text-danger" })*@
-                                <select class="form-control" id="QuotationDropDown">
-                                    <option value="-1">--Select Quotation # --</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-sm-6">
-                        <input type="button" id="addTravel" class="btn btn-info" value="Add to Travel Grid" />
-                    </div>
-                </div>
-                <div class="form-horizontal">
-                    <aside class="right-side">
-                        <!-- Main content -->
-                        <section class="content">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="box">
-                                        <div class="box-header">
-                                            <h3 class="box-title">Quotation Table</h3>
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body">
-                                            <table class="table table-condensed table-bordered" id="travelGridTable">
-                                                <thead>
-                                                    <tr class="success">
-                                                        <th>RFQ #</th>
-                                                        <th>Quotation #</th>
-                                                        <th class="col-xs-2">Delete Action</th>
-                                                        <th>Create LPO</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
-                                        </div><!-- /.box-body -->
-                                    </div><!-- /.box -->
+                                                <option value="@item.ID">@item.TravelRequests.ApplicationNumber // @ps</option>
+                                        </text>
+                                    }
+                                    </select><br /><br />
                                 </div>
                             </div>
-                        </section>
-                    </aside>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3">Select Quotation #</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownListFor(model => model.QuotationID, ((IEnumerable<Travel_Request_System_EF.Models.Quotation>)ViewBag.Quotations).Select(m => new SelectListItem { Text = m.TravelRequests.ApplicationNumber, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
+                                    <select class="form-control" id="QuotationDropDown">
+                                        <option value="-1">--Select Quotation # --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom:15px">
+                        <div class="col-sm-6">
+                            <input type="button" id="addTravel" class="btn btn-info" value="Add to Travel Grid" />
+                        </div>
+                    </div>
+                    <div class="form-horizontal">
+                        <aside class="right-side">
+                            <!-- Main content -->
+                            <section class="content">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="box">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Quotation Table</h3>
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <table class="table table-condensed table-bordered" id="travelGridTable">
+                                                    <thead>
+                                                        <tr class="success">
+                                                            <th>RFQ #</th>
+                                                            <th>Quotation #</th>
+                                                            <th class="col-xs-2">Delete Action</th>
+                                                            <th>Create LPO</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div><!-- /.box-body -->
+                                        </div><!-- /.box -->
+                                    </div>
+                                </div>
+                            </section>
+                        </aside>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>*@
+
+<div class="row" style="margin-bottom:15px">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <input type="button" class="form-control btn btn-info btn-primary" value="Create Travel Grid" formaction="CreateTravelGrid" />
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <input type="button" class="form-control btn btn-info btn-primary" value="View Travel Grid as PDF" formaction="ViewPDF" />
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <input type="button" class="form-control btn btn-info btn-primary" value="Intimate Employee" formaction="IntimateEmployee" />
             </div>
         </div>
     </div>
+    <div class="col-sm-3">
+    </div>
 </div>
-@*<div id="detailsDiv" style="height:auto">
 
-        @Html.AntiForgeryToken()
 
-        @Html.Partial("_TravelRequestDetails", Model.RFQ.TravelRequests);
+<aside class="right-side">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Travel Grid</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-condensed table-bordered" id="travelGridTable">
+                            <thead>
+                                <tr class="success">
+                                    <th>RFQ #</th>
+                                    <th>Quotation #</th>
+                                    <th class="col-xs-1">Is Selected</th>
+                                    <th>Create LPO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    if (item.Quotation.Where(a => a.RFQID == item.ID || (a.ATQuotation.Count(b => (bool)b.IsDeleted == false) > 0 || a.HSQuotation.Count(b => (bool)b.IsDeleted == false) > 0 || a.PCQuotation.Count(b => (bool)b.IsDeleted == false) > 0)).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault() > 0)
+                                    {
+                                        <tr>
+                                            <td style="text-align:center; vertical-align:middle" rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">
+                                                @item.RFQName
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><a class="form-control btn btn-info glyphicon glyphicon-plus disabled" id="@("RFQ" + item.ID)" rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">   Create LPO</a></td>
+                                        </tr>
+                                        foreach (var quot in item.Quotation)
+                                        {
+                                            if (quot.ATQuotation.Count > 0 && quot.ATQuotation.Count(b => (bool)b.IsDeleted == false) > 0)
+                                            {
+                                                <tr>
+                                                    <td><b>Q#</b> @quot.ATQuotation.FirstOrDefault().QuotationName</td>
+                                                    <td>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" id="@("AT"+@quot.ATQuotation.FirstOrDefault().ID)">
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                            if (quot.HSQuotation.Count > 0 && quot.HSQuotation.Count(b => (bool)b.IsDeleted == false) > 0)
+                                            {
+                                                <tr>
+                                                    <td><b>Q#</b> @quot.HSQuotation.FirstOrDefault().QuotationName</td>
+                                                    <td>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" id="@("HS"+@quot.HSQuotation.FirstOrDefault().ID)">
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                            if (quot.PCQuotation.Count > 0 && quot.PCQuotation.Count(b => (bool)b.IsDeleted == false) > 0)
+                                            {
+                                                <tr>
+                                                    <td><b>Q#</b> @quot.PCQuotation.FirstOrDefault().QuotationName</td>
+                                                    <td>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" id="@("PC"+@quot.PCQuotation.FirstOrDefault().ID)">
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                }
 
-    </div>*@
+                            </tbody>
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </div>
+    </section>
+</aside>
+<div id="detailsDiv" style="height:auto">
+
+    @Html.AntiForgeryToken()
+
+    @Html.Partial("_TravelRequestDetails", Model[0].TravelRequests)
+
+</div>
+
+@*<script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#addTravel").click(function () {
+                if (checkAlreadySelected()) {
+                    //$("#travelGridTable").append('<tr valign="top"><th scope="row"><label for="customFieldName">Custom Field</label></th><td><input type="text" class="code" id="customFieldName" name="customFieldName[]" value="" placeholder="Input Name" /> &nbsp; <input type="text" class="code" id="customFieldValue" name="customFieldValue[]" value="" placeholder="Input Value" /> &nbsp; <a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
+                    var data = '<tr><td>'
+                    data += $("#RFQDropDown option:selected").text();
+                    data += '</td><td>'
+                    data += $("#QuotationDropDown option:selected").text();
+                    data += '</td>';
+                    data += '<td><a class="form-control btn btn-info glyphicon glyphicon-remove removebutton"></a></td>'
+                    $('#travelGridTable').append(data);
+                }
+            });
+            $(".se-pre-con").hide();
+        });
+
+        $(document).on('click', 'a.removebutton', function () { // <-- changes
+            $(this).closest('tr').remove();
+            return false;
+        });
+
+        //$("#travelGridTable").on('click', '.remCF', function () {
+        //    $(this).parent().parent().remove();
+        //});
+        function checkAlreadySelected() {
+            var rfq_id = $("#RFQDropDown option:selected").text();
+            //var quote_id = $("#QuotationDropDown option:selected").text();
+            rfq_id += $("#QuotationDropDown option:selected").text();
+            var retval = 0;
+            $('#travelGridTable tr').each(function () {
+                if ($(this).text() == rfq_id) {
+                    retval = 1;
+                }
+            });
+            if (retval == 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function getQuotationList() {
+            $(".se-pre-con").show();
+            var RFQIDVal = $("#RFQDropDown").val();
+            $.ajax
+                ({
+                    url: '/LPO/GetQuotationList',
+                    type: 'POST',
+                    datatype: 'application/json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        RFQID: RFQIDVal
+                    }),
+                    success: function (result) {
+                        $("#QuotationDropDown").html("");
+                        $.each($.parseJSON(result), function (i, lstquotes) {
+                            $("#QuotationDropDown").append($('<option></option>').val(lstquotes.QuotationTypeID).html(lstquotes.QuotationName))
+                            $(".se-pre-con").hide();
+                        });
+                    },
+                    error: function () {
+                        alert("Whooaaa! Something went wrong..")
+                    },
+                });
+        }
+    </script>*@
 
 <script type="text/javascript">
-
-    $(document).ready(function () {
-        $("#addTravel").click(function () {
-            if (checkAlreadySelected()) {
-                //$("#travelGridTable").append('<tr valign="top"><th scope="row"><label for="customFieldName">Custom Field</label></th><td><input type="text" class="code" id="customFieldName" name="customFieldName[]" value="" placeholder="Input Name" /> &nbsp; <input type="text" class="code" id="customFieldValue" name="customFieldValue[]" value="" placeholder="Input Value" /> &nbsp; <a href="javascript:void(0);" class="remCF">Remove</a></td></tr>');
-                var data = '<tr><td>'
-                data += $("#RFQDropDown option:selected").text();
-                data += '</td><td>'
-                data += $("#QuotationDropDown option:selected").text();
-                data += '</td>';
-                data += '<td><a class="form-control btn btn-info glyphicon glyphicon-remove removebutton"></a></td>'
-                $('#travelGridTable').append(data);
-            }
-        });
-        $(".se-pre-con").hide();
-    });
-
     $(document).on('click', 'a.removebutton', function () { // <-- changes
         $(this).closest('tr').remove();
         return false;
     });
-
-    //$("#travelGridTable").on('click', '.remCF', function () {
-    //    $(this).parent().parent().remove();
-    //});
-    function checkAlreadySelected() {
-        var rfq_id = $("#RFQDropDown option:selected").text();
-        //var quote_id = $("#QuotationDropDown option:selected").text();
-        rfq_id += $("#QuotationDropDown option:selected").text();
-        var retval = 0;
-        $('#travelGridTable tr').each(function () {
-            if ($(this).text() == rfq_id) {
-                retval = 1;
-            }
-        });
-        if (retval == 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    function getQuotationList() {
-        $(".se-pre-con").show();
-        var RFQIDVal = $("#RFQDropDown").val();
-        $.ajax
-            ({
-                url: '/LPO/GetQuotationList',
-                type: 'POST',
-                datatype: 'application/json',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    RFQID: RFQIDVal
-                }),
-                success: function (result) {
-                    $("#QuotationDropDown").html("");
-                    $.each($.parseJSON(result), function (i, lstquotes) {
-                        $("#QuotationDropDown").append($('<option></option>').val(lstquotes.QuotationTypeID).html(lstquotes.QuotationName))
-                        $(".se-pre-con").hide();
-                    });
-                },
-                error: function () {
-                    alert("Whooaaa! Something went wrong..")
-                },
-            });
-    }
 </script>
