@@ -20,6 +20,9 @@ namespace Travel_Request_System_EF.Models
         public Nullable<int> QuotationID { get; set; }
         public string Remarks { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
+        public Nullable<bool> IsAT { get; set; }
+        public Nullable<bool> IsHS { get; set; }
+        public Nullable<bool> IsPC { get; set; }
     
         public virtual RFQ RFQ { get; set; }
         public virtual Quotation Quotation { get; set; }

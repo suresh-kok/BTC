@@ -20,17 +20,28 @@
                         </div><!-- /.box-header -->
                         <div class="box-body">
                             <div class="row" style="margin-bottom:15px">
-                                Details Captured from Travel Request
+                                <div id="detailsDiv" style="height:auto">
+                                    @Html.Partial("_TravelRequestDetails", Model.RFQ.TravelRequests)
+                                </div>
                             </div>
-                            <div class="row" style="margin-bottom:15px">
-                                Details Captured from AT-Q
-                            </div>
-                            <div class="row" style="margin-bottom:15px">
-                                Details Captured from HS-Q
-                            </div>
-                            <div class="row" style="margin-bottom:15px">
-                                Details Captured from PC-Q
-                            </div>
+                            @if (Model.IsAT != null && (bool)Model.IsAT)
+                            {
+                                <div class="row" style="margin-bottom:15px">
+                                    @Html.Partial("_ATQuotation", Model.Quotation.ATQuotation.FirstOrDefault())
+                                </div>
+                            }
+                            @if (Model.IsHS != null && (bool)Model.IsHS)
+                            {
+                                <div class="row" style="margin-bottom:15px">
+                                    @Html.Partial("_HSQuotation", Model.Quotation.HSQuotation.FirstOrDefault())
+                                </div>
+                            }
+                            @if (Model.IsPC != null && (bool)Model.IsPC)
+                            {
+                                <div class="row" style="margin-bottom:15px">
+                                    @Html.Partial("_PCQuotation", Model.Quotation.PCQuotation.FirstOrDefault())
+                                </div>
+                            }
                             <div class="row" style="margin-bottom:15px">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -54,28 +65,28 @@
                                 </div>
                             </div>
                             <div class="row" style="margin-bottom:15px">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label class="col-sm-3">Remarks</label>
-                                        <div class="col-sm-9">
-                                            @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "4", @placeholder = "Enter Travel Request Remarks..." })
+                                        <label class="col-sm-1">Remarks</label>
+                                        <div class="col-sm-12">
+                                            @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "7", @placeholder = "Enter Travel Request Remarks..." })
                                             @*@Html.ValidationMessageFor(model => model.HotelName, null, new { @class = "text-danger" })*@
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row" style="margin-bottom:15px">
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <input type="button" class="form-control btn btn-info btn-primary" value="Save LPO" formaction="SaveLPO" />
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <input type="button" class="form-control btn btn-info btn-primary" value="Send LPO as Email" formaction="SendEmail" />
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                 </div>
                             </div>
                         </div><!-- /.box-body -->
@@ -85,61 +96,7 @@
         </section>
     </aside>
 
-    @*<div class="form-horizontal">
-        <h4>LPO</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.LPONo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LPONo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LPONo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RFQID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RFQID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RFQID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuotationID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuotationID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QuotationID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IsDeleted, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IsDeleted, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>*@
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

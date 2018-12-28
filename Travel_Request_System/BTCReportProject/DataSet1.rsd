@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>DataSource1</DataSourceReference>
+      <CommandText>SELECT
+  TravelRequests.ID
+  ,TravelRequests.ApplicationNumber
+  ,TravelRequests.PortOfOriginID
+  ,TravelRequests.PortOfDestinationID
+  ,TravelRequests.TicketClass
+  ,TravelRequests.DailyAllowance
+  ,TravelRequests.CurrencyID
+  ,TravelRequests.TravelDays
+  ,TravelRequests.TravelRemarks
+  ,TravelRequests.PurposeOfVisit
+  ,TravelRequests.DepartureDate
+  ,TravelRequests.DepartureTime
+  ,TravelRequests.ReturnDate
+  ,TravelRequests.ReturnTime
+  ,TravelRequests.FirstBusinessDay
+  ,TravelRequests.LastBusinessDay
+  ,TravelRequests.Remarks
+  ,TravelRequests.AirTicketManagement
+  ,TravelRequests.HotelName
+  ,TravelRequests.TravelAllowance
+  ,TravelRequests.HotelStay
+  ,TravelRequests.HotelCategory
+  ,TravelRequests.RoomCategory
+  ,TravelRequests.RoomType
+  ,TravelRequests.AdditionalAllowance
+  ,TravelRequests.AirportPickUp
+  ,TravelRequests.PickUpLocation
+  ,TravelRequests.PickUpDate
+  ,TravelRequests.PickUpTime
+  ,TravelRequests.DropOffLocation
+  ,TravelRequests.DropOffDate
+  ,TravelRequests.DropOffTime
+  ,TravelRequests.PreferredVehicle
+  ,TravelRequests.TravelSector
+  ,TravelRequests.CheckInDate
+  ,TravelRequests.CheckOutDate
+  ,TravelRequests.CheckInTime
+  ,TravelRequests.CheckOutTime
+  ,TravelRequests.ApprovalLevel
+  ,TravelRequests.ApprovalBy
+  ,TravelRequests.ApprovalRemarks
+  ,TravelRequests.CreateOn
+  ,TravelRequests.CreatedBy
+  ,TravelRequests.ModifiedOn
+  ,TravelRequests.ModifiedBy
+  ,TravelRequests.IsDeleted
+  ,TravelRequests.IsSubmitted
+FROM
+  TravelRequests</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <SelectedColumns>
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="ID" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="ApplicationNumber" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="PortOfOriginID" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="PortOfDestinationID" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="TicketClass" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="DailyAllowance" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="CurrencyID" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="TravelDays" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="TravelRemarks" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="PurposeOfVisit" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="DepartureDate" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="DepartureTime" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="ReturnDate" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="ReturnTime" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="FirstBusinessDay" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="LastBusinessDay" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="Remarks" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="AirTicketManagement" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="HotelName" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="TravelAllowance" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="HotelStay" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="HotelCategory" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="RoomCategory" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="RoomType" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="AdditionalAllowance" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="AirportPickUp" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="PickUpLocation" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="PickUpDate" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="PickUpTime" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="DropOffLocation" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="DropOffDate" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="DropOffTime" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="PreferredVehicle" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="TravelSector" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="CheckInDate" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="CheckOutDate" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="CheckInTime" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="CheckOutTime" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="ApprovalLevel" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="ApprovalBy" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="ApprovalRemarks" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="CreateOn" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="CreatedBy" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="ModifiedOn" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="ModifiedBy" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="IsDeleted" />
+            <ColumnExpression ColumnOwner="TravelRequests" ColumnName="IsSubmitted" />
+          </SelectedColumns>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="ID">
+        <DataField>ID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="ApplicationNumber">
+        <DataField>ApplicationNumber</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="PortOfOriginID">
+        <DataField>PortOfOriginID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="PortOfDestinationID">
+        <DataField>PortOfDestinationID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="TicketClass">
+        <DataField>TicketClass</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="DailyAllowance">
+        <DataField>DailyAllowance</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="CurrencyID">
+        <DataField>CurrencyID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="TravelDays">
+        <DataField>TravelDays</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="TravelRemarks">
+        <DataField>TravelRemarks</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="PurposeOfVisit">
+        <DataField>PurposeOfVisit</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="DepartureDate">
+        <DataField>DepartureDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="DepartureTime">
+        <DataField>DepartureTime</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="ReturnDate">
+        <DataField>ReturnDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="ReturnTime">
+        <DataField>ReturnTime</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="FirstBusinessDay">
+        <DataField>FirstBusinessDay</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="LastBusinessDay">
+        <DataField>LastBusinessDay</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="Remarks">
+        <DataField>Remarks</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="AirTicketManagement">
+        <DataField>AirTicketManagement</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="HotelName">
+        <DataField>HotelName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="TravelAllowance">
+        <DataField>TravelAllowance</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="HotelStay">
+        <DataField>HotelStay</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="HotelCategory">
+        <DataField>HotelCategory</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="RoomCategory">
+        <DataField>RoomCategory</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="RoomType">
+        <DataField>RoomType</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="AdditionalAllowance">
+        <DataField>AdditionalAllowance</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="AirportPickUp">
+        <DataField>AirportPickUp</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="PickUpLocation">
+        <DataField>PickUpLocation</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="PickUpDate">
+        <DataField>PickUpDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="PickUpTime">
+        <DataField>PickUpTime</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="DropOffLocation">
+        <DataField>DropOffLocation</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="DropOffDate">
+        <DataField>DropOffDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="DropOffTime">
+        <DataField>DropOffTime</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="PreferredVehicle">
+        <DataField>PreferredVehicle</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="TravelSector">
+        <DataField>TravelSector</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CheckInDate">
+        <DataField>CheckInDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="CheckOutDate">
+        <DataField>CheckOutDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="CheckInTime">
+        <DataField>CheckInTime</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="CheckOutTime">
+        <DataField>CheckOutTime</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="ApprovalLevel">
+        <DataField>ApprovalLevel</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="ApprovalBy">
+        <DataField>ApprovalBy</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="ApprovalRemarks">
+        <DataField>ApprovalRemarks</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CreateOn">
+        <DataField>CreateOn</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="CreatedBy">
+        <DataField>CreatedBy</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="ModifiedOn">
+        <DataField>ModifiedOn</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="ModifiedBy">
+        <DataField>ModifiedBy</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="IsDeleted">
+        <DataField>IsDeleted</DataField>
+        <rd:TypeName>System.Boolean</rd:TypeName>
+      </Field>
+      <Field Name="IsSubmitted">
+        <DataField>IsSubmitted</DataField>
+        <rd:TypeName>System.Boolean</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

@@ -25,41 +25,43 @@
                             }
                             else
                             {
-                                <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.ApplicationNumber)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.PortOfOriginID)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.PortOfDestinationID)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.TravelDays)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.DepartureDate)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.ReturnDate)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.AirTicketManagement)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.CreateOn)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.IsSubmitted)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.ApprovalLevel)
-                                    </th>
-                                </tr>
-
-                                foreach (var item in Model)
-                                {
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ApplicationNumber)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.PortOfOriginID)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.PortOfDestinationID)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TravelDays)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.DepartureDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ReturnDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.AirTicketManagement)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.CreateOn)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IsSubmitted)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ApprovalLevel)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
                                     <tr>
                                         <td>
                                             @Html.ActionLink(item.ApplicationNumber, "Details", "TravelRequests", new { @item.ID }, null)
@@ -135,7 +137,8 @@
                                             }
                                         </td>
                                     </tr>
-                                }
+                                    }
+                                </tbody>
                             }
                         </table>
                     </div><!-- /.box-body -->

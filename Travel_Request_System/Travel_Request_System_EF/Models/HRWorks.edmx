@@ -90,6 +90,9 @@
           <Property Name="QuotationID" Type="int" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsAT" Type="bit" />
+          <Property Name="IsHS" Type="bit" />
+          <Property Name="IsPC" Type="bit" />
         </EntityType>
         <EntityType Name="PCQuotation">
           <Key>
@@ -665,6 +668,9 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="RFQ" Relationship="HRWorksEntities.fk_LPO_RFQID" FromRole="LPO" ToRole="RFQ" />
           <NavigationProperty Name="Quotation" Relationship="HRWorksEntities.fk_LPO_QuotationID" FromRole="LPO" ToRole="Quotation" />
+          <Property Name="IsAT" Type="Boolean" />
+          <Property Name="IsHS" Type="Boolean" />
+          <Property Name="IsPC" Type="Boolean" />
         </EntityType>
         <EntityType Name="PCQuotation">
           <Key>
@@ -1243,6 +1249,9 @@
           <EntitySetMapping Name="LPO">
             <EntityTypeMapping TypeName="HRWorksEntities.LPO">
               <MappingFragment StoreEntitySet="LPO">
+                <ScalarProperty Name="IsPC" ColumnName="IsPC" />
+                <ScalarProperty Name="IsHS" ColumnName="IsHS" />
+                <ScalarProperty Name="IsAT" ColumnName="IsAT" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LPONo" ColumnName="LPONo" />
                 <ScalarProperty Name="RFQID" ColumnName="RFQID" />

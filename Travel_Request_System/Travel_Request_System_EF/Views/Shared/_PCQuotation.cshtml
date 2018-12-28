@@ -1,0 +1,173 @@
+﻿@model Travel_Request_System_EF.Models.PCQuotation
+
+<div class="form-horizontal">
+
+    <input type="hidden" value="@Model.ID" name="Id" />
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">PC - Quotation</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Travel Sector</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.TravelSector, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Pick Up Location</label>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    @Html.DisplayFor(model => model.PickupLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Pick Up Date</label>
+                            <div class="col-sm-9">
+                                @if (Model.PickUpDate != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.PickUpDate.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Pick Up Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.PickUpTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.PickUpTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Drop Off Location</label>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    @Html.DisplayFor(model => model.DropoffLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Drop Off Date</label>
+                            <div class="col-sm-9">
+                                @if (Model.DropOffDate != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.DropOffDate.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Drop Off Time</label>
+                            <div class="col-sm-9">
+                                @if (Model.DropOffTime != null)
+                                {
+                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.DropOffTime.ToString()))));
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Preferred Vehicle Type</label>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    @Html.DisplayFor(model => model.PreferredVehicle, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Additional Expenses</label>
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00", @Value = "0.00" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if (ViewBag.PCfileUploader != null && ViewBag.PCfileUploader.Count > 0)
+                {
+                    <div class="row" style="margin-bottom:15px">
+                        <aside class="right-side">
+                            <!-- Main content -->
+                            <section class="content">
+                                <div class="container text-center">
+                                    <div class="col-xs-11">
+                                        <div class="box with-border">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Details</h3>
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body table-responsive">
+                                                <table id="uloadTable" class="table table-bordered table-hover table-responsive">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>File Name</th>
+                                                            <th>Uploaded Date</th>
+                                                            <th>Uploaded By</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewBag.PCfileUploader)
+                                                        {
+                                                            <tr id="@item.FileName">
+                                                                <td>@item.FileName</td>
+                                                                <td>@item.UploadedDate.ToShortDateString()</td>
+                                                                <td>@(new HtmlString(item.Users.FirstName + " " + item.Users.LastName))</td>
+                                                                <td style="text-align: center">
+                                                                    @Html.ActionLink("  Open File", "OpenFile", new { fileName = item.FileName }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </aside>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -42,7 +42,7 @@ namespace Travel_Request_System_EF.Controllers
                 //var RFQ = db.RFQ.Include(r => r.TravelAgency).Include(r => r.TravelRequests).Include(r => r.Users);
                 //return View(await RFQ.ToListAsync());
 
-                var travelRequests = db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency).Include(t => t.RFQ).Include(t => t.Users).Include(t => t.Users1);
+                var travelRequests = db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency).Include(t => t.RFQ).Include(t => t.Users).Include(t => t.Users1).Include(t => t.RFQ).Include("RFQ.TravelAgency");
                 return View(await travelRequests.ToListAsync());
             }
         }

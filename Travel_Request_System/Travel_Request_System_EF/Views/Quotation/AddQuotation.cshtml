@@ -59,7 +59,9 @@
                                                     </td>
                                                     <td>
                                                         <span class="glyphicon">
-                                                            @Html.ActionLink("  View to Add Details", "AddATQuotation", new { id = Model.TravelRequests.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
+                                                            @*@if (!(bool)Model.TravelRequests.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsDeleted)
+                                                            {*@
+                                                                @Html.ActionLink("  View to Add Details", "AddATQuotation", new { id = Model.TravelRequests.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
                                                         </span>
                                                     </td>
                                                     <td>

@@ -1,4 +1,5 @@
 ﻿@model List<Travel_Request_System_EF.Models.LPO>
+@using ReportViewerForMvc;
 
 @{
     ViewBag.Title = "LPO";
@@ -32,11 +33,28 @@
                                         </td>
                                         <td>
                                             @item.Quotation.TravelRequests.ApplicationNumber
-                                            AT @item.Quotation.ATQuotation.FirstOrDefault().ID
-                                            HS @item.Quotation.HSQuotation.FirstOrDefault().ID
-                                            PC @item.Quotation.PCQuotation.FirstOrDefault().ID
+                                            <br />
+                                            <br />
+                                            @if (item.IsAT != null && (bool)item.IsAT)
+                                            {
+                                                @(new HtmlString("Q# AT-Q"));
+                                            }
+                                            <br />
+                                            @if (item.IsHS != null && (bool)item.IsHS)
+                                            {
+                                                @(new HtmlString("Q# HS-Q"));
+                                            }
+                                            <br />
+                                            @if (item.IsPC != null && (bool)item.IsPC)
+                                            {
+                                                @(new HtmlString("Q# PC-Q"));
+                                            }
                                         </td>
-                                        <td><a class="form-control btn btn-info glyphicon glyphicon-info-sign">  Details</a></td>
+                                        <td>
+                                            <span class="glyphicon">
+                                                @Html.ActionLink("  View Details", "LPODetails", new { id = item.ID }, new { @class = "form-control btn btn-info  glyphicon-envelope" })
+                                            </span>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>

@@ -1,6 +1,8 @@
 ﻿@model List<Travel_Request_System_EF.Models.RFQ>
 
 @{
+    /**/
+
     ViewBag.Title = "LPO Processing";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -117,124 +119,131 @@
         </div>
     </div>*@
 
-<div class="row" style="margin-bottom:15px">
-    <div class="col-sm-3">
-    </div>
-    <div class="col-sm-6">
-        <div class="col-sm-4">
-            <div class="form-group">
-                <input type="button" class="form-control btn btn-info btn-primary" value="Create Travel Grid" formaction="CreateTravelGrid" />
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                <input type="button" class="form-control btn btn-info btn-primary" value="View Travel Grid as PDF" formaction="ViewPDF" />
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                <input type="button" class="form-control btn btn-info btn-primary" value="Intimate Employee" formaction="IntimateEmployee" />
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-    </div>
-</div>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "LPOForm" }))
+{
 
+    @Html.AntiForgeryToken()
+    <div class="row" style="margin-bottom:15px">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input type="submit" class="form-control btn btn-info btn-primary" value="Create Travel Grid" name="CreateTravelGrid" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="View Travel Grid as PDF" formaction="ViewPDF" formmethod="post" name="ViewTravelGrid"/>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="Intimate Employee" formaction="IntimateEmployee" formmethod="post" name="IntimateEmployee"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
 
-<aside class="right-side">
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Travel Grid</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body">
-                        <table class="table table-condensed table-bordered" id="travelGridTable">
-                            <thead>
-                                <tr class="success">
-                                    <th>RFQ #</th>
-                                    <th>Quotation #</th>
-                                    <th class="col-xs-1">Is Selected</th>
-                                    <th>Create LPO</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    if (item.Quotation.Where(a => a.RFQID == item.ID || (a.ATQuotation.Count(b => (bool)b.IsDeleted == false) > 0 || a.HSQuotation.Count(b => (bool)b.IsDeleted == false) > 0 || a.PCQuotation.Count(b => (bool)b.IsDeleted == false) > 0)).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault() > 0)
+    <aside class="right-side">
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Travel Grid</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-condensed table-bordered" id="travelGridTable">
+                                <thead>
+                                    <tr class="success">
+                                        <th>RFQ #</th>
+                                        <th>Quotation #</th>
+                                        <th class="col-xs-1">Is Selected</th>
+                                        <th>Create LPO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td style="text-align:center; vertical-align:middle" rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">
-                                                @item.RFQName
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td><a class="form-control btn btn-info glyphicon glyphicon-plus disabled" id="@("RFQ" + item.ID)" rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">   Create LPO</a></td>
-                                        </tr>
-                                        foreach (var quot in item.Quotation)
+                                        if (item.Quotation.Where(a => a.RFQID == item.ID || (a.ATQuotation.Count(b => (bool)b.IsDeleted == false) > 0 || a.HSQuotation.Count(b => (bool)b.IsDeleted == false) > 0 || a.PCQuotation.Count(b => (bool)b.IsDeleted == false) > 0)).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault() > 0)
                                         {
-                                            if (quot.ATQuotation.Count > 0 && quot.ATQuotation.Count(b => (bool)b.IsDeleted == false) > 0)
+                                            <tr>
+                                                <td style="text-align:center; vertical-align:middle" rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">
+                                                    @item.RFQName
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">
+                                                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="Create LPO" formaction="@Url.Action("LPOCreation",new { id=item.ID})" formmethod="post" name="RFQCreate" />
+                                                </td>
+                                            </tr>
+                                            foreach (var quot in item.Quotation)
                                             {
-                                                <tr>
-                                                    <td><b>Q#</b> @quot.ATQuotation.FirstOrDefault().QuotationName</td>
-                                                    <td>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox" id="@("AT"+@quot.ATQuotation.FirstOrDefault().ID)">
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            }
-                                            if (quot.HSQuotation.Count > 0 && quot.HSQuotation.Count(b => (bool)b.IsDeleted == false) > 0)
-                                            {
-                                                <tr>
-                                                    <td><b>Q#</b> @quot.HSQuotation.FirstOrDefault().QuotationName</td>
-                                                    <td>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox" id="@("HS"+@quot.HSQuotation.FirstOrDefault().ID)">
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            }
-                                            if (quot.PCQuotation.Count > 0 && quot.PCQuotation.Count(b => (bool)b.IsDeleted == false) > 0)
-                                            {
-                                                <tr>
-                                                    <td><b>Q#</b> @quot.PCQuotation.FirstOrDefault().QuotationName</td>
-                                                    <td>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input type="checkbox" id="@("PC"+@quot.PCQuotation.FirstOrDefault().ID)">
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                if (quot.ATQuotation.Count > 0 && quot.ATQuotation.Count(b => (bool)b.IsDeleted == false) > 0)
+                                                {
+                                                    <tr>
+                                                        <td><b>Q#</b> @quot.ATQuotation.FirstOrDefault().QuotationName</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="@("AT" + @quot.ATQuotation.FirstOrDefault().ID)">
+                                                                    <input type="hidden" id="@("RFQ"+@item.ID+"-Quot"+@quot.ID +"-ATCheck" + @quot.ATQuotation.FirstOrDefault().ID)" />
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                if (quot.HSQuotation.Count > 0 && quot.HSQuotation.Count(b => (bool)b.IsDeleted == false) > 0)
+                                                {
+                                                    <tr>
+                                                        <td><b>Q#</b> @quot.HSQuotation.FirstOrDefault().QuotationName</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="@("HS" + @quot.HSQuotation.FirstOrDefault().ID)">
+                                                                    <input type="hidden" id="@("RFQ"+@item.ID+"-Quot"+@quot.ID +"-HSCheck" + @quot.HSQuotation.FirstOrDefault().ID)" />
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                if (quot.PCQuotation.Count > 0 && quot.PCQuotation.Count(b => (bool)b.IsDeleted == false) > 0)
+                                                {
+                                                    <tr>
+                                                        <td><b>Q#</b> @quot.PCQuotation.FirstOrDefault().QuotationName</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="@("PC" + @quot.PCQuotation.FirstOrDefault().ID)">
+                                                                    <input type="hidden" id="@("RFQ"+@item.ID+"-Quot"+@quot.ID +"-PCCheck" + @quot.PCQuotation.FirstOrDefault().ID)" />
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
                                             }
                                         }
                                     }
-                                }
 
-                            </tbody>
-                        </table>
-                    </div><!-- /.box-body -->
-                </div><!-- /.box -->
+                                </tbody>
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
             </div>
-        </div>
-    </section>
-</aside>
-<div id="detailsDiv" style="height:auto">
+        </section>
+    </aside>
 
-    @Html.AntiForgeryToken()
+    <div id="detailsDiv" style="height:auto">
 
-    @Html.Partial("_TravelRequestDetails", Model[0].TravelRequests)
+        @Html.Partial("_TravelRequestDetails", Model[0].TravelRequests)
 
-</div>
-
+    </div>
+}
 @*<script type="text/javascript">
 
         $(document).ready(function () {
@@ -304,10 +313,110 @@
                 });
         }
     </script>*@
-
 <script type="text/javascript">
-    $(document).on('click', 'a.removebutton', function () { // <-- changes
-        $(this).closest('tr').remove();
+
+    $(document).ready(function () {
+
+        $("[name=CreateTravelGrid]").unbind('click');
+
+        $("[name=IntimateEmployee]").bind('click', function (e) {
+            e.preventDefault();
+        });
+        $("[name=ViewTravelGrid]").bind('click', function (e) {
+            e.preventDefault();
+        });
+        $("[name=RFQCreate]").bind('click', function (e) {
+            e.preventDefault();
+        });
+    });
+
+    $("[name=CreateTravelGrid]").click(function () {
+        @{
+            List<Travel_Request_System_EF.Models.LPO> listLPO = new List<Travel_Request_System_EF.Models.LPO>();
+            foreach (var item in Model)
+            {
+                if (item.Quotation.Count > 0)
+                {
+                    if (item.Quotation.FirstOrDefault().ATQuotation.Count(a => a.IsDeleted == false) > 0)
+                    {
+                        @:var ati = @item.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().ID;
+                        @:var aticheck = $("#AT" + ati).iCheck('update')[0].checked;
+                        @:$("#RFQ" +@item.ID+"-Quot" +@item.Quotation.FirstOrDefault().ID +"-ATCheck" + ati).val(aticheck);
+                    }
+                    if (item.Quotation.FirstOrDefault().HSQuotation.Count(a=>a.IsDeleted == false) > 0)
+                    {
+                        @:var hsi = @item.Quotation.FirstOrDefault().HSQuotation.FirstOrDefault().ID;
+                        @:var hsicheck = $("#HS" + hsi).iCheck('update')[0].checked;
+                        @:$("#RFQ" +@item.ID+"-Quot" +@item.Quotation.FirstOrDefault().ID +"-HSCheck" + hsi).val(hsicheck);
+                    }
+                    if (item.Quotation.FirstOrDefault().PCQuotation.Count(a => a.IsDeleted == false) > 0)
+                    {
+                        @:var pci = @item.Quotation.FirstOrDefault().PCQuotation.FirstOrDefault().ID;
+                        @:var pcicheck = $("#PC" + pci).iCheck('update')[0].checked;
+                        @:$("#RFQ" +@item.ID+"-Quot" +@item.Quotation.FirstOrDefault().ID +"-PCCheck" + pci).val(pcicheck);
+                    }
+
+                    //Travel_Request_System_EF.Models.LPO lpoItem = new Travel_Request_System_EF.Models.LPO();
+                    //lpoItem.ID = 0;
+                    //lpoItem.IsDeleted = true;
+                    //lpoItem.LPONo = "";
+                    //lpoItem.QuotationID = item.Quotation.FirstOrDefault().ID;
+                    //lpoItem.RFQID = item.ID;
+                @*lpoItem.IsAT = Convert.ToBoolean(@:$('#aticheck').val());
+                lpoItem.IsHS = Convert.ToBoolean(@:hsicheck);
+                lpoItem.IsPC = Convert.ToBoolean(@:pcicheck);*@
+
+                    //listLPO.Add(lpoItem);
+                }
+            }
+        }
+        var model = @Html.Raw(Json.Encode(listLPO));//JSON.stringify("Newtonsoft.Json.JsonConvert.SerializeObject(listLPO)");
+        //    var model = [{
+        //        ID: 0,
+        //        LPONo: "",
+        //        RFQId: "",
+        //        QuotationID: "1",
+        //        IsAT: $('SELECTOR').iCheck('update')[0].checked;
+        //        IsHS: "",
+        //        IsPC: ""
+        //}
+        //var formval = $("#LPOForm").serialize();
+
+        var dict = []; // create an empty array
+        var i = 0;
+        for (i = 1; i < $('input[type=hidden]').length; i++) {
+            dict.push({
+                key: $('input[type=hidden]')[i].id,
+                value: $('input[type=hidden]')[i].value
+            });
+        }
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify({
+                collection: dict
+            }),
+            //data: JSON.stringify(model),
+            url: "@Url.Action("CreateTravelGrid", "LPO")",
+            contentType: "application/json; charset=utf-8",
+            success: function () {
+                alert("success");
+                $("[name=RFQCreate]").removeClass('disabled');
+                $("[name=ViewTravelGrid]").removeClass('disabled');
+                $("[name=IntimateEmployee]").removeClass('disabled');
+                $("[name=CreateTravelGrid]").addClass('disabled');
+
+                $("[name=RFQCreate]").unbind('click');
+                $("[name=ViewTravelGrid]").unbind('click');
+                $("[name=IntimateEmployee]").unbind('click');
+
+                $("[name=CreateTravelGrid]").bind('click', function (e) {
+                    e.preventDefault();
+                });
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
         return false;
     });
 </script>

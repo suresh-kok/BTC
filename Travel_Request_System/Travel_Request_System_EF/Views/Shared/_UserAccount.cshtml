@@ -22,7 +22,7 @@
                     <a href="#">Total Submitted Requests: @((ViewBag.UserDetails.TravelRequests1 as ICollection<Travel_Request_System_EF.Models.TravelRequests>).Where(a => a.IsSubmitted == true).Count())</a>
                 </div>
                 <div class="col-xs-4 text-center">
-                    <a href="#">Total Submitted Requests: @((ViewBag.UserDetails.TravelRequests1 as ICollection<Travel_Request_System_EF.Models.TravelRequests>).Where(a => a.IsSubmitted == false).Count())</a>
+                    <a href="#">Total Un-Submitted Requests: @((ViewBag.UserDetails.TravelRequests1 as ICollection<Travel_Request_System_EF.Models.TravelRequests>).Where(a => a.IsSubmitted == false).Count())</a>
                 </div>
             </div>
         </li>

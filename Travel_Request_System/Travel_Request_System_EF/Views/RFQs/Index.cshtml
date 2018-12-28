@@ -175,12 +175,19 @@
                                 foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td rowspan="@item.RFQ.Count()">
-                                            @Html.ActionLink("Merge Table "+ @item.ApplicationNumber, "RFQMerger", new { id = item.ID }, new { @class = "form-control btn btn-info" })
+                                        @{
+                                            var rfqcount = item.RFQ.Count();
+                                            if (rfqcount == 0)
+                                            {
+                                                rfqcount = 1;
+                                            }
+                                        }
+                                        <td rowspan="@rfqcount">
+                                            @Html.ActionLink("Merge Table " + @item.ApplicationNumber, "RFQMerger", new { id = item.ID }, new { @class = "form-control btn btn-info" })
                                         </td>
-                                        @if (@item.RFQ.Count() > 0)
+                                        @if (item.RFQ.Count() > 0)
                                         {
-                                            int i = 0; 
+                                            int i = 0;
                                             foreach (var rfqInfo in item.RFQ)
                                             {
                                                 if (i > 0)
@@ -221,7 +228,10 @@
                                                     }
                                                 </td>
                                                 <td>
-                                                    @*@Html.DisplayFor(modelItem => rfqInfo.TravelAgency.AgencyCode)*@
+                                                    @if (rfqInfo.TravelAgencyID != null && rfqInfo.TravelAgencyID>0)
+                                                    {
+                                                        @Html.DisplayFor(modelItem => rfqInfo.TravelAgency.AgencyCode)
+                                                    }
                                                 </td>
                                                 <td>
                                                     @switch (rfqInfo.Processing)
