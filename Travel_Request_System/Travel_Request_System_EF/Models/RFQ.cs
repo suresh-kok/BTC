@@ -28,7 +28,7 @@ namespace Travel_Request_System_EF.Models
         public string Remarks { get; set; }
         public int Processing { get; set; }
         public int ProcessingSection { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public string RFQName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

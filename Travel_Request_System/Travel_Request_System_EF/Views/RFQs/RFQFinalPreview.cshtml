@@ -88,9 +88,12 @@
                 </div>
                 <div class="row" style="margin-bottom:15px">
                     <div class="col-md-3">
-                        @Html.ActionLink("Back to List", "RFQMerger", null, new { @class = "form-control btn btn-info" })
+                        @Html.ActionLink("Back to List", "RFQPostMerger", new { id = Model.TravelRequestID } , new { @class = "form-control btn btn-info" })
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-3">
+                        @Html.ActionLink("  Print", "PrintRFQ", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
+                    </div>
+                    <div class="col-md-3">
                     </div>
                 </div>
             </div>

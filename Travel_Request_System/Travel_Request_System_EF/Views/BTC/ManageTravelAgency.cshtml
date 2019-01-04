@@ -84,14 +84,7 @@
                                         @Html.DisplayFor(modelItem => item.Email)
                                     </td>
                                     <td>
-                                        @if ((bool)item.IsActive)
-                                        {
-                                            @(new HtmlString("Yes"))
-                                        }
-                                        else
-                                        {
-                                            @(new HtmlString("No"))
-                                        }
+                                        @Html.DisplayFor(modelItem => item.IsActive)
                                     </td>
                                     <td>
                                         <span class="glyphicon">

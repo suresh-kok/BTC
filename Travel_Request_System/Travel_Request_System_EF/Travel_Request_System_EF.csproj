@@ -224,6 +224,7 @@
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DataAnnotations\CustomDataAnnotationAttributes.cs" />
+    <Compile Include="Models\DataAnnotations\RedirectingActionAttribute.cs" />
     <Compile Include="Models\DataAnnotations\TravelAgencyMetadata.cs" />
     <Compile Include="Models\DataAnnotations\TravelRequestMetaData.cs" />
     <Compile Include="Models\HRWorks.Context.cs">
@@ -247,6 +248,9 @@
     <Compile Include="Models\LPO.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LPODetails.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PCQuotation.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
@@ -256,10 +260,16 @@
     <Compile Include="Models\RFQ.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RFQDetails.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TravelAgency.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TravelRequestDetails.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TravelRequests.cs">
@@ -1192,6 +1202,7 @@
     <Content Include="BTCDataSet.xss">
       <DependentUpon>BTCDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="Content\js\bootstrap-confirmation.min.js" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ReportViewerWebForm.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -1340,6 +1351,8 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\LPO\TravelRequestsList.cshtml" />
+    <Content Include="Views\RFQs\TravelRequestsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

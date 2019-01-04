@@ -28,6 +28,7 @@ namespace Travel_Request_System_EF.Models
         public Nullable<decimal> Amount { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public string QuotationName { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     
         public virtual Quotation Quotation { get; set; }
     }

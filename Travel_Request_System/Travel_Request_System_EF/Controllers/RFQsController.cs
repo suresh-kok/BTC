@@ -1,18 +1,25 @@
-﻿using System;
+﻿using Microsoft.Reporting.WebForms;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI.WebControls;
 using Travel_Request_System_EF.CustomAuthentication;
 using Travel_Request_System_EF.Models;
+using Travel_Request_System_EF.Models.DataAnnotations;
 using Travel_Request_System_EF.Models.ViewModel;
 
 namespace Travel_Request_System_EF.Controllers
 {
+    [HandleError]
+    [RedirectingAction]
     public class RFQsController : Controller
     {
         private static RFQ MasterRFQ = new RFQ();
@@ -22,15 +29,22 @@ namespace Travel_Request_System_EF.Controllers
 
         public RFQsController()
         {
-            user = Membership.GetUser();
-            CustomRole customRole = new CustomRole();
-            roles = customRole.GetRolesForUser(user.UserName);
-            ViewBag.RoleDetails = roles.ToList()[0];
-            IsLoggedIn(roles.ToList());
-            using (BTCEntities db = new BTCEntities())
+            try
             {
-                dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
-                ViewBag.UserDetails = dbuser;
+                user = Membership.GetUser();
+                CustomRole customRole = new CustomRole();
+                roles = customRole.GetRolesForUser(user.UserName);
+                ViewBag.RoleDetails = roles.ToList()[0];
+                IsLoggedIn(roles.ToList());
+                using (BTCEntities db = new BTCEntities())
+                {
+                    dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
+                    ViewBag.UserDetails = dbuser;
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = "Your Login has expired!! Please login again.";
             }
         }
 
@@ -166,14 +180,17 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.CurrencyID = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
 
-                TravelRequests travelRequest = await db.TravelRequests.FindAsync(id);
+                TravelRequests travelRequest = await db.TravelRequests.Include(a => a.RFQ).Where(a => a.ID == id).FirstOrDefaultAsync();
+
+                ViewBag.AvailableCombinations = db.RFQ.Where(a => a.TravelRequestID == id && a.IsDeleted == false).ToList();
+
                 return View(travelRequest);
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public void RFQProcessing(TravelRequests travelRequest, FormCollection formCollection)
+        public ActionResult RFQProcessing(TravelRequests travelRequest, FormCollection formCollection)
         {
             RFQ rfq = new RFQ
             {
@@ -201,7 +218,7 @@ namespace Travel_Request_System_EF.Controllers
                 else if ((formCollection.AllKeys.Contains("ATCheck") && formCollection["ATCheck"].ToString().ToLower() == "on"))
                 {
                     rfq.ProcessingSection = (int)ProcessingSections.AT;
-                }
+                } 
                 else if ((formCollection.AllKeys.Contains("HSCheck") && formCollection["HSCheck"].ToString().ToLower() == "on"))
                 {
                     rfq.ProcessingSection = (int)ProcessingSections.HS;
@@ -216,28 +233,81 @@ namespace Travel_Request_System_EF.Controllers
 
             using (BTCEntities db = new BTCEntities())
             {
-                if (db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection && a.IsDeleted == false).Count() < 1)
+                if (db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection && a.TravelRequestID == travelRequest.ID && a.IsDeleted == false).Count() < 1 && rfq.ProcessingSection != 0)
                 {
-                    db.RFQ.Add(rfq);
+                    if (db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection).Count() < 1)
+                    {
+                        db.RFQ.Add(rfq);
+                    }
+                    else
+                    {
+                        RFQ rfqlist = db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection && a.TravelRequestID == travelRequest.ID).FirstOrDefault();
+                        rfqlist.IsDeleted = false;
+
+                        db.RFQ.Attach(rfqlist);
+                        var entry = db.Entry(rfqlist);
+                        entry.Property(a => a.IsDeleted).IsModified = true;
+                    }
                     db.SaveChanges();
-                    ViewBag.SuccessMessage = "Record Added";
+                }
+                else if (rfq.ProcessingSection == 0)
+                {
+                    ViewBag.ErrorMessage = new List<string>() { "Selet Processing Section" };
                 }
                 else
                 {
-                    ViewBag.ErrorMessage = "Record already exists";
+                    ViewBag.ErrorMessage = new List<string>() { "Record already exists" };
                 }
+
+                ViewBag.Cities = db.City.ToList();
+                ViewBag.CurrencyID = db.Currency.ToList();
+                ViewBag.ApprovalBy = db.Users.ToList();
+
+                travelRequest = db.TravelRequests.Include(a => a.RFQ).Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault();
+
+                ViewBag.AvailableCombinations = db.RFQ.Where(a => a.TravelRequestID == rfq.TravelRequestID && a.IsDeleted == false).ToList();
+                return View(travelRequest);
             }
-            RedirectToAction("RFQMerger", new { id = rfq.TravelRequestID });
+        }
+
+        public ActionResult RemoveRFQ(int? id)
+        {
+            using (BTCEntities db = new BTCEntities())
+            {
+                RFQ rfqlist = db.RFQ.Where(a => a.ID == id).FirstOrDefault();
+
+                if (ModelState.IsValid)
+                {
+                    rfqlist.IsDeleted = true;
+
+                    db.RFQ.Attach(rfqlist);
+                    var entry = db.Entry(rfqlist);
+                    entry.Property(a => a.IsDeleted).IsModified = true;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                    List<string> sberr = new List<string>();
+                    foreach (var item in errlist)
+                    {
+                        sberr.Add(item[0].ErrorMessage);
+                    }
+                    TempData["ErrorMessage"] = sberr.ToList();
+                }
+
+                int TravelRequestID = rfqlist.TravelRequestID.Value;
+
+                return RedirectToAction("RFQProcessing", new { id = TravelRequestID });
+            }
         }
 
         public ActionResult RFQMerger(int? id)
         {
             using (BTCEntities db = new BTCEntities())
             {
-                List<RFQ> rfqlist = db.RFQ.Include(a => a.TravelRequests).Include(a => a.Users).Include(a => a.TravelAgency).Include(a => a.LPO).Where(a => a.TravelRequestID == id).ToList();
+                List<RFQ> rfqlist = db.RFQ.Include(a => a.TravelRequests).Include(a => a.Users).Include(a => a.TravelAgency).Include(a => a.LPO).Where(a => a.TravelRequestID == id && a.Processing == 0).ToList();
                 ViewBag.TravelAgency = db.TravelAgency.ToList();
-                var travelreq = rfqlist.FirstOrDefault().TravelRequests.ApplicationNumber;
-                ViewBag.AttachmentCount = db.AttachmentLink.Where(x => x.AttachmentFor.Contains(travelreq)).Count();
 
                 return View(rfqlist);
             }
@@ -252,18 +322,18 @@ namespace Travel_Request_System_EF.Controllers
                 var rfqVal = db.RFQ.Where(a => a.ID == id).FirstOrDefault();
                 rfqVal.IsDeleted = true;
                 db.RFQ.Add(rfqVal);
+                db.Entry(rfqVal).State = EntityState.Modified;
                 db.SaveChanges();
                 ViewBag.SuccessMessage = "Entry Marked for Deletion";
             }
         }
 
-        public async Task<ActionResult> RFQPostMerger(int? id)
+        public ActionResult RFQPostMerger(int? id)
         {
             using (BTCEntities db = new BTCEntities())
             {
-                List<RFQ> rfqlist = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.Users).Include(a => a.TravelAgency).Include(a => a.LPO).Where(a => a.TravelRequestID == id).ToListAsync();
+                List<RFQ> rfqlist = db.RFQ.Include(a => a.TravelRequests).Include(a => a.Users).Include(a => a.TravelAgency).Include(a => a.LPO).Where(a => a.TravelRequestID == id && a.Processing > 0).ToList();
                 ViewBag.TravelAgency = db.TravelAgency.ToList();
-                ViewBag.AttachmentCount = await db.AttachmentLink.Where(x => x.AttachmentFor.Contains(rfqlist[0].TravelRequests.ApplicationNumber)).CountAsync();
 
                 return View(rfqlist);
             }
@@ -319,6 +389,7 @@ namespace Travel_Request_System_EF.Controllers
 
                     db.RFQ.Attach(dbrfq);
                     var entry = db.Entry(dbrfq);
+                    entry.State = EntityState.Modified;
                     entry.Property(a => a.Remarks).IsModified = true;
                     entry.Property(a => a.UserID).IsModified = true;
                     entry.Property(a => a.Processing).IsModified = true;
@@ -328,7 +399,9 @@ namespace Travel_Request_System_EF.Controllers
 
                     Quotation quote = new Quotation
                     {
-                        TravelRequestID = (int)dbrfq.TravelRequestID
+                        TravelRequestID = (int)dbrfq.TravelRequestID,
+                        IsDeleted = true,
+                        RFQID = rfq.ID
                     };
 
                     db.Quotation.Add(quote);
@@ -337,23 +410,29 @@ namespace Travel_Request_System_EF.Controllers
 
                     ATQuotation ATquote = new ATQuotation()
                     {
-                        QuotationID = quote.ID
+                        QuotationID = quote.ID,
+                        IsActive = false,
+                        IsDeleted = false
                     };
                     db.ATQuotation.Add(ATquote);
                     HSQuotation HSquote = new HSQuotation()
                     {
-                        QuotationID = quote.ID
+                        QuotationID = quote.ID,
+                        IsActive = false,
+                        IsDeleted = false
                     };
                     db.HSQuotation.Add(HSquote);
                     PCQuotation PCquote = new PCQuotation()
                     {
-                        QuotationID = quote.ID
+                        QuotationID = quote.ID,
+                        IsActive = false,
+                        IsDeleted = false
                     };
                     db.PCQuotation.Add(PCquote);
                     db.SaveChanges();
 
                     MasterRFQ = dbrfq;
-                    return RedirectToAction("Index");
+                    return RedirectToAction("RFQPostMerger", new { id = rfq.TravelRequestID });
                 }
                 else
                 {
@@ -430,7 +509,7 @@ namespace Travel_Request_System_EF.Controllers
 
                     fileName = Path.GetFileName(Request.Files[0].FileName);
                     destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + MasterRFQ.TravelRequests.ApplicationNumber) + "/", fileName);
-                    Directory.CreateDirectory(destinationPath);
+                    Directory.CreateDirectory(Server.MapPath("~/UploadedFiles/" + MasterRFQ.TravelRequests.ApplicationNumber));
                     Request.Files[0].SaveAs(destinationPath);
 
 
@@ -491,6 +570,48 @@ namespace Travel_Request_System_EF.Controllers
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public void PrintRFQ(int id)
+        {
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.SizeToReportContent = true;
+            reportViewer.Width = Unit.Percentage(900);
+            reportViewer.Height = Unit.Percentage(900);
+            var connectionString = ConfigurationManager.ConnectionStrings["AuthenticationDB"].ConnectionString;
+            BTCDataSet ds = new BTCDataSet();
+            Warning[] warnings;
+            string[] streamIds;
+            string mimeType = string.Empty;
+            string encoding = string.Empty;
+            string extension = string.Empty;
+            Byte[] bytes;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp;
+
+            adp = new SqlDataAdapter("select * FROM RFQDetails WHERE RFQID = " + id, conx);
+            ds = new BTCDataSet();
+            adp.Fill(ds, ds.RFQDetails.TableName);
+            reportViewer.LocalReport.ReportPath = Path.Combine(@"C:\Users\kanniyappans\Documents\GitHub\BTC\Travel_Request_System\Travel_Request_System_EF\Reports\", "RFQReport.rdlc");
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("detailsDataset", ds.Tables["RFQDetails"]));
+            bytes = reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+            Response.Buffer = true;
+            Response.Clear();
+            Response.ContentType = mimeType;
+            Response.AddHeader("content-disposition", "attachment; filename= outputreport" + "." + extension);
+            Response.OutputStream.Write(bytes, 0, bytes.Length); // create the file  
+            Response.Flush(); // send it to the client to download  
+            Response.End();
+        }
+
+        public async Task<ActionResult> TravelRequestsList()
+        {
+            using (BTCEntities db = new BTCEntities())
+            {
+                var travelRequests = db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency).Include(t => t.Users1).Include(t => t.Users).Where(a => a.IsSubmitted);
+                return View(await travelRequests.ToListAsync());
             }
         }
 

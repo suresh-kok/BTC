@@ -39,5 +39,8 @@ namespace Travel_Request_System_EF.Models
         public virtual DbSet<Attachments> Attachments { get; set; }
         public virtual DbSet<AttachmentLink> AttachmentLink { get; set; }
         public virtual DbSet<Quotation> Quotation { get; set; }
+        public virtual DbSet<LPODetails> LPODetails { get; set; }
+        public virtual DbSet<RFQDetails> RFQDetails { get; set; }
+        public virtual DbSet<TravelRequestDetails> TravelRequestDetails { get; set; }
     }
 }

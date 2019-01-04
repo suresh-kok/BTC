@@ -34,6 +34,7 @@ namespace Travel_Request_System_EF
                 .Include("~/Content/js/plugins/icheck/icheck.js")
                 .Include("~/Content/js/plugins/validator.js")
                 .Include("~/Content/js/plugins/inputmask/jquery.inputmask.bundle.js")
+                .Include("~/Context/js/bootstrap-confirmation.min.js")
                 .Include("~/Content/js/adminlte.js")
                 .Include("~/Content/js/init.js")
                 .Include("~/Scripts/bootstrap.js"));

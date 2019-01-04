@@ -9,12 +9,14 @@ using System.Web.Security;
 using Travel_Request_System_EF.CustomAuthentication;
 using Travel_Request_System_EF.Mail;
 using Travel_Request_System_EF.Models;
+using Travel_Request_System_EF.Models.DataAnnotations;
 using Travel_Request_System_EF.Models.ViewModel;
 using Roles = Travel_Request_System_EF.Models.Roles;
 
 namespace Travel_Request_System_EF.Controllers
 {
     [HandleError]
+    [RedirectingAction]
     public class BTCController : Controller
     {
         private static MembershipUser user;
@@ -23,15 +25,22 @@ namespace Travel_Request_System_EF.Controllers
 
         public BTCController()
         {
-            user = Membership.GetUser();
-            CustomRole customRole = new CustomRole();
-            roles = customRole.GetRolesForUser(user.UserName);
-            ViewBag.RoleDetails = roles.ToList()[0];
-            IsLoggedIn(roles.ToList());
-            using (BTCEntities db = new BTCEntities())
+            try
             {
-                dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
-                ViewBag.UserDetails = dbuser;
+                user = Membership.GetUser();
+                CustomRole customRole = new CustomRole();
+                roles = customRole.GetRolesForUser(user.UserName);
+                ViewBag.RoleDetails = roles.ToList()[0];
+                IsLoggedIn(roles.ToList());
+                using (BTCEntities db = new BTCEntities())
+                {
+                    dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
+                    ViewBag.UserDetails = dbuser;
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = "Your Login has expired!! Please login again.";
             }
         }
 
@@ -99,15 +108,17 @@ namespace Travel_Request_System_EF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ApproveHRRequest(TravelRequests travelRequest, FormCollection collection)
+        public ActionResult ApproveHRRequest(FormCollection collection)
         {
             using (BTCEntities db = new BTCEntities())
             {
+                var travelRequest = db.TravelRequests.Find(Convert.ToInt32(collection["ID"]));
                 if (ModelState.IsValid)
                 {
                     travelRequest.ApprovalLevel = (int)ApprovalLevels.ApprovedByHR;
-                    travelRequest.ApprovalRemarks = "HR Remarks: " + dbuser.FirstName + " " + dbuser.LastName + " Updated On: " + DateTime.Now.ToLongDateString() + travelRequest.ApprovalRemarks;
-                    db.TravelRequests.Add(travelRequest);
+                    travelRequest.ApprovalBy = dbuser.ID;
+                    travelRequest.ApprovalRemarks = travelRequest.ApprovalRemarks + "\n HR Remarks: Approved By -" + dbuser.FirstName + ", " + dbuser.LastName + " \n Updated On: " + DateTime.Now.ToLongDateString() + " \n Comments: " + collection["ApprovalRemarksUser"];
+                    db.Entry(travelRequest).State = EntityState.Modified;
                     db.SaveChanges();
                     NotificationEmail(travelRequest, true);
                     return RedirectToAction("HRDashboard");
@@ -133,15 +144,18 @@ namespace Travel_Request_System_EF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RejectHRRequest(TravelRequests travelRequest, FormCollection collection)
+        public ActionResult RejectHRRequest(FormCollection collection)
         {
             using (BTCEntities db = new BTCEntities())
             {
+                var travelRequest = db.TravelRequests.Find(Convert.ToInt32(collection["ID"]));
+
                 if (ModelState.IsValid)
                 {
                     travelRequest.ApprovalLevel = (int)ApprovalLevels.RejectedByHR;
-                    travelRequest.ApprovalRemarks = "HR Remarks: " + dbuser.FirstName + " " + dbuser.LastName + " Updated On: " + DateTime.Now.ToLongDateString() + travelRequest.ApprovalRemarks;
-                    db.TravelRequests.Add(travelRequest);
+                    travelRequest.ApprovalBy = dbuser.ID;
+                    travelRequest.ApprovalRemarks = travelRequest.ApprovalRemarks + "\n HR Remarks: Rejected By -" + dbuser.FirstName + ", " + dbuser.LastName + " \n Updated On: " + DateTime.Now.ToLongDateString() + " \n Comments: " + collection["ApprovalRemarksUser"];
+                    db.Entry(travelRequest).State = EntityState.Modified;
                     db.SaveChanges();
                     NotificationEmail(travelRequest, false);
                     return RedirectToAction("HRDashboard");
@@ -210,15 +224,17 @@ namespace Travel_Request_System_EF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ApproveManagerRequest(TravelRequests travelRequest, FormCollection collection)
+        public ActionResult ApproveManagerRequest(FormCollection collection)
         {
             using (BTCEntities db = new BTCEntities())
             {
+                var travelRequest = db.TravelRequests.Find(Convert.ToInt32(collection["ID"]));
                 if (ModelState.IsValid)
                 {
                     travelRequest.ApprovalLevel = (int)ApprovalLevels.ApprovedByManager;
-                    travelRequest.ApprovalRemarks = "Manager Remarks: " + dbuser.FirstName + " " + dbuser.LastName + " Updated On: " + DateTime.Now.ToLongDateString() + travelRequest.ApprovalRemarks;
-                    db.TravelRequests.Add(travelRequest);
+                    travelRequest.ApprovalBy = dbuser.ID;
+                    travelRequest.ApprovalRemarks = travelRequest.ApprovalRemarks + "\n Manager Remarks: Approved By -" + dbuser.FirstName + ", " + dbuser.LastName + " \n Updated On: " + DateTime.Now.ToLongDateString() + " \n Comments: " + collection["ApprovalRemarksUser"];
+                    db.Entry(travelRequest).State = EntityState.Modified;
                     db.SaveChanges();
                     NotificationEmail(travelRequest, true);
                     return RedirectToAction("ManagerDashboard");
@@ -244,15 +260,18 @@ namespace Travel_Request_System_EF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RejectManagerRequest(TravelRequests travelRequest, FormCollection collection)
+        public ActionResult RejectManagerRequest(FormCollection collection)
         {
             using (BTCEntities db = new BTCEntities())
             {
+                var travelRequest = db.TravelRequests.Find(Convert.ToInt32(collection["ID"]));
+
                 if (ModelState.IsValid)
                 {
                     travelRequest.ApprovalLevel = (int)ApprovalLevels.RejectedByManager;
-                    travelRequest.ApprovalRemarks = "Manager Remarks: " + dbuser.FirstName + " " + dbuser.LastName + " Updated On: " + DateTime.Now.ToLongDateString() + travelRequest.ApprovalRemarks;
-                    db.TravelRequests.Add(travelRequest);
+                    travelRequest.ApprovalBy = dbuser.ID;
+                    travelRequest.ApprovalRemarks = travelRequest.ApprovalRemarks + "\n Manager Remarks: Rejected By -" + dbuser.FirstName + ", " + dbuser.LastName + " \n Updated On: " + DateTime.Now.ToLongDateString() + " \n Comments: " + collection["ApprovalRemarksUser"];
+                    db.Entry(travelRequest).State = EntityState.Modified;
                     db.SaveChanges();
                     NotificationEmail(travelRequest, false);
                     return RedirectToAction("ManagerDashboard");
@@ -344,7 +363,7 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateTravelAgency([Bind(Include = "ID,AgencyCode,CompanyName,Address,Telephone,Fax,Mobile,Landline,ContactPerson,Email")] TravelAgency travelAgency)
+        public async Task<ActionResult> CreateTravelAgency([Bind(Include = "ID,AgencyCode,CompanyName,Address,Telephone,Fax,Mobile,Landline,ContactPerson,Email,IsActive")] TravelAgency travelAgency)
         {
             if (ModelState.IsValid)
             {
@@ -392,7 +411,7 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditTravelAgency([Bind(Include = "ID,AgencyCode,CompanyName,Address,Telephone,Fax,Mobile,Landline,ContactPerson,Email")] TravelAgency travelAgency)
+        public async Task<ActionResult> EditTravelAgency([Bind(Include = "ID,AgencyCode,CompanyName,Address,Telephone,Fax,Mobile,Landline,ContactPerson,Email,IsActive")] TravelAgency travelAgency)
         {
             if (ModelState.IsValid)
             {
@@ -449,7 +468,6 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     return HttpNotFound();
                 }
-
                 checkErrorMessages();
                 return View(travelAgency);
             }
@@ -463,7 +481,8 @@ namespace Travel_Request_System_EF.Controllers
             using (BTCEntities db = new BTCEntities())
             {
                 TravelAgency travelAgency = await db.TravelAgency.FindAsync(id);
-                db.TravelAgency.Remove(travelAgency);
+                travelAgency.IsActive = false;
+                db.Entry(travelAgency).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("ManageTravelAgency");
             }
@@ -613,11 +632,11 @@ namespace Travel_Request_System_EF.Controllers
         {
             if (ModelState.IsValid)
             {
-                int DDLValue = Convert.ToInt32(form["RoleID"].ToString());
+                string DDLValue = form["RoleName"].ToString();
 
                 using (BTCEntities db = new BTCEntities())
                 {
-                    var role = db.Roles.Where(a => a.ID == DDLValue).FirstOrDefault();
+                    var role = db.Roles.Where(a => a.RoleName == DDLValue).FirstOrDefault();
                     if (!user.Roles.Contains(role))
                     {
                         user.Roles.Add(role);
@@ -658,7 +677,9 @@ namespace Travel_Request_System_EF.Controllers
             using (BTCEntities db = new BTCEntities())
             {
                 Users user = await db.Users.FindAsync(id);
-                db.Users.Remove(user);
+                user.IsActive = false;
+                user.IsDeleted = true;
+                db.Entry(user).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("ManageUsers");
             }
@@ -707,7 +728,7 @@ namespace Travel_Request_System_EF.Controllers
                 CustomMembership customMembership = new CustomMembership();
                 var userdet = customMembership.GetUser(user.UserName, true);
 
-                if (userdet == null || (userdet != null && string.Compare(oldPassword, userdet.GetPassword(), StringComparison.OrdinalIgnoreCase) == 0))
+                if (userdet == null || (userdet != null && string.Compare(oldPassword, newPassword, StringComparison.OrdinalIgnoreCase) == 0))
                 {
                     messageReset = "Sorry: The old password is same as new password";
                 }
@@ -806,7 +827,10 @@ namespace Travel_Request_System_EF.Controllers
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
 
             SendMail mail = new SendMail();
-            mail.ToAddresses.Add(email);
+            mail.ToAddresses = new List<string>
+            {
+                email
+            };
             mail.MailSubject = "Activation Account !";
             mail.MailBody = "<br/> Please click on the following link in order to activate your account" + "<br/><a href='" + link + "'> Activation Account ! </a>";
 
@@ -819,7 +843,7 @@ namespace Travel_Request_System_EF.Controllers
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
 
             SendMail mail = new SendMail();
-            mail.ToAddresses.Add(travelRequests.Users1.Email);
+            mail.ToAddresses = new List<string>() { travelRequests.Users1.Email };
             if (IsApproved)
             {
                 mail.MailSubject = "Travel Request " + travelRequests.ApplicationNumber + " Approved!";

@@ -1,6 +1,6 @@
 ﻿@if (ViewBag.DefaultMessage != null)
 {
-    <div class="modal fade" id="modal-default" style="display: none;">
+    <div class="modal" id="modal-default" style="display: block;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -23,7 +23,7 @@
 }
 @if (ViewBag.PrimaryMessage != null)
 {
-    <div class="modal modal-primary fade" id="modal-primary">
+    <div class="modal modal-primary" id="modal-primary" style="display: block;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -46,7 +46,7 @@
 }
 @if (ViewBag.InfoMessage != null)
 {
-    <div class="modal modal-info fade" id="modal-info">
+    <div class="modal modal-info" id="modal-info" style="display: block;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -74,7 +74,7 @@
 }
 @if (ViewBag.WarningMessage != null)
 {
-    <div class="modal modal-warning fade" id="modal-warning" style="display: none;">
+    <div class="modal modal-warning" id="modal-warning" style="display: block;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -102,7 +102,7 @@
 }
 @if (ViewBag.SuccessMessage != null)
 {
-    <div class="modal modal-success fade" id="modal-success" style="display: none;">
+    <div class="modal modal-success" id="modal-success" style="display: block;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -125,7 +125,7 @@
 }
 @if (ViewBag.ErrorMessage != null)
 {
-    <div class="modal modal-danger fade" id="modal-danger" style="display: none;">
+    <div class="modal modal-danger" id="modal-danger" style="display: block;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -150,7 +150,5 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <script type="text/javascript">
-    </script>
 }
 

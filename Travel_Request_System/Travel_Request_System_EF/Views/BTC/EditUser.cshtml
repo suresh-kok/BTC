@@ -25,7 +25,7 @@
                             <label class="control-label col-md-2">Role</label>
                             <div class="col-md-10">
                                 <div class="dropdown">
-                                    <input type="text" class="form-control pull-right" disabled="disabled" id="employeeCode" name="employeeCode" value="@ViewBag.RoleName" />
+                                    <input type="text" class="form-control pull-right" readonly="readonly" id="RoleName" name="RoleName" value="@ViewBag.RoleName" />
                                     @*@Html.DropDownList("RoleID", (((IEnumerable<Travel_Request_System_EF.Models.Role>)ViewBag.allRoles).Select(m => new SelectListItem { Text = m.RoleName, Value = m.RoleId.ToString() }))),"RoleID","RoleName", Model.Roles.FirstOrDefault())*@
                                     @*@Html.ValidationMessageFor(Model => Model.roleDet, "", new { @class = "text-danger" })*@
                                 </div>

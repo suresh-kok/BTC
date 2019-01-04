@@ -148,6 +148,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         [DisplayName("Approval By")]
         public Nullable<int> ApprovalBy { get; set; }
 
+        [DataType(DataType.MultilineText)]
         [DisplayName("Approval Remarks")]
         public string ApprovalRemarks { get; set; }
 

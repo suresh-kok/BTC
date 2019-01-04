@@ -12,22 +12,21 @@ namespace Travel_Request_System_EF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TravelRequests
+    public partial class TravelRequestDetails
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TravelRequests()
-        {
-            this.RFQ = new HashSet<RFQ>();
-            this.Quotation = new HashSet<Quotation>();
-        }
-    
         public int ID { get; set; }
         public string ApplicationNumber { get; set; }
         public Nullable<int> PortOfOriginID { get; set; }
+        public string OriginCIty { get; set; }
+        public string OriginCountry { get; set; }
         public Nullable<int> PortOfDestinationID { get; set; }
+        public string DestinationCity { get; set; }
+        public string DestinationCountry { get; set; }
         public string TicketClass { get; set; }
         public Nullable<decimal> DailyAllowance { get; set; }
         public Nullable<int> CurrencyID { get; set; }
+        public string CurrencyDesc { get; set; }
+        public string CurrencySymbol { get; set; }
         public Nullable<int> TravelDays { get; set; }
         public string TravelRemarks { get; set; }
         public string PurposeOfVisit { get; set; }
@@ -61,23 +60,15 @@ namespace Travel_Request_System_EF.Models
         public Nullable<System.TimeSpan> CheckOutTime { get; set; }
         public int ApprovalLevel { get; set; }
         public Nullable<int> ApprovalBy { get; set; }
+        public string ApprovedByName { get; set; }
         public string ApprovalRemarks { get; set; }
         public Nullable<System.DateTime> CreateOn { get; set; }
         public Nullable<int> CreatedBy { get; set; }
+        public string CreatedByName { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
+        public string ModifiedByName { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public bool IsSubmitted { get; set; }
-        public string airlines { get; set; }
-    
-        public virtual City City { get; set; }
-        public virtual City City1 { get; set; }
-        public virtual Currency Currency { get; set; }
-        public virtual Users Users { get; set; }
-        public virtual Users Users1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RFQ> RFQ { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Quotation> Quotation { get; set; }
     }
 }

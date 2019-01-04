@@ -30,7 +30,7 @@ namespace Travel_Request_System_EF.Models
         public string Landline { get; set; }
         public string ContactPerson { get; set; }
         public string Email { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RFQ> RFQ { get; set; }

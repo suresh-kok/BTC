@@ -42,6 +42,9 @@
         <AssociationConnector Association="HRWorksEntities.fk_PCQuotation_QuotationID" />
         <AssociationConnector Association="HRWorksEntities.fk_quotation_RFQID" />
         <AssociationConnector Association="HRWorksEntities.fk_Quotation_TravelRequestID" />
+        <EntityTypeShape EntityType="HRWorksEntities.LPODetails" Width="1.5" PointX="13.375" PointY="14.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.RFQDetails" Width="1.5" PointX="15.375" PointY="14.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.TravelRequestDetails" Width="1.5" PointX="16.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

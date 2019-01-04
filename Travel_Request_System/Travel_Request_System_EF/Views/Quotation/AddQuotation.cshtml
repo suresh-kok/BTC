@@ -57,18 +57,26 @@
                                                     <td>
                                                         Air Ticket Quotation list
                                                     </td>
-                                                    <td>
-                                                        <span class="glyphicon">
-                                                            @*@if (!(bool)Model.TravelRequests.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsDeleted)
-                                                            {*@
+                                                    @if (!(bool)Model.TravelRequests.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsDeleted && !(bool)Model.TravelRequests.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsActive)
+                                                    {
+                                                        <td>
+                                                            <span class="glyphicon">
                                                                 @Html.ActionLink("  View to Add Details", "AddATQuotation", new { id = Model.TravelRequests.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
-                                                        </span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="glyphicon">
-                                                            @Html.ActionLink("  Delete", "Details", new { id = Model.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
-                                                        </span>
-                                                    </td>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="glyphicon">
+                                                                @Html.ActionLink("  Delete", "DeleteATQuotation", new { id = Model.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
+                                                            </span>
+                                                        </td>
+                                                    }
+                                                    else if (!(bool)Model.TravelRequests.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsDeleted && (bool)Model.TravelRequests.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsActive)
+                                                    {
+                                                        <td>
+                                                            @Html.ActionLink("  View to Add Details", "AddATQuotation", new { id = Model.TravelRequests.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
+                                                        </td>
+                                                        <td></td>
+                                                    }
                                                 </tr>
                                             }
 
@@ -81,16 +89,26 @@
                                                     <td>
                                                         Hotel Stay Quotation list
                                                     </td>
-                                                    <td>
-                                                        <span class="glyphicon">
+                                                    @if (!(bool)Model.TravelRequests.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsDeleted && !(bool)Model.TravelRequests.Quotation.FirstOrDefault().HSQuotation.FirstOrDefault().IsActive)
+                                                    {
+                                                        <td>
+                                                            <span class="glyphicon">
+                                                                @Html.ActionLink("  View to Add Details", "AddHSQuotation", new { id = Model.TravelRequests.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="glyphicon">
+                                                                @Html.ActionLink("  Delete", "DeleteHSQuotation", new { id = Model.Quotation.FirstOrDefault().HSQuotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
+                                                            </span>
+                                                        </td>
+                                                    }
+                                                    else if (!(bool)Model.TravelRequests.Quotation.FirstOrDefault().HSQuotation.FirstOrDefault().IsDeleted && (bool)Model.TravelRequests.Quotation.FirstOrDefault().HSQuotation.FirstOrDefault().IsActive)
+                                                    {
+                                                        <td>
                                                             @Html.ActionLink("  View to Add Details", "AddHSQuotation", new { id = Model.TravelRequests.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
-                                                        </span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="glyphicon">
-                                                            @Html.ActionLink("  Delete", "Details", new { id = Model.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
-                                                        </span>
-                                                    </td>
+                                                        </td>
+                                                        <td></td>
+                                                    }
                                                 </tr>
                                             }
                                             @if (Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC || Model.ProcessingSection == (int)ProcessingSections.HSPC || Model.ProcessingSection == (int)ProcessingSections.PC)
@@ -102,16 +120,26 @@
                                                     <td>
                                                         Airport Pickup Quotation list
                                                     </td>
-                                                    <td>
-                                                        <span class="glyphicon">
+                                                    @if (!(bool)Model.TravelRequests.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsDeleted && !(bool)Model.TravelRequests.Quotation.FirstOrDefault().PCQuotation.FirstOrDefault().IsActive)
+                                                    {
+                                                        <td>
+                                                            <span class="glyphicon">
+                                                                @Html.ActionLink("  View to Add Details", "AddPCQuotation", new { id = Model.TravelRequests.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="glyphicon">
+                                                                @Html.ActionLink("  Delete", "DeletePCQuotation", new { id = Model.Quotation.FirstOrDefault().PCQuotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
+                                                            </span>
+                                                        </td>
+                                                    }
+                                                    else if (!(bool)Model.TravelRequests.Quotation.FirstOrDefault().PCQuotation.FirstOrDefault().IsDeleted && (bool)Model.TravelRequests.Quotation.FirstOrDefault().PCQuotation.FirstOrDefault().IsActive)
+                                                    {
+                                                        <td>
                                                             @Html.ActionLink("  View to Add Details", "AddPCQuotation", new { id = Model.TravelRequests.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
-                                                        </span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="glyphicon">
-                                                            @Html.ActionLink("  Delete", "Details", new { id = Model.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
-                                                        </span>
-                                                    </td>
+                                                        </td>
+                                                        <td></td>
+                                                    }
                                                 </tr>
                                             }
                                         </tbody>

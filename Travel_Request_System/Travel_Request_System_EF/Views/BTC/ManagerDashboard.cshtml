@@ -62,7 +62,7 @@
                                 {
                                     <tr>
                                         <td>
-                                            @Html.ActionLink(item.ApplicationNumber, "Details", "TravelRequests", new { @item.ID }, null)
+                                            @Html.ActionLink(item.ApplicationNumber, "ManagerApprovalForm", "BTC", new { @item.ID }, null)
                                         </td>
                                         <td>
                                             @(new HtmlString(item.City.CityDesc + " ," + item.City.Country))

@@ -78,7 +78,7 @@
     </section>
 </aside>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm( "DeleteUsers","BTC",new { id=Model.ID},FormMethod.Post ))
 {
     @Html.AntiForgeryToken()
 
@@ -86,7 +86,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-md-3">
-                    <input type="submit" value="Delete" class="form-control btn btn-info" />
+                    <input type="submit" value="Delete" class="form-control btn btn-info" data-toggle="confirmation" />
                 </div>
                 <div class="col-md-3">
                     @Html.ActionLink("Back to List", "ManageUsers", null, new { @class = "form-control btn btn-info" })

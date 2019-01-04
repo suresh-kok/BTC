@@ -183,7 +183,7 @@
                                             </tr>
                                             foreach (var quot in item.Quotation)
                                             {
-                                                if (quot.ATQuotation.Count > 0 && quot.ATQuotation.Count(b => (bool)b.IsDeleted == false) > 0)
+                                                if (quot.ATQuotation.Count > 0 && quot.ATQuotation.Count(b => (bool)b.IsDeleted == false && (bool)b.IsActive == true) > 0)
                                                 {
                                                     <tr>
                                                         <td><b>Q#</b> @quot.ATQuotation.FirstOrDefault().QuotationName</td>
@@ -197,7 +197,7 @@
                                                         </td>
                                                     </tr>
                                                 }
-                                                if (quot.HSQuotation.Count > 0 && quot.HSQuotation.Count(b => (bool)b.IsDeleted == false) > 0)
+                                                if (quot.HSQuotation.Count > 0 && quot.HSQuotation.Count(b => (bool)b.IsDeleted == false && (bool)b.IsActive == true) > 0)
                                                 {
                                                     <tr>
                                                         <td><b>Q#</b> @quot.HSQuotation.FirstOrDefault().QuotationName</td>
@@ -211,7 +211,7 @@
                                                         </td>
                                                     </tr>
                                                 }
-                                                if (quot.PCQuotation.Count > 0 && quot.PCQuotation.Count(b => (bool)b.IsDeleted == false) > 0)
+                                                if (quot.PCQuotation.Count > 0 && quot.PCQuotation.Count(b => (bool)b.IsDeleted == false && (bool)b.IsActive == true) > 0)
                                                 {
                                                     <tr>
                                                         <td><b>Q#</b> @quot.PCQuotation.FirstOrDefault().QuotationName</td>
@@ -337,19 +337,19 @@
             {
                 if (item.Quotation.Count > 0)
                 {
-                    if (item.Quotation.FirstOrDefault().ATQuotation.Count(a => a.IsDeleted == false) > 0)
+                    if (item.Quotation.FirstOrDefault().ATQuotation.Count(a => a.IsDeleted == false && (bool)a.IsActive == true) > 0)
                     {
                         @:var ati = @item.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().ID;
                         @:var aticheck = $("#AT" + ati).iCheck('update')[0].checked;
                         @:$("#RFQ" +@item.ID+"-Quot" +@item.Quotation.FirstOrDefault().ID +"-ATCheck" + ati).val(aticheck);
                     }
-                    if (item.Quotation.FirstOrDefault().HSQuotation.Count(a=>a.IsDeleted == false) > 0)
+                    if (item.Quotation.FirstOrDefault().HSQuotation.Count(a=>a.IsDeleted == false && (bool)a.IsActive == true) > 0)
                     {
                         @:var hsi = @item.Quotation.FirstOrDefault().HSQuotation.FirstOrDefault().ID;
                         @:var hsicheck = $("#HS" + hsi).iCheck('update')[0].checked;
                         @:$("#RFQ" +@item.ID+"-Quot" +@item.Quotation.FirstOrDefault().ID +"-HSCheck" + hsi).val(hsicheck);
                     }
-                    if (item.Quotation.FirstOrDefault().PCQuotation.Count(a => a.IsDeleted == false) > 0)
+                    if (item.Quotation.FirstOrDefault().PCQuotation.Count(a => a.IsDeleted == false && (bool)a.IsActive == true) > 0)
                     {
                         @:var pci = @item.Quotation.FirstOrDefault().PCQuotation.FirstOrDefault().ID;
                         @:var pcicheck = $("#PC" + pci).iCheck('update')[0].checked;
@@ -399,22 +399,23 @@
             url: "@Url.Action("CreateTravelGrid", "LPO")",
             contentType: "application/json; charset=utf-8",
             success: function () {
-                alert("success");
+                alert("Added The LPO Entry");
                 $("[name=RFQCreate]").removeClass('disabled');
                 $("[name=ViewTravelGrid]").removeClass('disabled');
                 $("[name=IntimateEmployee]").removeClass('disabled');
                 $("[name=CreateTravelGrid]").addClass('disabled');
+                $("input[type=checkbox]").iCheck('disable');
 
                 $("[name=RFQCreate]").unbind('click');
                 $("[name=ViewTravelGrid]").unbind('click');
                 $("[name=IntimateEmployee]").unbind('click');
 
-                $("[name=CreateTravelGrid]").bind('click', function (e) {
+                $("[name=CreateTravelGrid]").prop('click', function (e) {
                     e.preventDefault();
                 });
             },
             error: function () {
-                alert("Error");
+                alert("Unknown Error");
             }
         });
         return false;

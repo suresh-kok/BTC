@@ -1,88 +1,62 @@
-﻿using System;
+﻿using Microsoft.Reporting.WebForms;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using Travel_Request_System_EF.Models;
-using Travel_Request_System_EF.Models.ViewModel;
-using System.Web.Http;
-using System.Text.RegularExpressions;
-using System.Configuration;
-using System.Data.SqlClient;
-using Microsoft.Reporting.WebForms;
+using System.Web.Security;
 using System.Web.UI.WebControls;
-using System.IO;
+using Travel_Request_System_EF.CustomAuthentication;
+using Travel_Request_System_EF.Models;
+using Travel_Request_System_EF.Models.DataAnnotations;
+using Travel_Request_System_EF.Models.ViewModel;
 
 namespace Travel_Request_System_EF.Controllers
 {
+    [HandleError]
+    [RedirectingAction]
     public class LPOController : Controller
     {
-        // GET: LPO
-        public async Task<ActionResult> Index()
+        private static RFQ MasterRFQ = new RFQ();
+        private static MembershipUser user;
+        private static Users dbuser;
+        private static string[] roles;
+
+        public LPOController()
         {
-            ReportViewer reportViewer = new ReportViewer();
-            reportViewer.ProcessingMode = ProcessingMode.Local;
-            reportViewer.SizeToReportContent = true;
-            reportViewer.Width = Unit.Percentage(900);
-            reportViewer.Height = Unit.Percentage(900);
-            var connectionString = ConfigurationManager.ConnectionStrings["AuthenticationDB"].ConnectionString;
-            BTCDataSet ds = new BTCDataSet();
-            Warning[] warnings;
-            string[] streamIds;
-            string mimeType = string.Empty;
-            string encoding = string.Empty;
-            string extension = string.Empty;
-            Byte[] bytes;
-            SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp;
+            try
+            {
+                user = Membership.GetUser();
+                CustomRole customRole = new CustomRole();
+                roles = customRole.GetRolesForUser(user.UserName);
+                ViewBag.RoleDetails = roles.ToList()[0];
+                IsLoggedIn(roles.ToList());
+                using (BTCEntities db = new BTCEntities())
+                {
+                    dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
+                    ViewBag.UserDetails = dbuser;
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = "Your Login has expired!! Please login again.";
+            }
+        }
 
-            //adp = new SqlDataAdapter("select * FROM TravelRequestDetails", conx);
-            //ds = new BTCDataSet();
-            //adp.Fill(ds, ds.TravelRequestDetails.TableName);
-            //reportViewer.LocalReport.ReportPath = Path.Combine(@"C:\Users\kanniyappans\Documents\GitHub\BTC\Travel_Request_System\Travel_Request_System_EF\Reports\", "TravelRequestReport.rdlc");
-            //reportViewer.LocalReport.DataSources.Add(new ReportDataSource("detailsDataset", ds.Tables["TravelRequestDetails"]));
-            //bytes = reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-            //Response.Buffer = true;
-            //Response.Clear();
-            //Response.ContentType = mimeType;
-            //Response.AddHeader("content-disposition", "attachment; filename= outputreport" + "." + extension);
-            //Response.OutputStream.Write(bytes, 0, bytes.Length); // create the file  
-            //Response.Flush(); // send it to the client to download  
-
-            //adp = new SqlDataAdapter("select * FROM RFQDetails", conx);
-            //ds = new BTCDataSet();
-            //adp.Fill(ds, ds.RFQDetails.TableName);
-            //reportViewer.LocalReport.ReportPath = Path.Combine(@"C:\Users\kanniyappans\Documents\GitHub\BTC\Travel_Request_System\Travel_Request_System_EF\Reports\", "RFQReport.rdlc");
-            //reportViewer.LocalReport.DataSources.Add(new ReportDataSource("detailsDataset", ds.Tables["RFQDetails"]));
-            //bytes = reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-            //Response.Buffer = true;
-            //Response.Clear();
-            //Response.ContentType = mimeType;
-            //Response.AddHeader("content-disposition", "attachment; filename= outputreport" + "." + extension);
-            //Response.OutputStream.Write(bytes, 0, bytes.Length); // create the file  
-            //Response.Flush(); // send it to the client to download  
-
-            adp = new SqlDataAdapter("select * FROM LPODetails", conx);
-            ds = new BTCDataSet();
-            adp.Fill(ds, ds.LPODetails.TableName);
-            reportViewer.LocalReport.ReportPath = Path.Combine(@"C:\Users\kanniyappans\Documents\GitHub\BTC\Travel_Request_System\Travel_Request_System_EF\Reports\", "LPOReport.rdlc");
-            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("detailsDataset", ds.Tables["LPODetails"]));
-            bytes = reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-            Response.Buffer = true;
-            Response.Clear();
-            Response.ContentType = mimeType;
-            Response.AddHeader("content-disposition", "attachment; filename= outputreport" + "." + extension);
-            Response.OutputStream.Write(bytes, 0, bytes.Length); // create the file  
-            Response.Flush(); // send it to the client to download  
-            Response.End();
-
-            ViewBag.ReportViewer = reportViewer;
-
+        // GET: LPO
+        public async Task<ActionResult> Index(int? id)
+        {
             using (BTCEntities db = new BTCEntities())
             {
-                var lpos = db.LPO.Include(a => a.RFQ).Include(a => a.Quotation).Include(a => a.RFQ).Include("RFQ.TravelRequests").Include("Quotation.ATQuotation").Include("Quotation.HSQuotation").Include("Quotation.PCQuotation");
+                var lpos = db.LPO.Include(a => a.RFQ).Include(a => a.Quotation).Include(a => a.RFQ).Include("RFQ.TravelRequests").Include("Quotation.ATQuotation").Include("Quotation.HSQuotation").Include("Quotation.PCQuotation").Where(a => a.RFQ.TravelRequestID == id);
                 return View(await lpos.ToListAsync());
             }
         }
@@ -93,7 +67,7 @@ namespace Travel_Request_System_EF.Controllers
             {
                 db.Configuration.LazyLoadingEnabled = false;
                 db.Configuration.ProxyCreationEnabled = true;
-                var RFQList = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.LPO).Include(a => a.TravelAgency).Include(a => a.Users).Include(a => a.Quotation).Include("Quotation.ATQuotation").Include("Quotation.HSQuotation").Include("Quotation.PCQuotation").Where(a => a.Processing == (int)ProcessingStatus.Processed).Distinct().ToListAsync();
+                var RFQList = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.LPO).Include(a => a.TravelAgency).Include(a => a.Users).Include(a => a.Quotation).Include("Quotation.ATQuotation").Include("Quotation.HSQuotation").Include("Quotation.PCQuotation").Where(a => a.Processing == (int)ProcessingStatus.BeingProcessed && a.TravelRequestID == id).Distinct().ToListAsync();
                 ViewBag.RFQList = RFQList;
                 ViewBag.TravelAgency = db.TravelAgency.ToList();
                 ViewBag.Cities = db.City.ToList();
@@ -206,17 +180,17 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     if (item.Value.ToLower() == "true" && item.Key.Contains(rfq))
                     {
-                        lpoObject.RFQID = Convert.ToInt32(Regex.Match(item.Key.Split('-')[0], "(\\w+)(\\d+)").Groups[2].Value);
-                        lpoObject.QuotationID = Convert.ToInt32(Regex.Match(item.Key.Split('-')[1], "(\\w+)(\\d+)").Groups[2].Value);
-                        if (Regex.Match(item.Key.Split('-')[2], "(\\w+)(\\d+)").Groups[1].Value.Contains("ATCheck"))
+                        lpoObject.RFQID = Convert.ToInt32(item.Key.Split('-')[0].Substring(item.Key.Split('-')[0].IndexOf('Q') + 1));
+                        lpoObject.QuotationID = Convert.ToInt32(item.Key.Split('-')[1].Substring(item.Key.Split('-')[1].IndexOf('t') + 1));
+                        if (item.Key.Split('-')[2].Contains("ATCheck"))
                         {
                             lpoObject.IsAT = true;
                         }
-                        if (Regex.Match(item.Key.Split('-')[2], "(\\w+)(\\d+)").Groups[1].Value.Contains("HSCheck"))
+                        if (item.Key.Split('-')[2].Contains("HSCheck"))
                         {
                             lpoObject.IsHS = true;
                         }
-                        if (Regex.Match(item.Key.Split('-')[2], "(\\w+)(\\d+)").Groups[1].Value.Contains("PCCheck"))
+                        if (item.Key.Split('-')[2].Contains("PCCheck"))
                         {
                             lpoObject.IsPC = true;
                         }
@@ -278,6 +252,173 @@ namespace Travel_Request_System_EF.Controllers
                 }
 
                 return View(LPO);
+            }
+        }
+
+        public async Task<ActionResult> TravelRequestsList()
+        {
+            using (BTCEntities db = new BTCEntities())
+            {
+                var travelRequests = db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency).Include(t => t.Users1).Include(t => t.Users).Where(a => a.IsSubmitted);
+                return View(await travelRequests.ToListAsync());
+            }
+        }
+
+        public void PrintLPO(int id)
+        {
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.SizeToReportContent = true;
+            reportViewer.Width = Unit.Percentage(900);
+            reportViewer.Height = Unit.Percentage(900);
+            var connectionString = ConfigurationManager.ConnectionStrings["AuthenticationDB"].ConnectionString;
+            BTCDataSet ds = new BTCDataSet();
+            Warning[] warnings;
+            string[] streamIds;
+            string mimeType = string.Empty;
+            string encoding = string.Empty;
+            string extension = string.Empty;
+            Byte[] bytes;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp;
+
+            adp = new SqlDataAdapter("select * FROM LPODetails WHERE LPOID = " + id, conx);
+            ds = new BTCDataSet();
+            adp.Fill(ds, ds.LPODetails.TableName);
+            reportViewer.LocalReport.ReportPath = Path.Combine(@"C:\Users\kanniyappans\Documents\GitHub\BTC\Travel_Request_System\Travel_Request_System_EF\Reports\", "LPOReport.rdlc");
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("detailsDataset", ds.Tables["LPODetails"]));
+            bytes = reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+            Response.Buffer = true;
+            Response.Clear();
+            Response.ContentType = mimeType;
+            Response.AddHeader("content-disposition", "attachment; filename= outputreport" + "." + extension);
+            Response.OutputStream.Write(bytes, 0, bytes.Length); // create the file  
+            Response.Flush(); // send it to the client to download  
+            Response.End();
+        }
+
+        public void SendEmail(int id)
+        {
+            var username = "john.doe@gmail.com";
+            var password = "password";
+            MailAddress MailFrom = new MailAddress("john.doe@gmail.com");
+            MailAddress MailTo = new MailAddress("john.doe@gmail.com");
+            var subject = "TEST SUBJECT";
+            var attachmentPath = ExportReportToPDF(id);
+            var mailBody = "<b>test</b>";
+
+
+            NetworkCredential cred = new NetworkCredential(username, password);
+
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.UseDefaultCredentials = false;
+            smtp.EnableSsl = true;
+            smtp.Credentials = cred;
+            smtp.Port = 587;
+
+            MailMessage mail = new MailMessage();
+
+            mail.IsBodyHtml = true;
+
+            AlternateView avAlternateView = null;
+            Encoding myEncoding = Encoding.GetEncoding("UTF-8");
+
+            avAlternateView = AlternateView.CreateAlternateViewFromString(mailBody, myEncoding, "text/plain");
+            mail.AlternateViews.Add(avAlternateView);
+
+            avAlternateView = AlternateView.CreateAlternateViewFromString(mailBody, myEncoding, "text/html");
+            mail.AlternateViews.Add(avAlternateView);
+
+            mail.Sender = MailFrom;
+            mail.From = MailFrom;
+
+            mail.To.Add(MailTo);
+
+            mail.Subject = subject;
+            mail.SubjectEncoding = Encoding.GetEncoding("UTF-8");
+
+            mail.BodyEncoding = Encoding.GetEncoding("UTF-8");
+
+            Attachment attachment = new Attachment(attachmentPath);
+            mail.Attachments.Add(attachment);
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private string ExportReportToPDF(int id)
+        {
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.SizeToReportContent = true;
+            reportViewer.Width = Unit.Percentage(900);
+            reportViewer.Height = Unit.Percentage(900);
+            var connectionString = ConfigurationManager.ConnectionStrings["AuthenticationDB"].ConnectionString;
+            BTCDataSet ds = new BTCDataSet();
+            Warning[] warnings;
+            string[] streamIds;
+            string mimeType = string.Empty;
+            string encoding = string.Empty;
+            string extension = string.Empty;
+            Byte[] bytes;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp;
+
+            adp = new SqlDataAdapter("select * FROM LPODetails WHERE LPOID = " + id, conx);
+            ds = new BTCDataSet();
+            adp.Fill(ds, ds.LPODetails.TableName);
+            reportViewer.LocalReport.ReportPath = Path.Combine(@"C:\Users\kanniyappans\Documents\GitHub\BTC\Travel_Request_System\Travel_Request_System_EF\Reports\", "LPOReport.rdlc");
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("detailsDataset", ds.Tables["LPODetails"]));
+            bytes = reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+
+            string filename = Path.Combine(Path.GetTempPath(), "LPODetails.pdf");
+            using (var fs = new FileStream(filename, FileMode.Create))
+            {
+                fs.Write(bytes, 0, bytes.Length);
+                fs.Close();
+            }
+
+            return filename;
+        }
+
+        public void IntimateEmployee() { }
+
+        private void IsLoggedIn(List<string> Role)
+        {
+            var Val = true;
+            ViewBag.LoggedOut = !Val;
+            ViewBag.messages = Val;
+            ViewBag.notifications = Val;
+            ViewBag.tasks = Val;
+            ViewBag.IsEmployee = !Val;
+            ViewBag.IsHR = !Val;
+            ViewBag.IsTravelCo = !Val;
+            ViewBag.IsManager = !Val;
+            ViewBag.IsAdmin = !Val;
+            if (roles.Contains(Constants.Employee))
+            {
+                ViewBag.IsEmployee = Val;
+            }
+            if (roles.Contains(Constants.HR))
+            {
+                ViewBag.IsHR = Val;
+            }
+            if (roles.Contains(Constants.Admin))
+            {
+                ViewBag.IsAdmin = Val;
+            }
+            if (roles.Contains(Constants.Manager))
+            {
+                ViewBag.IsManager = Val;
+            }
+            if (roles.Contains(Constants.TravelCorordinator))
+            {
+                ViewBag.IsTravelCo = Val;
             }
         }
     }

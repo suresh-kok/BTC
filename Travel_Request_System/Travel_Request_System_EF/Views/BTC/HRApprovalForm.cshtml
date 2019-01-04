@@ -5,16 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm(Model))
+@using (Html.BeginForm())
 {
     @Html.Partial("_TravelRequestDetails", Model);
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ID)
 
     <div class="row" style="margin-bottom:15px">
         <div class="col-sm-12">
             <div class="form-group">
                 <label class="col-sm-3">Remarks / Comments</label>
                 <div class="col-sm-12">
-                    @Html.TextAreaFor(model => model.ApprovalRemarks, htmlAttributes: new { @class = "form-control", @rows = "5", @placeholder = "Enter Comments..." })
+                    @Html.Raw(Model.ApprovalRemarks.Replace("\\n", "<br />"))
+                    @Html.TextArea("ApprovalRemarksUser", htmlAttributes: new { @class = "form-control", @rows = "5", @placeholder = "Enter Comments..." })
                 </div>
             </div>
         </div>
@@ -24,12 +27,12 @@
         </div>
         <div class="col-sm-3">
             <div class="form-group">
-                <input type="submit" class="form-control btn btn-info btn-primary" value="Approve" formaction="ApproveHRRequest" />
+                <input type="submit" class="form-control btn btn-info btn-primary" value="Approve" formaction="@Url.Action("ApproveHRRequest")" />
             </div>
         </div>
         <div class="col-sm-3">
             <div class="form-group">
-                <input type="submit" class="form-control btn btn-info btn-primary" value="Reject" formaction="RejectHRRequest" />
+                <input type="submit" class="form-control btn btn-info btn-primary" value="Reject" formaction="@Url.Action("RejectHRRequest")" />
             </div>
         </div>
         <div class="col-sm-3">

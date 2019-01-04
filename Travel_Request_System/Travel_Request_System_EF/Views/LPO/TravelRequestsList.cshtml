@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<Travel_Request_System_EF.Models.TravelRequests>
-@using Travel_Request_System_EF.Models.ViewModel
 
 @{
-    ViewBag.Title = "Human Resorces Dashboard";
+    ViewBag.Title = "Travel Requests List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -54,7 +53,10 @@
                                         @Html.DisplayNameFor(model => model.CreatedBy)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.ApprovalLevel)
+                                        @Html.DisplayNameFor(model => model.IsSubmitted)
+                                    </th>
+                                    <th>
+                                        Actions
                                     </th>
                                 </tr>
 
@@ -62,7 +64,7 @@
                                 {
                                     <tr>
                                         <td>
-                                            @Html.ActionLink(item.ApplicationNumber, "HRApprovalForm", "BTC", new { @item.ID }, null)
+                                            @Html.DisplayFor(modelitem => item.ApplicationNumber)
                                         </td>
                                         <td>
                                             @(new HtmlString(item.City.CityDesc + " ," + item.City.Country))
@@ -96,43 +98,51 @@
                                             }
                                         </td>
                                         <td>
-                                            @(new HtmlString(item.Users1.FirstName + " ," + item.Users1.LastName))
-                                        </td>
-                                        <td>
                                             @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.CreateOn.ToString()))));
                                         </td>
                                         <td>
-                                            @switch (item.ApprovalLevel)
+                                            @(new HtmlString(item.Users1.FirstName + " ," + item.Users1.LastName))
+                                        </td>
+                                        <td>
+                                            @if (item.IsSubmitted != true)
                                             {
-                                                case (int)ApprovalLevels.ToBeApproved:
-                                                    @(new HtmlString("To Be Approved"))
-                                                    break;
-                                                case (int)ApprovalLevels.ApprovedByManager:
-                                                    @(new HtmlString("Approved By Manager"))
-                                                    break;
-                                                case (int)ApprovalLevels.RejectedByManager:
-                                                    @(new HtmlString("Rejected By Manager"))
-                                                    break;
-                                                case (int)ApprovalLevels.ApprovedByHR:
-                                                    @(new HtmlString("Approved By HR"))
-                                                    break;
-                                                case (int)ApprovalLevels.RejectedByHR:
-                                                    @(new HtmlString("Rejected By HR"))
-                                                    break;
-                                                case (int)ApprovalLevels.ApprovedbyTravelCo:
-                                                    @(new HtmlString("Approved By Travel Co"))
-                                                    break;
-                                                default:
-                                                    @(new HtmlString("Unknown"))
-                                                    break;
+                                                @(new HtmlString("Draft"))
+                                            }
+                                            else
+                                            {
+                                                @(new HtmlString("Submitted"))
+                                            }
+                                        </td>
+                                        <td>
+                                            @{
+                                                var lpo = false;
+                                                using (Travel_Request_System_EF.Models.BTCEntities db = new Travel_Request_System_EF.Models.BTCEntities())
+                                                {
+                                                    if (db.RFQ.Where(a => a.TravelRequestID == item.ID && a.LPO.Where(b => !((bool)b.IsDeleted)).Count() > 0).Count() > 0)
+                                                    {
+                                                        lpo = true;
+                                                    }
+                                                }
+                                                if (lpo)
+                                                {
+                                                    <span class="glyphicon">
+                                                        @Html.ActionLink("  View LPO", "Index", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon">
+                                                        @Html.ActionLink("  Details", "LPOProcessing", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                                                    </span>
+                                                }
                                             }
                                         </td>
                                     </tr>
                                 }
                             }
                         </table>
-                    </div><!-- /.box-body -->
-                </div><!-- /.box -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -96,7 +96,7 @@
             @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)
             {
                 <li>
-                    <a href="@Url.Action("Index", "RFQs")"><i class="fa fa-link"></i> <span>Manage RFQ</span></a>
+                    <a href="@Url.Action("TravelRequestsList", "RFQs")"><i class="fa fa-link"></i> <span>Manage RFQ</span></a>
                 </li>
             }
             @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
@@ -108,7 +108,7 @@
             @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)
             {
                 <li>
-                    <a href="@Url.Action("ManageLPO", "BTC")"><i class="fa fa-link"></i> <span>Manage LPO</span></a>
+                    <a href="@Url.Action("TravelRequestsList", "LPO")"><i class="fa fa-link"></i> <span>Manage LPO</span></a>
                 </li>
             }
             @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)

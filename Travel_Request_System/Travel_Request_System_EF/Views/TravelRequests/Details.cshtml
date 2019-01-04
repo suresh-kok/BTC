@@ -659,15 +659,13 @@
             {
                 <div class="col-sm-4">
                     <div class="form-group">
-                        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
+                        @Html.ActionLink("  Edit", "Edit", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
                     </div>
                 </div>
             }
             <div class="col-sm-4">
                 <div class="form-group">
-                    <a href="javascript:window.print()">Click to Print This Page</a>
-                    @*@Html.ActionLink("Print", "PrintTravelRequest", "TravelRequests", new { @class = "form-control btn btn-info" })*@
-                    @Html.ActionLink("Print", "GenerateAspose")
+                    @Html.ActionLink("  Print", "PrintTravelRequest", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
                 </div>
             </div>
             <div class="col-sm-4">

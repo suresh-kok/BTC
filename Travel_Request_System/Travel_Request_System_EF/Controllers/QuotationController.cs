@@ -10,10 +10,13 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Travel_Request_System_EF.CustomAuthentication;
 using Travel_Request_System_EF.Models;
+using Travel_Request_System_EF.Models.DataAnnotations;
 using Travel_Request_System_EF.Models.ViewModel;
 
 namespace Travel_Request_System_EF.Controllers
 {
+    [HandleError]
+    [RedirectingAction]
     public class QuotationController : Controller
     {
         private static MembershipUser user;
@@ -24,19 +27,25 @@ namespace Travel_Request_System_EF.Controllers
 
         public QuotationController()
         {
-            user = Membership.GetUser();
-            CustomRole customRole = new CustomRole();
-            roles = customRole.GetRolesForUser(user.UserName);
-            ViewBag.RoleDetails = roles.ToList()[0];
-            IsLoggedIn(roles.ToList());
-            using (BTCEntities db = new BTCEntities())
+            try
             {
-                dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
-                ViewBag.UserDetails = dbuser;
+                user = Membership.GetUser();
+                CustomRole customRole = new CustomRole();
+                roles = customRole.GetRolesForUser(user.UserName);
+                ViewBag.RoleDetails = roles.ToList()[0];
+                IsLoggedIn(roles.ToList());
+                using (BTCEntities db = new BTCEntities())
+                {
+                    dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
+                    ViewBag.UserDetails = dbuser;
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = "Your Login has expired!! Please login again.";
             }
         }
-
-        // GET: Quotation
+        
         public async Task<ActionResult> Index()
         {
             using (BTCEntities db = new BTCEntities())
@@ -60,7 +69,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                RFQ rFQ = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Include(a => a.TravelRequests.Quotation).Where(a => a.ID == id).FirstOrDefaultAsync();
+                RFQ rFQ = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Include(a => a.TravelRequests.Quotation).Include("Quotation.ATQuotation").Include("Quotation.HSQuotation").Include("Quotation.PCQuotation").Where(a => a.ID == id).FirstOrDefaultAsync();
                 if (rFQ == null)
                 {
                     return HttpNotFound();
@@ -124,6 +133,7 @@ namespace Travel_Request_System_EF.Controllers
                 dbatquote.TicketClass = atquote.TicketClass;
                 dbatquote.TicketNo = atquote.TicketNo;
                 dbatquote.IsDeleted = false;
+                dbatquote.IsActive = true;
 
                 db.ATQuotation.Attach(dbatquote);
                 var entry = db.Entry(dbatquote);
@@ -139,9 +149,10 @@ namespace Travel_Request_System_EF.Controllers
                 entry.Property(a => a.TicketClass).IsModified = true;
                 entry.Property(a => a.TicketNo).IsModified = true;
                 entry.Property(a => a.IsDeleted).IsModified = true;
+                entry.Property(a => a.IsActive).IsModified = true;
                 db.SaveChanges();
 
-                return RedirectToAction("AddQuotation", new { id = dbatquote.QuotationID });
+                return RedirectToAction("AddQuotation", new { id = dbatquote.Quotation.RFQID });
             }
         }
 
@@ -171,7 +182,6 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddHSQuotation(HSQuotation hsquote)
@@ -192,6 +202,7 @@ namespace Travel_Request_System_EF.Controllers
                 dbhsquote.CheckInDate = hsquote.CheckInDate;
                 dbhsquote.CheckOutDate = hsquote.CheckOutDate;
                 dbhsquote.IsDeleted = false;
+                dbhsquote.IsActive = true;
 
                 db.HSQuotation.Attach(dbhsquote);
                 var entry = db.Entry(dbhsquote);
@@ -202,13 +213,14 @@ namespace Travel_Request_System_EF.Controllers
                 entry.Property(a => a.CheckOutTime).IsModified = true;
                 entry.Property(a => a.HotelCategory).IsModified = true;
                 entry.Property(a => a.HotelName).IsModified = true;
+                entry.Property(a => a.IsActive).IsModified = true;
                 entry.Property(a => a.IsDeleted).IsModified = true;
                 entry.Property(a => a.RoomCategory).IsModified = true;
                 entry.Property(a => a.RoomType).IsModified = true;
                 entry.Property(a => a.TravelSector).IsModified = true;
                 db.SaveChanges();
 
-                return RedirectToAction("AddQuotation", new { id = dbhsquote.QuotationID });
+                return RedirectToAction("AddQuotation", new { id = dbhsquote.Quotation.RFQID });
             }
         }
 
@@ -257,6 +269,7 @@ namespace Travel_Request_System_EF.Controllers
                 dbpcquote.PickUpDate = pcquote.PickUpDate;
                 dbpcquote.DropOffDate = pcquote.DropOffDate;
                 dbpcquote.IsDeleted = false;
+                dbpcquote.IsActive = true;
 
                 db.PCQuotation.Attach(dbpcquote);
                 var entry = db.Entry(dbpcquote);
@@ -267,12 +280,13 @@ namespace Travel_Request_System_EF.Controllers
                 entry.Property(a => a.PickUpDate).IsModified = true;
                 entry.Property(a => a.PickupLocation).IsModified = true;
                 entry.Property(a => a.PickUpTime).IsModified = true;
+                entry.Property(a => a.IsActive).IsModified = true;
                 entry.Property(a => a.IsDeleted).IsModified = true;
                 entry.Property(a => a.PreferredVehicle).IsModified = true;
                 entry.Property(a => a.TravelSector).IsModified = true;
                 db.SaveChanges();
 
-                return RedirectToAction("AddQuotation", new { id = dbpcquote.QuotationID });
+                return RedirectToAction("AddQuotation", new { id = dbpcquote.Quotation.RFQID });
             }
         }
 
@@ -295,7 +309,8 @@ namespace Travel_Request_System_EF.Controllers
 
                     fileName = Path.GetFileName(Request.Files[0].FileName);
                     destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + attachmentsForVal) + "/", fileName);
-                    Directory.CreateDirectory(destinationPath); Request.Files[0].SaveAs(destinationPath);
+                    Directory.CreateDirectory(Server.MapPath("~/UploadedFiles/" + attachmentsForVal));
+                    Request.Files[0].SaveAs(destinationPath);
 
                     var isFileNameRepete = (db.Attachments.AsEnumerable().Where(x => x.FileName == fileName).ToList());
                     if (isFileNameRepete == null || isFileNameRepete.Count <= 0)
@@ -347,6 +362,54 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(attachmentsForVal)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
                 return RedirectToAction(retrunToVal, new { id = attachmentsForIDVal });
+            }
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePCQuotation(int id)
+        {
+            using (BTCEntities db = new BTCEntities())
+            {
+                var dbpcquote = db.PCQuotation.Find(id);
+                dbpcquote.IsDeleted = false;
+
+                db.PCQuotation.Attach(dbpcquote);
+                var entry = db.Entry(dbpcquote);
+                entry.Property(a => a.IsDeleted).IsModified = true;
+
+                return RedirectToAction("AddQuotation", new { id = dbpcquote.Quotation.RFQID });
+            }
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteHSQuotation(int id)
+        {
+            using (BTCEntities db = new BTCEntities())
+            {
+                var dbhsquote = db.HSQuotation.Find(id);
+                dbhsquote.IsDeleted = false;
+
+                db.HSQuotation.Attach(dbhsquote);
+                var entry = db.Entry(dbhsquote);
+                entry.Property(a => a.IsDeleted).IsModified = true;
+
+                return RedirectToAction("AddQuotation", new { id = dbhsquote.Quotation.RFQID });
+            }
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteATQuotation(int id)
+        {
+            using (BTCEntities db = new BTCEntities())
+            {
+                var dbatquote = db.ATQuotation.Find(id);
+                dbatquote.IsDeleted = false;
+
+                db.ATQuotation.Attach(dbatquote);
+                var entry = db.Entry(dbatquote);
+                entry.Property(a => a.IsDeleted).IsModified = true;
+
+                return RedirectToAction("AddQuotation", new { id = dbatquote.Quotation.RFQID });
             }
         }
 
@@ -409,22 +472,22 @@ namespace Travel_Request_System_EF.Controllers
             switch (QuotationType)
             {
                 case 1:
-                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + "/AT-Q";
+                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".AT-Q";
                     attachmentsForIDVal = quotation.ID;
                     retrunToVal = "AddATQuotation";
                     break;
                 case 2:
-                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + "/HS-Q";
+                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".HS-Q";
                     attachmentsForIDVal = quotation.ID;
                     retrunToVal = "AddHSQuotation";
                     break;
                 case 3:
-                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + "/AT-Q";
+                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".AT-Q";
                     attachmentsForIDVal = quotation.ID;
                     retrunToVal = "AddPCQuotation";
                     break;
                 default:
-                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + "/AT-Q";
+                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".AT-Q";
                     attachmentsForIDVal = quotation.ID;
                     retrunToVal = "Index";
                     break;

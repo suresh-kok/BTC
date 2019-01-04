@@ -23,6 +23,7 @@
           <Property Name="Amount" Type="decimal" Precision="10" Scale="2" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="QuotationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="AttachmentLink">
           <Key>
@@ -79,6 +80,7 @@
           <Property Name="Amount" Type="decimal" Precision="10" Scale="2" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="QuotationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="LPO">
           <Key>
@@ -111,6 +113,7 @@
           <Property Name="Amount" Type="decimal" Precision="10" Scale="2" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="QuotationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="Quotation">
           <Key>
@@ -132,8 +135,8 @@
           <Property Name="Remarks" Type="nvarchar(max)" />
           <Property Name="Processing" Type="int" Nullable="false" />
           <Property Name="ProcessingSection" Type="int" Nullable="false" />
-          <Property Name="IsDeleted" Type="bit" />
           <Property Name="RFQName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -157,7 +160,7 @@
           <Property Name="Landline" Type="nvarchar" MaxLength="20" />
           <Property Name="ContactPerson" Type="nvarchar" MaxLength="100" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TravelRequests">
           <Key>
@@ -210,6 +213,7 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsSubmitted" Type="bit" Nullable="false" />
+          <Property Name="airlines" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -233,6 +237,255 @@
           <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
           <Property Name="HREmployeeID" Type="bigint" />
           <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.LPODetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LPODetails">
+          <Key>
+            <PropertyRef Name="LPOID" />
+          </Key>
+          <Property Name="LPOID" Type="int" Nullable="false" />
+          <Property Name="LPORemarks" Type="nvarchar" MaxLength="500" />
+          <Property Name="isAT" Type="bit" />
+          <Property Name="IsHS" Type="bit" />
+          <Property Name="IsPC" Type="bit" />
+          <Property Name="RFQID" Type="int" />
+          <Property Name="Processing" Type="varchar" MaxLength="15" />
+          <Property Name="ProcessingSection" Type="varchar" MaxLength="12" />
+          <Property Name="RFQRemarks" Type="nvarchar(max)" />
+          <Property Name="AgencyCode" Type="nvarchar" MaxLength="25" />
+          <Property Name="username" Type="nvarchar(max)" />
+          <Property Name="ID" Type="int" />
+          <Property Name="ApplicationNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="PortOfOriginID" Type="int" />
+          <Property Name="OriginCIty" Type="nvarchar" MaxLength="250" />
+          <Property Name="OriginCountry" Type="nvarchar" MaxLength="100" />
+          <Property Name="PortOfDestinationID" Type="int" />
+          <Property Name="DestinationCity" Type="nvarchar" MaxLength="250" />
+          <Property Name="DestinationCountry" Type="nvarchar" MaxLength="100" />
+          <Property Name="TicketClass" Type="nvarchar" MaxLength="100" />
+          <Property Name="DailyAllowance" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CurrencyID" Type="int" />
+          <Property Name="CurrencyDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="CurrencySymbol" Type="nvarchar" MaxLength="10" />
+          <Property Name="TravelDays" Type="int" />
+          <Property Name="TravelRemarks" Type="nvarchar(max)" />
+          <Property Name="PurposeOfVisit" Type="nvarchar(max)" />
+          <Property Name="DepartureDate" Type="datetime" />
+          <Property Name="DepartureTime" Type="time" Precision="7" />
+          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="ReturnTime" Type="time" Precision="7" />
+          <Property Name="FirstBusinessDay" Type="datetime" />
+          <Property Name="LastBusinessDay" Type="datetime" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+          <Property Name="AirTicketManagement" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TravelAllowance" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelStay" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoomCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoomType" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionalAllowance" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="AirportPickUp" Type="nvarchar" MaxLength="50" />
+          <Property Name="PickUpLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="PickUpDate" Type="datetime" />
+          <Property Name="PickUpTime" Type="time" Precision="7" />
+          <Property Name="DropOffLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="DropOffDate" Type="datetime" />
+          <Property Name="DropOffTime" Type="time" Precision="7" />
+          <Property Name="PreferredVehicle" Type="nvarchar" MaxLength="250" />
+          <Property Name="TravelSector" Type="nvarchar" MaxLength="250" />
+          <Property Name="CheckInDate" Type="datetime" />
+          <Property Name="CheckOutDate" Type="datetime" />
+          <Property Name="CheckInTime" Type="time" Precision="7" />
+          <Property Name="CheckOutTime" Type="time" Precision="7" />
+          <Property Name="ApprovalLevel" Type="int" />
+          <Property Name="ApprovalBy" Type="int" />
+          <Property Name="ApprovedByName" Type="nvarchar(max)" />
+          <Property Name="ApprovalRemarks" Type="varchar(max)" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedByName" Type="nvarchar(max)" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedByName" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsSubmitted" Type="bit" />
+          <Property Name="Airlines" Type="nvarchar" MaxLength="100" />
+          <Property Name="ATAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="ATDepartureDate" Type="datetime" />
+          <Property Name="ATDepartureTime" Type="time" Precision="7" />
+          <Property Name="DestinationID" Type="int" />
+          <Property Name="ATDCity" Type="nvarchar" MaxLength="250" />
+          <Property Name="ATDCountry" Type="nvarchar" MaxLength="100" />
+          <Property Name="OriginID" Type="int" />
+          <Property Name="ATOCity" Type="nvarchar" MaxLength="250" />
+          <Property Name="ATOCountry" Type="nvarchar" MaxLength="100" />
+          <Property Name="ATQuotationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ATReturnDate" Type="datetime" />
+          <Property Name="ATReturnTime" Type="time" Precision="7" />
+          <Property Name="ATTicketClass" Type="nvarchar" MaxLength="100" />
+          <Property Name="TicketNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="HSAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HSCheckInDate" Type="datetime" />
+          <Property Name="HSCheckInTime" Type="time" Precision="7" />
+          <Property Name="HSCheckOutDate" Type="datetime" />
+          <Property Name="HSCheckOutTime" Type="time" Precision="7" />
+          <Property Name="HSHotelCategory" Type="nvarchar" MaxLength="100" />
+          <Property Name="HSHotelName" Type="nvarchar" MaxLength="250" />
+          <Property Name="HSQuotationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="HSRoomCategory" Type="nvarchar" MaxLength="100" />
+          <Property Name="HSRoomType" Type="nvarchar" MaxLength="100" />
+          <Property Name="HSTravelSector" Type="nvarchar" MaxLength="250" />
+          <Property Name="PCAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PCDropOffDate" Type="datetime" />
+          <Property Name="PCDropoffLocation" Type="nvarchar" MaxLength="250" />
+          <Property Name="PCDropOffTime" Type="time" Precision="7" />
+          <Property Name="PCPickUpDate" Type="datetime" />
+          <Property Name="PCPickupLocation" Type="nvarchar" MaxLength="250" />
+          <Property Name="PCPickUpTime" Type="time" Precision="7" />
+          <Property Name="PCPreferredVehicle" Type="nvarchar" MaxLength="250" />
+          <Property Name="PCQuotationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PCTravelSector" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.RFQDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RFQDetails">
+          <Key>
+            <PropertyRef Name="RFQID" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ApplicationNumber" />
+            <PropertyRef Name="ApprovalLevel" />
+            <PropertyRef Name="IsSubmitted" />
+          </Key>
+          <Property Name="RFQID" Type="int" Nullable="false" />
+          <Property Name="Processing" Type="varchar" MaxLength="15" />
+          <Property Name="ProcessingSection" Type="varchar" MaxLength="12" />
+          <Property Name="RFQRemarks" Type="nvarchar(max)" />
+          <Property Name="AgencyCode" Type="nvarchar" MaxLength="25" />
+          <Property Name="username" Type="nvarchar(max)" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ApplicationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PortOfOriginID" Type="int" />
+          <Property Name="OriginCIty" Type="nvarchar" MaxLength="250" />
+          <Property Name="OriginCountry" Type="nvarchar" MaxLength="100" />
+          <Property Name="PortOfDestinationID" Type="int" />
+          <Property Name="DestinationCity" Type="nvarchar" MaxLength="250" />
+          <Property Name="DestinationCountry" Type="nvarchar" MaxLength="100" />
+          <Property Name="TicketClass" Type="nvarchar" MaxLength="100" />
+          <Property Name="DailyAllowance" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CurrencyID" Type="int" />
+          <Property Name="CurrencyDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="CurrencySymbol" Type="nvarchar" MaxLength="10" />
+          <Property Name="TravelDays" Type="int" />
+          <Property Name="TravelRemarks" Type="nvarchar(max)" />
+          <Property Name="PurposeOfVisit" Type="nvarchar(max)" />
+          <Property Name="DepartureDate" Type="datetime" />
+          <Property Name="DepartureTime" Type="time" Precision="7" />
+          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="ReturnTime" Type="time" Precision="7" />
+          <Property Name="FirstBusinessDay" Type="datetime" />
+          <Property Name="LastBusinessDay" Type="datetime" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+          <Property Name="AirTicketManagement" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TravelAllowance" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelStay" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoomCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoomType" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionalAllowance" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="AirportPickUp" Type="nvarchar" MaxLength="50" />
+          <Property Name="PickUpLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="PickUpDate" Type="datetime" />
+          <Property Name="PickUpTime" Type="time" Precision="7" />
+          <Property Name="DropOffLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="DropOffDate" Type="datetime" />
+          <Property Name="DropOffTime" Type="time" Precision="7" />
+          <Property Name="PreferredVehicle" Type="nvarchar" MaxLength="250" />
+          <Property Name="TravelSector" Type="nvarchar" MaxLength="250" />
+          <Property Name="CheckInDate" Type="datetime" />
+          <Property Name="CheckOutDate" Type="datetime" />
+          <Property Name="CheckInTime" Type="time" Precision="7" />
+          <Property Name="CheckOutTime" Type="time" Precision="7" />
+          <Property Name="ApprovalLevel" Type="int" Nullable="false" />
+          <Property Name="ApprovalBy" Type="int" />
+          <Property Name="ApprovedByName" Type="nvarchar(max)" />
+          <Property Name="ApprovalRemarks" Type="varchar(max)" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedByName" Type="nvarchar(max)" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedByName" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsSubmitted" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TravelRequestDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ApplicationNumber" />
+            <PropertyRef Name="ApprovalLevel" />
+            <PropertyRef Name="IsSubmitted" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ApplicationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PortOfOriginID" Type="int" />
+          <Property Name="OriginCIty" Type="nvarchar" MaxLength="250" />
+          <Property Name="OriginCountry" Type="nvarchar" MaxLength="100" />
+          <Property Name="PortOfDestinationID" Type="int" />
+          <Property Name="DestinationCity" Type="nvarchar" MaxLength="250" />
+          <Property Name="DestinationCountry" Type="nvarchar" MaxLength="100" />
+          <Property Name="TicketClass" Type="nvarchar" MaxLength="100" />
+          <Property Name="DailyAllowance" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CurrencyID" Type="int" />
+          <Property Name="CurrencyDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="CurrencySymbol" Type="nvarchar" MaxLength="10" />
+          <Property Name="TravelDays" Type="int" />
+          <Property Name="TravelRemarks" Type="nvarchar(max)" />
+          <Property Name="PurposeOfVisit" Type="nvarchar(max)" />
+          <Property Name="DepartureDate" Type="datetime" />
+          <Property Name="DepartureTime" Type="time" Precision="7" />
+          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="ReturnTime" Type="time" Precision="7" />
+          <Property Name="FirstBusinessDay" Type="datetime" />
+          <Property Name="LastBusinessDay" Type="datetime" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+          <Property Name="AirTicketManagement" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TravelAllowance" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelStay" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoomCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoomType" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionalAllowance" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="AirportPickUp" Type="nvarchar" MaxLength="50" />
+          <Property Name="PickUpLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="PickUpDate" Type="datetime" />
+          <Property Name="PickUpTime" Type="time" Precision="7" />
+          <Property Name="DropOffLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="DropOffDate" Type="datetime" />
+          <Property Name="DropOffTime" Type="time" Precision="7" />
+          <Property Name="PreferredVehicle" Type="nvarchar" MaxLength="250" />
+          <Property Name="TravelSector" Type="nvarchar" MaxLength="250" />
+          <Property Name="CheckInDate" Type="datetime" />
+          <Property Name="CheckOutDate" Type="datetime" />
+          <Property Name="CheckInTime" Type="time" Precision="7" />
+          <Property Name="CheckOutTime" Type="time" Precision="7" />
+          <Property Name="ApprovalLevel" Type="int" Nullable="false" />
+          <Property Name="ApprovalBy" Type="int" />
+          <Property Name="ApprovedByName" Type="nvarchar(max)" />
+          <Property Name="ApprovalRemarks" Type="varchar(max)" />
+          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedByName" Type="nvarchar(max)" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedByName" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsSubmitted" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK__TravelReq__ApprovalBy">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
@@ -502,6 +755,239 @@
           <EntitySet Name="TravelRequests" EntityType="Self.TravelRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LPODetails" EntityType="Self.LPODetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LPODetails].[LPOID] AS [LPOID], 
+    [LPODetails].[LPORemarks] AS [LPORemarks], 
+    [LPODetails].[isAT] AS [isAT], 
+    [LPODetails].[IsHS] AS [IsHS], 
+    [LPODetails].[IsPC] AS [IsPC], 
+    [LPODetails].[RFQID] AS [RFQID], 
+    [LPODetails].[Processing] AS [Processing], 
+    [LPODetails].[ProcessingSection] AS [ProcessingSection], 
+    [LPODetails].[RFQRemarks] AS [RFQRemarks], 
+    [LPODetails].[AgencyCode] AS [AgencyCode], 
+    [LPODetails].[username] AS [username], 
+    [LPODetails].[ID] AS [ID], 
+    [LPODetails].[ApplicationNumber] AS [ApplicationNumber], 
+    [LPODetails].[PortOfOriginID] AS [PortOfOriginID], 
+    [LPODetails].[OriginCIty] AS [OriginCIty], 
+    [LPODetails].[OriginCountry] AS [OriginCountry], 
+    [LPODetails].[PortOfDestinationID] AS [PortOfDestinationID], 
+    [LPODetails].[DestinationCity] AS [DestinationCity], 
+    [LPODetails].[DestinationCountry] AS [DestinationCountry], 
+    [LPODetails].[TicketClass] AS [TicketClass], 
+    [LPODetails].[DailyAllowance] AS [DailyAllowance], 
+    [LPODetails].[CurrencyID] AS [CurrencyID], 
+    [LPODetails].[CurrencyDesc] AS [CurrencyDesc], 
+    [LPODetails].[CurrencySymbol] AS [CurrencySymbol], 
+    [LPODetails].[TravelDays] AS [TravelDays], 
+    [LPODetails].[TravelRemarks] AS [TravelRemarks], 
+    [LPODetails].[PurposeOfVisit] AS [PurposeOfVisit], 
+    [LPODetails].[DepartureDate] AS [DepartureDate], 
+    [LPODetails].[DepartureTime] AS [DepartureTime], 
+    [LPODetails].[ReturnDate] AS [ReturnDate], 
+    [LPODetails].[ReturnTime] AS [ReturnTime], 
+    [LPODetails].[FirstBusinessDay] AS [FirstBusinessDay], 
+    [LPODetails].[LastBusinessDay] AS [LastBusinessDay], 
+    [LPODetails].[Remarks] AS [Remarks], 
+    [LPODetails].[AirTicketManagement] AS [AirTicketManagement], 
+    [LPODetails].[HotelName] AS [HotelName], 
+    [LPODetails].[TravelAllowance] AS [TravelAllowance], 
+    [LPODetails].[HotelStay] AS [HotelStay], 
+    [LPODetails].[HotelCategory] AS [HotelCategory], 
+    [LPODetails].[RoomCategory] AS [RoomCategory], 
+    [LPODetails].[RoomType] AS [RoomType], 
+    [LPODetails].[AdditionalAllowance] AS [AdditionalAllowance], 
+    [LPODetails].[AirportPickUp] AS [AirportPickUp], 
+    [LPODetails].[PickUpLocation] AS [PickUpLocation], 
+    [LPODetails].[PickUpDate] AS [PickUpDate], 
+    [LPODetails].[PickUpTime] AS [PickUpTime], 
+    [LPODetails].[DropOffLocation] AS [DropOffLocation], 
+    [LPODetails].[DropOffDate] AS [DropOffDate], 
+    [LPODetails].[DropOffTime] AS [DropOffTime], 
+    [LPODetails].[PreferredVehicle] AS [PreferredVehicle], 
+    [LPODetails].[TravelSector] AS [TravelSector], 
+    [LPODetails].[CheckInDate] AS [CheckInDate], 
+    [LPODetails].[CheckOutDate] AS [CheckOutDate], 
+    [LPODetails].[CheckInTime] AS [CheckInTime], 
+    [LPODetails].[CheckOutTime] AS [CheckOutTime], 
+    [LPODetails].[ApprovalLevel] AS [ApprovalLevel], 
+    [LPODetails].[ApprovalBy] AS [ApprovalBy], 
+    [LPODetails].[ApprovedByName] AS [ApprovedByName], 
+    [LPODetails].[ApprovalRemarks] AS [ApprovalRemarks], 
+    [LPODetails].[CreateOn] AS [CreateOn], 
+    [LPODetails].[CreatedBy] AS [CreatedBy], 
+    [LPODetails].[CreatedByName] AS [CreatedByName], 
+    [LPODetails].[ModifiedOn] AS [ModifiedOn], 
+    [LPODetails].[ModifiedBy] AS [ModifiedBy], 
+    [LPODetails].[ModifiedByName] AS [ModifiedByName], 
+    [LPODetails].[IsDeleted] AS [IsDeleted], 
+    [LPODetails].[IsSubmitted] AS [IsSubmitted], 
+    [LPODetails].[Airlines] AS [Airlines], 
+    [LPODetails].[ATAmount] AS [ATAmount], 
+    [LPODetails].[ATDepartureDate] AS [ATDepartureDate], 
+    [LPODetails].[ATDepartureTime] AS [ATDepartureTime], 
+    [LPODetails].[DestinationID] AS [DestinationID], 
+    [LPODetails].[ATDCity] AS [ATDCity], 
+    [LPODetails].[ATDCountry] AS [ATDCountry], 
+    [LPODetails].[OriginID] AS [OriginID], 
+    [LPODetails].[ATOCity] AS [ATOCity], 
+    [LPODetails].[ATOCountry] AS [ATOCountry], 
+    [LPODetails].[ATQuotationName] AS [ATQuotationName], 
+    [LPODetails].[ATReturnDate] AS [ATReturnDate], 
+    [LPODetails].[ATReturnTime] AS [ATReturnTime], 
+    [LPODetails].[ATTicketClass] AS [ATTicketClass], 
+    [LPODetails].[TicketNo] AS [TicketNo], 
+    [LPODetails].[HSAmount] AS [HSAmount], 
+    [LPODetails].[HSCheckInDate] AS [HSCheckInDate], 
+    [LPODetails].[HSCheckInTime] AS [HSCheckInTime], 
+    [LPODetails].[HSCheckOutDate] AS [HSCheckOutDate], 
+    [LPODetails].[HSCheckOutTime] AS [HSCheckOutTime], 
+    [LPODetails].[HSHotelCategory] AS [HSHotelCategory], 
+    [LPODetails].[HSHotelName] AS [HSHotelName], 
+    [LPODetails].[HSQuotationName] AS [HSQuotationName], 
+    [LPODetails].[HSRoomCategory] AS [HSRoomCategory], 
+    [LPODetails].[HSRoomType] AS [HSRoomType], 
+    [LPODetails].[HSTravelSector] AS [HSTravelSector], 
+    [LPODetails].[PCAmount] AS [PCAmount], 
+    [LPODetails].[PCDropOffDate] AS [PCDropOffDate], 
+    [LPODetails].[PCDropoffLocation] AS [PCDropoffLocation], 
+    [LPODetails].[PCDropOffTime] AS [PCDropOffTime], 
+    [LPODetails].[PCPickUpDate] AS [PCPickUpDate], 
+    [LPODetails].[PCPickupLocation] AS [PCPickupLocation], 
+    [LPODetails].[PCPickUpTime] AS [PCPickUpTime], 
+    [LPODetails].[PCPreferredVehicle] AS [PCPreferredVehicle], 
+    [LPODetails].[PCQuotationName] AS [PCQuotationName], 
+    [LPODetails].[PCTravelSector] AS [PCTravelSector]
+    FROM [dbo].[LPODetails] AS [LPODetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RFQDetails" EntityType="Self.RFQDetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RFQDetails].[RFQID] AS [RFQID], 
+    [RFQDetails].[Processing] AS [Processing], 
+    [RFQDetails].[ProcessingSection] AS [ProcessingSection], 
+    [RFQDetails].[RFQRemarks] AS [RFQRemarks], 
+    [RFQDetails].[AgencyCode] AS [AgencyCode], 
+    [RFQDetails].[username] AS [username], 
+    [RFQDetails].[ID] AS [ID], 
+    [RFQDetails].[ApplicationNumber] AS [ApplicationNumber], 
+    [RFQDetails].[PortOfOriginID] AS [PortOfOriginID], 
+    [RFQDetails].[OriginCIty] AS [OriginCIty], 
+    [RFQDetails].[OriginCountry] AS [OriginCountry], 
+    [RFQDetails].[PortOfDestinationID] AS [PortOfDestinationID], 
+    [RFQDetails].[DestinationCity] AS [DestinationCity], 
+    [RFQDetails].[DestinationCountry] AS [DestinationCountry], 
+    [RFQDetails].[TicketClass] AS [TicketClass], 
+    [RFQDetails].[DailyAllowance] AS [DailyAllowance], 
+    [RFQDetails].[CurrencyID] AS [CurrencyID], 
+    [RFQDetails].[CurrencyDesc] AS [CurrencyDesc], 
+    [RFQDetails].[CurrencySymbol] AS [CurrencySymbol], 
+    [RFQDetails].[TravelDays] AS [TravelDays], 
+    [RFQDetails].[TravelRemarks] AS [TravelRemarks], 
+    [RFQDetails].[PurposeOfVisit] AS [PurposeOfVisit], 
+    [RFQDetails].[DepartureDate] AS [DepartureDate], 
+    [RFQDetails].[DepartureTime] AS [DepartureTime], 
+    [RFQDetails].[ReturnDate] AS [ReturnDate], 
+    [RFQDetails].[ReturnTime] AS [ReturnTime], 
+    [RFQDetails].[FirstBusinessDay] AS [FirstBusinessDay], 
+    [RFQDetails].[LastBusinessDay] AS [LastBusinessDay], 
+    [RFQDetails].[Remarks] AS [Remarks], 
+    [RFQDetails].[AirTicketManagement] AS [AirTicketManagement], 
+    [RFQDetails].[HotelName] AS [HotelName], 
+    [RFQDetails].[TravelAllowance] AS [TravelAllowance], 
+    [RFQDetails].[HotelStay] AS [HotelStay], 
+    [RFQDetails].[HotelCategory] AS [HotelCategory], 
+    [RFQDetails].[RoomCategory] AS [RoomCategory], 
+    [RFQDetails].[RoomType] AS [RoomType], 
+    [RFQDetails].[AdditionalAllowance] AS [AdditionalAllowance], 
+    [RFQDetails].[AirportPickUp] AS [AirportPickUp], 
+    [RFQDetails].[PickUpLocation] AS [PickUpLocation], 
+    [RFQDetails].[PickUpDate] AS [PickUpDate], 
+    [RFQDetails].[PickUpTime] AS [PickUpTime], 
+    [RFQDetails].[DropOffLocation] AS [DropOffLocation], 
+    [RFQDetails].[DropOffDate] AS [DropOffDate], 
+    [RFQDetails].[DropOffTime] AS [DropOffTime], 
+    [RFQDetails].[PreferredVehicle] AS [PreferredVehicle], 
+    [RFQDetails].[TravelSector] AS [TravelSector], 
+    [RFQDetails].[CheckInDate] AS [CheckInDate], 
+    [RFQDetails].[CheckOutDate] AS [CheckOutDate], 
+    [RFQDetails].[CheckInTime] AS [CheckInTime], 
+    [RFQDetails].[CheckOutTime] AS [CheckOutTime], 
+    [RFQDetails].[ApprovalLevel] AS [ApprovalLevel], 
+    [RFQDetails].[ApprovalBy] AS [ApprovalBy], 
+    [RFQDetails].[ApprovedByName] AS [ApprovedByName], 
+    [RFQDetails].[ApprovalRemarks] AS [ApprovalRemarks], 
+    [RFQDetails].[CreateOn] AS [CreateOn], 
+    [RFQDetails].[CreatedBy] AS [CreatedBy], 
+    [RFQDetails].[CreatedByName] AS [CreatedByName], 
+    [RFQDetails].[ModifiedOn] AS [ModifiedOn], 
+    [RFQDetails].[ModifiedBy] AS [ModifiedBy], 
+    [RFQDetails].[ModifiedByName] AS [ModifiedByName], 
+    [RFQDetails].[IsDeleted] AS [IsDeleted], 
+    [RFQDetails].[IsSubmitted] AS [IsSubmitted]
+    FROM [dbo].[RFQDetails] AS [RFQDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TravelRequestDetails" EntityType="Self.TravelRequestDetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TravelRequestDetails].[ID] AS [ID], 
+    [TravelRequestDetails].[ApplicationNumber] AS [ApplicationNumber], 
+    [TravelRequestDetails].[PortOfOriginID] AS [PortOfOriginID], 
+    [TravelRequestDetails].[OriginCIty] AS [OriginCIty], 
+    [TravelRequestDetails].[OriginCountry] AS [OriginCountry], 
+    [TravelRequestDetails].[PortOfDestinationID] AS [PortOfDestinationID], 
+    [TravelRequestDetails].[DestinationCity] AS [DestinationCity], 
+    [TravelRequestDetails].[DestinationCountry] AS [DestinationCountry], 
+    [TravelRequestDetails].[TicketClass] AS [TicketClass], 
+    [TravelRequestDetails].[DailyAllowance] AS [DailyAllowance], 
+    [TravelRequestDetails].[CurrencyID] AS [CurrencyID], 
+    [TravelRequestDetails].[CurrencyDesc] AS [CurrencyDesc], 
+    [TravelRequestDetails].[CurrencySymbol] AS [CurrencySymbol], 
+    [TravelRequestDetails].[TravelDays] AS [TravelDays], 
+    [TravelRequestDetails].[TravelRemarks] AS [TravelRemarks], 
+    [TravelRequestDetails].[PurposeOfVisit] AS [PurposeOfVisit], 
+    [TravelRequestDetails].[DepartureDate] AS [DepartureDate], 
+    [TravelRequestDetails].[DepartureTime] AS [DepartureTime], 
+    [TravelRequestDetails].[ReturnDate] AS [ReturnDate], 
+    [TravelRequestDetails].[ReturnTime] AS [ReturnTime], 
+    [TravelRequestDetails].[FirstBusinessDay] AS [FirstBusinessDay], 
+    [TravelRequestDetails].[LastBusinessDay] AS [LastBusinessDay], 
+    [TravelRequestDetails].[Remarks] AS [Remarks], 
+    [TravelRequestDetails].[AirTicketManagement] AS [AirTicketManagement], 
+    [TravelRequestDetails].[HotelName] AS [HotelName], 
+    [TravelRequestDetails].[TravelAllowance] AS [TravelAllowance], 
+    [TravelRequestDetails].[HotelStay] AS [HotelStay], 
+    [TravelRequestDetails].[HotelCategory] AS [HotelCategory], 
+    [TravelRequestDetails].[RoomCategory] AS [RoomCategory], 
+    [TravelRequestDetails].[RoomType] AS [RoomType], 
+    [TravelRequestDetails].[AdditionalAllowance] AS [AdditionalAllowance], 
+    [TravelRequestDetails].[AirportPickUp] AS [AirportPickUp], 
+    [TravelRequestDetails].[PickUpLocation] AS [PickUpLocation], 
+    [TravelRequestDetails].[PickUpDate] AS [PickUpDate], 
+    [TravelRequestDetails].[PickUpTime] AS [PickUpTime], 
+    [TravelRequestDetails].[DropOffLocation] AS [DropOffLocation], 
+    [TravelRequestDetails].[DropOffDate] AS [DropOffDate], 
+    [TravelRequestDetails].[DropOffTime] AS [DropOffTime], 
+    [TravelRequestDetails].[PreferredVehicle] AS [PreferredVehicle], 
+    [TravelRequestDetails].[TravelSector] AS [TravelSector], 
+    [TravelRequestDetails].[CheckInDate] AS [CheckInDate], 
+    [TravelRequestDetails].[CheckOutDate] AS [CheckOutDate], 
+    [TravelRequestDetails].[CheckInTime] AS [CheckInTime], 
+    [TravelRequestDetails].[CheckOutTime] AS [CheckOutTime], 
+    [TravelRequestDetails].[ApprovalLevel] AS [ApprovalLevel], 
+    [TravelRequestDetails].[ApprovalBy] AS [ApprovalBy], 
+    [TravelRequestDetails].[ApprovedByName] AS [ApprovedByName], 
+    [TravelRequestDetails].[ApprovalRemarks] AS [ApprovalRemarks], 
+    [TravelRequestDetails].[CreateOn] AS [CreateOn], 
+    [TravelRequestDetails].[CreatedBy] AS [CreatedBy], 
+    [TravelRequestDetails].[CreatedByName] AS [CreatedByName], 
+    [TravelRequestDetails].[ModifiedOn] AS [ModifiedOn], 
+    [TravelRequestDetails].[ModifiedBy] AS [ModifiedBy], 
+    [TravelRequestDetails].[ModifiedByName] AS [ModifiedByName], 
+    [TravelRequestDetails].[IsDeleted] AS [IsDeleted], 
+    [TravelRequestDetails].[IsSubmitted] AS [IsSubmitted]
+    FROM [dbo].[TravelRequestDetails] AS [TravelRequestDetails]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__TravelReq__ApprovalBy" Association="Self.FK__TravelReq__ApprovalBy">
             <End Role="Users" EntitySet="Users" />
             <End Role="TravelRequests" EntitySet="TravelRequests" />
@@ -612,6 +1098,7 @@
           <NavigationProperty Name="City1" Relationship="Self.fk_ATQuotation_OriginID" FromRole="ATQuotation" ToRole="City" />
           <NavigationProperty Name="Quotation" Relationship="HRWorksEntities.fk_ATQuotation_QuotationID" FromRole="ATQuotation" ToRole="Quotation" />
           <Property Name="QuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -655,6 +1142,7 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Quotation" Relationship="HRWorksEntities.fk_HSQuotation_QuotationID" FromRole="HSQuotation" ToRole="Quotation" />
           <Property Name="QuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="LPO">
           <Key>
@@ -690,6 +1178,7 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Quotation" Relationship="HRWorksEntities.fk_PCQuotation_QuotationID" FromRole="PCQuotation" ToRole="Quotation" />
           <Property Name="QuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -758,6 +1247,7 @@
           <NavigationProperty Name="Users1" Relationship="Self.FK__TravelReq_CreatedBy" FromRole="TravelRequests" ToRole="Users" />
           <NavigationProperty Name="RFQ" Relationship="HRWorksEntities.fk_RFQ_TravelRequestID" FromRole="TravelRequests" ToRole="RFQ" />
           <NavigationProperty Name="Quotation" Relationship="HRWorksEntities.fk_Quotation_TravelRequestID" FromRole="TravelRequests" ToRole="Quotation" />
+          <Property Name="airlines" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -962,6 +1452,9 @@
             <End Role="TravelRequests" EntitySet="TravelRequests" />
             <End Role="Quotation" EntitySet="Quotation" />
           </AssociationSet>
+          <EntitySet Name="LPODetails" EntityType="HRWorksEntities.LPODetails" />
+          <EntitySet Name="RFQDetails" EntityType="HRWorksEntities.RFQDetails" />
+          <EntitySet Name="TravelRequestDetails" EntityType="HRWorksEntities.TravelRequestDetails" />
         </EntityContainer>
         <EntityType Name="RFQ">
           <Key>
@@ -974,7 +1467,7 @@
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Processing" Type="Int32" Nullable="false" />
           <Property Name="ProcessingSection" Type="Int32" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="LPO" Relationship="HRWorksEntities.fk_LPO_RFQID" FromRole="RFQ" ToRole="LPO" />
           <NavigationProperty Name="TravelAgency" Relationship="HRWorksEntities.fk_RFQ_TravelAgencyID" FromRole="RFQ" ToRole="TravelAgency" />
           <NavigationProperty Name="TravelRequests" Relationship="HRWorksEntities.fk_RFQ_TravelRequestID" FromRole="RFQ" ToRole="TravelRequests" />
@@ -996,7 +1489,7 @@
           <Property Name="Landline" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="ContactPerson" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="RFQ" Relationship="HRWorksEntities.fk_RFQ_TravelAgencyID" FromRole="TravelAgency" ToRole="RFQ" />
         </EntityType>
         <Association Name="fk_LPO_RFQID">
@@ -1180,6 +1673,249 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="LPODetails">
+          <Key>
+            <PropertyRef Name="LPOID" />
+          </Key>
+          <Property Name="LPOID" Type="Int32" Nullable="false" />
+          <Property Name="LPORemarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="isAT" Type="Boolean" />
+          <Property Name="IsHS" Type="Boolean" />
+          <Property Name="IsPC" Type="Boolean" />
+          <Property Name="RFQID" Type="Int32" />
+          <Property Name="Processing" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ProcessingSection" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="RFQRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AgencyCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" />
+          <Property Name="ApplicationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PortOfOriginID" Type="Int32" />
+          <Property Name="OriginCIty" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OriginCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PortOfDestinationID" Type="Int32" />
+          <Property Name="DestinationCity" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DestinationCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TicketClass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DailyAllowance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CurrencyID" Type="Int32" />
+          <Property Name="CurrencyDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencySymbol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TravelDays" Type="Int32" />
+          <Property Name="TravelRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PurposeOfVisit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureDate" Type="DateTime" Precision="3" />
+          <Property Name="DepartureTime" Type="Time" Precision="7" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+          <Property Name="ReturnTime" Type="Time" Precision="7" />
+          <Property Name="FirstBusinessDay" Type="DateTime" Precision="3" />
+          <Property Name="LastBusinessDay" Type="DateTime" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AirTicketManagement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TravelAllowance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelStay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalAllowance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="AirportPickUp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpDate" Type="DateTime" Precision="3" />
+          <Property Name="PickUpTime" Type="Time" Precision="7" />
+          <Property Name="DropOffLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DropOffDate" Type="DateTime" Precision="3" />
+          <Property Name="DropOffTime" Type="Time" Precision="7" />
+          <Property Name="PreferredVehicle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TravelSector" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInDate" Type="DateTime" Precision="3" />
+          <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
+          <Property Name="CheckInTime" Type="Time" Precision="7" />
+          <Property Name="CheckOutTime" Type="Time" Precision="7" />
+          <Property Name="ApprovalLevel" Type="Int32" />
+          <Property Name="ApprovalBy" Type="Int32" />
+          <Property Name="ApprovedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovalRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsSubmitted" Type="Boolean" />
+          <Property Name="Airlines" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ATAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="ATDepartureDate" Type="DateTime" Precision="3" />
+          <Property Name="ATDepartureTime" Type="Time" Precision="7" />
+          <Property Name="DestinationID" Type="Int32" />
+          <Property Name="ATDCity" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ATDCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OriginID" Type="Int32" />
+          <Property Name="ATOCity" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ATOCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ATQuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ATReturnDate" Type="DateTime" Precision="3" />
+          <Property Name="ATReturnTime" Type="Time" Precision="7" />
+          <Property Name="ATTicketClass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TicketNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HSAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HSCheckInDate" Type="DateTime" Precision="3" />
+          <Property Name="HSCheckInTime" Type="Time" Precision="7" />
+          <Property Name="HSCheckOutDate" Type="DateTime" Precision="3" />
+          <Property Name="HSCheckOutTime" Type="Time" Precision="7" />
+          <Property Name="HSHotelCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HSHotelName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="HSQuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HSRoomCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HSRoomType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HSTravelSector" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PCAmount" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PCDropOffDate" Type="DateTime" Precision="3" />
+          <Property Name="PCDropoffLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PCDropOffTime" Type="Time" Precision="7" />
+          <Property Name="PCPickUpDate" Type="DateTime" Precision="3" />
+          <Property Name="PCPickupLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PCPickUpTime" Type="Time" Precision="7" />
+          <Property Name="PCPreferredVehicle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PCQuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PCTravelSector" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RFQDetails">
+          <Key>
+            <PropertyRef Name="RFQID" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ApplicationNumber" />
+            <PropertyRef Name="ApprovalLevel" />
+            <PropertyRef Name="IsSubmitted" />
+          </Key>
+          <Property Name="RFQID" Type="Int32" Nullable="false" />
+          <Property Name="Processing" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ProcessingSection" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="RFQRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AgencyCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PortOfOriginID" Type="Int32" />
+          <Property Name="OriginCIty" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OriginCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PortOfDestinationID" Type="Int32" />
+          <Property Name="DestinationCity" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DestinationCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TicketClass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DailyAllowance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CurrencyID" Type="Int32" />
+          <Property Name="CurrencyDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencySymbol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TravelDays" Type="Int32" />
+          <Property Name="TravelRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PurposeOfVisit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureDate" Type="DateTime" Precision="3" />
+          <Property Name="DepartureTime" Type="Time" Precision="7" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+          <Property Name="ReturnTime" Type="Time" Precision="7" />
+          <Property Name="FirstBusinessDay" Type="DateTime" Precision="3" />
+          <Property Name="LastBusinessDay" Type="DateTime" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AirTicketManagement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TravelAllowance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelStay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalAllowance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="AirportPickUp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpDate" Type="DateTime" Precision="3" />
+          <Property Name="PickUpTime" Type="Time" Precision="7" />
+          <Property Name="DropOffLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DropOffDate" Type="DateTime" Precision="3" />
+          <Property Name="DropOffTime" Type="Time" Precision="7" />
+          <Property Name="PreferredVehicle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TravelSector" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInDate" Type="DateTime" Precision="3" />
+          <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
+          <Property Name="CheckInTime" Type="Time" Precision="7" />
+          <Property Name="CheckOutTime" Type="Time" Precision="7" />
+          <Property Name="ApprovalLevel" Type="Int32" Nullable="false" />
+          <Property Name="ApprovalBy" Type="Int32" />
+          <Property Name="ApprovedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovalRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsSubmitted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TravelRequestDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ApplicationNumber" />
+            <PropertyRef Name="ApprovalLevel" />
+            <PropertyRef Name="IsSubmitted" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PortOfOriginID" Type="Int32" />
+          <Property Name="OriginCIty" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OriginCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PortOfDestinationID" Type="Int32" />
+          <Property Name="DestinationCity" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DestinationCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TicketClass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DailyAllowance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CurrencyID" Type="Int32" />
+          <Property Name="CurrencyDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencySymbol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TravelDays" Type="Int32" />
+          <Property Name="TravelRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PurposeOfVisit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureDate" Type="DateTime" Precision="3" />
+          <Property Name="DepartureTime" Type="Time" Precision="7" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+          <Property Name="ReturnTime" Type="Time" Precision="7" />
+          <Property Name="FirstBusinessDay" Type="DateTime" Precision="3" />
+          <Property Name="LastBusinessDay" Type="DateTime" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AirTicketManagement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TravelAllowance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelStay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalAllowance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="AirportPickUp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpDate" Type="DateTime" Precision="3" />
+          <Property Name="PickUpTime" Type="Time" Precision="7" />
+          <Property Name="DropOffLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DropOffDate" Type="DateTime" Precision="3" />
+          <Property Name="DropOffTime" Type="Time" Precision="7" />
+          <Property Name="PreferredVehicle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TravelSector" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInDate" Type="DateTime" Precision="3" />
+          <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
+          <Property Name="CheckInTime" Type="Time" Precision="7" />
+          <Property Name="CheckOutTime" Type="Time" Precision="7" />
+          <Property Name="ApprovalLevel" Type="Int32" Nullable="false" />
+          <Property Name="ApprovalBy" Type="Int32" />
+          <Property Name="ApprovedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovalRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsSubmitted" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1189,6 +1925,7 @@
           <EntitySetMapping Name="ATQuotation">
             <EntityTypeMapping TypeName="HRWorksEntities.ATQuotation">
               <MappingFragment StoreEntitySet="ATQuotation">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="QuotationName" ColumnName="QuotationName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="QuotationID" ColumnName="QuotationID" />
@@ -1229,6 +1966,7 @@
           <EntitySetMapping Name="HSQuotation">
             <EntityTypeMapping TypeName="HRWorksEntities.HSQuotation">
               <MappingFragment StoreEntitySet="HSQuotation">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="QuotationName" ColumnName="QuotationName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="QuotationID" ColumnName="QuotationID" />
@@ -1264,6 +2002,7 @@
           <EntitySetMapping Name="PCQuotation">
             <EntityTypeMapping TypeName="HRWorksEntities.PCQuotation">
               <MappingFragment StoreEntitySet="PCQuotation">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="QuotationName" ColumnName="QuotationName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="QuotationID" ColumnName="QuotationID" />
@@ -1292,6 +2031,7 @@
           <EntitySetMapping Name="TravelRequests">
             <EntityTypeMapping TypeName="HRWorksEntities.TravelRequests">
               <MappingFragment StoreEntitySet="TravelRequests">
+                <ScalarProperty Name="airlines" ColumnName="airlines" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
                 <ScalarProperty Name="PortOfOriginID" ColumnName="PortOfOriginID" />
@@ -1425,6 +2165,245 @@
                 <ScalarProperty Name="RFQID" ColumnName="RFQID" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="TravelRequestID" ColumnName="TravelRequestID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LPODetails">
+            <EntityTypeMapping TypeName="HRWorksEntities.LPODetails">
+              <MappingFragment StoreEntitySet="LPODetails">
+                <ScalarProperty Name="PCTravelSector" ColumnName="PCTravelSector" />
+                <ScalarProperty Name="PCQuotationName" ColumnName="PCQuotationName" />
+                <ScalarProperty Name="PCPreferredVehicle" ColumnName="PCPreferredVehicle" />
+                <ScalarProperty Name="PCPickUpTime" ColumnName="PCPickUpTime" />
+                <ScalarProperty Name="PCPickupLocation" ColumnName="PCPickupLocation" />
+                <ScalarProperty Name="PCPickUpDate" ColumnName="PCPickUpDate" />
+                <ScalarProperty Name="PCDropOffTime" ColumnName="PCDropOffTime" />
+                <ScalarProperty Name="PCDropoffLocation" ColumnName="PCDropoffLocation" />
+                <ScalarProperty Name="PCDropOffDate" ColumnName="PCDropOffDate" />
+                <ScalarProperty Name="PCAmount" ColumnName="PCAmount" />
+                <ScalarProperty Name="HSTravelSector" ColumnName="HSTravelSector" />
+                <ScalarProperty Name="HSRoomType" ColumnName="HSRoomType" />
+                <ScalarProperty Name="HSRoomCategory" ColumnName="HSRoomCategory" />
+                <ScalarProperty Name="HSQuotationName" ColumnName="HSQuotationName" />
+                <ScalarProperty Name="HSHotelName" ColumnName="HSHotelName" />
+                <ScalarProperty Name="HSHotelCategory" ColumnName="HSHotelCategory" />
+                <ScalarProperty Name="HSCheckOutTime" ColumnName="HSCheckOutTime" />
+                <ScalarProperty Name="HSCheckOutDate" ColumnName="HSCheckOutDate" />
+                <ScalarProperty Name="HSCheckInTime" ColumnName="HSCheckInTime" />
+                <ScalarProperty Name="HSCheckInDate" ColumnName="HSCheckInDate" />
+                <ScalarProperty Name="HSAmount" ColumnName="HSAmount" />
+                <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
+                <ScalarProperty Name="ATTicketClass" ColumnName="ATTicketClass" />
+                <ScalarProperty Name="ATReturnTime" ColumnName="ATReturnTime" />
+                <ScalarProperty Name="ATReturnDate" ColumnName="ATReturnDate" />
+                <ScalarProperty Name="ATQuotationName" ColumnName="ATQuotationName" />
+                <ScalarProperty Name="ATOCountry" ColumnName="ATOCountry" />
+                <ScalarProperty Name="ATOCity" ColumnName="ATOCity" />
+                <ScalarProperty Name="OriginID" ColumnName="OriginID" />
+                <ScalarProperty Name="ATDCountry" ColumnName="ATDCountry" />
+                <ScalarProperty Name="ATDCity" ColumnName="ATDCity" />
+                <ScalarProperty Name="DestinationID" ColumnName="DestinationID" />
+                <ScalarProperty Name="ATDepartureTime" ColumnName="ATDepartureTime" />
+                <ScalarProperty Name="ATDepartureDate" ColumnName="ATDepartureDate" />
+                <ScalarProperty Name="ATAmount" ColumnName="ATAmount" />
+                <ScalarProperty Name="Airlines" ColumnName="Airlines" />
+                <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="ApprovalRemarks" ColumnName="ApprovalRemarks" />
+                <ScalarProperty Name="ApprovedByName" ColumnName="ApprovedByName" />
+                <ScalarProperty Name="ApprovalBy" ColumnName="ApprovalBy" />
+                <ScalarProperty Name="ApprovalLevel" ColumnName="ApprovalLevel" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="TravelSector" ColumnName="TravelSector" />
+                <ScalarProperty Name="PreferredVehicle" ColumnName="PreferredVehicle" />
+                <ScalarProperty Name="DropOffTime" ColumnName="DropOffTime" />
+                <ScalarProperty Name="DropOffDate" ColumnName="DropOffDate" />
+                <ScalarProperty Name="DropOffLocation" ColumnName="DropOffLocation" />
+                <ScalarProperty Name="PickUpTime" ColumnName="PickUpTime" />
+                <ScalarProperty Name="PickUpDate" ColumnName="PickUpDate" />
+                <ScalarProperty Name="PickUpLocation" ColumnName="PickUpLocation" />
+                <ScalarProperty Name="AirportPickUp" ColumnName="AirportPickUp" />
+                <ScalarProperty Name="AdditionalAllowance" ColumnName="AdditionalAllowance" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="RoomCategory" ColumnName="RoomCategory" />
+                <ScalarProperty Name="HotelCategory" ColumnName="HotelCategory" />
+                <ScalarProperty Name="HotelStay" ColumnName="HotelStay" />
+                <ScalarProperty Name="TravelAllowance" ColumnName="TravelAllowance" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="AirTicketManagement" ColumnName="AirTicketManagement" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="LastBusinessDay" ColumnName="LastBusinessDay" />
+                <ScalarProperty Name="FirstBusinessDay" ColumnName="FirstBusinessDay" />
+                <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="PurposeOfVisit" ColumnName="PurposeOfVisit" />
+                <ScalarProperty Name="TravelRemarks" ColumnName="TravelRemarks" />
+                <ScalarProperty Name="TravelDays" ColumnName="TravelDays" />
+                <ScalarProperty Name="CurrencySymbol" ColumnName="CurrencySymbol" />
+                <ScalarProperty Name="CurrencyDesc" ColumnName="CurrencyDesc" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="DailyAllowance" ColumnName="DailyAllowance" />
+                <ScalarProperty Name="TicketClass" ColumnName="TicketClass" />
+                <ScalarProperty Name="DestinationCountry" ColumnName="DestinationCountry" />
+                <ScalarProperty Name="DestinationCity" ColumnName="DestinationCity" />
+                <ScalarProperty Name="PortOfDestinationID" ColumnName="PortOfDestinationID" />
+                <ScalarProperty Name="OriginCountry" ColumnName="OriginCountry" />
+                <ScalarProperty Name="OriginCIty" ColumnName="OriginCIty" />
+                <ScalarProperty Name="PortOfOriginID" ColumnName="PortOfOriginID" />
+                <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="AgencyCode" ColumnName="AgencyCode" />
+                <ScalarProperty Name="RFQRemarks" ColumnName="RFQRemarks" />
+                <ScalarProperty Name="ProcessingSection" ColumnName="ProcessingSection" />
+                <ScalarProperty Name="Processing" ColumnName="Processing" />
+                <ScalarProperty Name="RFQID" ColumnName="RFQID" />
+                <ScalarProperty Name="IsPC" ColumnName="IsPC" />
+                <ScalarProperty Name="IsHS" ColumnName="IsHS" />
+                <ScalarProperty Name="isAT" ColumnName="isAT" />
+                <ScalarProperty Name="LPORemarks" ColumnName="LPORemarks" />
+                <ScalarProperty Name="LPOID" ColumnName="LPOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RFQDetails">
+            <EntityTypeMapping TypeName="HRWorksEntities.RFQDetails">
+              <MappingFragment StoreEntitySet="RFQDetails">
+                <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="ApprovalRemarks" ColumnName="ApprovalRemarks" />
+                <ScalarProperty Name="ApprovedByName" ColumnName="ApprovedByName" />
+                <ScalarProperty Name="ApprovalBy" ColumnName="ApprovalBy" />
+                <ScalarProperty Name="ApprovalLevel" ColumnName="ApprovalLevel" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="TravelSector" ColumnName="TravelSector" />
+                <ScalarProperty Name="PreferredVehicle" ColumnName="PreferredVehicle" />
+                <ScalarProperty Name="DropOffTime" ColumnName="DropOffTime" />
+                <ScalarProperty Name="DropOffDate" ColumnName="DropOffDate" />
+                <ScalarProperty Name="DropOffLocation" ColumnName="DropOffLocation" />
+                <ScalarProperty Name="PickUpTime" ColumnName="PickUpTime" />
+                <ScalarProperty Name="PickUpDate" ColumnName="PickUpDate" />
+                <ScalarProperty Name="PickUpLocation" ColumnName="PickUpLocation" />
+                <ScalarProperty Name="AirportPickUp" ColumnName="AirportPickUp" />
+                <ScalarProperty Name="AdditionalAllowance" ColumnName="AdditionalAllowance" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="RoomCategory" ColumnName="RoomCategory" />
+                <ScalarProperty Name="HotelCategory" ColumnName="HotelCategory" />
+                <ScalarProperty Name="HotelStay" ColumnName="HotelStay" />
+                <ScalarProperty Name="TravelAllowance" ColumnName="TravelAllowance" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="AirTicketManagement" ColumnName="AirTicketManagement" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="LastBusinessDay" ColumnName="LastBusinessDay" />
+                <ScalarProperty Name="FirstBusinessDay" ColumnName="FirstBusinessDay" />
+                <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="PurposeOfVisit" ColumnName="PurposeOfVisit" />
+                <ScalarProperty Name="TravelRemarks" ColumnName="TravelRemarks" />
+                <ScalarProperty Name="TravelDays" ColumnName="TravelDays" />
+                <ScalarProperty Name="CurrencySymbol" ColumnName="CurrencySymbol" />
+                <ScalarProperty Name="CurrencyDesc" ColumnName="CurrencyDesc" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="DailyAllowance" ColumnName="DailyAllowance" />
+                <ScalarProperty Name="TicketClass" ColumnName="TicketClass" />
+                <ScalarProperty Name="DestinationCountry" ColumnName="DestinationCountry" />
+                <ScalarProperty Name="DestinationCity" ColumnName="DestinationCity" />
+                <ScalarProperty Name="PortOfDestinationID" ColumnName="PortOfDestinationID" />
+                <ScalarProperty Name="OriginCountry" ColumnName="OriginCountry" />
+                <ScalarProperty Name="OriginCIty" ColumnName="OriginCIty" />
+                <ScalarProperty Name="PortOfOriginID" ColumnName="PortOfOriginID" />
+                <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="AgencyCode" ColumnName="AgencyCode" />
+                <ScalarProperty Name="RFQRemarks" ColumnName="RFQRemarks" />
+                <ScalarProperty Name="ProcessingSection" ColumnName="ProcessingSection" />
+                <ScalarProperty Name="Processing" ColumnName="Processing" />
+                <ScalarProperty Name="RFQID" ColumnName="RFQID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TravelRequestDetails">
+            <EntityTypeMapping TypeName="HRWorksEntities.TravelRequestDetails">
+              <MappingFragment StoreEntitySet="TravelRequestDetails">
+                <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="ApprovalRemarks" ColumnName="ApprovalRemarks" />
+                <ScalarProperty Name="ApprovedByName" ColumnName="ApprovedByName" />
+                <ScalarProperty Name="ApprovalBy" ColumnName="ApprovalBy" />
+                <ScalarProperty Name="ApprovalLevel" ColumnName="ApprovalLevel" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="TravelSector" ColumnName="TravelSector" />
+                <ScalarProperty Name="PreferredVehicle" ColumnName="PreferredVehicle" />
+                <ScalarProperty Name="DropOffTime" ColumnName="DropOffTime" />
+                <ScalarProperty Name="DropOffDate" ColumnName="DropOffDate" />
+                <ScalarProperty Name="DropOffLocation" ColumnName="DropOffLocation" />
+                <ScalarProperty Name="PickUpTime" ColumnName="PickUpTime" />
+                <ScalarProperty Name="PickUpDate" ColumnName="PickUpDate" />
+                <ScalarProperty Name="PickUpLocation" ColumnName="PickUpLocation" />
+                <ScalarProperty Name="AirportPickUp" ColumnName="AirportPickUp" />
+                <ScalarProperty Name="AdditionalAllowance" ColumnName="AdditionalAllowance" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="RoomCategory" ColumnName="RoomCategory" />
+                <ScalarProperty Name="HotelCategory" ColumnName="HotelCategory" />
+                <ScalarProperty Name="HotelStay" ColumnName="HotelStay" />
+                <ScalarProperty Name="TravelAllowance" ColumnName="TravelAllowance" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="AirTicketManagement" ColumnName="AirTicketManagement" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="LastBusinessDay" ColumnName="LastBusinessDay" />
+                <ScalarProperty Name="FirstBusinessDay" ColumnName="FirstBusinessDay" />
+                <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="PurposeOfVisit" ColumnName="PurposeOfVisit" />
+                <ScalarProperty Name="TravelRemarks" ColumnName="TravelRemarks" />
+                <ScalarProperty Name="TravelDays" ColumnName="TravelDays" />
+                <ScalarProperty Name="CurrencySymbol" ColumnName="CurrencySymbol" />
+                <ScalarProperty Name="CurrencyDesc" ColumnName="CurrencyDesc" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="DailyAllowance" ColumnName="DailyAllowance" />
+                <ScalarProperty Name="TicketClass" ColumnName="TicketClass" />
+                <ScalarProperty Name="DestinationCountry" ColumnName="DestinationCountry" />
+                <ScalarProperty Name="DestinationCity" ColumnName="DestinationCity" />
+                <ScalarProperty Name="PortOfDestinationID" ColumnName="PortOfDestinationID" />
+                <ScalarProperty Name="OriginCountry" ColumnName="OriginCountry" />
+                <ScalarProperty Name="OriginCIty" ColumnName="OriginCIty" />
+                <ScalarProperty Name="PortOfOriginID" ColumnName="PortOfOriginID" />
+                <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

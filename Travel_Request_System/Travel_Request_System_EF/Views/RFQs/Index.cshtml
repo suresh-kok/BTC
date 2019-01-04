@@ -152,9 +152,9 @@
                             else
                             {
                                 <tr>
-                                    <th>
+                                    @*<th>
                                         @(new HtmlString("Merge Table"))
-                                    </th>
+                                    </th>*@
                                     <th>
                                         @(new HtmlString("Application Number"))
                                     </th>
@@ -183,7 +183,8 @@
                                             }
                                         }
                                         <td rowspan="@rfqcount">
-                                            @Html.ActionLink("Merge Table " + @item.ApplicationNumber, "RFQMerger", new { id = item.ID }, new { @class = "form-control btn btn-info" })
+                                            @*@Html.ActionLink("Merge Table " + @item.ApplicationNumber, "RFQMerger", new { id = item.ID }, new { @class = "form-control btn btn-info" })*@
+                                            @Html.ActionLink(item.ApplicationNumber, "RFQProcessing", "RFQs", new { @item.ID }, null)
                                         </td>
                                         @if (item.RFQ.Count() > 0)
                                         {
@@ -195,9 +196,9 @@
                                                 @:</tr><tr>
                                                 }
                                                 i++;
-                                                <td>
+                                                @*<td>
                                                     @Html.DisplayFor(modelItem => rfqInfo.TravelRequests.ApplicationNumber)
-                                                </td>
+                                                </td>*@
                                                 <td>
                                                     @switch (rfqInfo.ProcessingSection)
                                                     {

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Travel_Request_System_EF.Models.RFQ>
 
 @{
-    ViewBag.Title = "RFQMerger";
+    ViewBag.Title = "RFQ Merger";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -38,7 +38,7 @@
                                     foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@item.ID</td>
+                                            <td>@item.TravelRequests.ApplicationNumber</td>
                                             <td>
                                                 @{
                                                     if (item.ProcessingSection == 1)
@@ -72,14 +72,19 @@
                                                 }
                                             </td>
                                             <td>
-                                                @{
+                                                @if (item.TravelAgencyID != null)
+                                                {
                                                     var po = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).FirstOrDefault(rt => rt.ID == item.TravelAgencyID).AgencyCode.ToString();
+                                                    @po
                                                 }
-                                                @po
                                             </td>
                                             <td>
                                                 @{
-                                                    var att = ViewBag.AttachmentCount;
+                                                    var att = 0;
+                                                    using (Travel_Request_System_EF.Models.BTCEntities db = new Travel_Request_System_EF.Models.BTCEntities())
+                                                    {
+                                                        att = db.AttachmentLink.Where(x => x.AttachmentFor.Contains(item.TravelRequests.ApplicationNumber)).Count();
+                                                    }
                                                 }
                                                 @att
                                             </td>
@@ -104,6 +109,20 @@
         </section>
     </aside>
 
-    @Html.Partial("_TravelRequestDetails", Model.FirstOrDefault().TravelRequests)
 
+</div>
+
+
+<div class="row" style="margin-bottom:15px">
+    <div class="col-md-3">
+        <div class="col-md-5">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "form-control btn btn-info" })
+        </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-3">
+    </div>
 </div>

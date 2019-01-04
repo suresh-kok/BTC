@@ -16,8 +16,15 @@ namespace Travel_Request_System_EF.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        public ActionResult Index() => View();
-
+        public ActionResult Index()
+        {
+            int ErrorID = Convert.ToInt32(Request.Params["ErrorID"]);
+            if (ErrorID == 1)
+            {
+                ViewBag.ErrorMessage = new string[] { "The Session has expired. Please login again" };
+            }
+            return View();
+        }
         public ActionResult LogOut()
         {
             HttpCookie cookie = new HttpCookie("authCookie", "")
@@ -225,6 +232,6 @@ namespace Travel_Request_System_EF.Controllers
 
             mail.Send();
         }
-
+        
     }
 }

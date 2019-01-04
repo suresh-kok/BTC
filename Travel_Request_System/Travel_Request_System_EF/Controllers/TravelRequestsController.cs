@@ -1,18 +1,26 @@
-﻿using System;
+﻿using Microsoft.Reporting.WebForms;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI.WebControls;
 using Travel_Request_System_EF.CustomAuthentication;
 using Travel_Request_System_EF.Models;
+using Travel_Request_System_EF.Models.DataAnnotations;
 using Travel_Request_System_EF.Models.ViewModel;
 
 namespace Travel_Request_System_EF.Controllers
 {
+    [HandleError]
+    [RedirectingAction]
     [CustomAuthorize(Roles = "Employee")]
     public class TravelRequestsController : Controller
     {
@@ -22,15 +30,22 @@ namespace Travel_Request_System_EF.Controllers
 
         public TravelRequestsController()
         {
-            user = Membership.GetUser();
-            CustomRole customRole = new CustomRole();
-            roles = customRole.GetRolesForUser(user.UserName);
-            ViewBag.RoleDetails = roles.ToList()[0];
-            IsLoggedIn(roles.ToList());
-            using (BTCEntities db = new BTCEntities())
+            try
             {
-                dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
-                ViewBag.UserDetails = dbuser;
+                user = Membership.GetUser();
+                CustomRole customRole = new CustomRole();
+                roles = customRole.GetRolesForUser(user.UserName);
+                ViewBag.RoleDetails = roles.ToList()[0];
+                IsLoggedIn(roles.ToList());
+                using (BTCEntities db = new BTCEntities())
+                {
+                    dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
+                    ViewBag.UserDetails = dbuser;
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = "Your Login has expired!! Please login again.";
             }
         }
 
@@ -548,6 +563,40 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
+        public void PrintTravelRequest(int id)
+        {
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.SizeToReportContent = true;
+            reportViewer.Width = Unit.Percentage(900);
+            reportViewer.Height = Unit.Percentage(900);
+            var connectionString = ConfigurationManager.ConnectionStrings["AuthenticationDB"].ConnectionString;
+            BTCDataSet ds = new BTCDataSet();
+            Warning[] warnings;
+            string[] streamIds;
+            string mimeType = string.Empty;
+            string encoding = string.Empty;
+            string extension = string.Empty;
+            Byte[] bytes;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp;
+
+            adp = new SqlDataAdapter("select * FROM TravelRequestDetails where id = " + id, conx);
+            ds = new BTCDataSet();
+            adp.Fill(ds, ds.TravelRequestDetails.TableName);
+            reportViewer.LocalReport.ReportPath = Path.Combine(@"C:\Users\kanniyappans\Documents\GitHub\BTC\Travel_Request_System\Travel_Request_System_EF\Reports\", "TravelRequestReport.rdlc");
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("detailsDataset", ds.Tables["TravelRequestDetails"]));
+            bytes = reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+            Response.Buffer = true;
+            Response.Clear();
+            Response.ContentType = mimeType;
+            Response.AddHeader("content-disposition", "attachment; filename= outputreport" + "." + extension);
+            Response.OutputStream.Write(bytes, 0, bytes.Length); // create the file  
+            Response.Flush(); // send it to the client to download  
+            Response.End();
+
+        }
+
         private void IsLoggedIn(List<string> Role)
         {
             var Val = true;
@@ -614,20 +663,6 @@ namespace Travel_Request_System_EF.Controllers
         {
             string[] RFQno = currentRFQ.Split('-');
             return RFQno[0] + '-' + RFQno[1] + '-' + RFQno[2] + '-' + String.Format("{0:D4}", (Convert.ToInt32(RFQno[3]) + 1));
-        }
-
-        public ActionResult PrintTravelRequest(TravelRequests travelRequest)
-        {
-            using (var db = new BTCEntities())
-            {
-                TravelRequests travelRequest1 = db.TravelRequests.Find(1);
-
-                ViewBag.Cities = db.City.ToList();
-                ViewBag.Currencies = db.Currency.ToList();
-                ViewBag.ApprovalBy = db.Users.ToList();
-
-                return View();
-            }
         }
 
         private void checkErrorMessages()
