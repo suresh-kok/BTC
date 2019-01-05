@@ -1196,6 +1196,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\js\bootstrap-confirmation.min.js" />
     <Content Include="BTCDataSet.xsc">
       <DependentUpon>BTCDataSet.xsd</DependentUpon>
     </Content>
@@ -1207,7 +1208,6 @@
     <Content Include="BTCDataSet.xss">
       <DependentUpon>BTCDataSet.xsd</DependentUpon>
     </Content>
-    <Content Include="Content\js\bootstrap-confirmation.min.js" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="ReportViewerWebForm.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />

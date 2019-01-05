@@ -22,7 +22,6 @@ namespace Travel_Request_System_EF.Models
         public string username { get; set; }
         public int ID { get; set; }
         public string ApplicationNumber { get; set; }
-        public Nullable<int> PortOfOriginID { get; set; }
         public string OriginCIty { get; set; }
         public string OriginCountry { get; set; }
         public Nullable<int> PortOfDestinationID { get; set; }
@@ -36,12 +35,12 @@ namespace Travel_Request_System_EF.Models
         public Nullable<int> TravelDays { get; set; }
         public string TravelRemarks { get; set; }
         public string PurposeOfVisit { get; set; }
-        public Nullable<System.DateTime> DepartureDate { get; set; }
-        public Nullable<System.TimeSpan> DepartureTime { get; set; }
-        public Nullable<System.DateTime> ReturnDate { get; set; }
-        public Nullable<System.TimeSpan> ReturnTime { get; set; }
-        public Nullable<System.DateTime> FirstBusinessDay { get; set; }
-        public Nullable<System.DateTime> LastBusinessDay { get; set; }
+        public string DepartureDate { get; set; }
+        public string DepartureTime { get; set; }
+        public string ReturnDate { get; set; }
+        public string ReturnTime { get; set; }
+        public string FirstBusinessDay { get; set; }
+        public string LastBusinessDay { get; set; }
         public string Remarks { get; set; }
         public string AirTicketManagement { get; set; }
         public string HotelName { get; set; }
@@ -53,25 +52,25 @@ namespace Travel_Request_System_EF.Models
         public Nullable<decimal> AdditionalAllowance { get; set; }
         public string AirportPickUp { get; set; }
         public string PickUpLocation { get; set; }
-        public Nullable<System.DateTime> PickUpDate { get; set; }
-        public Nullable<System.TimeSpan> PickUpTime { get; set; }
+        public string PickUpDate { get; set; }
+        public string PickUpTime { get; set; }
         public string DropOffLocation { get; set; }
-        public Nullable<System.DateTime> DropOffDate { get; set; }
-        public Nullable<System.TimeSpan> DropOffTime { get; set; }
+        public string DropOffDate { get; set; }
+        public string DropOffTime { get; set; }
         public string PreferredVehicle { get; set; }
         public string TravelSector { get; set; }
-        public Nullable<System.DateTime> CheckInDate { get; set; }
-        public Nullable<System.DateTime> CheckOutDate { get; set; }
-        public Nullable<System.TimeSpan> CheckInTime { get; set; }
-        public Nullable<System.TimeSpan> CheckOutTime { get; set; }
+        public string CheckInDate { get; set; }
+        public string CheckOutDate { get; set; }
+        public string CheckInTime { get; set; }
+        public string CheckOutTime { get; set; }
         public int ApprovalLevel { get; set; }
         public Nullable<int> ApprovalBy { get; set; }
         public string ApprovedByName { get; set; }
         public string ApprovalRemarks { get; set; }
-        public Nullable<System.DateTime> CreateOn { get; set; }
+        public string CreateOn { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public string CreatedByName { get; set; }
-        public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public string ModifiedOn { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public string ModifiedByName { get; set; }
         public Nullable<bool> IsDeleted { get; set; }

@@ -257,7 +257,6 @@ warning 6002: The table/view 'BTC.dbo.LPODetails' does not have a primary key de
           <Property Name="username" Type="nvarchar(max)" />
           <Property Name="ID" Type="int" />
           <Property Name="ApplicationNumber" Type="nvarchar" MaxLength="50" />
-          <Property Name="PortOfOriginID" Type="int" />
           <Property Name="OriginCIty" Type="nvarchar" MaxLength="250" />
           <Property Name="OriginCountry" Type="nvarchar" MaxLength="100" />
           <Property Name="PortOfDestinationID" Type="int" />
@@ -271,12 +270,12 @@ warning 6002: The table/view 'BTC.dbo.LPODetails' does not have a primary key de
           <Property Name="TravelDays" Type="int" />
           <Property Name="TravelRemarks" Type="nvarchar(max)" />
           <Property Name="PurposeOfVisit" Type="nvarchar(max)" />
-          <Property Name="DepartureDate" Type="datetime" />
-          <Property Name="DepartureTime" Type="time" Precision="7" />
-          <Property Name="ReturnDate" Type="datetime" />
-          <Property Name="ReturnTime" Type="time" Precision="7" />
-          <Property Name="FirstBusinessDay" Type="datetime" />
-          <Property Name="LastBusinessDay" Type="datetime" />
+          <Property Name="DepartureDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DepartureTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ReturnDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ReturnTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="FirstBusinessDay" Type="nvarchar" MaxLength="4000" />
+          <Property Name="LastBusinessDay" Type="nvarchar" MaxLength="4000" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
           <Property Name="AirTicketManagement" Type="nvarchar" MaxLength="50" />
           <Property Name="HotelName" Type="nvarchar" MaxLength="50" />
@@ -288,33 +287,35 @@ warning 6002: The table/view 'BTC.dbo.LPODetails' does not have a primary key de
           <Property Name="AdditionalAllowance" Type="decimal" Precision="10" Scale="2" />
           <Property Name="AirportPickUp" Type="nvarchar" MaxLength="50" />
           <Property Name="PickUpLocation" Type="nvarchar" MaxLength="500" />
-          <Property Name="PickUpDate" Type="datetime" />
-          <Property Name="PickUpTime" Type="time" Precision="7" />
+          <Property Name="PickUpDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PickUpTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="DropOffLocation" Type="nvarchar" MaxLength="500" />
-          <Property Name="DropOffDate" Type="datetime" />
-          <Property Name="DropOffTime" Type="time" Precision="7" />
+          <Property Name="DropOffDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DropOffTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="PreferredVehicle" Type="nvarchar" MaxLength="250" />
           <Property Name="TravelSector" Type="nvarchar" MaxLength="250" />
-          <Property Name="CheckInDate" Type="datetime" />
-          <Property Name="CheckOutDate" Type="datetime" />
-          <Property Name="CheckInTime" Type="time" Precision="7" />
-          <Property Name="CheckOutTime" Type="time" Precision="7" />
+          <Property Name="CheckInDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CheckOutDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CheckInTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CheckOutTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="ApprovalLevel" Type="int" />
           <Property Name="ApprovalBy" Type="int" />
           <Property Name="ApprovedByName" Type="nvarchar(max)" />
           <Property Name="ApprovalRemarks" Type="varchar(max)" />
-          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="CreateOn" Type="nvarchar" MaxLength="4000" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedByName" Type="nvarchar(max)" />
-          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="nvarchar" MaxLength="4000" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedByName" Type="nvarchar(max)" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsSubmitted" Type="bit" />
           <Property Name="Airlines" Type="nvarchar" MaxLength="100" />
           <Property Name="ATAmount" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="ATDepartureDate" Type="datetime" />
-          <Property Name="ATDepartureTime" Type="time" Precision="7" />
+          <Property Name="ATDepartureDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ATDepartureTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ATReturnDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ATReturnTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="DestinationID" Type="int" />
           <Property Name="ATDCity" Type="nvarchar" MaxLength="250" />
           <Property Name="ATDCountry" Type="nvarchar" MaxLength="100" />
@@ -322,15 +323,13 @@ warning 6002: The table/view 'BTC.dbo.LPODetails' does not have a primary key de
           <Property Name="ATOCity" Type="nvarchar" MaxLength="250" />
           <Property Name="ATOCountry" Type="nvarchar" MaxLength="100" />
           <Property Name="ATQuotationName" Type="nvarchar" MaxLength="50" />
-          <Property Name="ATReturnDate" Type="datetime" />
-          <Property Name="ATReturnTime" Type="time" Precision="7" />
           <Property Name="ATTicketClass" Type="nvarchar" MaxLength="100" />
           <Property Name="TicketNo" Type="nvarchar" MaxLength="100" />
           <Property Name="HSAmount" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="HSCheckInDate" Type="datetime" />
-          <Property Name="HSCheckInTime" Type="time" Precision="7" />
-          <Property Name="HSCheckOutDate" Type="datetime" />
-          <Property Name="HSCheckOutTime" Type="time" Precision="7" />
+          <Property Name="HSCheckInDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="HSCheckOutDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="HSCheckInTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="HSCheckOutTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="HSHotelCategory" Type="nvarchar" MaxLength="100" />
           <Property Name="HSHotelName" Type="nvarchar" MaxLength="250" />
           <Property Name="HSQuotationName" Type="nvarchar" MaxLength="50" />
@@ -338,12 +337,12 @@ warning 6002: The table/view 'BTC.dbo.LPODetails' does not have a primary key de
           <Property Name="HSRoomType" Type="nvarchar" MaxLength="100" />
           <Property Name="HSTravelSector" Type="nvarchar" MaxLength="250" />
           <Property Name="PCAmount" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="PCDropOffDate" Type="datetime" />
-          <Property Name="PCDropoffLocation" Type="nvarchar" MaxLength="250" />
-          <Property Name="PCDropOffTime" Type="time" Precision="7" />
-          <Property Name="PCPickUpDate" Type="datetime" />
-          <Property Name="PCPickupLocation" Type="nvarchar" MaxLength="250" />
-          <Property Name="PCPickUpTime" Type="time" Precision="7" />
+          <Property Name="PCPickUpLocation" Type="nvarchar" MaxLength="250" />
+          <Property Name="PCPickUpDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PCPickUpTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PCDropOffLocation" Type="nvarchar" MaxLength="250" />
+          <Property Name="PCDropOffDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PCDropOffTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="PCPreferredVehicle" Type="nvarchar" MaxLength="250" />
           <Property Name="PCQuotationName" Type="nvarchar" MaxLength="50" />
           <Property Name="PCTravelSector" Type="nvarchar" MaxLength="250" />
@@ -366,7 +365,6 @@ warning 6002: The table/view 'BTC.dbo.RFQDetails' does not have a primary key de
           <Property Name="username" Type="nvarchar(max)" />
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="ApplicationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="PortOfOriginID" Type="int" />
           <Property Name="OriginCIty" Type="nvarchar" MaxLength="250" />
           <Property Name="OriginCountry" Type="nvarchar" MaxLength="100" />
           <Property Name="PortOfDestinationID" Type="int" />
@@ -380,12 +378,12 @@ warning 6002: The table/view 'BTC.dbo.RFQDetails' does not have a primary key de
           <Property Name="TravelDays" Type="int" />
           <Property Name="TravelRemarks" Type="nvarchar(max)" />
           <Property Name="PurposeOfVisit" Type="nvarchar(max)" />
-          <Property Name="DepartureDate" Type="datetime" />
-          <Property Name="DepartureTime" Type="time" Precision="7" />
-          <Property Name="ReturnDate" Type="datetime" />
-          <Property Name="ReturnTime" Type="time" Precision="7" />
-          <Property Name="FirstBusinessDay" Type="datetime" />
-          <Property Name="LastBusinessDay" Type="datetime" />
+          <Property Name="DepartureDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DepartureTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ReturnDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ReturnTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="FirstBusinessDay" Type="nvarchar" MaxLength="4000" />
+          <Property Name="LastBusinessDay" Type="nvarchar" MaxLength="4000" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
           <Property Name="AirTicketManagement" Type="nvarchar" MaxLength="50" />
           <Property Name="HotelName" Type="nvarchar" MaxLength="50" />
@@ -397,25 +395,25 @@ warning 6002: The table/view 'BTC.dbo.RFQDetails' does not have a primary key de
           <Property Name="AdditionalAllowance" Type="decimal" Precision="10" Scale="2" />
           <Property Name="AirportPickUp" Type="nvarchar" MaxLength="50" />
           <Property Name="PickUpLocation" Type="nvarchar" MaxLength="500" />
-          <Property Name="PickUpDate" Type="datetime" />
-          <Property Name="PickUpTime" Type="time" Precision="7" />
+          <Property Name="PickUpDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PickUpTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="DropOffLocation" Type="nvarchar" MaxLength="500" />
-          <Property Name="DropOffDate" Type="datetime" />
-          <Property Name="DropOffTime" Type="time" Precision="7" />
+          <Property Name="DropOffDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DropOffTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="PreferredVehicle" Type="nvarchar" MaxLength="250" />
           <Property Name="TravelSector" Type="nvarchar" MaxLength="250" />
-          <Property Name="CheckInDate" Type="datetime" />
-          <Property Name="CheckOutDate" Type="datetime" />
-          <Property Name="CheckInTime" Type="time" Precision="7" />
-          <Property Name="CheckOutTime" Type="time" Precision="7" />
+          <Property Name="CheckInDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CheckOutDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CheckInTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CheckOutTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="ApprovalLevel" Type="int" Nullable="false" />
           <Property Name="ApprovalBy" Type="int" />
           <Property Name="ApprovedByName" Type="nvarchar(max)" />
           <Property Name="ApprovalRemarks" Type="varchar(max)" />
-          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="CreateOn" Type="nvarchar" MaxLength="4000" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedByName" Type="nvarchar(max)" />
-          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="nvarchar" MaxLength="4000" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedByName" Type="nvarchar(max)" />
           <Property Name="IsDeleted" Type="bit" />
@@ -446,12 +444,12 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="TravelDays" Type="int" />
           <Property Name="TravelRemarks" Type="nvarchar(max)" />
           <Property Name="PurposeOfVisit" Type="nvarchar(max)" />
-          <Property Name="DepartureDate" Type="datetime" />
-          <Property Name="DepartureTime" Type="time" Precision="7" />
-          <Property Name="ReturnDate" Type="datetime" />
-          <Property Name="ReturnTime" Type="time" Precision="7" />
-          <Property Name="FirstBusinessDay" Type="datetime" />
-          <Property Name="LastBusinessDay" Type="datetime" />
+          <Property Name="DepartureDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DepartureTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ReturnDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ReturnTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="FirstBusinessDay" Type="nvarchar" MaxLength="4000" />
+          <Property Name="LastBusinessDay" Type="nvarchar" MaxLength="4000" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
           <Property Name="AirTicketManagement" Type="nvarchar" MaxLength="50" />
           <Property Name="HotelName" Type="nvarchar" MaxLength="50" />
@@ -463,25 +461,25 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="AdditionalAllowance" Type="decimal" Precision="10" Scale="2" />
           <Property Name="AirportPickUp" Type="nvarchar" MaxLength="50" />
           <Property Name="PickUpLocation" Type="nvarchar" MaxLength="500" />
-          <Property Name="PickUpDate" Type="datetime" />
-          <Property Name="PickUpTime" Type="time" Precision="7" />
+          <Property Name="PickUpDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PickUpTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="DropOffLocation" Type="nvarchar" MaxLength="500" />
-          <Property Name="DropOffDate" Type="datetime" />
-          <Property Name="DropOffTime" Type="time" Precision="7" />
+          <Property Name="DropOffDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DropOffTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="PreferredVehicle" Type="nvarchar" MaxLength="250" />
           <Property Name="TravelSector" Type="nvarchar" MaxLength="250" />
-          <Property Name="CheckInDate" Type="datetime" />
-          <Property Name="CheckOutDate" Type="datetime" />
-          <Property Name="CheckInTime" Type="time" Precision="7" />
-          <Property Name="CheckOutTime" Type="time" Precision="7" />
+          <Property Name="CheckInDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CheckOutDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CheckInTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CheckOutTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="ApprovalLevel" Type="int" Nullable="false" />
           <Property Name="ApprovalBy" Type="int" />
           <Property Name="ApprovedByName" Type="nvarchar(max)" />
           <Property Name="ApprovalRemarks" Type="varchar(max)" />
-          <Property Name="CreateOn" Type="datetime" />
+          <Property Name="CreateOn" Type="nvarchar" MaxLength="4000" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedByName" Type="nvarchar(max)" />
-          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="nvarchar" MaxLength="4000" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedByName" Type="nvarchar(max)" />
           <Property Name="IsDeleted" Type="bit" />
@@ -770,7 +768,6 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
     [LPODetails].[username] AS [username], 
     [LPODetails].[ID] AS [ID], 
     [LPODetails].[ApplicationNumber] AS [ApplicationNumber], 
-    [LPODetails].[PortOfOriginID] AS [PortOfOriginID], 
     [LPODetails].[OriginCIty] AS [OriginCIty], 
     [LPODetails].[OriginCountry] AS [OriginCountry], 
     [LPODetails].[PortOfDestinationID] AS [PortOfDestinationID], 
@@ -828,6 +825,8 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
     [LPODetails].[ATAmount] AS [ATAmount], 
     [LPODetails].[ATDepartureDate] AS [ATDepartureDate], 
     [LPODetails].[ATDepartureTime] AS [ATDepartureTime], 
+    [LPODetails].[ATReturnDate] AS [ATReturnDate], 
+    [LPODetails].[ATReturnTime] AS [ATReturnTime], 
     [LPODetails].[DestinationID] AS [DestinationID], 
     [LPODetails].[ATDCity] AS [ATDCity], 
     [LPODetails].[ATDCountry] AS [ATDCountry], 
@@ -835,14 +834,12 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
     [LPODetails].[ATOCity] AS [ATOCity], 
     [LPODetails].[ATOCountry] AS [ATOCountry], 
     [LPODetails].[ATQuotationName] AS [ATQuotationName], 
-    [LPODetails].[ATReturnDate] AS [ATReturnDate], 
-    [LPODetails].[ATReturnTime] AS [ATReturnTime], 
     [LPODetails].[ATTicketClass] AS [ATTicketClass], 
     [LPODetails].[TicketNo] AS [TicketNo], 
     [LPODetails].[HSAmount] AS [HSAmount], 
     [LPODetails].[HSCheckInDate] AS [HSCheckInDate], 
-    [LPODetails].[HSCheckInTime] AS [HSCheckInTime], 
     [LPODetails].[HSCheckOutDate] AS [HSCheckOutDate], 
+    [LPODetails].[HSCheckInTime] AS [HSCheckInTime], 
     [LPODetails].[HSCheckOutTime] AS [HSCheckOutTime], 
     [LPODetails].[HSHotelCategory] AS [HSHotelCategory], 
     [LPODetails].[HSHotelName] AS [HSHotelName], 
@@ -851,12 +848,12 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
     [LPODetails].[HSRoomType] AS [HSRoomType], 
     [LPODetails].[HSTravelSector] AS [HSTravelSector], 
     [LPODetails].[PCAmount] AS [PCAmount], 
-    [LPODetails].[PCDropOffDate] AS [PCDropOffDate], 
-    [LPODetails].[PCDropoffLocation] AS [PCDropoffLocation], 
-    [LPODetails].[PCDropOffTime] AS [PCDropOffTime], 
+    [LPODetails].[PCPickUpLocation] AS [PCPickUpLocation], 
     [LPODetails].[PCPickUpDate] AS [PCPickUpDate], 
-    [LPODetails].[PCPickupLocation] AS [PCPickupLocation], 
     [LPODetails].[PCPickUpTime] AS [PCPickUpTime], 
+    [LPODetails].[PCDropOffLocation] AS [PCDropOffLocation], 
+    [LPODetails].[PCDropOffDate] AS [PCDropOffDate], 
+    [LPODetails].[PCDropOffTime] AS [PCDropOffTime], 
     [LPODetails].[PCPreferredVehicle] AS [PCPreferredVehicle], 
     [LPODetails].[PCQuotationName] AS [PCQuotationName], 
     [LPODetails].[PCTravelSector] AS [PCTravelSector]
@@ -872,7 +869,6 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
     [RFQDetails].[username] AS [username], 
     [RFQDetails].[ID] AS [ID], 
     [RFQDetails].[ApplicationNumber] AS [ApplicationNumber], 
-    [RFQDetails].[PortOfOriginID] AS [PortOfOriginID], 
     [RFQDetails].[OriginCIty] AS [OriginCIty], 
     [RFQDetails].[OriginCountry] AS [OriginCountry], 
     [RFQDetails].[PortOfDestinationID] AS [PortOfDestinationID], 
@@ -1690,7 +1686,6 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID" Type="Int32" />
           <Property Name="ApplicationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PortOfOriginID" Type="Int32" />
           <Property Name="OriginCIty" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="OriginCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PortOfDestinationID" Type="Int32" />
@@ -1704,12 +1699,12 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="TravelDays" Type="Int32" />
           <Property Name="TravelRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PurposeOfVisit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DepartureDate" Type="DateTime" Precision="3" />
-          <Property Name="DepartureTime" Type="Time" Precision="7" />
-          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
-          <Property Name="ReturnTime" Type="Time" Precision="7" />
-          <Property Name="FirstBusinessDay" Type="DateTime" Precision="3" />
-          <Property Name="LastBusinessDay" Type="DateTime" Precision="3" />
+          <Property Name="DepartureDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReturnDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReturnTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FirstBusinessDay" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="LastBusinessDay" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="AirTicketManagement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1721,33 +1716,35 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="AdditionalAllowance" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="AirportPickUp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PickUpLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PickUpDate" Type="DateTime" Precision="3" />
-          <Property Name="PickUpTime" Type="Time" Precision="7" />
+          <Property Name="PickUpDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="DropOffLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DropOffDate" Type="DateTime" Precision="3" />
-          <Property Name="DropOffTime" Type="Time" Precision="7" />
+          <Property Name="DropOffDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DropOffTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="PreferredVehicle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="TravelSector" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="CheckInDate" Type="DateTime" Precision="3" />
-          <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
-          <Property Name="CheckInTime" Type="Time" Precision="7" />
-          <Property Name="CheckOutTime" Type="Time" Precision="7" />
+          <Property Name="CheckInDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CheckOutDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CheckOutTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="ApprovalLevel" Type="Int32" />
           <Property Name="ApprovalBy" Type="Int32" />
           <Property Name="ApprovedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ApprovalRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="CreateOn" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsSubmitted" Type="Boolean" />
           <Property Name="Airlines" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ATAmount" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="ATDepartureDate" Type="DateTime" Precision="3" />
-          <Property Name="ATDepartureTime" Type="Time" Precision="7" />
+          <Property Name="ATDepartureDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ATDepartureTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ATReturnDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ATReturnTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="DestinationID" Type="Int32" />
           <Property Name="ATDCity" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ATDCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -1755,15 +1752,13 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="ATOCity" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ATOCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ATQuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ATReturnDate" Type="DateTime" Precision="3" />
-          <Property Name="ATReturnTime" Type="Time" Precision="7" />
           <Property Name="ATTicketClass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TicketNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="HSAmount" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="HSCheckInDate" Type="DateTime" Precision="3" />
-          <Property Name="HSCheckInTime" Type="Time" Precision="7" />
-          <Property Name="HSCheckOutDate" Type="DateTime" Precision="3" />
-          <Property Name="HSCheckOutTime" Type="Time" Precision="7" />
+          <Property Name="HSCheckInDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="HSCheckOutDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="HSCheckInTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="HSCheckOutTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="HSHotelCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="HSHotelName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="HSQuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1771,12 +1766,12 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="HSRoomType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="HSTravelSector" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="PCAmount" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="PCDropOffDate" Type="DateTime" Precision="3" />
-          <Property Name="PCDropoffLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="PCDropOffTime" Type="Time" Precision="7" />
-          <Property Name="PCPickUpDate" Type="DateTime" Precision="3" />
-          <Property Name="PCPickupLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="PCPickUpTime" Type="Time" Precision="7" />
+          <Property Name="PCPickUpLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PCPickUpDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PCPickUpTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PCDropOffLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PCDropOffDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PCDropOffTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="PCPreferredVehicle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="PCQuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PCTravelSector" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -1797,7 +1792,6 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="ApplicationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PortOfOriginID" Type="Int32" />
           <Property Name="OriginCIty" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="OriginCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PortOfDestinationID" Type="Int32" />
@@ -1811,12 +1805,12 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="TravelDays" Type="Int32" />
           <Property Name="TravelRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PurposeOfVisit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DepartureDate" Type="DateTime" Precision="3" />
-          <Property Name="DepartureTime" Type="Time" Precision="7" />
-          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
-          <Property Name="ReturnTime" Type="Time" Precision="7" />
-          <Property Name="FirstBusinessDay" Type="DateTime" Precision="3" />
-          <Property Name="LastBusinessDay" Type="DateTime" Precision="3" />
+          <Property Name="DepartureDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReturnDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReturnTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FirstBusinessDay" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="LastBusinessDay" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="AirTicketManagement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1828,25 +1822,25 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="AdditionalAllowance" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="AirportPickUp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PickUpLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PickUpDate" Type="DateTime" Precision="3" />
-          <Property Name="PickUpTime" Type="Time" Precision="7" />
+          <Property Name="PickUpDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="DropOffLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DropOffDate" Type="DateTime" Precision="3" />
-          <Property Name="DropOffTime" Type="Time" Precision="7" />
+          <Property Name="DropOffDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DropOffTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="PreferredVehicle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="TravelSector" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="CheckInDate" Type="DateTime" Precision="3" />
-          <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
-          <Property Name="CheckInTime" Type="Time" Precision="7" />
-          <Property Name="CheckOutTime" Type="Time" Precision="7" />
+          <Property Name="CheckInDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CheckOutDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CheckOutTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="ApprovalLevel" Type="Int32" Nullable="false" />
           <Property Name="ApprovalBy" Type="Int32" />
           <Property Name="ApprovedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ApprovalRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="CreateOn" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
@@ -1875,12 +1869,12 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="TravelDays" Type="Int32" />
           <Property Name="TravelRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PurposeOfVisit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DepartureDate" Type="DateTime" Precision="3" />
-          <Property Name="DepartureTime" Type="Time" Precision="7" />
-          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
-          <Property Name="ReturnTime" Type="Time" Precision="7" />
-          <Property Name="FirstBusinessDay" Type="DateTime" Precision="3" />
-          <Property Name="LastBusinessDay" Type="DateTime" Precision="3" />
+          <Property Name="DepartureDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReturnDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReturnTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FirstBusinessDay" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="LastBusinessDay" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="AirTicketManagement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1892,25 +1886,25 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="AdditionalAllowance" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="AirportPickUp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PickUpLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PickUpDate" Type="DateTime" Precision="3" />
-          <Property Name="PickUpTime" Type="Time" Precision="7" />
+          <Property Name="PickUpDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="DropOffLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DropOffDate" Type="DateTime" Precision="3" />
-          <Property Name="DropOffTime" Type="Time" Precision="7" />
+          <Property Name="DropOffDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DropOffTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="PreferredVehicle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="TravelSector" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="CheckInDate" Type="DateTime" Precision="3" />
-          <Property Name="CheckOutDate" Type="DateTime" Precision="3" />
-          <Property Name="CheckInTime" Type="Time" Precision="7" />
-          <Property Name="CheckOutTime" Type="Time" Precision="7" />
+          <Property Name="CheckInDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CheckOutDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CheckOutTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="ApprovalLevel" Type="Int32" Nullable="false" />
           <Property Name="ApprovalBy" Type="Int32" />
           <Property Name="ApprovedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ApprovalRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CreateOn" Type="DateTime" Precision="3" />
+          <Property Name="CreateOn" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="ModifiedBy" Type="Int32" />
           <Property Name="ModifiedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
@@ -2175,12 +2169,12 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
                 <ScalarProperty Name="PCTravelSector" ColumnName="PCTravelSector" />
                 <ScalarProperty Name="PCQuotationName" ColumnName="PCQuotationName" />
                 <ScalarProperty Name="PCPreferredVehicle" ColumnName="PCPreferredVehicle" />
-                <ScalarProperty Name="PCPickUpTime" ColumnName="PCPickUpTime" />
-                <ScalarProperty Name="PCPickupLocation" ColumnName="PCPickupLocation" />
-                <ScalarProperty Name="PCPickUpDate" ColumnName="PCPickUpDate" />
                 <ScalarProperty Name="PCDropOffTime" ColumnName="PCDropOffTime" />
-                <ScalarProperty Name="PCDropoffLocation" ColumnName="PCDropoffLocation" />
                 <ScalarProperty Name="PCDropOffDate" ColumnName="PCDropOffDate" />
+                <ScalarProperty Name="PCDropOffLocation" ColumnName="PCDropOffLocation" />
+                <ScalarProperty Name="PCPickUpTime" ColumnName="PCPickUpTime" />
+                <ScalarProperty Name="PCPickUpDate" ColumnName="PCPickUpDate" />
+                <ScalarProperty Name="PCPickUpLocation" ColumnName="PCPickUpLocation" />
                 <ScalarProperty Name="PCAmount" ColumnName="PCAmount" />
                 <ScalarProperty Name="HSTravelSector" ColumnName="HSTravelSector" />
                 <ScalarProperty Name="HSRoomType" ColumnName="HSRoomType" />
@@ -2189,14 +2183,12 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
                 <ScalarProperty Name="HSHotelName" ColumnName="HSHotelName" />
                 <ScalarProperty Name="HSHotelCategory" ColumnName="HSHotelCategory" />
                 <ScalarProperty Name="HSCheckOutTime" ColumnName="HSCheckOutTime" />
-                <ScalarProperty Name="HSCheckOutDate" ColumnName="HSCheckOutDate" />
                 <ScalarProperty Name="HSCheckInTime" ColumnName="HSCheckInTime" />
+                <ScalarProperty Name="HSCheckOutDate" ColumnName="HSCheckOutDate" />
                 <ScalarProperty Name="HSCheckInDate" ColumnName="HSCheckInDate" />
                 <ScalarProperty Name="HSAmount" ColumnName="HSAmount" />
                 <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
                 <ScalarProperty Name="ATTicketClass" ColumnName="ATTicketClass" />
-                <ScalarProperty Name="ATReturnTime" ColumnName="ATReturnTime" />
-                <ScalarProperty Name="ATReturnDate" ColumnName="ATReturnDate" />
                 <ScalarProperty Name="ATQuotationName" ColumnName="ATQuotationName" />
                 <ScalarProperty Name="ATOCountry" ColumnName="ATOCountry" />
                 <ScalarProperty Name="ATOCity" ColumnName="ATOCity" />
@@ -2204,6 +2196,8 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
                 <ScalarProperty Name="ATDCountry" ColumnName="ATDCountry" />
                 <ScalarProperty Name="ATDCity" ColumnName="ATDCity" />
                 <ScalarProperty Name="DestinationID" ColumnName="DestinationID" />
+                <ScalarProperty Name="ATReturnTime" ColumnName="ATReturnTime" />
+                <ScalarProperty Name="ATReturnDate" ColumnName="ATReturnDate" />
                 <ScalarProperty Name="ATDepartureTime" ColumnName="ATDepartureTime" />
                 <ScalarProperty Name="ATDepartureDate" ColumnName="ATDepartureDate" />
                 <ScalarProperty Name="ATAmount" ColumnName="ATAmount" />
@@ -2261,7 +2255,6 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
                 <ScalarProperty Name="PortOfDestinationID" ColumnName="PortOfDestinationID" />
                 <ScalarProperty Name="OriginCountry" ColumnName="OriginCountry" />
                 <ScalarProperty Name="OriginCIty" ColumnName="OriginCIty" />
-                <ScalarProperty Name="PortOfOriginID" ColumnName="PortOfOriginID" />
                 <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="username" ColumnName="username" />
@@ -2334,7 +2327,6 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
                 <ScalarProperty Name="PortOfDestinationID" ColumnName="PortOfDestinationID" />
                 <ScalarProperty Name="OriginCountry" ColumnName="OriginCountry" />
                 <ScalarProperty Name="OriginCIty" ColumnName="OriginCIty" />
-                <ScalarProperty Name="PortOfOriginID" ColumnName="PortOfOriginID" />
                 <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="username" ColumnName="username" />

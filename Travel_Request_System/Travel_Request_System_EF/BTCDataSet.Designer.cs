@@ -1413,6 +1413,8 @@ namespace Travel_Request_System_EF {
             
             private global::System.Data.DataColumn columnQuotationName;
             
+            private global::System.Data.DataColumn columnIsActive;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public ATQuotationDataTable() {
@@ -1560,6 +1562,14 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IsActiveColumn {
+                get {
+                    return this.columnIsActive;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1595,7 +1605,7 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ATQuotationRow AddATQuotationRow(QuotationRow parentQuotationRowByfk_ATQuotation_QuotationID, string TicketClass, CityRow parentCityRowByfk_ATQuotation_OriginID, CityRow parentCityRowByfk_ATQuotation_DestinationID, System.DateTime DepartureDate, System.TimeSpan DepartureTime, System.DateTime ReturnDate, System.TimeSpan ReturnTime, string Airlines, string TicketNo, decimal Amount, bool IsDeleted, string QuotationName) {
+            public ATQuotationRow AddATQuotationRow(QuotationRow parentQuotationRowByfk_ATQuotation_QuotationID, string TicketClass, CityRow parentCityRowByfk_ATQuotation_OriginID, CityRow parentCityRowByfk_ATQuotation_DestinationID, System.DateTime DepartureDate, System.TimeSpan DepartureTime, System.DateTime ReturnDate, System.TimeSpan ReturnTime, string Airlines, string TicketNo, decimal Amount, bool IsDeleted, string QuotationName, bool IsActive) {
                 ATQuotationRow rowATQuotationRow = ((ATQuotationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1611,7 +1621,8 @@ namespace Travel_Request_System_EF {
                         TicketNo,
                         Amount,
                         IsDeleted,
-                        QuotationName};
+                        QuotationName,
+                        IsActive};
                 if ((parentQuotationRowByfk_ATQuotation_QuotationID != null)) {
                     columnValuesArray[1] = parentQuotationRowByfk_ATQuotation_QuotationID[0];
                 }
@@ -1664,6 +1675,7 @@ namespace Travel_Request_System_EF {
                 this.columnAmount = base.Columns["Amount"];
                 this.columnIsDeleted = base.Columns["IsDeleted"];
                 this.columnQuotationName = base.Columns["QuotationName"];
+                this.columnIsActive = base.Columns["IsActive"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1697,6 +1709,8 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnIsDeleted);
                 this.columnQuotationName = new global::System.Data.DataColumn("QuotationName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQuotationName);
+                this.columnIsActive = new global::System.Data.DataColumn("IsActive", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsActive);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -4508,6 +4522,8 @@ namespace Travel_Request_System_EF {
             
             private global::System.Data.DataColumn columnQuotationName;
             
+            private global::System.Data.DataColumn columnIsActive;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public HSQuotationDataTable() {
@@ -4655,6 +4671,14 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IsActiveColumn {
+                get {
+                    return this.columnIsActive;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4690,7 +4714,7 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public HSQuotationRow AddHSQuotationRow(QuotationRow parentQuotationRowByfk_HSQuotation_QuotationID, string TravelSector, string HotelName, string HotelCategory, string RoomCategory, string RoomType, System.DateTime CheckInDate, System.TimeSpan CheckInTime, System.DateTime CheckOutDate, System.TimeSpan CheckOutTime, decimal Amount, bool IsDeleted, string QuotationName) {
+            public HSQuotationRow AddHSQuotationRow(QuotationRow parentQuotationRowByfk_HSQuotation_QuotationID, string TravelSector, string HotelName, string HotelCategory, string RoomCategory, string RoomType, System.DateTime CheckInDate, System.TimeSpan CheckInTime, System.DateTime CheckOutDate, System.TimeSpan CheckOutTime, decimal Amount, bool IsDeleted, string QuotationName, bool IsActive) {
                 HSQuotationRow rowHSQuotationRow = ((HSQuotationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4706,7 +4730,8 @@ namespace Travel_Request_System_EF {
                         CheckOutTime,
                         Amount,
                         IsDeleted,
-                        QuotationName};
+                        QuotationName,
+                        IsActive};
                 if ((parentQuotationRowByfk_HSQuotation_QuotationID != null)) {
                     columnValuesArray[1] = parentQuotationRowByfk_HSQuotation_QuotationID[0];
                 }
@@ -4753,6 +4778,7 @@ namespace Travel_Request_System_EF {
                 this.columnAmount = base.Columns["Amount"];
                 this.columnIsDeleted = base.Columns["IsDeleted"];
                 this.columnQuotationName = base.Columns["QuotationName"];
+                this.columnIsActive = base.Columns["IsActive"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4786,6 +4812,8 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnIsDeleted);
                 this.columnQuotationName = new global::System.Data.DataColumn("QuotationName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQuotationName);
+                this.columnIsActive = new global::System.Data.DataColumn("IsActive", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsActive);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -7615,6 +7643,8 @@ namespace Travel_Request_System_EF {
             
             private global::System.Data.DataColumn columnQuotationName;
             
+            private global::System.Data.DataColumn columnIsActive;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public PCQuotationDataTable() {
@@ -7754,6 +7784,14 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IsActiveColumn {
+                get {
+                    return this.columnIsActive;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7789,7 +7827,7 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public PCQuotationRow AddPCQuotationRow(QuotationRow parentQuotationRowByfk_PCQuotation_QuotationID, string TravelSector, string PickupLocation, string DropoffLocation, string PreferredVehicle, System.DateTime PickUpDate, System.TimeSpan PickUpTime, System.DateTime DropOffDate, System.TimeSpan DropOffTime, decimal Amount, bool IsDeleted, string QuotationName) {
+            public PCQuotationRow AddPCQuotationRow(QuotationRow parentQuotationRowByfk_PCQuotation_QuotationID, string TravelSector, string PickupLocation, string DropoffLocation, string PreferredVehicle, System.DateTime PickUpDate, System.TimeSpan PickUpTime, System.DateTime DropOffDate, System.TimeSpan DropOffTime, decimal Amount, bool IsDeleted, string QuotationName, bool IsActive) {
                 PCQuotationRow rowPCQuotationRow = ((PCQuotationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -7804,7 +7842,8 @@ namespace Travel_Request_System_EF {
                         DropOffTime,
                         Amount,
                         IsDeleted,
-                        QuotationName};
+                        QuotationName,
+                        IsActive};
                 if ((parentQuotationRowByfk_PCQuotation_QuotationID != null)) {
                     columnValuesArray[1] = parentQuotationRowByfk_PCQuotation_QuotationID[0];
                 }
@@ -7850,6 +7889,7 @@ namespace Travel_Request_System_EF {
                 this.columnAmount = base.Columns["Amount"];
                 this.columnIsDeleted = base.Columns["IsDeleted"];
                 this.columnQuotationName = base.Columns["QuotationName"];
+                this.columnIsActive = base.Columns["IsActive"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7881,6 +7921,8 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnIsDeleted);
                 this.columnQuotationName = new global::System.Data.DataColumn("QuotationName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQuotationName);
+                this.columnIsActive = new global::System.Data.DataColumn("IsActive", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsActive);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -8353,9 +8395,9 @@ namespace Travel_Request_System_EF {
             
             private global::System.Data.DataColumn columnProcessingSection;
             
-            private global::System.Data.DataColumn columnIsDeleted;
-            
             private global::System.Data.DataColumn columnRFQName;
+            
+            private global::System.Data.DataColumn columnIsDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -8448,17 +8490,17 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IsDeletedColumn {
+            public global::System.Data.DataColumn RFQNameColumn {
                 get {
-                    return this.columnIsDeleted;
+                    return this.columnRFQName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn RFQNameColumn {
+            public global::System.Data.DataColumn IsDeletedColumn {
                 get {
-                    return this.columnRFQName;
+                    return this.columnIsDeleted;
                 }
             }
             
@@ -8499,7 +8541,7 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public RFQRow AddRFQRow(TravelAgencyRow parentTravelAgencyRowByfk_RFQ_TravelAgencyID, TravelRequestsRow parentTravelRequestsRowByfk_RFQ_TravelRequestID, UsersRow parentUsersRowByfk_RFQ_UserID, string Remarks, int Processing, int ProcessingSection, bool IsDeleted, string RFQName) {
+            public RFQRow AddRFQRow(TravelAgencyRow parentTravelAgencyRowByfk_RFQ_TravelAgencyID, TravelRequestsRow parentTravelRequestsRowByfk_RFQ_TravelRequestID, UsersRow parentUsersRowByfk_RFQ_UserID, string Remarks, int Processing, int ProcessingSection, string RFQName, bool IsDeleted) {
                 RFQRow rowRFQRow = ((RFQRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -8509,8 +8551,8 @@ namespace Travel_Request_System_EF {
                         Remarks,
                         Processing,
                         ProcessingSection,
-                        IsDeleted,
-                        RFQName};
+                        RFQName,
+                        IsDeleted};
                 if ((parentTravelAgencyRowByfk_RFQ_TravelAgencyID != null)) {
                     columnValuesArray[1] = parentTravelAgencyRowByfk_RFQ_TravelAgencyID[0];
                 }
@@ -8556,8 +8598,8 @@ namespace Travel_Request_System_EF {
                 this.columnRemarks = base.Columns["Remarks"];
                 this.columnProcessing = base.Columns["Processing"];
                 this.columnProcessingSection = base.Columns["ProcessingSection"];
-                this.columnIsDeleted = base.Columns["IsDeleted"];
                 this.columnRFQName = base.Columns["RFQName"];
+                this.columnIsDeleted = base.Columns["IsDeleted"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8577,10 +8619,10 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnProcessing);
                 this.columnProcessingSection = new global::System.Data.DataColumn("ProcessingSection", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProcessingSection);
-                this.columnIsDeleted = new global::System.Data.DataColumn("IsDeleted", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIsDeleted);
                 this.columnRFQName = new global::System.Data.DataColumn("RFQName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRFQName);
+                this.columnIsDeleted = new global::System.Data.DataColumn("IsDeleted", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsDeleted);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -8593,6 +8635,7 @@ namespace Travel_Request_System_EF {
                 this.columnProcessing.AllowDBNull = false;
                 this.columnProcessingSection.AllowDBNull = false;
                 this.columnRFQName.MaxLength = 50;
+                this.columnIsDeleted.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9296,6 +9339,7 @@ namespace Travel_Request_System_EF {
                 this.columnLandline.MaxLength = 20;
                 this.columnContactPerson.MaxLength = 100;
                 this.columnEmail.MaxLength = 100;
+                this.columnIsActive.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9522,6 +9566,8 @@ namespace Travel_Request_System_EF {
             private global::System.Data.DataColumn columnIsDeleted;
             
             private global::System.Data.DataColumn columnIsSubmitted;
+            
+            private global::System.Data.DataColumn columnairlines;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -9934,6 +9980,14 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn airlinesColumn {
+                get {
+                    return this.columnairlines;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -10015,7 +10069,8 @@ namespace Travel_Request_System_EF {
                         System.DateTime ModifiedOn, 
                         int ModifiedBy, 
                         bool IsDeleted, 
-                        bool IsSubmitted) {
+                        bool IsSubmitted, 
+                        string airlines) {
                 TravelRequestsRow rowTravelRequestsRow = ((TravelRequestsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -10064,7 +10119,8 @@ namespace Travel_Request_System_EF {
                         ModifiedOn,
                         ModifiedBy,
                         IsDeleted,
-                        IsSubmitted};
+                        IsSubmitted,
+                        airlines};
                 if ((parentCityRowByFK__TravelReq_PortOfO != null)) {
                     columnValuesArray[2] = parentCityRowByFK__TravelReq_PortOfO[0];
                 }
@@ -10156,6 +10212,7 @@ namespace Travel_Request_System_EF {
                 this.columnModifiedBy = base.Columns["ModifiedBy"];
                 this.columnIsDeleted = base.Columns["IsDeleted"];
                 this.columnIsSubmitted = base.Columns["IsSubmitted"];
+                this.columnairlines = base.Columns["airlines"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10255,6 +10312,8 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnIsDeleted);
                 this.columnIsSubmitted = new global::System.Data.DataColumn("IsSubmitted", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsSubmitted);
+                this.columnairlines = new global::System.Data.DataColumn("airlines", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnairlines);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -10284,6 +10343,7 @@ namespace Travel_Request_System_EF {
                 this.columnApprovalLevel.AllowDBNull = false;
                 this.columnApprovalRemarks.MaxLength = 2147483647;
                 this.columnIsSubmitted.AllowDBNull = false;
+                this.columnairlines.MaxLength = 250;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11126,8 +11186,6 @@ namespace Travel_Request_System_EF {
             
             private global::System.Data.DataColumn columnApplicationNumber;
             
-            private global::System.Data.DataColumn columnPortOfOriginID;
-            
             private global::System.Data.DataColumn columnOriginCIty;
             
             private global::System.Data.DataColumn columnOriginCountry;
@@ -11242,6 +11300,10 @@ namespace Travel_Request_System_EF {
             
             private global::System.Data.DataColumn columnATDepartureTime;
             
+            private global::System.Data.DataColumn columnATReturnDate;
+            
+            private global::System.Data.DataColumn columnATReturnTime;
+            
             private global::System.Data.DataColumn columnDestinationID;
             
             private global::System.Data.DataColumn columnATDCity;
@@ -11256,10 +11318,6 @@ namespace Travel_Request_System_EF {
             
             private global::System.Data.DataColumn columnATQuotationName;
             
-            private global::System.Data.DataColumn columnATReturnDate;
-            
-            private global::System.Data.DataColumn columnATReturnTime;
-            
             private global::System.Data.DataColumn columnATTicketClass;
             
             private global::System.Data.DataColumn columnTicketNo;
@@ -11268,9 +11326,9 @@ namespace Travel_Request_System_EF {
             
             private global::System.Data.DataColumn columnHSCheckInDate;
             
-            private global::System.Data.DataColumn columnHSCheckInTime;
-            
             private global::System.Data.DataColumn columnHSCheckOutDate;
+            
+            private global::System.Data.DataColumn columnHSCheckInTime;
             
             private global::System.Data.DataColumn columnHSCheckOutTime;
             
@@ -11288,17 +11346,17 @@ namespace Travel_Request_System_EF {
             
             private global::System.Data.DataColumn columnPCAmount;
             
-            private global::System.Data.DataColumn columnPCDropOffDate;
-            
-            private global::System.Data.DataColumn columnPCDropoffLocation;
-            
-            private global::System.Data.DataColumn columnPCDropOffTime;
+            private global::System.Data.DataColumn columnPCPickUpLocation;
             
             private global::System.Data.DataColumn columnPCPickUpDate;
             
-            private global::System.Data.DataColumn columnPCPickupLocation;
-            
             private global::System.Data.DataColumn columnPCPickUpTime;
+            
+            private global::System.Data.DataColumn columnPCDropOffLocation;
+            
+            private global::System.Data.DataColumn columnPCDropOffDate;
+            
+            private global::System.Data.DataColumn columnPCDropOffTime;
             
             private global::System.Data.DataColumn columnPCPreferredVehicle;
             
@@ -11440,14 +11498,6 @@ namespace Travel_Request_System_EF {
             public global::System.Data.DataColumn ApplicationNumberColumn {
                 get {
                     return this.columnApplicationNumber;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PortOfOriginIDColumn {
-                get {
-                    return this.columnPortOfOriginID;
                 }
             }
             
@@ -11909,6 +11959,22 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ATReturnDateColumn {
+                get {
+                    return this.columnATReturnDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ATReturnTimeColumn {
+                get {
+                    return this.columnATReturnTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn DestinationIDColumn {
                 get {
                     return this.columnDestinationID;
@@ -11965,22 +12031,6 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ATReturnDateColumn {
-                get {
-                    return this.columnATReturnDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ATReturnTimeColumn {
-                get {
-                    return this.columnATReturnTime;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn ATTicketClassColumn {
                 get {
                     return this.columnATTicketClass;
@@ -12013,17 +12063,17 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn HSCheckInTimeColumn {
+            public global::System.Data.DataColumn HSCheckOutDateColumn {
                 get {
-                    return this.columnHSCheckInTime;
+                    return this.columnHSCheckOutDate;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn HSCheckOutDateColumn {
+            public global::System.Data.DataColumn HSCheckInTimeColumn {
                 get {
-                    return this.columnHSCheckOutDate;
+                    return this.columnHSCheckInTime;
                 }
             }
             
@@ -12093,25 +12143,9 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PCDropOffDateColumn {
+            public global::System.Data.DataColumn PCPickUpLocationColumn {
                 get {
-                    return this.columnPCDropOffDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PCDropoffLocationColumn {
-                get {
-                    return this.columnPCDropoffLocation;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PCDropOffTimeColumn {
-                get {
-                    return this.columnPCDropOffTime;
+                    return this.columnPCPickUpLocation;
                 }
             }
             
@@ -12125,17 +12159,33 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PCPickupLocationColumn {
+            public global::System.Data.DataColumn PCPickUpTimeColumn {
                 get {
-                    return this.columnPCPickupLocation;
+                    return this.columnPCPickUpTime;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PCPickUpTimeColumn {
+            public global::System.Data.DataColumn PCDropOffLocationColumn {
                 get {
-                    return this.columnPCPickUpTime;
+                    return this.columnPCDropOffLocation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PCDropOffDateColumn {
+                get {
+                    return this.columnPCDropOffDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PCDropOffTimeColumn {
+                get {
+                    return this.columnPCDropOffTime;
                 }
             }
             
@@ -12214,7 +12264,6 @@ namespace Travel_Request_System_EF {
                         string username, 
                         int ID, 
                         string ApplicationNumber, 
-                        int PortOfOriginID, 
                         string OriginCIty, 
                         string OriginCountry, 
                         int PortOfDestinationID, 
@@ -12228,12 +12277,12 @@ namespace Travel_Request_System_EF {
                         int TravelDays, 
                         string TravelRemarks, 
                         string PurposeOfVisit, 
-                        System.DateTime DepartureDate, 
-                        System.TimeSpan DepartureTime, 
-                        System.DateTime ReturnDate, 
-                        System.TimeSpan ReturnTime, 
-                        System.DateTime FirstBusinessDay, 
-                        System.DateTime LastBusinessDay, 
+                        string DepartureDate, 
+                        string DepartureTime, 
+                        string ReturnDate, 
+                        string ReturnTime, 
+                        string FirstBusinessDay, 
+                        string LastBusinessDay, 
                         string Remarks, 
                         string AirTicketManagement, 
                         string HotelName, 
@@ -12245,33 +12294,35 @@ namespace Travel_Request_System_EF {
                         decimal AdditionalAllowance, 
                         string AirportPickUp, 
                         string PickUpLocation, 
-                        System.DateTime PickUpDate, 
-                        System.TimeSpan PickUpTime, 
+                        string PickUpDate, 
+                        string PickUpTime, 
                         string DropOffLocation, 
-                        System.DateTime DropOffDate, 
-                        System.TimeSpan DropOffTime, 
+                        string DropOffDate, 
+                        string DropOffTime, 
                         string PreferredVehicle, 
                         string TravelSector, 
-                        System.DateTime CheckInDate, 
-                        System.DateTime CheckOutDate, 
-                        System.TimeSpan CheckInTime, 
-                        System.TimeSpan CheckOutTime, 
+                        string CheckInDate, 
+                        string CheckOutDate, 
+                        string CheckInTime, 
+                        string CheckOutTime, 
                         int ApprovalLevel, 
                         int ApprovalBy, 
                         string ApprovedByName, 
                         string ApprovalRemarks, 
-                        System.DateTime CreateOn, 
+                        string CreateOn, 
                         int CreatedBy, 
                         string CreatedByName, 
-                        System.DateTime ModifiedOn, 
+                        string ModifiedOn, 
                         int ModifiedBy, 
                         string ModifiedByName, 
                         bool IsDeleted, 
                         bool IsSubmitted, 
                         string Airlines, 
                         decimal ATAmount, 
-                        System.DateTime ATDepartureDate, 
-                        System.TimeSpan ATDepartureTime, 
+                        string ATDepartureDate, 
+                        string ATDepartureTime, 
+                        string ATReturnDate, 
+                        string ATReturnTime, 
                         int DestinationID, 
                         string ATDCity, 
                         string ATDCountry, 
@@ -12279,15 +12330,13 @@ namespace Travel_Request_System_EF {
                         string ATOCity, 
                         string ATOCountry, 
                         string ATQuotationName, 
-                        System.DateTime ATReturnDate, 
-                        System.TimeSpan ATReturnTime, 
                         string ATTicketClass, 
                         string TicketNo, 
                         decimal HSAmount, 
-                        System.DateTime HSCheckInDate, 
-                        System.TimeSpan HSCheckInTime, 
-                        System.DateTime HSCheckOutDate, 
-                        System.TimeSpan HSCheckOutTime, 
+                        string HSCheckInDate, 
+                        string HSCheckOutDate, 
+                        string HSCheckInTime, 
+                        string HSCheckOutTime, 
                         string HSHotelCategory, 
                         string HSHotelName, 
                         string HSQuotationName, 
@@ -12295,12 +12344,12 @@ namespace Travel_Request_System_EF {
                         string HSRoomType, 
                         string HSTravelSector, 
                         decimal PCAmount, 
-                        System.DateTime PCDropOffDate, 
-                        string PCDropoffLocation, 
-                        System.TimeSpan PCDropOffTime, 
-                        System.DateTime PCPickUpDate, 
-                        string PCPickupLocation, 
-                        System.TimeSpan PCPickUpTime, 
+                        string PCPickUpLocation, 
+                        string PCPickUpDate, 
+                        string PCPickUpTime, 
+                        string PCDropOffLocation, 
+                        string PCDropOffDate, 
+                        string PCDropOffTime, 
                         string PCPreferredVehicle, 
                         string PCQuotationName, 
                         string PCTravelSector) {
@@ -12319,7 +12368,6 @@ namespace Travel_Request_System_EF {
                         username,
                         ID,
                         ApplicationNumber,
-                        PortOfOriginID,
                         OriginCIty,
                         OriginCountry,
                         PortOfDestinationID,
@@ -12377,6 +12425,8 @@ namespace Travel_Request_System_EF {
                         ATAmount,
                         ATDepartureDate,
                         ATDepartureTime,
+                        ATReturnDate,
+                        ATReturnTime,
                         DestinationID,
                         ATDCity,
                         ATDCountry,
@@ -12384,14 +12434,12 @@ namespace Travel_Request_System_EF {
                         ATOCity,
                         ATOCountry,
                         ATQuotationName,
-                        ATReturnDate,
-                        ATReturnTime,
                         ATTicketClass,
                         TicketNo,
                         HSAmount,
                         HSCheckInDate,
-                        HSCheckInTime,
                         HSCheckOutDate,
+                        HSCheckInTime,
                         HSCheckOutTime,
                         HSHotelCategory,
                         HSHotelName,
@@ -12400,12 +12448,12 @@ namespace Travel_Request_System_EF {
                         HSRoomType,
                         HSTravelSector,
                         PCAmount,
-                        PCDropOffDate,
-                        PCDropoffLocation,
-                        PCDropOffTime,
+                        PCPickUpLocation,
                         PCPickUpDate,
-                        PCPickupLocation,
                         PCPickUpTime,
+                        PCDropOffLocation,
+                        PCDropOffDate,
+                        PCDropOffTime,
                         PCPreferredVehicle,
                         PCQuotationName,
                         PCTravelSector};
@@ -12444,7 +12492,6 @@ namespace Travel_Request_System_EF {
                 this.columnusername = base.Columns["username"];
                 this.columnID = base.Columns["ID"];
                 this.columnApplicationNumber = base.Columns["ApplicationNumber"];
-                this.columnPortOfOriginID = base.Columns["PortOfOriginID"];
                 this.columnOriginCIty = base.Columns["OriginCIty"];
                 this.columnOriginCountry = base.Columns["OriginCountry"];
                 this.columnPortOfDestinationID = base.Columns["PortOfDestinationID"];
@@ -12502,6 +12549,8 @@ namespace Travel_Request_System_EF {
                 this.columnATAmount = base.Columns["ATAmount"];
                 this.columnATDepartureDate = base.Columns["ATDepartureDate"];
                 this.columnATDepartureTime = base.Columns["ATDepartureTime"];
+                this.columnATReturnDate = base.Columns["ATReturnDate"];
+                this.columnATReturnTime = base.Columns["ATReturnTime"];
                 this.columnDestinationID = base.Columns["DestinationID"];
                 this.columnATDCity = base.Columns["ATDCity"];
                 this.columnATDCountry = base.Columns["ATDCountry"];
@@ -12509,14 +12558,12 @@ namespace Travel_Request_System_EF {
                 this.columnATOCity = base.Columns["ATOCity"];
                 this.columnATOCountry = base.Columns["ATOCountry"];
                 this.columnATQuotationName = base.Columns["ATQuotationName"];
-                this.columnATReturnDate = base.Columns["ATReturnDate"];
-                this.columnATReturnTime = base.Columns["ATReturnTime"];
                 this.columnATTicketClass = base.Columns["ATTicketClass"];
                 this.columnTicketNo = base.Columns["TicketNo"];
                 this.columnHSAmount = base.Columns["HSAmount"];
                 this.columnHSCheckInDate = base.Columns["HSCheckInDate"];
-                this.columnHSCheckInTime = base.Columns["HSCheckInTime"];
                 this.columnHSCheckOutDate = base.Columns["HSCheckOutDate"];
+                this.columnHSCheckInTime = base.Columns["HSCheckInTime"];
                 this.columnHSCheckOutTime = base.Columns["HSCheckOutTime"];
                 this.columnHSHotelCategory = base.Columns["HSHotelCategory"];
                 this.columnHSHotelName = base.Columns["HSHotelName"];
@@ -12525,12 +12572,12 @@ namespace Travel_Request_System_EF {
                 this.columnHSRoomType = base.Columns["HSRoomType"];
                 this.columnHSTravelSector = base.Columns["HSTravelSector"];
                 this.columnPCAmount = base.Columns["PCAmount"];
-                this.columnPCDropOffDate = base.Columns["PCDropOffDate"];
-                this.columnPCDropoffLocation = base.Columns["PCDropoffLocation"];
-                this.columnPCDropOffTime = base.Columns["PCDropOffTime"];
+                this.columnPCPickUpLocation = base.Columns["PCPickUpLocation"];
                 this.columnPCPickUpDate = base.Columns["PCPickUpDate"];
-                this.columnPCPickupLocation = base.Columns["PCPickupLocation"];
                 this.columnPCPickUpTime = base.Columns["PCPickUpTime"];
+                this.columnPCDropOffLocation = base.Columns["PCDropOffLocation"];
+                this.columnPCDropOffDate = base.Columns["PCDropOffDate"];
+                this.columnPCDropOffTime = base.Columns["PCDropOffTime"];
                 this.columnPCPreferredVehicle = base.Columns["PCPreferredVehicle"];
                 this.columnPCQuotationName = base.Columns["PCQuotationName"];
                 this.columnPCTravelSector = base.Columns["PCTravelSector"];
@@ -12565,8 +12612,6 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnID);
                 this.columnApplicationNumber = new global::System.Data.DataColumn("ApplicationNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApplicationNumber);
-                this.columnPortOfOriginID = new global::System.Data.DataColumn("PortOfOriginID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPortOfOriginID);
                 this.columnOriginCIty = new global::System.Data.DataColumn("OriginCIty", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOriginCIty);
                 this.columnOriginCountry = new global::System.Data.DataColumn("OriginCountry", typeof(string), null, global::System.Data.MappingType.Element);
@@ -12593,17 +12638,17 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnTravelRemarks);
                 this.columnPurposeOfVisit = new global::System.Data.DataColumn("PurposeOfVisit", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPurposeOfVisit);
-                this.columnDepartureDate = new global::System.Data.DataColumn("DepartureDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnDepartureDate = new global::System.Data.DataColumn("DepartureDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDepartureDate);
-                this.columnDepartureTime = new global::System.Data.DataColumn("DepartureTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnDepartureTime = new global::System.Data.DataColumn("DepartureTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDepartureTime);
-                this.columnReturnDate = new global::System.Data.DataColumn("ReturnDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnReturnDate = new global::System.Data.DataColumn("ReturnDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnReturnDate);
-                this.columnReturnTime = new global::System.Data.DataColumn("ReturnTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnReturnTime = new global::System.Data.DataColumn("ReturnTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnReturnTime);
-                this.columnFirstBusinessDay = new global::System.Data.DataColumn("FirstBusinessDay", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnFirstBusinessDay = new global::System.Data.DataColumn("FirstBusinessDay", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFirstBusinessDay);
-                this.columnLastBusinessDay = new global::System.Data.DataColumn("LastBusinessDay", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnLastBusinessDay = new global::System.Data.DataColumn("LastBusinessDay", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLastBusinessDay);
                 this.columnRemarks = new global::System.Data.DataColumn("Remarks", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRemarks);
@@ -12627,27 +12672,27 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnAirportPickUp);
                 this.columnPickUpLocation = new global::System.Data.DataColumn("PickUpLocation", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPickUpLocation);
-                this.columnPickUpDate = new global::System.Data.DataColumn("PickUpDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnPickUpDate = new global::System.Data.DataColumn("PickUpDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPickUpDate);
-                this.columnPickUpTime = new global::System.Data.DataColumn("PickUpTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnPickUpTime = new global::System.Data.DataColumn("PickUpTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPickUpTime);
                 this.columnDropOffLocation = new global::System.Data.DataColumn("DropOffLocation", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDropOffLocation);
-                this.columnDropOffDate = new global::System.Data.DataColumn("DropOffDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnDropOffDate = new global::System.Data.DataColumn("DropOffDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDropOffDate);
-                this.columnDropOffTime = new global::System.Data.DataColumn("DropOffTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnDropOffTime = new global::System.Data.DataColumn("DropOffTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDropOffTime);
                 this.columnPreferredVehicle = new global::System.Data.DataColumn("PreferredVehicle", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPreferredVehicle);
                 this.columnTravelSector = new global::System.Data.DataColumn("TravelSector", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTravelSector);
-                this.columnCheckInDate = new global::System.Data.DataColumn("CheckInDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnCheckInDate = new global::System.Data.DataColumn("CheckInDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckInDate);
-                this.columnCheckOutDate = new global::System.Data.DataColumn("CheckOutDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnCheckOutDate = new global::System.Data.DataColumn("CheckOutDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckOutDate);
-                this.columnCheckInTime = new global::System.Data.DataColumn("CheckInTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnCheckInTime = new global::System.Data.DataColumn("CheckInTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckInTime);
-                this.columnCheckOutTime = new global::System.Data.DataColumn("CheckOutTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnCheckOutTime = new global::System.Data.DataColumn("CheckOutTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckOutTime);
                 this.columnApprovalLevel = new global::System.Data.DataColumn("ApprovalLevel", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApprovalLevel);
@@ -12657,13 +12702,13 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnApprovedByName);
                 this.columnApprovalRemarks = new global::System.Data.DataColumn("ApprovalRemarks", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApprovalRemarks);
-                this.columnCreateOn = new global::System.Data.DataColumn("CreateOn", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnCreateOn = new global::System.Data.DataColumn("CreateOn", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreateOn);
                 this.columnCreatedBy = new global::System.Data.DataColumn("CreatedBy", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreatedBy);
                 this.columnCreatedByName = new global::System.Data.DataColumn("CreatedByName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreatedByName);
-                this.columnModifiedOn = new global::System.Data.DataColumn("ModifiedOn", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnModifiedOn = new global::System.Data.DataColumn("ModifiedOn", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnModifiedOn);
                 this.columnModifiedBy = new global::System.Data.DataColumn("ModifiedBy", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnModifiedBy);
@@ -12677,10 +12722,14 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnAirlines);
                 this.columnATAmount = new global::System.Data.DataColumn("ATAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnATAmount);
-                this.columnATDepartureDate = new global::System.Data.DataColumn("ATDepartureDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnATDepartureDate = new global::System.Data.DataColumn("ATDepartureDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnATDepartureDate);
-                this.columnATDepartureTime = new global::System.Data.DataColumn("ATDepartureTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnATDepartureTime = new global::System.Data.DataColumn("ATDepartureTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnATDepartureTime);
+                this.columnATReturnDate = new global::System.Data.DataColumn("ATReturnDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnATReturnDate);
+                this.columnATReturnTime = new global::System.Data.DataColumn("ATReturnTime", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnATReturnTime);
                 this.columnDestinationID = new global::System.Data.DataColumn("DestinationID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDestinationID);
                 this.columnATDCity = new global::System.Data.DataColumn("ATDCity", typeof(string), null, global::System.Data.MappingType.Element);
@@ -12695,23 +12744,19 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnATOCountry);
                 this.columnATQuotationName = new global::System.Data.DataColumn("ATQuotationName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnATQuotationName);
-                this.columnATReturnDate = new global::System.Data.DataColumn("ATReturnDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnATReturnDate);
-                this.columnATReturnTime = new global::System.Data.DataColumn("ATReturnTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnATReturnTime);
                 this.columnATTicketClass = new global::System.Data.DataColumn("ATTicketClass", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnATTicketClass);
                 this.columnTicketNo = new global::System.Data.DataColumn("TicketNo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTicketNo);
                 this.columnHSAmount = new global::System.Data.DataColumn("HSAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHSAmount);
-                this.columnHSCheckInDate = new global::System.Data.DataColumn("HSCheckInDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnHSCheckInDate = new global::System.Data.DataColumn("HSCheckInDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHSCheckInDate);
-                this.columnHSCheckInTime = new global::System.Data.DataColumn("HSCheckInTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnHSCheckInTime);
-                this.columnHSCheckOutDate = new global::System.Data.DataColumn("HSCheckOutDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnHSCheckOutDate = new global::System.Data.DataColumn("HSCheckOutDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHSCheckOutDate);
-                this.columnHSCheckOutTime = new global::System.Data.DataColumn("HSCheckOutTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnHSCheckInTime = new global::System.Data.DataColumn("HSCheckInTime", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHSCheckInTime);
+                this.columnHSCheckOutTime = new global::System.Data.DataColumn("HSCheckOutTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHSCheckOutTime);
                 this.columnHSHotelCategory = new global::System.Data.DataColumn("HSHotelCategory", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHSHotelCategory);
@@ -12727,18 +12772,18 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnHSTravelSector);
                 this.columnPCAmount = new global::System.Data.DataColumn("PCAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPCAmount);
-                this.columnPCDropOffDate = new global::System.Data.DataColumn("PCDropOffDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPCDropOffDate);
-                this.columnPCDropoffLocation = new global::System.Data.DataColumn("PCDropoffLocation", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPCDropoffLocation);
-                this.columnPCDropOffTime = new global::System.Data.DataColumn("PCDropOffTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPCDropOffTime);
-                this.columnPCPickUpDate = new global::System.Data.DataColumn("PCPickUpDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnPCPickUpLocation = new global::System.Data.DataColumn("PCPickUpLocation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPCPickUpLocation);
+                this.columnPCPickUpDate = new global::System.Data.DataColumn("PCPickUpDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPCPickUpDate);
-                this.columnPCPickupLocation = new global::System.Data.DataColumn("PCPickupLocation", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPCPickupLocation);
-                this.columnPCPickUpTime = new global::System.Data.DataColumn("PCPickUpTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnPCPickUpTime = new global::System.Data.DataColumn("PCPickUpTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPCPickUpTime);
+                this.columnPCDropOffLocation = new global::System.Data.DataColumn("PCDropOffLocation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPCDropOffLocation);
+                this.columnPCDropOffDate = new global::System.Data.DataColumn("PCDropOffDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPCDropOffDate);
+                this.columnPCDropOffTime = new global::System.Data.DataColumn("PCDropOffTime", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPCDropOffTime);
                 this.columnPCPreferredVehicle = new global::System.Data.DataColumn("PCPreferredVehicle", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPCPreferredVehicle);
                 this.columnPCQuotationName = new global::System.Data.DataColumn("PCQuotationName", typeof(string), null, global::System.Data.MappingType.Element);
@@ -12765,6 +12810,12 @@ namespace Travel_Request_System_EF {
                 this.columnCurrencySymbol.MaxLength = 10;
                 this.columnTravelRemarks.MaxLength = 2147483647;
                 this.columnPurposeOfVisit.MaxLength = 2147483647;
+                this.columnDepartureDate.MaxLength = 4000;
+                this.columnDepartureTime.MaxLength = 4000;
+                this.columnReturnDate.MaxLength = 4000;
+                this.columnReturnTime.MaxLength = 4000;
+                this.columnFirstBusinessDay.MaxLength = 4000;
+                this.columnLastBusinessDay.MaxLength = 4000;
                 this.columnRemarks.MaxLength = 500;
                 this.columnAirTicketManagement.MaxLength = 50;
                 this.columnHotelName.MaxLength = 50;
@@ -12775,14 +12826,32 @@ namespace Travel_Request_System_EF {
                 this.columnRoomType.MaxLength = 50;
                 this.columnAirportPickUp.MaxLength = 50;
                 this.columnPickUpLocation.MaxLength = 500;
+                this.columnPickUpDate.MaxLength = 4000;
+                this.columnPickUpTime.MaxLength = 4000;
                 this.columnDropOffLocation.MaxLength = 500;
+                this.columnDropOffDate.MaxLength = 4000;
+                this.columnDropOffTime.MaxLength = 4000;
                 this.columnPreferredVehicle.MaxLength = 250;
                 this.columnTravelSector.MaxLength = 250;
+                this.columnCheckInDate.MaxLength = 4000;
+                this.columnCheckOutDate.MaxLength = 4000;
+                this.columnCheckInTime.MaxLength = 4000;
+                this.columnCheckOutTime.MaxLength = 4000;
                 this.columnApprovedByName.MaxLength = 2147483647;
                 this.columnApprovalRemarks.MaxLength = 2147483647;
+                this.columnCreateOn.MaxLength = 4000;
                 this.columnCreatedByName.MaxLength = 2147483647;
+                this.columnModifiedOn.MaxLength = 4000;
                 this.columnModifiedByName.MaxLength = 2147483647;
                 this.columnAirlines.MaxLength = 100;
+                this.columnATDepartureDate.ReadOnly = true;
+                this.columnATDepartureDate.MaxLength = 4000;
+                this.columnATDepartureTime.ReadOnly = true;
+                this.columnATDepartureTime.MaxLength = 4000;
+                this.columnATReturnDate.ReadOnly = true;
+                this.columnATReturnDate.MaxLength = 4000;
+                this.columnATReturnTime.ReadOnly = true;
+                this.columnATReturnTime.MaxLength = 4000;
                 this.columnATDCity.MaxLength = 250;
                 this.columnATDCountry.MaxLength = 100;
                 this.columnATOCity.MaxLength = 250;
@@ -12790,14 +12859,30 @@ namespace Travel_Request_System_EF {
                 this.columnATQuotationName.MaxLength = 50;
                 this.columnATTicketClass.MaxLength = 100;
                 this.columnTicketNo.MaxLength = 100;
+                this.columnHSCheckInDate.ReadOnly = true;
+                this.columnHSCheckInDate.MaxLength = 4000;
+                this.columnHSCheckOutDate.ReadOnly = true;
+                this.columnHSCheckOutDate.MaxLength = 4000;
+                this.columnHSCheckInTime.ReadOnly = true;
+                this.columnHSCheckInTime.MaxLength = 4000;
+                this.columnHSCheckOutTime.ReadOnly = true;
+                this.columnHSCheckOutTime.MaxLength = 4000;
                 this.columnHSHotelCategory.MaxLength = 100;
                 this.columnHSHotelName.MaxLength = 250;
                 this.columnHSQuotationName.MaxLength = 50;
                 this.columnHSRoomCategory.MaxLength = 100;
                 this.columnHSRoomType.MaxLength = 100;
                 this.columnHSTravelSector.MaxLength = 250;
-                this.columnPCDropoffLocation.MaxLength = 250;
-                this.columnPCPickupLocation.MaxLength = 250;
+                this.columnPCPickUpLocation.MaxLength = 250;
+                this.columnPCPickUpDate.ReadOnly = true;
+                this.columnPCPickUpDate.MaxLength = 4000;
+                this.columnPCPickUpTime.ReadOnly = true;
+                this.columnPCPickUpTime.MaxLength = 4000;
+                this.columnPCDropOffLocation.MaxLength = 250;
+                this.columnPCDropOffDate.ReadOnly = true;
+                this.columnPCDropOffDate.MaxLength = 4000;
+                this.columnPCDropOffTime.ReadOnly = true;
+                this.columnPCDropOffTime.MaxLength = 4000;
                 this.columnPCPreferredVehicle.MaxLength = 250;
                 this.columnPCQuotationName.MaxLength = 50;
                 this.columnPCTravelSector.MaxLength = 250;
@@ -12949,8 +13034,6 @@ namespace Travel_Request_System_EF {
             private global::System.Data.DataColumn columnID;
             
             private global::System.Data.DataColumn columnApplicationNumber;
-            
-            private global::System.Data.DataColumn columnPortOfOriginID;
             
             private global::System.Data.DataColumn columnOriginCIty;
             
@@ -13152,14 +13235,6 @@ namespace Travel_Request_System_EF {
             public global::System.Data.DataColumn ApplicationNumberColumn {
                 get {
                     return this.columnApplicationNumber;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PortOfOriginIDColumn {
-                get {
-                    return this.columnPortOfOriginID;
                 }
             }
             
@@ -13633,7 +13708,6 @@ namespace Travel_Request_System_EF {
                         string username, 
                         int ID, 
                         string ApplicationNumber, 
-                        int PortOfOriginID, 
                         string OriginCIty, 
                         string OriginCountry, 
                         int PortOfDestinationID, 
@@ -13647,12 +13721,12 @@ namespace Travel_Request_System_EF {
                         int TravelDays, 
                         string TravelRemarks, 
                         string PurposeOfVisit, 
-                        System.DateTime DepartureDate, 
-                        System.TimeSpan DepartureTime, 
-                        System.DateTime ReturnDate, 
-                        System.TimeSpan ReturnTime, 
-                        System.DateTime FirstBusinessDay, 
-                        System.DateTime LastBusinessDay, 
+                        string DepartureDate, 
+                        string DepartureTime, 
+                        string ReturnDate, 
+                        string ReturnTime, 
+                        string FirstBusinessDay, 
+                        string LastBusinessDay, 
                         string Remarks, 
                         string AirTicketManagement, 
                         string HotelName, 
@@ -13664,25 +13738,25 @@ namespace Travel_Request_System_EF {
                         decimal AdditionalAllowance, 
                         string AirportPickUp, 
                         string PickUpLocation, 
-                        System.DateTime PickUpDate, 
-                        System.TimeSpan PickUpTime, 
+                        string PickUpDate, 
+                        string PickUpTime, 
                         string DropOffLocation, 
-                        System.DateTime DropOffDate, 
-                        System.TimeSpan DropOffTime, 
+                        string DropOffDate, 
+                        string DropOffTime, 
                         string PreferredVehicle, 
                         string TravelSector, 
-                        System.DateTime CheckInDate, 
-                        System.DateTime CheckOutDate, 
-                        System.TimeSpan CheckInTime, 
-                        System.TimeSpan CheckOutTime, 
+                        string CheckInDate, 
+                        string CheckOutDate, 
+                        string CheckInTime, 
+                        string CheckOutTime, 
                         int ApprovalLevel, 
                         int ApprovalBy, 
                         string ApprovedByName, 
                         string ApprovalRemarks, 
-                        System.DateTime CreateOn, 
+                        string CreateOn, 
                         int CreatedBy, 
                         string CreatedByName, 
-                        System.DateTime ModifiedOn, 
+                        string ModifiedOn, 
                         int ModifiedBy, 
                         string ModifiedByName, 
                         bool IsDeleted, 
@@ -13697,7 +13771,6 @@ namespace Travel_Request_System_EF {
                         username,
                         ID,
                         ApplicationNumber,
-                        PortOfOriginID,
                         OriginCIty,
                         OriginCountry,
                         PortOfDestinationID,
@@ -13781,7 +13854,6 @@ namespace Travel_Request_System_EF {
                 this.columnusername = base.Columns["username"];
                 this.columnID = base.Columns["ID"];
                 this.columnApplicationNumber = base.Columns["ApplicationNumber"];
-                this.columnPortOfOriginID = base.Columns["PortOfOriginID"];
                 this.columnOriginCIty = base.Columns["OriginCIty"];
                 this.columnOriginCountry = base.Columns["OriginCountry"];
                 this.columnPortOfDestinationID = base.Columns["PortOfDestinationID"];
@@ -13856,8 +13928,6 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnID);
                 this.columnApplicationNumber = new global::System.Data.DataColumn("ApplicationNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApplicationNumber);
-                this.columnPortOfOriginID = new global::System.Data.DataColumn("PortOfOriginID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPortOfOriginID);
                 this.columnOriginCIty = new global::System.Data.DataColumn("OriginCIty", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOriginCIty);
                 this.columnOriginCountry = new global::System.Data.DataColumn("OriginCountry", typeof(string), null, global::System.Data.MappingType.Element);
@@ -13884,17 +13954,17 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnTravelRemarks);
                 this.columnPurposeOfVisit = new global::System.Data.DataColumn("PurposeOfVisit", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPurposeOfVisit);
-                this.columnDepartureDate = new global::System.Data.DataColumn("DepartureDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnDepartureDate = new global::System.Data.DataColumn("DepartureDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDepartureDate);
-                this.columnDepartureTime = new global::System.Data.DataColumn("DepartureTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnDepartureTime = new global::System.Data.DataColumn("DepartureTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDepartureTime);
-                this.columnReturnDate = new global::System.Data.DataColumn("ReturnDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnReturnDate = new global::System.Data.DataColumn("ReturnDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnReturnDate);
-                this.columnReturnTime = new global::System.Data.DataColumn("ReturnTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnReturnTime = new global::System.Data.DataColumn("ReturnTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnReturnTime);
-                this.columnFirstBusinessDay = new global::System.Data.DataColumn("FirstBusinessDay", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnFirstBusinessDay = new global::System.Data.DataColumn("FirstBusinessDay", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFirstBusinessDay);
-                this.columnLastBusinessDay = new global::System.Data.DataColumn("LastBusinessDay", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnLastBusinessDay = new global::System.Data.DataColumn("LastBusinessDay", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLastBusinessDay);
                 this.columnRemarks = new global::System.Data.DataColumn("Remarks", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRemarks);
@@ -13918,27 +13988,27 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnAirportPickUp);
                 this.columnPickUpLocation = new global::System.Data.DataColumn("PickUpLocation", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPickUpLocation);
-                this.columnPickUpDate = new global::System.Data.DataColumn("PickUpDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnPickUpDate = new global::System.Data.DataColumn("PickUpDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPickUpDate);
-                this.columnPickUpTime = new global::System.Data.DataColumn("PickUpTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnPickUpTime = new global::System.Data.DataColumn("PickUpTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPickUpTime);
                 this.columnDropOffLocation = new global::System.Data.DataColumn("DropOffLocation", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDropOffLocation);
-                this.columnDropOffDate = new global::System.Data.DataColumn("DropOffDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnDropOffDate = new global::System.Data.DataColumn("DropOffDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDropOffDate);
-                this.columnDropOffTime = new global::System.Data.DataColumn("DropOffTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnDropOffTime = new global::System.Data.DataColumn("DropOffTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDropOffTime);
                 this.columnPreferredVehicle = new global::System.Data.DataColumn("PreferredVehicle", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPreferredVehicle);
                 this.columnTravelSector = new global::System.Data.DataColumn("TravelSector", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTravelSector);
-                this.columnCheckInDate = new global::System.Data.DataColumn("CheckInDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnCheckInDate = new global::System.Data.DataColumn("CheckInDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckInDate);
-                this.columnCheckOutDate = new global::System.Data.DataColumn("CheckOutDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnCheckOutDate = new global::System.Data.DataColumn("CheckOutDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckOutDate);
-                this.columnCheckInTime = new global::System.Data.DataColumn("CheckInTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnCheckInTime = new global::System.Data.DataColumn("CheckInTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckInTime);
-                this.columnCheckOutTime = new global::System.Data.DataColumn("CheckOutTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnCheckOutTime = new global::System.Data.DataColumn("CheckOutTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckOutTime);
                 this.columnApprovalLevel = new global::System.Data.DataColumn("ApprovalLevel", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApprovalLevel);
@@ -13948,13 +14018,13 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnApprovedByName);
                 this.columnApprovalRemarks = new global::System.Data.DataColumn("ApprovalRemarks", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApprovalRemarks);
-                this.columnCreateOn = new global::System.Data.DataColumn("CreateOn", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnCreateOn = new global::System.Data.DataColumn("CreateOn", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreateOn);
                 this.columnCreatedBy = new global::System.Data.DataColumn("CreatedBy", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreatedBy);
                 this.columnCreatedByName = new global::System.Data.DataColumn("CreatedByName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreatedByName);
-                this.columnModifiedOn = new global::System.Data.DataColumn("ModifiedOn", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnModifiedOn = new global::System.Data.DataColumn("ModifiedOn", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnModifiedOn);
                 this.columnModifiedBy = new global::System.Data.DataColumn("ModifiedBy", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnModifiedBy);
@@ -13985,6 +14055,12 @@ namespace Travel_Request_System_EF {
                 this.columnCurrencySymbol.MaxLength = 10;
                 this.columnTravelRemarks.MaxLength = 2147483647;
                 this.columnPurposeOfVisit.MaxLength = 2147483647;
+                this.columnDepartureDate.MaxLength = 4000;
+                this.columnDepartureTime.MaxLength = 4000;
+                this.columnReturnDate.MaxLength = 4000;
+                this.columnReturnTime.MaxLength = 4000;
+                this.columnFirstBusinessDay.MaxLength = 4000;
+                this.columnLastBusinessDay.MaxLength = 4000;
                 this.columnRemarks.MaxLength = 500;
                 this.columnAirTicketManagement.MaxLength = 50;
                 this.columnHotelName.MaxLength = 50;
@@ -13995,13 +14071,23 @@ namespace Travel_Request_System_EF {
                 this.columnRoomType.MaxLength = 50;
                 this.columnAirportPickUp.MaxLength = 50;
                 this.columnPickUpLocation.MaxLength = 500;
+                this.columnPickUpDate.MaxLength = 4000;
+                this.columnPickUpTime.MaxLength = 4000;
                 this.columnDropOffLocation.MaxLength = 500;
+                this.columnDropOffDate.MaxLength = 4000;
+                this.columnDropOffTime.MaxLength = 4000;
                 this.columnPreferredVehicle.MaxLength = 250;
                 this.columnTravelSector.MaxLength = 250;
+                this.columnCheckInDate.MaxLength = 4000;
+                this.columnCheckOutDate.MaxLength = 4000;
+                this.columnCheckInTime.MaxLength = 4000;
+                this.columnCheckOutTime.MaxLength = 4000;
                 this.columnApprovalLevel.AllowDBNull = false;
                 this.columnApprovedByName.MaxLength = 2147483647;
                 this.columnApprovalRemarks.MaxLength = 2147483647;
+                this.columnCreateOn.MaxLength = 4000;
                 this.columnCreatedByName.MaxLength = 2147483647;
+                this.columnModifiedOn.MaxLength = 4000;
                 this.columnModifiedByName.MaxLength = 2147483647;
                 this.columnIsSubmitted.AllowDBNull = false;
             }
@@ -14784,12 +14870,12 @@ namespace Travel_Request_System_EF {
                         int TravelDays, 
                         string TravelRemarks, 
                         string PurposeOfVisit, 
-                        System.DateTime DepartureDate, 
-                        System.TimeSpan DepartureTime, 
-                        System.DateTime ReturnDate, 
-                        System.TimeSpan ReturnTime, 
-                        System.DateTime FirstBusinessDay, 
-                        System.DateTime LastBusinessDay, 
+                        string DepartureDate, 
+                        string DepartureTime, 
+                        string ReturnDate, 
+                        string ReturnTime, 
+                        string FirstBusinessDay, 
+                        string LastBusinessDay, 
                         string Remarks, 
                         string AirTicketManagement, 
                         string HotelName, 
@@ -14801,25 +14887,25 @@ namespace Travel_Request_System_EF {
                         decimal AdditionalAllowance, 
                         string AirportPickUp, 
                         string PickUpLocation, 
-                        System.DateTime PickUpDate, 
-                        System.TimeSpan PickUpTime, 
+                        string PickUpDate, 
+                        string PickUpTime, 
                         string DropOffLocation, 
-                        System.DateTime DropOffDate, 
-                        System.TimeSpan DropOffTime, 
+                        string DropOffDate, 
+                        string DropOffTime, 
                         string PreferredVehicle, 
                         string TravelSector, 
-                        System.DateTime CheckInDate, 
-                        System.DateTime CheckOutDate, 
-                        System.TimeSpan CheckInTime, 
-                        System.TimeSpan CheckOutTime, 
+                        string CheckInDate, 
+                        string CheckOutDate, 
+                        string CheckInTime, 
+                        string CheckOutTime, 
                         int ApprovalLevel, 
                         int ApprovalBy, 
                         string ApprovedByName, 
                         string ApprovalRemarks, 
-                        System.DateTime CreateOn, 
+                        string CreateOn, 
                         int CreatedBy, 
                         string CreatedByName, 
-                        System.DateTime ModifiedOn, 
+                        string ModifiedOn, 
                         int ModifiedBy, 
                         string ModifiedByName, 
                         bool IsDeleted, 
@@ -15004,17 +15090,17 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnTravelRemarks);
                 this.columnPurposeOfVisit = new global::System.Data.DataColumn("PurposeOfVisit", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPurposeOfVisit);
-                this.columnDepartureDate = new global::System.Data.DataColumn("DepartureDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnDepartureDate = new global::System.Data.DataColumn("DepartureDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDepartureDate);
-                this.columnDepartureTime = new global::System.Data.DataColumn("DepartureTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnDepartureTime = new global::System.Data.DataColumn("DepartureTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDepartureTime);
-                this.columnReturnDate = new global::System.Data.DataColumn("ReturnDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnReturnDate = new global::System.Data.DataColumn("ReturnDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnReturnDate);
-                this.columnReturnTime = new global::System.Data.DataColumn("ReturnTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnReturnTime = new global::System.Data.DataColumn("ReturnTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnReturnTime);
-                this.columnFirstBusinessDay = new global::System.Data.DataColumn("FirstBusinessDay", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnFirstBusinessDay = new global::System.Data.DataColumn("FirstBusinessDay", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFirstBusinessDay);
-                this.columnLastBusinessDay = new global::System.Data.DataColumn("LastBusinessDay", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnLastBusinessDay = new global::System.Data.DataColumn("LastBusinessDay", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLastBusinessDay);
                 this.columnRemarks = new global::System.Data.DataColumn("Remarks", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRemarks);
@@ -15038,27 +15124,27 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnAirportPickUp);
                 this.columnPickUpLocation = new global::System.Data.DataColumn("PickUpLocation", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPickUpLocation);
-                this.columnPickUpDate = new global::System.Data.DataColumn("PickUpDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnPickUpDate = new global::System.Data.DataColumn("PickUpDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPickUpDate);
-                this.columnPickUpTime = new global::System.Data.DataColumn("PickUpTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnPickUpTime = new global::System.Data.DataColumn("PickUpTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPickUpTime);
                 this.columnDropOffLocation = new global::System.Data.DataColumn("DropOffLocation", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDropOffLocation);
-                this.columnDropOffDate = new global::System.Data.DataColumn("DropOffDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnDropOffDate = new global::System.Data.DataColumn("DropOffDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDropOffDate);
-                this.columnDropOffTime = new global::System.Data.DataColumn("DropOffTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnDropOffTime = new global::System.Data.DataColumn("DropOffTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDropOffTime);
                 this.columnPreferredVehicle = new global::System.Data.DataColumn("PreferredVehicle", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPreferredVehicle);
                 this.columnTravelSector = new global::System.Data.DataColumn("TravelSector", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTravelSector);
-                this.columnCheckInDate = new global::System.Data.DataColumn("CheckInDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnCheckInDate = new global::System.Data.DataColumn("CheckInDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckInDate);
-                this.columnCheckOutDate = new global::System.Data.DataColumn("CheckOutDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnCheckOutDate = new global::System.Data.DataColumn("CheckOutDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckOutDate);
-                this.columnCheckInTime = new global::System.Data.DataColumn("CheckInTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnCheckInTime = new global::System.Data.DataColumn("CheckInTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckInTime);
-                this.columnCheckOutTime = new global::System.Data.DataColumn("CheckOutTime", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
+                this.columnCheckOutTime = new global::System.Data.DataColumn("CheckOutTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckOutTime);
                 this.columnApprovalLevel = new global::System.Data.DataColumn("ApprovalLevel", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApprovalLevel);
@@ -15068,13 +15154,13 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnApprovedByName);
                 this.columnApprovalRemarks = new global::System.Data.DataColumn("ApprovalRemarks", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApprovalRemarks);
-                this.columnCreateOn = new global::System.Data.DataColumn("CreateOn", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnCreateOn = new global::System.Data.DataColumn("CreateOn", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreateOn);
                 this.columnCreatedBy = new global::System.Data.DataColumn("CreatedBy", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreatedBy);
                 this.columnCreatedByName = new global::System.Data.DataColumn("CreatedByName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreatedByName);
-                this.columnModifiedOn = new global::System.Data.DataColumn("ModifiedOn", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columnModifiedOn = new global::System.Data.DataColumn("ModifiedOn", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnModifiedOn);
                 this.columnModifiedBy = new global::System.Data.DataColumn("ModifiedBy", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnModifiedBy);
@@ -15099,6 +15185,18 @@ namespace Travel_Request_System_EF {
                 this.columnCurrencySymbol.MaxLength = 10;
                 this.columnTravelRemarks.MaxLength = 2147483647;
                 this.columnPurposeOfVisit.MaxLength = 2147483647;
+                this.columnDepartureDate.ReadOnly = true;
+                this.columnDepartureDate.MaxLength = 4000;
+                this.columnDepartureTime.ReadOnly = true;
+                this.columnDepartureTime.MaxLength = 4000;
+                this.columnReturnDate.ReadOnly = true;
+                this.columnReturnDate.MaxLength = 4000;
+                this.columnReturnTime.ReadOnly = true;
+                this.columnReturnTime.MaxLength = 4000;
+                this.columnFirstBusinessDay.ReadOnly = true;
+                this.columnFirstBusinessDay.MaxLength = 4000;
+                this.columnLastBusinessDay.ReadOnly = true;
+                this.columnLastBusinessDay.MaxLength = 4000;
                 this.columnRemarks.MaxLength = 500;
                 this.columnAirTicketManagement.MaxLength = 50;
                 this.columnHotelName.MaxLength = 50;
@@ -15109,15 +15207,35 @@ namespace Travel_Request_System_EF {
                 this.columnRoomType.MaxLength = 50;
                 this.columnAirportPickUp.MaxLength = 50;
                 this.columnPickUpLocation.MaxLength = 500;
+                this.columnPickUpDate.ReadOnly = true;
+                this.columnPickUpDate.MaxLength = 4000;
+                this.columnPickUpTime.ReadOnly = true;
+                this.columnPickUpTime.MaxLength = 4000;
                 this.columnDropOffLocation.MaxLength = 500;
+                this.columnDropOffDate.ReadOnly = true;
+                this.columnDropOffDate.MaxLength = 4000;
+                this.columnDropOffTime.ReadOnly = true;
+                this.columnDropOffTime.MaxLength = 4000;
                 this.columnPreferredVehicle.MaxLength = 250;
                 this.columnTravelSector.MaxLength = 250;
+                this.columnCheckInDate.ReadOnly = true;
+                this.columnCheckInDate.MaxLength = 4000;
+                this.columnCheckOutDate.ReadOnly = true;
+                this.columnCheckOutDate.MaxLength = 4000;
+                this.columnCheckInTime.ReadOnly = true;
+                this.columnCheckInTime.MaxLength = 4000;
+                this.columnCheckOutTime.ReadOnly = true;
+                this.columnCheckOutTime.MaxLength = 4000;
                 this.columnApprovalLevel.AllowDBNull = false;
                 this.columnApprovedByName.ReadOnly = true;
                 this.columnApprovedByName.MaxLength = 2147483647;
                 this.columnApprovalRemarks.MaxLength = 2147483647;
+                this.columnCreateOn.ReadOnly = true;
+                this.columnCreateOn.MaxLength = 4000;
                 this.columnCreatedByName.ReadOnly = true;
                 this.columnCreatedByName.MaxLength = 2147483647;
+                this.columnModifiedOn.ReadOnly = true;
+                this.columnModifiedOn.MaxLength = 4000;
                 this.columnModifiedByName.ReadOnly = true;
                 this.columnModifiedByName.MaxLength = 2147483647;
                 this.columnIsSubmitted.AllowDBNull = false;
@@ -15477,6 +15595,22 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsActive {
+                get {
+                    try {
+                        return ((bool)(this[this.tableATQuotation.IsActiveColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsActive\' in table \'ATQuotation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableATQuotation.IsActiveColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public CityRow CityRowByfk_ATQuotation_DestinationID {
                 get {
                     return ((CityRow)(this.GetParentRow(this.Table.ParentRelations["fk_ATQuotation_DestinationID"])));
@@ -15650,6 +15784,18 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetQuotationNameNull() {
                 this[this.tableATQuotation.QuotationNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsIsActiveNull() {
+                return this.IsNull(this.tableATQuotation.IsActiveColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetIsActiveNull() {
+                this[this.tableATQuotation.IsActiveColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -17252,6 +17398,22 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsActive {
+                get {
+                    try {
+                        return ((bool)(this[this.tableHSQuotation.IsActiveColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsActive\' in table \'HSQuotation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHSQuotation.IsActiveColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public QuotationRow QuotationRow {
                 get {
                     return ((QuotationRow)(this.GetParentRow(this.Table.ParentRelations["fk_HSQuotation_QuotationID"])));
@@ -17403,6 +17565,18 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetQuotationNameNull() {
                 this[this.tableHSQuotation.QuotationNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsIsActiveNull() {
+                return this.IsNull(this.tableHSQuotation.IsActiveColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetIsActiveNull() {
+                this[this.tableHSQuotation.IsActiveColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -19191,6 +19365,22 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsActive {
+                get {
+                    try {
+                        return ((bool)(this[this.tablePCQuotation.IsActiveColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsActive\' in table \'PCQuotation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePCQuotation.IsActiveColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public QuotationRow QuotationRow {
                 get {
                     return ((QuotationRow)(this.GetParentRow(this.Table.ParentRelations["fk_PCQuotation_QuotationID"])));
@@ -19330,6 +19520,18 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetQuotationNameNull() {
                 this[this.tablePCQuotation.QuotationNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsIsActiveNull() {
+                return this.IsNull(this.tablePCQuotation.IsActiveColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetIsActiveNull() {
+                this[this.tablePCQuotation.IsActiveColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -19605,22 +19807,6 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDeleted {
-                get {
-                    try {
-                        return ((bool)(this[this.tableRFQ.IsDeletedColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IsDeleted\' in table \'RFQ\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableRFQ.IsDeletedColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string RFQName {
                 get {
                     try {
@@ -19632,6 +19818,17 @@ namespace Travel_Request_System_EF {
                 }
                 set {
                     this[this.tableRFQ.RFQNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDeleted {
+                get {
+                    return ((bool)(this[this.tableRFQ.IsDeletedColumn]));
+                }
+                set {
+                    this[this.tableRFQ.IsDeletedColumn] = value;
                 }
             }
             
@@ -19714,18 +19911,6 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetRemarksNull() {
                 this[this.tableRFQ.RemarksColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsIsDeletedNull() {
-                return this.IsNull(this.tableRFQ.IsDeletedColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetIsDeletedNull() {
-                this[this.tableRFQ.IsDeletedColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -20012,12 +20197,7 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsActive {
                 get {
-                    try {
-                        return ((bool)(this[this.tableTravelAgency.IsActiveColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IsActive\' in table \'TravelAgency\' is DBNull.", e);
-                    }
+                    return ((bool)(this[this.tableTravelAgency.IsActiveColumn]));
                 }
                 set {
                     this[this.tableTravelAgency.IsActiveColumn] = value;
@@ -20130,18 +20310,6 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetEmailNull() {
                 this[this.tableTravelAgency.EmailColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsIsActiveNull() {
-                return this.IsNull(this.tableTravelAgency.IsActiveColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetIsActiveNull() {
-                this[this.tableTravelAgency.IsActiveColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -20904,6 +21072,22 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string airlines {
+                get {
+                    try {
+                        return ((string)(this[this.tableTravelRequests.airlinesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'airlines\' in table \'TravelRequests\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTravelRequests.airlinesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public UsersRow UsersRowByFK__TravelReq__ApprovalBy {
                 get {
                     return ((UsersRow)(this.GetParentRow(this.Table.ParentRelations["FK__TravelReq__ApprovalBy"])));
@@ -21475,6 +21659,18 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsairlinesNull() {
+                return this.IsNull(this.tableTravelRequests.airlinesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetairlinesNull() {
+                this[this.tableTravelRequests.airlinesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public QuotationRow[] GetQuotationRows() {
                 if ((this.Table.ChildRelations["fk_Quotation_TravelRequestID"] == null)) {
                     return new QuotationRow[0];
@@ -21999,22 +22195,6 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int PortOfOriginID {
-                get {
-                    try {
-                        return ((int)(this[this.tableLPODetails.PortOfOriginIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PortOfOriginID\' in table \'LPODetails\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableLPODetails.PortOfOriginIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string OriginCIty {
                 get {
                     try {
@@ -22223,10 +22403,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime DepartureDate {
+            public string DepartureDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.DepartureDateColumn]));
+                        return ((string)(this[this.tableLPODetails.DepartureDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DepartureDate\' in table \'LPODetails\' is DBNull.", e);
@@ -22239,10 +22419,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan DepartureTime {
+            public string DepartureTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableLPODetails.DepartureTimeColumn]));
+                        return ((string)(this[this.tableLPODetails.DepartureTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DepartureTime\' in table \'LPODetails\' is DBNull.", e);
@@ -22255,10 +22435,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime ReturnDate {
+            public string ReturnDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.ReturnDateColumn]));
+                        return ((string)(this[this.tableLPODetails.ReturnDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ReturnDate\' in table \'LPODetails\' is DBNull.", e);
@@ -22271,10 +22451,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan ReturnTime {
+            public string ReturnTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableLPODetails.ReturnTimeColumn]));
+                        return ((string)(this[this.tableLPODetails.ReturnTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ReturnTime\' in table \'LPODetails\' is DBNull.", e);
@@ -22287,10 +22467,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime FirstBusinessDay {
+            public string FirstBusinessDay {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.FirstBusinessDayColumn]));
+                        return ((string)(this[this.tableLPODetails.FirstBusinessDayColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'FirstBusinessDay\' in table \'LPODetails\' is DBNull.", e);
@@ -22303,10 +22483,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime LastBusinessDay {
+            public string LastBusinessDay {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.LastBusinessDayColumn]));
+                        return ((string)(this[this.tableLPODetails.LastBusinessDayColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'LastBusinessDay\' in table \'LPODetails\' is DBNull.", e);
@@ -22495,10 +22675,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime PickUpDate {
+            public string PickUpDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.PickUpDateColumn]));
+                        return ((string)(this[this.tableLPODetails.PickUpDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PickUpDate\' in table \'LPODetails\' is DBNull.", e);
@@ -22511,10 +22691,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan PickUpTime {
+            public string PickUpTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableLPODetails.PickUpTimeColumn]));
+                        return ((string)(this[this.tableLPODetails.PickUpTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PickUpTime\' in table \'LPODetails\' is DBNull.", e);
@@ -22543,10 +22723,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime DropOffDate {
+            public string DropOffDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.DropOffDateColumn]));
+                        return ((string)(this[this.tableLPODetails.DropOffDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DropOffDate\' in table \'LPODetails\' is DBNull.", e);
@@ -22559,10 +22739,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan DropOffTime {
+            public string DropOffTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableLPODetails.DropOffTimeColumn]));
+                        return ((string)(this[this.tableLPODetails.DropOffTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DropOffTime\' in table \'LPODetails\' is DBNull.", e);
@@ -22607,10 +22787,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime CheckInDate {
+            public string CheckInDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.CheckInDateColumn]));
+                        return ((string)(this[this.tableLPODetails.CheckInDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CheckInDate\' in table \'LPODetails\' is DBNull.", e);
@@ -22623,10 +22803,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime CheckOutDate {
+            public string CheckOutDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.CheckOutDateColumn]));
+                        return ((string)(this[this.tableLPODetails.CheckOutDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CheckOutDate\' in table \'LPODetails\' is DBNull.", e);
@@ -22639,10 +22819,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan CheckInTime {
+            public string CheckInTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableLPODetails.CheckInTimeColumn]));
+                        return ((string)(this[this.tableLPODetails.CheckInTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CheckInTime\' in table \'LPODetails\' is DBNull.", e);
@@ -22655,10 +22835,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan CheckOutTime {
+            public string CheckOutTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableLPODetails.CheckOutTimeColumn]));
+                        return ((string)(this[this.tableLPODetails.CheckOutTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CheckOutTime\' in table \'LPODetails\' is DBNull.", e);
@@ -22735,10 +22915,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime CreateOn {
+            public string CreateOn {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.CreateOnColumn]));
+                        return ((string)(this[this.tableLPODetails.CreateOnColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CreateOn\' in table \'LPODetails\' is DBNull.", e);
@@ -22783,10 +22963,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime ModifiedOn {
+            public string ModifiedOn {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.ModifiedOnColumn]));
+                        return ((string)(this[this.tableLPODetails.ModifiedOnColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ModifiedOn\' in table \'LPODetails\' is DBNull.", e);
@@ -22895,10 +23075,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime ATDepartureDate {
+            public string ATDepartureDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.ATDepartureDateColumn]));
+                        return ((string)(this[this.tableLPODetails.ATDepartureDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ATDepartureDate\' in table \'LPODetails\' is DBNull.", e);
@@ -22911,10 +23091,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan ATDepartureTime {
+            public string ATDepartureTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableLPODetails.ATDepartureTimeColumn]));
+                        return ((string)(this[this.tableLPODetails.ATDepartureTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ATDepartureTime\' in table \'LPODetails\' is DBNull.", e);
@@ -22922,6 +23102,38 @@ namespace Travel_Request_System_EF {
                 }
                 set {
                     this[this.tableLPODetails.ATDepartureTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ATReturnDate {
+                get {
+                    try {
+                        return ((string)(this[this.tableLPODetails.ATReturnDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ATReturnDate\' in table \'LPODetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLPODetails.ATReturnDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ATReturnTime {
+                get {
+                    try {
+                        return ((string)(this[this.tableLPODetails.ATReturnTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ATReturnTime\' in table \'LPODetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLPODetails.ATReturnTimeColumn] = value;
                 }
             }
             
@@ -23039,38 +23251,6 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime ATReturnDate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.ATReturnDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ATReturnDate\' in table \'LPODetails\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableLPODetails.ATReturnDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan ATReturnTime {
-                get {
-                    try {
-                        return ((global::System.TimeSpan)(this[this.tableLPODetails.ATReturnTimeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ATReturnTime\' in table \'LPODetails\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableLPODetails.ATReturnTimeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string ATTicketClass {
                 get {
                     try {
@@ -23119,10 +23299,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime HSCheckInDate {
+            public string HSCheckInDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.HSCheckInDateColumn]));
+                        return ((string)(this[this.tableLPODetails.HSCheckInDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'HSCheckInDate\' in table \'LPODetails\' is DBNull.", e);
@@ -23135,26 +23315,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan HSCheckInTime {
+            public string HSCheckOutDate {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableLPODetails.HSCheckInTimeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'HSCheckInTime\' in table \'LPODetails\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableLPODetails.HSCheckInTimeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime HSCheckOutDate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.HSCheckOutDateColumn]));
+                        return ((string)(this[this.tableLPODetails.HSCheckOutDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'HSCheckOutDate\' in table \'LPODetails\' is DBNull.", e);
@@ -23167,10 +23331,26 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan HSCheckOutTime {
+            public string HSCheckInTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableLPODetails.HSCheckOutTimeColumn]));
+                        return ((string)(this[this.tableLPODetails.HSCheckInTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HSCheckInTime\' in table \'LPODetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLPODetails.HSCheckInTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string HSCheckOutTime {
+                get {
+                    try {
+                        return ((string)(this[this.tableLPODetails.HSCheckOutTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'HSCheckOutTime\' in table \'LPODetails\' is DBNull.", e);
@@ -23295,58 +23475,26 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime PCDropOffDate {
+            public string PCPickUpLocation {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.PCDropOffDateColumn]));
+                        return ((string)(this[this.tableLPODetails.PCPickUpLocationColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PCDropOffDate\' in table \'LPODetails\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'PCPickUpLocation\' in table \'LPODetails\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLPODetails.PCDropOffDateColumn] = value;
+                    this[this.tableLPODetails.PCPickUpLocationColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string PCDropoffLocation {
+            public string PCPickUpDate {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.PCDropoffLocationColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PCDropoffLocation\' in table \'LPODetails\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableLPODetails.PCDropoffLocationColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan PCDropOffTime {
-                get {
-                    try {
-                        return ((global::System.TimeSpan)(this[this.tableLPODetails.PCDropOffTimeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PCDropOffTime\' in table \'LPODetails\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableLPODetails.PCDropOffTimeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime PCPickUpDate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableLPODetails.PCPickUpDateColumn]));
+                        return ((string)(this[this.tableLPODetails.PCPickUpDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PCPickUpDate\' in table \'LPODetails\' is DBNull.", e);
@@ -23359,26 +23507,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string PCPickupLocation {
+            public string PCPickUpTime {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.PCPickupLocationColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PCPickupLocation\' in table \'LPODetails\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableLPODetails.PCPickupLocationColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan PCPickUpTime {
-                get {
-                    try {
-                        return ((global::System.TimeSpan)(this[this.tableLPODetails.PCPickUpTimeColumn]));
+                        return ((string)(this[this.tableLPODetails.PCPickUpTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PCPickUpTime\' in table \'LPODetails\' is DBNull.", e);
@@ -23386,6 +23518,54 @@ namespace Travel_Request_System_EF {
                 }
                 set {
                     this[this.tableLPODetails.PCPickUpTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PCDropOffLocation {
+                get {
+                    try {
+                        return ((string)(this[this.tableLPODetails.PCDropOffLocationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PCDropOffLocation\' in table \'LPODetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLPODetails.PCDropOffLocationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PCDropOffDate {
+                get {
+                    try {
+                        return ((string)(this[this.tableLPODetails.PCDropOffDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PCDropOffDate\' in table \'LPODetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLPODetails.PCDropOffDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PCDropOffTime {
+                get {
+                    try {
+                        return ((string)(this[this.tableLPODetails.PCDropOffTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PCDropOffTime\' in table \'LPODetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLPODetails.PCDropOffTimeColumn] = value;
                 }
             }
             
@@ -23579,18 +23759,6 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetApplicationNumberNull() {
                 this[this.tableLPODetails.ApplicationNumberColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsPortOfOriginIDNull() {
-                return this.IsNull(this.tableLPODetails.PortOfOriginIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetPortOfOriginIDNull() {
-                this[this.tableLPODetails.PortOfOriginIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24279,6 +24447,30 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsATReturnDateNull() {
+                return this.IsNull(this.tableLPODetails.ATReturnDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetATReturnDateNull() {
+                this[this.tableLPODetails.ATReturnDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsATReturnTimeNull() {
+                return this.IsNull(this.tableLPODetails.ATReturnTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetATReturnTimeNull() {
+                this[this.tableLPODetails.ATReturnTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsDestinationIDNull() {
                 return this.IsNull(this.tableLPODetails.DestinationIDColumn);
             }
@@ -24363,30 +24555,6 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsATReturnDateNull() {
-                return this.IsNull(this.tableLPODetails.ATReturnDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetATReturnDateNull() {
-                this[this.tableLPODetails.ATReturnDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsATReturnTimeNull() {
-                return this.IsNull(this.tableLPODetails.ATReturnTimeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetATReturnTimeNull() {
-                this[this.tableLPODetails.ATReturnTimeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsATTicketClassNull() {
                 return this.IsNull(this.tableLPODetails.ATTicketClassColumn);
             }
@@ -24435,18 +24603,6 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsHSCheckInTimeNull() {
-                return this.IsNull(this.tableLPODetails.HSCheckInTimeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetHSCheckInTimeNull() {
-                this[this.tableLPODetails.HSCheckInTimeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsHSCheckOutDateNull() {
                 return this.IsNull(this.tableLPODetails.HSCheckOutDateColumn);
             }
@@ -24455,6 +24611,18 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetHSCheckOutDateNull() {
                 this[this.tableLPODetails.HSCheckOutDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsHSCheckInTimeNull() {
+                return this.IsNull(this.tableLPODetails.HSCheckInTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetHSCheckInTimeNull() {
+                this[this.tableLPODetails.HSCheckInTimeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24555,38 +24723,14 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsPCDropOffDateNull() {
-                return this.IsNull(this.tableLPODetails.PCDropOffDateColumn);
+            public bool IsPCPickUpLocationNull() {
+                return this.IsNull(this.tableLPODetails.PCPickUpLocationColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetPCDropOffDateNull() {
-                this[this.tableLPODetails.PCDropOffDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsPCDropoffLocationNull() {
-                return this.IsNull(this.tableLPODetails.PCDropoffLocationColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetPCDropoffLocationNull() {
-                this[this.tableLPODetails.PCDropoffLocationColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsPCDropOffTimeNull() {
-                return this.IsNull(this.tableLPODetails.PCDropOffTimeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetPCDropOffTimeNull() {
-                this[this.tableLPODetails.PCDropOffTimeColumn] = global::System.Convert.DBNull;
+            public void SetPCPickUpLocationNull() {
+                this[this.tableLPODetails.PCPickUpLocationColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24603,18 +24747,6 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsPCPickupLocationNull() {
-                return this.IsNull(this.tableLPODetails.PCPickupLocationColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetPCPickupLocationNull() {
-                this[this.tableLPODetails.PCPickupLocationColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsPCPickUpTimeNull() {
                 return this.IsNull(this.tableLPODetails.PCPickUpTimeColumn);
             }
@@ -24623,6 +24755,42 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetPCPickUpTimeNull() {
                 this[this.tableLPODetails.PCPickUpTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPCDropOffLocationNull() {
+                return this.IsNull(this.tableLPODetails.PCDropOffLocationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPCDropOffLocationNull() {
+                this[this.tableLPODetails.PCDropOffLocationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPCDropOffDateNull() {
+                return this.IsNull(this.tableLPODetails.PCDropOffDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPCDropOffDateNull() {
+                this[this.tableLPODetails.PCDropOffDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPCDropOffTimeNull() {
+                return this.IsNull(this.tableLPODetails.PCDropOffTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPCDropOffTimeNull() {
+                this[this.tableLPODetails.PCDropOffTimeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24786,22 +24954,6 @@ namespace Travel_Request_System_EF {
                 }
                 set {
                     this[this.tableRFQDetails.ApplicationNumberColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int PortOfOriginID {
-                get {
-                    try {
-                        return ((int)(this[this.tableRFQDetails.PortOfOriginIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PortOfOriginID\' in table \'RFQDetails\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableRFQDetails.PortOfOriginIDColumn] = value;
                 }
             }
             
@@ -25015,10 +25167,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime DepartureDate {
+            public string DepartureDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableRFQDetails.DepartureDateColumn]));
+                        return ((string)(this[this.tableRFQDetails.DepartureDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DepartureDate\' in table \'RFQDetails\' is DBNull.", e);
@@ -25031,10 +25183,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan DepartureTime {
+            public string DepartureTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableRFQDetails.DepartureTimeColumn]));
+                        return ((string)(this[this.tableRFQDetails.DepartureTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DepartureTime\' in table \'RFQDetails\' is DBNull.", e);
@@ -25047,10 +25199,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime ReturnDate {
+            public string ReturnDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableRFQDetails.ReturnDateColumn]));
+                        return ((string)(this[this.tableRFQDetails.ReturnDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ReturnDate\' in table \'RFQDetails\' is DBNull.", e);
@@ -25063,10 +25215,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan ReturnTime {
+            public string ReturnTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableRFQDetails.ReturnTimeColumn]));
+                        return ((string)(this[this.tableRFQDetails.ReturnTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ReturnTime\' in table \'RFQDetails\' is DBNull.", e);
@@ -25079,10 +25231,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime FirstBusinessDay {
+            public string FirstBusinessDay {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableRFQDetails.FirstBusinessDayColumn]));
+                        return ((string)(this[this.tableRFQDetails.FirstBusinessDayColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'FirstBusinessDay\' in table \'RFQDetails\' is DBNull.", e);
@@ -25095,10 +25247,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime LastBusinessDay {
+            public string LastBusinessDay {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableRFQDetails.LastBusinessDayColumn]));
+                        return ((string)(this[this.tableRFQDetails.LastBusinessDayColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'LastBusinessDay\' in table \'RFQDetails\' is DBNull.", e);
@@ -25287,10 +25439,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime PickUpDate {
+            public string PickUpDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableRFQDetails.PickUpDateColumn]));
+                        return ((string)(this[this.tableRFQDetails.PickUpDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PickUpDate\' in table \'RFQDetails\' is DBNull.", e);
@@ -25303,10 +25455,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan PickUpTime {
+            public string PickUpTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableRFQDetails.PickUpTimeColumn]));
+                        return ((string)(this[this.tableRFQDetails.PickUpTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PickUpTime\' in table \'RFQDetails\' is DBNull.", e);
@@ -25335,10 +25487,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime DropOffDate {
+            public string DropOffDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableRFQDetails.DropOffDateColumn]));
+                        return ((string)(this[this.tableRFQDetails.DropOffDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DropOffDate\' in table \'RFQDetails\' is DBNull.", e);
@@ -25351,10 +25503,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan DropOffTime {
+            public string DropOffTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableRFQDetails.DropOffTimeColumn]));
+                        return ((string)(this[this.tableRFQDetails.DropOffTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DropOffTime\' in table \'RFQDetails\' is DBNull.", e);
@@ -25399,10 +25551,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime CheckInDate {
+            public string CheckInDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableRFQDetails.CheckInDateColumn]));
+                        return ((string)(this[this.tableRFQDetails.CheckInDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CheckInDate\' in table \'RFQDetails\' is DBNull.", e);
@@ -25415,10 +25567,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime CheckOutDate {
+            public string CheckOutDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableRFQDetails.CheckOutDateColumn]));
+                        return ((string)(this[this.tableRFQDetails.CheckOutDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CheckOutDate\' in table \'RFQDetails\' is DBNull.", e);
@@ -25431,10 +25583,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan CheckInTime {
+            public string CheckInTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableRFQDetails.CheckInTimeColumn]));
+                        return ((string)(this[this.tableRFQDetails.CheckInTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CheckInTime\' in table \'RFQDetails\' is DBNull.", e);
@@ -25447,10 +25599,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan CheckOutTime {
+            public string CheckOutTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableRFQDetails.CheckOutTimeColumn]));
+                        return ((string)(this[this.tableRFQDetails.CheckOutTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CheckOutTime\' in table \'RFQDetails\' is DBNull.", e);
@@ -25522,10 +25674,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime CreateOn {
+            public string CreateOn {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableRFQDetails.CreateOnColumn]));
+                        return ((string)(this[this.tableRFQDetails.CreateOnColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CreateOn\' in table \'RFQDetails\' is DBNull.", e);
@@ -25570,10 +25722,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime ModifiedOn {
+            public string ModifiedOn {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableRFQDetails.ModifiedOnColumn]));
+                        return ((string)(this[this.tableRFQDetails.ModifiedOnColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ModifiedOn\' in table \'RFQDetails\' is DBNull.", e);
@@ -25701,18 +25853,6 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetusernameNull() {
                 this[this.tableRFQDetails.usernameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsPortOfOriginIDNull() {
-                return this.IsNull(this.tableRFQDetails.PortOfOriginIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetPortOfOriginIDNull() {
-                this[this.tableRFQDetails.PortOfOriginIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -26593,10 +26733,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime DepartureDate {
+            public string DepartureDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableTravelRequestDetails.DepartureDateColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.DepartureDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DepartureDate\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -26609,10 +26749,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan DepartureTime {
+            public string DepartureTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableTravelRequestDetails.DepartureTimeColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.DepartureTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DepartureTime\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -26625,10 +26765,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime ReturnDate {
+            public string ReturnDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableTravelRequestDetails.ReturnDateColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.ReturnDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ReturnDate\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -26641,10 +26781,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan ReturnTime {
+            public string ReturnTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableTravelRequestDetails.ReturnTimeColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.ReturnTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ReturnTime\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -26657,10 +26797,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime FirstBusinessDay {
+            public string FirstBusinessDay {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableTravelRequestDetails.FirstBusinessDayColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.FirstBusinessDayColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'FirstBusinessDay\' in table \'TravelRequestDetails\' is DBNull" +
@@ -26674,10 +26814,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime LastBusinessDay {
+            public string LastBusinessDay {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableTravelRequestDetails.LastBusinessDayColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.LastBusinessDayColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'LastBusinessDay\' in table \'TravelRequestDetails\' is DBNull." +
@@ -26870,10 +27010,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime PickUpDate {
+            public string PickUpDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableTravelRequestDetails.PickUpDateColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.PickUpDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PickUpDate\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -26886,10 +27026,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan PickUpTime {
+            public string PickUpTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableTravelRequestDetails.PickUpTimeColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.PickUpTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PickUpTime\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -26919,10 +27059,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime DropOffDate {
+            public string DropOffDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableTravelRequestDetails.DropOffDateColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.DropOffDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DropOffDate\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -26935,10 +27075,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan DropOffTime {
+            public string DropOffTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableTravelRequestDetails.DropOffTimeColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.DropOffTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DropOffTime\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -26984,10 +27124,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime CheckInDate {
+            public string CheckInDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableTravelRequestDetails.CheckInDateColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.CheckInDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CheckInDate\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -27000,10 +27140,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime CheckOutDate {
+            public string CheckOutDate {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableTravelRequestDetails.CheckOutDateColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.CheckOutDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CheckOutDate\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -27016,10 +27156,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan CheckInTime {
+            public string CheckInTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableTravelRequestDetails.CheckInTimeColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.CheckInTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CheckInTime\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -27032,10 +27172,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.TimeSpan CheckOutTime {
+            public string CheckOutTime {
                 get {
                     try {
-                        return ((global::System.TimeSpan)(this[this.tableTravelRequestDetails.CheckOutTimeColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.CheckOutTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CheckOutTime\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -27108,10 +27248,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime CreateOn {
+            public string CreateOn {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableTravelRequestDetails.CreateOnColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.CreateOnColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CreateOn\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -27156,10 +27296,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime ModifiedOn {
+            public string ModifiedOn {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableTravelRequestDetails.ModifiedOnColumn]));
+                        return ((string)(this[this.tableTravelRequestDetails.ModifiedOnColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ModifiedOn\' in table \'TravelRequestDetails\' is DBNull.", e);
@@ -28877,6 +29017,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Amount", "Amount");
             tableMapping.ColumnMappings.Add("IsDeleted", "IsDeleted");
             tableMapping.ColumnMappings.Add("QuotationName", "QuotationName");
+            tableMapping.ColumnMappings.Add("IsActive", "IsActive");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -28885,7 +29026,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[ATQuotation] ([QuotationID], [TicketClass], [OriginID], [DestinationID], [DepartureDate], [DepartureTime], [ReturnDate], [ReturnTime], [Airlines], [TicketNo], [Amount], [IsDeleted], [QuotationName]) VALUES (@QuotationID, @TicketClass, @OriginID, @DestinationID, @DepartureDate, @DepartureTime, @ReturnDate, @ReturnTime, @Airlines, @TicketNo, @Amount, @IsDeleted, @QuotationName)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[ATQuotation] ([QuotationID], [TicketClass], [OriginID], [DestinationID], [DepartureDate], [DepartureTime], [ReturnDate], [ReturnTime], [Airlines], [TicketNo], [Amount], [IsDeleted], [QuotationName], [IsActive]) VALUES (@QuotationID, @TicketClass, @OriginID, @DestinationID, @DepartureDate, @DepartureTime, @ReturnDate, @ReturnTime, @Airlines, @TicketNo, @Amount, @IsDeleted, @QuotationName, @IsActive)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuotationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TicketClass", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TicketClass", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -28900,9 +29041,10 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Amount", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Amount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuotationName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[ATQuotation] SET [QuotationID] = @QuotationID, [TicketClass] = @TicketClass, [OriginID] = @OriginID, [DestinationID] = @DestinationID, [DepartureDate] = @DepartureDate, [DepartureTime] = @DepartureTime, [ReturnDate] = @ReturnDate, [ReturnTime] = @ReturnTime, [Airlines] = @Airlines, [TicketNo] = @TicketNo, [Amount] = @Amount, [IsDeleted] = @IsDeleted, [QuotationName] = @QuotationName WHERE (([ID] = @Original_ID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[ATQuotation] SET [QuotationID] = @QuotationID, [TicketClass] = @TicketClass, [OriginID] = @OriginID, [DestinationID] = @DestinationID, [DepartureDate] = @DepartureDate, [DepartureTime] = @DepartureTime, [ReturnDate] = @ReturnDate, [ReturnTime] = @ReturnTime, [Airlines] = @Airlines, [TicketNo] = @TicketNo, [Amount] = @Amount, [IsDeleted] = @IsDeleted, [QuotationName] = @QuotationName, [IsActive] = @IsActive WHERE (([ID] = @Original_ID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuotationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TicketClass", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TicketClass", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -28917,6 +29059,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Amount", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Amount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuotationName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -28935,7 +29078,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, QuotationID, TicketClass, OriginID, DestinationID, DepartureDate, Depa" +
                 "rtureTime, ReturnDate, ReturnTime, Airlines, TicketNo, Amount, IsDeleted, Quotat" +
-                "ionName FROM dbo.ATQuotation";
+                "ionName, IsActive FROM dbo.ATQuotation";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -29018,7 +29161,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int QuotationID, string TicketClass, global::System.Nullable<int> OriginID, global::System.Nullable<int> DestinationID, global::System.Nullable<global::System.DateTime> DepartureDate, global::System.Nullable<global::System.TimeSpan> DepartureTime, global::System.Nullable<global::System.DateTime> ReturnDate, global::System.Nullable<global::System.TimeSpan> ReturnTime, string Airlines, string TicketNo, global::System.Nullable<decimal> Amount, global::System.Nullable<bool> IsDeleted, string QuotationName) {
+        public virtual int Insert(int QuotationID, string TicketClass, global::System.Nullable<int> OriginID, global::System.Nullable<int> DestinationID, global::System.Nullable<global::System.DateTime> DepartureDate, global::System.Nullable<global::System.TimeSpan> DepartureTime, global::System.Nullable<global::System.DateTime> ReturnDate, global::System.Nullable<global::System.TimeSpan> ReturnTime, string Airlines, string TicketNo, global::System.Nullable<decimal> Amount, global::System.Nullable<bool> IsDeleted, string QuotationName, global::System.Nullable<bool> IsActive) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(QuotationID));
             if ((TicketClass == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -29092,6 +29235,12 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[12].Value = ((string)(QuotationName));
             }
+            if ((IsActive.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((bool)(IsActive.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -29112,7 +29261,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int QuotationID, string TicketClass, global::System.Nullable<int> OriginID, global::System.Nullable<int> DestinationID, global::System.Nullable<global::System.DateTime> DepartureDate, global::System.Nullable<global::System.TimeSpan> DepartureTime, global::System.Nullable<global::System.DateTime> ReturnDate, global::System.Nullable<global::System.TimeSpan> ReturnTime, string Airlines, string TicketNo, global::System.Nullable<decimal> Amount, global::System.Nullable<bool> IsDeleted, string QuotationName, int Original_ID) {
+        public virtual int Update(int QuotationID, string TicketClass, global::System.Nullable<int> OriginID, global::System.Nullable<int> DestinationID, global::System.Nullable<global::System.DateTime> DepartureDate, global::System.Nullable<global::System.TimeSpan> DepartureTime, global::System.Nullable<global::System.DateTime> ReturnDate, global::System.Nullable<global::System.TimeSpan> ReturnTime, string Airlines, string TicketNo, global::System.Nullable<decimal> Amount, global::System.Nullable<bool> IsDeleted, string QuotationName, global::System.Nullable<bool> IsActive, int Original_ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(QuotationID));
             if ((TicketClass == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -29186,7 +29335,13 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(QuotationName));
             }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ID));
+            if ((IsActive.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(IsActive.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -31985,6 +32140,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Amount", "Amount");
             tableMapping.ColumnMappings.Add("IsDeleted", "IsDeleted");
             tableMapping.ColumnMappings.Add("QuotationName", "QuotationName");
+            tableMapping.ColumnMappings.Add("IsActive", "IsActive");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -31993,7 +32149,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[HSQuotation] ([QuotationID], [TravelSector], [HotelName], [HotelCategory], [RoomCategory], [RoomType], [CheckInDate], [CheckInTime], [CheckOutDate], [CheckOutTime], [Amount], [IsDeleted], [QuotationName]) VALUES (@QuotationID, @TravelSector, @HotelName, @HotelCategory, @RoomCategory, @RoomType, @CheckInDate, @CheckInTime, @CheckOutDate, @CheckOutTime, @Amount, @IsDeleted, @QuotationName)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[HSQuotation] ([QuotationID], [TravelSector], [HotelName], [HotelCategory], [RoomCategory], [RoomType], [CheckInDate], [CheckInTime], [CheckOutDate], [CheckOutTime], [Amount], [IsDeleted], [QuotationName], [IsActive]) VALUES (@QuotationID, @TravelSector, @HotelName, @HotelCategory, @RoomCategory, @RoomType, @CheckInDate, @CheckInTime, @CheckOutDate, @CheckOutTime, @Amount, @IsDeleted, @QuotationName, @IsActive)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuotationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TravelSector", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TravelSector", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -32008,9 +32164,10 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Amount", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Amount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuotationName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[HSQuotation] SET [QuotationID] = @QuotationID, [TravelSector] = @TravelSector, [HotelName] = @HotelName, [HotelCategory] = @HotelCategory, [RoomCategory] = @RoomCategory, [RoomType] = @RoomType, [CheckInDate] = @CheckInDate, [CheckInTime] = @CheckInTime, [CheckOutDate] = @CheckOutDate, [CheckOutTime] = @CheckOutTime, [Amount] = @Amount, [IsDeleted] = @IsDeleted, [QuotationName] = @QuotationName WHERE (([ID] = @Original_ID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[HSQuotation] SET [QuotationID] = @QuotationID, [TravelSector] = @TravelSector, [HotelName] = @HotelName, [HotelCategory] = @HotelCategory, [RoomCategory] = @RoomCategory, [RoomType] = @RoomType, [CheckInDate] = @CheckInDate, [CheckInTime] = @CheckInTime, [CheckOutDate] = @CheckOutDate, [CheckOutTime] = @CheckOutTime, [Amount] = @Amount, [IsDeleted] = @IsDeleted, [QuotationName] = @QuotationName, [IsActive] = @IsActive WHERE (([ID] = @Original_ID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuotationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TravelSector", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TravelSector", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -32025,6 +32182,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Amount", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Amount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuotationName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -32043,7 +32201,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, QuotationID, TravelSector, HotelName, HotelCategory, RoomCategory, Roo" +
                 "mType, CheckInDate, CheckInTime, CheckOutDate, CheckOutTime, Amount, IsDeleted, " +
-                "QuotationName FROM dbo.HSQuotation";
+                "QuotationName, IsActive FROM dbo.HSQuotation";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -32126,7 +32284,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int QuotationID, string TravelSector, string HotelName, string HotelCategory, string RoomCategory, string RoomType, global::System.Nullable<global::System.DateTime> CheckInDate, global::System.Nullable<global::System.TimeSpan> CheckInTime, global::System.Nullable<global::System.DateTime> CheckOutDate, global::System.Nullable<global::System.TimeSpan> CheckOutTime, global::System.Nullable<decimal> Amount, global::System.Nullable<bool> IsDeleted, string QuotationName) {
+        public virtual int Insert(int QuotationID, string TravelSector, string HotelName, string HotelCategory, string RoomCategory, string RoomType, global::System.Nullable<global::System.DateTime> CheckInDate, global::System.Nullable<global::System.TimeSpan> CheckInTime, global::System.Nullable<global::System.DateTime> CheckOutDate, global::System.Nullable<global::System.TimeSpan> CheckOutTime, global::System.Nullable<decimal> Amount, global::System.Nullable<bool> IsDeleted, string QuotationName, global::System.Nullable<bool> IsActive) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(QuotationID));
             if ((TravelSector == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -32200,6 +32358,12 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[12].Value = ((string)(QuotationName));
             }
+            if ((IsActive.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((bool)(IsActive.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -32220,7 +32384,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int QuotationID, string TravelSector, string HotelName, string HotelCategory, string RoomCategory, string RoomType, global::System.Nullable<global::System.DateTime> CheckInDate, global::System.Nullable<global::System.TimeSpan> CheckInTime, global::System.Nullable<global::System.DateTime> CheckOutDate, global::System.Nullable<global::System.TimeSpan> CheckOutTime, global::System.Nullable<decimal> Amount, global::System.Nullable<bool> IsDeleted, string QuotationName, int Original_ID) {
+        public virtual int Update(int QuotationID, string TravelSector, string HotelName, string HotelCategory, string RoomCategory, string RoomType, global::System.Nullable<global::System.DateTime> CheckInDate, global::System.Nullable<global::System.TimeSpan> CheckInTime, global::System.Nullable<global::System.DateTime> CheckOutDate, global::System.Nullable<global::System.TimeSpan> CheckOutTime, global::System.Nullable<decimal> Amount, global::System.Nullable<bool> IsDeleted, string QuotationName, global::System.Nullable<bool> IsActive, int Original_ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(QuotationID));
             if ((TravelSector == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -32294,7 +32458,13 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(QuotationName));
             }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ID));
+            if ((IsActive.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(IsActive.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -34887,6 +35057,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Amount", "Amount");
             tableMapping.ColumnMappings.Add("IsDeleted", "IsDeleted");
             tableMapping.ColumnMappings.Add("QuotationName", "QuotationName");
+            tableMapping.ColumnMappings.Add("IsActive", "IsActive");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -34895,7 +35066,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[PCQuotation] ([QuotationID], [TravelSector], [PickupLocation], [DropoffLocation], [PreferredVehicle], [PickUpDate], [PickUpTime], [DropOffDate], [DropOffTime], [Amount], [IsDeleted], [QuotationName]) VALUES (@QuotationID, @TravelSector, @PickupLocation, @DropoffLocation, @PreferredVehicle, @PickUpDate, @PickUpTime, @DropOffDate, @DropOffTime, @Amount, @IsDeleted, @QuotationName)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[PCQuotation] ([QuotationID], [TravelSector], [PickupLocation], [DropoffLocation], [PreferredVehicle], [PickUpDate], [PickUpTime], [DropOffDate], [DropOffTime], [Amount], [IsDeleted], [QuotationName], [IsActive]) VALUES (@QuotationID, @TravelSector, @PickupLocation, @DropoffLocation, @PreferredVehicle, @PickUpDate, @PickUpTime, @DropOffDate, @DropOffTime, @Amount, @IsDeleted, @QuotationName, @IsActive)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuotationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TravelSector", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TravelSector", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -34909,9 +35080,10 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Amount", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Amount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuotationName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[PCQuotation] SET [QuotationID] = @QuotationID, [TravelSector] = @TravelSector, [PickupLocation] = @PickupLocation, [DropoffLocation] = @DropoffLocation, [PreferredVehicle] = @PreferredVehicle, [PickUpDate] = @PickUpDate, [PickUpTime] = @PickUpTime, [DropOffDate] = @DropOffDate, [DropOffTime] = @DropOffTime, [Amount] = @Amount, [IsDeleted] = @IsDeleted, [QuotationName] = @QuotationName WHERE (([ID] = @Original_ID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[PCQuotation] SET [QuotationID] = @QuotationID, [TravelSector] = @TravelSector, [PickupLocation] = @PickupLocation, [DropoffLocation] = @DropoffLocation, [PreferredVehicle] = @PreferredVehicle, [PickUpDate] = @PickUpDate, [PickUpTime] = @PickUpTime, [DropOffDate] = @DropOffDate, [DropOffTime] = @DropOffTime, [Amount] = @Amount, [IsDeleted] = @IsDeleted, [QuotationName] = @QuotationName, [IsActive] = @IsActive WHERE (([ID] = @Original_ID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuotationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TravelSector", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TravelSector", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -34925,6 +35097,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Amount", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Amount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuotationName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -34943,7 +35116,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, QuotationID, TravelSector, PickupLocation, DropoffLocation, PreferredV" +
                 "ehicle, PickUpDate, PickUpTime, DropOffDate, DropOffTime, Amount, IsDeleted, Quo" +
-                "tationName FROM dbo.PCQuotation";
+                "tationName, IsActive FROM dbo.PCQuotation";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -35026,7 +35199,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int QuotationID, string TravelSector, string PickupLocation, string DropoffLocation, string PreferredVehicle, global::System.Nullable<global::System.DateTime> PickUpDate, global::System.Nullable<global::System.TimeSpan> PickUpTime, global::System.Nullable<global::System.DateTime> DropOffDate, global::System.Nullable<global::System.TimeSpan> DropOffTime, global::System.Nullable<decimal> Amount, global::System.Nullable<bool> IsDeleted, string QuotationName) {
+        public virtual int Insert(int QuotationID, string TravelSector, string PickupLocation, string DropoffLocation, string PreferredVehicle, global::System.Nullable<global::System.DateTime> PickUpDate, global::System.Nullable<global::System.TimeSpan> PickUpTime, global::System.Nullable<global::System.DateTime> DropOffDate, global::System.Nullable<global::System.TimeSpan> DropOffTime, global::System.Nullable<decimal> Amount, global::System.Nullable<bool> IsDeleted, string QuotationName, global::System.Nullable<bool> IsActive) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(QuotationID));
             if ((TravelSector == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -35094,6 +35267,12 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[11].Value = ((string)(QuotationName));
             }
+            if ((IsActive.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((bool)(IsActive.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -35114,7 +35293,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int QuotationID, string TravelSector, string PickupLocation, string DropoffLocation, string PreferredVehicle, global::System.Nullable<global::System.DateTime> PickUpDate, global::System.Nullable<global::System.TimeSpan> PickUpTime, global::System.Nullable<global::System.DateTime> DropOffDate, global::System.Nullable<global::System.TimeSpan> DropOffTime, global::System.Nullable<decimal> Amount, global::System.Nullable<bool> IsDeleted, string QuotationName, int Original_ID) {
+        public virtual int Update(int QuotationID, string TravelSector, string PickupLocation, string DropoffLocation, string PreferredVehicle, global::System.Nullable<global::System.DateTime> PickUpDate, global::System.Nullable<global::System.TimeSpan> PickUpTime, global::System.Nullable<global::System.DateTime> DropOffDate, global::System.Nullable<global::System.TimeSpan> DropOffTime, global::System.Nullable<decimal> Amount, global::System.Nullable<bool> IsDeleted, string QuotationName, global::System.Nullable<bool> IsActive, int Original_ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(QuotationID));
             if ((TravelSector == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -35182,7 +35361,13 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(QuotationName));
             }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_ID));
+            if ((IsActive.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(IsActive.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -35640,8 +35825,8 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Remarks", "Remarks");
             tableMapping.ColumnMappings.Add("Processing", "Processing");
             tableMapping.ColumnMappings.Add("ProcessingSection", "ProcessingSection");
-            tableMapping.ColumnMappings.Add("IsDeleted", "IsDeleted");
             tableMapping.ColumnMappings.Add("RFQName", "RFQName");
+            tableMapping.ColumnMappings.Add("IsDeleted", "IsDeleted");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -35650,7 +35835,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[RFQ] ([TravelAgencyID], [TravelRequestID], [UserID], [Remarks], [Processing], [ProcessingSection], [IsDeleted], [RFQName]) VALUES (@TravelAgencyID, @TravelRequestID, @UserID, @Remarks, @Processing, @ProcessingSection, @IsDeleted, @RFQName)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[RFQ] ([TravelAgencyID], [TravelRequestID], [UserID], [Remarks], [Processing], [ProcessingSection], [RFQName], [IsDeleted]) VALUES (@TravelAgencyID, @TravelRequestID, @UserID, @Remarks, @Processing, @ProcessingSection, @RFQName, @IsDeleted)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TravelAgencyID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TravelAgencyID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TravelRequestID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TravelRequestID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -35658,11 +35843,11 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Remarks", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remarks", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Processing", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Processing", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProcessingSection", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProcessingSection", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RFQName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RFQName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[RFQ] SET [TravelAgencyID] = @TravelAgencyID, [TravelRequestID] = @TravelRequestID, [UserID] = @UserID, [Remarks] = @Remarks, [Processing] = @Processing, [ProcessingSection] = @ProcessingSection, [IsDeleted] = @IsDeleted, [RFQName] = @RFQName WHERE (([ID] = @Original_ID))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[RFQ] SET [TravelAgencyID] = @TravelAgencyID, [TravelRequestID] = @TravelRequestID, [UserID] = @UserID, [Remarks] = @Remarks, [Processing] = @Processing, [ProcessingSection] = @ProcessingSection, [RFQName] = @RFQName, [IsDeleted] = @IsDeleted WHERE (([ID] = @Original_ID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TravelAgencyID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TravelAgencyID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TravelRequestID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TravelRequestID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -35670,8 +35855,8 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Remarks", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remarks", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Processing", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Processing", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProcessingSection", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProcessingSection", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RFQName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RFQName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -35689,7 +35874,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, TravelAgencyID, TravelRequestID, UserID, Remarks, Processing, Processi" +
-                "ngSection, IsDeleted, RFQName FROM dbo.RFQ";
+                "ngSection, RFQName, IsDeleted FROM dbo.RFQ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -35772,7 +35957,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> TravelAgencyID, global::System.Nullable<int> TravelRequestID, global::System.Nullable<int> UserID, string Remarks, int Processing, int ProcessingSection, global::System.Nullable<bool> IsDeleted, string RFQName) {
+        public virtual int Insert(global::System.Nullable<int> TravelAgencyID, global::System.Nullable<int> TravelRequestID, global::System.Nullable<int> UserID, string Remarks, int Processing, int ProcessingSection, string RFQName, bool IsDeleted) {
             if ((TravelAgencyID.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(TravelAgencyID.Value));
             }
@@ -35799,18 +35984,13 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             }
             this.Adapter.InsertCommand.Parameters[4].Value = ((int)(Processing));
             this.Adapter.InsertCommand.Parameters[5].Value = ((int)(ProcessingSection));
-            if ((IsDeleted.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(IsDeleted.Value));
-            }
-            else {
+            if ((RFQName == null)) {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((RFQName == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(RFQName));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(RFQName));
             }
+            this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(IsDeleted));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -35831,7 +36011,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> TravelAgencyID, global::System.Nullable<int> TravelRequestID, global::System.Nullable<int> UserID, string Remarks, int Processing, int ProcessingSection, global::System.Nullable<bool> IsDeleted, string RFQName, int Original_ID) {
+        public virtual int Update(global::System.Nullable<int> TravelAgencyID, global::System.Nullable<int> TravelRequestID, global::System.Nullable<int> UserID, string Remarks, int Processing, int ProcessingSection, string RFQName, bool IsDeleted, int Original_ID) {
             if ((TravelAgencyID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(TravelAgencyID.Value));
             }
@@ -35858,18 +36038,13 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             }
             this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Processing));
             this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(ProcessingSection));
-            if ((IsDeleted.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(IsDeleted.Value));
-            }
-            else {
+            if ((RFQName == null)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((RFQName == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(RFQName));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(RFQName));
             }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(IsDeleted));
             this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -36461,7 +36636,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string AgencyCode, string CompanyName, string Address, string Telephone, string Fax, string Mobile, string Landline, string ContactPerson, string Email, global::System.Nullable<bool> IsActive) {
+        public virtual int Insert(string AgencyCode, string CompanyName, string Address, string Telephone, string Fax, string Mobile, string Landline, string ContactPerson, string Email, bool IsActive) {
             if ((AgencyCode == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -36516,12 +36691,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Email));
             }
-            if ((IsActive.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((bool)(IsActive.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.InsertCommand.Parameters[9].Value = ((bool)(IsActive));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -36542,7 +36712,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string AgencyCode, string CompanyName, string Address, string Telephone, string Fax, string Mobile, string Landline, string ContactPerson, string Email, global::System.Nullable<bool> IsActive, int Original_ID) {
+        public virtual int Update(string AgencyCode, string CompanyName, string Address, string Telephone, string Fax, string Mobile, string Landline, string ContactPerson, string Email, bool IsActive, int Original_ID) {
             if ((AgencyCode == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -36597,12 +36767,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Email));
             }
-            if ((IsActive.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(IsActive.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(IsActive));
             this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -36789,6 +36954,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("ModifiedBy", "ModifiedBy");
             tableMapping.ColumnMappings.Add("IsDeleted", "IsDeleted");
             tableMapping.ColumnMappings.Add("IsSubmitted", "IsSubmitted");
+            tableMapping.ColumnMappings.Add("airlines", "airlines");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -36797,7 +36963,25 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[TravelRequests] ([ApplicationNumber], [PortOfOriginID], [PortOfDestinationID], [TicketClass], [DailyAllowance], [CurrencyID], [TravelDays], [TravelRemarks], [PurposeOfVisit], [DepartureDate], [DepartureTime], [ReturnDate], [ReturnTime], [FirstBusinessDay], [LastBusinessDay], [Remarks], [AirTicketManagement], [HotelName], [TravelAllowance], [HotelStay], [HotelCategory], [RoomCategory], [RoomType], [AdditionalAllowance], [AirportPickUp], [PickUpLocation], [PickUpDate], [PickUpTime], [DropOffLocation], [DropOffDate], [DropOffTime], [PreferredVehicle], [TravelSector], [CheckInDate], [CheckOutDate], [CheckInTime], [CheckOutTime], [ApprovalLevel], [ApprovalBy], [ApprovalRemarks], [CreateOn], [CreatedBy], [ModifiedOn], [ModifiedBy], [IsDeleted], [IsSubmitted]) VALUES (@ApplicationNumber, @PortOfOriginID, @PortOfDestinationID, @TicketClass, @DailyAllowance, @CurrencyID, @TravelDays, @TravelRemarks, @PurposeOfVisit, @DepartureDate, @DepartureTime, @ReturnDate, @ReturnTime, @FirstBusinessDay, @LastBusinessDay, @Remarks, @AirTicketManagement, @HotelName, @TravelAllowance, @HotelStay, @HotelCategory, @RoomCategory, @RoomType, @AdditionalAllowance, @AirportPickUp, @PickUpLocation, @PickUpDate, @PickUpTime, @DropOffLocation, @DropOffDate, @DropOffTime, @PreferredVehicle, @TravelSector, @CheckInDate, @CheckOutDate, @CheckInTime, @CheckOutTime, @ApprovalLevel, @ApprovalBy, @ApprovalRemarks, @CreateOn, @CreatedBy, @ModifiedOn, @ModifiedBy, @IsDeleted, @IsSubmitted)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TravelRequests] ([ApplicationNumber], [PortOfOriginID], [PortO" +
+                "fDestinationID], [TicketClass], [DailyAllowance], [CurrencyID], [TravelDays], [T" +
+                "ravelRemarks], [PurposeOfVisit], [DepartureDate], [DepartureTime], [ReturnDate]," +
+                " [ReturnTime], [FirstBusinessDay], [LastBusinessDay], [Remarks], [AirTicketManag" +
+                "ement], [HotelName], [TravelAllowance], [HotelStay], [HotelCategory], [RoomCateg" +
+                "ory], [RoomType], [AdditionalAllowance], [AirportPickUp], [PickUpLocation], [Pic" +
+                "kUpDate], [PickUpTime], [DropOffLocation], [DropOffDate], [DropOffTime], [Prefer" +
+                "redVehicle], [TravelSector], [CheckInDate], [CheckOutDate], [CheckInTime], [Chec" +
+                "kOutTime], [ApprovalLevel], [ApprovalBy], [ApprovalRemarks], [CreateOn], [Create" +
+                "dBy], [ModifiedOn], [ModifiedBy], [IsDeleted], [IsSubmitted], [airlines]) VALUES" +
+                " (@ApplicationNumber, @PortOfOriginID, @PortOfDestinationID, @TicketClass, @Dail" +
+                "yAllowance, @CurrencyID, @TravelDays, @TravelRemarks, @PurposeOfVisit, @Departur" +
+                "eDate, @DepartureTime, @ReturnDate, @ReturnTime, @FirstBusinessDay, @LastBusines" +
+                "sDay, @Remarks, @AirTicketManagement, @HotelName, @TravelAllowance, @HotelStay, " +
+                "@HotelCategory, @RoomCategory, @RoomType, @AdditionalAllowance, @AirportPickUp, " +
+                "@PickUpLocation, @PickUpDate, @PickUpTime, @DropOffLocation, @DropOffDate, @Drop" +
+                "OffTime, @PreferredVehicle, @TravelSector, @CheckInDate, @CheckOutDate, @CheckIn" +
+                "Time, @CheckOutTime, @ApprovalLevel, @ApprovalBy, @ApprovalRemarks, @CreateOn, @" +
+                "CreatedBy, @ModifiedOn, @ModifiedBy, @IsDeleted, @IsSubmitted, @airlines)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ApplicationNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApplicationNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PortOfOriginID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PortOfOriginID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -36845,6 +37029,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ModifiedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsSubmitted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSubmitted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@airlines", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "airlines", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TravelRequests] SET [ApplicationNumber] = @ApplicationNumber, [Port" +
@@ -36866,7 +37051,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
                 " = @ApprovalLevel, [ApprovalBy] = @ApprovalBy, [ApprovalRemarks] = @ApprovalRema" +
                 "rks, [CreateOn] = @CreateOn, [CreatedBy] = @CreatedBy, [ModifiedOn] = @ModifiedO" +
                 "n, [ModifiedBy] = @ModifiedBy, [IsDeleted] = @IsDeleted, [IsSubmitted] = @IsSubm" +
-                "itted WHERE (([ID] = @Original_ID))";
+                "itted, [airlines] = @airlines WHERE (([ID] = @Original_ID))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ApplicationNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApplicationNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PortOfOriginID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PortOfOriginID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -36914,6 +37099,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ModifiedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsSubmitted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsSubmitted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@airlines", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "airlines", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -36930,7 +37116,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT ID, ApplicationNumber, PortOfOriginID, PortOfDestinationID, TicketClass, DailyAllowance, CurrencyID, TravelDays, TravelRemarks, PurposeOfVisit, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovalRemarks, CreateOn, CreatedBy, ModifiedOn, ModifiedBy, IsDeleted, IsSubmitted FROM dbo.TravelRequests";
+            this._commandCollection[0].CommandText = @"SELECT ID, ApplicationNumber, PortOfOriginID, PortOfDestinationID, TicketClass, DailyAllowance, CurrencyID, TravelDays, TravelRemarks, PurposeOfVisit, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovalRemarks, CreateOn, CreatedBy, ModifiedOn, ModifiedBy, IsDeleted, IsSubmitted, airlines FROM dbo.TravelRequests";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -37059,7 +37245,8 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
                     global::System.Nullable<global::System.DateTime> ModifiedOn, 
                     global::System.Nullable<int> ModifiedBy, 
                     global::System.Nullable<bool> IsDeleted, 
-                    bool IsSubmitted) {
+                    bool IsSubmitted, 
+                    string airlines) {
             if ((ApplicationNumber == null)) {
                 throw new global::System.ArgumentNullException("ApplicationNumber");
             }
@@ -37326,6 +37513,12 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
                 this.Adapter.InsertCommand.Parameters[44].Value = global::System.DBNull.Value;
             }
             this.Adapter.InsertCommand.Parameters[45].Value = ((bool)(IsSubmitted));
+            if ((airlines == null)) {
+                this.Adapter.InsertCommand.Parameters[46].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[46].Value = ((string)(airlines));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -37393,6 +37586,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
                     global::System.Nullable<int> ModifiedBy, 
                     global::System.Nullable<bool> IsDeleted, 
                     bool IsSubmitted, 
+                    string airlines, 
                     int Original_ID) {
             if ((ApplicationNumber == null)) {
                 throw new global::System.ArgumentNullException("ApplicationNumber");
@@ -37660,7 +37854,13 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[44].Value = global::System.DBNull.Value;
             }
             this.Adapter.UpdateCommand.Parameters[45].Value = ((bool)(IsSubmitted));
-            this.Adapter.UpdateCommand.Parameters[46].Value = ((int)(Original_ID));
+            if ((airlines == null)) {
+                this.Adapter.UpdateCommand.Parameters[46].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[46].Value = ((string)(airlines));
+            }
+            this.Adapter.UpdateCommand.Parameters[47].Value = ((int)(Original_ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -38501,7 +38701,6 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("username", "username");
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("ApplicationNumber", "ApplicationNumber");
-            tableMapping.ColumnMappings.Add("PortOfOriginID", "PortOfOriginID");
             tableMapping.ColumnMappings.Add("OriginCIty", "OriginCIty");
             tableMapping.ColumnMappings.Add("OriginCountry", "OriginCountry");
             tableMapping.ColumnMappings.Add("PortOfDestinationID", "PortOfDestinationID");
@@ -38559,6 +38758,8 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("ATAmount", "ATAmount");
             tableMapping.ColumnMappings.Add("ATDepartureDate", "ATDepartureDate");
             tableMapping.ColumnMappings.Add("ATDepartureTime", "ATDepartureTime");
+            tableMapping.ColumnMappings.Add("ATReturnDate", "ATReturnDate");
+            tableMapping.ColumnMappings.Add("ATReturnTime", "ATReturnTime");
             tableMapping.ColumnMappings.Add("DestinationID", "DestinationID");
             tableMapping.ColumnMappings.Add("ATDCity", "ATDCity");
             tableMapping.ColumnMappings.Add("ATDCountry", "ATDCountry");
@@ -38566,14 +38767,12 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("ATOCity", "ATOCity");
             tableMapping.ColumnMappings.Add("ATOCountry", "ATOCountry");
             tableMapping.ColumnMappings.Add("ATQuotationName", "ATQuotationName");
-            tableMapping.ColumnMappings.Add("ATReturnDate", "ATReturnDate");
-            tableMapping.ColumnMappings.Add("ATReturnTime", "ATReturnTime");
             tableMapping.ColumnMappings.Add("ATTicketClass", "ATTicketClass");
             tableMapping.ColumnMappings.Add("TicketNo", "TicketNo");
             tableMapping.ColumnMappings.Add("HSAmount", "HSAmount");
             tableMapping.ColumnMappings.Add("HSCheckInDate", "HSCheckInDate");
-            tableMapping.ColumnMappings.Add("HSCheckInTime", "HSCheckInTime");
             tableMapping.ColumnMappings.Add("HSCheckOutDate", "HSCheckOutDate");
+            tableMapping.ColumnMappings.Add("HSCheckInTime", "HSCheckInTime");
             tableMapping.ColumnMappings.Add("HSCheckOutTime", "HSCheckOutTime");
             tableMapping.ColumnMappings.Add("HSHotelCategory", "HSHotelCategory");
             tableMapping.ColumnMappings.Add("HSHotelName", "HSHotelName");
@@ -38582,12 +38781,12 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("HSRoomType", "HSRoomType");
             tableMapping.ColumnMappings.Add("HSTravelSector", "HSTravelSector");
             tableMapping.ColumnMappings.Add("PCAmount", "PCAmount");
-            tableMapping.ColumnMappings.Add("PCDropOffDate", "PCDropOffDate");
-            tableMapping.ColumnMappings.Add("PCDropoffLocation", "PCDropoffLocation");
-            tableMapping.ColumnMappings.Add("PCDropOffTime", "PCDropOffTime");
+            tableMapping.ColumnMappings.Add("PCPickUpLocation", "PCPickUpLocation");
             tableMapping.ColumnMappings.Add("PCPickUpDate", "PCPickUpDate");
-            tableMapping.ColumnMappings.Add("PCPickupLocation", "PCPickupLocation");
             tableMapping.ColumnMappings.Add("PCPickUpTime", "PCPickUpTime");
+            tableMapping.ColumnMappings.Add("PCDropOffLocation", "PCDropOffLocation");
+            tableMapping.ColumnMappings.Add("PCDropOffDate", "PCDropOffDate");
+            tableMapping.ColumnMappings.Add("PCDropOffTime", "PCDropOffTime");
             tableMapping.ColumnMappings.Add("PCPreferredVehicle", "PCPreferredVehicle");
             tableMapping.ColumnMappings.Add("PCQuotationName", "PCQuotationName");
             tableMapping.ColumnMappings.Add("PCTravelSector", "PCTravelSector");
@@ -38607,7 +38806,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT LPOID, LPORemarks, isAT, IsHS, IsPC, RFQID, Processing, ProcessingSection, RFQRemarks, AgencyCode, username, ID, ApplicationNumber, PortOfOriginID, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted, Airlines, ATAmount, ATDepartureDate, ATDepartureTime, DestinationID, ATDCity, ATDCountry, OriginID, ATOCity, ATOCountry, ATQuotationName, ATReturnDate, ATReturnTime, ATTicketClass, TicketNo, HSAmount, HSCheckInDate, HSCheckInTime, HSCheckOutDate, HSCheckOutTime, HSHotelCategory, HSHotelName, HSQuotationName, HSRoomCategory, HSRoomType, HSTravelSector, PCAmount, PCDropOffDate, PCDropoffLocation, PCDropOffTime, PCPickUpDate, PCPickupLocation, PCPickUpTime, PCPreferredVehicle, PCQuotationName, PCTravelSector FROM dbo.LPODetails";
+            this._commandCollection[0].CommandText = @"SELECT LPOID, LPORemarks, isAT, IsHS, IsPC, RFQID, Processing, ProcessingSection, RFQRemarks, AgencyCode, username, ID, ApplicationNumber, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted, Airlines, ATAmount, ATDepartureDate, ATDepartureTime, ATReturnDate, ATReturnTime, DestinationID, ATDCity, ATDCountry, OriginID, ATOCity, ATOCountry, ATQuotationName, ATTicketClass, TicketNo, HSAmount, HSCheckInDate, HSCheckOutDate, HSCheckInTime, HSCheckOutTime, HSHotelCategory, HSHotelName, HSQuotationName, HSRoomCategory, HSRoomType, HSTravelSector, PCAmount, PCPickUpLocation, PCPickUpDate, PCPickUpTime, PCDropOffLocation, PCDropOffDate, PCDropOffTime, PCPreferredVehicle, PCQuotationName, PCTravelSector FROM dbo.LPODetails";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -38765,7 +38964,6 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("username", "username");
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("ApplicationNumber", "ApplicationNumber");
-            tableMapping.ColumnMappings.Add("PortOfOriginID", "PortOfOriginID");
             tableMapping.ColumnMappings.Add("OriginCIty", "OriginCIty");
             tableMapping.ColumnMappings.Add("OriginCountry", "OriginCountry");
             tableMapping.ColumnMappings.Add("PortOfDestinationID", "PortOfDestinationID");
@@ -38835,7 +39033,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT RFQID, Processing, ProcessingSection, RFQRemarks, AgencyCode, username, ID, ApplicationNumber, PortOfOriginID, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted FROM dbo.RFQDetails";
+            this._commandCollection[0].CommandText = @"SELECT RFQID, Processing, ProcessingSection, RFQRemarks, AgencyCode, username, ID, ApplicationNumber, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted FROM dbo.RFQDetails";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
