@@ -363,6 +363,11 @@
     <Content Include="Content\css\skins\_all-skins.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\BTC.jpg" />
+    <Content Include="Content\img\BTCBA.jpg" />
+    <Content Include="Content\img\BTCBE.jpg" />
+    <Content Include="Content\img\BTCWA.jpg" />
+    <Content Include="Content\img\BTCWE.jpg" />
     <Content Include="Content\img\guest.jpg" />
     <Content Include="Content\img\icheck\aero%402x.png" />
     <Content Include="Content\img\icheck\aero.png" />
@@ -384,7 +389,7 @@
     <Content Include="Content\img\icheck\red.png" />
     <Content Include="Content\img\icheck\yellow%402x.png" />
     <Content Include="Content\img\icheck\yellow.png" />
-    <Content Include="Content\img\user.jpg" />
+    <Content Include="Content\img\Preloader_2.gif" />
     <Content Include="Content\js\adminlte.js" />
     <Content Include="Content\js\app.js" />
     <Content Include="Content\js\app.min.js" />
@@ -1353,6 +1358,8 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\LPO\TravelRequestsList.cshtml" />
     <Content Include="Views\RFQs\TravelRequestsList.cshtml" />
+    <Content Include="Views\BTC\TermsnCond.cshtml" />
+    <Content Include="Views\Account\TermsnCond.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

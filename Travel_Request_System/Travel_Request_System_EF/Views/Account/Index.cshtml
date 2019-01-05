@@ -1,82 +1,91 @@
 ﻿@model Travel_Request_System_EF.Models.ViewModel.LoginView
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <div class="col-xs-12 col-md-7">
-        <div class="box box-default">
-            <div class="box-header">
-                <h3 class="box-title">Introduction about BTC</h3>
+<div>
+    <div class="row">
+        <div class="col-xs-12 col-md-7">
+            <div class="box box-default">
+                <div class="box-header">
+                    <h3 class="box-title text-bold">Business Tradaing Company</h3>
+                </div>
+                <div class="box-body">
+                    <img src="~/Content/img/BTCWE.jpg" style="width:100%; height:100%" />
+
+                    <p>
+                        Business Trading Company, known as BTC, was established in 1997 to fill the then existing void in Qatar for a retail environment that offers the right mix of shopping, dining and entertainment opportunities. <br> Today, the Company is renowned, both in Qatar and in the GCC region, for its proven expertise in developing and managing top-of-the-line shopping malls, leisure facilities, real estate properties and retail brands.
+                    </p>
+                </div>
             </div>
-            <div class="box-body">
-                <p>
-                    Some text
-                </p>
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Login</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                @using (Html.BeginForm("Login", "Account", new { LoginView = Model }, FormMethod.Post))
+                {
+                    <div class="box-body">
+                        <div>
+                            @*<div>
+                                    <div class="form-group">
+                                        <label>Login Type &emsp;</label>
+                                        <select class="selectpicker">
+                                            <option>Employee</option>
+                                            <option>Human Resources</option>
+                                            <option>Travel Coordinator</option>
+                                        </select>
+                                    </div>
+                                </div>*@
+                            <div>
+                                <div class="form-group">
+                                    <label>User Name</label>
+                                    @*<input type="text" class="form-control pull-right" id="Uname" name="Uname"/>*@
+                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control pull-right margin-bottom", placeholder = "Username" })*
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    @*<input type="password" class="form-control pull-right" />*@
+                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control pull-right margin-bottom", placeholder = "Password" })*
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.RememberMe)
+                                    <label>Remember Me  </label>
+                                    @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <input type="submit" class="form-control pull-right btn btn-primary" value="Login" />
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <input type="button" class="form-control btn-link no-border" onclick="@("window.location.href='" + @Url.Action("ForgotPassword", "Account") + "'");" value="Forgot Password ?" />
+                                </div>
+                            </div>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-md-3">
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">Login</h3>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            @using (Html.BeginForm("Login", "Account", new { LoginView = Model }, FormMethod.Post))
-            {
-                <div class="box-body">
-                    <div>
-                        @*<div>
-                                <div class="form-group">
-                                    <label>Login Type &emsp;</label>
-                                    <select class="selectpicker">
-                                        <option>Employee</option>
-                                        <option>Human Resources</option>
-                                        <option>Travel Coordinator</option>
-                                    </select>
-                                </div>
-                            </div>*@
-                        <div>
-                            <div class="form-group">
-                                <label>User Name</label>
-                                @*<input type="text" class="form-control pull-right" id="Uname" name="Uname"/>*@
-                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control pull-right margin-bottom", placeholder = "Username" })*
-                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                @*<input type="password" class="form-control pull-right" />*@
-                                @Html.PasswordFor(model => model.Password, new { @class = "form-control pull-right margin-bottom", placeholder = "Password" })*
-                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                @Html.EditorFor(model => model.RememberMe)
-                                <label>Remember Me  </label>
-                                @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                <input type="submit" class="form-control pull-right btn btn-primary" value="Login" />
-                            </div>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                <input type="button" class="form-control btn-link no-border" onclick="@("window.location.href='" + @Url.Action("ForgotPassword", "Account") + "'");" value="Forgot Password ?" />
-                            </div>
-                        </div>
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            }
+    <div class="row">
+        <div class="col-xs-12 col-md-7">
+        </div>
+        <div class="col-xs-12 col-md-3">
         </div>
     </div>
 </div>

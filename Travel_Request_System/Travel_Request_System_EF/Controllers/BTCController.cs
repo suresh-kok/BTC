@@ -786,6 +786,11 @@ namespace Travel_Request_System_EF.Controllers
 
         #region General
 
+        public ActionResult TermsnCond()
+        {
+            return View();
+        }
+
         private void IsLoggedIn(List<string> Role)
         {
             var Val = true;

@@ -101,6 +101,11 @@ namespace Travel_Request_System_EF.Controllers
             return View();
         }
 
+        public ActionResult TermsnCond()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Registration(RegistrationView registrationView)
         {

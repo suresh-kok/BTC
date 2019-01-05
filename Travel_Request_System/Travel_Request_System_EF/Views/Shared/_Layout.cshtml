@@ -14,7 +14,7 @@
     @Styles.Render("~/Bundles/css")
     @*@Styles.Render("~/Content/css")*@
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-black sidebar-mini">
     <div class="wrapper">
         <style type="text/css">
             .no-js #loader {
@@ -46,6 +46,7 @@
 
 
         <div class="content-wrapper">
+            @*style="background: url(../../Content/img/2.jpg)">*@
             <section class="content-header">
                 <h1>
                     @ViewBag.Title
@@ -62,6 +63,22 @@
         @Html.Partial("_ControlSidebar")
     </div>
 
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 1.0.0
+        </div>
+        <strong>
+            @if (ViewBag.LoggedOut == null || (ViewBag.LoggedOut != null && ViewBag.LoggedOut))
+            {
+                <span>Copyright © 2018 - 2019 <a href="@Url.Action("TermsnCond", "Account")"><span> Terms and Conditions. </span></a></span>
+            }
+            else
+            {
+                <span>Copyright © 2018 - 2019 <a href="@Url.Action("TermsnCond", "BTC")"><span> Terms and Conditions. </span></a></span>
+            }
+        </strong> All rights
+        reserved.
+    </footer>
     @*<script src="@RouteJs.RouteJsHandler.HandlerUrl"></script>
         <script src="@EnumHandler.HandlerUrl"></script>*@
     @Scripts.Render("~/bundles/jquery")
