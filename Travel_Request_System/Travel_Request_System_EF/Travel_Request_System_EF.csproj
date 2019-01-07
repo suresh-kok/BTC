@@ -223,8 +223,12 @@
     <Compile Include="Models\Currency.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataAnnotations\ATQuotationMetaData.cs" />
     <Compile Include="Models\DataAnnotations\CustomDataAnnotationAttributes.cs" />
+    <Compile Include="Models\DataAnnotations\HSQuotationMetaData.cs" />
+    <Compile Include="Models\DataAnnotations\PCQuotationMetaData.cs" />
     <Compile Include="Models\DataAnnotations\RedirectingActionAttribute.cs" />
+    <Compile Include="Models\DataAnnotations\RFQMetaData.cs" />
     <Compile Include="Models\DataAnnotations\TravelAgencyMetadata.cs" />
     <Compile Include="Models\DataAnnotations\TravelRequestMetaData.cs" />
     <Compile Include="Models\HRWorks.Context.cs">

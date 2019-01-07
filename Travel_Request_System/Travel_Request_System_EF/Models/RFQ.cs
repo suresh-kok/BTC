@@ -11,7 +11,10 @@ namespace Travel_Request_System_EF.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using Travel_Request_System_EF.Models.DataAnnotations;
+
+    [MetadataType(typeof(RFQMetaData))]
     public partial class RFQ
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

@@ -34,7 +34,7 @@ namespace Travel_Request_System_EF.Controllers
             Response.Cookies.Add(cookie);
 
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Account", null);
+            return RedirectToAction("Index", "Account", null);
         }
 
         public ActionResult ForgotPassword() => View();
@@ -70,7 +70,7 @@ namespace Travel_Request_System_EF.Controllers
 
                         FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket
                             (
-                            1, loginView.UserName, DateTime.Now, DateTime.Now.AddMinutes(15), loginView.RememberMe, JsonConvert.SerializeObject(userModel)
+                            1, loginView.UserName, DateTime.Now, DateTime.Now.AddMinutes(60), loginView.RememberMe, JsonConvert.SerializeObject(userModel)
                             );
 
                         string enTicket = FormsAuthentication.Encrypt(authTicket);
