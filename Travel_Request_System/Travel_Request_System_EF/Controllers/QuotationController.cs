@@ -45,7 +45,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.ErrorMessage = "Your Login has expired!! Please login again.";
             }
         }
-        
+
         public async Task<ActionResult> Index()
         {
             using (BTCEntities db = new BTCEntities())
@@ -56,7 +56,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
 
-                var RFQ = db.RFQ.Include(r => r.TravelAgency).Include(r => r.TravelRequests).Include(r => r.Users);
+                var RFQ = db.RFQ.Include(r => r.TravelAgency).Include(r => r.TravelRequests).Include(r => r.Users).Where(a => a.Processing > 0 && a.IsDeleted == false);
                 return View(await RFQ.ToListAsync());
             }
         }
@@ -105,6 +105,7 @@ namespace Travel_Request_System_EF.Controllers
                 quotation.ATQuotation.Add(atQuote);
                 quotation.HSQuotation.Clear();
                 quotation.PCQuotation.Clear();
+                CheckErrorMessages();
                 return View(atQuote);
             }
         }
@@ -113,47 +114,61 @@ namespace Travel_Request_System_EF.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddATQuotation(ATQuotation atquote)
         {
-            using (BTCEntities db = new BTCEntities())
+            if (ModelState.IsValid)
             {
-                var dbatquote = db.ATQuotation.Find(atquote.ID);
-                dbatquote.Airlines = string.IsNullOrEmpty(atquote.Airlines) ? "" : atquote.Airlines;
-                dbatquote.TicketClass = string.IsNullOrEmpty(atquote.TicketClass) ? "" : atquote.TicketClass;
-                dbatquote.TicketNo = string.IsNullOrEmpty(atquote.TicketNo) ? "" : atquote.TicketNo;
+                using (BTCEntities db = new BTCEntities())
+                {
+                    var dbatquote = db.ATQuotation.Find(atquote.ID);
+                    dbatquote.Airlines = string.IsNullOrEmpty(atquote.Airlines) ? "" : atquote.Airlines;
+                    dbatquote.TicketClass = string.IsNullOrEmpty(atquote.TicketClass) ? "" : atquote.TicketClass;
+                    dbatquote.TicketNo = string.IsNullOrEmpty(atquote.TicketNo) ? "" : atquote.TicketNo;
 
-                dbatquote.DepartureTime = string.IsNullOrEmpty(Convert.ToString(atquote.DepartureTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(atquote.DepartureTime),
-                                "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
-                dbatquote.ReturnTime = string.IsNullOrEmpty(Convert.ToString(atquote.ReturnTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(atquote.ReturnTime),
-                                "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
+                    dbatquote.DepartureTime = string.IsNullOrEmpty(Convert.ToString(atquote.DepartureTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(atquote.DepartureTime),
+                                    "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
+                    dbatquote.ReturnTime = string.IsNullOrEmpty(Convert.ToString(atquote.ReturnTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(atquote.ReturnTime),
+                                    "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
 
-                dbatquote.Amount = atquote.Amount;
-                dbatquote.DepartureDate = atquote.DepartureDate;
-                dbatquote.ReturnDate = atquote.ReturnDate;
-                dbatquote.DestinationID = atquote.DestinationID;
-                dbatquote.OriginID = atquote.OriginID;
-                dbatquote.TicketClass = atquote.TicketClass;
-                dbatquote.TicketNo = atquote.TicketNo;
-                dbatquote.IsDeleted = false;
-                dbatquote.IsActive = true;
+                    dbatquote.Amount = atquote.Amount;
+                    dbatquote.DepartureDate = atquote.DepartureDate;
+                    dbatquote.ReturnDate = atquote.ReturnDate;
+                    dbatquote.DestinationID = atquote.DestinationID;
+                    dbatquote.OriginID = atquote.OriginID;
+                    dbatquote.TicketClass = atquote.TicketClass;
+                    dbatquote.TicketNo = atquote.TicketNo;
+                    dbatquote.IsDeleted = false;
+                    dbatquote.IsActive = true;
 
-                db.ATQuotation.Attach(dbatquote);
-                var entry = db.Entry(dbatquote);
-                entry.Property(a => a.Airlines).IsModified = true;
-                entry.Property(a => a.Amount).IsModified = true;
-                entry.Property(a => a.DepartureDate).IsModified = true;
-                entry.Property(a => a.DepartureTime).IsModified = true;
-                entry.Property(a => a.DestinationID).IsModified = true;
-                entry.Property(a => a.ReturnDate).IsModified = true;
-                entry.Property(a => a.ReturnTime).IsModified = true;
-                entry.Property(a => a.OriginID).IsModified = true;
-                entry.Property(a => a.QuotationID).IsModified = true;
-                entry.Property(a => a.TicketClass).IsModified = true;
-                entry.Property(a => a.TicketNo).IsModified = true;
-                entry.Property(a => a.IsDeleted).IsModified = true;
-                entry.Property(a => a.IsActive).IsModified = true;
-                db.SaveChanges();
+                    db.ATQuotation.Attach(dbatquote);
+                    var entry = db.Entry(dbatquote);
+                    entry.Property(a => a.Airlines).IsModified = true;
+                    entry.Property(a => a.Amount).IsModified = true;
+                    entry.Property(a => a.DepartureDate).IsModified = true;
+                    entry.Property(a => a.DepartureTime).IsModified = true;
+                    entry.Property(a => a.DestinationID).IsModified = true;
+                    entry.Property(a => a.ReturnDate).IsModified = true;
+                    entry.Property(a => a.ReturnTime).IsModified = true;
+                    entry.Property(a => a.OriginID).IsModified = true;
+                    entry.Property(a => a.QuotationID).IsModified = true;
+                    entry.Property(a => a.TicketClass).IsModified = true;
+                    entry.Property(a => a.TicketNo).IsModified = true;
+                    entry.Property(a => a.IsDeleted).IsModified = true;
+                    entry.Property(a => a.IsActive).IsModified = true;
+                    db.SaveChanges();
 
-                return RedirectToAction("AddQuotation", new { id = dbatquote.Quotation.RFQID });
+                    return RedirectToAction("AddQuotation", new { id = dbatquote.Quotation.RFQID });
+                }
             }
+            else
+            {
+                var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                List<string> sberr = new List<string>();
+                foreach (var item in errlist)
+                {
+                    sberr.Add(item[0].ErrorMessage);
+                }
+                TempData["ErrorMessage"] = sberr.ToList();
+            }
+            return View(atquote);
         }
 
         public ActionResult AddHSQuotation(int? id)
@@ -186,42 +201,56 @@ namespace Travel_Request_System_EF.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddHSQuotation(HSQuotation hsquote)
         {
-            using (BTCEntities db = new BTCEntities())
+            if (ModelState.IsValid)
             {
-                var dbhsquote = db.HSQuotation.Find(hsquote.ID);
-                dbhsquote.HotelName = string.IsNullOrEmpty(hsquote.HotelName) ? "" : hsquote.HotelName;
-                dbhsquote.HotelCategory = string.IsNullOrEmpty(hsquote.HotelCategory) ? "" : hsquote.HotelCategory;
-                dbhsquote.RoomCategory = string.IsNullOrEmpty(hsquote.RoomCategory) ? "" : hsquote.RoomCategory;
-                dbhsquote.RoomType = string.IsNullOrEmpty(hsquote.RoomType) ? "" : hsquote.RoomType;
-                dbhsquote.TravelSector = string.IsNullOrEmpty(hsquote.TravelSector) ? "" : hsquote.TravelSector;
-                dbhsquote.CheckInTime = string.IsNullOrEmpty(Convert.ToString(hsquote.CheckInTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(hsquote.CheckInTime),
-                                "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
-                dbhsquote.CheckOutTime = string.IsNullOrEmpty(Convert.ToString(hsquote.CheckOutTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(hsquote.CheckOutTime),
-                                "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
-                dbhsquote.Amount = hsquote.Amount;
-                dbhsquote.CheckInDate = hsquote.CheckInDate;
-                dbhsquote.CheckOutDate = hsquote.CheckOutDate;
-                dbhsquote.IsDeleted = false;
-                dbhsquote.IsActive = true;
+                using (BTCEntities db = new BTCEntities())
+                {
+                    var dbhsquote = db.HSQuotation.Find(hsquote.ID);
+                    dbhsquote.HotelName = string.IsNullOrEmpty(hsquote.HotelName) ? "" : hsquote.HotelName;
+                    dbhsquote.HotelCategory = string.IsNullOrEmpty(hsquote.HotelCategory) ? "" : hsquote.HotelCategory;
+                    dbhsquote.RoomCategory = string.IsNullOrEmpty(hsquote.RoomCategory) ? "" : hsquote.RoomCategory;
+                    dbhsquote.RoomType = string.IsNullOrEmpty(hsquote.RoomType) ? "" : hsquote.RoomType;
+                    dbhsquote.TravelSector = string.IsNullOrEmpty(hsquote.TravelSector) ? "" : hsquote.TravelSector;
+                    dbhsquote.CheckInTime = string.IsNullOrEmpty(Convert.ToString(hsquote.CheckInTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(hsquote.CheckInTime),
+                                    "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
+                    dbhsquote.CheckOutTime = string.IsNullOrEmpty(Convert.ToString(hsquote.CheckOutTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(hsquote.CheckOutTime),
+                                    "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
+                    dbhsquote.Amount = hsquote.Amount;
+                    dbhsquote.CheckInDate = hsquote.CheckInDate;
+                    dbhsquote.CheckOutDate = hsquote.CheckOutDate;
+                    dbhsquote.IsDeleted = false;
+                    dbhsquote.IsActive = true;
 
-                db.HSQuotation.Attach(dbhsquote);
-                var entry = db.Entry(dbhsquote);
-                entry.Property(a => a.Amount).IsModified = true;
-                entry.Property(a => a.CheckInDate).IsModified = true;
-                entry.Property(a => a.CheckInTime).IsModified = true;
-                entry.Property(a => a.CheckOutDate).IsModified = true;
-                entry.Property(a => a.CheckOutTime).IsModified = true;
-                entry.Property(a => a.HotelCategory).IsModified = true;
-                entry.Property(a => a.HotelName).IsModified = true;
-                entry.Property(a => a.IsActive).IsModified = true;
-                entry.Property(a => a.IsDeleted).IsModified = true;
-                entry.Property(a => a.RoomCategory).IsModified = true;
-                entry.Property(a => a.RoomType).IsModified = true;
-                entry.Property(a => a.TravelSector).IsModified = true;
-                db.SaveChanges();
+                    db.HSQuotation.Attach(dbhsquote);
+                    var entry = db.Entry(dbhsquote);
+                    entry.Property(a => a.Amount).IsModified = true;
+                    entry.Property(a => a.CheckInDate).IsModified = true;
+                    entry.Property(a => a.CheckInTime).IsModified = true;
+                    entry.Property(a => a.CheckOutDate).IsModified = true;
+                    entry.Property(a => a.CheckOutTime).IsModified = true;
+                    entry.Property(a => a.HotelCategory).IsModified = true;
+                    entry.Property(a => a.HotelName).IsModified = true;
+                    entry.Property(a => a.IsActive).IsModified = true;
+                    entry.Property(a => a.IsDeleted).IsModified = true;
+                    entry.Property(a => a.RoomCategory).IsModified = true;
+                    entry.Property(a => a.RoomType).IsModified = true;
+                    entry.Property(a => a.TravelSector).IsModified = true;
+                    db.SaveChanges();
 
-                return RedirectToAction("AddQuotation", new { id = dbhsquote.Quotation.RFQID });
+                    return RedirectToAction("AddQuotation", new { id = dbhsquote.Quotation.RFQID });
+                }
             }
+            else
+            {
+                var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                List<string> sberr = new List<string>();
+                foreach (var item in errlist)
+                {
+                    sberr.Add(item[0].ErrorMessage);
+                }
+                TempData["ErrorMessage"] = sberr.ToList();
+            }
+            return View(hsquote);
         }
 
         public ActionResult AddPCQuotation(int? id)
@@ -254,40 +283,54 @@ namespace Travel_Request_System_EF.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddPCQuotation(PCQuotation pcquote)
         {
-            using (BTCEntities db = new BTCEntities())
+            if (ModelState.IsValid)
             {
-                var dbpcquote = db.PCQuotation.Find(pcquote.ID);
-                dbpcquote.PickupLocation = string.IsNullOrEmpty(pcquote.PickupLocation) ? "" : pcquote.PickupLocation;
-                dbpcquote.DropoffLocation = string.IsNullOrEmpty(pcquote.DropoffLocation) ? "" : pcquote.DropoffLocation;
-                dbpcquote.PreferredVehicle = string.IsNullOrEmpty(pcquote.PreferredVehicle) ? "" : pcquote.PreferredVehicle;
-                dbpcquote.TravelSector = string.IsNullOrEmpty(pcquote.TravelSector) ? "" : pcquote.TravelSector;
-                dbpcquote.PickUpTime = string.IsNullOrEmpty(Convert.ToString(pcquote.PickUpTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(pcquote.PickUpTime),
-                                "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
-                dbpcquote.DropOffTime = string.IsNullOrEmpty(Convert.ToString(pcquote.DropOffTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(pcquote.DropOffTime),
-                                "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
-                dbpcquote.Amount = pcquote.Amount;
-                dbpcquote.PickUpDate = pcquote.PickUpDate;
-                dbpcquote.DropOffDate = pcquote.DropOffDate;
-                dbpcquote.IsDeleted = false;
-                dbpcquote.IsActive = true;
+                using (BTCEntities db = new BTCEntities())
+                {
+                    var dbpcquote = db.PCQuotation.Find(pcquote.ID);
+                    dbpcquote.PickupLocation = string.IsNullOrEmpty(pcquote.PickupLocation) ? "" : pcquote.PickupLocation;
+                    dbpcquote.DropoffLocation = string.IsNullOrEmpty(pcquote.DropoffLocation) ? "" : pcquote.DropoffLocation;
+                    dbpcquote.PreferredVehicle = string.IsNullOrEmpty(pcquote.PreferredVehicle) ? "" : pcquote.PreferredVehicle;
+                    dbpcquote.TravelSector = string.IsNullOrEmpty(pcquote.TravelSector) ? "" : pcquote.TravelSector;
+                    dbpcquote.PickUpTime = string.IsNullOrEmpty(Convert.ToString(pcquote.PickUpTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(pcquote.PickUpTime),
+                                    "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
+                    dbpcquote.DropOffTime = string.IsNullOrEmpty(Convert.ToString(pcquote.DropOffTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(pcquote.DropOffTime),
+                                    "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
+                    dbpcquote.Amount = pcquote.Amount;
+                    dbpcquote.PickUpDate = pcquote.PickUpDate;
+                    dbpcquote.DropOffDate = pcquote.DropOffDate;
+                    dbpcquote.IsDeleted = false;
+                    dbpcquote.IsActive = true;
 
-                db.PCQuotation.Attach(dbpcquote);
-                var entry = db.Entry(dbpcquote);
-                entry.Property(a => a.Amount).IsModified = true;
-                entry.Property(a => a.DropOffDate).IsModified = true;
-                entry.Property(a => a.DropoffLocation).IsModified = true;
-                entry.Property(a => a.DropOffTime).IsModified = true;
-                entry.Property(a => a.PickUpDate).IsModified = true;
-                entry.Property(a => a.PickupLocation).IsModified = true;
-                entry.Property(a => a.PickUpTime).IsModified = true;
-                entry.Property(a => a.IsActive).IsModified = true;
-                entry.Property(a => a.IsDeleted).IsModified = true;
-                entry.Property(a => a.PreferredVehicle).IsModified = true;
-                entry.Property(a => a.TravelSector).IsModified = true;
-                db.SaveChanges();
+                    db.PCQuotation.Attach(dbpcquote);
+                    var entry = db.Entry(dbpcquote);
+                    entry.Property(a => a.Amount).IsModified = true;
+                    entry.Property(a => a.DropOffDate).IsModified = true;
+                    entry.Property(a => a.DropoffLocation).IsModified = true;
+                    entry.Property(a => a.DropOffTime).IsModified = true;
+                    entry.Property(a => a.PickUpDate).IsModified = true;
+                    entry.Property(a => a.PickupLocation).IsModified = true;
+                    entry.Property(a => a.PickUpTime).IsModified = true;
+                    entry.Property(a => a.IsActive).IsModified = true;
+                    entry.Property(a => a.IsDeleted).IsModified = true;
+                    entry.Property(a => a.PreferredVehicle).IsModified = true;
+                    entry.Property(a => a.TravelSector).IsModified = true;
+                    db.SaveChanges();
 
-                return RedirectToAction("AddQuotation", new { id = dbpcquote.Quotation.RFQID });
+                    return RedirectToAction("AddQuotation", new { id = dbpcquote.Quotation.RFQID });
+                }
             }
+            else
+            {
+                var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                List<string> sberr = new List<string>();
+                foreach (var item in errlist)
+                {
+                    sberr.Add(item[0].ErrorMessage);
+                }
+                TempData["ErrorMessage"] = sberr.ToList();
+            }
+            return View(pcquote);
         }
 
         [HttpPost]

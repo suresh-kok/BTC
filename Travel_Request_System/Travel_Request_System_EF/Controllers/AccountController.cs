@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -189,7 +190,14 @@ namespace Travel_Request_System_EF.Controllers
             mail.MailSubject = "Activation Account !";
             mail.MailBody = "<br/> Please click on the following link in order to activate your account" + "<br/><a href='" + link + "'> Activation Account ! </a>";
 
-            mail.Send();
+            try
+            {
+                mail.Send();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = new List<string>() { ex.Message, "Unable to send Message" };
+            }
         }
 
         [HttpGet]
@@ -235,7 +243,14 @@ namespace Travel_Request_System_EF.Controllers
             mail.MailBody = "<br/> This mail is an auto-generated Email to your response to Forgot Password" + "<br/>" +
                 "UserName: " + userName + "<br/> Password: " + password + "<br/>";
 
-            mail.Send();
+            try
+            {
+                mail.Send();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = new List<string>() { ex.Message, "Unable to send Message" };
+            }
         }
         
     }

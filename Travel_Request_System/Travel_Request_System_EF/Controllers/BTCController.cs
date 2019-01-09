@@ -57,7 +57,7 @@ namespace Travel_Request_System_EF.Controllers
             return View(ViewMyTravelRequests());
         }
 
-        [CustomAuthorize(Roles = "Employee")]
+        [CustomAuthorize(Roles = "Employee,HR,Manager,Admin")]
         public ActionResult TravelRequest()
         {
             return View();
@@ -839,7 +839,14 @@ namespace Travel_Request_System_EF.Controllers
             mail.MailSubject = "Activation Account !";
             mail.MailBody = "<br/> Please click on the following link in order to activate your account" + "<br/><a href='" + link + "'> Activation Account ! </a>";
 
-            mail.Send();
+            try
+            {
+                mail.Send();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = new List<string>() { ex.Message, "Unable to send Message" };
+            }
         }
 
         public void NotificationEmail(TravelRequests travelRequests, bool IsApproved)
@@ -859,7 +866,14 @@ namespace Travel_Request_System_EF.Controllers
             }
             mail.MailBody = "<br/> Please click on the following link to view the details of the Travel Request." + "<br/>Travel Request: <a href='" + link + "'>" + travelRequests.ApplicationNumber + "</a>";
 
-            mail.Send();
+            try
+            {
+                mail.Send();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = new List<string>() { ex.Message, "Unable to send Message" };
+            }
         }
 
         private string GenerateNextAgencyID(string currentID)

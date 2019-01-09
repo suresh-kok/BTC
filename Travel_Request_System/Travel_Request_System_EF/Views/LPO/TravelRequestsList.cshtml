@@ -116,11 +116,18 @@
                                         <td>
                                             @{
                                                 var lpo = false;
+                                                var quo = false;
                                                 using (Travel_Request_System_EF.Models.BTCEntities db = new Travel_Request_System_EF.Models.BTCEntities())
                                                 {
                                                     if (db.RFQ.Where(a => a.TravelRequestID == item.ID && a.LPO.Where(b => !((bool)b.IsDeleted)).Count() > 0).Count() > 0)
                                                     {
                                                         lpo = true;
+                                                    }
+                                                    if (db.ATQuotation.Where(a => a.QuotationID == (db.Quotation.Where(b => b.TravelRequestID == item.ID).FirstOrDefault().ID) && (bool)a.IsActive).Count() > 0 ||
+                                                        db.HSQuotation.Where(a => a.QuotationID == (db.Quotation.Where(b => b.TravelRequestID == item.ID).FirstOrDefault().ID) && (bool)a.IsActive).Count() > 0 ||
+                                                        db.PCQuotation.Where(a => a.QuotationID == (db.Quotation.Where(b => b.TravelRequestID == item.ID).FirstOrDefault().ID) && (bool)a.IsActive).Count() > 0)
+                                                    {
+                                                        quo = true;
                                                     }
                                                 }
                                                 if (lpo)
@@ -129,11 +136,15 @@
                                                         @Html.ActionLink("  View LPO", "Index", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
                                                     </span>
                                                 }
-                                                else
+                                                else if (quo)
                                                 {
                                                     <span class="glyphicon">
                                                         @Html.ActionLink("  Details", "LPOProcessing", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
                                                     </span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Please Add QUotations</span>
                                                 }
                                             }
                                         </td>

@@ -15,7 +15,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         public int ID { get; set; }
 
         [DisplayName("Travel Agency ID")]
-        [Required(ErrorMessage = "Travel Agency ID is Required")]
+        //[Required(ErrorMessage = "Travel Agency ID is Required")]
         public Nullable<int> TravelAgencyID { get; set; }
 
         [DisplayName("Travel Request ID")]

@@ -21,7 +21,7 @@ namespace Travel_Request_System_EF.Controllers
 {
     [HandleError]
     [RedirectingAction]
-    [CustomAuthorize(Roles = "Employee")]
+    [CustomAuthorize(Roles = "Employee,HR,Manager,Admin")]
     public class TravelRequestsController : Controller
     {
         private static MembershipUser user;
@@ -53,8 +53,14 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                var travelRequests = db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency).Include(t => t.Users1).Include(t => t.Users);
-                return View(await travelRequests.ToListAsync());
+                if (roles.ToList()[0] == "Admin")
+                {
+                    return View(await db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency).Include(t => t.Users1).Include(t => t.Users).ToListAsync());
+                }
+                else
+                {
+                    return View(await db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency).Include(t => t.Users1).Include(t => t.Users).Where(a => a.CreatedBy == dbuser.ID).ToListAsync());
+                }
             }
         }
 
@@ -93,13 +99,21 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.applicationNumber = db.TravelRequests.Count() > 0 ? GenerateNextRFQ(db.TravelRequests.OrderByDescending(a => a.ID).FirstOrDefault().ApplicationNumber) : "HRD-BTC-CC-0001";
 
                 checkErrorMessages();
-                return View();
+
+                if (TempData["tempTravelRequest"] != null)
+                {
+                    var travelRequest = (TravelRequests)TempData["tempTravelRequest"];
+                    return View(travelRequest);
+                }
+                else
+                {
+                    return View();
+                }
             }
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SubmitTravelRequest([Bind(Include = "ID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequests travelRequest, FormCollection collection)
+        public async Task<ActionResult> SubmitTravelRequest([System.Web.Http.FromBody][Bind(Include = "ID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequests travelRequest, FormCollection collection)
         {
             using (var dbcontext = new BTCEntities())
             {
@@ -229,13 +243,14 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Currencies = dbcontext.Currency.ToList();
                 ViewBag.ApprovalBy = dbcontext.Users.ToList();
 
-                return RedirectToAction("Create", travelRequest);
+                TempData["tempTravelRequest"] = travelRequest;
+
+                return RedirectToAction("Create");
             }
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SaveTravelRequest([Bind(Include = "ID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequests travelRequest, FormCollection collection)
+        public async Task<ActionResult> SaveTravelRequest([System.Web.Http.FromBody][Bind(Include = "ID,UserID,ApplicationNumber,PortOfOriginID,PortOfDestinationID,TicketClass,DailyAllowance,CurrencyID,TravelDays,TravelRemarks,PurposeOfVisit,DepartureDate,FirstBusinessDay,LastBusinessDay,Remarks,AirTicketManagement,HotelName,TravelAllowance,HotelStay,HotelCategory,RoomCategory,RoomType,AdditionalAllowance,AirportPickUp,PickUpLocation,PickUpDate,DropOffLocation,DropOffDate,PreferrefVehicle,CheckInDate,CheckOutDate,ApprovalLevel,ApprovalBy,ApprovalRemarks,CreateOn,CreatedBy,ModifiedOn,ModifiedBy,ReturnDate")] TravelRequests travelRequest, FormCollection collection)
         {
             using (var dbcontext = new BTCEntities())
             {
@@ -365,7 +380,9 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Currencies = dbcontext.Currency.ToList();
                 ViewBag.ApprovalBy = dbcontext.Users.ToList();
 
-                return RedirectToAction("Create", travelRequest);
+                TempData["tempTravelRequest"] = travelRequest;
+
+                return RedirectToAction("Create");
 
             }
         }

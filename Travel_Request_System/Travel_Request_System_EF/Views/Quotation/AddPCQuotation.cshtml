@@ -245,6 +245,12 @@ else
 {
     @Html.Partial("_PCQuotation", Model)
 }
-<div>
-    @Html.ActionLink("Back to List", "AddQuotation", new { id = Model.QuotationID })
+<div class="row" style="margin-bottom:15px">
+    <div class="col-md-6">
+        <div class="form-group">
+            <div class="col-md-3">
+                @Html.ActionLink("Back to List", "AddQuotation", new { id = Model.Quotation.RFQID }, new { @class = "form-control btn btn-info" })
+            </div>
+        </div>
+    </div>
 </div>

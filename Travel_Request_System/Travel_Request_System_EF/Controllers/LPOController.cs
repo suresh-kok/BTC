@@ -144,6 +144,26 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
+                var lpodata = db.LPO.Where(a => a.ID == id).FirstOrDefault();
+                if(lpodata.IsDeleted == null || (bool)lpodata.IsDeleted)
+                {
+                    lpodata.IsDeleted = false;
+
+                    db.Entry(lpodata).State = EntityState.Modified;
+
+                    db.LPO.Attach(lpodata);
+                    db.Entry(lpodata).Property(x => x.IsDeleted).IsModified = true;
+                    db.SaveChanges();
+
+                    var rfq = db.RFQ.Where(a => a.ID == lpodata.RFQID).FirstOrDefault();
+                    rfq.Processing = (int)ProcessingStatus.Processed;
+
+                    var travelreq = db.TravelRequests.Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault();
+                    travelreq.ApprovalLevel = (int)ApprovalLevels.ApprovedbyTravelCo;
+
+                    db.SaveChanges();
+                }
+
                 ViewBag.TravelAgency = db.TravelAgency.ToList();
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
@@ -211,6 +231,7 @@ namespace Travel_Request_System_EF.Controllers
                         lpodata.IsDeleted = item.IsDeleted;
                         lpodata.IsHS = item.IsHS;
                         lpodata.IsPC = item.IsPC;
+                        lpodata.LPONo = "LPO - " + lpodata.ID;
 
                         db.Entry(lpodata).State = EntityState.Modified;
                         db.LPO.Attach(lpodata);
@@ -348,6 +369,7 @@ namespace Travel_Request_System_EF.Controllers
             }
             catch (Exception ex)
             {
+                TempData["ErrorMessage"] = new List<string>() { ex.Message, "Unable to send Message" };
             }
         }
 

@@ -101,13 +101,16 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
 
         protected override ValidationResult IsValid(object value, ValidationContext context)
         {
-            Object instance = context.ObjectInstance;
-            Type type = instance.GetType();
-            Object proprtyvalue = type.GetProperty(PropertyName).GetValue(instance, null);
-            if (proprtyvalue.ToString() == DesiredValue.ToString())
+            if (value != null)
             {
-                ValidationResult result = base.IsValid(value, context);
-                return result;
+                Object instance = context.ObjectInstance;
+                Type type = instance.GetType();
+                Object proprtyvalue = type.GetProperty(PropertyName).GetValue(instance, null);
+                if (proprtyvalue.ToString() == DesiredValue.ToString())
+                {
+                    ValidationResult result = base.IsValid(value, context);
+                    return result;
+                }
             }
             return ValidationResult.Success;
         }

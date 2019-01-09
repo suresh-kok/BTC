@@ -72,6 +72,7 @@ namespace Travel_Request_System_EF.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    rFQ.RFQName = db.TravelRequests.Where(a => a.ID == rFQ.TravelRequestID).FirstOrDefault().ApplicationNumber;
                     db.RFQ.Add(rFQ);
                     await db.SaveChangesAsync();
                     return RedirectToAction("Index");
@@ -230,12 +231,14 @@ namespace Travel_Request_System_EF.Controllers
             }
             rfq.Processing = (int)ProcessingStatus.NotProcessed;
             rfq.IsDeleted = false;
+            rfq.UserID = dbuser.ID;
+            rfq.RFQName = travelRequest.ApplicationNumber;
 
             using (BTCEntities db = new BTCEntities())
             {
                 if (db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection && a.TravelRequestID == travelRequest.ID && a.IsDeleted == false).Count() < 1 && rfq.ProcessingSection != 0)
                 {
-                    if (db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection).Count() < 1)
+                    if (db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection && a.TravelRequestID == travelRequest.ID).Count() < 1)
                     {
                         db.RFQ.Add(rfq);
                     }
@@ -407,10 +410,12 @@ namespace Travel_Request_System_EF.Controllers
                     db.Quotation.Add(quote);
                     db.SaveChanges();
 
+                    db.Configuration.ValidateOnSaveEnabled = false;
 
                     ATQuotation ATquote = new ATQuotation()
                     {
                         QuotationID = quote.ID,
+                        QuotationName = db.TravelRequests.Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault().ApplicationNumber + " / AT - Q",
                         IsActive = false,
                         IsDeleted = false
                     };
@@ -418,6 +423,7 @@ namespace Travel_Request_System_EF.Controllers
                     HSQuotation HSquote = new HSQuotation()
                     {
                         QuotationID = quote.ID,
+                        QuotationName = db.TravelRequests.Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault().ApplicationNumber + " / HS - Q",
                         IsActive = false,
                         IsDeleted = false
                     };
@@ -425,6 +431,7 @@ namespace Travel_Request_System_EF.Controllers
                     PCQuotation PCquote = new PCQuotation()
                     {
                         QuotationID = quote.ID,
+                        QuotationName = db.TravelRequests.Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault().ApplicationNumber + " / PC - Q",
                         IsActive = false,
                         IsDeleted = false
                     };

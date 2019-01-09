@@ -8,8 +8,7 @@
 <div id="detailsDiv" style="height:auto">
     @using (Html.BeginForm())
     {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
+        @Html.ValidationSummary(false,null, htmlAttributes: new { @class = "text-danger" })
 
         <div class="col-xs-12 col-md-12">
             <div class="box box-default">
@@ -819,5 +818,6 @@
                 $('#PickUpDetailsDiv').hide()
             }
         }
+        
     </script>
 }

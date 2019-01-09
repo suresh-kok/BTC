@@ -89,6 +89,8 @@
                 }
                 @using (Html.BeginForm("PreviewRFQ", "RFQs", FormMethod.Post))
                 {
+                    @Html.HiddenFor(model => model.TravelRequestID)
+                    @Html.HiddenFor(model => model.UserID)
                     @Html.AntiForgeryToken()
                     <div class="row" style="margin-bottom:15px">
                         <div class="col-sm-6">

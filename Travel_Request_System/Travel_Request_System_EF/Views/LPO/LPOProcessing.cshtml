@@ -134,12 +134,12 @@
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="View Travel Grid as PDF" formaction="PrintLPO" formmethod="post" name="ViewTravelGrid"/>
+                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="View Travel Grid as PDF" formaction="PrintLPO" formmethod="post" name="ViewTravelGrid" />
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="Intimate Employee" formaction="IntimateEmployee" formmethod="post" name="IntimateEmployee"/>
+                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="Intimate Employee" formaction="IntimateEmployee" formmethod="post" name="IntimateEmployee" />
                 </div>
             </div>
         </div>
@@ -178,7 +178,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">
-                                                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="Create LPO" formaction="@Url.Action("LPOCreation",new { id=item.ID})" formmethod="post" name="RFQCreate" />
+                                                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="Create LPO" formaction="@Url.Action("LPOCreation", new { id = item.ID })" formmethod="post" name="RFQCreate" />
                                                 </td>
                                             </tr>
                                             foreach (var quot in item.Quotation)
@@ -191,7 +191,7 @@
                                                             <div class="checkbox">
                                                                 <label>
                                                                     <input type="checkbox" id="@("AT" + @quot.ATQuotation.FirstOrDefault().ID)">
-                                                                    <input type="hidden" id="@("RFQ"+@item.ID+"-Quot"+@quot.ID +"-ATCheck" + @quot.ATQuotation.FirstOrDefault().ID)" />
+                                                                    <input type="hidden" id="@("RFQ" + @item.ID + "-Quot" + @quot.ID + "-ATCheck" + @quot.ATQuotation.FirstOrDefault().ID)" />
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -205,7 +205,7 @@
                                                             <div class="checkbox">
                                                                 <label>
                                                                     <input type="checkbox" id="@("HS" + @quot.HSQuotation.FirstOrDefault().ID)">
-                                                                    <input type="hidden" id="@("RFQ"+@item.ID+"-Quot"+@quot.ID +"-HSCheck" + @quot.HSQuotation.FirstOrDefault().ID)" />
+                                                                    <input type="hidden" id="@("RFQ" + @item.ID + "-Quot" + @quot.ID + "-HSCheck" + @quot.HSQuotation.FirstOrDefault().ID)" />
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -219,7 +219,7 @@
                                                             <div class="checkbox">
                                                                 <label>
                                                                     <input type="checkbox" id="@("PC" + @quot.PCQuotation.FirstOrDefault().ID)">
-                                                                    <input type="hidden" id="@("RFQ"+@item.ID+"-Quot"+@quot.ID +"-PCCheck" + @quot.PCQuotation.FirstOrDefault().ID)" />
+                                                                    <input type="hidden" id="@("RFQ" + @item.ID + "-Quot" + @quot.ID + "-PCCheck" + @quot.PCQuotation.FirstOrDefault().ID)" />
                                                                 </label>
                                                             </div>
                                                         </td>

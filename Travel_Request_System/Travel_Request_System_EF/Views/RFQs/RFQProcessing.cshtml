@@ -175,7 +175,9 @@
                 </aside>
             }
 
+            @{ Html.EnableClientValidation(false); }
             @Html.Partial("_TravelRequestDetails", Model)
+            @{ Html.EnableClientValidation(true); }
 
         </div>
     </div>
