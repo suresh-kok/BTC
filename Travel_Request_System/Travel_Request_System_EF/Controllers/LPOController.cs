@@ -144,7 +144,7 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                var lpodata = db.LPO.Where(a => a.ID == id).FirstOrDefault();
+                var lpodata = db.LPO.Where(a => a.QuotationID == id).FirstOrDefault();
                 if(lpodata.IsDeleted == null || (bool)lpodata.IsDeleted)
                 {
                     lpodata.IsDeleted = false;
@@ -164,18 +164,7 @@ namespace Travel_Request_System_EF.Controllers
                     db.SaveChanges();
                 }
 
-                ViewBag.TravelAgency = db.TravelAgency.ToList();
-                ViewBag.Cities = db.City.ToList();
-                ViewBag.Currencies = db.Currency.ToList();
-                ViewBag.ApprovalBy = db.Users.ToList();
-
-                var LPO = await db.LPO.Include(a => a.RFQ).Include(a => a.Quotation).Include(a => a.RFQ).Include("RFQ.TravelRequests").Include("Quotation.ATQuotation").Include("Quotation.HSQuotation").Include("Quotation.PCQuotation").Where(a => a.RFQID == id).FirstOrDefaultAsync();
-
-                ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.RFQ.TravelRequests.ApplicationNumber + "/AT-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.RFQ.TravelRequests.ApplicationNumber + "/HS-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                ViewBag.PCfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.RFQ.TravelRequests.ApplicationNumber + "/PC-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-
-                return View(LPO);
+                return RedirectToAction("LPODetails", new { id = lpodata.ID });
             }
         }
 

@@ -1,4 +1,6 @@
 ﻿@model Travel_Request_System_EF.Models.RFQ
+@using Travel_Request_System_EF.Models.ViewModel
+@using Travel_Request_System_EF.Models
 
 @{
     ViewBag.Title = "Preview RFQ";
@@ -7,7 +9,24 @@
 
 <div id="detailsDiv" style="height:auto">
 
-    @Html.Partial("_TravelRequestDetails", Model.TravelRequests)
+    @if (Model.ProcessingSection == (int)ProcessingSections.AT || Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC)
+    {
+        <div class="row" style="margin-bottom:15px">
+            @Html.Partial("_ATQuotation", (ATQuotation)ViewBag.ATQuotation)
+        </div>
+    }
+    @if (Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.HS || Model.ProcessingSection == (int)ProcessingSections.HSPC)
+    {
+        <div class="row" style="margin-bottom:15px">
+            @Html.Partial("_HSQuotation", (HSQuotation)ViewBag.HSQuotation)
+        </div>
+    }
+    @if (Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC || Model.ProcessingSection == (int)ProcessingSections.HSPC || Model.ProcessingSection == (int)ProcessingSections.PC)
+    {
+        <div class="row" style="margin-bottom:15px">
+            @Html.Partial("_PCQuotation", (PCQuotation)ViewBag.PCQuotation)
+        </div>
+    }
 
     <div class="col-xs-12 col-md-12">
         <div class="box box-default">
@@ -132,48 +151,48 @@
 
 @section Scripts {
     <script type="text/javascript">
-                                //$(document).ready(function () {
-                                //    $('#uloadTable td a.Deletefilelink').click(function () {
-                                //        event.preventDefault();
+                                        //$(document).ready(function () {
+                                        //    $('#uloadTable td a.Deletefilelink').click(function () {
+                                        //        event.preventDefault();
 
-                                //        var filename = $(this).parent().parent().attr('id');
-                                //        $(this).parent().parent().remove();
+                                        //        var filename = $(this).parent().parent().attr('id');
+                                        //        $(this).parent().parent().remove();
 
-                                //        $.ajax({
-                                //            type: "post",
-                                //            url: "/FileUpload/RemoveUploadFile?fileName=" + filename,
-                                //            datatype: "json",
-                                //            traditional: true,
-                                //            success: function (data) {
-                                //                alert('File Deleted');
-                                //                if (data == 0) {
-                                //                    $('#uloadTable').remove();
-                                //                }
-                                //            }
-                                //        });
-                                //    });
-                                //});
+                                        //        $.ajax({
+                                        //            type: "post",
+                                        //            url: "/FileUpload/RemoveUploadFile?fileName=" + filename,
+                                        //            datatype: "json",
+                                        //            traditional: true,
+                                        //            success: function (data) {
+                                        //                alert('File Deleted');
+                                        //                if (data == 0) {
+                                        //                    $('#uloadTable').remove();
+                                        //                }
+                                        //            }
+                                        //        });
+                                        //    });
+                                        //});
 
-                                //$("#uploadFileForm").on('submit', function (event) {
-                                //    event.preventDefault();
-                                //    // create form data
-                                //    var formData = new FormData();
-                                //    //grab the file that was provided by the user
-                                //    var file = $('#filenames')[0].files[0];
-                                //    // Loop through each of the selected files.
-                                //    formData.append('file', file);
-                                //    if (file) {
-                                //        // Perform the ajax post
-                                //        $.ajax({
-                                //            url: '/RFQs/FileUpload',
-                                //            data: formData,
-                                //            processData: false,
-                                //            contentType: false,
-                                //            type: 'POST',
-                                //            success: function (data) {
-                                //            }
-                                //        });
-                                //    }
-                                //});
+                                        //$("#uploadFileForm").on('submit', function (event) {
+                                        //    event.preventDefault();
+                                        //    // create form data
+                                        //    var formData = new FormData();
+                                        //    //grab the file that was provided by the user
+                                        //    var file = $('#filenames')[0].files[0];
+                                        //    // Loop through each of the selected files.
+                                        //    formData.append('file', file);
+                                        //    if (file) {
+                                        //        // Perform the ajax post
+                                        //        $.ajax({
+                                        //            url: '/RFQs/FileUpload',
+                                        //            data: formData,
+                                        //            processData: false,
+                                        //            contentType: false,
+                                        //            type: 'POST',
+                                        //            success: function (data) {
+                                        //            }
+                                        //        });
+                                        //    }
+                                        //});
     </script>
 }

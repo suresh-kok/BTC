@@ -21,6 +21,8 @@
                     @using (Html.BeginForm("AddHSQuotation", "Quotation", new { ATQuotation = Model }, FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.QuotationID)
+                        @Html.HiddenFor(model => model.ID)
                         <input type="hidden" value="@Model.ID" name="Id" />
 
                         <div class="row" style="margin-bottom:15px">

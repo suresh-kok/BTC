@@ -1,4 +1,6 @@
 ﻿@model Travel_Request_System_EF.Models.RFQ
+@using Travel_Request_System_EF.Models.ViewModel
+@using Travel_Request_System_EF.Models
 
 @{
     ViewBag.Title = "RFQ View";
@@ -9,7 +11,24 @@
 
     @Html.AntiForgeryToken()
 
-    @Html.Partial("_TravelRequestDetails", Model.TravelRequests);
+    @if (Model.ProcessingSection == (int)ProcessingSections.AT || Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC)
+    {
+        <div class="row" style="margin-bottom:15px">
+            @Html.Partial("_ATQuotation", (ATQuotation)ViewBag.ATQuotation)
+        </div>
+    }
+    @if (Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.HS || Model.ProcessingSection == (int)ProcessingSections.HSPC)
+    {
+        <div class="row" style="margin-bottom:15px">
+            @Html.Partial("_HSQuotation", (HSQuotation)ViewBag.HSQuotation)
+        </div>
+    }
+    @if (Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC || Model.ProcessingSection == (int)ProcessingSections.HSPC || Model.ProcessingSection == (int)ProcessingSections.PC)
+    {
+        <div class="row" style="margin-bottom:15px">
+            @Html.Partial("_PCQuotation", (PCQuotation)ViewBag.PCQuotation)
+        </div>
+    }
 
     <div class="col-xs-12 col-md-12">
         <div class="box box-default">
@@ -88,7 +107,7 @@
                 </div>
                 <div class="row" style="margin-bottom:15px">
                     <div class="col-md-3">
-                        @Html.ActionLink("Back to List", "RFQPostMerger", new { id = Model.TravelRequestID } , new { @class = "form-control btn btn-info" })
+                        @Html.ActionLink("Back to List", "RFQPostMerger", new { id = Model.TravelRequestID }, new { @class = "form-control btn btn-info" })
                     </div>
                     <div class="col-md-3">
                         @Html.ActionLink("  Print", "PrintRFQ", new { id = Model.ID }, new { @class = "form-control btn btn-info" })

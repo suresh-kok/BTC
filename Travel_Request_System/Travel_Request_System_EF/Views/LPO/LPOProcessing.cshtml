@@ -178,7 +178,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">
-                                                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="Create LPO" formaction="@Url.Action("LPOCreation", new { id = item.ID })" formmethod="post" name="RFQCreate" />
+                                                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="Create LPO" formaction="@Url.Action("LPOCreation", new { id = item.Quotation.Where(a => a.RFQID == item.ID).FirstOrDefault().ID })" formmethod="post" name="RFQCreate" />
                                                 </td>
                                             </tr>
                                             foreach (var quot in item.Quotation)

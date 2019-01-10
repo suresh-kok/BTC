@@ -99,7 +99,6 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     atQuote = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id).FirstOrDefault();
                     ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(quotation.TravelRequests.ApplicationNumber + "/AT-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-
                 }
                 pageNo = 1;
                 quotation.ATQuotation.Add(atQuote);
@@ -114,11 +113,13 @@ namespace Travel_Request_System_EF.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddATQuotation(ATQuotation atquote)
         {
+            ModelState.Remove("DepartureTime");
+            ModelState.Remove("ReturnTime");
             if (ModelState.IsValid)
             {
                 using (BTCEntities db = new BTCEntities())
                 {
-                    var dbatquote = db.ATQuotation.Find(atquote.ID);
+                    var dbatquote = db.ATQuotation.Include(a=>a.Quotation).Where(a=>a.QuotationID == atquote.QuotationID).FirstOrDefault();
                     dbatquote.Airlines = string.IsNullOrEmpty(atquote.Airlines) ? "" : atquote.Airlines;
                     dbatquote.TicketClass = string.IsNullOrEmpty(atquote.TicketClass) ? "" : atquote.TicketClass;
                     dbatquote.TicketNo = string.IsNullOrEmpty(atquote.TicketNo) ? "" : atquote.TicketNo;
@@ -168,7 +169,7 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 TempData["ErrorMessage"] = sberr.ToList();
             }
-            return View(atquote);
+            return RedirectToAction("AddATQuotation", new { id = atquote.QuotationID });
         }
 
         public ActionResult AddHSQuotation(int? id)
@@ -201,11 +202,13 @@ namespace Travel_Request_System_EF.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddHSQuotation(HSQuotation hsquote)
         {
+            ModelState.Remove("CheckInTime");
+            ModelState.Remove("CheckOutTime");
             if (ModelState.IsValid)
             {
                 using (BTCEntities db = new BTCEntities())
                 {
-                    var dbhsquote = db.HSQuotation.Find(hsquote.ID);
+                    var dbhsquote = db.HSQuotation.Include(a => a.Quotation).Where(a=>a.QuotationID == hsquote.QuotationID).FirstOrDefault();
                     dbhsquote.HotelName = string.IsNullOrEmpty(hsquote.HotelName) ? "" : hsquote.HotelName;
                     dbhsquote.HotelCategory = string.IsNullOrEmpty(hsquote.HotelCategory) ? "" : hsquote.HotelCategory;
                     dbhsquote.RoomCategory = string.IsNullOrEmpty(hsquote.RoomCategory) ? "" : hsquote.RoomCategory;
@@ -250,7 +253,7 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 TempData["ErrorMessage"] = sberr.ToList();
             }
-            return View(hsquote);
+            return RedirectToAction("AddHSQuotation", new { id = hsquote.QuotationID });
         }
 
         public ActionResult AddPCQuotation(int? id)
@@ -283,11 +286,13 @@ namespace Travel_Request_System_EF.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddPCQuotation(PCQuotation pcquote)
         {
+            ModelState.Remove("PickUpTime");
+            ModelState.Remove("DropOffTime");
             if (ModelState.IsValid)
             {
                 using (BTCEntities db = new BTCEntities())
                 {
-                    var dbpcquote = db.PCQuotation.Find(pcquote.ID);
+                    var dbpcquote = db.PCQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == pcquote.QuotationID).FirstOrDefault();
                     dbpcquote.PickupLocation = string.IsNullOrEmpty(pcquote.PickupLocation) ? "" : pcquote.PickupLocation;
                     dbpcquote.DropoffLocation = string.IsNullOrEmpty(pcquote.DropoffLocation) ? "" : pcquote.DropoffLocation;
                     dbpcquote.PreferredVehicle = string.IsNullOrEmpty(pcquote.PreferredVehicle) ? "" : pcquote.PreferredVehicle;
@@ -330,7 +335,7 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 TempData["ErrorMessage"] = sberr.ToList();
             }
-            return View(pcquote);
+            return RedirectToAction("AddPCQuotation", new { id = pcquote.QuotationID });
         }
 
         [HttpPost]

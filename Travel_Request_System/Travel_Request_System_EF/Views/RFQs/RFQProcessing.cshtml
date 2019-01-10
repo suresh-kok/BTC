@@ -162,7 +162,9 @@
                                                         }
                                                     </td>
                                                     <td>
-                                                        @Html.ActionLink("  Delete", "RemoveRFQ", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
+                                                        <span class="glyphicon">
+                                                            @Html.ActionLink("  Delete", "RemoveRFQ", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
+                                                            </span>
                                                     </td>
                                                 </tr>
                                             }
