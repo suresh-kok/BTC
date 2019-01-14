@@ -31,7 +31,9 @@
                 }
             </div>
             <div class="col-md-3">
-                <div class="col-md-5 pull-right">
+                <div class="col-md-7 ">
+                </div>
+                <div class="col-md-5 ">
                     @Html.ActionLink("Back to List", "Index", null, new { @class = "form-control btn btn-info" })
                 </div>
             </div>
@@ -162,9 +164,12 @@
                                                         }
                                                     </td>
                                                     <td>
-                                                        <span class="glyphicon">
-                                                            @Html.ActionLink("  Delete", "RemoveRFQ", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
+                                                        @if (item.Processing == 0)
+                                                        {
+                                                            <span class="glyphicon">
+                                                                @Html.ActionLink("  Delete", "RemoveRFQ", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
                                                             </span>
+                                                        }
                                                     </td>
                                                 </tr>
                                             }

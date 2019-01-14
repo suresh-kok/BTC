@@ -115,13 +115,13 @@
             @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)
             {
                 <li>
-                    <a href="@Url.Action("TravelRequestsList", "LPO")"><i class="fa fa-link"></i> <span>Manage LPO</span></a>
+                    <a href="@Url.Action("Index", "Quotation")"><i class="fa fa-link"></i> <span>Manage Quotations</span></a>
                 </li>
             }
             @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)
             {
                 <li>
-                    <a href="@Url.Action("Index", "Quotation")"><i class="fa fa-link"></i> <span>Manage Quotations</span></a>
+                    <a href="@Url.Action("TravelRequestsList", "LPO")"><i class="fa fa-link"></i> <span>Manage LPO</span></a>
                 </li>
             }
             @if ((ViewBag.IsHR != null && ViewBag.IsHR) ||
@@ -157,17 +157,17 @@
             }
 
             @*<li class="treeview">
-                <a href="#">
-                    <i class="fa fa-link"></i> <span>Multilevel</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
-                </ul>
-            </li>*@
+            <a href="#">
+                <i class="fa fa-link"></i> <span>Multilevel</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="#">Link in level 2</a></li>
+                <li><a href="#">Link in level 2</a></li>
+            </ul>
+        </li>*@
         </ul>
         @* END Menu *@
     </section>

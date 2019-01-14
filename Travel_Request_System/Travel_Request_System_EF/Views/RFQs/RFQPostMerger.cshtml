@@ -116,7 +116,7 @@
 <div class="row" style="margin-bottom:15px">
     <div class="col-md-3">
         <div class="col-md-5">
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "form-control btn btn-info" })
+            @Html.ActionLink("Back to List", "RFQProcessing", new { id = Model.FirstOrDefault().TravelRequestID }, new { @class = "form-control btn btn-info" })
         </div>
     </div>
     <div class="col-md-3">

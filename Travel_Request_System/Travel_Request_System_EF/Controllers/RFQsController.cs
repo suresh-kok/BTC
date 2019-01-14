@@ -309,16 +309,14 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                List<RFQ> rfqlist = db.RFQ.Include(a => a.TravelRequests).Include(a => a.Users).Include(a => a.TravelAgency).Include(a => a.LPO).Where(a => a.TravelRequestID == id && a.Processing == 0).ToList();
+                List<RFQ> rfqlist = db.RFQ.Include(a => a.TravelRequests).Include(a => a.Users).Include(a => a.TravelAgency).Include(a => a.LPO).Where(a => a.TravelRequestID == id && a.Processing == 0 && a.IsDeleted == false).ToList();
                 ViewBag.TravelAgency = db.TravelAgency.ToList();
 
                 return View(rfqlist);
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public void DeleteRFQProcessing(int id)
+        public ActionResult DeleteRFQProcessing(int id)
         {
             using (BTCEntities db = new BTCEntities())
             {
@@ -328,6 +326,7 @@ namespace Travel_Request_System_EF.Controllers
                 db.Entry(rfqVal).State = EntityState.Modified;
                 db.SaveChanges();
                 ViewBag.SuccessMessage = "Entry Marked for Deletion";
+                return RedirectToAction("RFQMerger", new { id = rfqVal.TravelRequestID });
             }
         }
 

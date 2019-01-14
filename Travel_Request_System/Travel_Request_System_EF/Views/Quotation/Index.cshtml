@@ -104,6 +104,23 @@
         </section>
     </aside>
 
-    @Html.Partial("_TravelRequestDetails", Model.FirstOrDefault().TravelRequests)
+    @*@if (Model.ProcessingSection == (int)ProcessingSections.AT || Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC)
+    {
+        <div class="row" style="margin-bottom:15px">
+            @Html.Partial("_ATQuotation", (ATQuotation)ViewBag.ATQuotation)
+        </div>
+    }
+    @if (Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.HS || Model.ProcessingSection == (int)ProcessingSections.HSPC)
+    {
+        <div class="row" style="margin-bottom:15px">
+            @Html.Partial("_HSQuotation", (HSQuotation)ViewBag.HSQuotation)
+        </div>
+    }
+    @if (Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC || Model.ProcessingSection == (int)ProcessingSections.HSPC || Model.ProcessingSection == (int)ProcessingSections.PC)
+    {
+        <div class="row" style="margin-bottom:15px">
+            @Html.Partial("_PCQuotation", (PCQuotation)ViewBag.PCQuotation)
+        </div>
+    }*@
 
 </div>

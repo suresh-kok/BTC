@@ -680,7 +680,7 @@
     </div>
 @section Scripts {
     <script type="text/javascript">
-        if ($('#airportpic').text() == "Yes") {
+         if (@Model.AirportPickUp == "0") {
             $('#PickUpDetailsDiv').show()
         }
         else {
