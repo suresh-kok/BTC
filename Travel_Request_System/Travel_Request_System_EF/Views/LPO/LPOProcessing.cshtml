@@ -134,12 +134,12 @@
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="View Travel Grid as PDF" formaction="PrintLPO" formmethod="post" name="ViewTravelGrid" />
+                    <input type="submit" class="form-control btn btn-info btn-primary hidden" value="View Travel Grid as PDF" formaction="PrintLPO" formmethod="post" name="ViewTravelGrid" />
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="Intimate Employee" formaction="IntimateEmployee" formmethod="post" name="IntimateEmployee" />
+                    <input type="submit" class="form-control btn btn-info btn-primary hidden" value="Intimate Employee" formaction="IntimateEmployee" formmethod="post" name="IntimateEmployee" />
                 </div>
             </div>
         </div>
@@ -169,16 +169,16 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        if (item.Quotation.Where(a => a.RFQID == item.ID || (a.ATQuotation.Count(b => (bool)b.IsDeleted == false) > 0 || a.HSQuotation.Count(b => (bool)b.IsDeleted == false) > 0 || a.PCQuotation.Count(b => (bool)b.IsDeleted == false) > 0)).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault() > 0)
+                                        if (item.Quotation.Where(a => a.RFQID == item.ID && (a.ATQuotation.Count(b => (bool)b.IsDeleted == false && (bool)b.IsActive == true) > 0 || a.HSQuotation.Count(b => (bool)b.IsDeleted == false && (bool)b.IsActive == true) > 0 || a.PCQuotation.Count(b => (bool)b.IsDeleted == false && (bool)b.IsActive == true) > 0)).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault() > 0)
                                         {
                                             <tr>
-                                                <td style="text-align:center; vertical-align:middle" rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">
+                                                <td style="text-align:center; vertical-align:middle" @*rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()"*@>
                                                     @item.RFQName
                                                 </td>
                                                 <td></td>
                                                 <td></td>
-                                                <td rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">
-                                                    <input type="submit" class="form-control btn btn-info btn-primary disabled" value="Create LPO" formaction="@Url.Action("LPOCreation", new { id = item.Quotation.Where(a => a.RFQID == item.ID).FirstOrDefault().ID })" formmethod="post" name="RFQCreate" />
+                                                <td> @*rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">*@
+                                                    <input type="submit" class="form-control btn btn-info btn-primary hidden" value="Create LPO" onclick="createlpofunc(@item.Quotation.Where(a => a.RFQID == item.ID).FirstOrDefault().ID )" formmethod="post" name="RFQCreate" />
                                                 </td>
                                             </tr>
                                             foreach (var quot in item.Quotation)
@@ -186,6 +186,7 @@
                                                 if (quot.ATQuotation.Count > 0 && quot.ATQuotation.Count(b => (bool)b.IsDeleted == false && (bool)b.IsActive == true) > 0)
                                                 {
                                                     <tr>
+                                                        <td></td>
                                                         <td><b>Q#</b> @quot.ATQuotation.FirstOrDefault().QuotationName</td>
                                                         <td>
                                                             <div class="checkbox">
@@ -200,6 +201,7 @@
                                                 if (quot.HSQuotation.Count > 0 && quot.HSQuotation.Count(b => (bool)b.IsDeleted == false && (bool)b.IsActive == true) > 0)
                                                 {
                                                     <tr>
+                                                        <td></td>
                                                         <td><b>Q#</b> @quot.HSQuotation.FirstOrDefault().QuotationName</td>
                                                         <td>
                                                             <div class="checkbox">
@@ -214,6 +216,7 @@
                                                 if (quot.PCQuotation.Count > 0 && quot.PCQuotation.Count(b => (bool)b.IsDeleted == false && (bool)b.IsActive == true) > 0)
                                                 {
                                                     <tr>
+                                                        <td></td>
                                                         <td><b>Q#</b> @quot.PCQuotation.FirstOrDefault().QuotationName</td>
                                                         <td>
                                                             <div class="checkbox">
@@ -318,6 +321,7 @@
     $(document).ready(function () {
 
         $("[name=CreateTravelGrid]").unbind('click');
+        $("[name=RFQCreate]").unbind('click');
 
         $("[name=IntimateEmployee]").bind('click', function (e) {
             e.preventDefault();
@@ -400,10 +404,10 @@
             contentType: "application/json; charset=utf-8",
             success: function () {
                 alert("Added The LPO Entry");
-                $("[name=RFQCreate]").removeClass('disabled');
-                $("[name=ViewTravelGrid]").removeClass('disabled');
-                $("[name=IntimateEmployee]").removeClass('disabled');
-                $("[name=CreateTravelGrid]").addClass('disabled');
+                $("[name=RFQCreate]").removeClass('hidden');
+                $("[name=ViewTravelGrid]").removeClass('hidden');
+                $("[name=IntimateEmployee]").removeClass('hidden');
+                $("[name=CreateTravelGrid]").addClass('hidden');
                 $("input[type=checkbox]").iCheck('disable');
 
                 $("[name=RFQCreate]").unbind('click');
@@ -420,4 +424,27 @@
         });
         return false;
     });
+
+    function createlpofunc(i) {
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify({
+                id : i
+            }),
+            //data: JSON.stringify(model),
+            url: "@Url.Action("LPOCreation", "LPO")",
+            contentType: "application/json; charset=utf-8",
+            success: function () {
+                alert("Created LPO");
+                
+                $("[name=RFQCreate]").prop('click', function (e) {
+                    e.preventDefault();
+                });
+            },
+            error: function () {
+                alert("Unknown Error");
+            }
+        });
+        return false;
+    }
 </script>

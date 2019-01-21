@@ -140,31 +140,41 @@ namespace Travel_Request_System_EF.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<ActionResult> LPOCreation(int id)
+        public ActionResult LPOCreation(string id)
         {
-            using (BTCEntities db = new BTCEntities())
+            int i = Convert.ToInt32(id);
+            if (i > 0)
             {
-                var lpodata = db.LPO.Where(a => a.QuotationID == id).FirstOrDefault();
-                if(lpodata.IsDeleted == null || (bool)lpodata.IsDeleted)
+                using (BTCEntities db = new BTCEntities())
                 {
-                    lpodata.IsDeleted = false;
+                    var lpodata = db.LPO.Where(a => a.QuotationID == i).FirstOrDefault();
+                    if (lpodata.IsDeleted == null || (bool)lpodata.IsDeleted)
+                    {
+                        lpodata.IsDeleted = false;
 
-                    db.Entry(lpodata).State = EntityState.Modified;
+                        db.Entry(lpodata).State = EntityState.Modified;
 
-                    db.LPO.Attach(lpodata);
-                    db.Entry(lpodata).Property(x => x.IsDeleted).IsModified = true;
-                    db.SaveChanges();
+                        db.LPO.Attach(lpodata);
+                        db.Entry(lpodata).Property(x => x.IsDeleted).IsModified = true;
+                        db.SaveChanges();
 
-                    var rfq = db.RFQ.Where(a => a.ID == lpodata.RFQID).FirstOrDefault();
-                    rfq.Processing = (int)ProcessingStatus.Processed;
+                        var rfq = db.RFQ.Where(a => a.ID == lpodata.RFQID).FirstOrDefault();
+                        rfq.Processing = (int)ProcessingStatus.Processed;
 
-                    var travelreq = db.TravelRequests.Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault();
-                    travelreq.ApprovalLevel = (int)ApprovalLevels.ApprovedbyTravelCo;
+                        var travelreq = db.TravelRequests.Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault();
+                        travelreq.ApprovalLevel = (int)ApprovalLevels.ApprovedbyTravelCo;
 
-                    db.SaveChanges();
+                        db.Configuration.ValidateOnSaveEnabled = false;
+
+                        db.SaveChanges();
+                    }
+
+                    return Json("Successfully Created", JsonRequestBehavior.AllowGet);
                 }
-
-                return RedirectToAction("LPODetails", new { id = lpodata.ID });
+            }
+            else
+            {
+                return Json("Creation Failed", JsonRequestBehavior.AllowGet);
             }
         }
 

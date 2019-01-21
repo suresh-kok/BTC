@@ -78,7 +78,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(rFQ.TravelRequests.ApplicationNumber)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                //ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(rFQ.TravelRequests.ApplicationNumber)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
                 return View(rFQ);
             }
         }
@@ -194,6 +194,8 @@ namespace Travel_Request_System_EF.Controllers
                 quotation.HSQuotation.Add(hsQuote);
                 quotation.ATQuotation.Clear();
                 quotation.PCQuotation.Clear();
+
+                CheckErrorMessages();
                 return View(hsQuote);
             }
         }
@@ -278,6 +280,7 @@ namespace Travel_Request_System_EF.Controllers
                 quotation.PCQuotation.Add(pcQuote);
                 quotation.ATQuotation.Clear();
                 quotation.HSQuotation.Clear();
+                CheckErrorMessages();
                 return View(pcQuote);
             }
         }

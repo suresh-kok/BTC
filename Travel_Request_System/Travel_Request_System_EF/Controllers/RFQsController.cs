@@ -180,6 +180,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.CurrencyID = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
+                ViewBag.TravelAgency = db.TravelAgency.ToList();
 
                 TravelRequests travelRequest = await db.TravelRequests.Include(a => a.RFQ).Where(a => a.ID == id).FirstOrDefaultAsync();
 
@@ -232,19 +233,20 @@ namespace Travel_Request_System_EF.Controllers
             rfq.Processing = (int)ProcessingStatus.NotProcessed;
             rfq.IsDeleted = false;
             rfq.UserID = dbuser.ID;
+            rfq.TravelAgencyID = Convert.ToInt32((formCollection["TravelAgencySelected"].ToString()).Split(',')[0]);
 
             using (BTCEntities db = new BTCEntities())
             {
-                if (db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection && a.TravelRequestID == travelRequest.ID && a.IsDeleted == false).Count() < 1 && rfq.ProcessingSection != 0)
+                if (db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection && a.TravelRequestID == travelRequest.ID && a.TravelAgencyID == rfq.TravelAgencyID && a.IsDeleted == false).Count() < 1 && rfq.ProcessingSection != 0)
                 {
-                    if (db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection && a.TravelRequestID == travelRequest.ID).Count() < 1)
+                    if (db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection && a.TravelRequestID == travelRequest.ID && a.TravelAgencyID == rfq.TravelAgencyID).Count() < 1)
                     {
                         rfq.RFQName = db.TravelRequests.Where(a => a.ID == travelRequest.ID).FirstOrDefault().ApplicationNumber;
                         db.RFQ.Add(rfq);
                     }
                     else
                     {
-                        RFQ rfqlist = db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection && a.TravelRequestID == travelRequest.ID).FirstOrDefault();
+                        RFQ rfqlist = db.RFQ.Where(a => a.ProcessingSection == rfq.ProcessingSection && a.TravelRequestID == travelRequest.ID && a.TravelAgencyID == rfq.TravelAgencyID).FirstOrDefault();
                         rfqlist.IsDeleted = false;
 
                         db.RFQ.Attach(rfqlist);
@@ -265,6 +267,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.CurrencyID = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
+                ViewBag.TravelAgency = db.TravelAgency.ToList();
 
                 travelRequest = db.TravelRequests.Include(a => a.RFQ).Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault();
 
@@ -351,7 +354,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.ApprovalBy = db.Users.ToList();
 
                 RFQ rfqlist = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == id).FirstOrDefaultAsync();
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(rfqlist.TravelRequests.ApplicationNumber)).Select(x => x.Attachments).ToList();
+                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqlist.RFQName + "Pro" + rfqlist.ProcessingSection + "Trav" + rfqlist.TravelAgencyID)).Select(x => x.Attachments).ToList();
                 MasterRFQ = rfqlist;
                 if (rfqlist.ProcessingSection == (int)ProcessingSections.AT || rfqlist.ProcessingSection == (int)ProcessingSections.ATHS || rfqlist.ProcessingSection == (int)ProcessingSections.ATHSPC || rfqlist.ProcessingSection == (int)ProcessingSections.ATPC)
                 {
@@ -404,7 +407,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.ApprovalBy = db.Users.ToList();
 
                 RFQ rfqlist = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == id).FirstOrDefaultAsync();
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(rfqlist.TravelRequests.ApplicationNumber)).Select(x => x.Attachments).ToList();
+                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqlist.RFQName + "Pro" + MasterRFQ.ProcessingSection + "Trav" + rfqlist.TravelAgencyID)).Select(x => x.Attachments).ToList();
                 MasterRFQ = rfqlist;
                 if (rfqlist.ProcessingSection == (int)ProcessingSections.AT || rfqlist.ProcessingSection == (int)ProcessingSections.ATHS || rfqlist.ProcessingSection == (int)ProcessingSections.ATHSPC || rfqlist.ProcessingSection == (int)ProcessingSections.ATPC)
                 {
@@ -460,7 +463,6 @@ namespace Travel_Request_System_EF.Controllers
                     dbrfq.Processing = (int)ProcessingStatus.BeingProcessed;
                     dbrfq.UserID = dbuser.ID;
                     dbrfq.Remarks = rfq.Remarks;
-                    dbrfq.TravelAgencyID = rfq.TravelAgencyID;
                     dbrfq.IsDeleted = rfq.IsDeleted;
 
                     db.RFQ.Attach(dbrfq);
@@ -469,7 +471,6 @@ namespace Travel_Request_System_EF.Controllers
                     entry.Property(a => a.Remarks).IsModified = true;
                     entry.Property(a => a.UserID).IsModified = true;
                     entry.Property(a => a.Processing).IsModified = true;
-                    entry.Property(a => a.TravelAgencyID).IsModified = true;
                     entry.Property(a => a.IsDeleted).IsModified = true;
                     db.SaveChanges();
 
@@ -531,7 +532,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.ApprovalBy = db.Users.ToList();
 
                 RFQ rfqlist = db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == rfq.ID).FirstOrDefault();
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(rfqlist.TravelRequests.ApplicationNumber)).Select(x => x.Attachments).ToList();
+                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqlist.RFQName + "Pro" + rfqlist.ProcessingSection + "Trav" + rfqlist.TravelAgencyID)).Select(x => x.Attachments).ToList();
                 MasterRFQ = rfqlist;
                 return View(rfqlist);
             }
@@ -569,7 +570,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
 
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(rfqlist.TravelRequests.ApplicationNumber)).Select(x => x.Attachments).ToList();
+                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqlist.RFQName + "Pro" + rfqlist.ProcessingSection + "Trav" + rfqlist.TravelAgencyID)).Select(x => x.Attachments).ToList();
                 MasterRFQ = rfqlist;
                 return View(rfqlist);
             }
@@ -577,7 +578,7 @@ namespace Travel_Request_System_EF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult FileUpload()
+        public ActionResult FileUpload(FormCollection formCollection)
         {
             using (BTCEntities db = new BTCEntities())
             {
@@ -588,30 +589,33 @@ namespace Travel_Request_System_EF.Controllers
                     List<Attachments> uploadFileModel = new List<Attachments>();
 
                     fileName = Path.GetFileName(Request.Files[0].FileName);
-                    destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + MasterRFQ.TravelRequests.ApplicationNumber) + "/", fileName);
-                    Directory.CreateDirectory(Server.MapPath("~/UploadedFiles/" + MasterRFQ.TravelRequests.ApplicationNumber));
-                    Request.Files[0].SaveAs(destinationPath);
-
-
-                    var isFileNameRepete = (db.Attachments.AsEnumerable().Where(x => x.FileName == fileName).ToList());
-                    if (isFileNameRepete == null || isFileNameRepete.Count <= 0)
+                    if (formCollection.AllKeys.Contains("RFQname") && !string.IsNullOrEmpty(formCollection["RFQname"].ToString()) && formCollection.AllKeys.Contains("RFQSections") && !string.IsNullOrEmpty(formCollection["RFQSections"].ToString()))
                     {
-                        Attachments attachments = new Attachments { FileName = fileName, FileType = Request.Files[0].ContentType, FilePath = destinationPath, UploadedDate = DateTime.Now, UploadedBy = dbuser.ID };
-                        db.Attachments.Add(attachments);
-                        db.SaveChanges();
+                        destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + formCollection["RFQname"].ToString() + "Pro" + formCollection["RFQSections"].ToString()) + "/", fileName);
+                        Directory.CreateDirectory(Server.MapPath("~/UploadedFiles/" + formCollection["RFQname"].ToString() + "Pro" + formCollection["RFQSections"].ToString()));
+                        Request.Files[0].SaveAs(destinationPath);
 
-                        AttachmentLink attachmentLink = new AttachmentLink { AttachmentFor = MasterRFQ.TravelRequests.ApplicationNumber, AttachmentForID = attachments.ID };
-                        db.AttachmentLink.Add(attachmentLink);
-                        db.SaveChanges();
 
-                        ViewBag.SuccessMessage = "File Uploaded Successfully";
-                    }
-                    else
-                    {
-                        ViewBag.WarningMessage = "File is already exists";
+                        var isFileNameRepete = (db.Attachments.AsEnumerable().Where(x => x.FileName == destinationPath).ToList());
+                        if (isFileNameRepete == null || isFileNameRepete.Count <= 0)
+                        {
+                            Attachments attachments = new Attachments { FileName = fileName, FileType = Request.Files[0].ContentType, FilePath = destinationPath, UploadedDate = DateTime.Now, UploadedBy = dbuser.ID };
+                            db.Attachments.Add(attachments);
+                            db.SaveChanges();
+
+                            AttachmentLink attachmentLink = new AttachmentLink { AttachmentFor = formCollection["RFQname"].ToString() + "Pro" + formCollection["RFQSections"].ToString() + "Trav" + MasterRFQ.TravelAgencyID, AttachmentForID = attachments.ID };
+                            db.AttachmentLink.Add(attachmentLink);
+                            db.SaveChanges();
+
+                            ViewBag.SuccessMessage = "File Uploaded Successfully";
+                        }
+                        else
+                        {
+                            ViewBag.WarningMessage = "File is already exists";
+                        }
                     }
                 }
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(MasterRFQ.TravelRequests.ApplicationNumber)).Select(x => x.Attachments).ToList();
+                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (MasterRFQ.RFQName + "Pro" + MasterRFQ.ProcessingSection + "Trav" + MasterRFQ.TravelAgencyID)).Select(x => x.Attachments).ToList();
                 return RedirectToAction("PreviewRFQ", new { id = MasterRFQ.ID });
             }
         }
@@ -629,14 +633,16 @@ namespace Travel_Request_System_EF.Controllers
                     db.Attachments.Remove(dbfile);
                     db.SaveChanges();
 
-                    FileInfo file = new FileInfo(Server.MapPath("~/UploadedFiles/" + fileName));
+                    var destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + MasterRFQ.RFQName + "Pro" + MasterRFQ.ProcessingSection) + "/", fileName);
+
+                    FileInfo file = new FileInfo(destinationPath);
                     if (file.Exists)
                     {
                         file.Delete();
                     }
                     ViewBag.SuccessMessage = "File Deleted Successfully";
                 }
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(MasterRFQ.TravelRequests.ApplicationNumber)).Select(x => x.Attachments).ToList();
+                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (MasterRFQ.RFQName + "Pro" + MasterRFQ.ProcessingSection + "Trav" + MasterRFQ.TravelAgencyID)).Select(x => x.Attachments).ToList();
                 return RedirectToAction("PreviewRFQ", new { id = MasterRFQ.ID });
             }
         }
@@ -645,7 +651,9 @@ namespace Travel_Request_System_EF.Controllers
         {
             try
             {
-                return File(new FileStream(Server.MapPath("~/UploadedFiles/" + fileName), FileMode.Open), "application/octetstream", fileName);
+                var destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + MasterRFQ.RFQName + "Pro" + MasterRFQ.ProcessingSection) + "/", fileName);
+
+                return File(new FileStream(destinationPath, FileMode.Open), "application/octetstream", fileName);
             }
             catch (Exception ex)
             {

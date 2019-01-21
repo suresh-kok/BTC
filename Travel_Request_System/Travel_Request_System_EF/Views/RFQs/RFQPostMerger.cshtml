@@ -83,7 +83,7 @@
                                                     var att = 0;
                                                     using (Travel_Request_System_EF.Models.BTCEntities db = new Travel_Request_System_EF.Models.BTCEntities())
                                                     {
-                                                        att = db.AttachmentLink.Where(x => x.AttachmentFor.Contains(item.TravelRequests.ApplicationNumber)).Count();
+                                                        att = db.AttachmentLink.Where(x => x.AttachmentFor == (item.RFQName + "Pro" + item.ProcessingSection + "Trav" + item.TravelAgencyID)).Count();
                                                     }
                                                 }
                                                 @att
