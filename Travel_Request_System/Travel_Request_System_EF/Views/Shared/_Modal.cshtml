@@ -36,7 +36,7 @@
                     <p>@ViewBag.PrimaryMessage</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>                    
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -64,7 +64,7 @@
                     }
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>                    
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -92,7 +92,7 @@
                     }
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>                    
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -115,7 +115,7 @@
                     <p>@ViewBag.SuccessMessage</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>                    
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -136,10 +136,17 @@
                 </div>
                 <div class="modal-body">
                     <p>Error Occoured</p>
-                    @foreach (string error in ViewBag.ErrorMessage)
+                    @if (!(ViewBag.ErrorMessage is string))
                     {
-                    <span>@error</span>
-                        <br />
+                        foreach (string error in ViewBag.ErrorMessage)
+                        {
+                            <span>@error</span>
+                            <br />
+                        }
+                    }
+                    else
+                    {
+                        <span>@ViewBag.ErrorMessage</span>
                     }
                 </div>
                 <div class="modal-footer">

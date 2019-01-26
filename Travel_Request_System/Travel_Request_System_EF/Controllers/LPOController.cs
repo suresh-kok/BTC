@@ -68,12 +68,17 @@ namespace Travel_Request_System_EF.Controllers
                 db.Configuration.LazyLoadingEnabled = false;
                 db.Configuration.ProxyCreationEnabled = true;
                 var RFQList = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.LPO).Include(a => a.TravelAgency).Include(a => a.Users).Include(a => a.Quotation).Include("Quotation.ATQuotation").Include("Quotation.HSQuotation").Include("Quotation.PCQuotation").Where(a => a.Processing == (int)ProcessingStatus.BeingProcessed && a.TravelRequestID == id).Distinct().ToListAsync();
-                ViewBag.RFQList = RFQList;
-                ViewBag.TravelAgency = db.TravelAgency.ToList();
-                ViewBag.Cities = db.City.ToList();
-                ViewBag.Currencies = db.Currency.ToList();
-                ViewBag.ApprovalBy = db.Users.ToList();
-                return View(RFQList.ToList());
+                if (RFQList.Count > 0)
+                {
+                    ViewBag.RFQList = RFQList;
+                    ViewBag.TravelAgency = db.TravelAgency.ToList();
+                    ViewBag.Cities = db.City.ToList();
+                    ViewBag.Currencies = db.Currency.ToList();
+                    ViewBag.ApprovalBy = db.Users.ToList();
+                    return View(RFQList.ToList());
+                }
+                else
+                    return RedirectToAction("Index", new { id = id });
             }
         }
 

@@ -40,8 +40,10 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Travel Sector</label>
                                     <div class="col-sm-9">
-                                        @Html.EditorFor(model => model.TravelSector, new { htmlAttributes = new { @class = "form-control" } })
-                                        @*@Html.ValidationMessageFor(model => model.DailyAllowance, null, new { @class = "text-danger" })*@
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.TravelSector, new { htmlAttributes = new { @class = "form-control" } })
+                                            @*@Html.ValidationMessageFor(model => model.DailyAllowance, null, new { @class = "text-danger" })*@
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -67,12 +69,14 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Pick Up Date</label>
                                     <div class="col-sm-9">
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
+                                        <div class="form-group">
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                @Html.EditorFor(model => model.PickUpDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                @*@Html.ValidationMessageFor(model => model.PickUpDate, null , new { @class = "text-danger" })*@
                                             </div>
-                                            @Html.EditorFor(model => model.PickUpDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                            @*@Html.ValidationMessageFor(model => model.PickUpDate, null , new { @class = "text-danger" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -81,13 +85,15 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Pick Up Time</label>
                                     <div class="col-sm-9">
-                                        <div class="bootstrap-timepicker" data-date-format="HH:mm">
-                                            <div class="input-group time">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-clock-o"></i>
+                                        <div class="form-group">
+                                            <div class="bootstrap-timepicker" data-date-format="HH:mm">
+                                                <div class="input-group time">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-clock-o"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.PickUpTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                                    @*@Html.ValidationMessageFor(model => model.PickUpTime, null , new { @class = "text-danger" })*@
                                                 </div>
-                                                @Html.EditorFor(model => model.PickUpTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                @*@Html.ValidationMessageFor(model => model.PickUpTime, null , new { @class = "text-danger" })*@
                                             </div>
                                         </div>
                                     </div>
@@ -113,12 +119,14 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Drop Off Date</label>
                                     <div class="col-sm-9">
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
+                                        <div class="form-group">
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                @Html.EditorFor(model => model.DropOffDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                                                @*@Html.ValidationMessageFor(model => model.DropOffDate, null , new { @class = "text-danger" })*@
                                             </div>
-                                            @Html.EditorFor(model => model.DropOffDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                            @*@Html.ValidationMessageFor(model => model.DropOffDate, null , new { @class = "text-danger" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -127,13 +135,15 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Drop Off Time</label>
                                     <div class="col-sm-9">
-                                        <div class="bootstrap-timepicker" data-date-format="HH:mm">
-                                            <div class="input-group time">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-clock-o"></i>
+                                        <div class="form-group">
+                                            <div class="bootstrap-timepicker" data-date-format="HH:mm">
+                                                <div class="input-group time">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-clock-o"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.DropOffTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                                                    @*@Html.ValidationMessageFor(model => model.DropOffTime, null , new { @class = "text-danger" })*@
                                                 </div>
-                                                @Html.EditorFor(model => model.DropOffTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                @*@Html.ValidationMessageFor(model => model.DropOffTime, null , new { @class = "text-danger" })*@
                                             </div>
                                         </div>
                                     </div>
@@ -161,8 +171,10 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Additional Expenses</label>
                                     <div class="col-sm-9">
-                                        @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00" } })
-                                        @*@Html.ValidationMessageFor(model => model.AdditionalAllowance, null , new { @class = "text-danger" })*@
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00" } })
+                                            @*@Html.ValidationMessageFor(model => model.AdditionalAllowance, null , new { @class = "text-danger" })*@
+                                        </div>
                                     </div>
                                 </div>
                             </div>

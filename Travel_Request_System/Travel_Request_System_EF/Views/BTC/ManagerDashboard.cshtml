@@ -65,10 +65,10 @@
                                         @Html.ActionLink(item.ApplicationNumber, "ManagerApprovalForm", "BTC", new { @item.ID }, null)
                                     </td>
                                     <td>
-                                        @(new HtmlString(item.City.CityDesc + " ," + item.City.Country))
+                                        @(new HtmlString(item.City1.CityDesc + " ," + item.City1.Country))
                                     </td>
                                     <td>
-                                        @(new HtmlString(item.City1.CityDesc + " ," + item.City1.Country))
+                                        @(new HtmlString(item.City.CityDesc + " ," + item.City.Country))
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelitem => item.TravelDays)

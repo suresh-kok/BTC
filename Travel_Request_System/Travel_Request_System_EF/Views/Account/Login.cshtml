@@ -36,7 +36,7 @@
                                 <label>User Name</label>
                                 @*<input type="text" class="form-control pull-right" id="Uname" name="Uname"/>*@
                                 @Html.TextBoxFor(model => model.UserName, new { @class = "form-control pull-right margin-bottom", placeholder = "Username" })*
-                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.UserName, null, new { @class = "text-danger" })
                             </div>
                         </div>
                         <div>
@@ -44,14 +44,14 @@
                                 <label>Password</label>
                                 @*<input type="password" class="form-control pull-right" />*@
                                 @Html.PasswordFor(model => model.Password, new { @class = "form-control pull-right margin-bottom", placeholder = "Password" })*
-                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text -danger" })
                             </div>
                         </div>
                         <div>
                             <div class="form-group">
                                 @Html.EditorFor(model => model.RememberMe)
                                 <label>Remember Me  </label>
-                                @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.RememberMe, null, new { @class = "text-danger" })
                             </div>
                         </div>
                         <div>
@@ -64,7 +64,7 @@
                                 <input type="button" class="form-control btn-link no-border" value="Forgot Password ?" />
                             </div>
                         </div>
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.ValidationSummary(true, null, new { @class = "text-danger" })
                     </div>
                 </div>
             </div>

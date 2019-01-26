@@ -43,6 +43,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
 
         [DisplayName("Check Out Date")]
         [Required(ErrorMessage = "Check Out Date is Required")]
+        [IsDateAfterAttribute("CheckInDate", true, ErrorMessage = "Check Out Date Cannot be less than Check In Date")]
         public Nullable<System.DateTime> CheckOutDate { get; set; }
 
         [DisplayName("Check Out Time")]

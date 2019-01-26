@@ -37,7 +37,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
 
         [DisplayName("Travel Days")]
         [Required(ErrorMessage = "Travel Days is Required")]
-        [Range(1, 365, ErrorMessage = "Value should be greater than or equal to 1")]
+        [Range(1, 365, ErrorMessage = "Travel Days should be greater than or equal to 1")]
         public Nullable<int> TravelDays { get; set; }
 
         [DisplayName("Travel Remarks")]
@@ -103,7 +103,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         public Nullable<decimal> AdditionalAllowance { get; set; }
 
         [DisplayName("Airport PickUp")]
-        [Range(0,1,ErrorMessage = "Airport Pick Up is Required")]
+        [Range(0,1,ErrorMessage = "Airport Pick Up field cannot be blank")]
         public string AirportPickUp { get; set; }
 
         [DisplayName("PickUp Location")]

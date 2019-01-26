@@ -40,6 +40,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
 
         [DisplayName("Drop Off Date")]
         [Required(ErrorMessage = "Drop Off Date is Required")]
+        [IsDateAfterAttribute("PickUpDate", true, ErrorMessage = "Drop OFf Date Cannot be less than Pick Up Date")]
         public Nullable<System.DateTime> DropOffDate { get; set; }
 
         [DisplayName("Drop Off Time")]

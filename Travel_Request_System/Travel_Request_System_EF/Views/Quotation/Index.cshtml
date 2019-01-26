@@ -15,7 +15,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">RFQ Merge Table</h3>
+                            <h3 class="box-title">RFQ Post Merge Table</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">
                             <table class="table table-condensed table-bordered">
@@ -83,7 +83,7 @@
                                                     int att = 0;
                                                     using (var dbvar = new BTCEntities())
                                                     {
-                                                        att = dbvar.AttachmentLink.Where(a => a.AttachmentFor.Contains(item.TravelRequests.ApplicationNumber)).Count();
+                                                        att = dbvar.AttachmentLink.Where(a => a.AttachmentFor.Contains(item.RFQName + "Pro" + item.ProcessingSection + "Trav" + item.TravelAgencyID)).Count();
                                                     }
                                                 }
                                                 @att

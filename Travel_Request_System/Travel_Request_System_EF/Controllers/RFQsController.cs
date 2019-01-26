@@ -178,7 +178,7 @@ namespace Travel_Request_System_EF.Controllers
             using (BTCEntities db = new BTCEntities())
             {
                 ViewBag.Cities = db.City.ToList();
-                ViewBag.CurrencyID = db.Currency.ToList();
+                ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
                 ViewBag.TravelAgency = db.TravelAgency.ToList();
 
@@ -265,7 +265,7 @@ namespace Travel_Request_System_EF.Controllers
                 }
 
                 ViewBag.Cities = db.City.ToList();
-                ViewBag.CurrencyID = db.Currency.ToList();
+                ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
                 ViewBag.TravelAgency = db.TravelAgency.ToList();
 
@@ -591,8 +591,8 @@ namespace Travel_Request_System_EF.Controllers
                     fileName = Path.GetFileName(Request.Files[0].FileName);
                     if (formCollection.AllKeys.Contains("RFQname") && !string.IsNullOrEmpty(formCollection["RFQname"].ToString()) && formCollection.AllKeys.Contains("RFQSections") && !string.IsNullOrEmpty(formCollection["RFQSections"].ToString()))
                     {
-                        destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + formCollection["RFQname"].ToString() + "Pro" + formCollection["RFQSections"].ToString()) + "/", fileName);
-                        Directory.CreateDirectory(Server.MapPath("~/UploadedFiles/" + formCollection["RFQname"].ToString() + "Pro" + formCollection["RFQSections"].ToString()));
+                        destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + MasterRFQ.RFQName + "Pro" + MasterRFQ.ProcessingSection + "Trav" + MasterRFQ.TravelAgencyID) + "/", fileName);
+                        Directory.CreateDirectory(Server.MapPath("~/UploadedFiles/" + MasterRFQ.RFQName + "Pro" + MasterRFQ.ProcessingSection + "Trav" + MasterRFQ.TravelAgencyID));
                         Request.Files[0].SaveAs(destinationPath);
 
 
@@ -633,7 +633,7 @@ namespace Travel_Request_System_EF.Controllers
                     db.Attachments.Remove(dbfile);
                     db.SaveChanges();
 
-                    var destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + MasterRFQ.RFQName + "Pro" + MasterRFQ.ProcessingSection) + "/", fileName);
+                    var destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + MasterRFQ.RFQName + "Pro" + MasterRFQ.ProcessingSection + "Trav" + MasterRFQ.TravelAgencyID) + "/", fileName);
 
                     FileInfo file = new FileInfo(destinationPath);
                     if (file.Exists)
@@ -651,7 +651,7 @@ namespace Travel_Request_System_EF.Controllers
         {
             try
             {
-                var destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + MasterRFQ.RFQName + "Pro" + MasterRFQ.ProcessingSection) + "/", fileName);
+                var destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + MasterRFQ.RFQName + "Pro" + MasterRFQ.ProcessingSection + "Trav" + MasterRFQ.TravelAgencyID) + "/", fileName);
 
                 return File(new FileStream(destinationPath, FileMode.Open), "application/octetstream", fileName);
             }

@@ -83,10 +83,10 @@
                                                 @Html.DisplayFor(modelitem => item.ApplicationNumber)
                                             </td>
                                             <td>
-                                                @(new HtmlString(item.City.CityDesc + " ," + item.City.Country))
+                                                @(new HtmlString(item.City1.CityDesc + " ," + item.City1.Country))
                                             </td>
                                             <td>
-                                                @(new HtmlString(item.City1.CityDesc + " ," + item.City1.Country))
+                                                @(new HtmlString(item.City.CityDesc + " ," + item.City.Country))
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelitem => item.TravelDays)
@@ -104,14 +104,7 @@
                                                 }
                                             </td>
                                             <td>
-                                                @if (item.AirTicketManagement == "1")
-                                                {
-                                                    @(new HtmlString("BTC"))
-                                                }
-                                                else
-                                                {
-                                                    @(new HtmlString("Others"))
-                                                }
+                                                @Html.DisplayFor(modelitem => item.AirTicketManagement)
                                             </td>
                                             <td>
                                                 @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.CreateOn.ToString()))));

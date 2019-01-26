@@ -14,7 +14,7 @@
                     <img src="~/Content/img/BTCWE.jpg" style="width:100%; height:100%" />
 
                     <p>
-                        Business Trading Company, known as BTC, was established in 1997 to fill the then existing void in Qatar for a retail environment that offers the right mix of shopping, dining and entertainment opportunities. 
+                        Business Trading Company, known as BTC, was established in 1997 to fill the then existing void in Qatar for a retail environment that offers the right mix of shopping, dining and entertainment opportunities.
                         <br />
                         <br />
                         Today, the Company is renowned, both in Qatar and in the GCC region, for its proven expertise in developing and managing top-of-the-line shopping malls, leisure facilities, real estate properties and retail brands.
@@ -28,8 +28,8 @@
                     <h3 class="box-title">Login</h3>
 
                     @*<div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    </div>*@
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        </div>*@
                 </div>
                 @using (Html.BeginForm("Login", "Account", new { LoginView = Model }, FormMethod.Post))
                 {
@@ -50,7 +50,7 @@
                                     <label>User Name</label>
                                     @*<input type="text" class="form-control pull-right" id="Uname" name="Uname"/>*@
                                     @Html.TextBoxFor(model => model.UserName, new { @class = "form-control pull-right margin-bottom", placeholder = "Username" })*
-                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                    <span>@Html.ValidationMessageFor(model => model.UserName, null, new { @class = "text-danger" })</span>
                                 </div>
                             </div>
                             <div>
@@ -58,14 +58,16 @@
                                     <label>Password</label>
                                     @*<input type="password" class="form-control pull-right" />*@
                                     @Html.PasswordFor(model => model.Password, new { @class = "form-control pull-right margin-bottom", placeholder = "Password" })*
-                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    <span>
+                                        @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger" })
+                                    </span>
                                 </div>
                             </div>
                             <div>
                                 <div class="form-group">
                                     @Html.EditorFor(model => model.RememberMe)
                                     <label>Remember Me  </label>
-                                    @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                                    <span>@Html.ValidationMessageFor(model => model.RememberMe, null, new { @class = "text-danger" })</span>
                                 </div>
                             </div>
                             <div>
@@ -78,7 +80,7 @@
                                     <input type="button" class="form-control btn-link no-border" onclick="@("window.location.href='" + @Url.Action("ForgotPassword", "Account") + "'");" value="Forgot Password ?" />
                                 </div>
                             </div>
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <span>@Html.ValidationSummary(true, null, new { @class = "text-danger" })</span>
                         </div>
                     </div>
                 }

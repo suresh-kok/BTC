@@ -88,14 +88,7 @@
                                             }
                                         </td>
                                         <td>
-                                            @if (item.AirTicketManagement == "1")
-                                            {
-                                                @(new HtmlString("BTC"))
-                                            }
-                                            else
-                                            {
-                                                @(new HtmlString("Others"))
-                                            }
+                                            @Html.DisplayFor(modelitem => item.AirTicketManagement)
                                         </td>
                                         <td>
                                             @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.CreateOn.ToString()))));
@@ -136,7 +129,7 @@
                                                         @Html.ActionLink("  View LPO", "Index", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
                                                     </span>
                                                 }
-                                                else if (quo)
+                                                if (quo)
                                                 {
                                                     <span class="glyphicon">
                                                         @Html.ActionLink("  Details", "LPOProcessing", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })

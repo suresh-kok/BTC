@@ -1,5 +1,5 @@
 ﻿@model Travel_Request_System_EF.Models.TravelRequests
-@using  Travel_Request_System_EF.Models.ViewModel
+@using Travel_Request_System_EF.Models.ViewModel
 
 <div id="detailsDiv" style="height:auto">
     <div class="col-xs-12 col-md-12">
@@ -245,10 +245,10 @@
                         <div class="form-group">
                             <label class="col-sm-3">Currency</label>
                             <div class="col-sm-9">
-                                @*@{
-                                        var cr = ((IEnumerable<Travel_Request_System_EF.Models.Currency>)ViewBag.Currencies).FirstOrDefault(rt => rt.ID == Model.CurrencyID).CurrencyDesc.ToString();
-                                    }
-                                    @cr*@
+                                @{
+                                    var cr = ((IEnumerable<Travel_Request_System_EF.Models.Currency>)ViewBag.Currencies).FirstOrDefault(rt => rt.ID == Model.CurrencyID).CurrencyDesc.ToString();
+                                }
+                                @cr
                             </div>
                         </div>
                     </div>
@@ -676,18 +676,17 @@
             </div>
         </div>
     }
-    
-    </div>
-@section Scripts {
-    <script type="text/javascript">
-         if (@Model.AirportPickUp == "0") {
-            $('#PickUpDetailsDiv').show()
-        }
-        else {
-            $('#PickUpDetailsDiv').hide()
-        }
+</div>
 
-        $('#detailsDiv').find('textarea').attr('disabled', 'disabled');
+@Scripts.Render("~/bundles/jquery", "~/bundles/jquerymobile")
+<script type="text/javascript">
+    if ($('#airportpic').text() == "Yes") {
+        $('#PickUpDetailsDiv').show()
+    }
+    else {
+        $('#PickUpDetailsDiv').hide()
+    }
 
-    </script>
-}
+    $('#detailsDiv').find('textarea').attr('disabled', 'disabled');
+
+</script>

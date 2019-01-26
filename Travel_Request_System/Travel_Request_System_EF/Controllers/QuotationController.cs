@@ -98,7 +98,8 @@ namespace Travel_Request_System_EF.Controllers
                 else
                 {
                     atQuote = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id).FirstOrDefault();
-                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(quotation.TravelRequests.ApplicationNumber + "/AT-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(quotation.TravelRequests.ApplicationNumber + ".AT-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                    ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(quotation.TravelRequests.ApplicationNumber + ".AT-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
                 }
                 pageNo = 1;
                 quotation.ATQuotation.Add(atQuote);
@@ -111,7 +112,7 @@ namespace Travel_Request_System_EF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddATQuotation(ATQuotation atquote)
+        public ActionResult AddATQuotation(ATQuotation atquote,FormCollection formCollection)
         {
             ModelState.Remove("DepartureTime");
             ModelState.Remove("ReturnTime");
@@ -119,14 +120,14 @@ namespace Travel_Request_System_EF.Controllers
             {
                 using (BTCEntities db = new BTCEntities())
                 {
-                    var dbatquote = db.ATQuotation.Include(a=>a.Quotation).Where(a=>a.QuotationID == atquote.QuotationID).FirstOrDefault();
+                    var dbatquote = db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == atquote.QuotationID).FirstOrDefault();
                     dbatquote.Airlines = string.IsNullOrEmpty(atquote.Airlines) ? "" : atquote.Airlines;
                     dbatquote.TicketClass = string.IsNullOrEmpty(atquote.TicketClass) ? "" : atquote.TicketClass;
                     dbatquote.TicketNo = string.IsNullOrEmpty(atquote.TicketNo) ? "" : atquote.TicketNo;
 
-                    dbatquote.DepartureTime = string.IsNullOrEmpty(Convert.ToString(atquote.DepartureTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(atquote.DepartureTime),
+                    dbatquote.DepartureTime = string.IsNullOrEmpty(Convert.ToString(formCollection["DepartureTime"])) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(formCollection["DepartureTime"]),
                                     "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
-                    dbatquote.ReturnTime = string.IsNullOrEmpty(Convert.ToString(atquote.ReturnTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(atquote.ReturnTime),
+                    dbatquote.ReturnTime = string.IsNullOrEmpty(Convert.ToString(formCollection["ReturnTime"])) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(formCollection["ReturnTime"]),
                                     "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
 
                     dbatquote.Amount = atquote.Amount;
@@ -187,10 +188,11 @@ namespace Travel_Request_System_EF.Controllers
                 else
                 {
                     hsQuote = db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id).FirstOrDefault();
-                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(quotation.TravelRequests.ApplicationNumber + "/HS-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(quotation.TravelRequests.ApplicationNumber + ".HS-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                    ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(quotation.TravelRequests.ApplicationNumber + ".HS-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
 
                 }
-                pageNo = 1;
+                pageNo = 2;
                 quotation.HSQuotation.Add(hsQuote);
                 quotation.ATQuotation.Clear();
                 quotation.PCQuotation.Clear();
@@ -202,7 +204,7 @@ namespace Travel_Request_System_EF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddHSQuotation(HSQuotation hsquote)
+        public ActionResult AddHSQuotation(HSQuotation hsquote, FormCollection formCollection)
         {
             ModelState.Remove("CheckInTime");
             ModelState.Remove("CheckOutTime");
@@ -216,9 +218,9 @@ namespace Travel_Request_System_EF.Controllers
                     dbhsquote.RoomCategory = string.IsNullOrEmpty(hsquote.RoomCategory) ? "" : hsquote.RoomCategory;
                     dbhsquote.RoomType = string.IsNullOrEmpty(hsquote.RoomType) ? "" : hsquote.RoomType;
                     dbhsquote.TravelSector = string.IsNullOrEmpty(hsquote.TravelSector) ? "" : hsquote.TravelSector;
-                    dbhsquote.CheckInTime = string.IsNullOrEmpty(Convert.ToString(hsquote.CheckInTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(hsquote.CheckInTime),
+                    dbhsquote.CheckInTime = string.IsNullOrEmpty(Convert.ToString(formCollection["CheckInTime"])) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(formCollection["CheckInTime"]),
                                     "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
-                    dbhsquote.CheckOutTime = string.IsNullOrEmpty(Convert.ToString(hsquote.CheckOutTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(hsquote.CheckOutTime),
+                    dbhsquote.CheckOutTime = string.IsNullOrEmpty(Convert.ToString(formCollection["CheckOutTime"])) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(formCollection["CheckOutTime"]),
                                     "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
                     dbhsquote.Amount = hsquote.Amount;
                     dbhsquote.CheckInDate = hsquote.CheckInDate;
@@ -273,10 +275,10 @@ namespace Travel_Request_System_EF.Controllers
                 else
                 {
                     pcQuote = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id).FirstOrDefault();
-                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(quotation.TravelRequests.ApplicationNumber + "/PC-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-
+                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(quotation.TravelRequests.ApplicationNumber + ".PC-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                    ViewBag.PCfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(quotation.TravelRequests.ApplicationNumber + ".PC-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
                 }
-                pageNo = 1;
+                pageNo = 3;
                 quotation.PCQuotation.Add(pcQuote);
                 quotation.ATQuotation.Clear();
                 quotation.HSQuotation.Clear();
@@ -287,7 +289,7 @@ namespace Travel_Request_System_EF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddPCQuotation(PCQuotation pcquote)
+        public ActionResult AddPCQuotation(PCQuotation pcquote,FormCollection formCollection)
         {
             ModelState.Remove("PickUpTime");
             ModelState.Remove("DropOffTime");
@@ -300,9 +302,9 @@ namespace Travel_Request_System_EF.Controllers
                     dbpcquote.DropoffLocation = string.IsNullOrEmpty(pcquote.DropoffLocation) ? "" : pcquote.DropoffLocation;
                     dbpcquote.PreferredVehicle = string.IsNullOrEmpty(pcquote.PreferredVehicle) ? "" : pcquote.PreferredVehicle;
                     dbpcquote.TravelSector = string.IsNullOrEmpty(pcquote.TravelSector) ? "" : pcquote.TravelSector;
-                    dbpcquote.PickUpTime = string.IsNullOrEmpty(Convert.ToString(pcquote.PickUpTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(pcquote.PickUpTime),
+                    dbpcquote.PickUpTime = string.IsNullOrEmpty(Convert.ToString(formCollection["PickUpTime"])) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(formCollection["PickUpTime"]),
                                     "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
-                    dbpcquote.DropOffTime = string.IsNullOrEmpty(Convert.ToString(pcquote.DropOffTime)) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(pcquote.DropOffTime),
+                    dbpcquote.DropOffTime = string.IsNullOrEmpty(Convert.ToString(formCollection["DropOffTime"])) ? new TimeSpan() : DateTime.ParseExact(Convert.ToString(formCollection["DropOffTime"]),
                                     "hh:mm tt", CultureInfo.InvariantCulture).TimeOfDay;
                     dbpcquote.Amount = pcquote.Amount;
                     dbpcquote.PickUpDate = pcquote.PickUpDate;
@@ -533,7 +535,7 @@ namespace Travel_Request_System_EF.Controllers
                     retrunToVal = "AddHSQuotation";
                     break;
                 case 3:
-                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".AT-Q";
+                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".PC-Q";
                     attachmentsForIDVal = quotation.ID;
                     retrunToVal = "AddPCQuotation";
                     break;

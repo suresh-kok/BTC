@@ -38,6 +38,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
 
         [DisplayName("Return Date")]
         [Required(ErrorMessage = "Return Date is Required")]
+        [IsDateAfterAttribute("DepartureDate", true, ErrorMessage = "Return Date Cannot be less than Departure Date")]
         public Nullable<System.DateTime> ReturnDate { get; set; }
 
         [DisplayName("Return Time")]
