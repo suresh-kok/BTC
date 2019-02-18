@@ -11,10 +11,7 @@ namespace Travel_Request_System_EF.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using Travel_Request_System_EF.Models.DataAnnotations;
-
-    [MetadataType(typeof(TravelRequestMetaData))]
+    
     public partial class TravelRequests
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -72,6 +69,7 @@ namespace Travel_Request_System_EF.Models
         public Nullable<bool> IsDeleted { get; set; }
         public bool IsSubmitted { get; set; }
         public string airlines { get; set; }
+        public string ExpensesHandledBy { get; set; }
     
         public virtual City City { get; set; }
         public virtual City City1 { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4ff0d28f02a2493fa5e0d34653eccd54" Name="Diagram1" ZoomLevel="43">
+      <Diagram DiagramId="4ff0d28f02a2493fa5e0d34653eccd54" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="HRWorksEntities.ATQuotation" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="HRWorksEntities.City" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HRWorksEntities.Currency" Width="1.5" PointX="3.75" PointY="6.625" IsExpanded="true" />
@@ -44,7 +44,7 @@
         <AssociationConnector Association="HRWorksEntities.fk_Quotation_TravelRequestID" />
         <EntityTypeShape EntityType="HRWorksEntities.LPODetails" Width="1.5" PointX="13.375" PointY="14.75" />
         <EntityTypeShape EntityType="HRWorksEntities.RFQDetails" Width="1.5" PointX="15.375" PointY="14.75" />
-        <EntityTypeShape EntityType="HRWorksEntities.TravelRequestDetails" Width="1.5" PointX="16.375" PointY="0.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.TravelRequestDetails" Width="1.875" PointX="16.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

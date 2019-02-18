@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Application/ Form No.</label>
                                     <div class="col-sm-9">
-                                        @Html.EditorFor(model => model.ApplicationNumber, new { htmlAttributes = new { @class = "form-control" , @name = "applicationNumber", @readonly = "readonly" } })
+                                        @Html.EditorFor(model => model.ApplicationNumber, new { htmlAttributes = new { @class = "form-control", @name = "applicationNumber", @readonly = "readonly" } })
                                         @*@Html.ValidationMessageFor(model => model.ApplicationNumber, null , new { @class = "text-danger" })*@
                                     </div>
                                 </div>
@@ -433,17 +433,36 @@
                         <div class="row" style="margin-bottom:15px">
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <label class="col-sm-3">Expenses Handled By</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="expensesHandledBy">
+                                            <option>None</option>
+                                            <option>Vendor 1</option>
+                                            <option>Vendor 2</option>
+                                            <option>Vendor 3</option>
+                                            <option>Vendor 4</option>
+                                            <option>Vendor 5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:15px">
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label class="col-sm-3">Air Ticket Arrangement</label>
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="atrBTC" name="airTicketManagement" value="BTC" class="flat-red" @(Model.AirTicketManagement == "BTC" ? " checked" : "")> BTC
+                                                <input type="radio" id="atrBTC" name="airTicketManagement" value="Yes" class="flat-red" @(Model.AirTicketManagement == "Yes" ? " checked" : "")> BTC
                                             </label>
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             <label>
-                                                <input type="radio" id="atrOther" name="airTicketManagement" value="Other" class="flat-red" @(Model.AirTicketManagement == "Other" ? " checked" : "")> Other
+                                                <input type="radio" id="atrOther" name="airTicketManagement" value="No" class="flat-red" @(Model.AirTicketManagement == "No" ? " checked" : "")> Other
                                             </label>
                                         </div>
                                     </div>
@@ -466,13 +485,13 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="taBTC" name="travelAllowance" value="BTC" class="flat-red" @(Model.TravelAllowance == "BTC" ? " checked" : "")> BTC
+                                                <input type="radio" id="taBTC" name="travelAllowance" value="Yes" class="flat-red" @(Model.TravelAllowance == "Yes" ? " checked" : "")> BTC
                                             </label>
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             <label>
-                                                <input type="radio" id="taOther" name="travelAllowance" value="Other" class="flat-red" @(Model.TravelAllowance == "Other" ? " checked" : "")> Other
+                                                <input type="radio" id="taOther" name="travelAllowance" value="No" class="flat-red" @(Model.TravelAllowance == "No" ? " checked" : "")> Other
                                             </label>
                                         </div>
                                     </div>
@@ -500,13 +519,13 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="hsBTC" name="hotelStay" value="BTC" class="flat-red" @(Model.HotelStay == "BTC" ? " checked" : "")> BTC
+                                                <input type="radio" id="hsBTC" name="hotelStay" value="Yes" class="flat-red" @(Model.HotelStay == "Yes" ? " checked" : "")> BTC
                                             </label>
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             <label>
-                                                <input type="radio" id="hsOther" name="hotelStay" value="Other" class="flat-red" @(Model.HotelStay == "Other" ? " checked" : "")> Other
+                                                <input type="radio" id="hsOther" name="hotelStay" value="No" class="flat-red" @(Model.HotelStay == "No" ? " checked" : "")> Other
                                             </label>
                                         </div>
                                     </div>
@@ -616,17 +635,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="margin-bottom:15px">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Additional Expenses</label>
-                                    <div class="col-sm-9">
-                                        @Html.EditorFor(model => model.AdditionalAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00" } })
-                                        @*@Html.ValidationMessageFor(model => model.AdditionalAllowance, null , new { @class = "text-danger" })*@
+                        @*<div class="row" style="margin-bottom:15px">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-3">Additional Expenses</label>
+                                        <div class="col-sm-9">
+                                            @Html.EditorFor(model => model.AdditionalAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00" } })
+                                            @Html.ValidationMessageFor(model => model.AdditionalAllowance, null , new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div>*@
                     </div>
                 </div>
             </div>

@@ -70,5 +70,6 @@ namespace Travel_Request_System_EF.Models
         public string ModifiedByName { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public bool IsSubmitted { get; set; }
+        public string ExpensesHandledBy { get; set; }
     }
 }

@@ -116,9 +116,9 @@
                                                     {
                                                         lpo = true;
                                                     }
-                                                    if (db.ATQuotation.Where(a => a.QuotationID == (db.Quotation.Where(b => b.TravelRequestID == item.ID).FirstOrDefault().ID) && (bool)a.IsActive).Count() > 0 ||
-                                                        db.HSQuotation.Where(a => a.QuotationID == (db.Quotation.Where(b => b.TravelRequestID == item.ID).FirstOrDefault().ID) && (bool)a.IsActive).Count() > 0 ||
-                                                        db.PCQuotation.Where(a => a.QuotationID == (db.Quotation.Where(b => b.TravelRequestID == item.ID).FirstOrDefault().ID) && (bool)a.IsActive).Count() > 0)
+                                                    if (db.ATQuotation.Where(a => a.QuotationID == (db.Quotation.Where(b => b.TravelRequestID == item.ID && b.RFQ.Processing == (int)Travel_Request_System_EF.Models.ViewModel.ProcessingStatus.BeingProcessed).FirstOrDefault().ID) && (bool)a.IsActive).Count() > 0 ||
+                                                        db.HSQuotation.Where(a => a.QuotationID == (db.Quotation.Where(b => b.TravelRequestID == item.ID && b.RFQ.Processing == (int)Travel_Request_System_EF.Models.ViewModel.ProcessingStatus.BeingProcessed).FirstOrDefault().ID) && (bool)a.IsActive).Count() > 0 ||
+                                                        db.PCQuotation.Where(a => a.QuotationID == (db.Quotation.Where(b => b.TravelRequestID == item.ID && b.RFQ.Processing == (int)Travel_Request_System_EF.Models.ViewModel.ProcessingStatus.BeingProcessed).FirstOrDefault().ID) && (bool)a.IsActive).Count() > 0)
                                                     {
                                                         quo = true;
                                                     }

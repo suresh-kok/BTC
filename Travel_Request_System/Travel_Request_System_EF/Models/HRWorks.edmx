@@ -24,6 +24,7 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="QuotationName" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="IsLowest" Type="bit" />
         </EntityType>
         <EntityType Name="AttachmentLink">
           <Key>
@@ -81,6 +82,7 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="QuotationName" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="IsLowest" Type="bit" />
         </EntityType>
         <EntityType Name="LPO">
           <Key>
@@ -114,6 +116,7 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="QuotationName" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="IsLowest" Type="bit" />
         </EntityType>
         <EntityType Name="Quotation">
           <Key>
@@ -214,6 +217,7 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsSubmitted" Type="bit" Nullable="false" />
           <Property Name="airlines" Type="nvarchar" MaxLength="250" />
+          <Property Name="ExpensesHandledBy" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -444,6 +448,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="TravelDays" Type="int" />
           <Property Name="TravelRemarks" Type="nvarchar(max)" />
           <Property Name="PurposeOfVisit" Type="nvarchar(max)" />
+          <Property Name="ExpensesHandledBy" Type="nvarchar" MaxLength="500" />
           <Property Name="DepartureDate" Type="nvarchar" MaxLength="4000" />
           <Property Name="DepartureTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="ReturnDate" Type="nvarchar" MaxLength="4000" />
@@ -942,6 +947,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
     [TravelRequestDetails].[TravelDays] AS [TravelDays], 
     [TravelRequestDetails].[TravelRemarks] AS [TravelRemarks], 
     [TravelRequestDetails].[PurposeOfVisit] AS [PurposeOfVisit], 
+    [TravelRequestDetails].[ExpensesHandledBy] AS [ExpensesHandledBy], 
     [TravelRequestDetails].[DepartureDate] AS [DepartureDate], 
     [TravelRequestDetails].[DepartureTime] AS [DepartureTime], 
     [TravelRequestDetails].[ReturnDate] AS [ReturnDate], 
@@ -1095,6 +1101,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <NavigationProperty Name="Quotation" Relationship="HRWorksEntities.fk_ATQuotation_QuotationID" FromRole="ATQuotation" ToRole="Quotation" />
           <Property Name="QuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsLowest" Type="Boolean" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -1139,6 +1146,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <NavigationProperty Name="Quotation" Relationship="HRWorksEntities.fk_HSQuotation_QuotationID" FromRole="HSQuotation" ToRole="Quotation" />
           <Property Name="QuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsLowest" Type="Boolean" />
         </EntityType>
         <EntityType Name="LPO">
           <Key>
@@ -1175,6 +1183,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <NavigationProperty Name="Quotation" Relationship="HRWorksEntities.fk_PCQuotation_QuotationID" FromRole="PCQuotation" ToRole="Quotation" />
           <Property Name="QuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsLowest" Type="Boolean" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -1244,6 +1253,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <NavigationProperty Name="RFQ" Relationship="HRWorksEntities.fk_RFQ_TravelRequestID" FromRole="TravelRequests" ToRole="RFQ" />
           <NavigationProperty Name="Quotation" Relationship="HRWorksEntities.fk_Quotation_TravelRequestID" FromRole="TravelRequests" ToRole="Quotation" />
           <Property Name="airlines" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ExpensesHandledBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -1909,6 +1919,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="ModifiedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsSubmitted" Type="Boolean" Nullable="false" />
+          <Property Name="ExpensesHandledBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1919,6 +1930,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <EntitySetMapping Name="ATQuotation">
             <EntityTypeMapping TypeName="HRWorksEntities.ATQuotation">
               <MappingFragment StoreEntitySet="ATQuotation">
+                <ScalarProperty Name="IsLowest" ColumnName="IsLowest" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="QuotationName" ColumnName="QuotationName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1960,6 +1972,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <EntitySetMapping Name="HSQuotation">
             <EntityTypeMapping TypeName="HRWorksEntities.HSQuotation">
               <MappingFragment StoreEntitySet="HSQuotation">
+                <ScalarProperty Name="IsLowest" ColumnName="IsLowest" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="QuotationName" ColumnName="QuotationName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1996,6 +2009,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <EntitySetMapping Name="PCQuotation">
             <EntityTypeMapping TypeName="HRWorksEntities.PCQuotation">
               <MappingFragment StoreEntitySet="PCQuotation">
+                <ScalarProperty Name="IsLowest" ColumnName="IsLowest" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="QuotationName" ColumnName="QuotationName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -2025,6 +2039,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <EntitySetMapping Name="TravelRequests">
             <EntityTypeMapping TypeName="HRWorksEntities.TravelRequests">
               <MappingFragment StoreEntitySet="TravelRequests">
+                <ScalarProperty Name="ExpensesHandledBy" ColumnName="ExpensesHandledBy" />
                 <ScalarProperty Name="airlines" ColumnName="airlines" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
@@ -2341,6 +2356,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <EntitySetMapping Name="TravelRequestDetails">
             <EntityTypeMapping TypeName="HRWorksEntities.TravelRequestDetails">
               <MappingFragment StoreEntitySet="TravelRequestDetails">
+                <ScalarProperty Name="ExpensesHandledBy" ColumnName="ExpensesHandledBy" />
                 <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />

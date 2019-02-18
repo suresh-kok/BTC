@@ -8,7 +8,7 @@
 <div id="detailsDiv" style="height:auto">
     @using (Html.BeginForm())
     {
-        @Html.ValidationSummary(false,null, htmlAttributes: new { @class = "text-danger" })
+        @Html.ValidationSummary(false, null, htmlAttributes: new { @class = "text-danger" })
 
         <div class="col-xs-12 col-md-12">
             <div class="box box-default">
@@ -52,7 +52,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">BTC Employee Code</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @*@Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).EmployeeCode)*@
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Employee Name</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.FirstName + " " + model.User.LastName, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @*@Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Name)*@
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Employee Position Code</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @*@Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).nvDeptCode)*@
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Designation</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @*@Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).nvDesignation)*@
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Department</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @*@Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).nvDept)*@
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Department Head</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @*@Html.DisplayText((string)ViewBag.DepartmentHead)*@
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Cost Center</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @*@Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Costcenter)*@
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Cost Center Head</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @*@Html.DisplayText((string)ViewBag.EmployeeManager)*@
                                     </div>
                                 </div>
                             </div>
@@ -124,15 +124,15 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Passport Number</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @*@Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.PassportDetails)ViewBag.PassportDetails).PassportID)*@
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-sm-3">Passport Epiry</label>
+                                    <label class="col-sm-3">Passport Expiry</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @*@Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.PassportDetails)ViewBag.PassportDetails).PassportexpireDate)*@
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Qatar ID</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @*@Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.QatarDetails)ViewBag.QatarDetails).QID)*@
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Qatar Expiry</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @*@Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.QatarDetails)ViewBag.QatarDetails).QIDEDate)*@
                                     </div>
                                 </div>
                             </div>
@@ -428,17 +428,36 @@
                         <div class="row" style="margin-bottom:15px">
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <label class="col-sm-3">Expenses Handled By</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="expensesHandledBy">
+                                            <option>None</option>
+                                            <option>Vendor 1</option>
+                                            <option>Vendor 2</option>
+                                            <option>Vendor 3</option>
+                                            <option>Vendor 4</option>
+                                            <option>Vendor 5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:15px">
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label class="col-sm-3">Air Ticket Arrangement</label>
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="atrBTC" name="airTicketManagement" value="BTC" class="flat-red" checked> BTC
+                                                <input type="radio" id="atrBTC" name="airTicketManagement" value="Yes" class="flat-red" checked> Yes
                                             </label>
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             <label>
-                                                <input type="radio" id="atrOther" name="airTicketManagement" value="Other" class="flat-red"> Other
+                                                <input type="radio" id="atrOther" name="airTicketManagement" value="No" class="flat-red"> No
                                             </label>
                                         </div>
                                     </div>
@@ -461,13 +480,13 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="taBTC" name="travelAllowance" value="BTC" class="flat-red" checked> BTC
+                                                <input type="radio" id="taBTC" name="travelAllowance" value="Yes" class="flat-red" checked> Yes
                                             </label>
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             <label>
-                                                <input type="radio" id="taOther" name="travelAllowance" value="Other" class="flat-red"> Other
+                                                <input type="radio" id="taOther" name="travelAllowance" value="No" class="flat-red"> No
                                             </label>
                                         </div>
                                     </div>
@@ -495,13 +514,13 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="hsBTC" name="hotelStay" value="BTC" class="flat-red" checked> BTC
+                                                <input type="radio" id="hsBTC" name="hotelStay" value="Yes" class="flat-red" checked> Yes
                                             </label>
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             <label>
-                                                <input type="radio" id="hsOther" name="hotelStay" value="Other" class="flat-red"> Other
+                                                <input type="radio" id="hsOther" name="hotelStay" value="No" class="flat-red"> No
                                             </label>
                                         </div>
                                     </div>
@@ -611,17 +630,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="margin-bottom:15px">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Additional Expenses</label>
-                                    <div class="col-sm-9">
-                                        @Html.EditorFor(model => model.AdditionalAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00", @Value = "0.00" } })
-                                        @*@Html.ValidationMessageFor(model => model.AdditionalAllowance, null, new { @class = "text-danger" })*@
+                        @*<div class="row" style="margin-bottom:15px">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-3">Additional Expenses</label>
+                                        <div class="col-sm-9">
+                                            @Html.EditorFor(model => model.AdditionalAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00", @Value = "0.00" } })
+                                            @Html.ValidationMessageFor(model => model.AdditionalAllowance, null, new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div>*@
                     </div>
                 </div>
             </div>
@@ -738,6 +757,7 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <select class="form-control" name="preferredVehicle">
+                                                <option>None</option>
                                                 <option>option 1</option>
                                                 <option>option 2</option>
                                                 <option>option 3</option>
@@ -818,6 +838,6 @@
                 $('#PickUpDetailsDiv').hide()
             }
         }
-        
+
     </script>
 }

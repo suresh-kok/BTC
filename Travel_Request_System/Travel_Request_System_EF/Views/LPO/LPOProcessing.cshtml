@@ -161,6 +161,7 @@
                                 <thead>
                                     <tr class="success">
                                         <th>RFQ #</th>
+                                        <th>Travel Agency</th>
                                         <th>Quotation #</th>
                                         <th class="col-xs-1">Is Selected</th>
                                         <th>Create LPO</th>
@@ -176,8 +177,10 @@
                                                     @item.RFQName
                                                 </td>
                                                 <td></td>
+                                                <td>@item.TravelAgency.AgencyCode</td>
                                                 <td></td>
-                                                <td> @*rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">*@
+                                                <td>
+                                                    @*rowspan="@item.Quotation.Where(a => a.RFQID == item.ID).Select(a => a.ATQuotation.Count + a.HSQuotation.Count + a.PCQuotation.Count).FirstOrDefault()">*@
                                                     <input type="submit" class="form-control btn btn-info btn-primary hidden" value="Create LPO" onclick="createlpofunc(@item.Quotation.Where(a => a.RFQID == item.ID).FirstOrDefault().ID )" formmethod="post" name="RFQCreate" />
                                                 </td>
                                             </tr>
@@ -187,6 +190,7 @@
                                                 {
                                                     <tr>
                                                         <td></td>
+                                                        <td>@item.TravelAgency.AgencyCode</td>
                                                         <td><b>Q#</b> @quot.ATQuotation.FirstOrDefault().QuotationName</td>
                                                         <td>
                                                             <div class="checkbox">
@@ -202,6 +206,7 @@
                                                 {
                                                     <tr>
                                                         <td></td>
+                                                        <td>@item.TravelAgency.AgencyCode</td>
                                                         <td><b>Q#</b> @quot.HSQuotation.FirstOrDefault().QuotationName</td>
                                                         <td>
                                                             <div class="checkbox">
@@ -217,6 +222,7 @@
                                                 {
                                                     <tr>
                                                         <td></td>
+                                                        <td>@item.TravelAgency.AgencyCode</td>
                                                         <td><b>Q#</b> @quot.PCQuotation.FirstOrDefault().QuotationName</td>
                                                         <td>
                                                             <div class="checkbox">
@@ -402,21 +408,23 @@
             //data: JSON.stringify(model),
             url: "@Url.Action("CreateTravelGrid", "LPO")",
             contentType: "application/json; charset=utf-8",
-            success: function () {
-                alert("Added The LPO Entry");
-                $("[name=RFQCreate]").removeClass('hidden');
-                $("[name=ViewTravelGrid]").removeClass('hidden');
-                $("[name=IntimateEmployee]").removeClass('hidden');
-                $("[name=CreateTravelGrid]").addClass('hidden');
-                $("input[type=checkbox]").iCheck('disable');
+            success: function (data, textStatus, jqXHR) {
+                alert(data);
+                if (data === "Created Travel Grid") {
+                    $("[name=RFQCreate]").removeClass('hidden');
+                    $("[name=ViewTravelGrid]").removeClass('hidden');
+                    $("[name=IntimateEmployee]").removeClass('hidden');
+                    $("[name=CreateTravelGrid]").addClass('hidden');
+                    $("input[type=checkbox]").iCheck('disable');
 
-                $("[name=RFQCreate]").unbind('click');
-                $("[name=ViewTravelGrid]").unbind('click');
-                $("[name=IntimateEmployee]").unbind('click');
+                    $("[name=RFQCreate]").unbind('click');
+                    $("[name=ViewTravelGrid]").unbind('click');
+                    $("[name=IntimateEmployee]").unbind('click');
 
-                $("[name=CreateTravelGrid]").prop('click', function (e) {
-                    e.preventDefault();
-                });
+                    $("[name=CreateTravelGrid]").prop('click', function (e) {
+                        e.preventDefault();
+                    });
+                }
             },
             error: function () {
                 alert("Unknown Error");
@@ -434,12 +442,13 @@
             //data: JSON.stringify(model),
             url: "@Url.Action("LPOCreation", "LPO")",
             contentType: "application/json; charset=utf-8",
-            success: function () {
-                alert("Created LPO");
-                
-                $("[name=RFQCreate]").prop('click', function (e) {
-                    e.preventDefault();
-                });
+            success: function (data, textStatus, jqXHR) {
+                alert(data);
+                if (data === "LPO Successfully Created") {
+                    $("[name=RFQCreate]").prop('click', function (e) {
+                        e.preventDefault();
+                    });
+                }
             },
             error: function () {
                 alert("Unknown Error");

@@ -147,45 +147,56 @@ namespace Travel_Request_System_EF.Controllers
 
         public ActionResult LPOCreation(string id)
         {
-            int i = Convert.ToInt32(id);
-            if (i > 0)
+            try
             {
-                using (BTCEntities db = new BTCEntities())
+                int i = Convert.ToInt32(id);
+                if (i > 0)
                 {
-                    var lpodata = db.LPO.Where(a => a.QuotationID == i).FirstOrDefault();
-                    if (lpodata.IsDeleted == null || (bool)lpodata.IsDeleted)
+                    using (BTCEntities db = new BTCEntities())
                     {
-                        lpodata.IsDeleted = false;
+                        var lpodata = db.LPO.Where(a => a.QuotationID == i).FirstOrDefault();
+                        if (lpodata.IsDeleted == null || (bool)lpodata.IsDeleted)
+                        {
+                            lpodata.IsDeleted = false;
 
-                        db.Entry(lpodata).State = EntityState.Modified;
+                            db.Entry(lpodata).State = EntityState.Modified;
 
-                        db.LPO.Attach(lpodata);
-                        db.Entry(lpodata).Property(x => x.IsDeleted).IsModified = true;
-                        db.SaveChanges();
+                            db.LPO.Attach(lpodata);
+                            db.Entry(lpodata).Property(x => x.IsDeleted).IsModified = true;
+                            db.SaveChanges();
 
-                        var rfq = db.RFQ.Where(a => a.ID == lpodata.RFQID).FirstOrDefault();
-                        rfq.Processing = (int)ProcessingStatus.Processed;
+                            var rfq = db.RFQ.Where(a => a.ID == lpodata.RFQID).FirstOrDefault();
+                            rfq.Processing = (int)ProcessingStatus.Processed;
 
-                        var travelreq = db.TravelRequests.Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault();
-                        travelreq.ApprovalLevel = (int)ApprovalLevels.ApprovedbyTravelCo;
+                            var travelreq = db.TravelRequests.Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault();
+                            travelreq.ApprovalLevel = (int)ApprovalLevels.ApprovedbyTravelCo;
 
-                        db.Configuration.ValidateOnSaveEnabled = false;
+                            db.Configuration.ValidateOnSaveEnabled = false;
 
-                        db.SaveChanges();
+                            db.SaveChanges();
+                        }
+
+                        return Json("LPO Successfully Created", JsonRequestBehavior.AllowGet);
                     }
-
-                    return Json("Successfully Created", JsonRequestBehavior.AllowGet);
                 }
+                else
+                {
+                    return Json("LPO Creation Failed", JsonRequestBehavior.AllowGet);
+                }
+
             }
-            else
+            catch (Exception)
             {
-                return Json("Creation Failed", JsonRequestBehavior.AllowGet);
+                return Json("LPO Creation Failed", JsonRequestBehavior.AllowGet);
+                throw;
             }
         }
 
         [System.Web.Http.HttpPost]
-        public void CreateTravelGrid(Dictionary<string, string> collection)
+        public ActionResult CreateTravelGrid(Dictionary<string, string> collection)
         {
+            try
+            {
             List<LPO> lpoList = new List<LPO>();
             List<string> RfqList = new List<string>();
 
@@ -224,33 +235,46 @@ namespace Travel_Request_System_EF.Controllers
                 lpoList.Add(lpoObject);
             }
 
-            using (BTCEntities db = new BTCEntities())
-            {
-                foreach (var item in lpoList)
+                if (lpoList.Count > 0)
                 {
-                    if (db.LPO.Where(a => a.RFQID == item.RFQID && a.QuotationID == item.QuotationID).Count() > 0)
+                    using (BTCEntities db = new BTCEntities())
                     {
-                        var lpodata = db.LPO.Where(a => a.RFQID == item.RFQID && a.QuotationID == item.QuotationID).FirstOrDefault();
-                        lpodata.IsAT = item.IsAT;
-                        lpodata.IsDeleted = item.IsDeleted;
-                        lpodata.IsHS = item.IsHS;
-                        lpodata.IsPC = item.IsPC;
-                        lpodata.LPONo = "LPO - " + lpodata.ID;
+                        foreach (var item in lpoList)
+                        {
+                            if (db.LPO.Where(a => a.RFQID == item.RFQID && a.QuotationID == item.QuotationID).Count() > 0)
+                            {
+                                var lpodata = db.LPO.Where(a => a.RFQID == item.RFQID && a.QuotationID == item.QuotationID).FirstOrDefault();
+                                lpodata.IsAT = item.IsAT;
+                                lpodata.IsDeleted = item.IsDeleted;
+                                lpodata.IsHS = item.IsHS;
+                                lpodata.IsPC = item.IsPC;
+                                lpodata.LPONo = "LPO - " + lpodata.ID;
 
-                        db.Entry(lpodata).State = EntityState.Modified;
-                        db.LPO.Attach(lpodata);
-                        db.Entry(lpodata).Property(x => x.IsAT).IsModified = true;
-                        db.Entry(lpodata).Property(x => x.IsDeleted).IsModified = true;
-                        db.Entry(lpodata).Property(x => x.IsHS).IsModified = true;
-                        db.Entry(lpodata).Property(x => x.IsPC).IsModified = true;
+                                db.Entry(lpodata).State = EntityState.Modified;
+                                db.LPO.Attach(lpodata);
+                                db.Entry(lpodata).Property(x => x.IsAT).IsModified = true;
+                                db.Entry(lpodata).Property(x => x.IsDeleted).IsModified = true;
+                                db.Entry(lpodata).Property(x => x.IsHS).IsModified = true;
+                                db.Entry(lpodata).Property(x => x.IsPC).IsModified = true;
+                            }
+                            else
+                            {
+                                db.LPO.Add(item);
+                            }
+                        }
+                        db.SaveChanges();
+
+                        return Json("Created Travel Grid", JsonRequestBehavior.AllowGet);
                     }
-                    else
-                    {
-                        db.LPO.Add(item);
-                    }
+
                 }
-                db.SaveChanges();
+                return Json("Error While Creating Travel Grid", JsonRequestBehavior.AllowGet);
             }
+            catch (Exception)
+            {
+                return Json("Error While Creating Travel Grid", JsonRequestBehavior.AllowGet);
+            }
+
         }
 
         public async Task<ActionResult> LPODetails(int id)

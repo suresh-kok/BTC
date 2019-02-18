@@ -486,10 +486,21 @@ namespace Travel_Request_System_EF.Controllers
 
                     db.Configuration.ValidateOnSaveEnabled = false;
 
+                    var travelreq = db.TravelRequests.Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault();
+
                     ATQuotation ATquote = new ATQuotation()
                     {
                         QuotationID = quote.ID,
-                        QuotationName = db.TravelRequests.Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault().ApplicationNumber + " / AT - Q",
+                        QuotationName = travelreq.ApplicationNumber + " / AT - Q",
+                        City = travelreq.City,
+                        City1 = travelreq.City1,
+                        DepartureDate = travelreq.DepartureDate,
+                        DepartureTime = travelreq.DepartureTime,
+                        DestinationID = travelreq.City.ID,
+                        OriginID = travelreq.City1.ID,
+                        ReturnDate = travelreq.ReturnDate,
+                        ReturnTime = travelreq.ReturnTime,
+                        TicketClass = travelreq.TicketClass,
                         IsActive = false,
                         IsDeleted = false
                     };
@@ -498,6 +509,13 @@ namespace Travel_Request_System_EF.Controllers
                     {
                         QuotationID = quote.ID,
                         QuotationName = db.TravelRequests.Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault().ApplicationNumber + " / HS - Q",
+                        CheckInDate = travelreq.CheckInDate,
+                        CheckInTime = travelreq.CheckInTime,
+                        CheckOutDate = travelreq.CheckOutDate,
+                        CheckOutTime = travelreq.CheckOutTime,
+                        HotelCategory = travelreq.HotelCategory,
+                        RoomCategory = travelreq.RoomCategory,
+                        RoomType = travelreq.RoomType,
                         IsActive = false,
                         IsDeleted = false
                     };
@@ -506,6 +524,13 @@ namespace Travel_Request_System_EF.Controllers
                     {
                         QuotationID = quote.ID,
                         QuotationName = db.TravelRequests.Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault().ApplicationNumber + " / PC - Q",
+                        DropOffDate = travelreq.DropOffDate,
+                        DropoffLocation = travelreq.DropOffLocation,
+                        DropOffTime = travelreq.DropOffTime,
+                        PickUpDate = travelreq.PickUpDate,
+                        PickupLocation = travelreq.PickUpLocation,
+                        PickUpTime = travelreq.PickUpTime,
+                        PreferredVehicle = travelreq.PreferredVehicle,
                         IsActive = false,
                         IsDeleted = false
                     };

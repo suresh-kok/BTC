@@ -284,7 +284,8 @@
     </Compile>
     <Compile Include="Models\ViewModel\ATQuotation.cs" />
     <Compile Include="Models\ViewModel\Constants.cs" />
-    <Compile Include="Models\ViewModel\EmployeeDetails.cs" />
+    <Compile Include="Models\ViewModel\EmployeeDetailsDBService.cs" />
+    <Compile Include="Models\ViewModel\EmployeeModel.cs" />
     <Compile Include="Models\ViewModel\FileUploadModel.cs" />
     <Compile Include="Models\ViewModel\HSQuotation.cs" />
     <Compile Include="Models\ViewModel\LoginView.cs" />

@@ -890,6 +890,23 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
+        private void GetEmployeeDetails()
+        {
+            string EmpCode = "";
+            string EntityID = "";
+            string entityTypeID = "";
+
+            EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService();
+            ViewBag.DepartmentHead = employeeDetailsDBService.DepartmentHead(EmpCode, EntityID);
+            ViewBag.EmployeeManager = employeeDetailsDBService.EmployeeManager(EmpCode, entityTypeID);
+            ViewBag.FullEmployeeDetails = employeeDetailsDBService.FullEmployeeDetails(EmpCode, EntityID);
+            ViewBag.SimpleEmployeeDetails = employeeDetailsDBService.SimpleEmployeeDetails(EmpCode);
+            ViewBag.PassportDetails = employeeDetailsDBService.PassportDetails(EmpCode);
+            ViewBag.QatarIDDetails = employeeDetailsDBService.QatarIDDetails(EmpCode);
+            ViewBag.DepartmentHeadDetails = employeeDetailsDBService.DepartmentHeadDetails(EmpCode, entityTypeID);
+            ViewBag.EmployeeManagerDetails = employeeDetailsDBService.EmployeeManagerDetails(EmpCode, entityTypeID);
+        }
+
         #endregion
     }
 }
