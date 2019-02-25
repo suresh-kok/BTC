@@ -74,7 +74,7 @@
                                                     {
                                                         <td>
                                                             <span class="glyphicon">
-                                                                @Html.ActionLink("  View Details", "AddATQuotation", new { id = Model.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
+                                                                @Html.ActionLink("  View Details", "ViewATQuotations", new { id = Model.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
                                                             </span>
                                                         </td>
                                                         <td></td>
@@ -161,7 +161,7 @@
 
                 @Html.AntiForgeryToken()
 
-                @Html.Partial("_TravelRequestDetails", Model.TravelRequests);
+                @Html.Partial("_TravelRequestDetails", Model.TravelRequests)
 
             </div>
         </div>

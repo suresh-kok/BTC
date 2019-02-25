@@ -448,6 +448,7 @@ namespace Travel_Request_System_EF.Controllers
                     travelRequestData.DropOffDate = travelRequest.DropOffDate;
                     travelRequestData.DropOffLocation = travelRequest.DropOffLocation;
                     travelRequestData.DropOffTime = travelRequest.DropOffTime;
+                    travelRequestData.ExpensesHandledBy = travelRequest.ExpensesHandledBy;
                     travelRequestData.FirstBusinessDay = travelRequest.FirstBusinessDay;
                     travelRequestData.HotelCategory = travelRequest.HotelCategory;
                     travelRequestData.HotelName = travelRequest.HotelName;
@@ -496,6 +497,7 @@ namespace Travel_Request_System_EF.Controllers
                     dbcontext.Entry(travelRequestData).Property(x => x.DropOffDate).IsModified = true;
                     dbcontext.Entry(travelRequestData).Property(x => x.DropOffLocation).IsModified = true;
                     dbcontext.Entry(travelRequestData).Property(x => x.DropOffTime).IsModified = true;
+                    dbcontext.Entry(travelRequestData).Property(x => x.ExpensesHandledBy).IsModified = true;
                     dbcontext.Entry(travelRequestData).Property(x => x.FirstBusinessDay).IsModified = true;
                     dbcontext.Entry(travelRequestData).Property(x => x.HotelCategory).IsModified = true;
                     dbcontext.Entry(travelRequestData).Property(x => x.HotelName).IsModified = true;

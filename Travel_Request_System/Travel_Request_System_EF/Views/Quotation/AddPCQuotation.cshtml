@@ -23,7 +23,7 @@
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(model => model.QuotationID)
                         @Html.HiddenFor(model => model.ID)
-                        <input type="hidden" value="@Model.ID" name="Id" />
+                        <input type="hidden" value="@Model.ID" name="PCId" />
 
                         <div class="row" style="margin-bottom:15px">
                             <div class="col-md-12">
@@ -179,6 +179,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row" style="margin-bottom:15px">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3">Is Lowest</label>
+                                    <div class="col-sm-9">
+                                        @Html.EditorFor(model => model.IsLowest, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
 
                     }
                     @using (Html.BeginForm("FileUpload", "Quotation", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -265,6 +277,9 @@ else
             <div class="col-md-3">
                 @Html.ActionLink("Back to List", "AddQuotation", new { id = Model.Quotation.RFQID }, new { @class = "form-control btn btn-info" })
             </div>
+            @*<div class="col-md-3">
+                    @Html.ActionLink("Add Another Quotation", "AddPCQuotation", new { id = Model.Quotation.RFQID, addQuote = true }, new { @class = "form-control btn btn-info" })
+                </div>*@
         </div>
     </div>
 </div>

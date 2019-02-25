@@ -120,8 +120,33 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" style="margin-bottom:15px">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-sm-3">Is Lowest</label>
+                            <div class="col-sm-9">
+                                @{
+                                    var il = Model.IsLowest;
 
-                @if (ViewBag.ATfileUploader != null && ViewBag.ATfileUploader.Count > 0)
+                                    string ilVal;
+                                    if (Convert.ToInt32(il) == 1)
+                                    {
+                                        ilVal = "Yes";
+                                    }
+                                    else
+                                    {
+                                        ilVal = "No";
+                                    }
+                                }
+                                <label id="islowest">@ilVal</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+
+                @if (ViewData["ATfileUploader" + Model.ID] != null)
                 {
                     <div class="row" style="margin-bottom:15px">
                         <aside class="right-side">
@@ -145,7 +170,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewBag.ATfileUploader)
+                                                        @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewData["ATfileUploader" + Model.ID])
                                                         {
                                                             <tr id="@item.FileName">
                                                                 <td>@item.FileName</td>
