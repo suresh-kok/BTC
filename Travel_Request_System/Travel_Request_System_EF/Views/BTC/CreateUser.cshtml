@@ -23,12 +23,21 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="row" style="margin-bottom:15px">
                         <div class="form-group">
-                            <label class = "control-label col-md-2">Role</label>
+                            <label class="control-label col-md-2">Role</label>
                             <div class="col-md-10">
                                 <div class="dropdown">
                                     @Html.DropDownList("RoleID", ((IEnumerable<Travel_Request_System_EF.Models.Roles>)ViewBag.allRoles).Select(m => new SelectListItem { Text = m.RoleName, Value = m.ID.ToString() }))
                                     @*@Html.ValidationMessageFor(Model => Model.roleDet, "", new { @class = "text-danger" })*@
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom:15px">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HREmployeeID, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @*@Html.DropDownList("EmployeeID", (((IEnumerable<Travel_Request_System_EF.Models.ViewModel.MiniEmployeeDetail>)ViewBag.allEmployees).Select(m => new SelectListItem { Text = m.Name + " - " + m.EmployeeCode, Value = m.EmployeeCode.ToString() }))),"EmployeeName","EmployeeCode", Model.MiniEmployeeDetail.FirstOrDefault())
+                    @Html.ValidationMessageFor(model => model.HREmployeeID, "", new { @class = "text-danger" })*@
                             </div>
                         </div>
                     </div>
@@ -72,22 +81,22 @@
                         <div class="form-group">
                             @Html.LabelFor(Model => Model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.PasswordFor(Model => Model.Password, new { @style = "width:100%;" } )
+                                @Html.PasswordFor(Model => Model.Password, new { @style = "width:100%;" })
                                 @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
                     @*<div class="row" style="margin-bottom:15px">
-                        <div class="form-group">
-                            @Html.LabelFor(Model => Model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                <div class="checkbox">
-                                    @Html.EditorFor(Model => Model.IsActive)
-                                    @Html.ValidationMessageFor(Model => Model.IsActive, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
+            <div class="form-group">
+                @Html.LabelFor(Model => Model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(Model => Model.IsActive)
+                        @Html.ValidationMessageFor(Model => Model.IsActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>*@
                     <div class="row" style="margin-bottom:15px">
                         <div class="row" style="margin-bottom:15px">
                             <div class="col-md-6">

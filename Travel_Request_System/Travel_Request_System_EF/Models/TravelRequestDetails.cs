@@ -11,7 +11,9 @@ namespace Travel_Request_System_EF.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using Travel_Request_System_EF.Models.DataAnnotations;
+
     public partial class TravelRequestDetails
     {
         public int ID { get; set; }

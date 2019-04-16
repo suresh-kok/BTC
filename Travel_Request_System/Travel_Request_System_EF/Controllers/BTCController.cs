@@ -621,6 +621,7 @@ namespace Travel_Request_System_EF.Controllers
                     return HttpNotFound();
                 }
                 ViewBag.RoleName = user.Roles.FirstOrDefault().RoleName;
+                //ViewBag.allEmployees = db.EmployeeDetails.GetAll();
                 return View(user);
             }
         }

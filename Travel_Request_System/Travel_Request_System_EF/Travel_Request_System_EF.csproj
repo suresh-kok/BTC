@@ -231,6 +231,7 @@
     <Compile Include="Models\DataAnnotations\RFQMetaData.cs" />
     <Compile Include="Models\DataAnnotations\TravelAgencyMetadata.cs" />
     <Compile Include="Models\DataAnnotations\TravelRequestMetaData.cs" />
+    <Compile Include="Models\DataAnnotations\UserMetaData.cs" />
     <Compile Include="Models\HRWorks.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
