@@ -14,7 +14,7 @@ namespace Travel_Request_System_EF.Models
     using System.ComponentModel.DataAnnotations;
     using Travel_Request_System_EF.Models.DataAnnotations;
 
-    [MetadataType(typeof(ATQuotationMetaData)]
+    [MetadataType(typeof(ATQuotationMetaData))]
     public partial class ATQuotation
     {
         public int ID { get; set; }
