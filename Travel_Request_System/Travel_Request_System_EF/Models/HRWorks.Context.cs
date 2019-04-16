@@ -42,5 +42,27 @@ namespace Travel_Request_System_EF.Models
         public virtual DbSet<LPODetails> LPODetails { get; set; }
         public virtual DbSet<RFQDetails> RFQDetails { get; set; }
         public virtual DbSet<TravelRequestDetails> TravelRequestDetails { get; set; }
+        public virtual DbSet<HRW_Company> HRW_Company { get; set; }
+        public virtual DbSet<HRW_EmpEntityParamValues> HRW_EmpEntityParamValues { get; set; }
+        public virtual DbSet<HRW_Employee> HRW_Employee { get; set; }
+        public virtual DbSet<HRW_EntityParamValues> HRW_EntityParamValues { get; set; }
+        public virtual DbSet<ORG_ChartMaster> ORG_ChartMaster { get; set; }
+        public virtual DbSet<ORG_EmpEntityLink> ORG_EmpEntityLink { get; set; }
+        public virtual DbSet<ORG_EntityManager> ORG_EntityManager { get; set; }
+        public virtual DbSet<ORG_EntityMaster> ORG_EntityMaster { get; set; }
+        public virtual DbSet<ORG_EntityMasterParamValues> ORG_EntityMasterParamValues { get; set; }
+        public virtual DbSet<ORG_EntityType> ORG_EntityType { get; set; }
+        public virtual DbSet<ORG_EntityTypeLevel> ORG_EntityTypeLevel { get; set; }
+        public virtual DbSet<ORG_EntityTypeParam> ORG_EntityTypeParam { get; set; }
+        public virtual DbSet<EmpEntities> EmpEntities { get; set; }
+        public virtual DbSet<EmployeeList> EmployeeList { get; set; }
+        public virtual DbSet<EmployeeList1> EmployeeList1 { get; set; }
+        public virtual DbSet<HRW_VAllEmpEntityValues> HRW_VAllEmpEntityValues { get; set; }
+        public virtual DbSet<HRW_VAllEmpEntityValues_BTC> HRW_VAllEmpEntityValues_BTC { get; set; }
+        public virtual DbSet<HRW_VEmpDetailsWithAllEntities> HRW_VEmpDetailsWithAllEntities { get; set; }
+        public virtual DbSet<HRW_VEmpEntityValues> HRW_VEmpEntityValues { get; set; }
+        public virtual DbSet<HRW_VEmpEntityValues_GCC> HRW_VEmpEntityValues_GCC { get; set; }
+        public virtual DbSet<HRW_VEmployeeFields> HRW_VEmployeeFields { get; set; }
+        public virtual DbSet<HRW_VEmpTypeParamValues> HRW_VEmpTypeParamValues { get; set; }
     }
 }

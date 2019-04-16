@@ -45,6 +45,46 @@
         <EntityTypeShape EntityType="HRWorksEntities.LPODetails" Width="1.5" PointX="13.375" PointY="14.75" />
         <EntityTypeShape EntityType="HRWorksEntities.RFQDetails" Width="1.5" PointX="15.375" PointY="14.75" />
         <EntityTypeShape EntityType="HRWorksEntities.TravelRequestDetails" Width="1.875" PointX="16.375" PointY="0.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.HRW_Company" Width="1.5" PointX="17.75" PointY="29" />
+        <EntityTypeShape EntityType="HRWorksEntities.HRW_EmpEntityParamValues" Width="1.5" PointX="29.75" PointY="33.25" />
+        <EntityTypeShape EntityType="HRWorksEntities.HRW_Employee" Width="1.5" PointX="20" PointY="20" />
+        <EntityTypeShape EntityType="HRWorksEntities.HRW_EntityParamValues" Width="1.5" PointX="26.75" PointY="37.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.ORG_ChartMaster" Width="1.5" PointX="20" PointY="31.875" />
+        <EntityTypeShape EntityType="HRWorksEntities.ORG_EmpEntityLink" Width="1.5" PointX="26.75" PointY="25.875" />
+        <EntityTypeShape EntityType="HRWorksEntities.ORG_EntityManager" Width="1.5" PointX="29.75" PointY="25.875" />
+        <EntityTypeShape EntityType="HRWorksEntities.ORG_EntityMaster" Width="1.5" PointX="24.5" PointY="30.125" />
+        <EntityTypeShape EntityType="HRWorksEntities.ORG_EntityMasterParamValues" Width="1.5" PointX="26.75" PointY="34" />
+        <EntityTypeShape EntityType="HRWorksEntities.ORG_EntityType" Width="1.5" PointX="22.25" PointY="31.25" />
+        <EntityTypeShape EntityType="HRWorksEntities.ORG_EntityTypeLevel" Width="1.5" PointX="24.5" PointY="26.25" />
+        <EntityTypeShape EntityType="HRWorksEntities.ORG_EntityTypeParam" Width="1.5" PointX="24.5" PointY="35.875" />
+        <EntityTypeShape EntityType="HRWorksEntities.EmpEntities" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.EmployeeList" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.EmployeeList1" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.HRW_VAllEmpEntityValues" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.HRW_VAllEmpEntityValues_BTC" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.HRW_VEmpDetailsWithAllEntities" Width="1.5" PointX="13.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.HRW_VEmpEntityValues" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.HRW_VEmpEntityValues_GCC" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.HRW_VEmployeeFields" Width="1.5" PointX="17.75" PointY="13.75" />
+        <EntityTypeShape EntityType="HRWorksEntities.HRW_VEmpTypeParamValues" Width="1.5" PointX="0.75" PointY="6.75" />
+        <AssociationConnector Association="HRWorksEntities.FK_HRW_Employee_HRW_Company" />
+        <AssociationConnector Association="HRWorksEntities.FK_ORG_ChartMaster_HRW_Company" />
+        <AssociationConnector Association="HRWorksEntities.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" />
+        <AssociationConnector Association="HRWorksEntities.FK_HRW_EmpEntityParamValues_ORG_EntityMaster" />
+        <AssociationConnector Association="HRWorksEntities.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" />
+        <AssociationConnector Association="HRWorksEntities.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" />
+        <AssociationConnector Association="HRWorksEntities.FK_ORG_EmpEntityLink_HRW_Employee" />
+        <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityManager_HRW_Employee" />
+        <AssociationConnector Association="HRWorksEntities.FK_PRL_LVRecord03_ORG_EntityMaster" />
+        <AssociationConnector Association="HRWorksEntities.FK_PRL_LVRecord03_ORG_EntityTypeParam" />
+        <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityType_ORG_ChartMaster" />
+        <AssociationConnector Association="HRWorksEntities.FK_ORG_EmpEntityLink_ORG_EntityMaster" />
+        <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityManager_ORG_EntityMaster" />
+        <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityMaster_ORG_EntityType" />
+        <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityMasterParam_ORG_EntityMaster" />
+        <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityMasterParam_ORG_EntityTypeParam" />
+        <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityTypeLevel_ORG_EntityType" />
+        <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityTypeParam_ORG_EntityType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

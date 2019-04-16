@@ -232,6 +232,15 @@
     <Compile Include="Models\DataAnnotations\TravelAgencyMetadata.cs" />
     <Compile Include="Models\DataAnnotations\TravelRequestMetaData.cs" />
     <Compile Include="Models\DataAnnotations\UserMetaData.cs" />
+    <Compile Include="Models\EmpEntities.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeList.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeList1.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HRWorks.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -247,6 +256,39 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HRWorks.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HRW_Company.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HRW_EmpEntityParamValues.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HRW_Employee.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HRW_EntityParamValues.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HRW_VAllEmpEntityValues.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HRW_VAllEmpEntityValues_BTC.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HRW_VEmpDetailsWithAllEntities.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HRW_VEmpEntityValues.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HRW_VEmpEntityValues_GCC.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HRW_VEmployeeFields.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HRW_VEmpTypeParamValues.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HSQuotation.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
@@ -254,6 +296,30 @@
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LPODetails.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORG_ChartMaster.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORG_EmpEntityLink.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORG_EntityManager.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORG_EntityMaster.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORG_EntityMasterParamValues.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORG_EntityType.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORG_EntityTypeLevel.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORG_EntityTypeParam.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PCQuotation.cs">

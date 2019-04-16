@@ -202,8 +202,8 @@
                     <div class="row" style="margin-bottom:15px">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-sm-3">Port Of Origin</label>
-                                <div class="col-sm-9 btn-danger">
+                                <label class="col-sm-3 requiredMark">Port Of Origin</label>
+                                <div class="col-sm-9">
                                     @Html.DropDownListFor(model => model.PortOfOriginID, ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).Select(m => new SelectListItem { Text = m.CityDesc, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
                                     @*@Html.ValidationMessageFor(model => model.PortOfOriginID, null , new { @class = "text-danger" })*@
                                 </div>
@@ -211,8 +211,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-sm-3">Port Of Destination</label>
-                                <div class="col-sm-9 btn-danger">
+                                <label class="col-sm-3 requiredMark">Port Of Destination</label>
+                                <div class="col-sm-9">
                                     @Html.DropDownListFor(model => model.PortOfDestinationID, ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).Select(m => new SelectListItem { Text = m.CityDesc, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
                                     @*@Html.ValidationMessageFor(model => model.PortOfDestinationID, null , new { @class = "text-danger" })*@
                                 </div>
@@ -236,8 +236,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-sm-3">Travel Days</label>
-                                <div class="col-sm-9 btn-danger">
+                                <label class="col-sm-3 requiredMark">Travel Days</label>
+                                <div class="col-sm-9">
                                     @Html.EditorFor(model => model.TravelDays, new { htmlAttributes = new { @class = "form-control" } })
                                     @*@Html.ValidationMessageFor(model => model.TravelDays, null, new { @class = "text-danger" })*@
                                 </div>
@@ -256,8 +256,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-sm-3">Currency</label>
-                                <div class="col-sm-9 btn-danger">
+                                <label class="col-sm-3 requiredMark">Currency</label>
+                                <div class="col-sm-9">
                                     @Html.DropDownListFor(model => model.CurrencyID, ((IEnumerable<Travel_Request_System_EF.Models.Currency>)ViewBag.Currencies).Select(m => new SelectListItem { Text = m.CurrencyDesc, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control" })
                                     @*@Html.ValidationMessageFor(model => model.CurrencyID, null, new { @class = "text-danger" })*@
                                 </div>
@@ -278,8 +278,8 @@
                     <div class="row" style="margin-bottom:15px">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="col-sm-3">Purpose of Visit</label>
-                                <div class="col-sm-12 btn-danger">
+                                <label class="col-sm-3 requiredMark">Purpose of Visit</label>
+                                <div class="col-sm-12">
                                     @Html.TextAreaFor(model => model.PurposeOfVisit, htmlAttributes: new { @class = "form-control", @rows = "4" })
                                     @*@Html.ValidationMessageFor(model => model.PurposeOfVisit, null, new { @class = "text-danger" })*@
                                 </div>
@@ -306,8 +306,8 @@
                         <div class="row" style="margin-bottom:15px">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-sm-3">Departure Date</label>
-                                    <div class="col-sm-9 btn-danger">
+                                    <label class="col-sm-3 requiredMark">Departure Date</label>
+                                    <div class="col-sm-9">
                                         <div class="input-group date">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
@@ -320,8 +320,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-sm-3">Return Date</label>
-                                    <div class="col-sm-9 btn-danger">
+                                    <label class="col-sm-3 requiredMark">Return Date</label>
+                                    <div class="col-sm-9">
                                         <div class="input-group date">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
@@ -619,8 +619,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-sm-3">Airport Pickup</label>
-                                    <div class="col-sm-9 btn-danger">
+                                    <label class="col-sm-3 requiredMark">Airport Pickup</label>
+                                    <div class="col-sm-9">
                                         <select class="form-control" name="airportPickUp" onchange="funcpickup(this.selectedIndex);">
                                             <option value="-1">----</option>
                                             <option value="0">Yes</option>
@@ -675,8 +675,8 @@
                         <div class="row" style="margin-bottom:15px">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-sm-3">Pick Up Date</label>
-                                    <div class="col-sm-9 btn-danger">
+                                    <label class="col-sm-3 requiredMark">Pick Up Date</label>
+                                    <div class="col-sm-9">
                                         <div class="input-group date">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
@@ -721,8 +721,8 @@
                         <div class="row" style="margin-bottom:15px">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-sm-3">Drop Off Date</label>
-                                    <div class="col-sm-9 btn-danger">
+                                    <label class="col-sm-3 requiredMark">Drop Off Date</label>
+                                    <div class="col-sm-9">
                                         <div class="input-group date">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
@@ -758,11 +758,11 @@
                                         <div class="form-group">
                                             <select class="form-control" name="preferredVehicle">
                                                 <option>None</option>
-                                                <option>option 1</option>
-                                                <option>option 2</option>
-                                                <option>option 3</option>
-                                                <option>option 4</option>
-                                                <option>option 5</option>
+                                                <option>Hatchback</option>
+                                                <option>Sedan</option>
+                                                <option>SUV</option>
+                                                <option>Luxury</option>
+                                                <option>Others</option>
                                             </select>
                                         </div>
                                     </div>

@@ -63,6 +63,106 @@
           <Property Name="CurrencySymbol" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <EntityType Name="HRW_Company">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="TransactType" Type="int" Nullable="false" />
+          <Property Name="TransactUserID" Type="bigint" Nullable="false" />
+          <Property Name="TransactDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="HRW_EmpEntityParamValues">
+          <Key>
+            <PropertyRef Name="EmpEntityParamID" />
+          </Key>
+          <Property Name="TransactType" Type="int" Nullable="false" />
+          <Property Name="TransactUserID" Type="bigint" Nullable="false" />
+          <Property Name="TransactDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpEntityParamID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="bigint" />
+          <Property Name="EntityID" Type="bigint" />
+          <Property Name="EntityTypeParamID" Type="bigint" Nullable="false" />
+          <Property Name="ParamValue" Type="nvarchar" MaxLength="500" />
+          <Property Name="ParamValueEntityID" Type="bigint" />
+          <Property Name="EmpEntityParamIDLink" Type="bigint" />
+          <Property Name="ESSID" Type="bigint" />
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="HRW_Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="TransactType" Type="int" Nullable="false" />
+          <Property Name="TransactUserID" Type="bigint" Nullable="false" />
+          <Property Name="TransactDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EmployeeCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Salutation" Type="int" />
+          <Property Name="DateOfBirth" Type="smalldatetime" />
+          <Property Name="HireDate" Type="smalldatetime" />
+          <Property Name="TerminationDate" Type="smalldatetime" />
+          <Property Name="PrevEmpID" Type="varchar" MaxLength="20" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="RecordType" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="PAFRecordID" Type="bigint" />
+          <Property Name="EmpStatus" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="HRW_EntityParamValues">
+          <Key>
+            <PropertyRef Name="LVRecordEntityParamID" />
+          </Key>
+          <Property Name="TransactType" Type="int" Nullable="false" />
+          <Property Name="TransactUserID" Type="bigint" Nullable="false" />
+          <Property Name="TransactDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LVRecordEntityParamID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeaveRecordID" Type="bigint" />
+          <Property Name="EntityTypeParamID" Type="bigint" Nullable="false" />
+          <Property Name="ParamValue" Type="nvarchar" MaxLength="500" />
+          <Property Name="ParamValueEntityID" Type="bigint" />
+          <Property Name="RecordType" Type="varchar" MaxLength="3" />
+          <Property Name="ReferenceID" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'BTC.dbo.HRW_OrgChartData' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="HRW_OrgChartData">
+          <Property Name="ManagerID" Type="bigint" />
+          <Property Name="E1" Type="bigint" />
+          <Property Name="E2" Type="bigint" />
+          <Property Name="E3" Type="bigint" />
+          <Property Name="E4" Type="bigint" />
+          <Property Name="E5" Type="bigint" />
+          <Property Name="E6" Type="bigint" />
+          <Property Name="E7" Type="bigint" />
+          <Property Name="E8" Type="bigint" />
+          <Property Name="E9" Type="bigint" />
+          <Property Name="E10" Type="bigint" />
+          <Property Name="E1Desc" Type="varchar(max)" />
+          <Property Name="E2Desc" Type="varchar(max)" />
+          <Property Name="E3Desc" Type="varchar(max)" />
+          <Property Name="E4Desc" Type="varchar(max)" />
+          <Property Name="E5Desc" Type="varchar(max)" />
+          <Property Name="E6Desc" Type="varchar(max)" />
+          <Property Name="E7Desc" Type="varchar(max)" />
+          <Property Name="E8Desc" Type="varchar(max)" />
+          <Property Name="E9Desc" Type="varchar(max)" />
+          <Property Name="E10Desc" Type="varchar(max)" />
+          <Property Name="OrgChartEntityManagerID" Type="bigint" />
+          <Property Name="EntityIDList" Type="varchar(max)" />
+          <Property Name="OrgChartID" Type="bigint" />
+        </EntityType>-->
         <EntityType Name="HSQuotation">
           <Key>
             <PropertyRef Name="ID" />
@@ -97,6 +197,141 @@
           <Property Name="IsAT" Type="bit" />
           <Property Name="IsHS" Type="bit" />
           <Property Name="IsPC" Type="bit" />
+        </EntityType>
+        <EntityType Name="ORG_ChartMaster">
+          <Key>
+            <PropertyRef Name="OrgChartId" />
+          </Key>
+          <Property Name="TransactType" Type="int" Nullable="false" />
+          <Property Name="TransactUserID" Type="bigint" Nullable="false" />
+          <Property Name="TransactDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrgChartId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChartRecordType" Type="varchar" MaxLength="1" />
+          <Property Name="ManagerEmployeeID" Type="bigint" />
+          <Property Name="IsChartDataReady" Type="bit" />
+          <Property Name="OrgChartBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ORG_EmpEntityLink">
+          <Key>
+            <PropertyRef Name="EmpEntityId" />
+          </Key>
+          <Property Name="TransactType" Type="int" Nullable="false" />
+          <Property Name="TransactUserID" Type="bigint" Nullable="false" />
+          <Property Name="TransactDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpEntityId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="bigint" Nullable="false" />
+          <Property Name="EntityId" Type="bigint" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="smalldatetime" Nullable="false" />
+          <Property Name="EffectiveTo" Type="smalldatetime" />
+          <Property Name="RecordStatus" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORG_EntityManager">
+          <Key>
+            <PropertyRef Name="OrgManagerId" />
+          </Key>
+          <Property Name="TransactType" Type="int" Nullable="false" />
+          <Property Name="TransactUserID" Type="bigint" Nullable="false" />
+          <Property Name="TransactDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrgManagerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntityId" Type="bigint" Nullable="false" />
+          <Property Name="EmployeeId" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="smalldatetime" Nullable="false" />
+          <Property Name="EffectiveTo" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="ORG_EntityMaster">
+          <Key>
+            <PropertyRef Name="EntityId" />
+          </Key>
+          <Property Name="TransactType" Type="int" Nullable="false" />
+          <Property Name="TransactUserID" Type="bigint" Nullable="false" />
+          <Property Name="TransactDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntityId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntityTypeId" Type="bigint" Nullable="false" />
+          <Property Name="EntityCode" Type="varchar" MaxLength="20" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Parent" Type="bigint" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="smalldatetime" />
+          <Property Name="EffectiveTo" Type="smalldatetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IncludeEmployees" Type="bit" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORG_EntityMasterParamValues">
+          <Key>
+            <PropertyRef Name="EntityMasterParamID" />
+          </Key>
+          <Property Name="TransactType" Type="int" Nullable="false" />
+          <Property Name="TransactUserID" Type="bigint" Nullable="false" />
+          <Property Name="TransactDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntityMasterParamID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntityId" Type="bigint" Nullable="false" />
+          <Property Name="EntityTypeParamID" Type="bigint" Nullable="false" />
+          <Property Name="ParamValue" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ORG_EntityType">
+          <Key>
+            <PropertyRef Name="EntityTypeId" />
+          </Key>
+          <Property Name="TransactType" Type="int" Nullable="false" />
+          <Property Name="TransactUserID" Type="bigint" Nullable="false" />
+          <Property Name="TransactDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntityTypeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrgChartId" Type="bigint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsMandatory" Type="bit" Nullable="false" />
+          <Property Name="IsCodeRequired" Type="bit" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="EntityGroup" Type="int" Nullable="false" />
+          <Property Name="MasterEntityTypeId" Type="bigint" />
+          <Property Name="HaveDataSecurity" Type="bit" Nullable="false" />
+          <Property Name="ShowInReportFilter" Type="bit" Nullable="false" />
+          <Property Name="RestrictDuplicate" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORG_EntityTypeLevel">
+          <Key>
+            <PropertyRef Name="EntityTypeLevelId" />
+          </Key>
+          <Property Name="TransactType" Type="int" Nullable="false" />
+          <Property Name="TransactUserID" Type="bigint" Nullable="false" />
+          <Property Name="TransactDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntityTypeLevelId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntityTypeId" Type="bigint" Nullable="false" />
+          <Property Name="EntityTypeLevel" Type="int" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="smalldatetime" Nullable="false" />
+          <Property Name="EffectiveTo" Type="smalldatetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORG_EntityTypeParam">
+          <Key>
+            <PropertyRef Name="EntityTypeParamID" />
+          </Key>
+          <Property Name="TransactType" Type="int" Nullable="false" />
+          <Property Name="TransactUserID" Type="bigint" Nullable="false" />
+          <Property Name="TransactDateTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntityTypeParamID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntityTypeId" Type="bigint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="DataType" Type="varchar" MaxLength="30" />
+          <Property Name="DataTypeEntityID" Type="bigint" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="ParamLinkLevel" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IsMandatory" Type="bit" Nullable="false" />
+          <Property Name="CheckDuplicate" Type="int" />
+          <Property Name="Validations" Type="varchar" MaxLength="50" />
+          <Property Name="ESSFieldAccessRight" Type="varchar" MaxLength="1" />
+          <Property Name="DataTypeProperty" Type="varchar" MaxLength="50" />
+          <Property Name="DataTypeProperty1" Type="varchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="PCQuotation">
           <Key>
@@ -241,6 +476,212 @@
           <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
           <Property Name="HREmployeeID" Type="bigint" />
           <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.EmpEntities' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EmpEntities">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="EntityTypeId" />
+            <PropertyRef Name="EntityType" />
+            <PropertyRef Name="EntityId" />
+            <PropertyRef Name="Description" />
+          </Key>
+          <Property Name="EmployeeID" Type="bigint" Nullable="false" />
+          <Property Name="EmployeeCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+          <Property Name="EntityTypeId" Type="bigint" Nullable="false" />
+          <Property Name="EntityType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntityId" Type="bigint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="smalldatetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.EmployeeList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EmployeeList">
+          <Key>
+            <PropertyRef Name="EmployeeCode" />
+          </Key>
+          <Property Name="EmployeeCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Employee Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="DOJ" Type="smalldatetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.EmployeeList1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EmployeeList1">
+          <Key>
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmployeeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="150" />
+          <Property Name="DOJ" Type="smalldatetime" />
+          <Property Name="TerminationDate" Type="smalldatetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.HRW_VAllEmpEntityValues' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HRW_VAllEmpEntityValues">
+          <Key>
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="RecordType" />
+          </Key>
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="EmployeeCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+          <Property Name="HireDate" Type="smalldatetime" />
+          <Property Name="TerminationDate" Type="smalldatetime" />
+          <Property Name="EntityTypeId" Type="bigint" />
+          <Property Name="EntityType" Type="nvarchar" MaxLength="500" />
+          <Property Name="EntityId" Type="bigint" />
+          <Property Name="Value" Type="nvarchar" MaxLength="200" />
+          <Property Name="RecordType" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.HRW_VAllEmpEntityValues_BTC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HRW_VAllEmpEntityValues_BTC">
+          <Key>
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="RecordType" />
+          </Key>
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="EmployeeCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+          <Property Name="HireDate" Type="smalldatetime" />
+          <Property Name="TerminationDate" Type="smalldatetime" />
+          <Property Name="EntityTypeId" Type="bigint" />
+          <Property Name="EntityType" Type="nvarchar" MaxLength="500" />
+          <Property Name="EntityId" Type="bigint" />
+          <Property Name="Value" Type="nvarchar" MaxLength="200" />
+          <Property Name="RecordType" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="DateOfBirth" Type="smalldatetime" />
+          <Property Name="EntityCode" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.HRW_VEmpDetailsWithAllEntities' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HRW_VEmpDetailsWithAllEntities">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="EntityGroupDesc" />
+          </Key>
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
+          <Property Name="EmployeeID" Type="bigint" Nullable="false" />
+          <Property Name="EmployeeCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+          <Property Name="DateOfBirth" Type="smalldatetime" />
+          <Property Name="HireDate" Type="smalldatetime" />
+          <Property Name="EntityTypeId" Type="bigint" />
+          <Property Name="EntityType" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntityId" Type="bigint" />
+          <Property Name="Code" Type="varchar" MaxLength="20" />
+          <Property Name="VALUE" Type="nvarchar" MaxLength="200" />
+          <Property Name="EntityGroup" Type="int" />
+          <Property Name="EntityGroupDesc" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'BTC.dbo.HRW_VEmpEntityTypes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="HRW_VEmpEntityTypes">
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
+          <Property Name="TransactType" Type="int" />
+          <Property Name="TransactUserID" Type="bigint" />
+          <Property Name="TransactDateTime" Type="smalldatetime" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" />
+          <Property Name="EntityTypeId" Type="bigint" />
+          <Property Name="OrgChartId" Type="bigint" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsMandatory" Type="bit" />
+          <Property Name="IsCodeRequired" Type="bit" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="EntityGroup" Type="int" />
+          <Property Name="MasterEntityTypeId" Type="bigint" />
+          <Property Name="HaveDataSecurity" Type="bit" />
+          <Property Name="ShowInReportFilter" Type="bit" />
+          <Property Name="RestrictDuplicate" Type="bit" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.HRW_VEmpEntityValues' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HRW_VEmpEntityValues">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="RecordType" />
+          </Key>
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
+          <Property Name="EmployeeID" Type="bigint" Nullable="false" />
+          <Property Name="EmployeeCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+          <Property Name="HireDate" Type="smalldatetime" />
+          <Property Name="TerminationDate" Type="smalldatetime" />
+          <Property Name="DateOfBirth" Type="smalldatetime" />
+          <Property Name="EntityTypeId" Type="bigint" />
+          <Property Name="EntityType" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntityId" Type="bigint" />
+          <Property Name="Value" Type="nvarchar" MaxLength="200" />
+          <Property Name="RecordType" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.HRW_VEmpEntityValues_GCC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HRW_VEmpEntityValues_GCC">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="RecordType" />
+          </Key>
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
+          <Property Name="EmployeeID" Type="bigint" Nullable="false" />
+          <Property Name="EmployeeCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" />
+          <Property Name="HireDate" Type="smalldatetime" />
+          <Property Name="TerminationDate" Type="smalldatetime" />
+          <Property Name="DateOfBirth" Type="smalldatetime" />
+          <Property Name="EntityTypeId" Type="bigint" />
+          <Property Name="EntityType" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntityId" Type="bigint" />
+          <Property Name="Value" Type="nvarchar" MaxLength="200" />
+          <Property Name="RecordType" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="smalldatetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.HRW_VEmployeeFields' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HRW_VEmployeeFields">
+          <Key>
+            <PropertyRef Name="IsMandatory" />
+            <PropertyRef Name="ORG_EntityTypeParamID" />
+            <PropertyRef Name="ParamLinkLevel" />
+            <PropertyRef Name="SortOrder" />
+          </Key>
+          <Property Name="IsMandatory" Type="bit" Nullable="false" />
+          <Property Name="CheckDuplicate" Type="int" />
+          <Property Name="ORG_EntityTypeParamID" Type="bigint" Nullable="false" />
+          <Property Name="ParamDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="DataType" Type="varchar" MaxLength="30" />
+          <Property Name="DataTypeEntityID" Type="bigint" />
+          <Property Name="ParamLinkLevel" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EmpEntityParamID" Type="bigint" />
+          <Property Name="EntityTypeParamID" Type="bigint" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="ParamValue" Type="nvarchar" MaxLength="500" />
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.HRW_VEmpTypeParamValues' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="HRW_VEmpTypeParamValues">
+          <Key>
+            <PropertyRef Name="EntityTypeParamID" />
+          </Key>
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
+          <Property Name="EntityTypeParamID" Type="bigint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="ParamValue" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTC.dbo.LPODetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -598,6 +1039,66 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues">
+          <End Role="HRW_EmpEntityParamValues" Type="Self.HRW_EmpEntityParamValues" Multiplicity="0..1" />
+          <End Role="HRW_EmpEntityParamValues1" Type="Self.HRW_EmpEntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_EmpEntityParamValues">
+              <PropertyRef Name="EmpEntityParamID" />
+            </Principal>
+            <Dependent Role="HRW_EmpEntityParamValues1">
+              <PropertyRef Name="EmpEntityParamIDLink" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster">
+          <End Role="ORG_EntityMaster" Type="Self.ORG_EntityMaster" Multiplicity="0..1" />
+          <End Role="HRW_EmpEntityParamValues" Type="Self.HRW_EmpEntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="HRW_EmpEntityParamValues">
+              <PropertyRef Name="EntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster1">
+          <End Role="ORG_EntityMaster" Type="Self.ORG_EntityMaster" Multiplicity="0..1" />
+          <End Role="HRW_EmpEntityParamValues" Type="Self.HRW_EmpEntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="HRW_EmpEntityParamValues">
+              <PropertyRef Name="ParamValueEntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam">
+          <End Role="ORG_EntityTypeParam" Type="Self.ORG_EntityTypeParam" Multiplicity="1" />
+          <End Role="HRW_EmpEntityParamValues" Type="Self.HRW_EmpEntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityTypeParam">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Principal>
+            <Dependent Role="HRW_EmpEntityParamValues">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HRW_Employee_HRW_Company">
+          <End Role="HRW_Company" Type="Self.HRW_Company" Multiplicity="1" />
+          <End Role="HRW_Employee" Type="Self.HRW_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Company">
+              <PropertyRef Name="CompanyCode" />
+            </Principal>
+            <Dependent Role="HRW_Employee">
+              <PropertyRef Name="CompanyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_HSQuotation_QuotationID">
           <End Role="Quotation" Type="Self.Quotation" Multiplicity="1" />
           <End Role="HSQuotation" Type="Self.HSQuotation" Multiplicity="*" />
@@ -634,6 +1135,138 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ORG_ChartMaster_HRW_Company">
+          <End Role="HRW_Company" Type="Self.HRW_Company" Multiplicity="1" />
+          <End Role="ORG_ChartMaster" Type="Self.ORG_ChartMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Company">
+              <PropertyRef Name="CompanyCode" />
+            </Principal>
+            <Dependent Role="ORG_ChartMaster">
+              <PropertyRef Name="CompanyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EmpEntityLink_HRW_Employee">
+          <End Role="HRW_Employee" Type="Self.HRW_Employee" Multiplicity="1" />
+          <End Role="ORG_EmpEntityLink" Type="Self.ORG_EmpEntityLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="ORG_EmpEntityLink">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EmpEntityLink_ORG_EntityMaster">
+          <End Role="ORG_EntityMaster" Type="Self.ORG_EntityMaster" Multiplicity="1" />
+          <End Role="ORG_EmpEntityLink" Type="Self.ORG_EmpEntityLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="ORG_EmpEntityLink">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityManager_HRW_Employee">
+          <End Role="HRW_Employee" Type="Self.HRW_Employee" Multiplicity="1" />
+          <End Role="ORG_EntityManager" Type="Self.ORG_EntityManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="ORG_EntityManager">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityManager_ORG_EntityMaster">
+          <End Role="ORG_EntityMaster" Type="Self.ORG_EntityMaster" Multiplicity="1" />
+          <End Role="ORG_EntityManager" Type="Self.ORG_EntityManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="ORG_EntityManager">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityMaster_ORG_EntityType">
+          <End Role="ORG_EntityType" Type="Self.ORG_EntityType" Multiplicity="1" />
+          <End Role="ORG_EntityMaster" Type="Self.ORG_EntityMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityType">
+              <PropertyRef Name="EntityTypeId" />
+            </Principal>
+            <Dependent Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityMasterParam_ORG_EntityMaster">
+          <End Role="ORG_EntityMaster" Type="Self.ORG_EntityMaster" Multiplicity="1" />
+          <End Role="ORG_EntityMasterParamValues" Type="Self.ORG_EntityMasterParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="ORG_EntityMasterParamValues">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityMasterParam_ORG_EntityTypeParam">
+          <End Role="ORG_EntityTypeParam" Type="Self.ORG_EntityTypeParam" Multiplicity="1" />
+          <End Role="ORG_EntityMasterParamValues" Type="Self.ORG_EntityMasterParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityTypeParam">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Principal>
+            <Dependent Role="ORG_EntityMasterParamValues">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityType_ORG_ChartMaster">
+          <End Role="ORG_ChartMaster" Type="Self.ORG_ChartMaster" Multiplicity="1" />
+          <End Role="ORG_EntityType" Type="Self.ORG_EntityType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_ChartMaster">
+              <PropertyRef Name="OrgChartId" />
+            </Principal>
+            <Dependent Role="ORG_EntityType">
+              <PropertyRef Name="OrgChartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityTypeLevel_ORG_EntityType">
+          <End Role="ORG_EntityType" Type="Self.ORG_EntityType" Multiplicity="1" />
+          <End Role="ORG_EntityTypeLevel" Type="Self.ORG_EntityTypeLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityType">
+              <PropertyRef Name="EntityTypeId" />
+            </Principal>
+            <Dependent Role="ORG_EntityTypeLevel">
+              <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityTypeParam_ORG_EntityType">
+          <End Role="ORG_EntityType" Type="Self.ORG_EntityType" Multiplicity="1" />
+          <End Role="ORG_EntityTypeParam" Type="Self.ORG_EntityTypeParam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityType">
+              <PropertyRef Name="EntityTypeId" />
+            </Principal>
+            <Dependent Role="ORG_EntityTypeParam">
+              <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_PCQuotation_QuotationID">
           <End Role="Quotation" Type="Self.Quotation" Multiplicity="1" />
           <End Role="PCQuotation" Type="Self.PCQuotation" Multiplicity="*" />
@@ -643,6 +1276,30 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
             </Principal>
             <Dependent Role="PCQuotation">
               <PropertyRef Name="QuotationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRL_LVRecord03_ORG_EntityMaster">
+          <End Role="ORG_EntityMaster" Type="Self.ORG_EntityMaster" Multiplicity="0..1" />
+          <End Role="HRW_EntityParamValues" Type="Self.HRW_EntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="HRW_EntityParamValues">
+              <PropertyRef Name="ParamValueEntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRL_LVRecord03_ORG_EntityTypeParam">
+          <End Role="ORG_EntityTypeParam" Type="Self.ORG_EntityTypeParam" Multiplicity="1" />
+          <End Role="HRW_EntityParamValues" Type="Self.HRW_EntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityTypeParam">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Principal>
+            <Dependent Role="HRW_EntityParamValues">
+              <PropertyRef Name="EntityTypeParamID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -748,8 +1405,20 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <EntitySet Name="Attachments" EntityType="Self.Attachments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HRW_Company" EntityType="Self.HRW_Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HRW_EmpEntityParamValues" EntityType="Self.HRW_EmpEntityParamValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HRW_Employee" EntityType="Self.HRW_Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HRW_EntityParamValues" EntityType="Self.HRW_EntityParamValues" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HSQuotation" EntityType="Self.HSQuotation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LPO" EntityType="Self.LPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORG_ChartMaster" EntityType="Self.ORG_ChartMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORG_EmpEntityLink" EntityType="Self.ORG_EmpEntityLink" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORG_EntityManager" EntityType="Self.ORG_EntityManager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORG_EntityMaster" EntityType="Self.ORG_EntityMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORG_EntityMasterParamValues" EntityType="Self.ORG_EntityMasterParamValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORG_EntityType" EntityType="Self.ORG_EntityType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORG_EntityTypeLevel" EntityType="Self.ORG_EntityTypeLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORG_EntityTypeParam" EntityType="Self.ORG_EntityTypeParam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PCQuotation" EntityType="Self.PCQuotation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Quotation" EntityType="Self.Quotation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RFQ" EntityType="Self.RFQ" Schema="dbo" store:Type="Tables" />
@@ -758,6 +1427,145 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <EntitySet Name="TravelRequests" EntityType="Self.TravelRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmpEntities" EntityType="Self.EmpEntities" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EmpEntities].[EmployeeID] AS [EmployeeID], 
+    [EmpEntities].[EmployeeCode] AS [EmployeeCode], 
+    [EmpEntities].[FullName] AS [FullName], 
+    [EmpEntities].[EntityTypeId] AS [EntityTypeId], 
+    [EmpEntities].[EntityType] AS [EntityType], 
+    [EmpEntities].[EntityId] AS [EntityId], 
+    [EmpEntities].[Description] AS [Description], 
+    [EmpEntities].[EffectiveFrom] AS [EffectiveFrom]
+    FROM [dbo].[EmpEntities] AS [EmpEntities]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EmployeeList" EntityType="Self.EmployeeList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EmployeeList].[EmployeeCode] AS [EmployeeCode], 
+    [EmployeeList].[Employee Name] AS [Employee Name], 
+    [EmployeeList].[DOJ] AS [DOJ]
+    FROM [dbo].[EmployeeList] AS [EmployeeList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EmployeeList1" EntityType="Self.EmployeeList1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EmployeeList1].[EmployeeCode] AS [EmployeeCode], 
+    [EmployeeList1].[EmployeeId] AS [EmployeeId], 
+    [EmployeeList1].[EmployeeName] AS [EmployeeName], 
+    [EmployeeList1].[DOJ] AS [DOJ], 
+    [EmployeeList1].[TerminationDate] AS [TerminationDate]
+    FROM [dbo].[EmployeeList1] AS [EmployeeList1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HRW_VAllEmpEntityValues" EntityType="Self.HRW_VAllEmpEntityValues" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HRW_VAllEmpEntityValues].[CompanyCode] AS [CompanyCode], 
+    [HRW_VAllEmpEntityValues].[EmployeeID] AS [EmployeeID], 
+    [HRW_VAllEmpEntityValues].[EmployeeCode] AS [EmployeeCode], 
+    [HRW_VAllEmpEntityValues].[FullName] AS [FullName], 
+    [HRW_VAllEmpEntityValues].[HireDate] AS [HireDate], 
+    [HRW_VAllEmpEntityValues].[TerminationDate] AS [TerminationDate], 
+    [HRW_VAllEmpEntityValues].[EntityTypeId] AS [EntityTypeId], 
+    [HRW_VAllEmpEntityValues].[EntityType] AS [EntityType], 
+    [HRW_VAllEmpEntityValues].[EntityId] AS [EntityId], 
+    [HRW_VAllEmpEntityValues].[Value] AS [Value], 
+    [HRW_VAllEmpEntityValues].[RecordType] AS [RecordType]
+    FROM [dbo].[HRW_VAllEmpEntityValues] AS [HRW_VAllEmpEntityValues]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HRW_VAllEmpEntityValues_BTC" EntityType="Self.HRW_VAllEmpEntityValues_BTC" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HRW_VAllEmpEntityValues_BTC].[CompanyCode] AS [CompanyCode], 
+    [HRW_VAllEmpEntityValues_BTC].[EmployeeID] AS [EmployeeID], 
+    [HRW_VAllEmpEntityValues_BTC].[EmployeeCode] AS [EmployeeCode], 
+    [HRW_VAllEmpEntityValues_BTC].[FullName] AS [FullName], 
+    [HRW_VAllEmpEntityValues_BTC].[HireDate] AS [HireDate], 
+    [HRW_VAllEmpEntityValues_BTC].[TerminationDate] AS [TerminationDate], 
+    [HRW_VAllEmpEntityValues_BTC].[EntityTypeId] AS [EntityTypeId], 
+    [HRW_VAllEmpEntityValues_BTC].[EntityType] AS [EntityType], 
+    [HRW_VAllEmpEntityValues_BTC].[EntityId] AS [EntityId], 
+    [HRW_VAllEmpEntityValues_BTC].[Value] AS [Value], 
+    [HRW_VAllEmpEntityValues_BTC].[RecordType] AS [RecordType], 
+    [HRW_VAllEmpEntityValues_BTC].[DateOfBirth] AS [DateOfBirth], 
+    [HRW_VAllEmpEntityValues_BTC].[EntityCode] AS [EntityCode]
+    FROM [dbo].[HRW_VAllEmpEntityValues_BTC] AS [HRW_VAllEmpEntityValues_BTC]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HRW_VEmpDetailsWithAllEntities" EntityType="Self.HRW_VEmpDetailsWithAllEntities" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HRW_VEmpDetailsWithAllEntities].[CompanyCode] AS [CompanyCode], 
+    [HRW_VEmpDetailsWithAllEntities].[EmployeeID] AS [EmployeeID], 
+    [HRW_VEmpDetailsWithAllEntities].[EmployeeCode] AS [EmployeeCode], 
+    [HRW_VEmpDetailsWithAllEntities].[FirstName] AS [FirstName], 
+    [HRW_VEmpDetailsWithAllEntities].[MiddleName] AS [MiddleName], 
+    [HRW_VEmpDetailsWithAllEntities].[LastName] AS [LastName], 
+    [HRW_VEmpDetailsWithAllEntities].[FullName] AS [FullName], 
+    [HRW_VEmpDetailsWithAllEntities].[DateOfBirth] AS [DateOfBirth], 
+    [HRW_VEmpDetailsWithAllEntities].[HireDate] AS [HireDate], 
+    [HRW_VEmpDetailsWithAllEntities].[EntityTypeId] AS [EntityTypeId], 
+    [HRW_VEmpDetailsWithAllEntities].[EntityType] AS [EntityType], 
+    [HRW_VEmpDetailsWithAllEntities].[EntityId] AS [EntityId], 
+    [HRW_VEmpDetailsWithAllEntities].[Code] AS [Code], 
+    [HRW_VEmpDetailsWithAllEntities].[VALUE] AS [VALUE], 
+    [HRW_VEmpDetailsWithAllEntities].[EntityGroup] AS [EntityGroup], 
+    [HRW_VEmpDetailsWithAllEntities].[EntityGroupDesc] AS [EntityGroupDesc]
+    FROM [dbo].[HRW_VEmpDetailsWithAllEntities] AS [HRW_VEmpDetailsWithAllEntities]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HRW_VEmpEntityValues" EntityType="Self.HRW_VEmpEntityValues" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HRW_VEmpEntityValues].[CompanyCode] AS [CompanyCode], 
+    [HRW_VEmpEntityValues].[EmployeeID] AS [EmployeeID], 
+    [HRW_VEmpEntityValues].[EmployeeCode] AS [EmployeeCode], 
+    [HRW_VEmpEntityValues].[FullName] AS [FullName], 
+    [HRW_VEmpEntityValues].[HireDate] AS [HireDate], 
+    [HRW_VEmpEntityValues].[TerminationDate] AS [TerminationDate], 
+    [HRW_VEmpEntityValues].[DateOfBirth] AS [DateOfBirth], 
+    [HRW_VEmpEntityValues].[EntityTypeId] AS [EntityTypeId], 
+    [HRW_VEmpEntityValues].[EntityType] AS [EntityType], 
+    [HRW_VEmpEntityValues].[EntityId] AS [EntityId], 
+    [HRW_VEmpEntityValues].[Value] AS [Value], 
+    [HRW_VEmpEntityValues].[RecordType] AS [RecordType]
+    FROM [dbo].[HRW_VEmpEntityValues] AS [HRW_VEmpEntityValues]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HRW_VEmpEntityValues_GCC" EntityType="Self.HRW_VEmpEntityValues_GCC" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HRW_VEmpEntityValues_GCC].[CompanyCode] AS [CompanyCode], 
+    [HRW_VEmpEntityValues_GCC].[EmployeeID] AS [EmployeeID], 
+    [HRW_VEmpEntityValues_GCC].[EmployeeCode] AS [EmployeeCode], 
+    [HRW_VEmpEntityValues_GCC].[FullName] AS [FullName], 
+    [HRW_VEmpEntityValues_GCC].[HireDate] AS [HireDate], 
+    [HRW_VEmpEntityValues_GCC].[TerminationDate] AS [TerminationDate], 
+    [HRW_VEmpEntityValues_GCC].[DateOfBirth] AS [DateOfBirth], 
+    [HRW_VEmpEntityValues_GCC].[EntityTypeId] AS [EntityTypeId], 
+    [HRW_VEmpEntityValues_GCC].[EntityType] AS [EntityType], 
+    [HRW_VEmpEntityValues_GCC].[EntityId] AS [EntityId], 
+    [HRW_VEmpEntityValues_GCC].[Value] AS [Value], 
+    [HRW_VEmpEntityValues_GCC].[RecordType] AS [RecordType], 
+    [HRW_VEmpEntityValues_GCC].[EffectiveFrom] AS [EffectiveFrom]
+    FROM [dbo].[HRW_VEmpEntityValues_GCC] AS [HRW_VEmpEntityValues_GCC]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HRW_VEmployeeFields" EntityType="Self.HRW_VEmployeeFields" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HRW_VEmployeeFields].[IsMandatory] AS [IsMandatory], 
+    [HRW_VEmployeeFields].[CheckDuplicate] AS [CheckDuplicate], 
+    [HRW_VEmployeeFields].[ORG_EntityTypeParamID] AS [ORG_EntityTypeParamID], 
+    [HRW_VEmployeeFields].[ParamDescription] AS [ParamDescription], 
+    [HRW_VEmployeeFields].[DataType] AS [DataType], 
+    [HRW_VEmployeeFields].[DataTypeEntityID] AS [DataTypeEntityID], 
+    [HRW_VEmployeeFields].[ParamLinkLevel] AS [ParamLinkLevel], 
+    [HRW_VEmployeeFields].[EmpEntityParamID] AS [EmpEntityParamID], 
+    [HRW_VEmployeeFields].[EntityTypeParamID] AS [EntityTypeParamID], 
+    [HRW_VEmployeeFields].[SortOrder] AS [SortOrder], 
+    [HRW_VEmployeeFields].[ParamValue] AS [ParamValue], 
+    [HRW_VEmployeeFields].[EmployeeID] AS [EmployeeID], 
+    [HRW_VEmployeeFields].[CompanyCode] AS [CompanyCode]
+    FROM [dbo].[HRW_VEmployeeFields] AS [HRW_VEmployeeFields]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="HRW_VEmpTypeParamValues" EntityType="Self.HRW_VEmpTypeParamValues" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [HRW_VEmpTypeParamValues].[EmployeeID] AS [EmployeeID], 
+    [HRW_VEmpTypeParamValues].[CompanyCode] AS [CompanyCode], 
+    [HRW_VEmpTypeParamValues].[EntityTypeParamID] AS [EntityTypeParamID], 
+    [HRW_VEmpTypeParamValues].[Description] AS [Description], 
+    [HRW_VEmpTypeParamValues].[ParamValue] AS [ParamValue]
+    FROM [dbo].[HRW_VEmpTypeParamValues] AS [HRW_VEmpTypeParamValues]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="LPODetails" EntityType="Self.LPODetails" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [LPODetails].[LPOID] AS [LPOID], 
@@ -1026,6 +1834,26 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
             <End Role="Users" EntitySet="Users" />
             <End Role="Attachments" EntitySet="Attachments" />
           </AssociationSet>
+          <AssociationSet Name="FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" Association="Self.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues">
+            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
+            <End Role="HRW_EmpEntityParamValues1" EntitySet="HRW_EmpEntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster" Association="Self.FK_HRW_EmpEntityParamValues_ORG_EntityMaster">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" Association="Self.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" Association="Self.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam">
+            <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
+            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HRW_Employee_HRW_Company" Association="Self.FK_HRW_Employee_HRW_Company">
+            <End Role="HRW_Company" EntitySet="HRW_Company" />
+            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
+          </AssociationSet>
           <AssociationSet Name="fk_HSQuotation_QuotationID" Association="Self.fk_HSQuotation_QuotationID">
             <End Role="Quotation" EntitySet="Quotation" />
             <End Role="HSQuotation" EntitySet="HSQuotation" />
@@ -1038,9 +1866,61 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
             <End Role="RFQ" EntitySet="RFQ" />
             <End Role="LPO" EntitySet="LPO" />
           </AssociationSet>
+          <AssociationSet Name="FK_ORG_ChartMaster_HRW_Company" Association="Self.FK_ORG_ChartMaster_HRW_Company">
+            <End Role="HRW_Company" EntitySet="HRW_Company" />
+            <End Role="ORG_ChartMaster" EntitySet="ORG_ChartMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EmpEntityLink_HRW_Employee" Association="Self.FK_ORG_EmpEntityLink_HRW_Employee">
+            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
+            <End Role="ORG_EmpEntityLink" EntitySet="ORG_EmpEntityLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EmpEntityLink_ORG_EntityMaster" Association="Self.FK_ORG_EmpEntityLink_ORG_EntityMaster">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="ORG_EmpEntityLink" EntitySet="ORG_EmpEntityLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityManager_HRW_Employee" Association="Self.FK_ORG_EntityManager_HRW_Employee">
+            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
+            <End Role="ORG_EntityManager" EntitySet="ORG_EntityManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityManager_ORG_EntityMaster" Association="Self.FK_ORG_EntityManager_ORG_EntityMaster">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="ORG_EntityManager" EntitySet="ORG_EntityManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityMaster_ORG_EntityType" Association="Self.FK_ORG_EntityMaster_ORG_EntityType">
+            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityMasterParam_ORG_EntityMaster" Association="Self.FK_ORG_EntityMasterParam_ORG_EntityMaster">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="ORG_EntityMasterParamValues" EntitySet="ORG_EntityMasterParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityMasterParam_ORG_EntityTypeParam" Association="Self.FK_ORG_EntityMasterParam_ORG_EntityTypeParam">
+            <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
+            <End Role="ORG_EntityMasterParamValues" EntitySet="ORG_EntityMasterParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityType_ORG_ChartMaster" Association="Self.FK_ORG_EntityType_ORG_ChartMaster">
+            <End Role="ORG_ChartMaster" EntitySet="ORG_ChartMaster" />
+            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityTypeLevel_ORG_EntityType" Association="Self.FK_ORG_EntityTypeLevel_ORG_EntityType">
+            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
+            <End Role="ORG_EntityTypeLevel" EntitySet="ORG_EntityTypeLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityTypeParam_ORG_EntityType" Association="Self.FK_ORG_EntityTypeParam_ORG_EntityType">
+            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
+            <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
+          </AssociationSet>
           <AssociationSet Name="fk_PCQuotation_QuotationID" Association="Self.fk_PCQuotation_QuotationID">
             <End Role="Quotation" EntitySet="Quotation" />
             <End Role="PCQuotation" EntitySet="PCQuotation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRL_LVRecord03_ORG_EntityMaster" Association="Self.FK_PRL_LVRecord03_ORG_EntityMaster">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="HRW_EntityParamValues" EntitySet="HRW_EntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRL_LVRecord03_ORG_EntityTypeParam" Association="Self.FK_PRL_LVRecord03_ORG_EntityTypeParam">
+            <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
+            <End Role="HRW_EntityParamValues" EntitySet="HRW_EntityParamValues" />
           </AssociationSet>
           <AssociationSet Name="fk_quotation_RFQID" Association="Self.fk_quotation_RFQID">
             <End Role="RFQ" EntitySet="RFQ" />
@@ -1461,6 +2341,100 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <EntitySet Name="LPODetails" EntityType="HRWorksEntities.LPODetails" />
           <EntitySet Name="RFQDetails" EntityType="HRWorksEntities.RFQDetails" />
           <EntitySet Name="TravelRequestDetails" EntityType="HRWorksEntities.TravelRequestDetails" />
+          <EntitySet Name="HRW_Company" EntityType="HRWorksEntities.HRW_Company" />
+          <EntitySet Name="HRW_EmpEntityParamValues" EntityType="HRWorksEntities.HRW_EmpEntityParamValues" />
+          <EntitySet Name="HRW_Employee" EntityType="HRWorksEntities.HRW_Employee" />
+          <EntitySet Name="HRW_EntityParamValues" EntityType="HRWorksEntities.HRW_EntityParamValues" />
+          <EntitySet Name="ORG_ChartMaster" EntityType="HRWorksEntities.ORG_ChartMaster" />
+          <EntitySet Name="ORG_EmpEntityLink" EntityType="HRWorksEntities.ORG_EmpEntityLink" />
+          <EntitySet Name="ORG_EntityManager" EntityType="HRWorksEntities.ORG_EntityManager" />
+          <EntitySet Name="ORG_EntityMaster" EntityType="HRWorksEntities.ORG_EntityMaster" />
+          <EntitySet Name="ORG_EntityMasterParamValues" EntityType="HRWorksEntities.ORG_EntityMasterParamValues" />
+          <EntitySet Name="ORG_EntityType" EntityType="HRWorksEntities.ORG_EntityType" />
+          <EntitySet Name="ORG_EntityTypeLevel" EntityType="HRWorksEntities.ORG_EntityTypeLevel" />
+          <EntitySet Name="ORG_EntityTypeParam" EntityType="HRWorksEntities.ORG_EntityTypeParam" />
+          <EntitySet Name="EmpEntities" EntityType="HRWorksEntities.EmpEntities" />
+          <EntitySet Name="EmployeeList" EntityType="HRWorksEntities.EmployeeList" />
+          <EntitySet Name="EmployeeList1" EntityType="HRWorksEntities.EmployeeList1" />
+          <EntitySet Name="HRW_VAllEmpEntityValues" EntityType="HRWorksEntities.HRW_VAllEmpEntityValues" />
+          <EntitySet Name="HRW_VAllEmpEntityValues_BTC" EntityType="HRWorksEntities.HRW_VAllEmpEntityValues_BTC" />
+          <EntitySet Name="HRW_VEmpDetailsWithAllEntities" EntityType="HRWorksEntities.HRW_VEmpDetailsWithAllEntities" />
+          <EntitySet Name="HRW_VEmpEntityValues" EntityType="HRWorksEntities.HRW_VEmpEntityValues" />
+          <EntitySet Name="HRW_VEmpEntityValues_GCC" EntityType="HRWorksEntities.HRW_VEmpEntityValues_GCC" />
+          <EntitySet Name="HRW_VEmployeeFields" EntityType="HRWorksEntities.HRW_VEmployeeFields" />
+          <EntitySet Name="HRW_VEmpTypeParamValues" EntityType="HRWorksEntities.HRW_VEmpTypeParamValues" />
+          <AssociationSet Name="FK_HRW_Employee_HRW_Company" Association="HRWorksEntities.FK_HRW_Employee_HRW_Company">
+            <End Role="HRW_Company" EntitySet="HRW_Company" />
+            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_ChartMaster_HRW_Company" Association="HRWorksEntities.FK_ORG_ChartMaster_HRW_Company">
+            <End Role="HRW_Company" EntitySet="HRW_Company" />
+            <End Role="ORG_ChartMaster" EntitySet="ORG_ChartMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" Association="HRWorksEntities.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues">
+            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
+            <End Role="HRW_EmpEntityParamValues1" EntitySet="HRW_EmpEntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster" Association="HRWorksEntities.FK_HRW_EmpEntityParamValues_ORG_EntityMaster">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" Association="HRWorksEntities.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" Association="HRWorksEntities.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam">
+            <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
+            <End Role="HRW_EmpEntityParamValues" EntitySet="HRW_EmpEntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EmpEntityLink_HRW_Employee" Association="HRWorksEntities.FK_ORG_EmpEntityLink_HRW_Employee">
+            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
+            <End Role="ORG_EmpEntityLink" EntitySet="ORG_EmpEntityLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityManager_HRW_Employee" Association="HRWorksEntities.FK_ORG_EntityManager_HRW_Employee">
+            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
+            <End Role="ORG_EntityManager" EntitySet="ORG_EntityManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRL_LVRecord03_ORG_EntityMaster" Association="HRWorksEntities.FK_PRL_LVRecord03_ORG_EntityMaster">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="HRW_EntityParamValues" EntitySet="HRW_EntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRL_LVRecord03_ORG_EntityTypeParam" Association="HRWorksEntities.FK_PRL_LVRecord03_ORG_EntityTypeParam">
+            <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
+            <End Role="HRW_EntityParamValues" EntitySet="HRW_EntityParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityType_ORG_ChartMaster" Association="HRWorksEntities.FK_ORG_EntityType_ORG_ChartMaster">
+            <End Role="ORG_ChartMaster" EntitySet="ORG_ChartMaster" />
+            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EmpEntityLink_ORG_EntityMaster" Association="HRWorksEntities.FK_ORG_EmpEntityLink_ORG_EntityMaster">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="ORG_EmpEntityLink" EntitySet="ORG_EmpEntityLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityManager_ORG_EntityMaster" Association="HRWorksEntities.FK_ORG_EntityManager_ORG_EntityMaster">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="ORG_EntityManager" EntitySet="ORG_EntityManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityMaster_ORG_EntityType" Association="HRWorksEntities.FK_ORG_EntityMaster_ORG_EntityType">
+            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityMasterParam_ORG_EntityMaster" Association="HRWorksEntities.FK_ORG_EntityMasterParam_ORG_EntityMaster">
+            <End Role="ORG_EntityMaster" EntitySet="ORG_EntityMaster" />
+            <End Role="ORG_EntityMasterParamValues" EntitySet="ORG_EntityMasterParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityMasterParam_ORG_EntityTypeParam" Association="HRWorksEntities.FK_ORG_EntityMasterParam_ORG_EntityTypeParam">
+            <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
+            <End Role="ORG_EntityMasterParamValues" EntitySet="ORG_EntityMasterParamValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityTypeLevel_ORG_EntityType" Association="HRWorksEntities.FK_ORG_EntityTypeLevel_ORG_EntityType">
+            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
+            <End Role="ORG_EntityTypeLevel" EntitySet="ORG_EntityTypeLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORG_EntityTypeParam_ORG_EntityType" Association="HRWorksEntities.FK_ORG_EntityTypeParam_ORG_EntityType">
+            <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
+            <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="RFQ">
           <Key>
@@ -1921,6 +2895,631 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="IsSubmitted" Type="Boolean" Nullable="false" />
           <Property Name="ExpensesHandledBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HRW_Company">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HRW_Employee" Relationship="HRWorksEntities.FK_HRW_Employee_HRW_Company" FromRole="HRW_Company" ToRole="HRW_Employee" />
+          <NavigationProperty Name="ORG_ChartMaster" Relationship="HRWorksEntities.FK_ORG_ChartMaster_HRW_Company" FromRole="HRW_Company" ToRole="ORG_ChartMaster" />
+        </EntityType>
+        <EntityType Name="HRW_EmpEntityParamValues">
+          <Key>
+            <PropertyRef Name="EmpEntityParamID" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpEntityParamID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int64" />
+          <Property Name="EntityID" Type="Int64" />
+          <Property Name="EntityTypeParamID" Type="Int64" Nullable="false" />
+          <Property Name="ParamValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ParamValueEntityID" Type="Int64" />
+          <Property Name="EmpEntityParamIDLink" Type="Int64" />
+          <Property Name="ESSID" Type="Int64" />
+          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HRW_EmpEntityParamValues1" Relationship="HRWorksEntities.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" FromRole="HRW_EmpEntityParamValues" ToRole="HRW_EmpEntityParamValues1" />
+          <NavigationProperty Name="HRW_EmpEntityParamValues2" Relationship="HRWorksEntities.FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues" FromRole="HRW_EmpEntityParamValues1" ToRole="HRW_EmpEntityParamValues" />
+          <NavigationProperty Name="ORG_EntityMaster" Relationship="HRWorksEntities.FK_HRW_EmpEntityParamValues_ORG_EntityMaster" FromRole="HRW_EmpEntityParamValues" ToRole="ORG_EntityMaster" />
+          <NavigationProperty Name="ORG_EntityMaster1" Relationship="HRWorksEntities.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" FromRole="HRW_EmpEntityParamValues" ToRole="ORG_EntityMaster" />
+          <NavigationProperty Name="ORG_EntityTypeParam" Relationship="HRWorksEntities.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" FromRole="HRW_EmpEntityParamValues" ToRole="ORG_EntityTypeParam" />
+        </EntityType>
+        <EntityType Name="HRW_Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Salutation" Type="Int32" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="TerminationDate" Type="DateTime" Precision="0" />
+          <Property Name="PrevEmpID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecordType" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PAFRecordID" Type="Int64" />
+          <Property Name="EmpStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HRW_Company" Relationship="HRWorksEntities.FK_HRW_Employee_HRW_Company" FromRole="HRW_Employee" ToRole="HRW_Company" />
+          <NavigationProperty Name="ORG_EmpEntityLink" Relationship="HRWorksEntities.FK_ORG_EmpEntityLink_HRW_Employee" FromRole="HRW_Employee" ToRole="ORG_EmpEntityLink" />
+          <NavigationProperty Name="ORG_EntityManager" Relationship="HRWorksEntities.FK_ORG_EntityManager_HRW_Employee" FromRole="HRW_Employee" ToRole="ORG_EntityManager" />
+        </EntityType>
+        <EntityType Name="HRW_EntityParamValues">
+          <Key>
+            <PropertyRef Name="LVRecordEntityParamID" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LVRecordEntityParamID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeaveRecordID" Type="Int64" />
+          <Property Name="EntityTypeParamID" Type="Int64" Nullable="false" />
+          <Property Name="ParamValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ParamValueEntityID" Type="Int64" />
+          <Property Name="RecordType" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceID" Type="Int64" />
+          <NavigationProperty Name="ORG_EntityMaster" Relationship="HRWorksEntities.FK_PRL_LVRecord03_ORG_EntityMaster" FromRole="HRW_EntityParamValues" ToRole="ORG_EntityMaster" />
+          <NavigationProperty Name="ORG_EntityTypeParam" Relationship="HRWorksEntities.FK_PRL_LVRecord03_ORG_EntityTypeParam" FromRole="HRW_EntityParamValues" ToRole="ORG_EntityTypeParam" />
+        </EntityType>
+        <EntityType Name="ORG_ChartMaster">
+          <Key>
+            <PropertyRef Name="OrgChartId" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrgChartId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChartRecordType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ManagerEmployeeID" Type="Int64" />
+          <Property Name="IsChartDataReady" Type="Boolean" />
+          <Property Name="OrgChartBy" Type="Int64" />
+          <NavigationProperty Name="HRW_Company" Relationship="HRWorksEntities.FK_ORG_ChartMaster_HRW_Company" FromRole="ORG_ChartMaster" ToRole="HRW_Company" />
+          <NavigationProperty Name="ORG_EntityType" Relationship="HRWorksEntities.FK_ORG_EntityType_ORG_ChartMaster" FromRole="ORG_ChartMaster" ToRole="ORG_EntityType" />
+        </EntityType>
+        <EntityType Name="ORG_EmpEntityLink">
+          <Key>
+            <PropertyRef Name="EmpEntityId" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpEntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int64" Nullable="false" />
+          <Property Name="EntityId" Type="Int64" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EffectiveTo" Type="DateTime" Precision="0" />
+          <Property Name="RecordStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HRW_Employee" Relationship="HRWorksEntities.FK_ORG_EmpEntityLink_HRW_Employee" FromRole="ORG_EmpEntityLink" ToRole="HRW_Employee" />
+          <NavigationProperty Name="ORG_EntityMaster" Relationship="HRWorksEntities.FK_ORG_EmpEntityLink_ORG_EntityMaster" FromRole="ORG_EmpEntityLink" ToRole="ORG_EntityMaster" />
+        </EntityType>
+        <EntityType Name="ORG_EntityManager">
+          <Key>
+            <PropertyRef Name="OrgManagerId" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrgManagerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityId" Type="Int64" Nullable="false" />
+          <Property Name="EmployeeId" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EffectiveTo" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="HRW_Employee" Relationship="HRWorksEntities.FK_ORG_EntityManager_HRW_Employee" FromRole="ORG_EntityManager" ToRole="HRW_Employee" />
+          <NavigationProperty Name="ORG_EntityMaster" Relationship="HRWorksEntities.FK_ORG_EntityManager_ORG_EntityMaster" FromRole="ORG_EntityManager" ToRole="ORG_EntityMaster" />
+        </EntityType>
+        <EntityType Name="ORG_EntityMaster">
+          <Key>
+            <PropertyRef Name="EntityId" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EntityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityTypeId" Type="Int64" Nullable="false" />
+          <Property Name="EntityCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Parent" Type="Int64" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Precision="0" />
+          <Property Name="EffectiveTo" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IncludeEmployees" Type="Boolean" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HRW_EmpEntityParamValues" Relationship="HRWorksEntities.FK_HRW_EmpEntityParamValues_ORG_EntityMaster" FromRole="ORG_EntityMaster" ToRole="HRW_EmpEntityParamValues" />
+          <NavigationProperty Name="HRW_EmpEntityParamValues1" Relationship="HRWorksEntities.FK_HRW_EmpEntityParamValues_ORG_EntityMaster1" FromRole="ORG_EntityMaster" ToRole="HRW_EmpEntityParamValues" />
+          <NavigationProperty Name="HRW_EntityParamValues" Relationship="HRWorksEntities.FK_PRL_LVRecord03_ORG_EntityMaster" FromRole="ORG_EntityMaster" ToRole="HRW_EntityParamValues" />
+          <NavigationProperty Name="ORG_EmpEntityLink" Relationship="HRWorksEntities.FK_ORG_EmpEntityLink_ORG_EntityMaster" FromRole="ORG_EntityMaster" ToRole="ORG_EmpEntityLink" />
+          <NavigationProperty Name="ORG_EntityManager" Relationship="HRWorksEntities.FK_ORG_EntityManager_ORG_EntityMaster" FromRole="ORG_EntityMaster" ToRole="ORG_EntityManager" />
+          <NavigationProperty Name="ORG_EntityType" Relationship="HRWorksEntities.FK_ORG_EntityMaster_ORG_EntityType" FromRole="ORG_EntityMaster" ToRole="ORG_EntityType" />
+          <NavigationProperty Name="ORG_EntityMasterParamValues" Relationship="HRWorksEntities.FK_ORG_EntityMasterParam_ORG_EntityMaster" FromRole="ORG_EntityMaster" ToRole="ORG_EntityMasterParamValues" />
+        </EntityType>
+        <EntityType Name="ORG_EntityMasterParamValues">
+          <Key>
+            <PropertyRef Name="EntityMasterParamID" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EntityMasterParamID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityId" Type="Int64" Nullable="false" />
+          <Property Name="EntityTypeParamID" Type="Int64" Nullable="false" />
+          <Property Name="ParamValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ORG_EntityMaster" Relationship="HRWorksEntities.FK_ORG_EntityMasterParam_ORG_EntityMaster" FromRole="ORG_EntityMasterParamValues" ToRole="ORG_EntityMaster" />
+          <NavigationProperty Name="ORG_EntityTypeParam" Relationship="HRWorksEntities.FK_ORG_EntityMasterParam_ORG_EntityTypeParam" FromRole="ORG_EntityMasterParamValues" ToRole="ORG_EntityTypeParam" />
+        </EntityType>
+        <EntityType Name="ORG_EntityType">
+          <Key>
+            <PropertyRef Name="EntityTypeId" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EntityTypeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrgChartId" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsMandatory" Type="Boolean" Nullable="false" />
+          <Property Name="IsCodeRequired" Type="Boolean" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="EntityGroup" Type="Int32" Nullable="false" />
+          <Property Name="MasterEntityTypeId" Type="Int64" />
+          <Property Name="HaveDataSecurity" Type="Boolean" Nullable="false" />
+          <Property Name="ShowInReportFilter" Type="Boolean" Nullable="false" />
+          <Property Name="RestrictDuplicate" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ORG_ChartMaster" Relationship="HRWorksEntities.FK_ORG_EntityType_ORG_ChartMaster" FromRole="ORG_EntityType" ToRole="ORG_ChartMaster" />
+          <NavigationProperty Name="ORG_EntityMaster" Relationship="HRWorksEntities.FK_ORG_EntityMaster_ORG_EntityType" FromRole="ORG_EntityType" ToRole="ORG_EntityMaster" />
+          <NavigationProperty Name="ORG_EntityTypeLevel" Relationship="HRWorksEntities.FK_ORG_EntityTypeLevel_ORG_EntityType" FromRole="ORG_EntityType" ToRole="ORG_EntityTypeLevel" />
+          <NavigationProperty Name="ORG_EntityTypeParam" Relationship="HRWorksEntities.FK_ORG_EntityTypeParam_ORG_EntityType" FromRole="ORG_EntityType" ToRole="ORG_EntityTypeParam" />
+        </EntityType>
+        <EntityType Name="ORG_EntityTypeLevel">
+          <Key>
+            <PropertyRef Name="EntityTypeLevelId" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EntityTypeLevelId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityTypeId" Type="Int64" Nullable="false" />
+          <Property Name="EntityTypeLevel" Type="Int32" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EffectiveTo" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ORG_EntityType" Relationship="HRWorksEntities.FK_ORG_EntityTypeLevel_ORG_EntityType" FromRole="ORG_EntityTypeLevel" ToRole="ORG_EntityType" />
+        </EntityType>
+        <EntityType Name="ORG_EntityTypeParam">
+          <Key>
+            <PropertyRef Name="EntityTypeParamID" />
+          </Key>
+          <Property Name="TransactType" Type="Int32" Nullable="false" />
+          <Property Name="TransactUserID" Type="Int64" Nullable="false" />
+          <Property Name="TransactDateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MenuID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EntityTypeParamID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityTypeId" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DataType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DataTypeEntityID" Type="Int64" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="ParamLinkLevel" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsMandatory" Type="Boolean" Nullable="false" />
+          <Property Name="CheckDuplicate" Type="Int32" />
+          <Property Name="Validations" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESSFieldAccessRight" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DataTypeProperty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataTypeProperty1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HRW_EmpEntityParamValues" Relationship="HRWorksEntities.FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam" FromRole="ORG_EntityTypeParam" ToRole="HRW_EmpEntityParamValues" />
+          <NavigationProperty Name="HRW_EntityParamValues" Relationship="HRWorksEntities.FK_PRL_LVRecord03_ORG_EntityTypeParam" FromRole="ORG_EntityTypeParam" ToRole="HRW_EntityParamValues" />
+          <NavigationProperty Name="ORG_EntityMasterParamValues" Relationship="HRWorksEntities.FK_ORG_EntityMasterParam_ORG_EntityTypeParam" FromRole="ORG_EntityTypeParam" ToRole="ORG_EntityMasterParamValues" />
+          <NavigationProperty Name="ORG_EntityType" Relationship="HRWorksEntities.FK_ORG_EntityTypeParam_ORG_EntityType" FromRole="ORG_EntityTypeParam" ToRole="ORG_EntityType" />
+        </EntityType>
+        <EntityType Name="EmpEntities">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="EntityTypeId" />
+            <PropertyRef Name="EntityType" />
+            <PropertyRef Name="EntityId" />
+            <PropertyRef Name="Description" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int64" Nullable="false" />
+          <Property Name="EmployeeCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EntityTypeId" Type="Int64" Nullable="false" />
+          <Property Name="EntityType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntityId" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EffectiveFrom" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="EmployeeList">
+          <Key>
+            <PropertyRef Name="EmployeeCode" />
+          </Key>
+          <Property Name="EmployeeCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Employee_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DOJ" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="EmployeeList1">
+          <Key>
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DOJ" Type="DateTime" Precision="0" />
+          <Property Name="TerminationDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="HRW_VAllEmpEntityValues">
+          <Key>
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="RecordType" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="EmployeeCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="TerminationDate" Type="DateTime" Precision="0" />
+          <Property Name="EntityTypeId" Type="Int64" />
+          <Property Name="EntityType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EntityId" Type="Int64" />
+          <Property Name="Value" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RecordType" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HRW_VAllEmpEntityValues_BTC">
+          <Key>
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="RecordType" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="EmployeeCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="TerminationDate" Type="DateTime" Precision="0" />
+          <Property Name="EntityTypeId" Type="Int64" />
+          <Property Name="EntityType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EntityId" Type="Int64" />
+          <Property Name="Value" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RecordType" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="EntityCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HRW_VEmpDetailsWithAllEntities">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="EntityGroupDesc" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeID" Type="Int64" Nullable="false" />
+          <Property Name="EmployeeCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="EntityTypeId" Type="Int64" />
+          <Property Name="EntityType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntityId" Type="Int64" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VALUE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EntityGroup" Type="Int32" />
+          <Property Name="EntityGroupDesc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HRW_VEmpEntityValues">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="RecordType" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeID" Type="Int64" Nullable="false" />
+          <Property Name="EmployeeCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="TerminationDate" Type="DateTime" Precision="0" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="EntityTypeId" Type="Int64" />
+          <Property Name="EntityType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntityId" Type="Int64" />
+          <Property Name="Value" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RecordType" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HRW_VEmpEntityValues_GCC">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="EmployeeCode" />
+            <PropertyRef Name="RecordType" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeID" Type="Int64" Nullable="false" />
+          <Property Name="EmployeeCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="TerminationDate" Type="DateTime" Precision="0" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="EntityTypeId" Type="Int64" />
+          <Property Name="EntityType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntityId" Type="Int64" />
+          <Property Name="Value" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RecordType" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="HRW_VEmployeeFields">
+          <Key>
+            <PropertyRef Name="IsMandatory" />
+            <PropertyRef Name="ORG_EntityTypeParamID" />
+            <PropertyRef Name="ParamLinkLevel" />
+            <PropertyRef Name="SortOrder" />
+          </Key>
+          <Property Name="IsMandatory" Type="Boolean" Nullable="false" />
+          <Property Name="CheckDuplicate" Type="Int32" />
+          <Property Name="ORG_EntityTypeParamID" Type="Int64" Nullable="false" />
+          <Property Name="ParamDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DataType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DataTypeEntityID" Type="Int64" />
+          <Property Name="ParamLinkLevel" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmpEntityParamID" Type="Int64" />
+          <Property Name="EntityTypeParamID" Type="Int64" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="ParamValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HRW_VEmpTypeParamValues">
+          <Key>
+            <PropertyRef Name="EntityTypeParamID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EntityTypeParamID" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ParamValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_HRW_Employee_HRW_Company">
+          <End Type="HRWorksEntities.HRW_Company" Role="HRW_Company" Multiplicity="1" />
+          <End Type="HRWorksEntities.HRW_Employee" Role="HRW_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Company">
+              <PropertyRef Name="CompanyCode" />
+            </Principal>
+            <Dependent Role="HRW_Employee">
+              <PropertyRef Name="CompanyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_ChartMaster_HRW_Company">
+          <End Type="HRWorksEntities.HRW_Company" Role="HRW_Company" Multiplicity="1" />
+          <End Type="HRWorksEntities.ORG_ChartMaster" Role="ORG_ChartMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Company">
+              <PropertyRef Name="CompanyCode" />
+            </Principal>
+            <Dependent Role="ORG_ChartMaster">
+              <PropertyRef Name="CompanyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HRW_EmpEntityParamValues_HRW_EmpEntityParamValues">
+          <End Type="HRWorksEntities.HRW_EmpEntityParamValues" Role="HRW_EmpEntityParamValues" Multiplicity="0..1" />
+          <End Type="HRWorksEntities.HRW_EmpEntityParamValues" Role="HRW_EmpEntityParamValues1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_EmpEntityParamValues">
+              <PropertyRef Name="EmpEntityParamID" />
+            </Principal>
+            <Dependent Role="HRW_EmpEntityParamValues1">
+              <PropertyRef Name="EmpEntityParamIDLink" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster">
+          <End Type="HRWorksEntities.ORG_EntityMaster" Role="ORG_EntityMaster" Multiplicity="0..1" />
+          <End Type="HRWorksEntities.HRW_EmpEntityParamValues" Role="HRW_EmpEntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="HRW_EmpEntityParamValues">
+              <PropertyRef Name="EntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HRW_EmpEntityParamValues_ORG_EntityMaster1">
+          <End Type="HRWorksEntities.ORG_EntityMaster" Role="ORG_EntityMaster" Multiplicity="0..1" />
+          <End Type="HRWorksEntities.HRW_EmpEntityParamValues" Role="HRW_EmpEntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="HRW_EmpEntityParamValues">
+              <PropertyRef Name="ParamValueEntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HRW_EmpEntityParamValues_ORG_EntityTypeParam">
+          <End Type="HRWorksEntities.ORG_EntityTypeParam" Role="ORG_EntityTypeParam" Multiplicity="1" />
+          <End Type="HRWorksEntities.HRW_EmpEntityParamValues" Role="HRW_EmpEntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityTypeParam">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Principal>
+            <Dependent Role="HRW_EmpEntityParamValues">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EmpEntityLink_HRW_Employee">
+          <End Type="HRWorksEntities.HRW_Employee" Role="HRW_Employee" Multiplicity="1" />
+          <End Type="HRWorksEntities.ORG_EmpEntityLink" Role="ORG_EmpEntityLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="ORG_EmpEntityLink">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityManager_HRW_Employee">
+          <End Type="HRWorksEntities.HRW_Employee" Role="HRW_Employee" Multiplicity="1" />
+          <End Type="HRWorksEntities.ORG_EntityManager" Role="ORG_EntityManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="ORG_EntityManager">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRL_LVRecord03_ORG_EntityMaster">
+          <End Type="HRWorksEntities.ORG_EntityMaster" Role="ORG_EntityMaster" Multiplicity="0..1" />
+          <End Type="HRWorksEntities.HRW_EntityParamValues" Role="HRW_EntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="HRW_EntityParamValues">
+              <PropertyRef Name="ParamValueEntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRL_LVRecord03_ORG_EntityTypeParam">
+          <End Type="HRWorksEntities.ORG_EntityTypeParam" Role="ORG_EntityTypeParam" Multiplicity="1" />
+          <End Type="HRWorksEntities.HRW_EntityParamValues" Role="HRW_EntityParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityTypeParam">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Principal>
+            <Dependent Role="HRW_EntityParamValues">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityType_ORG_ChartMaster">
+          <End Type="HRWorksEntities.ORG_ChartMaster" Role="ORG_ChartMaster" Multiplicity="1" />
+          <End Type="HRWorksEntities.ORG_EntityType" Role="ORG_EntityType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_ChartMaster">
+              <PropertyRef Name="OrgChartId" />
+            </Principal>
+            <Dependent Role="ORG_EntityType">
+              <PropertyRef Name="OrgChartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EmpEntityLink_ORG_EntityMaster">
+          <End Type="HRWorksEntities.ORG_EntityMaster" Role="ORG_EntityMaster" Multiplicity="1" />
+          <End Type="HRWorksEntities.ORG_EmpEntityLink" Role="ORG_EmpEntityLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="ORG_EmpEntityLink">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityManager_ORG_EntityMaster">
+          <End Type="HRWorksEntities.ORG_EntityMaster" Role="ORG_EntityMaster" Multiplicity="1" />
+          <End Type="HRWorksEntities.ORG_EntityManager" Role="ORG_EntityManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="ORG_EntityManager">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityMaster_ORG_EntityType">
+          <End Type="HRWorksEntities.ORG_EntityType" Role="ORG_EntityType" Multiplicity="1" />
+          <End Type="HRWorksEntities.ORG_EntityMaster" Role="ORG_EntityMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityType">
+              <PropertyRef Name="EntityTypeId" />
+            </Principal>
+            <Dependent Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityMasterParam_ORG_EntityMaster">
+          <End Type="HRWorksEntities.ORG_EntityMaster" Role="ORG_EntityMaster" Multiplicity="1" />
+          <End Type="HRWorksEntities.ORG_EntityMasterParamValues" Role="ORG_EntityMasterParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityMaster">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="ORG_EntityMasterParamValues">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityMasterParam_ORG_EntityTypeParam">
+          <End Type="HRWorksEntities.ORG_EntityTypeParam" Role="ORG_EntityTypeParam" Multiplicity="1" />
+          <End Type="HRWorksEntities.ORG_EntityMasterParamValues" Role="ORG_EntityMasterParamValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityTypeParam">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Principal>
+            <Dependent Role="ORG_EntityMasterParamValues">
+              <PropertyRef Name="EntityTypeParamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityTypeLevel_ORG_EntityType">
+          <End Type="HRWorksEntities.ORG_EntityType" Role="ORG_EntityType" Multiplicity="1" />
+          <End Type="HRWorksEntities.ORG_EntityTypeLevel" Role="ORG_EntityTypeLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityType">
+              <PropertyRef Name="EntityTypeId" />
+            </Principal>
+            <Dependent Role="ORG_EntityTypeLevel">
+              <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORG_EntityTypeParam_ORG_EntityType">
+          <End Type="HRWorksEntities.ORG_EntityType" Role="ORG_EntityType" Multiplicity="1" />
+          <End Type="HRWorksEntities.ORG_EntityTypeParam" Role="ORG_EntityTypeParam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORG_EntityType">
+              <PropertyRef Name="EntityTypeId" />
+            </Principal>
+            <Dependent Role="ORG_EntityTypeParam">
+              <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2413,6 +4012,384 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
                 <ScalarProperty Name="PortOfOriginID" ColumnName="PortOfOriginID" />
                 <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_Company">
+            <EntityTypeMapping TypeName="HRWorksEntities.HRW_Company">
+              <MappingFragment StoreEntitySet="HRW_Company">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_EmpEntityParamValues">
+            <EntityTypeMapping TypeName="HRWorksEntities.HRW_EmpEntityParamValues">
+              <MappingFragment StoreEntitySet="HRW_EmpEntityParamValues">
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="ESSID" ColumnName="ESSID" />
+                <ScalarProperty Name="EmpEntityParamIDLink" ColumnName="EmpEntityParamIDLink" />
+                <ScalarProperty Name="ParamValueEntityID" ColumnName="ParamValueEntityID" />
+                <ScalarProperty Name="ParamValue" ColumnName="ParamValue" />
+                <ScalarProperty Name="EntityTypeParamID" ColumnName="EntityTypeParamID" />
+                <ScalarProperty Name="EntityID" ColumnName="EntityID" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmpEntityParamID" ColumnName="EmpEntityParamID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_Employee">
+            <EntityTypeMapping TypeName="HRWorksEntities.HRW_Employee">
+              <MappingFragment StoreEntitySet="HRW_Employee">
+                <ScalarProperty Name="EmpStatus" ColumnName="EmpStatus" />
+                <ScalarProperty Name="PAFRecordID" ColumnName="PAFRecordID" />
+                <ScalarProperty Name="RecordType" ColumnName="RecordType" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="PrevEmpID" ColumnName="PrevEmpID" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_EntityParamValues">
+            <EntityTypeMapping TypeName="HRWorksEntities.HRW_EntityParamValues">
+              <MappingFragment StoreEntitySet="HRW_EntityParamValues">
+                <ScalarProperty Name="ReferenceID" ColumnName="ReferenceID" />
+                <ScalarProperty Name="RecordType" ColumnName="RecordType" />
+                <ScalarProperty Name="ParamValueEntityID" ColumnName="ParamValueEntityID" />
+                <ScalarProperty Name="ParamValue" ColumnName="ParamValue" />
+                <ScalarProperty Name="EntityTypeParamID" ColumnName="EntityTypeParamID" />
+                <ScalarProperty Name="LeaveRecordID" ColumnName="LeaveRecordID" />
+                <ScalarProperty Name="LVRecordEntityParamID" ColumnName="LVRecordEntityParamID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_ChartMaster">
+            <EntityTypeMapping TypeName="HRWorksEntities.ORG_ChartMaster">
+              <MappingFragment StoreEntitySet="ORG_ChartMaster">
+                <ScalarProperty Name="OrgChartBy" ColumnName="OrgChartBy" />
+                <ScalarProperty Name="IsChartDataReady" ColumnName="IsChartDataReady" />
+                <ScalarProperty Name="ManagerEmployeeID" ColumnName="ManagerEmployeeID" />
+                <ScalarProperty Name="ChartRecordType" ColumnName="ChartRecordType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="OrgChartId" ColumnName="OrgChartId" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_EmpEntityLink">
+            <EntityTypeMapping TypeName="HRWorksEntities.ORG_EmpEntityLink">
+              <MappingFragment StoreEntitySet="ORG_EmpEntityLink">
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmpEntityId" ColumnName="EmpEntityId" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_EntityManager">
+            <EntityTypeMapping TypeName="HRWorksEntities.ORG_EntityManager">
+              <MappingFragment StoreEntitySet="ORG_EntityManager">
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="OrgManagerId" ColumnName="OrgManagerId" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_EntityMaster">
+            <EntityTypeMapping TypeName="HRWorksEntities.ORG_EntityMaster">
+              <MappingFragment StoreEntitySet="ORG_EntityMaster">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="IncludeEmployees" ColumnName="IncludeEmployees" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EntityCode" ColumnName="EntityCode" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_EntityMasterParamValues">
+            <EntityTypeMapping TypeName="HRWorksEntities.ORG_EntityMasterParamValues">
+              <MappingFragment StoreEntitySet="ORG_EntityMasterParamValues">
+                <ScalarProperty Name="ParamValue" ColumnName="ParamValue" />
+                <ScalarProperty Name="EntityTypeParamID" ColumnName="EntityTypeParamID" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EntityMasterParamID" ColumnName="EntityMasterParamID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_EntityType">
+            <EntityTypeMapping TypeName="HRWorksEntities.ORG_EntityType">
+              <MappingFragment StoreEntitySet="ORG_EntityType">
+                <ScalarProperty Name="RestrictDuplicate" ColumnName="RestrictDuplicate" />
+                <ScalarProperty Name="ShowInReportFilter" ColumnName="ShowInReportFilter" />
+                <ScalarProperty Name="HaveDataSecurity" ColumnName="HaveDataSecurity" />
+                <ScalarProperty Name="MasterEntityTypeId" ColumnName="MasterEntityTypeId" />
+                <ScalarProperty Name="EntityGroup" ColumnName="EntityGroup" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="IsCodeRequired" ColumnName="IsCodeRequired" />
+                <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OrgChartId" ColumnName="OrgChartId" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_EntityTypeLevel">
+            <EntityTypeMapping TypeName="HRWorksEntities.ORG_EntityTypeLevel">
+              <MappingFragment StoreEntitySet="ORG_EntityTypeLevel">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="EntityTypeLevel" ColumnName="EntityTypeLevel" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="EntityTypeLevelId" ColumnName="EntityTypeLevelId" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORG_EntityTypeParam">
+            <EntityTypeMapping TypeName="HRWorksEntities.ORG_EntityTypeParam">
+              <MappingFragment StoreEntitySet="ORG_EntityTypeParam">
+                <ScalarProperty Name="DataTypeProperty1" ColumnName="DataTypeProperty1" />
+                <ScalarProperty Name="DataTypeProperty" ColumnName="DataTypeProperty" />
+                <ScalarProperty Name="ESSFieldAccessRight" ColumnName="ESSFieldAccessRight" />
+                <ScalarProperty Name="Validations" ColumnName="Validations" />
+                <ScalarProperty Name="CheckDuplicate" ColumnName="CheckDuplicate" />
+                <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
+                <ScalarProperty Name="ParamLinkLevel" ColumnName="ParamLinkLevel" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="DataTypeEntityID" ColumnName="DataTypeEntityID" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="EntityTypeParamID" ColumnName="EntityTypeParamID" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="TransactDateTime" ColumnName="TransactDateTime" />
+                <ScalarProperty Name="TransactUserID" ColumnName="TransactUserID" />
+                <ScalarProperty Name="TransactType" ColumnName="TransactType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpEntities">
+            <EntityTypeMapping TypeName="HRWorksEntities.EmpEntities">
+              <MappingFragment StoreEntitySet="EmpEntities">
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeList">
+            <EntityTypeMapping TypeName="HRWorksEntities.EmployeeList">
+              <MappingFragment StoreEntitySet="EmployeeList">
+                <ScalarProperty Name="DOJ" ColumnName="DOJ" />
+                <ScalarProperty Name="Employee_Name" ColumnName="Employee Name" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeList1">
+            <EntityTypeMapping TypeName="HRWorksEntities.EmployeeList1">
+              <MappingFragment StoreEntitySet="EmployeeList1">
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="DOJ" ColumnName="DOJ" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_VAllEmpEntityValues">
+            <EntityTypeMapping TypeName="HRWorksEntities.HRW_VAllEmpEntityValues">
+              <MappingFragment StoreEntitySet="HRW_VAllEmpEntityValues">
+                <ScalarProperty Name="RecordType" ColumnName="RecordType" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_VAllEmpEntityValues_BTC">
+            <EntityTypeMapping TypeName="HRWorksEntities.HRW_VAllEmpEntityValues_BTC">
+              <MappingFragment StoreEntitySet="HRW_VAllEmpEntityValues_BTC">
+                <ScalarProperty Name="EntityCode" ColumnName="EntityCode" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="RecordType" ColumnName="RecordType" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_VEmpDetailsWithAllEntities">
+            <EntityTypeMapping TypeName="HRWorksEntities.HRW_VEmpDetailsWithAllEntities">
+              <MappingFragment StoreEntitySet="HRW_VEmpDetailsWithAllEntities">
+                <ScalarProperty Name="EntityGroupDesc" ColumnName="EntityGroupDesc" />
+                <ScalarProperty Name="EntityGroup" ColumnName="EntityGroup" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_VEmpEntityValues">
+            <EntityTypeMapping TypeName="HRWorksEntities.HRW_VEmpEntityValues">
+              <MappingFragment StoreEntitySet="HRW_VEmpEntityValues">
+                <ScalarProperty Name="RecordType" ColumnName="RecordType" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_VEmpEntityValues_GCC">
+            <EntityTypeMapping TypeName="HRWorksEntities.HRW_VEmpEntityValues_GCC">
+              <MappingFragment StoreEntitySet="HRW_VEmpEntityValues_GCC">
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="RecordType" ColumnName="RecordType" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_VEmployeeFields">
+            <EntityTypeMapping TypeName="HRWorksEntities.HRW_VEmployeeFields">
+              <MappingFragment StoreEntitySet="HRW_VEmployeeFields">
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ParamValue" ColumnName="ParamValue" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="EntityTypeParamID" ColumnName="EntityTypeParamID" />
+                <ScalarProperty Name="EmpEntityParamID" ColumnName="EmpEntityParamID" />
+                <ScalarProperty Name="ParamLinkLevel" ColumnName="ParamLinkLevel" />
+                <ScalarProperty Name="DataTypeEntityID" ColumnName="DataTypeEntityID" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="ParamDescription" ColumnName="ParamDescription" />
+                <ScalarProperty Name="ORG_EntityTypeParamID" ColumnName="ORG_EntityTypeParamID" />
+                <ScalarProperty Name="CheckDuplicate" ColumnName="CheckDuplicate" />
+                <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRW_VEmpTypeParamValues">
+            <EntityTypeMapping TypeName="HRWorksEntities.HRW_VEmpTypeParamValues">
+              <MappingFragment StoreEntitySet="HRW_VEmpTypeParamValues">
+                <ScalarProperty Name="ParamValue" ColumnName="ParamValue" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EntityTypeParamID" ColumnName="EntityTypeParamID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -21,12 +21,15 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         public string Address { get; set; }
 
         [DisplayName("Telephone")]
+        [RegularExpression(@"^(\d{10})$", ErrorMessage = "Not a valid phone number")]
         public string Telephone { get; set; }
 
         [DisplayName("Fax")]
+        [RegularExpression(@"^(\d{10})$", ErrorMessage = "Not a valid fax number")]
         public string Fax { get; set; }
 
         [DisplayName("Mobile")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         public string Mobile { get; set; }
 
         [DisplayName("Landline")]
@@ -38,6 +41,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
 
         [DisplayName("E-mail")]
         [Required(ErrorMessage = "Email is Required")]
+        [EmailAddress]
         public string Email { get; set; }
 
         [DisplayName("Is Active")]

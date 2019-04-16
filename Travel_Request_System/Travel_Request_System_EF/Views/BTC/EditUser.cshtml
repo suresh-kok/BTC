@@ -18,7 +18,7 @@
             </div>
             <div class="box-body">
                 <div>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.ValidationSummary(false, null, new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.ID)
                     <div class="row" style="margin-bottom:15px">
                         <div class="form-group">

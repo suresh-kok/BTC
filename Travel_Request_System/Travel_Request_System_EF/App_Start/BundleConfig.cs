@@ -15,6 +15,7 @@ namespace Travel_Request_System_EF
                   .Include("~/Content/css/font-awesome.min.css")
                   .Include("~/Content/css/icheck/blue.min.css")
                   .Include("~/Content/css/AdminLTE.css")
+                  .Include("~/Content/Site.css")
                   .Include("~/Content/js/plugins/select2/select2.css")
                   .Include("~/Content/js/plugins/timepicker/bootstrap-timepicker.css")
                   .Include("~/Content/css/skins/skin*"));
@@ -61,7 +62,7 @@ namespace Travel_Request_System_EF
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/Site.css"));
         }
     }
 }
