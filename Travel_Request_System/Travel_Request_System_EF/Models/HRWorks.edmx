@@ -135,34 +135,6 @@
           <Property Name="RecordType" Type="varchar" MaxLength="3" />
           <Property Name="ReferenceID" Type="bigint" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'BTC.dbo.HRW_OrgChartData' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="HRW_OrgChartData">
-          <Property Name="ManagerID" Type="bigint" />
-          <Property Name="E1" Type="bigint" />
-          <Property Name="E2" Type="bigint" />
-          <Property Name="E3" Type="bigint" />
-          <Property Name="E4" Type="bigint" />
-          <Property Name="E5" Type="bigint" />
-          <Property Name="E6" Type="bigint" />
-          <Property Name="E7" Type="bigint" />
-          <Property Name="E8" Type="bigint" />
-          <Property Name="E9" Type="bigint" />
-          <Property Name="E10" Type="bigint" />
-          <Property Name="E1Desc" Type="varchar(max)" />
-          <Property Name="E2Desc" Type="varchar(max)" />
-          <Property Name="E3Desc" Type="varchar(max)" />
-          <Property Name="E4Desc" Type="varchar(max)" />
-          <Property Name="E5Desc" Type="varchar(max)" />
-          <Property Name="E6Desc" Type="varchar(max)" />
-          <Property Name="E7Desc" Type="varchar(max)" />
-          <Property Name="E8Desc" Type="varchar(max)" />
-          <Property Name="E9Desc" Type="varchar(max)" />
-          <Property Name="E10Desc" Type="varchar(max)" />
-          <Property Name="OrgChartEntityManagerID" Type="bigint" />
-          <Property Name="EntityIDList" Type="varchar(max)" />
-          <Property Name="OrgChartID" Type="bigint" />
-        </EntityType>-->
         <EntityType Name="HSQuotation">
           <Key>
             <PropertyRef Name="ID" />
@@ -475,7 +447,7 @@ warning 6013: The table/view 'BTC.dbo.HRW_OrgChartData' does not have a primary 
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
           <Property Name="HREmployeeID" Type="bigint" />
-          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTC.dbo.EmpEntities' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -585,26 +557,6 @@ warning 6002: The table/view 'BTC.dbo.HRW_VEmpDetailsWithAllEntities' does not h
           <Property Name="EntityGroup" Type="int" />
           <Property Name="EntityGroupDesc" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'BTC.dbo.HRW_VEmpEntityTypes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="HRW_VEmpEntityTypes">
-          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
-          <Property Name="TransactType" Type="int" />
-          <Property Name="TransactUserID" Type="bigint" />
-          <Property Name="TransactDateTime" Type="smalldatetime" />
-          <Property Name="MenuID" Type="varchar" MaxLength="50" />
-          <Property Name="EntityTypeId" Type="bigint" />
-          <Property Name="OrgChartId" Type="bigint" />
-          <Property Name="Description" Type="nvarchar" MaxLength="50" />
-          <Property Name="IsMandatory" Type="bit" />
-          <Property Name="IsCodeRequired" Type="bit" />
-          <Property Name="SortOrder" Type="int" />
-          <Property Name="EntityGroup" Type="int" />
-          <Property Name="MasterEntityTypeId" Type="bigint" />
-          <Property Name="HaveDataSecurity" Type="bit" />
-          <Property Name="ShowInReportFilter" Type="bit" />
-          <Property Name="RestrictDuplicate" Type="bit" />
-        </EntityType>-->
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTC.dbo.HRW_VEmpEntityValues' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="HRW_VEmpEntityValues">
@@ -1375,6 +1327,18 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_EmployeeID">
+          <End Role="HRW_Employee" Type="Self.HRW_Employee" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="HREmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserRole_Role">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
@@ -1946,6 +1910,10 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
             <End Role="Users" EntitySet="Users" />
             <End Role="RFQ" EntitySet="RFQ" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_EmployeeID" Association="Self.FK_User_EmployeeID">
+            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="UserRole" EntitySet="UserRole" />
@@ -2148,12 +2116,13 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="ActivationCode" Type="Guid" Nullable="false" />
           <Property Name="HREmployeeID" Type="Int64" />
-          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TravelRequests" Relationship="Self.FK__TravelReq__ApprovalBy" FromRole="Users" ToRole="TravelRequests" />
           <NavigationProperty Name="TravelRequests1" Relationship="Self.FK__TravelReq_CreatedBy" FromRole="Users" ToRole="TravelRequests" />
           <NavigationProperty Name="Roles" Relationship="Self.UserRole" FromRole="Users" ToRole="Roles" />
           <NavigationProperty Name="RFQ" Relationship="HRWorksEntities.fk_RFQ_UserID" FromRole="Users" ToRole="RFQ" />
           <NavigationProperty Name="Attachments" Relationship="HRWorksEntities.FK_Attachments_UploadedBy" FromRole="Users" ToRole="Attachments" />
+          <NavigationProperty Name="HRW_Employee" Relationship="HRWorksEntities.FK_User_EmployeeID" FromRole="Users" ToRole="HRW_Employee" />
         </EntityType>
         <Association Name="fk_ATQuotation_DestinationID">
           <End Role="City" Type="Self.City" Multiplicity="0..1" />
@@ -2434,6 +2403,10 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <AssociationSet Name="FK_ORG_EntityTypeParam_ORG_EntityType" Association="HRWorksEntities.FK_ORG_EntityTypeParam_ORG_EntityType">
             <End Role="ORG_EntityType" EntitySet="ORG_EntityType" />
             <End Role="ORG_EntityTypeParam" EntitySet="ORG_EntityTypeParam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_EmployeeID" Association="HRWorksEntities.FK_User_EmployeeID">
+            <End Role="HRW_Employee" EntitySet="HRW_Employee" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="RFQ">
@@ -2960,6 +2933,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <NavigationProperty Name="HRW_Company" Relationship="HRWorksEntities.FK_HRW_Employee_HRW_Company" FromRole="HRW_Employee" ToRole="HRW_Company" />
           <NavigationProperty Name="ORG_EmpEntityLink" Relationship="HRWorksEntities.FK_ORG_EmpEntityLink_HRW_Employee" FromRole="HRW_Employee" ToRole="ORG_EmpEntityLink" />
           <NavigationProperty Name="ORG_EntityManager" Relationship="HRWorksEntities.FK_ORG_EntityManager_HRW_Employee" FromRole="HRW_Employee" ToRole="ORG_EntityManager" />
+          <NavigationProperty Name="Users" Relationship="HRWorksEntities.FK_User_EmployeeID" FromRole="HRW_Employee" ToRole="Users" />
         </EntityType>
         <EntityType Name="HRW_EntityParamValues">
           <Key>
@@ -3517,6 +3491,18 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
             </Principal>
             <Dependent Role="ORG_EntityTypeParam">
               <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_EmployeeID">
+          <End Type="HRWorksEntities.HRW_Employee" Role="HRW_Employee" Multiplicity="0..1" />
+          <End Type="HRWorksEntities.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HRW_Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="HREmployeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

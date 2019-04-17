@@ -33,7 +33,7 @@
                                             @Html.DisplayNameFor(model => model.Username)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.HREmployeeID)
+                                            @Html.DisplayName("Employee Name")
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.FirstName)
@@ -58,7 +58,7 @@
                                             @Html.DisplayFor(model => model.Username)
                                         </td>
                                         <td>
-                                            @*@ViewBag.EmployeeName*@
+                                            @Html.DisplayFor(modelItem => modelItem.HRW_Employee.FullName)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(model => model.FirstName)

@@ -11,7 +11,8 @@ namespace Travel_Request_System_EF.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class HRW_EntityParamValues
     {
         public int TransactType { get; set; }
@@ -20,6 +21,7 @@ namespace Travel_Request_System_EF.Models
         public string MenuID { get; set; }
         public long LVRecordEntityParamID { get; set; }
         public Nullable<long> LeaveRecordID { get; set; }
+        [Key]
         public long EntityTypeParamID { get; set; }
         public string ParamValue { get; set; }
         public Nullable<long> ParamValueEntityID { get; set; }

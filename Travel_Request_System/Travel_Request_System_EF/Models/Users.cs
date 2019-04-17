@@ -12,6 +12,7 @@ namespace Travel_Request_System_EF.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using Travel_Request_System_EF.Models.DataAnnotations;
 
     [MetadataType(typeof(UserMetaData))]
@@ -36,7 +37,7 @@ namespace Travel_Request_System_EF.Models
         public bool IsActive { get; set; }
         public System.Guid ActivationCode { get; set; }
         public Nullable<long> HREmployeeID { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TravelRequests> TravelRequests { get; set; }
@@ -48,5 +49,7 @@ namespace Travel_Request_System_EF.Models
         public virtual ICollection<RFQ> RFQ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attachments> Attachments { get; set; }
+        [ForeignKey("HREmployeeID")]
+        public virtual HRW_Employee HRW_Employee { get; set; }
     }
 }

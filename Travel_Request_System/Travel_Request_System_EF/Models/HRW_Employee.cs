@@ -11,7 +11,8 @@ namespace Travel_Request_System_EF.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class HRW_Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,12 +20,14 @@ namespace Travel_Request_System_EF.Models
         {
             this.ORG_EmpEntityLink = new HashSet<ORG_EmpEntityLink>();
             this.ORG_EntityManager = new HashSet<ORG_EntityManager>();
+            this.Users = new HashSet<Users>();
         }
     
         public int TransactType { get; set; }
         public long TransactUserID { get; set; }
         public System.DateTime TransactDateTime { get; set; }
         public string MenuID { get; set; }
+        [Key]
         public long EmployeeID { get; set; }
         public string CompanyCode { get; set; }
         public string EmployeeCode { get; set; }
@@ -47,5 +50,7 @@ namespace Travel_Request_System_EF.Models
         public virtual ICollection<ORG_EmpEntityLink> ORG_EmpEntityLink { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORG_EntityManager> ORG_EntityManager { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

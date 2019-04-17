@@ -11,7 +11,8 @@ namespace Travel_Request_System_EF.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ORG_EntityType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,6 +27,7 @@ namespace Travel_Request_System_EF.Models
         public long TransactUserID { get; set; }
         public System.DateTime TransactDateTime { get; set; }
         public string MenuID { get; set; }
+        [Key]
         public long EntityTypeId { get; set; }
         public long OrgChartId { get; set; }
         public string Description { get; set; }

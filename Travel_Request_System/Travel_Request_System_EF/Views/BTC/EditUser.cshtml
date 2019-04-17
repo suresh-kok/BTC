@@ -20,6 +20,7 @@
                 <div>
                     @Html.ValidationSummary(false, null, new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.ID)
+                    @Html.HiddenFor(model => model.HREmployeeID)
                     <div class="row" style="margin-bottom:15px">
                         <div class="form-group">
                             <label class="control-label col-md-2">Role</label>
@@ -36,8 +37,9 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.HREmployeeID, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
+                                <input type="text" class="form-control pull-right" readonly="readonly" id="EmployeeName" name="EmployeeName" value="@Model.HRW_Employee.FullName" />
                                 @*@Html.DropDownList("EmployeeID", (((IEnumerable<Travel_Request_System_EF.Models.ViewModel.MiniEmployeeDetail>)ViewBag.allEmployees).Select(m => new SelectListItem { Text = m.Name + " - " + m.EmployeeCode, Value = m.EmployeeCode.ToString() }))),"EmployeeName","EmployeeCode", Model.MiniEmployeeDetail.FirstOrDefault())
-                                @Html.ValidationMessageFor(model => model.HREmployeeID, "", new { @class = "text-danger" })*@
+                    @Html.ValidationMessageFor(model => model.HREmployeeID, "", new { @class = "text-danger" })*@
                             </div>
                         </div>
                     </div>

@@ -85,6 +85,7 @@
         <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityMasterParam_ORG_EntityTypeParam" />
         <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityTypeLevel_ORG_EntityType" />
         <AssociationConnector Association="HRWorksEntities.FK_ORG_EntityTypeParam_ORG_EntityType" />
+        <AssociationConnector Association="HRWorksEntities.FK_User_EmployeeID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

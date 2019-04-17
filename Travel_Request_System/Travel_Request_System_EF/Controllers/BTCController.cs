@@ -518,7 +518,7 @@ namespace Travel_Request_System_EF.Controllers
             List<Users> usersList = new List<Users>();
             using (BTCEntities db = new BTCEntities())
             {
-                usersList = db.Users.Include(a => a.Roles).ToList();
+                usersList = db.Users.Include(a => a.Roles).Include(a => a.HRW_Employee).ToList();
             }
             return View(usersList);
 
@@ -533,7 +533,7 @@ namespace Travel_Request_System_EF.Controllers
             }
             using (BTCEntities db = new BTCEntities())
             {
-                Users user = await db.Users.FindAsync(id);
+                Users user = await db.Users.Include(a => a.HRW_Employee).FirstOrDefaultAsync(i => i.ID == id.Value);
                 if (user == null)
                 {
                     return HttpNotFound();
@@ -549,7 +549,9 @@ namespace Travel_Request_System_EF.Controllers
             using (BTCEntities db = new BTCEntities())
             {
                 List<Roles> allRoles = db.Roles.ToList();
+                List<HRW_Employee> allEmployees = db.HRW_Employee.ToList();
                 ViewBag.allRoles = allRoles;
+                ViewBag.allEmployees = allEmployees;
                 return View();
             }
         }
@@ -615,13 +617,12 @@ namespace Travel_Request_System_EF.Controllers
             }
             using (BTCEntities db = new BTCEntities())
             {
-                Users user = await db.Users.FindAsync(id);
+                Users user = await db.Users.Include(a => a.HRW_Employee).FirstOrDefaultAsync(i => i.ID == id.Value);
                 if (user == null)
                 {
                     return HttpNotFound();
                 }
                 ViewBag.RoleName = user.Roles.FirstOrDefault().RoleName;
-                //ViewBag.allEmployees = db.EmployeeDetails.GetAll();
                 return View(user);
             }
         }
@@ -629,24 +630,27 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditUser([Bind(Include = "ID,Username,FirstName,LastName,Email,Password,IsActive,ActivationCode")] Users user, FormCollection form)
+        public async Task<ActionResult> EditUser(Users user, FormCollection form)
         {
-            if (ModelState.IsValid)
+            using (BTCEntities db = new BTCEntities())
             {
-                string DDLValue = form["RoleName"].ToString();
-
-                using (BTCEntities db = new BTCEntities())
+                ModelState.Remove("HREmployeeID");
+                if (ModelState.IsValid)
                 {
+                    string DDLValue = form["RoleName"].ToString();
+
                     var role = db.Roles.Where(a => a.RoleName == DDLValue).FirstOrDefault();
                     if (!user.Roles.Contains(role))
                     {
                         user.Roles.Add(role);
                     }
-
+                    user.HREmployeeID = Convert.ToInt32(form["HREmployeeID"]);
                     db.Entry(user).State = EntityState.Modified;
                     await db.SaveChangesAsync();
                     return RedirectToAction("ManageUsers");
                 }
+                user = await db.Users.Include(a => a.HRW_Employee).FirstOrDefaultAsync(i => i.ID == user.ID);
+                ViewBag.RoleName = user.Roles.FirstOrDefault().RoleName;
             }
             return View(user);
         }
@@ -660,7 +664,7 @@ namespace Travel_Request_System_EF.Controllers
             }
             using (BTCEntities db = new BTCEntities())
             {
-                Users user = await db.Users.FindAsync(id);
+                Users user = await db.Users.Include(a => a.HRW_Employee).FirstOrDefaultAsync(i => i.ID == id.Value);
                 if (user == null)
                 {
                     return HttpNotFound();
@@ -681,6 +685,7 @@ namespace Travel_Request_System_EF.Controllers
                 user.IsActive = false;
                 user.IsDeleted = true;
                 db.Entry(user).State = EntityState.Modified;
+                db.Configuration.ValidateOnSaveEnabled = false;
                 await db.SaveChangesAsync();
                 return RedirectToAction("ManageUsers");
             }

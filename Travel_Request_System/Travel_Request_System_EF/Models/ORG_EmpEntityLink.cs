@@ -11,13 +11,15 @@ namespace Travel_Request_System_EF.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ORG_EmpEntityLink
     {
         public int TransactType { get; set; }
         public long TransactUserID { get; set; }
         public System.DateTime TransactDateTime { get; set; }
         public string MenuID { get; set; }
+        [Key]
         public long EmpEntityId { get; set; }
         public long EmployeeId { get; set; }
         public long EntityId { get; set; }
