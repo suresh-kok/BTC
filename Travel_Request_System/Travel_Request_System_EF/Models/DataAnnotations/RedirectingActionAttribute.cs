@@ -11,7 +11,6 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
 {
     public class RedirectingActionAttribute : ActionFilterAttribute
     {
-
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             MembershipUser user;

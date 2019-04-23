@@ -1,12 +1,19 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Travel_Request_System_EF.Models.ViewModel
 {
-    public class EmployeeDetailsDBService
+    public class EmployeeDetailsDBService : IDisposable
     {
-        //Cost Center Manager of the Employee 
+        string employeeCode = "";
 
-        public string EmployeeManager(string employeeCode, string entityTypeID)
+        public EmployeeDetailsDBService(string employeeCode)
+        {
+            this.employeeCode = employeeCode;
+        }
+
+        //Cost Center Manager of the Employee
+        public string EmployeeManager(string entityTypeID)
         {
             using (var db = new BTCEntities())
             {
@@ -39,7 +46,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
             }
         }
 
-        public string EmployeeManagerDetails(string employeeCode, string entityTypeID)
+        public string EmployeeManagerDetails(string entityTypeID)
         {
             using (var db = new BTCEntities())
             {
@@ -72,7 +79,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
             }
         }
 
-        public string DepartmentHeadDetails(string employeeCode, string entityTypeID)
+        public string DepartmentHeadDetails(string entityTypeID)
         {
             using (var db = new BTCEntities())
             {
@@ -106,28 +113,160 @@ namespace Travel_Request_System_EF.Models.ViewModel
         }
 
         //Employee Details
-        public FullEmployeeDetail FullEmployeeDetails(string employeeCode, string entityID)
+        public FullEmployeeDetail FullEmployeeDetails()
         {
             using (var db = new BTCEntities())
             {
-                string sequenceMaxQuery = "SELECT a.EmployeeID,a.EmployeeCode,a.FullName as Name,cast(a.HireDate as date) as HireDate,a.TerminationDate,a.EntityTypeId,c.Description " +
-                                            ", a.EntityId,b.Description as Costcenter, b.EntityCode as CompanyCode " +
-                                            ",isnull((Select[ParamValue] FROM[HRWorks].[dbo].[HRW_VEmployeeFields]" +
-                                            "where EmployeeId in (select EmployeeId from[HRWorks].[dbo].HRW_Employee where EmployeeCode = @EmpCode and RecordType = 'EMP') and[EntityTypeParamID] = '15'),'') as Email " +
-                                            ",isnull((select Value from[HRWorks].[dbo].HRW_VEmpEntityValues " +
-                                            "where EmployeeId in (Select EmployeeId from hrworks.dbo.HRW_Employee where EmployeeCode = @EmpCode and RecordType = 'EMP') and EntityTypeId = '10'),'' ) as nvDept " +
-                                            ",isnull((select EntityCode from[HRWorks].[dbo].[ORG_EntityMaster] " +
-                                            "where EntityId in (Select EntityId from[HRWorks].[dbo].HRW_VEmpEntityValues where EmployeeCode = @EmpCode and RecordType = 'EMP') and EntityTypeId = '10'),'' ) as nvDeptCode " +
-                                            ",isnull((select Picture from[HRWorks].[dbo].[HRW_Picture] " +
-                                            "where[TableReferenceID] in (Select EmployeeId from hrworks.dbo.HRW_Employee where EmployeeCode = @EmpCode and RecordType = 'EMP') and Category = 'EMPPHOTO' ),'' ) as Photo " +
-                                            ",isnull((select Value from[HRWorks].[dbo].HRW_VEmpEntityValues " +
-                                            "where EmployeeId in (Select EmployeeId from hrworks.dbo.HRW_Employee where EmployeeCode = @EmpCode and RecordType = 'EMP') and EntityTypeId = '88'),'' ) as nvDesignation " +
-                                            "FROM[HRWorks].[dbo].HRW_VEmpEntityValues as a  " +
-                                            "inner join " +
-                                            "[HRWorks].[dbo].[ORG_EntityMaster] as b on a.EntityId=b.EntityId " +
-                                            "inner join " +
-                                            "[HRWorks].[dbo].[ORG_EntityType] as c on a.EntityTypeId=c.EntityTypeId " +
-                                            "where  a.employeecode='" + employeeCode + "' and a.EntityTypeId='" + entityID + "'  and TerminationDate is null and a.RecordType='EMP'";
+                string sequenceMaxQuery = "SELECT a.EmployeeID " +
+            " , a.EmployeeCode " +
+            " ,a.FullName " +
+            " ,( " +
+                " SELECT Value " +
+                " FROM HRW_VEmpEntityValues " +
+                    " WHERE EmployeeId IN( " +
+                        " SELECT EmployeeId " +
+                        " FROM HRW_Employee " +
+                        " WHERE EmployeeCode = '001' " +
+                            " AND RecordType = 'EMP' " +
+                        " ) " +
+                    " AND EntityTypeId = '88' " +
+                " ) AS Designation " +
+            " ,( " +
+                " SELECT Value " +
+                " FROM HRW_VEmpEntityValues " +
+                " WHERE EmployeeId IN(" +
+                        " SELECT EmployeeId " +
+                        " FROM HRW_Employee " +
+                        " WHERE EmployeeCode = '001' " +
+                            " AND RecordType = 'EMP' " +
+                        " ) " +
+                    " AND EntityTypeId = '10' " +
+                " ) AS Department " +
+            " ,( " +
+                " SELECT Emp.FirstName " +
+                " FROM HRW_Employee Emp " +
+                " INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
+                " INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
+                " WHERE Emp.EmployeeCode = '001' " +
+                    " AND EM.EntityTypeID = '96' " +
+                " ) AS DepartmentHead " +
+            " ,( " +
+                " SELECT Value " +
+                " FROM HRW_VEmpEntityValues " +
+                " WHERE EmployeeId IN(" +
+                        " SELECT EmployeeId " +
+                        " FROM HRW_Employee " +
+                        " WHERE EmployeeCode = '001' " +
+                           " AND RecordType = 'EMP' " +
+                        " ) " +
+                    " AND EntityTypeId = '10' " +
+                " ) AS CostCenter " +
+            " ,( " +
+                " SELECT Emp.FirstName " +
+                " FROM HRW_Employee Emp " +
+                " INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
+                " INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
+                " WHERE Emp.EmployeeCode = '001' " +
+                    " AND EM.EntityTypeID = '101' " +
+                " ) AS CostCenterHead " +
+              " , PassportID " +
+              " , PassportexpireDate " +
+              " , Passportissuedate " +
+              " , QID AS QatarID " +
+               " , QIDEDate " +
+               " , QIdfile " +
+               " ,( " +
+                " SELECT Value " +
+                 " FROM HRW_VEmpEntityValues " +
+                 " WHERE EmployeeId IN(" +
+                         " SELECT EmployeeId " +
+                         " FROM HRW_Employee " +
+                         " WHERE EmployeeCode = '001' " +
+                             " AND RecordType = 'EMP' " +
+                         " ) " +
+                     " AND EntityTypeId = '84' " +
+                 " ) AS Location " +
+               " ,( " +
+                " SELECT Value " +
+                 " FROM HRW_VEmpEntityValues " +
+                 " WHERE EmployeeId IN(" +
+                         " SELECT EmployeeId " +
+                         " FROM HRW_Employee " +
+                         " WHERE EmployeeCode = '001' " +
+                             " AND RecordType = 'EMP' " +
+                         " ) " +
+                     " AND EntityTypeId = '85' " +
+                 " ) AS Section " +
+               " ,( " +
+                " SELECT Value " +
+                 " FROM HRW_VEmpEntityValues " +
+                 " WHERE EmployeeId IN(" +
+                         " SELECT EmployeeId " +
+                         " FROM HRW_Employee " +
+                         " WHERE EmployeeCode = '001' " +
+                             " AND RecordType = 'EMP' " +
+                       " ) " +
+                     " AND EntityTypeId = '93' " +
+             " ) AS Contact " +
+            " , cast(a.HireDate AS DATE) AS HireDate " +
+            " , a.TerminationDate " +
+            " ,a.EntityTypeId " +
+            " ,c.Description " +
+            " ,a.EntityId " +
+            " ,b.Description AS Costcenter " +
+            " ,b.EntityCode AS CompanyCode " +
+            " ,isnull(( " +
+                    " SELECT ParamValue " +
+                    " FROM HRW_VEmployeeFields " +
+                    " WHERE EmployeeId IN ( " +
+                            " SELECT EmployeeId " +
+                            " FROM HRW_Employee " +
+                            " WHERE EmployeeCode = '001' " +
+                                " AND RecordType = 'EMP' " +
+                          "   ) " +
+                        " AND EntityTypeParamID = '15' " +
+                    " ), '') AS Email " +
+            " , isnull((" +
+                    " SELECT Value " +
+                    " FROM HRW_VEmpEntityValues " +
+                    " WHERE EmployeeId IN(" +
+                            " SELECT EmployeeId " +
+                            " FROM HRW_Employee " +
+                            " WHERE EmployeeCode = '001' " +
+                                " AND RecordType = 'EMP' " +
+                          " ) " +
+                        " AND EntityTypeId = '10' " +
+                    " ), '') AS nvDept " +
+            " , isnull((" +
+                    " SELECT EntityCode " +
+                    " FROM ORG_EntityMaster " +
+                    " WHERE EntityId IN(" +
+                            " SELECT EntityId " +
+                            " FROM HRW_VEmpEntityValues " +
+                            " WHERE EmployeeCode = '001' " +
+                                " AND RecordType = 'EMP' " +
+                            " ) " +
+                        " AND EntityTypeId = '10' " +
+                    " ), '') AS nvDeptCode " +
+            " , isnull((" +
+                    " SELECT Value " +
+                    " FROM HRW_VEmpEntityValues " +
+                    " WHERE EmployeeId IN(" +
+                            " SELECT EmployeeId " +
+                            " FROM HRW_Employee " +
+                            " WHERE EmployeeCode = '001' " +
+                                " AND RecordType = 'EMP' " +
+                            " ) " +
+                        " AND EntityTypeId = '88' " +
+                    " ), '') AS nvDesignation " +
+            " FROM HRW_VEmpEntityValues AS a " +
+        " INNER JOIN ORG_EntityMaster AS b ON a.EntityId = b.EntityId " +
+        " INNER JOIN ORG_EntityType AS c ON a.EntityTypeId = c.EntityTypeId " +
+        " INNER JOIN QATARIDDetails AS d ON a.EmployeeCode = d.EMPLOYEECODE " +
+        " INNER JOIN PassportDetails AS e ON a.EmployeeCode = e.EMPLOYEECODE " +
+        " WHERE a.employeecode = '001' " +
+            " AND TerminationDate IS NULL " +
+            " AND a.RecordType = 'EMP' ";
 
                 var sequenceQueryResult = db.Database.SqlQuery<FullEmployeeDetail>(sequenceMaxQuery).FirstOrDefault();
 
@@ -137,11 +276,11 @@ namespace Travel_Request_System_EF.Models.ViewModel
                     return fullEmployeeDetailsVal;
                 }
             }
-            return null;
+            return new FullEmployeeDetail();
         }
 
         //Employee Details – View
-        public MiniEmployeeDetail SimpleEmployeeDetails(string employeeCode)
+        public MiniEmployeeDetail SimpleEmployeeDetails()
         {
             using (var db = new BTCEntities())
             {
@@ -166,7 +305,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
         }
 
         //Department Head of the Employee  
-        public dynamic DepartmentHead(string employeeCode, string entityID)
+        public dynamic DepartmentHead(string entityID)
         {
             using (var db = new BTCEntities())
             {
@@ -198,7 +337,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
         }
 
         //Qatar ID Details - View 
-        public QatarDetails QatarIDDetails(string employeeCode)
+        public QatarDetails QatarIDDetails()
         {
             using (var db = new BTCEntities())
             {
@@ -225,7 +364,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
         }
 
         //Passport ID Details - View 
-        public PassportDetails PassportDetails(string employeeCode)
+        public PassportDetails PassportDetails()
         {
             using (var db = new BTCEntities())
             {
@@ -251,6 +390,120 @@ namespace Travel_Request_System_EF.Models.ViewModel
             return null;
         }
 
+        public EmailPersonDetails HRDetails()
+        {
+            using (var db = new BTCEntities())
+            {
+                string sequenceMaxQuery = "SELECT Emp.EmployeeID " +
+                                            ", Emp.EmployeeCode " +
+                                            ",Emp.FullName " +
+                                            ",isnull(( " +
+                                                    "SELECT ParamValue " +
+                                                    "FROM HRW_VEmployeeFields " +
+                                                    "WHERE EmployeeId IN( " +
+                                                            "SELECT Emp.EmployeeId " +
+                                                            "FROM HRW_Employee Emp " +
+                                                            "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
+                                                            "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
+                                                            "WHERE Emp.EmployeeCode = '164' " +
+                                                                "AND EM.EntityTypeID = '101' " +
+                                                            ") " +
+                                                        "AND EntityTypeParamID = '15' " +
+                                                    "), '') AS HRManagerEmail " +
+                                        "FROM HRW_Employee Emp " +
+                                        "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
+                                        "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
+                                        "WHERE Emp.EmployeeCode = '164' " +
+                                            "AND EM.EntityTypeID = '101' ";
 
+                var sequenceQueryResult = db.Database.SqlQuery<EmailPersonDetails>(sequenceMaxQuery).FirstOrDefault();
+
+                if (sequenceQueryResult != null)
+                {
+                    EmailPersonDetails emailPersonDetailsVal = sequenceQueryResult;
+                    return emailPersonDetailsVal;
+                }
+            }
+            return null;
+        }
+
+        public EmailPersonDetails HRNotificationDetails()
+        {
+            using (var db = new BTCEntities())
+            {
+                string sequenceMaxQuery = "SELECT Emp.EmployeeID " +
+                                            ", Emp.EmployeeCode " +
+                                            ",Emp.FullName " +
+                                            ",isnull(( " +
+                                                    "SELECT ParamValue " +
+                                                    "FROM HRW_VEmployeeFields " +
+                                                    "WHERE EmployeeId IN( " +
+                                                            "SELECT Emp.EmployeeId " +
+                                                            "FROM HRW_Employee Emp " +
+                                                            "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
+                                                            "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
+                                                            "WHERE Emp.EmployeeCode = '9' " +
+                                                                "AND EM.EntityTypeID = '101' " +
+                                                            ") " +
+                                                        "AND EntityTypeParamID = '15' " +
+                                                    "), '') AS HRManagerEmail " +
+                                        "FROM HRW_Employee Emp " +
+                                        "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
+                                        "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
+                                        "WHERE Emp.EmployeeCode = '9' " +
+                                            "AND EM.EntityTypeID = '101' ";
+
+                var sequenceQueryResult = db.Database.SqlQuery<EmailPersonDetails>(sequenceMaxQuery).FirstOrDefault();
+
+                if (sequenceQueryResult != null)
+                {
+                    EmailPersonDetails emailPersonDetailsVal = sequenceQueryResult;
+                    return emailPersonDetailsVal;
+                }
+            }
+            return null;
+        }
+
+        public EmailPersonDetails TravelCoordinatorDetails()
+        {
+            using (var db = new BTCEntities())
+            {
+                string sequenceMaxQuery = "SELECT Emp.EmployeeID " +
+                                            ", Emp.EmployeeCode " +
+                                            ",Emp.FullName " +
+                                            ",isnull(( " +
+                                                    "SELECT ParamValue " +
+                                                    "FROM HRW_VEmployeeFields " +
+                                                    "WHERE EmployeeId IN( " +
+                                                            "SELECT Emp.EmployeeId " +
+                                                            "FROM HRW_Employee Emp " +
+                                                            "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
+                                                            "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
+                                                            "WHERE Emp.EmployeeCode = '21' " +
+                                                                "AND EM.EntityTypeID = '101' " +
+                                                            ") " +
+                                                        "AND EntityTypeParamID = '15' " +
+                                                    "), '') AS HRManagerEmail " +
+                                        "FROM HRW_Employee Emp " +
+                                        "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
+                                        "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
+                                        "WHERE Emp.EmployeeCode = '21' " +
+                                            "AND EM.EntityTypeID = '101' ";
+
+                var sequenceQueryResult = db.Database.SqlQuery<EmailPersonDetails>(sequenceMaxQuery).FirstOrDefault();
+
+                if (sequenceQueryResult != null)
+                {
+                    EmailPersonDetails emailPersonDetailsVal = sequenceQueryResult;
+                    return emailPersonDetailsVal;
+                }
+            }
+            return null;
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this); //Hey, GC: don't bother calling finalize later
+        }
     }
 }

@@ -37,25 +37,25 @@
                         </div>
                         <div style="margin-bottom:15px">
                         </div>
-                        <div class="row" style="margin-bottom:15px">
+                        @*<div class="row" style="margin-bottom:15px">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-sm-3">Employee ID</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.EmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
-                                        @*@Html.ValidationMessageFor(model => model.UserID, null , new { @class = "text-danger" })*@
+                                        @Html.EditorFor(model => model.EmployeeID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.UserID, null , new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                             </div>
-                        </div>
+                        </div>*@
                         <div class="row" style="margin-bottom:15px">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-sm-3">BTC Employee Code</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).EmployeeCode)
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Employee Name</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.FirstName + " " + model.User.LastName, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).FullName)
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Employee Position Code</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PositionCode)
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Designation</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Designation)
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Department</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Department)
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Department Head</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).DepartmentHead)
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Cost Center</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Costcenter)
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Cost Center Head</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).CostCenterHead)
                                     </div>
                                 </div>
                             </div>
@@ -127,15 +127,15 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Passport Number</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PassportID)
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-sm-3">Passport Epiry</label>
+                                    <label class="col-sm-3">Passport Expiry</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PassportexpireDate)
                                     </div>
                                 </div>
                             </div>
@@ -145,7 +145,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Qatar ID</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).QatarID)
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +153,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Qatar Expiry</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).QIDEDate)
                                     </div>
                                 </div>
                             </div>
@@ -163,7 +163,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Location</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Location)
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +171,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Section</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Section)
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +181,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3">Contact Details</label>
                                     <div class="col-sm-9">
-                                        @*@Html.EditorFor(model => model.User.HREmployeeID, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.DisplayText(((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).ContactDetails)
                                     </div>
                                 </div>
                             </div>

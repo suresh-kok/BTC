@@ -902,15 +902,15 @@ namespace Travel_Request_System_EF.Controllers
             string EntityID = "";
             string entityTypeID = "";
 
-            EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService();
-            ViewBag.DepartmentHead = employeeDetailsDBService.DepartmentHead(EmpCode, EntityID);
-            ViewBag.EmployeeManager = employeeDetailsDBService.EmployeeManager(EmpCode, entityTypeID);
-            ViewBag.FullEmployeeDetails = employeeDetailsDBService.FullEmployeeDetails(EmpCode, EntityID);
-            ViewBag.SimpleEmployeeDetails = employeeDetailsDBService.SimpleEmployeeDetails(EmpCode);
-            ViewBag.PassportDetails = employeeDetailsDBService.PassportDetails(EmpCode);
-            ViewBag.QatarIDDetails = employeeDetailsDBService.QatarIDDetails(EmpCode);
-            ViewBag.DepartmentHeadDetails = employeeDetailsDBService.DepartmentHeadDetails(EmpCode, entityTypeID);
-            ViewBag.EmployeeManagerDetails = employeeDetailsDBService.EmployeeManagerDetails(EmpCode, entityTypeID);
+            EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService(EmpCode);
+            ViewBag.DepartmentHead = employeeDetailsDBService.DepartmentHead(EntityID);
+            ViewBag.EmployeeManager = employeeDetailsDBService.EmployeeManager(entityTypeID);
+            ViewBag.FullEmployeeDetails = employeeDetailsDBService.FullEmployeeDetails();
+            ViewBag.SimpleEmployeeDetails = employeeDetailsDBService.SimpleEmployeeDetails();
+            ViewBag.PassportDetails = employeeDetailsDBService.PassportDetails();
+            ViewBag.QatarIDDetails = employeeDetailsDBService.QatarIDDetails();
+            ViewBag.DepartmentHeadDetails = employeeDetailsDBService.DepartmentHeadDetails(entityTypeID);
+            ViewBag.EmployeeManagerDetails = employeeDetailsDBService.EmployeeManagerDetails(entityTypeID);
         }
 
         #endregion

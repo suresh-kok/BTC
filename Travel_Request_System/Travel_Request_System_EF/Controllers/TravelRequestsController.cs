@@ -13,6 +13,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI.WebControls;
 using Travel_Request_System_EF.CustomAuthentication;
+using Travel_Request_System_EF.Mail;
 using Travel_Request_System_EF.Models;
 using Travel_Request_System_EF.Models.DataAnnotations;
 using Travel_Request_System_EF.Models.ViewModel;
@@ -97,7 +98,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
                 ViewBag.applicationNumber = db.TravelRequests.Count() > 0 ? GenerateNextRFQ(db.TravelRequests.OrderByDescending(a => a.ID).FirstOrDefault().ApplicationNumber) : "HRD-BTC-CC-0001";
-
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(db.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 checkErrorMessages();
 
                 if (TempData["tempTravelRequest"] != null)
@@ -228,6 +232,14 @@ namespace Travel_Request_System_EF.Controllers
                         dbcontext.TravelRequests.Add(travelRequest);
                     }
                     await dbcontext.SaveChangesAsync();
+                    using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(dbcontext.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                    {
+                        EmailPersonDetails emailPersonDetails = EmpDBService.HRDetails();
+                        NotificationEmail(travelRequest, emailPersonDetails.Email);
+
+                        emailPersonDetails = EmpDBService.HRNotificationDetails();
+                        NotificationEmail(travelRequest, emailPersonDetails.Email);
+                    }
                     return RedirectToAction("Index");
                 }
                 else
@@ -244,6 +256,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = dbcontext.City.ToList();
                 ViewBag.Currencies = dbcontext.Currency.ToList();
                 ViewBag.ApprovalBy = dbcontext.Users.ToList();
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(dbcontext.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
 
                 TempData["tempTravelRequest"] = travelRequest;
 
@@ -383,7 +399,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = dbcontext.City.ToList();
                 ViewBag.Currencies = dbcontext.Currency.ToList();
                 ViewBag.ApprovalBy = dbcontext.Users.ToList();
-
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(dbcontext.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 TempData["tempTravelRequest"] = travelRequest;
 
                 return RedirectToAction("Create");
@@ -408,7 +427,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
-
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(db.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 checkErrorMessages();
                 return View(travelRequest);
             }
@@ -541,7 +563,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = dbcontext.City.ToList();
                 ViewBag.Currencies = dbcontext.Currency.ToList();
                 ViewBag.ApprovalBy = dbcontext.Users.ToList();
-
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(dbcontext.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 checkErrorMessages();
                 return View(travelRequest);
             }
@@ -564,7 +589,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
-
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(db.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 checkErrorMessages();
                 return View(travelRequest);
             }
@@ -694,6 +722,26 @@ namespace Travel_Request_System_EF.Controllers
             if (TempData["ErrorMessage"] != null)
             {
                 ViewBag.ErrorMessage = TempData["ErrorMessage"];
+            }
+        }
+
+        public void NotificationEmail(TravelRequests travelRequests, string ReceiverEmailID)
+        {
+            var url = string.Format("/TravelRequests/Details/{0}", travelRequests.ID);
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
+
+            SendMail mail = new SendMail();
+            mail.ToAddresses = new List<string>() { ReceiverEmailID, travelRequests.Users1.Email };
+            mail.MailSubject = "Travel Request " + travelRequests.ApplicationNumber + " Submitted!";
+            mail.MailBody = "<br/> Please click on the following link to view the details of the Travel Request." + "<br/>Travel Request: <a href='" + link + "'>" + travelRequests.ApplicationNumber + "</a>";
+
+            try
+            {
+                mail.Send();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = new List<string>() { ex.Message, "Unable to send Message" };
             }
         }
 
