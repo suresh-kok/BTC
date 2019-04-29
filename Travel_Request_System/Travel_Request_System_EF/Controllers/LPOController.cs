@@ -29,6 +29,7 @@ namespace Travel_Request_System_EF.Controllers
         private static MembershipUser user;
         private static Users dbuser;
         private static string[] roles;
+        private static string empCode;
 
         public LPOController()
         {
@@ -43,6 +44,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
                     ViewBag.UserDetails = dbuser;
+                    empCode = dbuser.HRW_Employee.EmployeeCode;
                 }
             }
             catch (Exception ex)
@@ -75,6 +77,10 @@ namespace Travel_Request_System_EF.Controllers
                     ViewBag.Cities = db.City.ToList();
                     ViewBag.Currencies = db.Currency.ToList();
                     ViewBag.ApprovalBy = db.Users.ToList();
+                    using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
+                    {
+                        ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                    }
                     return View(RFQList.ToList());
                 }
                 else
@@ -285,6 +291,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
 
                 var LPO = await db.LPO.Include(a => a.RFQ).Include(a => a.Quotation).Include(a => a.RFQ).Include("RFQ.TravelRequests").Include("Quotation.ATQuotation").Include("Quotation.HSQuotation").Include("Quotation.PCQuotation").Where(a => a.ID == id).FirstOrDefaultAsync();
                 if (db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.RFQ.TravelRequests.ApplicationNumber + "/AT-Q")).Count() > 0)

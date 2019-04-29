@@ -15,6 +15,7 @@ namespace Travel_Request_System_EF.Controllers
         private static MembershipUser user;
         private static string[] roles;
         private static Users dbuser;
+        private static string empCode;
 
         public ErrorController()
         {
@@ -29,6 +30,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
                     ViewBag.UserDetails = dbuser;
+                    empCode = dbuser.HRW_Employee.EmployeeCode;
                 }
             }
             catch (Exception ex)

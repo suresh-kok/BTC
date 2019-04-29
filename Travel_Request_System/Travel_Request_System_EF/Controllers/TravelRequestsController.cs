@@ -28,6 +28,7 @@ namespace Travel_Request_System_EF.Controllers
         private static MembershipUser user;
         private static Users dbuser;
         private static string[] roles;
+        private static string empCode;
 
         public TravelRequestsController()
         {
@@ -42,6 +43,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
                     ViewBag.UserDetails = dbuser;
+                    empCode = dbuser.HRW_Employee.EmployeeCode;
                 }
             }
             catch (Exception ex)
@@ -86,6 +88,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 return View(travelRequest);
             }
         }
@@ -98,7 +104,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
                 ViewBag.applicationNumber = db.TravelRequests.Count() > 0 ? GenerateNextRFQ(db.TravelRequests.OrderByDescending(a => a.ID).FirstOrDefault().ApplicationNumber) : "HRD-BTC-CC-0001";
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(db.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
@@ -232,12 +238,15 @@ namespace Travel_Request_System_EF.Controllers
                         dbcontext.TravelRequests.Add(travelRequest);
                     }
                     await dbcontext.SaveChangesAsync();
-                    using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(dbcontext.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                    using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                     {
                         EmailPersonDetails emailPersonDetails = EmpDBService.HRDetails();
                         NotificationEmail(travelRequest, emailPersonDetails.Email);
 
                         emailPersonDetails = EmpDBService.HRNotificationDetails();
+                        NotificationEmail(travelRequest, emailPersonDetails.Email);
+
+                        emailPersonDetails = EmpDBService.DepartmentHeadMailDetails(empCode);
                         NotificationEmail(travelRequest, emailPersonDetails.Email);
                     }
                     return RedirectToAction("Index");
@@ -256,7 +265,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = dbcontext.City.ToList();
                 ViewBag.Currencies = dbcontext.Currency.ToList();
                 ViewBag.ApprovalBy = dbcontext.Users.ToList();
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(dbcontext.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
@@ -399,7 +408,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = dbcontext.City.ToList();
                 ViewBag.Currencies = dbcontext.Currency.ToList();
                 ViewBag.ApprovalBy = dbcontext.Users.ToList();
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(dbcontext.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
@@ -427,7 +436,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(db.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
@@ -563,7 +572,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = dbcontext.City.ToList();
                 ViewBag.Currencies = dbcontext.Currency.ToList();
                 ViewBag.ApprovalBy = dbcontext.Users.ToList();
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(dbcontext.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
@@ -589,7 +598,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(db.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }

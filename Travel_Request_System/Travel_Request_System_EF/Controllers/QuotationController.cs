@@ -22,6 +22,7 @@ namespace Travel_Request_System_EF.Controllers
         private static MembershipUser user;
         private static Users dbuser;
         private static string[] roles;
+        private static string empCode;
         private static int pageNo;
         private static Quotation quotation = new Quotation();
 
@@ -38,6 +39,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
                     ViewBag.UserDetails = dbuser;
+                    empCode = dbuser.HRW_Employee.EmployeeCode;
                 }
             }
             catch (Exception ex)
@@ -78,6 +80,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 //ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(rFQ.TravelRequests.ApplicationNumber)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
                 return View(rFQ);
             }

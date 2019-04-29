@@ -22,6 +22,7 @@ namespace Travel_Request_System_EF.Controllers
         private static MembershipUser user;
         private static string[] roles;
         private static Users dbuser;
+        private static string empCode;
 
         public BTCController()
         {
@@ -36,6 +37,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
                     ViewBag.UserDetails = dbuser;
+                    empCode = dbuser.HRW_Employee.EmployeeCode;
                 }
             }
             catch (Exception ex)
@@ -141,7 +143,6 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult RejectHRRequest(FormCollection collection)
@@ -186,7 +187,10 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Manager")]
         public ActionResult ManagerDashboard()
         {
-            return View(ViewApprovalTravelRequests((int)ApprovalLevels.ToBeApproved));
+            using (var dbcontext = new BTCEntities())
+            {
+                return View(ViewApprovalTravelRequests((int)ApprovalLevels.ToBeApproved, dbcontext.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode));
+            }
         }
 
         [CustomAuthorize(Roles = "Manager")]
@@ -256,7 +260,6 @@ namespace Travel_Request_System_EF.Controllers
                 return View(travelRequest);
             }
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -710,6 +713,9 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Employee,Manager,HR,Admin,TravelCo")]
         public ActionResult EmployeeDetails()
         {
+
+            EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService(empCode);
+            ViewBag.FullEmployeeDetails = employeeDetailsDBService.FullEmployeeDetails();
             return View();
         }
 
@@ -772,11 +778,22 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        private List<TravelRequests> ViewApprovalTravelRequests(int level)
+        private List<TravelRequests> ViewApprovalTravelRequests(int level, string employeeCode = "")
         {
             using (BTCEntities db = new BTCEntities())
             {
-                return db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Where(a => a.ApprovalLevel == level).ToList();
+                if (!string.IsNullOrEmpty(employeeCode))
+                {
+                    using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(db.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                    {
+                        EmailPersonDetails emailPersonDetails = EmpDBService.DepartmentHeadMailDetails(db.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode);
+                    }
+                    return db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Where(a => a.ApprovalLevel == level).ToList();
+                }
+                else
+                {
+                    return db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Where(a => a.ApprovalLevel == level).ToList();
+                }
             }
         }
 

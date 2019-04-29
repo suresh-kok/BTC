@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace Travel_Request_System_EF.Models.ViewModel
@@ -126,7 +127,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                     " WHERE EmployeeId IN( " +
                         " SELECT EmployeeId " +
                         " FROM HRW_Employee " +
-                        " WHERE EmployeeCode = '001' " +
+                        " WHERE EmployeeCode = '@employeeCode' " +
                             " AND RecordType = 'EMP' " +
                         " ) " +
                     " AND EntityTypeId = '88' " +
@@ -137,7 +138,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                 " WHERE EmployeeId IN(" +
                         " SELECT EmployeeId " +
                         " FROM HRW_Employee " +
-                        " WHERE EmployeeCode = '001' " +
+                        " WHERE EmployeeCode = '@employeeCode' " +
                             " AND RecordType = 'EMP' " +
                         " ) " +
                     " AND EntityTypeId = '10' " +
@@ -147,7 +148,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                 " FROM HRW_Employee Emp " +
                 " INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
                 " INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
-                " WHERE Emp.EmployeeCode = '001' " +
+                " WHERE Emp.EmployeeCode = '@employeeCode' " +
                     " AND EM.EntityTypeID = '96' " +
                 " ) AS DepartmentHead " +
             " ,( " +
@@ -156,7 +157,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                 " WHERE EmployeeId IN(" +
                         " SELECT EmployeeId " +
                         " FROM HRW_Employee " +
-                        " WHERE EmployeeCode = '001' " +
+                        " WHERE EmployeeCode = '@employeeCode' " +
                            " AND RecordType = 'EMP' " +
                         " ) " +
                     " AND EntityTypeId = '10' " +
@@ -166,7 +167,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                 " FROM HRW_Employee Emp " +
                 " INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
                 " INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
-                " WHERE Emp.EmployeeCode = '001' " +
+                " WHERE Emp.EmployeeCode = '@employeeCode' " +
                     " AND EM.EntityTypeID = '101' " +
                 " ) AS CostCenterHead " +
               " , PassportID " +
@@ -181,7 +182,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                  " WHERE EmployeeId IN(" +
                          " SELECT EmployeeId " +
                          " FROM HRW_Employee " +
-                         " WHERE EmployeeCode = '001' " +
+                         " WHERE EmployeeCode = '@employeeCode' " +
                              " AND RecordType = 'EMP' " +
                          " ) " +
                      " AND EntityTypeId = '84' " +
@@ -192,7 +193,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                  " WHERE EmployeeId IN(" +
                          " SELECT EmployeeId " +
                          " FROM HRW_Employee " +
-                         " WHERE EmployeeCode = '001' " +
+                         " WHERE EmployeeCode = '@employeeCode' " +
                              " AND RecordType = 'EMP' " +
                          " ) " +
                      " AND EntityTypeId = '85' " +
@@ -203,7 +204,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                  " WHERE EmployeeId IN(" +
                          " SELECT EmployeeId " +
                          " FROM HRW_Employee " +
-                         " WHERE EmployeeCode = '001' " +
+                         " WHERE EmployeeCode = '@employeeCode' " +
                              " AND RecordType = 'EMP' " +
                        " ) " +
                      " AND EntityTypeId = '93' " +
@@ -221,7 +222,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                     " WHERE EmployeeId IN ( " +
                             " SELECT EmployeeId " +
                             " FROM HRW_Employee " +
-                            " WHERE EmployeeCode = '001' " +
+                            " WHERE EmployeeCode = '@employeeCode' " +
                                 " AND RecordType = 'EMP' " +
                           "   ) " +
                         " AND EntityTypeParamID = '15' " +
@@ -232,7 +233,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                     " WHERE EmployeeId IN(" +
                             " SELECT EmployeeId " +
                             " FROM HRW_Employee " +
-                            " WHERE EmployeeCode = '001' " +
+                            " WHERE EmployeeCode = '@employeeCode' " +
                                 " AND RecordType = 'EMP' " +
                           " ) " +
                         " AND EntityTypeId = '10' " +
@@ -243,7 +244,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                     " WHERE EntityId IN(" +
                             " SELECT EntityId " +
                             " FROM HRW_VEmpEntityValues " +
-                            " WHERE EmployeeCode = '001' " +
+                            " WHERE EmployeeCode = '@employeeCode' " +
                                 " AND RecordType = 'EMP' " +
                             " ) " +
                         " AND EntityTypeId = '10' " +
@@ -254,7 +255,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                     " WHERE EmployeeId IN(" +
                             " SELECT EmployeeId " +
                             " FROM HRW_Employee " +
-                            " WHERE EmployeeCode = '001' " +
+                            " WHERE EmployeeCode = '@employeeCode' " +
                                 " AND RecordType = 'EMP' " +
                             " ) " +
                         " AND EntityTypeId = '88' " +
@@ -264,11 +265,11 @@ namespace Travel_Request_System_EF.Models.ViewModel
         " INNER JOIN ORG_EntityType AS c ON a.EntityTypeId = c.EntityTypeId " +
         " INNER JOIN QATARIDDetails AS d ON a.EmployeeCode = d.EMPLOYEECODE " +
         " INNER JOIN PassportDetails AS e ON a.EmployeeCode = e.EMPLOYEECODE " +
-        " WHERE a.employeecode = '001' " +
+        " WHERE a.employeecode = '@employeeCode' " +
             " AND TerminationDate IS NULL " +
             " AND a.RecordType = 'EMP' ";
 
-                var sequenceQueryResult = db.Database.SqlQuery<FullEmployeeDetail>(sequenceMaxQuery).FirstOrDefault();
+                var sequenceQueryResult = db.Database.SqlQuery<FullEmployeeDetail>(sequenceMaxQuery, new SqlParameter("employeeCode", employeeCode)).FirstOrDefault();
 
                 if (sequenceQueryResult != null)
                 {
@@ -491,6 +492,106 @@ namespace Travel_Request_System_EF.Models.ViewModel
                                             "AND EM.EntityTypeID = '101' ";
 
                 var sequenceQueryResult = db.Database.SqlQuery<EmailPersonDetails>(sequenceMaxQuery).FirstOrDefault();
+
+                if (sequenceQueryResult != null)
+                {
+                    EmailPersonDetails emailPersonDetailsVal = sequenceQueryResult;
+                    return emailPersonDetailsVal;
+                }
+            }
+            return null;
+        }
+
+        public EmailPersonDetails DepartmentHeadMailDetails(string EmployeeCode)
+        {
+            using (var db = new BTCEntities())
+            {
+                string sequenceMaxQuery = "SELECT Emp.EmployeeID " +
+                                            ", Emp.EmployeeCode " +
+                                            ",Emp.FullName " +
+                                            ",isnull(( " +
+                                                    "SELECT ParamValue " +
+                                                    "FROM HRW_VEmployeeFields " +
+                                                    "WHERE EmployeeId IN( " +
+                                                            "SELECT Emp.EmployeeId " +
+                                                            "FROM HRW_Employee Emp " +
+                                                            "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
+                                                            "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
+                                                            "WHERE Emp.EmployeeCode IN ( " +
+                                                                "SELECT Emp.EmployeeId " +
+                                                                    "FROM HRW_Employee Emp " +
+                                                                    "INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId) " +
+                                                                    "INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId) " +
+                                                                    "WHERE Emp.EmployeeCode = '@employeeCode' " +
+                                                                    "AND EM.EntityTypeID = '96' " +
+                                                                    ")  " +
+                                                                "AND EM.EntityTypeID = '101' " +
+                                                                ") " +
+                                                        "AND EntityTypeParamID = '15' " +
+                                                        "), '') AS HRManagerEmail " +
+                                                        "FROM HRW_Employee Emp " +
+                                                                    "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
+                                                                    "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
+                                                                    "WHERE Emp.EmployeeCode IN ( " +
+                                                                        "SELECT Emp.EmployeeId " +
+                                                                        "FROM HRW_Employee Emp " +
+                                                                        "INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId) " +
+                                                                        "INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId) " +
+                                                                        "WHERE Emp.EmployeeCode = '@employeeCode' " +
+                                                                            "AND EM.EntityTypeID = '96' " +
+                                                        ") " +
+                                            "AND EM.EntityTypeID = '101' ";
+
+                var sequenceQueryResult = db.Database.SqlQuery<EmailPersonDetails>(sequenceMaxQuery, new SqlParameter("employeeCode", employeeCode)).FirstOrDefault();
+
+                if (sequenceQueryResult != null)
+                {
+                    EmailPersonDetails emailPersonDetailsVal = sequenceQueryResult;
+                    return emailPersonDetailsVal;
+                }
+            }
+            return null;
+        }
+
+        public EmailPersonDetails EmployeesUnderDepartmentHeadDetails(string EmployeeCode)
+        {
+            using (var db = new BTCEntities())
+            {
+                string sequenceMaxQuery = "SELECT Emp.EmployeeID " +
+                                            ", Emp.EmployeeCode " +
+                                            ",Emp.FullName " +
+                                            ",isnull(( " +
+                                                    "SELECT ParamValue " +
+                                                    "FROM HRW_VEmployeeFields " +
+                                                    "WHERE EmployeeId IN( " +
+                                                            "SELECT Emp.EmployeeId " +
+                                                            "FROM HRW_Employee Emp " +
+                                                            "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
+                                                            "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
+                                                            "WHERE Emp.EmployeeCode IN ( " +
+                                                                "SELECT Emp.EmployeeId " +
+                                                                    "FROM HRW_Employee Emp " +
+                                                                    "INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId) " +
+                                                                    "INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId) " +
+                                                                    "WHERE EM.EntityTypeID = '96' " +
+                                                                    ")  " +
+                                                                "AND EM.EntityTypeID = '101' " +
+                                                                ") " +
+                                                        "AND EntityTypeParamID = '15' " +
+                                                        "), '') AS HRManagerEmail " +
+                                                        "FROM HRW_Employee Emp " +
+                                                                    "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
+                                                                    "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
+                                                                    "WHERE Emp.EmployeeCode = IN ( " +
+                                                                        "SELECT Emp.EmployeeId " +
+                                                                        "FROM HRW_Employee Emp " +
+                                                                        "INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId) " +
+                                                                        "INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId) " +
+                                                                        "WHERE EM.EntityTypeID = '96' " +
+                                                        ") " +
+                                            "AND EM.EntityTypeID = '101' ";
+
+                var sequenceQueryResult = db.Database.SqlQuery<EmailPersonDetails>(sequenceMaxQuery, new SqlParameter("employeeCode", employeeCode)).FirstOrDefault();
 
                 if (sequenceQueryResult != null)
                 {
