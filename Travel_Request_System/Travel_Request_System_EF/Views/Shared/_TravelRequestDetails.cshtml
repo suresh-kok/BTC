@@ -26,23 +26,23 @@
                 <div style="margin-bottom:15px">
                 </div>
                 @*<div class="row" style="margin-bottom:15px">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label class="col-sm-3">Employee ID</label>
-                    <div class="col-sm-9">
-                        @Html.DisplayFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-            </div>
-        </div>*@
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-3">Employee ID</label>
+                                <div class="col-sm-9">
+                                    @Html.DisplayFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        </div>
+                    </div>*@
                 <div class="row" style="margin-bottom:15px">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="col-sm-3">BTC Employee Code</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).EmployeeCode)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).EmployeeCode)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).EmployeeCode)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).EmployeeCode)</text>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Employee Name</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).FullName)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).FullName)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).FullName)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).FullName)</text>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Employee Position Code</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PositionCode)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PositionCode)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PositionCode)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PositionCode)</text>
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Designation</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Designation)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Designation)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Designation)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Designation)</text>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Department</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Department)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Department)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Department)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Department)</text>
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Department Head</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).DepartmentHead)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).DepartmentHead)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).DepartmentHead)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).DepartmentHead)</text>
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Cost Center</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Costcenter)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Costcenter)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Costcenter)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Costcenter)</text>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Cost Center Head</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).CostCenterHead)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).CostCenterHead)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).CostCenterHead)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).CostCenterHead)</text>
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Passport Number</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PassportID)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PassportID)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PassportID)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PassportID)</text>
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Passport Expiry</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PassportexpireDate)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PassportexpireDate)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PassportexpireDate)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).PassportexpireDate)</text>
                             </div>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Qatar ID</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).QatarID)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).QatarID)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).QatarID)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).QatarID)</text>
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Qatar Expiry</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).QIDEDate)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).QIDEDate)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).QIDEDate)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).QIDEDate)</text>
                             </div>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Location</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Location)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Location)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Location)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Location)</text>
                             </div>
                         </div>
                     </div>
@@ -158,7 +158,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Section</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Section)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Section)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Section)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).Section)</text>
                             </div>
                         </div>
                     </div>
@@ -168,7 +168,7 @@
                         <div class="form-group">
                             <label class="col-sm-3">Contact Details</label>
                             <div class="col-sm-9">
-                                @Html.DisplayText(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).ContactDetails)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).ContactDetails)
+                                <text>@(string.IsNullOrEmpty((((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).ContactDetails)) ? "NA" : ((Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail)ViewBag.FullEmployeeDetails).ContactDetails)</text>
                             </div>
                         </div>
                     </div>
@@ -197,9 +197,9 @@
                             <div class="col-sm-9">
                                 @{
                                     var po = ((IEnumerable<Travel_Request_System_EF.Models.City>)ViewBag.Cities).FirstOrDefault(rt => rt.ID == Model.PortOfOriginID).CityDesc.ToString();
-                                    }
-                                    @po
-                                </div>
+                                }
+                                @po
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -506,7 +506,7 @@
                                 @{
                                     var ap = Model.AirportPickUp;
 
-                                string apVal;
+                                    string apVal;
                                     if (Convert.ToInt32(ap) == 0)
                                     {
                                         apVal = "Yes";

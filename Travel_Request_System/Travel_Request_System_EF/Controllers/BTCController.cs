@@ -88,7 +88,7 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 using (BTCEntities db = new BTCEntities())
                 {
-                    TravelRequests travelRequest = db.TravelRequests.Find(id);
+                    TravelRequests travelRequest = db.TravelRequests.Include(a=>a.Users).Include(a => a.Users1).Include("Users1.HRW_Employee").Include("Users.HRW_Employee").SingleOrDefault(s=>s.ID == id);
                     if (travelRequest == null)
                     {
                         ViewBag.ErrorMessage = "Invalid Travel Request ID";
@@ -99,6 +99,10 @@ namespace Travel_Request_System_EF.Controllers
                     ViewBag.Cities = db.City.ToList();
                     ViewBag.Currencies = db.Currency.ToList();
                     ViewBag.ApprovalBy = db.Users.ToList();
+                    using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(travelRequest.Users1.HRW_Employee.EmployeeCode))
+                    {
+                        ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                    }
                     return View(travelRequest);
                 }
             }
@@ -114,7 +118,9 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                var travelRequest = db.TravelRequests.Find(Convert.ToInt32(collection["ID"]));
+                var id = Convert.ToInt32(collection["ID"]);
+                TravelRequests travelRequest = db.TravelRequests.Include(a => a.Users).Include(a => a.Users1).Include("Users1.HRW_Employee").Include("Users.HRW_Employee").SingleOrDefault(s => s.ID == id);
+
                 if (ModelState.IsValid)
                 {
                     travelRequest.ApprovalLevel = (int)ApprovalLevels.ApprovedByHR;
@@ -139,6 +145,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(travelRequest.Users1.HRW_Employee.EmployeeCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 return View(travelRequest);
             }
         }
@@ -149,7 +159,8 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                var travelRequest = db.TravelRequests.Find(Convert.ToInt32(collection["ID"]));
+                var id = Convert.ToInt32(collection["ID"]);
+                TravelRequests travelRequest = db.TravelRequests.Include(a => a.Users).Include(a => a.Users1).Include("Users1.HRW_Employee").Include("Users.HRW_Employee").SingleOrDefault(s => s.ID == id);
 
                 if (ModelState.IsValid)
                 {
@@ -175,6 +186,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(travelRequest.Users1.HRW_Employee.EmployeeCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 return View(travelRequest);
             }
         }
@@ -206,7 +221,7 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 using (BTCEntities db = new BTCEntities())
                 {
-                    TravelRequests travelRequest = db.TravelRequests.Find(id);
+                    TravelRequests travelRequest = db.TravelRequests.Include(a => a.Users).Include(a => a.Users1).Include("Users1.HRW_Employee").Include("Users.HRW_Employee").SingleOrDefault(s => s.ID == id);
                     if (travelRequest == null)
                     {
                         ViewBag.ErrorMessage = "Invalid Travel Request ID";
@@ -217,6 +232,10 @@ namespace Travel_Request_System_EF.Controllers
                     ViewBag.Cities = db.City.ToList();
                     ViewBag.Currencies = db.Currency.ToList();
                     ViewBag.ApprovalBy = db.Users.ToList();
+                    using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(travelRequest.Users1.HRW_Employee.EmployeeCode))
+                    {
+                        ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                    }
                     return View(travelRequest);
                 }
             }
@@ -232,7 +251,9 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                var travelRequest = db.TravelRequests.Find(Convert.ToInt32(collection["ID"]));
+                var id = Convert.ToInt32(collection["ID"]);
+                TravelRequests travelRequest = db.TravelRequests.Include(a => a.Users).Include(a => a.Users1).Include("Users1.HRW_Employee").Include("Users.HRW_Employee").SingleOrDefault(s => s.ID == id);
+                
                 if (ModelState.IsValid)
                 {
                     travelRequest.ApprovalLevel = (int)ApprovalLevels.ApprovedByManager;
@@ -257,6 +278,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(travelRequest.Users1.HRW_Employee.EmployeeCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 return View(travelRequest);
             }
         }
@@ -267,7 +292,8 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                var travelRequest = db.TravelRequests.Find(Convert.ToInt32(collection["ID"]));
+                var id = Convert.ToInt32(collection["ID"]);
+                TravelRequests travelRequest = db.TravelRequests.Include(a => a.Users).Include(a => a.Users1).Include("Users1.HRW_Employee").Include("Users.HRW_Employee").SingleOrDefault(s => s.ID == id);
 
                 if (ModelState.IsValid)
                 {
@@ -293,6 +319,10 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(travelRequest.Users1.HRW_Employee.EmployeeCode))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 return View(travelRequest);
             }
         }
@@ -713,7 +743,6 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Employee,Manager,HR,Admin,TravelCo")]
         public ActionResult EmployeeDetails()
         {
-
             EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService(empCode);
             ViewBag.FullEmployeeDetails = employeeDetailsDBService.FullEmployeeDetails();
             return View();
@@ -784,11 +813,11 @@ namespace Travel_Request_System_EF.Controllers
             {
                 if (!string.IsNullOrEmpty(employeeCode))
                 {
-                    using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(db.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode))
+                    using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                     {
-                        EmailPersonDetails emailPersonDetails = EmpDBService.DepartmentHeadMailDetails(db.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode);
+                        List<string> EmpCodes = EmpDBService.EmployeesUnderDepartmentHeadDetails(empCode);
+                    return db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Include("Users1.HRW_employee").Include("Users.HRW_employee").Where(a => a.ApprovalLevel == level && EmpCodes.Contains(a.Users1.HRW_Employee.EmployeeCode)).ToList();
                     }
-                    return db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Where(a => a.ApprovalLevel == level).ToList();
                 }
                 else
                 {

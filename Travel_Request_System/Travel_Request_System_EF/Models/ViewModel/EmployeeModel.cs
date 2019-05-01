@@ -1,69 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Travel_Request_System_EF.Models.ViewModel
+﻿namespace Travel_Request_System_EF.Models.ViewModel
 {
     public class FullEmployeeDetail
     {
-        public string EmployeeID;
-        public string EmployeeCode;
-        public string FullName;
-        public string PositionCode;
-        public string Designation;
-        public string Department;
-        public string DepartmentHead;
-        public string Costcenter;
-        public string CostCenterHead;
-        public string PassportID;
-        public string PassportexpireDate;
-        public string QatarID;
-        public string QIDEDate;
-        public string Location;
-        public string Section;
-        public string ContactDetails;
+        public string EmployeeID { get; set; }
+        public string EmployeeCode { get; set; }
+        public string FullName { get; set; }
+        public string PositionCode { get; set; }
+        public string Designation { get; set; }
+        public string Department { get; set; }
+        public string DepartmentHead { get; set; }
+        public string Costcenter { get; set; }
+        public string CostCenterHead { get; set; }
+        public string PassportID { get; set; }
+        public string PassportexpireDate { get; set; }
+        public string QatarID { get; set; }
+        public string QIDEDate { get; set; }
+        public string Location { get; set; }
+        public string Section { get; set; }
+        public string ContactDetails { get; set; }
     }
 
     public class EmailPersonDetails
     {
-        public string EmployeeID;
-        public string EmployeeCode;
-        public string FullName;
-        public string Email;
+        public string EmployeeID { get; set; }
+        public string EmployeeCode { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
     }
 
     public class MiniEmployeeDetail
     {
-        public string EmployeeCode;
-        public string Name;
-        public string HireDate;
-        public string Designation;
-        public string BusinessUnit;
-        public string Photo;
+        public string EmployeeCode { get; set; }
+        public string Name { get; set; }
+        public string HireDate { get; set; }
+        public string Designation { get; set; }
+        public string BusinessUnit { get; set; }
+        public string Photo { get; set; }
     }
 
     public class QatarDetails
     {
-        public string EMPLOYEEID;
-        public string EMPLOYEECODE;
-        public string FULLNAME;
-        public string HIREDATE;
-        public string QID;
-        public string QIDEDate;
-        public string QIdfile;
-        public string Mobile;
+        public string EMPLOYEEID { get; set; }
+        public string EMPLOYEECODE { get; set; }
+        public string FULLNAME { get; set; }
+        public string HIREDATE { get; set; }
+        public string QID { get; set; }
+        public string QIDEDate { get; set; }
+        public string QIdfile { get; set; }
+        public string Mobile { get; set; }
     }
 
     public class PassportDetails
     {
-        public string EMPLOYEEID;
-        public string EMPLOYEECODE;
-        public string FULLNAME;
-        public string HIREDATE;
-        public string PassportID;
-        public string PassportexpireDate;
-        public string Passportissuedate;
-        public string Passportfile;
+        public string EMPLOYEEID { get; set; }
+        public string EMPLOYEECODE { get; set; }
+        public string FULLNAME { get; set; }
+        public string HIREDATE { get; set; }
+        public string PassportID { get; set; }
+        public string PassportexpireDate { get; set; }
+        public string Passportissuedate { get; set; }
+        public string Passportfile { get; set; }
     }
 }
