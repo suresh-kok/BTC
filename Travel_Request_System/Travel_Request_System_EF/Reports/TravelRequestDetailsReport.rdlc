@@ -81,29 +81,33 @@
           <DataField>PurposeOfVisit</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="ExpensesHandledBy">
+          <DataField>ExpensesHandledBy</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="DepartureDate">
           <DataField>DepartureDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DepartureTime">
           <DataField>DepartureTime</DataField>
-          <rd:TypeName>System.TimeSpan</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ReturnDate">
           <DataField>ReturnDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ReturnTime">
           <DataField>ReturnTime</DataField>
-          <rd:TypeName>System.TimeSpan</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="FirstBusinessDay">
           <DataField>FirstBusinessDay</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="LastBusinessDay">
           <DataField>LastBusinessDay</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Remarks">
           <DataField>Remarks</DataField>
@@ -151,11 +155,11 @@
         </Field>
         <Field Name="PickUpDate">
           <DataField>PickUpDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="PickUpTime">
           <DataField>PickUpTime</DataField>
-          <rd:TypeName>System.TimeSpan</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DropOffLocation">
           <DataField>DropOffLocation</DataField>
@@ -163,11 +167,11 @@
         </Field>
         <Field Name="DropOffDate">
           <DataField>DropOffDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DropOffTime">
           <DataField>DropOffTime</DataField>
-          <rd:TypeName>System.TimeSpan</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="PreferredVehicle">
           <DataField>PreferredVehicle</DataField>
@@ -179,19 +183,19 @@
         </Field>
         <Field Name="CheckInDate">
           <DataField>CheckInDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CheckOutDate">
           <DataField>CheckOutDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CheckInTime">
           <DataField>CheckInTime</DataField>
-          <rd:TypeName>System.TimeSpan</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CheckOutTime">
           <DataField>CheckOutTime</DataField>
-          <rd:TypeName>System.TimeSpan</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ApprovalLevel">
           <DataField>ApprovalLevel</DataField>
@@ -211,7 +215,7 @@
         </Field>
         <Field Name="CreateOn">
           <DataField>CreateOn</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CreatedBy">
           <DataField>CreatedBy</DataField>
@@ -223,7 +227,7 @@
         </Field>
         <Field Name="ModifiedOn">
           <DataField>ModifiedOn</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ModifiedBy">
           <DataField>ModifiedBy</DataField>

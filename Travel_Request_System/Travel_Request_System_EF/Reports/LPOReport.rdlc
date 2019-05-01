@@ -3918,7 +3918,6 @@
           </Rectangle>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>0cm</Top>
         <Height>73.10619cm</Height>
         <Width>16.80878cm</Width>
         <Style>
@@ -3958,6 +3957,36 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>="LPO - " + Sum(Fields!LPOID.Value, "detailsDataset").ToString() + " / " + First(Fields!ApplicationNumber.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.33151cm</Top>
+            <Left>5.63237cm</Left>
+            <Height>0.6cm</Height>
+            <Width>7.35318cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
           <Textbox Name="Textbox5">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -3973,11 +4002,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.31792cm</Top>
-            <Left>0.38cm</Left>
+            <Top>1.27518cm</Top>
+            <Left>0.30471cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>1</ZIndex>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4003,11 +4032,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>2.30393cm</Top>
-            <Left>0.38cm</Left>
+            <Top>2.26119cm</Top>
+            <Left>0.30471cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>2</ZIndex>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4033,11 +4062,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>4.27596cm</Top>
-            <Left>0.38cm</Left>
+            <Top>4.23322cm</Top>
+            <Left>0.30471cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>3</ZIndex>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4063,11 +4092,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>3.28994cm</Top>
-            <Left>0.38cm</Left>
+            <Top>3.2472cm</Top>
+            <Left>0.30471cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4093,11 +4122,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>5.26197cm</Top>
-            <Left>0.38cm</Left>
+            <Top>5.21923cm</Top>
+            <Left>0.30471cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>5</ZIndex>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4123,11 +4152,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>6.24799cm</Top>
-            <Left>0.38cm</Left>
+            <Top>6.20525cm</Top>
+            <Left>0.30471cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>6</ZIndex>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4153,11 +4182,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>7.2975cm</Top>
-            <Left>0.38cm</Left>
+            <Top>7.25476cm</Top>
+            <Left>0.30471cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>7</ZIndex>
+            <ZIndex>8</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4183,11 +4212,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>8.40875cm</Top>
-            <Left>0.38cm</Left>
+            <Top>8.36601cm</Top>
+            <Left>0.30471cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>8</ZIndex>
+            <ZIndex>9</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4213,11 +4242,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.31792cm</Top>
-            <Left>8.34242cm</Left>
+            <Top>1.27518cm</Top>
+            <Left>8.03987cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>9</ZIndex>
+            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4243,11 +4272,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>2.30393cm</Top>
-            <Left>8.34242cm</Left>
+            <Top>2.26119cm</Top>
+            <Left>8.03987cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>10</ZIndex>
+            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4273,11 +4302,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>4.27596cm</Top>
-            <Left>8.34242cm</Left>
+            <Top>4.23322cm</Top>
+            <Left>8.03987cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>11</ZIndex>
+            <ZIndex>12</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4303,11 +4332,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>3.28995cm</Top>
-            <Left>8.34242cm</Left>
+            <Top>3.24721cm</Top>
+            <Left>8.03987cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>12</ZIndex>
+            <ZIndex>13</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4333,11 +4362,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>5.26197cm</Top>
-            <Left>8.34242cm</Left>
+            <Top>5.21923cm</Top>
+            <Left>8.03987cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>13</ZIndex>
+            <ZIndex>14</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4363,11 +4392,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>6.24799cm</Top>
-            <Left>8.34242cm</Left>
+            <Top>6.20525cm</Top>
+            <Left>8.03987cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>14</ZIndex>
+            <ZIndex>15</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4393,11 +4422,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>7.2975cm</Top>
-            <Left>8.34242cm</Left>
+            <Top>7.25476cm</Top>
+            <Left>8.03987cm</Left>
             <Height>0.6cm</Height>
             <Width>4.64313cm</Width>
-            <ZIndex>15</ZIndex>
+            <ZIndex>16</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4408,26 +4437,476 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox1">
+          <Textbox Name="Textbox3">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>="LPO - " + Sum(Fields!LPOID.Value, "detailsDataset").ToString() + " / " + First(Fields!ApplicationNumber.Value, "detailsDataset")</Value>
+                    <Value>=First(Fields!EmployeeCode.Value, "detailsDataset")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>0.33151cm</Top>
-            <Left>5.63237cm</Left>
+            <Top>1.27518cm</Top>
+            <Left>4.94784cm</Left>
             <Height>0.6cm</Height>
-            <Width>7.35318cm</Width>
-            <ZIndex>16</ZIndex>
+            <Width>2.91564cm</Width>
+            <ZIndex>17</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox20">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>2.26119cm</Top>
+            <Left>4.94784cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>18</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox27">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Department.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>3.2472cm</Top>
+            <Left>4.94784cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>19</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox28">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!CostCenter.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>4.23322cm</Top>
+            <Left>4.94784cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>20</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox34">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!PassportID.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>5.21923cm</Top>
+            <Left>4.94784cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>21</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox35">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!QatarID.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>6.20525cm</Top>
+            <Left>4.94784cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>22</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox97">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Location.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>7.25476cm</Top>
+            <Left>4.94784cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>23</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox98">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Contact.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>8.36601cm</Top>
+            <Left>4.94784cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>24</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox99">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!FullName.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.27518cm</Top>
+            <Left>12.78883cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>25</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox100">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Designation.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>2.26119cm</Top>
+            <Left>12.78883cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>26</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox101">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!DepartmentHead.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>3.2472cm</Top>
+            <Left>12.78883cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>27</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox102">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!CostCenterHead.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>4.23322cm</Top>
+            <Left>12.78883cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>28</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox103">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!PassportexpireDate.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>5.21923cm</Top>
+            <Left>12.78883cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>29</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox104">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!QIDEDate.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>6.20525cm</Top>
+            <Left>12.78883cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>30</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox105">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Section.Value, "detailsDataset")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>7.25476cm</Top>
+            <Left>12.78883cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.91564cm</Width>
+            <ZIndex>31</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4440,7 +4919,6 @@
           </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>0cm</Top>
         <Left>0.14382cm</Left>
         <Height>9.43116cm</Height>
         <Width>16.3812cm</Width>
@@ -5130,7 +5608,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>11ac7155-ed85-48c3-87e6-bdf236912527</rd:DataSourceID>
+      <rd:DataSourceID>bb9961e3-af14-4c26-a026-35c0c269c8dc</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -5140,50 +5618,6 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="LPOID">
-          <DataField>LPOID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="LPORemarks">
-          <DataField>LPORemarks</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="isAT">
-          <DataField>isAT</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="IsHS">
-          <DataField>IsHS</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="IsPC">
-          <DataField>IsPC</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="RFQID">
-          <DataField>RFQID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Processing">
-          <DataField>Processing</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ProcessingSection">
-          <DataField>ProcessingSection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="RFQRemarks">
-          <DataField>RFQRemarks</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="AgencyCode">
-          <DataField>AgencyCode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="username">
-          <DataField>username</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="ID">
           <DataField>ID</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
@@ -5191,6 +5625,10 @@
         <Field Name="ApplicationNumber">
           <DataField>ApplicationNumber</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PortOfOriginID">
+          <DataField>PortOfOriginID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="OriginCIty">
           <DataField>OriginCIty</DataField>
@@ -5242,6 +5680,10 @@
         </Field>
         <Field Name="PurposeOfVisit">
           <DataField>PurposeOfVisit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ExpensesHandledBy">
+          <DataField>ExpensesHandledBy</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DepartureDate">
@@ -5404,158 +5846,114 @@
           <DataField>IsSubmitted</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
-        <Field Name="Airlines">
-          <DataField>Airlines</DataField>
+        <Field Name="EmployeeID">
+          <DataField>EmployeeID</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATAmount">
-          <DataField>ATAmount</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="ATDepartureDate">
-          <DataField>ATDepartureDate</DataField>
+        <Field Name="EmployeeCode">
+          <DataField>EmployeeCode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATDepartureTime">
-          <DataField>ATDepartureTime</DataField>
+        <Field Name="FullName">
+          <DataField>FullName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATReturnDate">
-          <DataField>ATReturnDate</DataField>
+        <Field Name="Designation">
+          <DataField>Designation</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATReturnTime">
-          <DataField>ATReturnTime</DataField>
+        <Field Name="Department">
+          <DataField>Department</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DestinationID">
-          <DataField>DestinationID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="ATDCity">
-          <DataField>ATDCity</DataField>
+        <Field Name="DepartmentHead">
+          <DataField>DepartmentHead</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATDCountry">
-          <DataField>ATDCountry</DataField>
+        <Field Name="DepartmentHeadEmail">
+          <DataField>DepartmentHeadEmail</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="OriginID">
-          <DataField>OriginID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="ATOCity">
-          <DataField>ATOCity</DataField>
+        <Field Name="CostCenter">
+          <DataField>CostCenter</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATOCountry">
-          <DataField>ATOCountry</DataField>
+        <Field Name="CostCenterHead">
+          <DataField>CostCenterHead</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATQuotationName">
-          <DataField>ATQuotationName</DataField>
+        <Field Name="CostCenterHeadEmail">
+          <DataField>CostCenterHeadEmail</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATTicketClass">
-          <DataField>ATTicketClass</DataField>
+        <Field Name="PassportID">
+          <DataField>PassportID</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TicketNo">
-          <DataField>TicketNo</DataField>
+        <Field Name="PassportexpireDate">
+          <DataField>PassportexpireDate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSAmount">
-          <DataField>HSAmount</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="HSCheckInDate">
-          <DataField>HSCheckInDate</DataField>
+        <Field Name="Passportissuedate">
+          <DataField>Passportissuedate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSCheckOutDate">
-          <DataField>HSCheckOutDate</DataField>
+        <Field Name="QatarID">
+          <DataField>QatarID</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSCheckInTime">
-          <DataField>HSCheckInTime</DataField>
+        <Field Name="QIDEDate">
+          <DataField>QIDEDate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSCheckOutTime">
-          <DataField>HSCheckOutTime</DataField>
+        <Field Name="QIdfile">
+          <DataField>QIdfile</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSHotelCategory">
-          <DataField>HSHotelCategory</DataField>
+        <Field Name="Location">
+          <DataField>Location</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSHotelName">
-          <DataField>HSHotelName</DataField>
+        <Field Name="Section">
+          <DataField>Section</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSQuotationName">
-          <DataField>HSQuotationName</DataField>
+        <Field Name="Contact">
+          <DataField>Contact</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSRoomCategory">
-          <DataField>HSRoomCategory</DataField>
+        <Field Name="HireDate">
+          <DataField>HireDate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSRoomType">
-          <DataField>HSRoomType</DataField>
+        <Field Name="TerminationDate">
+          <DataField>TerminationDate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSTravelSector">
-          <DataField>HSTravelSector</DataField>
+        <Field Name="Email">
+          <DataField>Email</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PCAmount">
-          <DataField>PCAmount</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="PCPickUpLocation">
-          <DataField>PCPickUpLocation</DataField>
+        <Field Name="nvDept">
+          <DataField>nvDept</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PCPickUpDate">
-          <DataField>PCPickUpDate</DataField>
+        <Field Name="nvDeptCode">
+          <DataField>nvDeptCode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PCPickUpTime">
-          <DataField>PCPickUpTime</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PCDropOffLocation">
-          <DataField>PCDropOffLocation</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PCDropOffDate">
-          <DataField>PCDropOffDate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PCDropOffTime">
-          <DataField>PCDropOffTime</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PCPreferredVehicle">
-          <DataField>PCPreferredVehicle</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PCQuotationName">
-          <DataField>PCQuotationName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PCTravelSector">
-          <DataField>PCTravelSector</DataField>
+        <Field Name="nvDesignation">
+          <DataField>nvDesignation</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>BTCDataSet</rd:DataSetName>
         <rd:SchemaPath>C:\Users\kanniyappans\Documents\GitHub\BTC\Travel_Request_System\Travel_Request_System_EF\BTCDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>LPODetails</rd:TableName>
+        <rd:TableName>EmployeeTravelRequestDetails</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>LPODetailsTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>EmployeeTravelRequestDetailsTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

@@ -641,11 +641,11 @@ namespace Travel_Request_System_EF.Controllers
             SqlConnection conx = new SqlConnection(connectionString);
             SqlDataAdapter adp;
 
-            adp = new SqlDataAdapter("select * FROM TravelRequestDetails where id = " + id, conx);
+            adp = new SqlDataAdapter("select * FROM EmployeeTravelRequestDetails where id = " + id, conx);
             ds = new BTCDataSet();
-            adp.Fill(ds, ds.TravelRequestDetails.TableName);
+            adp.Fill(ds, ds.EmployeeTravelRequestDetails.TableName);
             reportViewer.LocalReport.ReportPath = Path.Combine(@"C:\Users\kanniyappans\Documents\GitHub\BTC\Travel_Request_System\Travel_Request_System_EF\Reports\", "TravelRequestReport.rdlc");
-            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("detailsDataset", ds.Tables["TravelRequestDetails"]));
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("detailsDataset", ds.Tables["EmployeeTravelRequestDetails"]));
             bytes = reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
             Response.Buffer = true;
             Response.Clear();
