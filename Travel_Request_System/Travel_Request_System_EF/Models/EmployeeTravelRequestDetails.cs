@@ -12,16 +12,11 @@ namespace Travel_Request_System_EF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class RFQDetails
+    public partial class EmployeeTravelRequestDetails
     {
-        public int RFQID { get; set; }
-        public string Processing { get; set; }
-        public string ProcessingSection { get; set; }
-        public string RFQRemarks { get; set; }
-        public string AgencyCode { get; set; }
-        public string username { get; set; }
         public int ID { get; set; }
         public string ApplicationNumber { get; set; }
+        public Nullable<int> PortOfOriginID { get; set; }
         public string OriginCIty { get; set; }
         public string OriginCountry { get; set; }
         public Nullable<int> PortOfDestinationID { get; set; }
@@ -35,6 +30,7 @@ namespace Travel_Request_System_EF.Models
         public Nullable<int> TravelDays { get; set; }
         public string TravelRemarks { get; set; }
         public string PurposeOfVisit { get; set; }
+        public string ExpensesHandledBy { get; set; }
         public string DepartureDate { get; set; }
         public string DepartureTime { get; set; }
         public string ReturnDate { get; set; }
@@ -75,8 +71,6 @@ namespace Travel_Request_System_EF.Models
         public string ModifiedByName { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public bool IsSubmitted { get; set; }
-        public Nullable<int> PortOfOriginID { get; set; }
-        public string ExpensesHandledBy { get; set; }
         public string EmployeeID { get; set; }
         public string EmployeeCode { get; set; }
         public string FullName { get; set; }

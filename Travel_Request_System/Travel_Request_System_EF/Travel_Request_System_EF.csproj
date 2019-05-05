@@ -241,6 +241,9 @@
     <Compile Include="Models\EmployeeList1.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmployeeTravelRequestDetails.cs">
+      <DependentUpon>HRWorks.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HRWorks.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

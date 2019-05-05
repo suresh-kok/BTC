@@ -91,7 +91,7 @@
                                                 @Html.DisplayFor(modelitem => item.ExpensesHandledBy)
                                             </td>
                                             <td>
-                                                @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.CreateOn.ToString()))));
+                                                @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.CreateOn.ToString()))))
                                             </td>
                                             <td>
                                                 @if (item.IsSubmitted != true)

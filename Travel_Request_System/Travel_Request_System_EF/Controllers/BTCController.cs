@@ -256,6 +256,7 @@ namespace Travel_Request_System_EF.Controllers
                 
                 if (ModelState.IsValid)
                 {
+                    travelRequest.AdditionalAllowance = Convert.ToInt32(collection["AdditionalAllowance"]);
                     travelRequest.ApprovalLevel = (int)ApprovalLevels.ApprovedByManager;
                     travelRequest.ApprovalBy = dbuser.ID;
                     travelRequest.ApprovalRemarks = travelRequest.ApprovalRemarks + "\n Manager Remarks: Approved By -" + dbuser.FirstName + ", " + dbuser.LastName + " \n Updated On: " + DateTime.Now.ToLongDateString() + " \n Comments: " + collection["ApprovalRemarksUser"];

@@ -100,6 +100,8 @@ namespace Travel_Request_System_EF.Controllers
                 if (db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == false && a.IsDeleted == false).Count() > 0)
                 {
                     atQuote = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == false && a.IsDeleted == false).FirstOrDefault();
+                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                    ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
                 }
                 else
                 {
@@ -120,6 +122,7 @@ namespace Travel_Request_System_EF.Controllers
                     atQuote.City1 = tempatQuote.City1;
                     atQuote.Quotation = tempatQuote.Quotation;
                     db.ATQuotation.Add(atQuote);
+                    db.Configuration.ValidateOnSaveEnabled = false;
                     db.SaveChanges();
 
                     var ATID = atQuote.ID;

@@ -24,7 +24,7 @@
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="QuotationName" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="IsLowest" Type="bit" />
+          <Property Name="IsLowest" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="AttachmentLink">
           <Key>
@@ -135,6 +135,34 @@
           <Property Name="RecordType" Type="varchar" MaxLength="3" />
           <Property Name="ReferenceID" Type="bigint" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'BTC.dbo.HRW_OrgChartData' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="HRW_OrgChartData">
+          <Property Name="ManagerID" Type="bigint" />
+          <Property Name="E1" Type="bigint" />
+          <Property Name="E2" Type="bigint" />
+          <Property Name="E3" Type="bigint" />
+          <Property Name="E4" Type="bigint" />
+          <Property Name="E5" Type="bigint" />
+          <Property Name="E6" Type="bigint" />
+          <Property Name="E7" Type="bigint" />
+          <Property Name="E8" Type="bigint" />
+          <Property Name="E9" Type="bigint" />
+          <Property Name="E10" Type="bigint" />
+          <Property Name="E1Desc" Type="varchar(max)" />
+          <Property Name="E2Desc" Type="varchar(max)" />
+          <Property Name="E3Desc" Type="varchar(max)" />
+          <Property Name="E4Desc" Type="varchar(max)" />
+          <Property Name="E5Desc" Type="varchar(max)" />
+          <Property Name="E6Desc" Type="varchar(max)" />
+          <Property Name="E7Desc" Type="varchar(max)" />
+          <Property Name="E8Desc" Type="varchar(max)" />
+          <Property Name="E9Desc" Type="varchar(max)" />
+          <Property Name="E10Desc" Type="varchar(max)" />
+          <Property Name="OrgChartEntityManagerID" Type="bigint" />
+          <Property Name="EntityIDList" Type="varchar(max)" />
+          <Property Name="OrgChartID" Type="bigint" />
+        </EntityType>-->
         <EntityType Name="HSQuotation">
           <Key>
             <PropertyRef Name="ID" />
@@ -305,6 +333,18 @@
           <Property Name="DataTypeProperty" Type="varchar" MaxLength="50" />
           <Property Name="DataTypeProperty1" Type="varchar" MaxLength="300" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'BTC.dbo.PassportDetails' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PassportDetails">
+          <Property Name="EMPLOYEEID" Type="bigint" />
+          <Property Name="EMPLOYEECODE" Type="nvarchar" MaxLength="20" />
+          <Property Name="FULLNAME" Type="nvarchar" MaxLength="300" />
+          <Property Name="HIREDATE" Type="datetime" />
+          <Property Name="PassportID" Type="nvarchar" MaxLength="50" />
+          <Property Name="PassportexpireDate" Type="datetime" />
+          <Property Name="Passportissuedate" Type="datetime" />
+          <Property Name="Passportfile" Type="nvarchar" MaxLength="100" />
+        </EntityType>-->
         <EntityType Name="PCQuotation">
           <Key>
             <PropertyRef Name="ID" />
@@ -325,6 +365,18 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsLowest" Type="bit" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'BTC.dbo.QATARIDDetails' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="QATARIDDetails">
+          <Property Name="EMPLOYEEID" Type="bigint" />
+          <Property Name="EMPLOYEECODE" Type="nvarchar" MaxLength="20" />
+          <Property Name="FULLNAME" Type="nvarchar" MaxLength="300" />
+          <Property Name="HIREDATE" Type="datetime" />
+          <Property Name="QID" Type="bigint" />
+          <Property Name="QIDEDate" Type="datetime" />
+          <Property Name="QIdfile" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="15" />
+        </EntityType>-->
         <EntityType Name="Quotation">
           <Key>
             <PropertyRef Name="ID" />
@@ -470,6 +522,35 @@ warning 6002: The table/view 'BTC.dbo.EmpEntities' does not have a primary key d
           <Property Name="EffectiveFrom" Type="smalldatetime" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6013: The table/view 'BTC.dbo.EmployeeDetails' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="EmployeeDetails">
+          <Property Name="EmployeeID" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmployeeCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="100" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepartmentHead" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepartmentHeadEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostCenter" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostCenterHead" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostCenterHeadEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="PassportID" Type="nvarchar" MaxLength="100" />
+          <Property Name="PassportexpireDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="Passportissuedate" Type="nvarchar" MaxLength="100" />
+          <Property Name="QatarID" Type="nvarchar" MaxLength="100" />
+          <Property Name="QIDEDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="QIdfile" Type="nvarchar" MaxLength="100" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="Section" Type="nvarchar" MaxLength="100" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="100" />
+          <Property Name="HireDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="TerminationDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="nvDept" Type="nvarchar" MaxLength="100" />
+          <Property Name="nvDeptCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="nvDesignation" Type="nvarchar" MaxLength="100" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'BTC.dbo.EmployeeList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="EmployeeList">
           <Key>
@@ -491,6 +572,98 @@ warning 6002: The table/view 'BTC.dbo.EmployeeList1' does not have a primary key
           <Property Name="EmployeeName" Type="nvarchar" MaxLength="150" />
           <Property Name="DOJ" Type="smalldatetime" />
           <Property Name="TerminationDate" Type="smalldatetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTC.dbo.EmployeeTravelRequestDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EmployeeTravelRequestDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ApplicationNumber" />
+            <PropertyRef Name="ApprovalLevel" />
+            <PropertyRef Name="IsSubmitted" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ApplicationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PortOfOriginID" Type="int" />
+          <Property Name="OriginCIty" Type="nvarchar" MaxLength="250" />
+          <Property Name="OriginCountry" Type="nvarchar" MaxLength="100" />
+          <Property Name="PortOfDestinationID" Type="int" />
+          <Property Name="DestinationCity" Type="nvarchar" MaxLength="250" />
+          <Property Name="DestinationCountry" Type="nvarchar" MaxLength="100" />
+          <Property Name="TicketClass" Type="nvarchar" MaxLength="100" />
+          <Property Name="DailyAllowance" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="CurrencyID" Type="int" />
+          <Property Name="CurrencyDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="CurrencySymbol" Type="nvarchar" MaxLength="10" />
+          <Property Name="TravelDays" Type="int" />
+          <Property Name="TravelRemarks" Type="nvarchar(max)" />
+          <Property Name="PurposeOfVisit" Type="nvarchar(max)" />
+          <Property Name="ExpensesHandledBy" Type="nvarchar" MaxLength="500" />
+          <Property Name="DepartureDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DepartureTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ReturnDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ReturnTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="FirstBusinessDay" Type="nvarchar" MaxLength="4000" />
+          <Property Name="LastBusinessDay" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+          <Property Name="AirTicketManagement" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TravelAllowance" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelStay" Type="nvarchar" MaxLength="50" />
+          <Property Name="HotelCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoomCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoomType" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionalAllowance" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="AirportPickUp" Type="nvarchar" MaxLength="50" />
+          <Property Name="PickUpLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="PickUpDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PickUpTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DropOffLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="DropOffDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DropOffTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PreferredVehicle" Type="nvarchar" MaxLength="250" />
+          <Property Name="TravelSector" Type="nvarchar" MaxLength="250" />
+          <Property Name="CheckInDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CheckOutDate" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CheckInTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CheckOutTime" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ApprovalLevel" Type="int" Nullable="false" />
+          <Property Name="ApprovalBy" Type="int" />
+          <Property Name="ApprovedByName" Type="nvarchar(max)" />
+          <Property Name="ApprovalRemarks" Type="varchar(max)" />
+          <Property Name="CreateOn" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedByName" Type="nvarchar(max)" />
+          <Property Name="ModifiedOn" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedByName" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsSubmitted" Type="bit" Nullable="false" />
+          <Property Name="EmployeeID" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmployeeCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="100" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepartmentHead" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepartmentHeadEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostCenter" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostCenterHead" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostCenterHeadEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="PassportID" Type="nvarchar" MaxLength="100" />
+          <Property Name="PassportexpireDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="Passportissuedate" Type="nvarchar" MaxLength="100" />
+          <Property Name="QatarID" Type="nvarchar" MaxLength="100" />
+          <Property Name="QIDEDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="QIdfile" Type="nvarchar" MaxLength="100" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="Section" Type="nvarchar" MaxLength="100" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="100" />
+          <Property Name="HireDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="TerminationDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="nvDept" Type="nvarchar" MaxLength="100" />
+          <Property Name="nvDeptCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="nvDesignation" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTC.dbo.HRW_VAllEmpEntityValues' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -557,6 +730,26 @@ warning 6002: The table/view 'BTC.dbo.HRW_VEmpDetailsWithAllEntities' does not h
           <Property Name="EntityGroup" Type="int" />
           <Property Name="EntityGroupDesc" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'BTC.dbo.HRW_VEmpEntityTypes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="HRW_VEmpEntityTypes">
+          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
+          <Property Name="TransactType" Type="int" />
+          <Property Name="TransactUserID" Type="bigint" />
+          <Property Name="TransactDateTime" Type="smalldatetime" />
+          <Property Name="MenuID" Type="varchar" MaxLength="50" />
+          <Property Name="EntityTypeId" Type="bigint" />
+          <Property Name="OrgChartId" Type="bigint" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsMandatory" Type="bit" />
+          <Property Name="IsCodeRequired" Type="bit" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="EntityGroup" Type="int" />
+          <Property Name="MasterEntityTypeId" Type="bigint" />
+          <Property Name="HaveDataSecurity" Type="bit" />
+          <Property Name="ShowInReportFilter" Type="bit" />
+          <Property Name="RestrictDuplicate" Type="bit" />
+        </EntityType>-->
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTC.dbo.HRW_VEmpEntityValues' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="HRW_VEmpEntityValues">
@@ -762,6 +955,7 @@ warning 6002: The table/view 'BTC.dbo.RFQDetails' does not have a primary key de
           <Property Name="username" Type="nvarchar(max)" />
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="ApplicationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PortOfOriginID" Type="int" />
           <Property Name="OriginCIty" Type="nvarchar" MaxLength="250" />
           <Property Name="OriginCountry" Type="nvarchar" MaxLength="100" />
           <Property Name="PortOfDestinationID" Type="int" />
@@ -775,6 +969,7 @@ warning 6002: The table/view 'BTC.dbo.RFQDetails' does not have a primary key de
           <Property Name="TravelDays" Type="int" />
           <Property Name="TravelRemarks" Type="nvarchar(max)" />
           <Property Name="PurposeOfVisit" Type="nvarchar(max)" />
+          <Property Name="ExpensesHandledBy" Type="nvarchar" MaxLength="500" />
           <Property Name="DepartureDate" Type="nvarchar" MaxLength="4000" />
           <Property Name="DepartureTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="ReturnDate" Type="nvarchar" MaxLength="4000" />
@@ -815,6 +1010,31 @@ warning 6002: The table/view 'BTC.dbo.RFQDetails' does not have a primary key de
           <Property Name="ModifiedByName" Type="nvarchar(max)" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="IsSubmitted" Type="bit" Nullable="false" />
+          <Property Name="EmployeeID" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmployeeCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="100" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepartmentHead" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepartmentHeadEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostCenter" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostCenterHead" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostCenterHeadEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="PassportID" Type="nvarchar" MaxLength="100" />
+          <Property Name="PassportexpireDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="Passportissuedate" Type="nvarchar" MaxLength="100" />
+          <Property Name="QatarID" Type="nvarchar" MaxLength="100" />
+          <Property Name="QIDEDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="QIdfile" Type="nvarchar" MaxLength="100" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="Section" Type="nvarchar" MaxLength="100" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="100" />
+          <Property Name="HireDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="TerminationDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="nvDept" Type="nvarchar" MaxLength="100" />
+          <Property Name="nvDeptCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="nvDesignation" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1419,6 +1639,92 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
     [EmployeeList1].[TerminationDate] AS [TerminationDate]
     FROM [dbo].[EmployeeList1] AS [EmployeeList1]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="EmployeeTravelRequestDetails" EntityType="Self.EmployeeTravelRequestDetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EmployeeTravelRequestDetails].[ID] AS [ID], 
+    [EmployeeTravelRequestDetails].[ApplicationNumber] AS [ApplicationNumber], 
+    [EmployeeTravelRequestDetails].[PortOfOriginID] AS [PortOfOriginID], 
+    [EmployeeTravelRequestDetails].[OriginCIty] AS [OriginCIty], 
+    [EmployeeTravelRequestDetails].[OriginCountry] AS [OriginCountry], 
+    [EmployeeTravelRequestDetails].[PortOfDestinationID] AS [PortOfDestinationID], 
+    [EmployeeTravelRequestDetails].[DestinationCity] AS [DestinationCity], 
+    [EmployeeTravelRequestDetails].[DestinationCountry] AS [DestinationCountry], 
+    [EmployeeTravelRequestDetails].[TicketClass] AS [TicketClass], 
+    [EmployeeTravelRequestDetails].[DailyAllowance] AS [DailyAllowance], 
+    [EmployeeTravelRequestDetails].[CurrencyID] AS [CurrencyID], 
+    [EmployeeTravelRequestDetails].[CurrencyDesc] AS [CurrencyDesc], 
+    [EmployeeTravelRequestDetails].[CurrencySymbol] AS [CurrencySymbol], 
+    [EmployeeTravelRequestDetails].[TravelDays] AS [TravelDays], 
+    [EmployeeTravelRequestDetails].[TravelRemarks] AS [TravelRemarks], 
+    [EmployeeTravelRequestDetails].[PurposeOfVisit] AS [PurposeOfVisit], 
+    [EmployeeTravelRequestDetails].[ExpensesHandledBy] AS [ExpensesHandledBy], 
+    [EmployeeTravelRequestDetails].[DepartureDate] AS [DepartureDate], 
+    [EmployeeTravelRequestDetails].[DepartureTime] AS [DepartureTime], 
+    [EmployeeTravelRequestDetails].[ReturnDate] AS [ReturnDate], 
+    [EmployeeTravelRequestDetails].[ReturnTime] AS [ReturnTime], 
+    [EmployeeTravelRequestDetails].[FirstBusinessDay] AS [FirstBusinessDay], 
+    [EmployeeTravelRequestDetails].[LastBusinessDay] AS [LastBusinessDay], 
+    [EmployeeTravelRequestDetails].[Remarks] AS [Remarks], 
+    [EmployeeTravelRequestDetails].[AirTicketManagement] AS [AirTicketManagement], 
+    [EmployeeTravelRequestDetails].[HotelName] AS [HotelName], 
+    [EmployeeTravelRequestDetails].[TravelAllowance] AS [TravelAllowance], 
+    [EmployeeTravelRequestDetails].[HotelStay] AS [HotelStay], 
+    [EmployeeTravelRequestDetails].[HotelCategory] AS [HotelCategory], 
+    [EmployeeTravelRequestDetails].[RoomCategory] AS [RoomCategory], 
+    [EmployeeTravelRequestDetails].[RoomType] AS [RoomType], 
+    [EmployeeTravelRequestDetails].[AdditionalAllowance] AS [AdditionalAllowance], 
+    [EmployeeTravelRequestDetails].[AirportPickUp] AS [AirportPickUp], 
+    [EmployeeTravelRequestDetails].[PickUpLocation] AS [PickUpLocation], 
+    [EmployeeTravelRequestDetails].[PickUpDate] AS [PickUpDate], 
+    [EmployeeTravelRequestDetails].[PickUpTime] AS [PickUpTime], 
+    [EmployeeTravelRequestDetails].[DropOffLocation] AS [DropOffLocation], 
+    [EmployeeTravelRequestDetails].[DropOffDate] AS [DropOffDate], 
+    [EmployeeTravelRequestDetails].[DropOffTime] AS [DropOffTime], 
+    [EmployeeTravelRequestDetails].[PreferredVehicle] AS [PreferredVehicle], 
+    [EmployeeTravelRequestDetails].[TravelSector] AS [TravelSector], 
+    [EmployeeTravelRequestDetails].[CheckInDate] AS [CheckInDate], 
+    [EmployeeTravelRequestDetails].[CheckOutDate] AS [CheckOutDate], 
+    [EmployeeTravelRequestDetails].[CheckInTime] AS [CheckInTime], 
+    [EmployeeTravelRequestDetails].[CheckOutTime] AS [CheckOutTime], 
+    [EmployeeTravelRequestDetails].[ApprovalLevel] AS [ApprovalLevel], 
+    [EmployeeTravelRequestDetails].[ApprovalBy] AS [ApprovalBy], 
+    [EmployeeTravelRequestDetails].[ApprovedByName] AS [ApprovedByName], 
+    [EmployeeTravelRequestDetails].[ApprovalRemarks] AS [ApprovalRemarks], 
+    [EmployeeTravelRequestDetails].[CreateOn] AS [CreateOn], 
+    [EmployeeTravelRequestDetails].[CreatedBy] AS [CreatedBy], 
+    [EmployeeTravelRequestDetails].[CreatedByName] AS [CreatedByName], 
+    [EmployeeTravelRequestDetails].[ModifiedOn] AS [ModifiedOn], 
+    [EmployeeTravelRequestDetails].[ModifiedBy] AS [ModifiedBy], 
+    [EmployeeTravelRequestDetails].[ModifiedByName] AS [ModifiedByName], 
+    [EmployeeTravelRequestDetails].[IsDeleted] AS [IsDeleted], 
+    [EmployeeTravelRequestDetails].[IsSubmitted] AS [IsSubmitted], 
+    [EmployeeTravelRequestDetails].[EmployeeID] AS [EmployeeID], 
+    [EmployeeTravelRequestDetails].[EmployeeCode] AS [EmployeeCode], 
+    [EmployeeTravelRequestDetails].[FullName] AS [FullName], 
+    [EmployeeTravelRequestDetails].[Designation] AS [Designation], 
+    [EmployeeTravelRequestDetails].[Department] AS [Department], 
+    [EmployeeTravelRequestDetails].[DepartmentHead] AS [DepartmentHead], 
+    [EmployeeTravelRequestDetails].[DepartmentHeadEmail] AS [DepartmentHeadEmail], 
+    [EmployeeTravelRequestDetails].[CostCenter] AS [CostCenter], 
+    [EmployeeTravelRequestDetails].[CostCenterHead] AS [CostCenterHead], 
+    [EmployeeTravelRequestDetails].[CostCenterHeadEmail] AS [CostCenterHeadEmail], 
+    [EmployeeTravelRequestDetails].[PassportID] AS [PassportID], 
+    [EmployeeTravelRequestDetails].[PassportexpireDate] AS [PassportexpireDate], 
+    [EmployeeTravelRequestDetails].[Passportissuedate] AS [Passportissuedate], 
+    [EmployeeTravelRequestDetails].[QatarID] AS [QatarID], 
+    [EmployeeTravelRequestDetails].[QIDEDate] AS [QIDEDate], 
+    [EmployeeTravelRequestDetails].[QIdfile] AS [QIdfile], 
+    [EmployeeTravelRequestDetails].[Location] AS [Location], 
+    [EmployeeTravelRequestDetails].[Section] AS [Section], 
+    [EmployeeTravelRequestDetails].[Contact] AS [Contact], 
+    [EmployeeTravelRequestDetails].[HireDate] AS [HireDate], 
+    [EmployeeTravelRequestDetails].[TerminationDate] AS [TerminationDate], 
+    [EmployeeTravelRequestDetails].[Email] AS [Email], 
+    [EmployeeTravelRequestDetails].[nvDept] AS [nvDept], 
+    [EmployeeTravelRequestDetails].[nvDeptCode] AS [nvDeptCode], 
+    [EmployeeTravelRequestDetails].[nvDesignation] AS [nvDesignation]
+    FROM [dbo].[EmployeeTravelRequestDetails] AS [EmployeeTravelRequestDetails]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="HRW_VAllEmpEntityValues" EntityType="Self.HRW_VAllEmpEntityValues" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [HRW_VAllEmpEntityValues].[CompanyCode] AS [CompanyCode], 
@@ -1646,6 +1952,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
     [RFQDetails].[username] AS [username], 
     [RFQDetails].[ID] AS [ID], 
     [RFQDetails].[ApplicationNumber] AS [ApplicationNumber], 
+    [RFQDetails].[PortOfOriginID] AS [PortOfOriginID], 
     [RFQDetails].[OriginCIty] AS [OriginCIty], 
     [RFQDetails].[OriginCountry] AS [OriginCountry], 
     [RFQDetails].[PortOfDestinationID] AS [PortOfDestinationID], 
@@ -1659,6 +1966,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
     [RFQDetails].[TravelDays] AS [TravelDays], 
     [RFQDetails].[TravelRemarks] AS [TravelRemarks], 
     [RFQDetails].[PurposeOfVisit] AS [PurposeOfVisit], 
+    [RFQDetails].[ExpensesHandledBy] AS [ExpensesHandledBy], 
     [RFQDetails].[DepartureDate] AS [DepartureDate], 
     [RFQDetails].[DepartureTime] AS [DepartureTime], 
     [RFQDetails].[ReturnDate] AS [ReturnDate], 
@@ -1698,7 +2006,32 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
     [RFQDetails].[ModifiedBy] AS [ModifiedBy], 
     [RFQDetails].[ModifiedByName] AS [ModifiedByName], 
     [RFQDetails].[IsDeleted] AS [IsDeleted], 
-    [RFQDetails].[IsSubmitted] AS [IsSubmitted]
+    [RFQDetails].[IsSubmitted] AS [IsSubmitted], 
+    [RFQDetails].[EmployeeID] AS [EmployeeID], 
+    [RFQDetails].[EmployeeCode] AS [EmployeeCode], 
+    [RFQDetails].[FullName] AS [FullName], 
+    [RFQDetails].[Designation] AS [Designation], 
+    [RFQDetails].[Department] AS [Department], 
+    [RFQDetails].[DepartmentHead] AS [DepartmentHead], 
+    [RFQDetails].[DepartmentHeadEmail] AS [DepartmentHeadEmail], 
+    [RFQDetails].[CostCenter] AS [CostCenter], 
+    [RFQDetails].[CostCenterHead] AS [CostCenterHead], 
+    [RFQDetails].[CostCenterHeadEmail] AS [CostCenterHeadEmail], 
+    [RFQDetails].[PassportID] AS [PassportID], 
+    [RFQDetails].[PassportexpireDate] AS [PassportexpireDate], 
+    [RFQDetails].[Passportissuedate] AS [Passportissuedate], 
+    [RFQDetails].[QatarID] AS [QatarID], 
+    [RFQDetails].[QIDEDate] AS [QIDEDate], 
+    [RFQDetails].[QIdfile] AS [QIdfile], 
+    [RFQDetails].[Location] AS [Location], 
+    [RFQDetails].[Section] AS [Section], 
+    [RFQDetails].[Contact] AS [Contact], 
+    [RFQDetails].[HireDate] AS [HireDate], 
+    [RFQDetails].[TerminationDate] AS [TerminationDate], 
+    [RFQDetails].[Email] AS [Email], 
+    [RFQDetails].[nvDept] AS [nvDept], 
+    [RFQDetails].[nvDeptCode] AS [nvDeptCode], 
+    [RFQDetails].[nvDesignation] AS [nvDesignation]
     FROM [dbo].[RFQDetails] AS [RFQDetails]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="TravelRequestDetails" EntityType="Self.TravelRequestDetails" store:Type="Views" store:Schema="dbo">
@@ -1949,7 +2282,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <NavigationProperty Name="Quotation" Relationship="HRWorksEntities.fk_ATQuotation_QuotationID" FromRole="ATQuotation" ToRole="Quotation" />
           <Property Name="QuotationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="IsLowest" Type="Boolean" />
+          <Property Name="IsLowest" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -2408,6 +2741,7 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
             <End Role="HRW_Employee" EntitySet="HRW_Employee" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="EmployeeTravelRequestDetails" EntityType="HRWorksEntities.EmployeeTravelRequestDetails" />
         </EntityContainer>
         <EntityType Name="RFQ">
           <Key>
@@ -2802,6 +3136,33 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="ModifiedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsSubmitted" Type="Boolean" Nullable="false" />
+          <Property Name="PortOfOriginID" Type="Int32" />
+          <Property Name="ExpensesHandledBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentHead" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentHeadEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostCenter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostCenterHead" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostCenterHeadEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PassportID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PassportexpireDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Passportissuedate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QatarID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QIDEDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QIdfile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Section" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TerminationDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="nvDept" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="nvDeptCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="nvDesignation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TravelRequestDetails">
           <Key>
@@ -3506,6 +3867,96 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="EmployeeTravelRequestDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ApplicationNumber" />
+            <PropertyRef Name="ApprovalLevel" />
+            <PropertyRef Name="IsSubmitted" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PortOfOriginID" Type="Int32" />
+          <Property Name="OriginCIty" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OriginCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PortOfDestinationID" Type="Int32" />
+          <Property Name="DestinationCity" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DestinationCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TicketClass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DailyAllowance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="CurrencyID" Type="Int32" />
+          <Property Name="CurrencyDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencySymbol" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TravelDays" Type="Int32" />
+          <Property Name="TravelRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PurposeOfVisit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExpensesHandledBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReturnDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ReturnTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FirstBusinessDay" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="LastBusinessDay" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AirTicketManagement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TravelAllowance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelStay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HotelCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalAllowance" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="AirportPickUp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PickUpTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DropOffLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DropOffDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DropOffTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PreferredVehicle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="TravelSector" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CheckOutDate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CheckOutTime" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovalLevel" Type="Int32" Nullable="false" />
+          <Property Name="ApprovalBy" Type="Int32" />
+          <Property Name="ApprovedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovalRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateOn" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsSubmitted" Type="Boolean" Nullable="false" />
+          <Property Name="EmployeeID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentHead" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentHeadEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostCenter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostCenterHead" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostCenterHeadEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PassportID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PassportexpireDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Passportissuedate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QatarID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QIDEDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QIdfile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Section" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TerminationDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="nvDept" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="nvDeptCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="nvDesignation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3874,6 +4325,33 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <EntitySetMapping Name="RFQDetails">
             <EntityTypeMapping TypeName="HRWorksEntities.RFQDetails">
               <MappingFragment StoreEntitySet="RFQDetails">
+                <ScalarProperty Name="nvDesignation" ColumnName="nvDesignation" />
+                <ScalarProperty Name="nvDeptCode" ColumnName="nvDeptCode" />
+                <ScalarProperty Name="nvDept" ColumnName="nvDept" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="QIdfile" ColumnName="QIdfile" />
+                <ScalarProperty Name="QIDEDate" ColumnName="QIDEDate" />
+                <ScalarProperty Name="QatarID" ColumnName="QatarID" />
+                <ScalarProperty Name="Passportissuedate" ColumnName="Passportissuedate" />
+                <ScalarProperty Name="PassportexpireDate" ColumnName="PassportexpireDate" />
+                <ScalarProperty Name="PassportID" ColumnName="PassportID" />
+                <ScalarProperty Name="CostCenterHeadEmail" ColumnName="CostCenterHeadEmail" />
+                <ScalarProperty Name="CostCenterHead" ColumnName="CostCenterHead" />
+                <ScalarProperty Name="CostCenter" ColumnName="CostCenter" />
+                <ScalarProperty Name="DepartmentHeadEmail" ColumnName="DepartmentHeadEmail" />
+                <ScalarProperty Name="DepartmentHead" ColumnName="DepartmentHead" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ExpensesHandledBy" ColumnName="ExpensesHandledBy" />
+                <ScalarProperty Name="PortOfOriginID" ColumnName="PortOfOriginID" />
                 <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
@@ -4376,6 +4854,94 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
                 <ScalarProperty Name="EntityTypeParamID" ColumnName="EntityTypeParamID" />
                 <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeTravelRequestDetails">
+            <EntityTypeMapping TypeName="HRWorksEntities.EmployeeTravelRequestDetails">
+              <MappingFragment StoreEntitySet="EmployeeTravelRequestDetails">
+                <ScalarProperty Name="nvDesignation" ColumnName="nvDesignation" />
+                <ScalarProperty Name="nvDeptCode" ColumnName="nvDeptCode" />
+                <ScalarProperty Name="nvDept" ColumnName="nvDept" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="QIdfile" ColumnName="QIdfile" />
+                <ScalarProperty Name="QIDEDate" ColumnName="QIDEDate" />
+                <ScalarProperty Name="QatarID" ColumnName="QatarID" />
+                <ScalarProperty Name="Passportissuedate" ColumnName="Passportissuedate" />
+                <ScalarProperty Name="PassportexpireDate" ColumnName="PassportexpireDate" />
+                <ScalarProperty Name="PassportID" ColumnName="PassportID" />
+                <ScalarProperty Name="CostCenterHeadEmail" ColumnName="CostCenterHeadEmail" />
+                <ScalarProperty Name="CostCenterHead" ColumnName="CostCenterHead" />
+                <ScalarProperty Name="CostCenter" ColumnName="CostCenter" />
+                <ScalarProperty Name="DepartmentHeadEmail" ColumnName="DepartmentHeadEmail" />
+                <ScalarProperty Name="DepartmentHead" ColumnName="DepartmentHead" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="ApprovalRemarks" ColumnName="ApprovalRemarks" />
+                <ScalarProperty Name="ApprovedByName" ColumnName="ApprovedByName" />
+                <ScalarProperty Name="ApprovalBy" ColumnName="ApprovalBy" />
+                <ScalarProperty Name="ApprovalLevel" ColumnName="ApprovalLevel" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="TravelSector" ColumnName="TravelSector" />
+                <ScalarProperty Name="PreferredVehicle" ColumnName="PreferredVehicle" />
+                <ScalarProperty Name="DropOffTime" ColumnName="DropOffTime" />
+                <ScalarProperty Name="DropOffDate" ColumnName="DropOffDate" />
+                <ScalarProperty Name="DropOffLocation" ColumnName="DropOffLocation" />
+                <ScalarProperty Name="PickUpTime" ColumnName="PickUpTime" />
+                <ScalarProperty Name="PickUpDate" ColumnName="PickUpDate" />
+                <ScalarProperty Name="PickUpLocation" ColumnName="PickUpLocation" />
+                <ScalarProperty Name="AirportPickUp" ColumnName="AirportPickUp" />
+                <ScalarProperty Name="AdditionalAllowance" ColumnName="AdditionalAllowance" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="RoomCategory" ColumnName="RoomCategory" />
+                <ScalarProperty Name="HotelCategory" ColumnName="HotelCategory" />
+                <ScalarProperty Name="HotelStay" ColumnName="HotelStay" />
+                <ScalarProperty Name="TravelAllowance" ColumnName="TravelAllowance" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="AirTicketManagement" ColumnName="AirTicketManagement" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="LastBusinessDay" ColumnName="LastBusinessDay" />
+                <ScalarProperty Name="FirstBusinessDay" ColumnName="FirstBusinessDay" />
+                <ScalarProperty Name="ReturnTime" ColumnName="ReturnTime" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="ExpensesHandledBy" ColumnName="ExpensesHandledBy" />
+                <ScalarProperty Name="PurposeOfVisit" ColumnName="PurposeOfVisit" />
+                <ScalarProperty Name="TravelRemarks" ColumnName="TravelRemarks" />
+                <ScalarProperty Name="TravelDays" ColumnName="TravelDays" />
+                <ScalarProperty Name="CurrencySymbol" ColumnName="CurrencySymbol" />
+                <ScalarProperty Name="CurrencyDesc" ColumnName="CurrencyDesc" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="DailyAllowance" ColumnName="DailyAllowance" />
+                <ScalarProperty Name="TicketClass" ColumnName="TicketClass" />
+                <ScalarProperty Name="DestinationCountry" ColumnName="DestinationCountry" />
+                <ScalarProperty Name="DestinationCity" ColumnName="DestinationCity" />
+                <ScalarProperty Name="PortOfDestinationID" ColumnName="PortOfDestinationID" />
+                <ScalarProperty Name="OriginCountry" ColumnName="OriginCountry" />
+                <ScalarProperty Name="OriginCIty" ColumnName="OriginCIty" />
+                <ScalarProperty Name="PortOfOriginID" ColumnName="PortOfOriginID" />
+                <ScalarProperty Name="ApplicationNumber" ColumnName="ApplicationNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

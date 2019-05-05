@@ -3266,7 +3266,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>95bfc0d5-9004-4026-bf82-8d3b75aa4cec</rd:DataSourceID>
+      <rd:DataSourceID>8e65b1b1-b73b-4e20-bc7d-0af69fa00faa</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -3276,26 +3276,6 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="LPOID">
-          <DataField>LPOID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="LPORemarks">
-          <DataField>LPORemarks</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="isAT">
-          <DataField>isAT</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="IsHS">
-          <DataField>IsHS</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="IsPC">
-          <DataField>IsPC</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
         <Field Name="RFQID">
           <DataField>RFQID</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
@@ -3327,6 +3307,10 @@
         <Field Name="ApplicationNumber">
           <DataField>ApplicationNumber</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PortOfOriginID">
+          <DataField>PortOfOriginID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="OriginCIty">
           <DataField>OriginCIty</DataField>
@@ -3378,6 +3362,10 @@
         </Field>
         <Field Name="PurposeOfVisit">
           <DataField>PurposeOfVisit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ExpensesHandledBy">
+          <DataField>ExpensesHandledBy</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DepartureDate">
@@ -3540,158 +3528,114 @@
           <DataField>IsSubmitted</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
-        <Field Name="Airlines">
-          <DataField>Airlines</DataField>
+        <Field Name="EmployeeID">
+          <DataField>EmployeeID</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATAmount">
-          <DataField>ATAmount</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="ATDepartureDate">
-          <DataField>ATDepartureDate</DataField>
+        <Field Name="EmployeeCode">
+          <DataField>EmployeeCode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATDepartureTime">
-          <DataField>ATDepartureTime</DataField>
+        <Field Name="FullName">
+          <DataField>FullName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATReturnDate">
-          <DataField>ATReturnDate</DataField>
+        <Field Name="Designation">
+          <DataField>Designation</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATReturnTime">
-          <DataField>ATReturnTime</DataField>
+        <Field Name="Department">
+          <DataField>Department</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DestinationID">
-          <DataField>DestinationID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="ATDCity">
-          <DataField>ATDCity</DataField>
+        <Field Name="DepartmentHead">
+          <DataField>DepartmentHead</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATDCountry">
-          <DataField>ATDCountry</DataField>
+        <Field Name="DepartmentHeadEmail">
+          <DataField>DepartmentHeadEmail</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="OriginID">
-          <DataField>OriginID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="ATOCity">
-          <DataField>ATOCity</DataField>
+        <Field Name="CostCenter">
+          <DataField>CostCenter</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATOCountry">
-          <DataField>ATOCountry</DataField>
+        <Field Name="CostCenterHead">
+          <DataField>CostCenterHead</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATQuotationName">
-          <DataField>ATQuotationName</DataField>
+        <Field Name="CostCenterHeadEmail">
+          <DataField>CostCenterHeadEmail</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ATTicketClass">
-          <DataField>ATTicketClass</DataField>
+        <Field Name="PassportID">
+          <DataField>PassportID</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TicketNo">
-          <DataField>TicketNo</DataField>
+        <Field Name="PassportexpireDate">
+          <DataField>PassportexpireDate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSAmount">
-          <DataField>HSAmount</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="HSCheckInDate">
-          <DataField>HSCheckInDate</DataField>
+        <Field Name="Passportissuedate">
+          <DataField>Passportissuedate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSCheckOutDate">
-          <DataField>HSCheckOutDate</DataField>
+        <Field Name="QatarID">
+          <DataField>QatarID</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSCheckInTime">
-          <DataField>HSCheckInTime</DataField>
+        <Field Name="QIDEDate">
+          <DataField>QIDEDate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSCheckOutTime">
-          <DataField>HSCheckOutTime</DataField>
+        <Field Name="QIdfile">
+          <DataField>QIdfile</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSHotelCategory">
-          <DataField>HSHotelCategory</DataField>
+        <Field Name="Location">
+          <DataField>Location</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSHotelName">
-          <DataField>HSHotelName</DataField>
+        <Field Name="Section">
+          <DataField>Section</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSQuotationName">
-          <DataField>HSQuotationName</DataField>
+        <Field Name="Contact">
+          <DataField>Contact</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSRoomCategory">
-          <DataField>HSRoomCategory</DataField>
+        <Field Name="HireDate">
+          <DataField>HireDate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSRoomType">
-          <DataField>HSRoomType</DataField>
+        <Field Name="TerminationDate">
+          <DataField>TerminationDate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="HSTravelSector">
-          <DataField>HSTravelSector</DataField>
+        <Field Name="Email">
+          <DataField>Email</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PCAmount">
-          <DataField>PCAmount</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="PCPickUpLocation">
-          <DataField>PCPickUpLocation</DataField>
+        <Field Name="nvDept">
+          <DataField>nvDept</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PCPickUpDate">
-          <DataField>PCPickUpDate</DataField>
+        <Field Name="nvDeptCode">
+          <DataField>nvDeptCode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PCPickUpTime">
-          <DataField>PCPickUpTime</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PCDropOffLocation">
-          <DataField>PCDropOffLocation</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PCDropOffDate">
-          <DataField>PCDropOffDate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PCDropOffTime">
-          <DataField>PCDropOffTime</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PCPreferredVehicle">
-          <DataField>PCPreferredVehicle</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PCQuotationName">
-          <DataField>PCQuotationName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PCTravelSector">
-          <DataField>PCTravelSector</DataField>
+        <Field Name="nvDesignation">
+          <DataField>nvDesignation</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>BTCDataSet</rd:DataSetName>
         <rd:SchemaPath>C:\Users\kanniyappans\Documents\GitHub\BTC\Travel_Request_System\Travel_Request_System_EF\BTCDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>LPODetails</rd:TableName>
+        <rd:TableName>RFQDetails</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>LPODetailsTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>RFQDetailsTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

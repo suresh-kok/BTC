@@ -32,7 +32,7 @@ namespace Travel_Request_System_EF.Models
         public Nullable<bool> IsDeleted { get; set; }
         public string QuotationName { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<bool> IsLowest { get; set; }
+        public bool IsLowest { get; set; }
     
         public virtual City City { get; set; }
         public virtual City City1 { get; set; }

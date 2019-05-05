@@ -22506,18 +22506,18 @@ namespace Travel_Request_System_EF {
                         string username, 
                         int ID, 
                         string ApplicationNumber, 
-                        string OriginCIty, 
+                        int OriginCIty, 
                         string OriginCountry, 
-                        int PortOfDestinationID, 
-                        string DestinationCity, 
+                        string PortOfDestinationID, 
+                        int DestinationCity, 
                         string DestinationCountry, 
                         string TicketClass, 
-                        decimal DailyAllowance, 
-                        int CurrencyID, 
-                        string CurrencyDesc, 
+                        string DailyAllowance, 
+                        decimal CurrencyID, 
+                        int CurrencyDesc, 
                         string CurrencySymbol, 
-                        int TravelDays, 
-                        string TravelRemarks, 
+                        string TravelDays, 
+                        int TravelRemarks, 
                         string PurposeOfVisit, 
                         string DepartureDate, 
                         string DepartureTime, 
@@ -22533,9 +22533,9 @@ namespace Travel_Request_System_EF {
                         string HotelCategory, 
                         string RoomCategory, 
                         string RoomType, 
-                        decimal AdditionalAllowance, 
+                        string AdditionalAllowance, 
                         string AirportPickUp, 
-                        string PickUpLocation, 
+                        decimal PickUpLocation, 
                         string PickUpDate, 
                         string PickUpTime, 
                         string DropOffLocation, 
@@ -22547,34 +22547,34 @@ namespace Travel_Request_System_EF {
                         string CheckOutDate, 
                         string CheckInTime, 
                         string CheckOutTime, 
-                        int ApprovalLevel, 
-                        int ApprovalBy, 
-                        string ApprovedByName, 
-                        string ApprovalRemarks, 
+                        string ApprovalLevel, 
+                        string ApprovalBy, 
+                        int ApprovedByName, 
+                        int ApprovalRemarks, 
                         string CreateOn, 
-                        int CreatedBy, 
+                        string CreatedBy, 
                         string CreatedByName, 
-                        string ModifiedOn, 
-                        int ModifiedBy, 
+                        int ModifiedOn, 
+                        string ModifiedBy, 
                         string ModifiedByName, 
-                        bool IsDeleted, 
-                        bool IsSubmitted, 
-                        string Airlines, 
-                        decimal ATAmount, 
+                        int IsDeleted, 
+                        string IsSubmitted, 
+                        bool Airlines, 
+                        bool ATAmount, 
                         string ATDepartureDate, 
                         string ATDepartureTime, 
                         string ATReturnDate, 
                         string ATReturnTime, 
-                        int DestinationID, 
+                        string DestinationID, 
                         string ATDCity, 
                         string ATDCountry, 
-                        int OriginID, 
+                        string OriginID, 
                         string ATOCity, 
                         string ATOCountry, 
                         string ATQuotationName, 
                         string ATTicketClass, 
                         string TicketNo, 
-                        decimal HSAmount, 
+                        string HSAmount, 
                         string HSCheckInDate, 
                         string HSCheckOutDate, 
                         string HSCheckInTime, 
@@ -22585,14 +22585,14 @@ namespace Travel_Request_System_EF {
                         string HSRoomCategory, 
                         string HSRoomType, 
                         string HSTravelSector, 
-                        decimal PCAmount, 
+                        string PCAmount, 
                         string PCPickUpLocation, 
-                        string PCPickUpDate, 
+                        decimal PCPickUpDate, 
                         string PCPickUpTime, 
                         string PCDropOffLocation, 
                         string PCDropOffDate, 
                         string PCDropOffTime, 
-                        string PCPreferredVehicle, 
+                        int PCPreferredVehicle, 
                         string PCQuotationName, 
                         string PCTravelSector) {
                 LPODetailsRow rowLPODetailsRow = ((LPODetailsRow)(this.NewRow()));
@@ -22854,29 +22854,29 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnID);
                 this.columnApplicationNumber = new global::System.Data.DataColumn("ApplicationNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApplicationNumber);
-                this.columnOriginCIty = new global::System.Data.DataColumn("OriginCIty", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnOriginCIty = new global::System.Data.DataColumn("OriginCIty", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOriginCIty);
                 this.columnOriginCountry = new global::System.Data.DataColumn("OriginCountry", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOriginCountry);
-                this.columnPortOfDestinationID = new global::System.Data.DataColumn("PortOfDestinationID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnPortOfDestinationID = new global::System.Data.DataColumn("PortOfDestinationID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPortOfDestinationID);
-                this.columnDestinationCity = new global::System.Data.DataColumn("DestinationCity", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnDestinationCity = new global::System.Data.DataColumn("DestinationCity", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDestinationCity);
                 this.columnDestinationCountry = new global::System.Data.DataColumn("DestinationCountry", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDestinationCountry);
                 this.columnTicketClass = new global::System.Data.DataColumn("TicketClass", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTicketClass);
-                this.columnDailyAllowance = new global::System.Data.DataColumn("DailyAllowance", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnDailyAllowance = new global::System.Data.DataColumn("DailyAllowance", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDailyAllowance);
-                this.columnCurrencyID = new global::System.Data.DataColumn("CurrencyID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnCurrencyID = new global::System.Data.DataColumn("CurrencyID", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCurrencyID);
-                this.columnCurrencyDesc = new global::System.Data.DataColumn("CurrencyDesc", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnCurrencyDesc = new global::System.Data.DataColumn("CurrencyDesc", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCurrencyDesc);
                 this.columnCurrencySymbol = new global::System.Data.DataColumn("CurrencySymbol", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCurrencySymbol);
-                this.columnTravelDays = new global::System.Data.DataColumn("TravelDays", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnTravelDays = new global::System.Data.DataColumn("TravelDays", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTravelDays);
-                this.columnTravelRemarks = new global::System.Data.DataColumn("TravelRemarks", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnTravelRemarks = new global::System.Data.DataColumn("TravelRemarks", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTravelRemarks);
                 this.columnPurposeOfVisit = new global::System.Data.DataColumn("PurposeOfVisit", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPurposeOfVisit);
@@ -22908,11 +22908,11 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnRoomCategory);
                 this.columnRoomType = new global::System.Data.DataColumn("RoomType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRoomType);
-                this.columnAdditionalAllowance = new global::System.Data.DataColumn("AdditionalAllowance", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnAdditionalAllowance = new global::System.Data.DataColumn("AdditionalAllowance", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAdditionalAllowance);
                 this.columnAirportPickUp = new global::System.Data.DataColumn("AirportPickUp", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAirportPickUp);
-                this.columnPickUpLocation = new global::System.Data.DataColumn("PickUpLocation", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnPickUpLocation = new global::System.Data.DataColumn("PickUpLocation", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPickUpLocation);
                 this.columnPickUpDate = new global::System.Data.DataColumn("PickUpDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPickUpDate);
@@ -22936,33 +22936,33 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnCheckInTime);
                 this.columnCheckOutTime = new global::System.Data.DataColumn("CheckOutTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckOutTime);
-                this.columnApprovalLevel = new global::System.Data.DataColumn("ApprovalLevel", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnApprovalLevel = new global::System.Data.DataColumn("ApprovalLevel", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApprovalLevel);
-                this.columnApprovalBy = new global::System.Data.DataColumn("ApprovalBy", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnApprovalBy = new global::System.Data.DataColumn("ApprovalBy", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApprovalBy);
-                this.columnApprovedByName = new global::System.Data.DataColumn("ApprovedByName", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnApprovedByName = new global::System.Data.DataColumn("ApprovedByName", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApprovedByName);
-                this.columnApprovalRemarks = new global::System.Data.DataColumn("ApprovalRemarks", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnApprovalRemarks = new global::System.Data.DataColumn("ApprovalRemarks", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApprovalRemarks);
                 this.columnCreateOn = new global::System.Data.DataColumn("CreateOn", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreateOn);
-                this.columnCreatedBy = new global::System.Data.DataColumn("CreatedBy", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnCreatedBy = new global::System.Data.DataColumn("CreatedBy", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreatedBy);
                 this.columnCreatedByName = new global::System.Data.DataColumn("CreatedByName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreatedByName);
-                this.columnModifiedOn = new global::System.Data.DataColumn("ModifiedOn", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnModifiedOn = new global::System.Data.DataColumn("ModifiedOn", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnModifiedOn);
-                this.columnModifiedBy = new global::System.Data.DataColumn("ModifiedBy", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnModifiedBy = new global::System.Data.DataColumn("ModifiedBy", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnModifiedBy);
                 this.columnModifiedByName = new global::System.Data.DataColumn("ModifiedByName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnModifiedByName);
-                this.columnIsDeleted = new global::System.Data.DataColumn("IsDeleted", typeof(bool), null, global::System.Data.MappingType.Element);
+                this.columnIsDeleted = new global::System.Data.DataColumn("IsDeleted", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsDeleted);
-                this.columnIsSubmitted = new global::System.Data.DataColumn("IsSubmitted", typeof(bool), null, global::System.Data.MappingType.Element);
+                this.columnIsSubmitted = new global::System.Data.DataColumn("IsSubmitted", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsSubmitted);
-                this.columnAirlines = new global::System.Data.DataColumn("Airlines", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnAirlines = new global::System.Data.DataColumn("Airlines", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAirlines);
-                this.columnATAmount = new global::System.Data.DataColumn("ATAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnATAmount = new global::System.Data.DataColumn("ATAmount", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnATAmount);
                 this.columnATDepartureDate = new global::System.Data.DataColumn("ATDepartureDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnATDepartureDate);
@@ -22972,13 +22972,13 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnATReturnDate);
                 this.columnATReturnTime = new global::System.Data.DataColumn("ATReturnTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnATReturnTime);
-                this.columnDestinationID = new global::System.Data.DataColumn("DestinationID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnDestinationID = new global::System.Data.DataColumn("DestinationID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDestinationID);
                 this.columnATDCity = new global::System.Data.DataColumn("ATDCity", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnATDCity);
                 this.columnATDCountry = new global::System.Data.DataColumn("ATDCountry", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnATDCountry);
-                this.columnOriginID = new global::System.Data.DataColumn("OriginID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnOriginID = new global::System.Data.DataColumn("OriginID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOriginID);
                 this.columnATOCity = new global::System.Data.DataColumn("ATOCity", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnATOCity);
@@ -22990,7 +22990,7 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnATTicketClass);
                 this.columnTicketNo = new global::System.Data.DataColumn("TicketNo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTicketNo);
-                this.columnHSAmount = new global::System.Data.DataColumn("HSAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnHSAmount = new global::System.Data.DataColumn("HSAmount", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHSAmount);
                 this.columnHSCheckInDate = new global::System.Data.DataColumn("HSCheckInDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHSCheckInDate);
@@ -23012,11 +23012,11 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnHSRoomType);
                 this.columnHSTravelSector = new global::System.Data.DataColumn("HSTravelSector", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHSTravelSector);
-                this.columnPCAmount = new global::System.Data.DataColumn("PCAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnPCAmount = new global::System.Data.DataColumn("PCAmount", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPCAmount);
                 this.columnPCPickUpLocation = new global::System.Data.DataColumn("PCPickUpLocation", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPCPickUpLocation);
-                this.columnPCPickUpDate = new global::System.Data.DataColumn("PCPickUpDate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnPCPickUpDate = new global::System.Data.DataColumn("PCPickUpDate", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPCPickUpDate);
                 this.columnPCPickUpTime = new global::System.Data.DataColumn("PCPickUpTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPCPickUpTime);
@@ -23026,7 +23026,7 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnPCDropOffDate);
                 this.columnPCDropOffTime = new global::System.Data.DataColumn("PCDropOffTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPCDropOffTime);
-                this.columnPCPreferredVehicle = new global::System.Data.DataColumn("PCPreferredVehicle", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnPCPreferredVehicle = new global::System.Data.DataColumn("PCPreferredVehicle", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPCPreferredVehicle);
                 this.columnPCQuotationName = new global::System.Data.DataColumn("PCQuotationName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPCQuotationName);
@@ -23043,91 +23043,85 @@ namespace Travel_Request_System_EF {
                 this.columnusername.ReadOnly = true;
                 this.columnusername.MaxLength = 2147483647;
                 this.columnApplicationNumber.MaxLength = 50;
-                this.columnOriginCIty.MaxLength = 250;
-                this.columnOriginCountry.MaxLength = 100;
-                this.columnDestinationCity.MaxLength = 250;
-                this.columnDestinationCountry.MaxLength = 100;
+                this.columnOriginCountry.MaxLength = 250;
+                this.columnPortOfDestinationID.MaxLength = 100;
+                this.columnDestinationCountry.MaxLength = 250;
                 this.columnTicketClass.MaxLength = 100;
-                this.columnCurrencyDesc.MaxLength = 100;
-                this.columnCurrencySymbol.MaxLength = 10;
-                this.columnTravelRemarks.MaxLength = 2147483647;
+                this.columnDailyAllowance.MaxLength = 100;
+                this.columnCurrencySymbol.MaxLength = 100;
+                this.columnTravelDays.MaxLength = 10;
                 this.columnPurposeOfVisit.MaxLength = 2147483647;
-                this.columnDepartureDate.MaxLength = 4000;
-                this.columnDepartureTime.MaxLength = 4000;
+                this.columnDepartureDate.MaxLength = 2147483647;
+                this.columnDepartureTime.MaxLength = 500;
                 this.columnReturnDate.MaxLength = 4000;
                 this.columnReturnTime.MaxLength = 4000;
                 this.columnFirstBusinessDay.MaxLength = 4000;
                 this.columnLastBusinessDay.MaxLength = 4000;
-                this.columnRemarks.MaxLength = 500;
-                this.columnAirTicketManagement.MaxLength = 50;
-                this.columnHotelName.MaxLength = 50;
+                this.columnRemarks.MaxLength = 4000;
+                this.columnAirTicketManagement.MaxLength = 4000;
+                this.columnHotelName.MaxLength = 500;
                 this.columnTravelAllowance.MaxLength = 50;
                 this.columnHotelStay.MaxLength = 50;
                 this.columnHotelCategory.MaxLength = 50;
                 this.columnRoomCategory.MaxLength = 50;
                 this.columnRoomType.MaxLength = 50;
+                this.columnAdditionalAllowance.MaxLength = 50;
                 this.columnAirportPickUp.MaxLength = 50;
-                this.columnPickUpLocation.MaxLength = 500;
-                this.columnPickUpDate.MaxLength = 4000;
-                this.columnPickUpTime.MaxLength = 4000;
-                this.columnDropOffLocation.MaxLength = 500;
+                this.columnPickUpDate.MaxLength = 50;
+                this.columnPickUpTime.MaxLength = 500;
+                this.columnDropOffLocation.MaxLength = 4000;
                 this.columnDropOffDate.MaxLength = 4000;
-                this.columnDropOffTime.MaxLength = 4000;
-                this.columnPreferredVehicle.MaxLength = 250;
-                this.columnTravelSector.MaxLength = 250;
-                this.columnCheckInDate.MaxLength = 4000;
-                this.columnCheckOutDate.MaxLength = 4000;
+                this.columnDropOffTime.MaxLength = 500;
+                this.columnPreferredVehicle.MaxLength = 4000;
+                this.columnTravelSector.MaxLength = 4000;
+                this.columnCheckInDate.MaxLength = 250;
+                this.columnCheckOutDate.MaxLength = 250;
                 this.columnCheckInTime.MaxLength = 4000;
                 this.columnCheckOutTime.MaxLength = 4000;
-                this.columnApprovedByName.MaxLength = 2147483647;
-                this.columnApprovalRemarks.MaxLength = 2147483647;
-                this.columnCreateOn.MaxLength = 4000;
-                this.columnCreatedByName.MaxLength = 2147483647;
-                this.columnModifiedOn.MaxLength = 4000;
-                this.columnModifiedByName.MaxLength = 2147483647;
-                this.columnAirlines.MaxLength = 100;
-                this.columnATDepartureDate.ReadOnly = true;
-                this.columnATDepartureDate.MaxLength = 4000;
-                this.columnATDepartureTime.ReadOnly = true;
-                this.columnATDepartureTime.MaxLength = 4000;
-                this.columnATReturnDate.ReadOnly = true;
-                this.columnATReturnDate.MaxLength = 4000;
-                this.columnATReturnTime.ReadOnly = true;
-                this.columnATReturnTime.MaxLength = 4000;
-                this.columnATDCity.MaxLength = 250;
+                this.columnApprovalLevel.MaxLength = 4000;
+                this.columnApprovalBy.MaxLength = 4000;
+                this.columnCreateOn.MaxLength = 2147483647;
+                this.columnCreatedBy.MaxLength = 2147483647;
+                this.columnCreatedByName.MaxLength = 4000;
+                this.columnModifiedBy.MaxLength = 2147483647;
+                this.columnModifiedByName.MaxLength = 4000;
+                this.columnIsSubmitted.MaxLength = 2147483647;
+                this.columnATDepartureDate.MaxLength = 100;
+                this.columnATDepartureTime.MaxLength = 100;
+                this.columnATReturnDate.MaxLength = 100;
+                this.columnATReturnTime.MaxLength = 100;
+                this.columnDestinationID.MaxLength = 100;
+                this.columnATDCity.MaxLength = 100;
                 this.columnATDCountry.MaxLength = 100;
-                this.columnATOCity.MaxLength = 250;
+                this.columnOriginID.MaxLength = 100;
+                this.columnATOCity.MaxLength = 100;
                 this.columnATOCountry.MaxLength = 100;
-                this.columnATQuotationName.MaxLength = 50;
+                this.columnATQuotationName.MaxLength = 100;
                 this.columnATTicketClass.MaxLength = 100;
                 this.columnTicketNo.MaxLength = 100;
-                this.columnHSCheckInDate.ReadOnly = true;
-                this.columnHSCheckInDate.MaxLength = 4000;
-                this.columnHSCheckOutDate.ReadOnly = true;
-                this.columnHSCheckOutDate.MaxLength = 4000;
-                this.columnHSCheckInTime.ReadOnly = true;
-                this.columnHSCheckInTime.MaxLength = 4000;
-                this.columnHSCheckOutTime.ReadOnly = true;
-                this.columnHSCheckOutTime.MaxLength = 4000;
+                this.columnHSAmount.MaxLength = 100;
+                this.columnHSCheckInDate.MaxLength = 100;
+                this.columnHSCheckOutDate.MaxLength = 100;
+                this.columnHSCheckInTime.MaxLength = 100;
+                this.columnHSCheckOutTime.MaxLength = 100;
                 this.columnHSHotelCategory.MaxLength = 100;
-                this.columnHSHotelName.MaxLength = 250;
-                this.columnHSQuotationName.MaxLength = 50;
+                this.columnHSHotelName.MaxLength = 100;
+                this.columnHSQuotationName.MaxLength = 100;
                 this.columnHSRoomCategory.MaxLength = 100;
                 this.columnHSRoomType.MaxLength = 100;
-                this.columnHSTravelSector.MaxLength = 250;
-                this.columnPCPickUpLocation.MaxLength = 250;
-                this.columnPCPickUpDate.ReadOnly = true;
-                this.columnPCPickUpDate.MaxLength = 4000;
+                this.columnHSTravelSector.MaxLength = 100;
+                this.columnPCAmount.MaxLength = 100;
+                this.columnPCPickUpLocation.MaxLength = 100;
                 this.columnPCPickUpTime.ReadOnly = true;
                 this.columnPCPickUpTime.MaxLength = 4000;
-                this.columnPCDropOffLocation.MaxLength = 250;
+                this.columnPCDropOffLocation.ReadOnly = true;
+                this.columnPCDropOffLocation.MaxLength = 4000;
                 this.columnPCDropOffDate.ReadOnly = true;
                 this.columnPCDropOffDate.MaxLength = 4000;
                 this.columnPCDropOffTime.ReadOnly = true;
                 this.columnPCDropOffTime.MaxLength = 4000;
-                this.columnPCPreferredVehicle.MaxLength = 250;
-                this.columnPCQuotationName.MaxLength = 50;
-                this.columnPCTravelSector.MaxLength = 250;
+                this.columnPCQuotationName.MaxLength = 250;
+                this.columnPCTravelSector.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -23277,6 +23271,8 @@ namespace Travel_Request_System_EF {
             
             private global::System.Data.DataColumn columnApplicationNumber;
             
+            private global::System.Data.DataColumn columnPortOfOriginID;
+            
             private global::System.Data.DataColumn columnOriginCIty;
             
             private global::System.Data.DataColumn columnOriginCountry;
@@ -23302,6 +23298,8 @@ namespace Travel_Request_System_EF {
             private global::System.Data.DataColumn columnTravelRemarks;
             
             private global::System.Data.DataColumn columnPurposeOfVisit;
+            
+            private global::System.Data.DataColumn columnExpensesHandledBy;
             
             private global::System.Data.DataColumn columnDepartureDate;
             
@@ -23382,6 +23380,56 @@ namespace Travel_Request_System_EF {
             private global::System.Data.DataColumn columnIsDeleted;
             
             private global::System.Data.DataColumn columnIsSubmitted;
+            
+            private global::System.Data.DataColumn columnEmployeeID;
+            
+            private global::System.Data.DataColumn columnEmployeeCode;
+            
+            private global::System.Data.DataColumn columnFullName;
+            
+            private global::System.Data.DataColumn columnDesignation;
+            
+            private global::System.Data.DataColumn columnDepartment;
+            
+            private global::System.Data.DataColumn columnDepartmentHead;
+            
+            private global::System.Data.DataColumn columnDepartmentHeadEmail;
+            
+            private global::System.Data.DataColumn columnCostCenter;
+            
+            private global::System.Data.DataColumn columnCostCenterHead;
+            
+            private global::System.Data.DataColumn columnCostCenterHeadEmail;
+            
+            private global::System.Data.DataColumn columnPassportID;
+            
+            private global::System.Data.DataColumn columnPassportexpireDate;
+            
+            private global::System.Data.DataColumn columnPassportissuedate;
+            
+            private global::System.Data.DataColumn columnQatarID;
+            
+            private global::System.Data.DataColumn columnQIDEDate;
+            
+            private global::System.Data.DataColumn columnQIdfile;
+            
+            private global::System.Data.DataColumn columnLocation;
+            
+            private global::System.Data.DataColumn columnSection;
+            
+            private global::System.Data.DataColumn columnContact;
+            
+            private global::System.Data.DataColumn columnHireDate;
+            
+            private global::System.Data.DataColumn columnTerminationDate;
+            
+            private global::System.Data.DataColumn columnEmail;
+            
+            private global::System.Data.DataColumn columnnvDept;
+            
+            private global::System.Data.DataColumn columnnvDeptCode;
+            
+            private global::System.Data.DataColumn columnnvDesignation;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -23477,6 +23525,14 @@ namespace Travel_Request_System_EF {
             public global::System.Data.DataColumn ApplicationNumberColumn {
                 get {
                     return this.columnApplicationNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PortOfOriginIDColumn {
+                get {
+                    return this.columnPortOfOriginID;
                 }
             }
             
@@ -23581,6 +23637,14 @@ namespace Travel_Request_System_EF {
             public global::System.Data.DataColumn PurposeOfVisitColumn {
                 get {
                     return this.columnPurposeOfVisit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ExpensesHandledByColumn {
+                get {
+                    return this.columnExpensesHandledBy;
                 }
             }
             
@@ -23906,6 +23970,206 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn EmployeeIDColumn {
+                get {
+                    return this.columnEmployeeID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn EmployeeCodeColumn {
+                get {
+                    return this.columnEmployeeCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FullNameColumn {
+                get {
+                    return this.columnFullName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DesignationColumn {
+                get {
+                    return this.columnDesignation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DepartmentColumn {
+                get {
+                    return this.columnDepartment;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DepartmentHeadColumn {
+                get {
+                    return this.columnDepartmentHead;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DepartmentHeadEmailColumn {
+                get {
+                    return this.columnDepartmentHeadEmail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CostCenterColumn {
+                get {
+                    return this.columnCostCenter;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CostCenterHeadColumn {
+                get {
+                    return this.columnCostCenterHead;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CostCenterHeadEmailColumn {
+                get {
+                    return this.columnCostCenterHeadEmail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PassportIDColumn {
+                get {
+                    return this.columnPassportID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PassportexpireDateColumn {
+                get {
+                    return this.columnPassportexpireDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PassportissuedateColumn {
+                get {
+                    return this.columnPassportissuedate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn QatarIDColumn {
+                get {
+                    return this.columnQatarID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn QIDEDateColumn {
+                get {
+                    return this.columnQIDEDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn QIdfileColumn {
+                get {
+                    return this.columnQIdfile;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LocationColumn {
+                get {
+                    return this.columnLocation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SectionColumn {
+                get {
+                    return this.columnSection;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ContactColumn {
+                get {
+                    return this.columnContact;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn HireDateColumn {
+                get {
+                    return this.columnHireDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TerminationDateColumn {
+                get {
+                    return this.columnTerminationDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn EmailColumn {
+                get {
+                    return this.columnEmail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn nvDeptColumn {
+                get {
+                    return this.columnnvDept;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn nvDeptCodeColumn {
+                get {
+                    return this.columnnvDeptCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn nvDesignationColumn {
+                get {
+                    return this.columnnvDesignation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -23950,6 +24214,7 @@ namespace Travel_Request_System_EF {
                         string username, 
                         int ID, 
                         string ApplicationNumber, 
+                        int PortOfOriginID, 
                         string OriginCIty, 
                         string OriginCountry, 
                         int PortOfDestinationID, 
@@ -23963,6 +24228,7 @@ namespace Travel_Request_System_EF {
                         int TravelDays, 
                         string TravelRemarks, 
                         string PurposeOfVisit, 
+                        string ExpensesHandledBy, 
                         string DepartureDate, 
                         string DepartureTime, 
                         string ReturnDate, 
@@ -24002,7 +24268,32 @@ namespace Travel_Request_System_EF {
                         int ModifiedBy, 
                         string ModifiedByName, 
                         bool IsDeleted, 
-                        bool IsSubmitted) {
+                        bool IsSubmitted, 
+                        string EmployeeID, 
+                        string EmployeeCode, 
+                        string FullName, 
+                        string Designation, 
+                        string Department, 
+                        string DepartmentHead, 
+                        string DepartmentHeadEmail, 
+                        string CostCenter, 
+                        string CostCenterHead, 
+                        string CostCenterHeadEmail, 
+                        string PassportID, 
+                        string PassportexpireDate, 
+                        string Passportissuedate, 
+                        string QatarID, 
+                        string QIDEDate, 
+                        string QIdfile, 
+                        string Location, 
+                        string Section, 
+                        string Contact, 
+                        string HireDate, 
+                        string TerminationDate, 
+                        string Email, 
+                        string nvDept, 
+                        string nvDeptCode, 
+                        string nvDesignation) {
                 RFQDetailsRow rowRFQDetailsRow = ((RFQDetailsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         RFQID,
@@ -24013,6 +24304,7 @@ namespace Travel_Request_System_EF {
                         username,
                         ID,
                         ApplicationNumber,
+                        PortOfOriginID,
                         OriginCIty,
                         OriginCountry,
                         PortOfDestinationID,
@@ -24026,6 +24318,7 @@ namespace Travel_Request_System_EF {
                         TravelDays,
                         TravelRemarks,
                         PurposeOfVisit,
+                        ExpensesHandledBy,
                         DepartureDate,
                         DepartureTime,
                         ReturnDate,
@@ -24065,7 +24358,32 @@ namespace Travel_Request_System_EF {
                         ModifiedBy,
                         ModifiedByName,
                         IsDeleted,
-                        IsSubmitted};
+                        IsSubmitted,
+                        EmployeeID,
+                        EmployeeCode,
+                        FullName,
+                        Designation,
+                        Department,
+                        DepartmentHead,
+                        DepartmentHeadEmail,
+                        CostCenter,
+                        CostCenterHead,
+                        CostCenterHeadEmail,
+                        PassportID,
+                        PassportexpireDate,
+                        Passportissuedate,
+                        QatarID,
+                        QIDEDate,
+                        QIdfile,
+                        Location,
+                        Section,
+                        Contact,
+                        HireDate,
+                        TerminationDate,
+                        Email,
+                        nvDept,
+                        nvDeptCode,
+                        nvDesignation};
                 rowRFQDetailsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRFQDetailsRow);
                 return rowRFQDetailsRow;
@@ -24096,6 +24414,7 @@ namespace Travel_Request_System_EF {
                 this.columnusername = base.Columns["username"];
                 this.columnID = base.Columns["ID"];
                 this.columnApplicationNumber = base.Columns["ApplicationNumber"];
+                this.columnPortOfOriginID = base.Columns["PortOfOriginID"];
                 this.columnOriginCIty = base.Columns["OriginCIty"];
                 this.columnOriginCountry = base.Columns["OriginCountry"];
                 this.columnPortOfDestinationID = base.Columns["PortOfDestinationID"];
@@ -24109,6 +24428,7 @@ namespace Travel_Request_System_EF {
                 this.columnTravelDays = base.Columns["TravelDays"];
                 this.columnTravelRemarks = base.Columns["TravelRemarks"];
                 this.columnPurposeOfVisit = base.Columns["PurposeOfVisit"];
+                this.columnExpensesHandledBy = base.Columns["ExpensesHandledBy"];
                 this.columnDepartureDate = base.Columns["DepartureDate"];
                 this.columnDepartureTime = base.Columns["DepartureTime"];
                 this.columnReturnDate = base.Columns["ReturnDate"];
@@ -24149,6 +24469,31 @@ namespace Travel_Request_System_EF {
                 this.columnModifiedByName = base.Columns["ModifiedByName"];
                 this.columnIsDeleted = base.Columns["IsDeleted"];
                 this.columnIsSubmitted = base.Columns["IsSubmitted"];
+                this.columnEmployeeID = base.Columns["EmployeeID"];
+                this.columnEmployeeCode = base.Columns["EmployeeCode"];
+                this.columnFullName = base.Columns["FullName"];
+                this.columnDesignation = base.Columns["Designation"];
+                this.columnDepartment = base.Columns["Department"];
+                this.columnDepartmentHead = base.Columns["DepartmentHead"];
+                this.columnDepartmentHeadEmail = base.Columns["DepartmentHeadEmail"];
+                this.columnCostCenter = base.Columns["CostCenter"];
+                this.columnCostCenterHead = base.Columns["CostCenterHead"];
+                this.columnCostCenterHeadEmail = base.Columns["CostCenterHeadEmail"];
+                this.columnPassportID = base.Columns["PassportID"];
+                this.columnPassportexpireDate = base.Columns["PassportexpireDate"];
+                this.columnPassportissuedate = base.Columns["Passportissuedate"];
+                this.columnQatarID = base.Columns["QatarID"];
+                this.columnQIDEDate = base.Columns["QIDEDate"];
+                this.columnQIdfile = base.Columns["QIdfile"];
+                this.columnLocation = base.Columns["Location"];
+                this.columnSection = base.Columns["Section"];
+                this.columnContact = base.Columns["Contact"];
+                this.columnHireDate = base.Columns["HireDate"];
+                this.columnTerminationDate = base.Columns["TerminationDate"];
+                this.columnEmail = base.Columns["Email"];
+                this.columnnvDept = base.Columns["nvDept"];
+                this.columnnvDeptCode = base.Columns["nvDeptCode"];
+                this.columnnvDesignation = base.Columns["nvDesignation"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24170,6 +24515,8 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnID);
                 this.columnApplicationNumber = new global::System.Data.DataColumn("ApplicationNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApplicationNumber);
+                this.columnPortOfOriginID = new global::System.Data.DataColumn("PortOfOriginID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPortOfOriginID);
                 this.columnOriginCIty = new global::System.Data.DataColumn("OriginCIty", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOriginCIty);
                 this.columnOriginCountry = new global::System.Data.DataColumn("OriginCountry", typeof(string), null, global::System.Data.MappingType.Element);
@@ -24196,6 +24543,8 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnTravelRemarks);
                 this.columnPurposeOfVisit = new global::System.Data.DataColumn("PurposeOfVisit", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPurposeOfVisit);
+                this.columnExpensesHandledBy = new global::System.Data.DataColumn("ExpensesHandledBy", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExpensesHandledBy);
                 this.columnDepartureDate = new global::System.Data.DataColumn("DepartureDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDepartureDate);
                 this.columnDepartureTime = new global::System.Data.DataColumn("DepartureTime", typeof(string), null, global::System.Data.MappingType.Element);
@@ -24276,6 +24625,56 @@ namespace Travel_Request_System_EF {
                 base.Columns.Add(this.columnIsDeleted);
                 this.columnIsSubmitted = new global::System.Data.DataColumn("IsSubmitted", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsSubmitted);
+                this.columnEmployeeID = new global::System.Data.DataColumn("EmployeeID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmployeeID);
+                this.columnEmployeeCode = new global::System.Data.DataColumn("EmployeeCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmployeeCode);
+                this.columnFullName = new global::System.Data.DataColumn("FullName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFullName);
+                this.columnDesignation = new global::System.Data.DataColumn("Designation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDesignation);
+                this.columnDepartment = new global::System.Data.DataColumn("Department", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDepartment);
+                this.columnDepartmentHead = new global::System.Data.DataColumn("DepartmentHead", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDepartmentHead);
+                this.columnDepartmentHeadEmail = new global::System.Data.DataColumn("DepartmentHeadEmail", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDepartmentHeadEmail);
+                this.columnCostCenter = new global::System.Data.DataColumn("CostCenter", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCostCenter);
+                this.columnCostCenterHead = new global::System.Data.DataColumn("CostCenterHead", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCostCenterHead);
+                this.columnCostCenterHeadEmail = new global::System.Data.DataColumn("CostCenterHeadEmail", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCostCenterHeadEmail);
+                this.columnPassportID = new global::System.Data.DataColumn("PassportID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPassportID);
+                this.columnPassportexpireDate = new global::System.Data.DataColumn("PassportexpireDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPassportexpireDate);
+                this.columnPassportissuedate = new global::System.Data.DataColumn("Passportissuedate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPassportissuedate);
+                this.columnQatarID = new global::System.Data.DataColumn("QatarID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQatarID);
+                this.columnQIDEDate = new global::System.Data.DataColumn("QIDEDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQIDEDate);
+                this.columnQIdfile = new global::System.Data.DataColumn("QIdfile", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQIdfile);
+                this.columnLocation = new global::System.Data.DataColumn("Location", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLocation);
+                this.columnSection = new global::System.Data.DataColumn("Section", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSection);
+                this.columnContact = new global::System.Data.DataColumn("Contact", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnContact);
+                this.columnHireDate = new global::System.Data.DataColumn("HireDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHireDate);
+                this.columnTerminationDate = new global::System.Data.DataColumn("TerminationDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTerminationDate);
+                this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmail);
+                this.columnnvDept = new global::System.Data.DataColumn("nvDept", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnvDept);
+                this.columnnvDeptCode = new global::System.Data.DataColumn("nvDeptCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnvDeptCode);
+                this.columnnvDesignation = new global::System.Data.DataColumn("nvDesignation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnvDesignation);
                 this.columnRFQID.AllowDBNull = false;
                 this.columnProcessing.ReadOnly = true;
                 this.columnProcessing.MaxLength = 15;
@@ -24297,6 +24696,7 @@ namespace Travel_Request_System_EF {
                 this.columnCurrencySymbol.MaxLength = 10;
                 this.columnTravelRemarks.MaxLength = 2147483647;
                 this.columnPurposeOfVisit.MaxLength = 2147483647;
+                this.columnExpensesHandledBy.MaxLength = 500;
                 this.columnDepartureDate.MaxLength = 4000;
                 this.columnDepartureTime.MaxLength = 4000;
                 this.columnReturnDate.MaxLength = 4000;
@@ -24332,6 +24732,31 @@ namespace Travel_Request_System_EF {
                 this.columnModifiedOn.MaxLength = 4000;
                 this.columnModifiedByName.MaxLength = 2147483647;
                 this.columnIsSubmitted.AllowDBNull = false;
+                this.columnEmployeeID.MaxLength = 100;
+                this.columnEmployeeCode.MaxLength = 100;
+                this.columnFullName.MaxLength = 100;
+                this.columnDesignation.MaxLength = 100;
+                this.columnDepartment.MaxLength = 100;
+                this.columnDepartmentHead.MaxLength = 100;
+                this.columnDepartmentHeadEmail.MaxLength = 100;
+                this.columnCostCenter.MaxLength = 100;
+                this.columnCostCenterHead.MaxLength = 100;
+                this.columnCostCenterHeadEmail.MaxLength = 100;
+                this.columnPassportID.MaxLength = 100;
+                this.columnPassportexpireDate.MaxLength = 100;
+                this.columnPassportissuedate.MaxLength = 100;
+                this.columnQatarID.MaxLength = 100;
+                this.columnQIDEDate.MaxLength = 100;
+                this.columnQIdfile.MaxLength = 100;
+                this.columnLocation.MaxLength = 100;
+                this.columnSection.MaxLength = 100;
+                this.columnContact.MaxLength = 100;
+                this.columnHireDate.MaxLength = 100;
+                this.columnTerminationDate.MaxLength = 100;
+                this.columnEmail.MaxLength = 100;
+                this.columnnvDept.MaxLength = 100;
+                this.columnnvDeptCode.MaxLength = 100;
+                this.columnnvDesignation.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -40461,10 +40886,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string OriginCIty {
+            public int OriginCIty {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.OriginCItyColumn]));
+                        return ((int)(this[this.tableLPODetails.OriginCItyColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'OriginCIty\' in table \'LPODetails\' is DBNull.", e);
@@ -40493,10 +40918,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int PortOfDestinationID {
+            public string PortOfDestinationID {
                 get {
                     try {
-                        return ((int)(this[this.tableLPODetails.PortOfDestinationIDColumn]));
+                        return ((string)(this[this.tableLPODetails.PortOfDestinationIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PortOfDestinationID\' in table \'LPODetails\' is DBNull.", e);
@@ -40509,10 +40934,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string DestinationCity {
+            public int DestinationCity {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.DestinationCityColumn]));
+                        return ((int)(this[this.tableLPODetails.DestinationCityColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DestinationCity\' in table \'LPODetails\' is DBNull.", e);
@@ -40557,10 +40982,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal DailyAllowance {
+            public string DailyAllowance {
                 get {
                     try {
-                        return ((decimal)(this[this.tableLPODetails.DailyAllowanceColumn]));
+                        return ((string)(this[this.tableLPODetails.DailyAllowanceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DailyAllowance\' in table \'LPODetails\' is DBNull.", e);
@@ -40573,10 +40998,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int CurrencyID {
+            public decimal CurrencyID {
                 get {
                     try {
-                        return ((int)(this[this.tableLPODetails.CurrencyIDColumn]));
+                        return ((decimal)(this[this.tableLPODetails.CurrencyIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CurrencyID\' in table \'LPODetails\' is DBNull.", e);
@@ -40589,10 +41014,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string CurrencyDesc {
+            public int CurrencyDesc {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.CurrencyDescColumn]));
+                        return ((int)(this[this.tableLPODetails.CurrencyDescColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CurrencyDesc\' in table \'LPODetails\' is DBNull.", e);
@@ -40621,10 +41046,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int TravelDays {
+            public string TravelDays {
                 get {
                     try {
-                        return ((int)(this[this.tableLPODetails.TravelDaysColumn]));
+                        return ((string)(this[this.tableLPODetails.TravelDaysColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'TravelDays\' in table \'LPODetails\' is DBNull.", e);
@@ -40637,10 +41062,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string TravelRemarks {
+            public int TravelRemarks {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.TravelRemarksColumn]));
+                        return ((int)(this[this.tableLPODetails.TravelRemarksColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'TravelRemarks\' in table \'LPODetails\' is DBNull.", e);
@@ -40893,10 +41318,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal AdditionalAllowance {
+            public string AdditionalAllowance {
                 get {
                     try {
-                        return ((decimal)(this[this.tableLPODetails.AdditionalAllowanceColumn]));
+                        return ((string)(this[this.tableLPODetails.AdditionalAllowanceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'AdditionalAllowance\' in table \'LPODetails\' is DBNull.", e);
@@ -40925,10 +41350,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string PickUpLocation {
+            public decimal PickUpLocation {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.PickUpLocationColumn]));
+                        return ((decimal)(this[this.tableLPODetails.PickUpLocationColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PickUpLocation\' in table \'LPODetails\' is DBNull.", e);
@@ -41117,10 +41542,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int ApprovalLevel {
+            public string ApprovalLevel {
                 get {
                     try {
-                        return ((int)(this[this.tableLPODetails.ApprovalLevelColumn]));
+                        return ((string)(this[this.tableLPODetails.ApprovalLevelColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ApprovalLevel\' in table \'LPODetails\' is DBNull.", e);
@@ -41133,10 +41558,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int ApprovalBy {
+            public string ApprovalBy {
                 get {
                     try {
-                        return ((int)(this[this.tableLPODetails.ApprovalByColumn]));
+                        return ((string)(this[this.tableLPODetails.ApprovalByColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ApprovalBy\' in table \'LPODetails\' is DBNull.", e);
@@ -41149,10 +41574,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string ApprovedByName {
+            public int ApprovedByName {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.ApprovedByNameColumn]));
+                        return ((int)(this[this.tableLPODetails.ApprovedByNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ApprovedByName\' in table \'LPODetails\' is DBNull.", e);
@@ -41165,10 +41590,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string ApprovalRemarks {
+            public int ApprovalRemarks {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.ApprovalRemarksColumn]));
+                        return ((int)(this[this.tableLPODetails.ApprovalRemarksColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ApprovalRemarks\' in table \'LPODetails\' is DBNull.", e);
@@ -41197,10 +41622,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int CreatedBy {
+            public string CreatedBy {
                 get {
                     try {
-                        return ((int)(this[this.tableLPODetails.CreatedByColumn]));
+                        return ((string)(this[this.tableLPODetails.CreatedByColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CreatedBy\' in table \'LPODetails\' is DBNull.", e);
@@ -41229,10 +41654,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string ModifiedOn {
+            public int ModifiedOn {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.ModifiedOnColumn]));
+                        return ((int)(this[this.tableLPODetails.ModifiedOnColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ModifiedOn\' in table \'LPODetails\' is DBNull.", e);
@@ -41245,10 +41670,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int ModifiedBy {
+            public string ModifiedBy {
                 get {
                     try {
-                        return ((int)(this[this.tableLPODetails.ModifiedByColumn]));
+                        return ((string)(this[this.tableLPODetails.ModifiedByColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ModifiedBy\' in table \'LPODetails\' is DBNull.", e);
@@ -41277,10 +41702,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDeleted {
+            public int IsDeleted {
                 get {
                     try {
-                        return ((bool)(this[this.tableLPODetails.IsDeletedColumn]));
+                        return ((int)(this[this.tableLPODetails.IsDeletedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'IsDeleted\' in table \'LPODetails\' is DBNull.", e);
@@ -41293,10 +41718,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsSubmitted {
+            public string IsSubmitted {
                 get {
                     try {
-                        return ((bool)(this[this.tableLPODetails.IsSubmittedColumn]));
+                        return ((string)(this[this.tableLPODetails.IsSubmittedColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'IsSubmitted\' in table \'LPODetails\' is DBNull.", e);
@@ -41309,10 +41734,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Airlines {
+            public bool Airlines {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.AirlinesColumn]));
+                        return ((bool)(this[this.tableLPODetails.AirlinesColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Airlines\' in table \'LPODetails\' is DBNull.", e);
@@ -41325,10 +41750,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal ATAmount {
+            public bool ATAmount {
                 get {
                     try {
-                        return ((decimal)(this[this.tableLPODetails.ATAmountColumn]));
+                        return ((bool)(this[this.tableLPODetails.ATAmountColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ATAmount\' in table \'LPODetails\' is DBNull.", e);
@@ -41405,10 +41830,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int DestinationID {
+            public string DestinationID {
                 get {
                     try {
-                        return ((int)(this[this.tableLPODetails.DestinationIDColumn]));
+                        return ((string)(this[this.tableLPODetails.DestinationIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DestinationID\' in table \'LPODetails\' is DBNull.", e);
@@ -41453,10 +41878,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int OriginID {
+            public string OriginID {
                 get {
                     try {
-                        return ((int)(this[this.tableLPODetails.OriginIDColumn]));
+                        return ((string)(this[this.tableLPODetails.OriginIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'OriginID\' in table \'LPODetails\' is DBNull.", e);
@@ -41549,10 +41974,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal HSAmount {
+            public string HSAmount {
                 get {
                     try {
-                        return ((decimal)(this[this.tableLPODetails.HSAmountColumn]));
+                        return ((string)(this[this.tableLPODetails.HSAmountColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'HSAmount\' in table \'LPODetails\' is DBNull.", e);
@@ -41725,10 +42150,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal PCAmount {
+            public string PCAmount {
                 get {
                     try {
-                        return ((decimal)(this[this.tableLPODetails.PCAmountColumn]));
+                        return ((string)(this[this.tableLPODetails.PCAmountColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PCAmount\' in table \'LPODetails\' is DBNull.", e);
@@ -41757,10 +42182,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string PCPickUpDate {
+            public decimal PCPickUpDate {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.PCPickUpDateColumn]));
+                        return ((decimal)(this[this.tableLPODetails.PCPickUpDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PCPickUpDate\' in table \'LPODetails\' is DBNull.", e);
@@ -41837,10 +42262,10 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string PCPreferredVehicle {
+            public int PCPreferredVehicle {
                 get {
                     try {
-                        return ((string)(this[this.tableLPODetails.PCPreferredVehicleColumn]));
+                        return ((int)(this[this.tableLPODetails.PCPreferredVehicleColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PCPreferredVehicle\' in table \'LPODetails\' is DBNull.", e);
@@ -43225,6 +43650,22 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int PortOfOriginID {
+                get {
+                    try {
+                        return ((int)(this[this.tableRFQDetails.PortOfOriginIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PortOfOriginID\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.PortOfOriginIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string OriginCIty {
                 get {
                     try {
@@ -43428,6 +43869,22 @@ namespace Travel_Request_System_EF {
                 }
                 set {
                     this[this.tableRFQDetails.PurposeOfVisitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ExpensesHandledBy {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.ExpensesHandledByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ExpensesHandledBy\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.ExpensesHandledByColumn] = value;
                 }
             }
             
@@ -44063,6 +44520,406 @@ namespace Travel_Request_System_EF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string EmployeeID {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.EmployeeIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EmployeeID\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.EmployeeIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string EmployeeCode {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.EmployeeCodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EmployeeCode\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.EmployeeCodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string FullName {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.FullNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FullName\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.FullNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Designation {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.DesignationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Designation\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.DesignationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Department {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.DepartmentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Department\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.DepartmentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DepartmentHead {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.DepartmentHeadColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DepartmentHead\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.DepartmentHeadColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DepartmentHeadEmail {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.DepartmentHeadEmailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DepartmentHeadEmail\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.DepartmentHeadEmailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CostCenter {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.CostCenterColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CostCenter\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.CostCenterColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CostCenterHead {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.CostCenterHeadColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CostCenterHead\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.CostCenterHeadColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CostCenterHeadEmail {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.CostCenterHeadEmailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CostCenterHeadEmail\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.CostCenterHeadEmailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PassportID {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.PassportIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PassportID\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.PassportIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PassportexpireDate {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.PassportexpireDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PassportexpireDate\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.PassportexpireDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Passportissuedate {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.PassportissuedateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Passportissuedate\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.PassportissuedateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string QatarID {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.QatarIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'QatarID\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.QatarIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string QIDEDate {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.QIDEDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'QIDEDate\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.QIDEDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string QIdfile {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.QIdfileColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'QIdfile\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.QIdfileColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Location {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.LocationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Location\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.LocationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Section {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.SectionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Section\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.SectionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Contact {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.ContactColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Contact\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.ContactColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string HireDate {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.HireDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HireDate\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.HireDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string TerminationDate {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.TerminationDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TerminationDate\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.TerminationDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Email {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.EmailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Email\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.EmailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string nvDept {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.nvDeptColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'nvDept\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.nvDeptColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string nvDeptCode {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.nvDeptCodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'nvDeptCode\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.nvDeptCodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string nvDesignation {
+                get {
+                    try {
+                        return ((string)(this[this.tableRFQDetails.nvDesignationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'nvDesignation\' in table \'RFQDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRFQDetails.nvDesignationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsProcessingNull() {
                 return this.IsNull(this.tableRFQDetails.ProcessingColumn);
             }
@@ -44119,6 +44976,18 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetusernameNull() {
                 this[this.tableRFQDetails.usernameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPortOfOriginIDNull() {
+                return this.IsNull(this.tableRFQDetails.PortOfOriginIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPortOfOriginIDNull() {
+                this[this.tableRFQDetails.PortOfOriginIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -44275,6 +45144,18 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetPurposeOfVisitNull() {
                 this[this.tableRFQDetails.PurposeOfVisitColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsExpensesHandledByNull() {
+                return this.IsNull(this.tableRFQDetails.ExpensesHandledByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetExpensesHandledByNull() {
+                this[this.tableRFQDetails.ExpensesHandledByColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -44731,6 +45612,306 @@ namespace Travel_Request_System_EF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetIsDeletedNull() {
                 this[this.tableRFQDetails.IsDeletedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEmployeeIDNull() {
+                return this.IsNull(this.tableRFQDetails.EmployeeIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEmployeeIDNull() {
+                this[this.tableRFQDetails.EmployeeIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEmployeeCodeNull() {
+                return this.IsNull(this.tableRFQDetails.EmployeeCodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEmployeeCodeNull() {
+                this[this.tableRFQDetails.EmployeeCodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFullNameNull() {
+                return this.IsNull(this.tableRFQDetails.FullNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFullNameNull() {
+                this[this.tableRFQDetails.FullNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDesignationNull() {
+                return this.IsNull(this.tableRFQDetails.DesignationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDesignationNull() {
+                this[this.tableRFQDetails.DesignationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDepartmentNull() {
+                return this.IsNull(this.tableRFQDetails.DepartmentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDepartmentNull() {
+                this[this.tableRFQDetails.DepartmentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDepartmentHeadNull() {
+                return this.IsNull(this.tableRFQDetails.DepartmentHeadColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDepartmentHeadNull() {
+                this[this.tableRFQDetails.DepartmentHeadColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDepartmentHeadEmailNull() {
+                return this.IsNull(this.tableRFQDetails.DepartmentHeadEmailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDepartmentHeadEmailNull() {
+                this[this.tableRFQDetails.DepartmentHeadEmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCostCenterNull() {
+                return this.IsNull(this.tableRFQDetails.CostCenterColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCostCenterNull() {
+                this[this.tableRFQDetails.CostCenterColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCostCenterHeadNull() {
+                return this.IsNull(this.tableRFQDetails.CostCenterHeadColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCostCenterHeadNull() {
+                this[this.tableRFQDetails.CostCenterHeadColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCostCenterHeadEmailNull() {
+                return this.IsNull(this.tableRFQDetails.CostCenterHeadEmailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCostCenterHeadEmailNull() {
+                this[this.tableRFQDetails.CostCenterHeadEmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPassportIDNull() {
+                return this.IsNull(this.tableRFQDetails.PassportIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPassportIDNull() {
+                this[this.tableRFQDetails.PassportIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPassportexpireDateNull() {
+                return this.IsNull(this.tableRFQDetails.PassportexpireDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPassportexpireDateNull() {
+                this[this.tableRFQDetails.PassportexpireDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPassportissuedateNull() {
+                return this.IsNull(this.tableRFQDetails.PassportissuedateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPassportissuedateNull() {
+                this[this.tableRFQDetails.PassportissuedateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsQatarIDNull() {
+                return this.IsNull(this.tableRFQDetails.QatarIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetQatarIDNull() {
+                this[this.tableRFQDetails.QatarIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsQIDEDateNull() {
+                return this.IsNull(this.tableRFQDetails.QIDEDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetQIDEDateNull() {
+                this[this.tableRFQDetails.QIDEDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsQIdfileNull() {
+                return this.IsNull(this.tableRFQDetails.QIdfileColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetQIdfileNull() {
+                this[this.tableRFQDetails.QIdfileColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLocationNull() {
+                return this.IsNull(this.tableRFQDetails.LocationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLocationNull() {
+                this[this.tableRFQDetails.LocationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSectionNull() {
+                return this.IsNull(this.tableRFQDetails.SectionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSectionNull() {
+                this[this.tableRFQDetails.SectionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsContactNull() {
+                return this.IsNull(this.tableRFQDetails.ContactColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetContactNull() {
+                this[this.tableRFQDetails.ContactColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsHireDateNull() {
+                return this.IsNull(this.tableRFQDetails.HireDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetHireDateNull() {
+                this[this.tableRFQDetails.HireDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTerminationDateNull() {
+                return this.IsNull(this.tableRFQDetails.TerminationDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTerminationDateNull() {
+                this[this.tableRFQDetails.TerminationDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEmailNull() {
+                return this.IsNull(this.tableRFQDetails.EmailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEmailNull() {
+                this[this.tableRFQDetails.EmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnvDeptNull() {
+                return this.IsNull(this.tableRFQDetails.nvDeptColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnvDeptNull() {
+                this[this.tableRFQDetails.nvDeptColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnvDeptCodeNull() {
+                return this.IsNull(this.tableRFQDetails.nvDeptCodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnvDeptCodeNull() {
+                this[this.tableRFQDetails.nvDeptCodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnvDesignationNull() {
+                return this.IsNull(this.tableRFQDetails.nvDesignationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnvDesignationNull() {
+                this[this.tableRFQDetails.nvDesignationColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -62806,6 +63987,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("username", "username");
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("ApplicationNumber", "ApplicationNumber");
+            tableMapping.ColumnMappings.Add("PortOfOriginID", "PortOfOriginID");
             tableMapping.ColumnMappings.Add("OriginCIty", "OriginCIty");
             tableMapping.ColumnMappings.Add("OriginCountry", "OriginCountry");
             tableMapping.ColumnMappings.Add("PortOfDestinationID", "PortOfDestinationID");
@@ -62819,6 +64001,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("TravelDays", "TravelDays");
             tableMapping.ColumnMappings.Add("TravelRemarks", "TravelRemarks");
             tableMapping.ColumnMappings.Add("PurposeOfVisit", "PurposeOfVisit");
+            tableMapping.ColumnMappings.Add("ExpensesHandledBy", "ExpensesHandledBy");
             tableMapping.ColumnMappings.Add("DepartureDate", "DepartureDate");
             tableMapping.ColumnMappings.Add("DepartureTime", "DepartureTime");
             tableMapping.ColumnMappings.Add("ReturnDate", "ReturnDate");
@@ -62859,6 +64042,31 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("ModifiedByName", "ModifiedByName");
             tableMapping.ColumnMappings.Add("IsDeleted", "IsDeleted");
             tableMapping.ColumnMappings.Add("IsSubmitted", "IsSubmitted");
+            tableMapping.ColumnMappings.Add("EmployeeID", "EmployeeID");
+            tableMapping.ColumnMappings.Add("EmployeeCode", "EmployeeCode");
+            tableMapping.ColumnMappings.Add("FullName", "FullName");
+            tableMapping.ColumnMappings.Add("Designation", "Designation");
+            tableMapping.ColumnMappings.Add("Department", "Department");
+            tableMapping.ColumnMappings.Add("DepartmentHead", "DepartmentHead");
+            tableMapping.ColumnMappings.Add("DepartmentHeadEmail", "DepartmentHeadEmail");
+            tableMapping.ColumnMappings.Add("CostCenter", "CostCenter");
+            tableMapping.ColumnMappings.Add("CostCenterHead", "CostCenterHead");
+            tableMapping.ColumnMappings.Add("CostCenterHeadEmail", "CostCenterHeadEmail");
+            tableMapping.ColumnMappings.Add("PassportID", "PassportID");
+            tableMapping.ColumnMappings.Add("PassportexpireDate", "PassportexpireDate");
+            tableMapping.ColumnMappings.Add("Passportissuedate", "Passportissuedate");
+            tableMapping.ColumnMappings.Add("QatarID", "QatarID");
+            tableMapping.ColumnMappings.Add("QIDEDate", "QIDEDate");
+            tableMapping.ColumnMappings.Add("QIdfile", "QIdfile");
+            tableMapping.ColumnMappings.Add("Location", "Location");
+            tableMapping.ColumnMappings.Add("Section", "Section");
+            tableMapping.ColumnMappings.Add("Contact", "Contact");
+            tableMapping.ColumnMappings.Add("HireDate", "HireDate");
+            tableMapping.ColumnMappings.Add("TerminationDate", "TerminationDate");
+            tableMapping.ColumnMappings.Add("Email", "Email");
+            tableMapping.ColumnMappings.Add("nvDept", "nvDept");
+            tableMapping.ColumnMappings.Add("nvDeptCode", "nvDeptCode");
+            tableMapping.ColumnMappings.Add("nvDesignation", "nvDesignation");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -62875,7 +64083,7 @@ namespace Travel_Request_System_EF.BTCDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT RFQID, Processing, ProcessingSection, RFQRemarks, AgencyCode, username, ID, ApplicationNumber, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted FROM dbo.RFQDetails";
+            this._commandCollection[0].CommandText = @"SELECT RFQID, Processing, ProcessingSection, RFQRemarks, AgencyCode, username, ID, ApplicationNumber, PortOfOriginID, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, ExpensesHandledBy, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted, EmployeeID, EmployeeCode, FullName, Designation, Department, DepartmentHead, DepartmentHeadEmail, CostCenter, CostCenterHead, CostCenterHeadEmail, PassportID, PassportexpireDate, Passportissuedate, QatarID, QIDEDate, QIdfile, Location, Section, Contact, HireDate, TerminationDate, Email, nvDept, nvDeptCode, nvDesignation FROM dbo.RFQDetails";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

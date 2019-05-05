@@ -428,47 +428,47 @@ namespace Travel_Request_System_EF.Controllers
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
 
-                RFQ rfqlist = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == id).FirstOrDefaultAsync();
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqlist.RFQName + "Pro" + MasterRFQ.ProcessingSection + "Trav" + rfqlist.TravelAgencyID)).Select(x => x.Attachments).ToList();
-                MasterRFQ = rfqlist;
-                if (rfqlist.ProcessingSection == (int)ProcessingSections.AT || rfqlist.ProcessingSection == (int)ProcessingSections.ATHS || rfqlist.ProcessingSection == (int)ProcessingSections.ATHSPC || rfqlist.ProcessingSection == (int)ProcessingSections.ATPC)
+                RFQ rfqitem = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == id).FirstOrDefaultAsync();
+                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqitem.RFQName + "Pro" + rfqitem.ProcessingSection + "Trav" + rfqitem.TravelAgencyID)).Select(x => x.Attachments).ToList();
+                MasterRFQ = rfqitem;
+                if (rfqitem.ProcessingSection == (int)ProcessingSections.AT || rfqitem.ProcessingSection == (int)ProcessingSections.ATHS || rfqitem.ProcessingSection == (int)ProcessingSections.ATHSPC || rfqitem.ProcessingSection == (int)ProcessingSections.ATPC)
                 {
                     ATQuotation atquot = new ATQuotation();
-                    atquot.DestinationID = rfqlist.TravelRequests.PortOfDestinationID;
-                    atquot.DepartureDate = rfqlist.TravelRequests.DepartureDate;
-                    atquot.DepartureTime = rfqlist.TravelRequests.DepartureTime;
-                    atquot.OriginID = rfqlist.TravelRequests.PortOfOriginID;
-                    atquot.ReturnDate = rfqlist.TravelRequests.ReturnDate;
-                    atquot.ReturnTime = rfqlist.TravelRequests.ReturnTime;
-                    atquot.TicketClass = rfqlist.TravelRequests.TicketClass;
+                    atquot.DestinationID = rfqitem.TravelRequests.PortOfDestinationID;
+                    atquot.DepartureDate = rfqitem.TravelRequests.DepartureDate;
+                    atquot.DepartureTime = rfqitem.TravelRequests.DepartureTime;
+                    atquot.OriginID = rfqitem.TravelRequests.PortOfOriginID;
+                    atquot.ReturnDate = rfqitem.TravelRequests.ReturnDate;
+                    atquot.ReturnTime = rfqitem.TravelRequests.ReturnTime;
+                    atquot.TicketClass = rfqitem.TravelRequests.TicketClass;
                     ViewBag.ATQuotation = atquot;
                 }
-                if (rfqlist.ProcessingSection == (int)ProcessingSections.ATHS || rfqlist.ProcessingSection == (int)ProcessingSections.ATHSPC || rfqlist.ProcessingSection == (int)ProcessingSections.HS || rfqlist.ProcessingSection == (int)ProcessingSections.HSPC)
+                if (rfqitem.ProcessingSection == (int)ProcessingSections.ATHS || rfqitem.ProcessingSection == (int)ProcessingSections.ATHSPC || rfqitem.ProcessingSection == (int)ProcessingSections.HS || rfqitem.ProcessingSection == (int)ProcessingSections.HSPC)
                 {
                     HSQuotation hsquot = new HSQuotation();
-                    hsquot.CheckInDate = rfqlist.TravelRequests.CheckInDate;
-                    hsquot.CheckInTime= rfqlist.TravelRequests.CheckInTime;
-                    hsquot.CheckOutDate = rfqlist.TravelRequests.CheckOutDate;
-                    hsquot.CheckOutTime = rfqlist.TravelRequests.CheckOutTime;
-                    hsquot.HotelCategory = rfqlist.TravelRequests.HotelCategory;
-                    hsquot.HotelName = rfqlist.TravelRequests.HotelName;
-                    hsquot.RoomCategory = rfqlist.TravelRequests.RoomCategory;
-                    hsquot.RoomType = rfqlist.TravelRequests.RoomType;
+                    hsquot.CheckInDate = rfqitem.TravelRequests.CheckInDate;
+                    hsquot.CheckInTime= rfqitem.TravelRequests.CheckInTime;
+                    hsquot.CheckOutDate = rfqitem.TravelRequests.CheckOutDate;
+                    hsquot.CheckOutTime = rfqitem.TravelRequests.CheckOutTime;
+                    hsquot.HotelCategory = rfqitem.TravelRequests.HotelCategory;
+                    hsquot.HotelName = rfqitem.TravelRequests.HotelName;
+                    hsquot.RoomCategory = rfqitem.TravelRequests.RoomCategory;
+                    hsquot.RoomType = rfqitem.TravelRequests.RoomType;
                     ViewBag.HSQuotation = hsquot;
                 }
-                if (rfqlist.ProcessingSection == (int)ProcessingSections.ATHSPC || rfqlist.ProcessingSection == (int)ProcessingSections.ATPC || rfqlist.ProcessingSection == (int)ProcessingSections.HSPC || rfqlist.ProcessingSection == (int)ProcessingSections.PC)
+                if (rfqitem.ProcessingSection == (int)ProcessingSections.ATHSPC || rfqitem.ProcessingSection == (int)ProcessingSections.ATPC || rfqitem.ProcessingSection == (int)ProcessingSections.HSPC || rfqitem.ProcessingSection == (int)ProcessingSections.PC)
                 {
                     PCQuotation pcquot = new PCQuotation();
-                    pcquot.DropOffDate = rfqlist.TravelRequests.DropOffDate;
-                    pcquot.DropoffLocation = rfqlist.TravelRequests.DropOffLocation;
-                    pcquot.DropOffTime= rfqlist.TravelRequests.DropOffTime;
-                    pcquot.PickUpDate= rfqlist.TravelRequests.PickUpDate;
-                    pcquot.PickupLocation= rfqlist.TravelRequests.PickUpLocation;
-                    pcquot.PickUpTime = rfqlist.TravelRequests.PickUpTime;
-                    pcquot.PreferredVehicle= rfqlist.TravelRequests.PreferredVehicle;
+                    pcquot.DropOffDate = rfqitem.TravelRequests.DropOffDate;
+                    pcquot.DropoffLocation = rfqitem.TravelRequests.DropOffLocation;
+                    pcquot.DropOffTime= rfqitem.TravelRequests.DropOffTime;
+                    pcquot.PickUpDate= rfqitem.TravelRequests.PickUpDate;
+                    pcquot.PickupLocation= rfqitem.TravelRequests.PickUpLocation;
+                    pcquot.PickUpTime = rfqitem.TravelRequests.PickUpTime;
+                    pcquot.PreferredVehicle= rfqitem.TravelRequests.PreferredVehicle;
                     ViewBag.PCQuotation = pcquot;
                 }
-                return View(rfqlist);
+                return View(rfqitem);
             }
         }
 
@@ -583,10 +583,10 @@ namespace Travel_Request_System_EF.Controllers
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
 
-                RFQ rfqlist = db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == rfq.ID).FirstOrDefault();
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqlist.RFQName + "Pro" + rfqlist.ProcessingSection + "Trav" + rfqlist.TravelAgencyID)).Select(x => x.Attachments).ToList();
-                MasterRFQ = rfqlist;
-                return View(rfqlist);
+                RFQ rfqitem = db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == rfq.ID).FirstOrDefault();
+                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqitem.RFQName + "Pro" + rfqitem.ProcessingSection + "Trav" + rfqitem.TravelAgencyID)).Select(x => x.Attachments).ToList();
+                MasterRFQ = rfqitem;
+                return View(rfqitem);
             }
         }
 
@@ -594,14 +594,14 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                RFQ rfqlist = db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == id).FirstOrDefault();
+                RFQ rfqitem = db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == id).FirstOrDefault();
 
                 if (ModelState.IsValid)
                 {
-                    rfqlist.IsDeleted = true;
+                    rfqitem.IsDeleted = true;
 
-                    db.RFQ.Attach(rfqlist);
-                    var entry = db.Entry(rfqlist);
+                    db.RFQ.Attach(rfqitem);
+                    var entry = db.Entry(rfqitem);
                     entry.Property(a => a.IsDeleted).IsModified = true;
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -627,9 +627,9 @@ namespace Travel_Request_System_EF.Controllers
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
 
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqlist.RFQName + "Pro" + rfqlist.ProcessingSection + "Trav" + rfqlist.TravelAgencyID)).Select(x => x.Attachments).ToList();
-                MasterRFQ = rfqlist;
-                return View(rfqlist);
+                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqitem.RFQName + "Pro" + rfqitem.ProcessingSection + "Trav" + rfqitem.TravelAgencyID)).Select(x => x.Attachments).ToList();
+                MasterRFQ = rfqitem;
+                return View(rfqitem);
             }
         }
 
