@@ -202,7 +202,6 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "        ,CAST(Passportissuedate AS NVARCHAR(100)) Passportissuedate " +
 "        ,CAST(QID AS NVARCHAR(100)) QatarID " +
 "        ,CAST(QIDEDate AS NVARCHAR(100)) QIDEDate " +
-"        ,CAST(QIdfile AS NVARCHAR(100)) QIdfile " +
 "        ,CAST(( " +
 "                        SELECT Value " +
 "                        FROM HRW_VEmpEntityValues " +

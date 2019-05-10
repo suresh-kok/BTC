@@ -18,6 +18,8 @@ else
 
 <h1 class="error">@(!String.IsNullOrEmpty(ViewBag.StatusCode) ? ViewBag.StatusCode : "500 Error")</h1>
 
+<h1 class="error" style="visibility:hidden">@(!String.IsNullOrEmpty(ViewBag.ErrorText) ? ViewBag.StatusCode : "500 Error")</h1>
+
 <div style="background-color: #ff0000; color: White; height: 10px;">
 </div>
 <div style="background-color: #F5F5DC; color: black; height: auto;">
