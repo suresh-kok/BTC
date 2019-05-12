@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using System.Web.Security;
 using Travel_Request_System_EF.CustomAuthentication;
 using Travel_Request_System_EF.Mail;
@@ -88,7 +89,7 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 using (BTCEntities db = new BTCEntities())
                 {
-                    TravelRequests travelRequest = db.TravelRequests.Include(a=>a.Users).Include(a => a.Users1).Include("Users1.HRW_Employee").Include("Users.HRW_Employee").SingleOrDefault(s=>s.ID == id);
+                    TravelRequests travelRequest = db.TravelRequests.Include(a => a.Users).Include(a => a.Users1).Include("Users1.HRW_Employee").Include("Users.HRW_Employee").SingleOrDefault(s => s.ID == id);
                     if (travelRequest == null)
                     {
                         ViewBag.ErrorMessage = "Invalid Travel Request ID";
@@ -253,7 +254,7 @@ namespace Travel_Request_System_EF.Controllers
             {
                 var id = Convert.ToInt32(collection["ID"]);
                 TravelRequests travelRequest = db.TravelRequests.Include(a => a.Users).Include(a => a.Users1).Include("Users1.HRW_Employee").Include("Users.HRW_Employee").SingleOrDefault(s => s.ID == id);
-                
+
                 if (ModelState.IsValid)
                 {
                     travelRequest.AdditionalAllowance = Convert.ToInt32(collection["AdditionalAllowance"]);
@@ -363,6 +364,16 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         public ActionResult AdminDashboard()
         {
+            List<Users> usersList = new List<Users>();
+            using (BTCEntities db = new BTCEntities())
+            {
+                ViewBag.usersList = db.Users.Include(a => a.Roles).Include(a => a.HRW_Employee).ToList();
+            }
+            List<FullEmployeeDetail> employeeList = new List<FullEmployeeDetail>();
+            using (EmployeeDetailsDBService db = new EmployeeDetailsDBService(empCode))
+            {
+                ViewBag.employeeList = db.AllEmployeeDetails();
+            }
             return View();
         }
 
@@ -543,6 +554,11 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         public ActionResult ManageEmployees()
         {
+            List<FullEmployeeDetail> employeeList = new List<FullEmployeeDetail>();
+            using (EmployeeDetailsDBService db = new EmployeeDetailsDBService(empCode))
+            {
+                ViewBag.employeeList = db.AllEmployeeDetails();
+            }
             return View();
         }
 
@@ -552,7 +568,7 @@ namespace Travel_Request_System_EF.Controllers
             List<Users> usersList = new List<Users>();
             using (BTCEntities db = new BTCEntities())
             {
-                usersList = db.Users.Include(a => a.Roles).Include(a => a.HRW_Employee).ToList();
+                usersList = db.Users.Include(a => a.Roles).Include(a => a.HRW_Employee).Where(a => a.IsDeleted == false).ToList();
             }
             return View(usersList);
 
@@ -595,11 +611,14 @@ namespace Travel_Request_System_EF.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateUser([Bind(Include = "ID,Username,FirstName,LastName,Email,Password,IsActive,ActivationCode")] Users userObj, FormCollection form)
         {
-            bool statusRegistration = false;
-            string messageRegistration = string.Empty;
-
-            if (ModelState.IsValid)
+            try
             {
+
+                bool statusRegistration = false;
+                string messageRegistration = string.Empty;
+                int empValue = Convert.ToInt32(form["EmployeeID"].ToString());
+                userObj.HREmployeeID = empValue;
+
                 int DDLValue = Convert.ToInt32(form["RoleID"].ToString());
 
                 string userName = Membership.GetUserNameByEmail(userObj.Email);
@@ -611,6 +630,11 @@ namespace Travel_Request_System_EF.Controllers
 
                 using (BTCEntities db = new BTCEntities())
                 {
+                    List<Roles> allRoles = db.Roles.ToList();
+                    List<HRW_Employee> allEmployees = db.HRW_Employee.ToList();
+                    ViewBag.allRoles = allRoles;
+                    ViewBag.allEmployees = allEmployees;
+
                     var role = db.Roles.Where(a => a.ID == DDLValue).FirstOrDefault();
                     var user = new Users()
                     {
@@ -619,6 +643,7 @@ namespace Travel_Request_System_EF.Controllers
                         LastName = userObj.LastName,
                         Email = userObj.Email,
                         Password = userObj.Password,
+                        HREmployeeID = userObj.HREmployeeID,
                         ActivationCode = Guid.NewGuid(),
                     };
 
@@ -631,15 +656,16 @@ namespace Travel_Request_System_EF.Controllers
                 VerificationEmail(userObj.Email, userObj.ActivationCode.ToString());
                 messageRegistration = "Your account has been created successfully. ^_^";
                 statusRegistration = true;
-            }
-            else
-            {
-                messageRegistration = "Something Wrong!";
-            }
-            ViewBag.Message = messageRegistration;
-            ViewBag.Status = statusRegistration;
 
-            return RedirectToAction("CreateUser", userObj);
+                ViewBag.Message = messageRegistration;
+                ViewBag.Status = statusRegistration;
+
+                return RedirectToAction("ManageUsers");
+            }
+            catch (Exception)
+            {
+                return View("CreateUser", userObj);
+            }
         }
 
         [CustomAuthorize(Roles = "Admin")]
@@ -722,6 +748,16 @@ namespace Travel_Request_System_EF.Controllers
                 db.Configuration.ValidateOnSaveEnabled = false;
                 await db.SaveChangesAsync();
                 return RedirectToAction("ManageUsers");
+            }
+        }
+
+        [CustomAuthorize(Roles = "Admin")]
+        public ActionResult AnyEmployeeDetails(string id)
+        {
+            using (EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService(id))
+            {
+                var FullEmployeeDetails = employeeDetailsDBService.FullEmployeeDetails();
+                return View(FullEmployeeDetails);
             }
         }
 
@@ -817,7 +853,7 @@ namespace Travel_Request_System_EF.Controllers
                     using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                     {
                         List<string> EmpCodes = EmpDBService.EmployeesUnderDepartmentHeadDetails(empCode);
-                    return db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Include("Users1.HRW_employee").Include("Users.HRW_employee").Where(a => a.ApprovalLevel == level && EmpCodes.Contains(a.Users1.HRW_Employee.EmployeeCode)).ToList();
+                        return db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Include("Users1.HRW_employee").Include("Users.HRW_employee").Where(a => a.ApprovalLevel == level && EmpCodes.Contains(a.Users1.HRW_Employee.EmployeeCode)).ToList();
                     }
                 }
                 else
@@ -943,21 +979,12 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        private void GetEmployeeDetails()
+        public string GetEmployeeDetails(string id)
         {
-            string EmpCode = "";
-            string EntityID = "";
-            string entityTypeID = "";
-
-            EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService(EmpCode);
-            ViewBag.DepartmentHead = employeeDetailsDBService.DepartmentHead(EntityID);
-            ViewBag.EmployeeManager = employeeDetailsDBService.EmployeeManager(entityTypeID);
-            ViewBag.FullEmployeeDetails = employeeDetailsDBService.FullEmployeeDetails();
-            ViewBag.SimpleEmployeeDetails = employeeDetailsDBService.SimpleEmployeeDetails();
-            ViewBag.PassportDetails = employeeDetailsDBService.PassportDetails();
-            ViewBag.QatarIDDetails = employeeDetailsDBService.QatarIDDetails();
-            ViewBag.DepartmentHeadDetails = employeeDetailsDBService.DepartmentHeadDetails(entityTypeID);
-            ViewBag.EmployeeManagerDetails = employeeDetailsDBService.EmployeeManagerDetails(entityTypeID);
+            using (EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService(id))
+            {
+                return new JavaScriptSerializer().Serialize(employeeDetailsDBService.FullEmployeeDetails());
+            }
         }
 
         #endregion

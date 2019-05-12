@@ -29,7 +29,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         public string Fax { get; set; }
 
         [DisplayName("Mobile")]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+        [RegularExpression(@"^(\d{10})$", ErrorMessage = "Not a valid phone number")]
         public string Mobile { get; set; }
 
         [DisplayName("Landline")]

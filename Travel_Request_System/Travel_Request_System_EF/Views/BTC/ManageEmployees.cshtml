@@ -1,8 +1,92 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Manage Employees";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ManageEmployees</h2>
+@{
+    var employeelist = (IEnumerable<Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail>)ViewBag.employeeList;
+}
 
+<aside class="right-side">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Employee Details</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
+                            @if (employeelist == null || (employeelist.Count() == 0))
+                            {
+                                <tr>
+                                    <td colspan="10">No Record's found.</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayName("Name")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayName("Designation")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayName("Position Code")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayName("Department")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayName("Cost Center")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayName("Passport ID")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayName("Qatar ID")
+                                    </td>
+                                    <th></th>
+                                </tr>
+
+                                foreach (var item in employeelist)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FullName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Designation)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PositionCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Department)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Costcenter)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PassportID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.QatarID)
+                                        </td>
+                                        <td>
+                                            <span class="glyphicon">
+                                                @Html.ActionLink("  Details", "AnyEmployeeDetails", new { id = item.EmployeeID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</aside>

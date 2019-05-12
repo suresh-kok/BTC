@@ -43,8 +43,8 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         [DisplayName("Activation Code")]
         public System.Guid ActivationCode { get; set; }
 
-        [DisplayName("Employee ID")]
-        [Required(ErrorMessage = "Employee ID is Required")]
+        [DisplayName("BTC Employee Code")]
+        [Required(ErrorMessage = "BTC Employee Code is Required")]
         public Nullable<long> HREmployeeID { get; set; }
 
         [DisplayName("Is Deleted")]
