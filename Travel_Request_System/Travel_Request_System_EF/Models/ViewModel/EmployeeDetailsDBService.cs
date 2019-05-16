@@ -743,7 +743,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                                                                     "INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId) " +
                                                                     "INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId) " +
                                                                     "WHERE Emp.EmployeeCode = '@employeeCode' " +
-                                                                    "AND EM.EntityTypeID = '96' " +
+                                                                    "AND EM.EntityTypeID = '101' " +
                                                                     ")  " +
                                                                 "AND EM.EntityTypeID = '101' " +
                                                                 ") " +
@@ -758,7 +758,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                                                                         "INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId) " +
                                                                         "INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId) " +
                                                                         "WHERE Emp.EmployeeCode = '@employeeCode' " +
-                                                                            "AND EM.EntityTypeID = '96' " +
+                                                                            "AND EM.EntityTypeID = '101' " +
                                                         ") " +
                                             "AND EM.EntityTypeID = '101' ";
 
@@ -783,7 +783,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                                             "ORG_EntityMaster EM " +
                                             "ON " +
                                             "(EM.EntityId=Oel.EntityId) " +
-                                            "WHERE EM.EntityTypeID='96' AND EM.Description = (SELECT FullName from HRW_Employee where EmployeeCode = '" + employeeCode + "')) ";
+                                            "WHERE EM.EntityTypeID='101' AND EM.Description = (SELECT FullName from HRW_Employee where EmployeeCode = '" + employeeCode + "')) ";
 
                 var sequenceQueryResult = db.Database.SqlQuery<List<string>>(sequenceMaxQuery, new SqlParameter("employeeCode", employeeCode)).FirstOrDefault();
 

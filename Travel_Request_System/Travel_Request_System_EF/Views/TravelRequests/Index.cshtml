@@ -106,7 +106,7 @@
                                             <td>
                                                 @Html.DisplayFor(modelitem => item.ExpensesHandledBy)
                                             <td>
-                                                @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.CreateOn.ToString()))));
+                                                @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.CreateOn.ToString()))))
                                             </td>
                                             <td>
                                                 @(new HtmlString(item.Users1.FirstName + " ," + item.Users1.LastName))

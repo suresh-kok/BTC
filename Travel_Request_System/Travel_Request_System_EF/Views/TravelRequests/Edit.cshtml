@@ -436,12 +436,12 @@
                                     <label class="col-sm-3">Expenses Handled By</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="expensesHandledBy">
-                                            <option>None</option>
-                                            <option>Vendor 1</option>
-                                            <option>Vendor 2</option>
-                                            <option>Vendor 3</option>
-                                            <option>Vendor 4</option>
-                                            <option>Vendor 5</option>
+                                            <option @(Model.HotelCategory == "None" ? " selected" : "")>Any</option>
+                                            <option @(Model.HotelCategory == "Vendor 1" ? " selected" : "")>1 Star Rated Hotels</option>
+                                            <option @(Model.HotelCategory == "Vendor 2" ? " selected" : "")>2 Star Rated Hotels</option>
+                                            <option @(Model.HotelCategory == "Vendor 3" ? " selected" : "")>3 Star Rated Hotels</option>
+                                            <option @(Model.HotelCategory == "Vendor 4" ? " selected" : "")>4 Star Rated Hotels</option>
+                                            <option @(Model.HotelCategory == "Vendor 5" ? " selected" : "")>5 or Above Star Rated Hotels</option>
                                         </select>
                                     </div>
                                 </div>
@@ -456,13 +456,13 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="atrBTC" name="airTicketManagement" value="Yes" class="flat-red" @(Model.AirTicketManagement == "Yes" ? " checked" : "")> BTC
+                                                <input type="radio" id="atrBTC" name="airTicketManagement" value="Yes" class="flat-red" @(Model.AirTicketManagement == "Yes" ? " checked" : "")> Yes
                                             </label>
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             <label>
-                                                <input type="radio" id="atrOther" name="airTicketManagement" value="No" class="flat-red" @(Model.AirTicketManagement == "No" ? " checked" : "")> Other
+                                                <input type="radio" id="atrOther" name="airTicketManagement" value="No" class="flat-red" @(Model.AirTicketManagement == "No" ? " checked" : "")> No
                                             </label>
                                         </div>
                                     </div>
@@ -485,13 +485,13 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="taBTC" name="travelAllowance" value="Yes" class="flat-red" @(Model.TravelAllowance == "Yes" ? " checked" : "")> BTC
+                                                <input type="radio" id="taBTC" name="travelAllowance" value="Yes" class="flat-red" @(Model.TravelAllowance == "Yes" ? " checked" : "")> Yes
                                             </label>
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             <label>
-                                                <input type="radio" id="taOther" name="travelAllowance" value="No" class="flat-red" @(Model.TravelAllowance == "No" ? " checked" : "")> Other
+                                                <input type="radio" id="taOther" name="travelAllowance" value="No" class="flat-red" @(Model.TravelAllowance == "No" ? " checked" : "")> No
                                             </label>
                                         </div>
                                     </div>
@@ -519,13 +519,13 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label>
-                                                <input type="radio" id="hsBTC" name="hotelStay" value="Yes" class="flat-red" @(Model.HotelStay == "Yes" ? " checked" : "")> BTC
+                                                <input type="radio" id="hsBTC" name="hotelStay" value="Yes" class="flat-red" @(Model.HotelStay == "Yes" ? " checked" : "")> Yes
                                             </label>
                                             &emsp;
                                             &emsp;
                                             &emsp;
                                             <label>
-                                                <input type="radio" id="hsOther" name="hotelStay" value="No" class="flat-red" @(Model.HotelStay == "No" ? " checked" : "")> Other
+                                                <input type="radio" id="hsOther" name="hotelStay" value="No" class="flat-red" @(Model.HotelStay == "No" ? " checked" : "")> No
                                             </label>
                                         </div>
                                     </div>
@@ -555,11 +555,11 @@
                                     <div class="col-sm-9">
                                         <select class="form-control" name="hotelCategory">
                                             <option @(Model.HotelCategory == "Any" ? " selected" : "")>Any</option>
-                                            <option @(Model.HotelCategory == "1 Star Rated Hotels" ? " checked" : "")>1 Star Rated Hotels</option>
-                                            <option @(Model.HotelCategory == "2 Star Rated Hotels" ? " checked" : "")>2 Star Rated Hotels</option>
-                                            <option @(Model.HotelCategory == "3 Star Rated Hotels" ? " checked" : "")>3 Star Rated Hotels</option>
-                                            <option @(Model.HotelCategory == "4 Star Rated Hotels" ? " checked" : "")>4 Star Rated Hotels</option>
-                                            <option @(Model.HotelCategory == "5 or Star Rated Hotels" ? " checked" : "")>5 or Above Star Rated Hotels</option>
+                                            <option @(Model.HotelCategory == "1 Star Rated Hotels" ? " selected" : "")>1 Star Rated Hotels</option>
+                                            <option @(Model.HotelCategory == "2 Star Rated Hotels" ? " selected" : "")>2 Star Rated Hotels</option>
+                                            <option @(Model.HotelCategory == "3 Star Rated Hotels" ? " selected" : "")>3 Star Rated Hotels</option>
+                                            <option @(Model.HotelCategory == "4 Star Rated Hotels" ? " selected" : "")>4 Star Rated Hotels</option>
+                                            <option @(Model.HotelCategory == "5 or Star Rated Hotels" ? " selected" : "")>5 or Above Star Rated Hotels</option>
                                         </select>
                                     </div>
                                 </div>

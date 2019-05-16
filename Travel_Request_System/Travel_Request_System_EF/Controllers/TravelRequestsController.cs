@@ -241,13 +241,13 @@ namespace Travel_Request_System_EF.Controllers
                     using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                     {
                         EmailPersonDetails emailPersonDetails = EmpDBService.HRDetails();
-                        NotificationEmail(travelRequest, emailPersonDetails.Email);
+                        //NotificationEmail(travelRequest, emailPersonDetails.Email);
 
                         emailPersonDetails = EmpDBService.HRNotificationDetails();
-                        NotificationEmail(travelRequest, emailPersonDetails.Email);
+                        //NotificationEmail(travelRequest, emailPersonDetails.Email);
 
                         emailPersonDetails = EmpDBService.DepartmentHeadMailDetails(empCode);
-                        NotificationEmail(travelRequest, emailPersonDetails.Email);
+                        //NotificationEmail(travelRequest, emailPersonDetails.Email);
                     }
                     return RedirectToAction("Index");
                 }
