@@ -247,7 +247,19 @@ namespace Travel_Request_System_EF.Controllers
                         //NotificationEmail(travelRequest, emailPersonDetails.Email);
 
                         emailPersonDetails = EmpDBService.DepartmentHeadMailDetails(empCode);
-                        //NotificationEmail(travelRequest, emailPersonDetails.Email);
+                        if (emailPersonDetails != null && emailPersonDetails.Email != "")
+                        {
+                            //NotificationEmail(travelRequest, emailPersonDetails.Email);
+                        }
+                        else
+                        {
+                            var travelRequestData = dbcontext.TravelRequests.Where(x => x.ID == travelRequest.ID).FirstOrDefault();
+                            travelRequestData.ApprovalLevel = (int)ApprovalLevels.ApprovedByManager;
+                            dbcontext.Entry(travelRequestData).State = EntityState.Modified;
+                            dbcontext.TravelRequests.Attach(travelRequestData);
+                            dbcontext.Entry(travelRequestData).Property(x => x.ApprovalLevel).IsModified = true;
+                            await dbcontext.SaveChangesAsync();
+                        }
                     }
                     return RedirectToAction("Index");
                 }

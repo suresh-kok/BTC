@@ -12,7 +12,7 @@ using Travel_Request_System_EF.Models.ViewModel;
 
 namespace Travel_Request_System_EF
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
