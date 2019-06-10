@@ -38,7 +38,7 @@ namespace Travel_Request_System_EF.Controllers
                 CustomRole customRole = new CustomRole();
                 roles = customRole.GetRolesForUser(user.UserName);
                 ViewBag.RoleDetails = roles.ToList()[0];
-                IsLoggedIn(roles.ToList());
+                IsLoggedIn();
                 using (BTCEntities db = new BTCEntities())
                 {
                     dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
@@ -108,7 +108,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
-                checkErrorMessages();
+                CheckErrorMessages();
 
                 if (TempData["tempTravelRequest"] != null)
                 {
@@ -452,7 +452,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
-                checkErrorMessages();
+                CheckErrorMessages();
                 return View(travelRequest);
             }
         }
@@ -588,7 +588,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
-                checkErrorMessages();
+                CheckErrorMessages();
                 return View(travelRequest);
             }
         }
@@ -614,7 +614,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
-                checkErrorMessages();
+                CheckErrorMessages();
                 return View(travelRequest);
             }
         }
@@ -637,15 +637,15 @@ namespace Travel_Request_System_EF.Controllers
 
         public void PrintTravelRequest(int id)
         {
-            ReportViewer reportViewer = new ReportViewer();
-            reportViewer.ProcessingMode = ProcessingMode.Local;
-            reportViewer.SizeToReportContent = true;
-            reportViewer.Width = Unit.Percentage(900);
-            reportViewer.Height = Unit.Percentage(900);
+            ReportViewer reportViewer = new ReportViewer
+            {
+                ProcessingMode = ProcessingMode.Local,
+                SizeToReportContent = true,
+                Width = Unit.Percentage(900),
+                Height = Unit.Percentage(900)
+            };
             var connectionString = ConfigurationManager.ConnectionStrings["AuthenticationDB"].ConnectionString;
             BTCDataSet ds = new BTCDataSet();
-            Warning[] warnings;
-            string[] streamIds;
             string mimeType = string.Empty;
             string encoding = string.Empty;
             string extension = string.Empty;
@@ -658,7 +658,7 @@ namespace Travel_Request_System_EF.Controllers
             adp.Fill(ds, ds.EmployeeTravelRequestDetails.TableName);
             reportViewer.LocalReport.ReportPath = Path.Combine(@"C:\Users\kanniyappans\Documents\GitHub\BTC\Travel_Request_System\Travel_Request_System_EF\Reports\", "TravelRequestReport.rdlc");
             reportViewer.LocalReport.DataSources.Add(new ReportDataSource("detailsDataset", ds.Tables["EmployeeTravelRequestDetails"]));
-            bytes = reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+            bytes = reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out string[] streamIds, out Warning[] warnings);
             Response.Buffer = true;
             Response.Clear();
             Response.ContentType = mimeType;
@@ -669,7 +669,7 @@ namespace Travel_Request_System_EF.Controllers
 
         }
 
-        private void IsLoggedIn(List<string> Role)
+        private void IsLoggedIn()
         {
             var Val = true;
             ViewBag.LoggedOut = !Val;
@@ -738,7 +738,7 @@ namespace Travel_Request_System_EF.Controllers
             return RFQno[0] + '-' + RFQno[1] + '-' + RFQno[2] + '-' + String.Format("{0:D4}", (Convert.ToInt32(RFQno[3]) + 1));
         }
 
-        private void checkErrorMessages()
+        private void CheckErrorMessages()
         {
             if (TempData["ErrorMessage"] != null)
             {
@@ -751,10 +751,12 @@ namespace Travel_Request_System_EF.Controllers
             var url = string.Format("/TravelRequests/Details/{0}", travelRequests.ID);
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
 
-            SendMail mail = new SendMail();
-            mail.ToAddresses = new List<string>() { ReceiverEmailID, travelRequests.Users1.Email };
-            mail.MailSubject = "Travel Request " + travelRequests.ApplicationNumber + " Submitted!";
-            mail.MailBody = "<br/> Please click on the following link to view the details of the Travel Request." + "<br/>Travel Request: <a href='" + link + "'>" + travelRequests.ApplicationNumber + "</a>";
+            SendMail mail = new SendMail
+            {
+                ToAddresses = new List<string> { ReceiverEmailID, travelRequests.Users1.Email },
+                MailSubject = "Travel Request " + travelRequests.ApplicationNumber + " Submitted!",
+                MailBody = "<br/> Please click on the following link to view the details of the Travel Request." + "<br/>Travel Request: <a href='" + link + "'>" + travelRequests.ApplicationNumber + "</a>"
+            };
 
             try
             {

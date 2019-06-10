@@ -33,7 +33,7 @@ namespace Travel_Request_System_EF.Controllers
                 CustomRole customRole = new CustomRole();
                 roles = customRole.GetRolesForUser(user.UserName);
                 ViewBag.RoleDetails = roles.ToList()[0];
-                IsLoggedIn(roles.ToList());
+                IsLoggedIn();
                 using (BTCEntities db = new BTCEntities())
                 {
                     dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
@@ -129,7 +129,7 @@ namespace Travel_Request_System_EF.Controllers
                     travelRequest.ApprovalRemarks = travelRequest.ApprovalRemarks + "\n HR Remarks: Approved By -" + dbuser.FirstName + ", " + dbuser.LastName + " \n Updated On: " + DateTime.Now.ToLongDateString() + " \n Comments: " + collection["ApprovalRemarksUser"];
                     db.Entry(travelRequest).State = EntityState.Modified;
                     db.SaveChanges();
-                    NotificationEmail(travelRequest, true);
+                    //NotificationEmail(travelRequest, true);
                     return RedirectToAction("HRDashboard");
                 }
                 else
@@ -170,7 +170,7 @@ namespace Travel_Request_System_EF.Controllers
                     travelRequest.ApprovalRemarks = travelRequest.ApprovalRemarks + "\n HR Remarks: Rejected By -" + dbuser.FirstName + ", " + dbuser.LastName + " \n Updated On: " + DateTime.Now.ToLongDateString() + " \n Comments: " + collection["ApprovalRemarksUser"];
                     db.Entry(travelRequest).State = EntityState.Modified;
                     db.SaveChanges();
-                    NotificationEmail(travelRequest, false);
+                    //NotificationEmail(travelRequest, false);
                     return RedirectToAction("HRDashboard");
                 }
                 else
@@ -263,7 +263,7 @@ namespace Travel_Request_System_EF.Controllers
                     travelRequest.ApprovalRemarks = travelRequest.ApprovalRemarks + "\n Manager Remarks: Approved By -" + dbuser.FirstName + ", " + dbuser.LastName + " \n Updated On: " + DateTime.Now.ToLongDateString() + " \n Comments: " + collection["ApprovalRemarksUser"];
                     db.Entry(travelRequest).State = EntityState.Modified;
                     db.SaveChanges();
-                    NotificationEmail(travelRequest, true);
+                    //NotificationEmail(travelRequest, true);
                     return RedirectToAction("ManagerDashboard");
                 }
                 else
@@ -304,7 +304,7 @@ namespace Travel_Request_System_EF.Controllers
                     travelRequest.ApprovalRemarks = travelRequest.ApprovalRemarks + "\n Manager Remarks: Rejected By -" + dbuser.FirstName + ", " + dbuser.LastName + " \n Updated On: " + DateTime.Now.ToLongDateString() + " \n Comments: " + collection["ApprovalRemarksUser"];
                     db.Entry(travelRequest).State = EntityState.Modified;
                     db.SaveChanges();
-                    NotificationEmail(travelRequest, false);
+                    //NotificationEmail(travelRequest, false);
                     return RedirectToAction("ManagerDashboard");
                 }
                 else
@@ -400,7 +400,7 @@ namespace Travel_Request_System_EF.Controllers
                 TravelAgency travelAgency = new TravelAgency();
                 travelAgency.AgencyCode = db.TravelAgency.Count() > 0 ? GenerateNextAgencyID(db.TravelAgency.OrderByDescending(a => a.ID).FirstOrDefault().AgencyCode) : "HRD-BTC-0HQ-001";
 
-                checkErrorMessages();
+                CheckErrorMessages();
                 return View(travelAgency);
             }
         }
@@ -431,7 +431,7 @@ namespace Travel_Request_System_EF.Controllers
                 TempData["ErrorMessage"] = sberr.ToList();
             }
 
-            checkErrorMessages();
+            CheckErrorMessages();
             return View(travelAgency);
         }
 
@@ -477,7 +477,7 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 TempData["ErrorMessage"] = sberr.ToList();
             }
-            checkErrorMessages();
+            CheckErrorMessages();
             return View(travelAgency);
         }
 
@@ -513,7 +513,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     return HttpNotFound();
                 }
-                checkErrorMessages();
+                CheckErrorMessages();
                 return View(travelAgency);
             }
         }
@@ -804,7 +804,7 @@ namespace Travel_Request_System_EF.Controllers
             if (ModelState.IsValid)
             {
                 CustomMembership customMembership = new CustomMembership();
-                var userdet = customMembership.GetUser(user.UserName, true);
+                MembershipUser userdet = customMembership.GetUser(user.UserName, true);
 
                 if (userdet == null || (userdet != null && string.Compare(oldPassword, newPassword, StringComparison.OrdinalIgnoreCase) == 0))
                 {
@@ -836,7 +836,7 @@ namespace Travel_Request_System_EF.Controllers
             return RedirectToAction("ChangePassword");
         }
 
-        private List<TravelRequests> ViewMyTravelRequests()
+        List<TravelRequests> ViewMyTravelRequests()
         {
             using (BTCEntities db = new BTCEntities())
             {
@@ -844,7 +844,7 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        private List<TravelRequests> ViewApprovalTravelRequests(int level, string employeeCode = "")
+        List<TravelRequests> ViewApprovalTravelRequests(int level, string employeeCode = "")
         {
             using (BTCEntities db = new BTCEntities())
             {
@@ -880,9 +880,9 @@ namespace Travel_Request_System_EF.Controllers
             return View();
         }
 
-        private void IsLoggedIn(List<string> Role)
+        void IsLoggedIn()
         {
-            var Val = true;
+            bool Val = true;
             ViewBag.LoggedOut = !Val;
             ViewBag.messages = Val;
             ViewBag.notifications = Val;
@@ -917,16 +917,15 @@ namespace Travel_Request_System_EF.Controllers
         [NonAction]
         public void VerificationEmail(string email, string activationCode)
         {
-            var url = string.Format("/Account/ActivationAccount/{0}", activationCode);
-            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
+            string url = string.Format("/Account/ActivationAccount/{0}", activationCode);
+            string link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
 
-            SendMail mail = new SendMail();
-            mail.ToAddresses = new List<string>
+            SendMail mail = new SendMail
             {
-                email
+                ToAddresses = new List<string> { email },
+                MailSubject = "Activation Account !",
+                MailBody = "<br/> Please click on the following link in order to activate your account" + "<br/><a href='" + link + "'> Activation Account ! </a>"
             };
-            mail.MailSubject = "Activation Account !";
-            mail.MailBody = "<br/> Please click on the following link in order to activate your account" + "<br/><a href='" + link + "'> Activation Account ! </a>";
 
             try
             {
@@ -940,20 +939,17 @@ namespace Travel_Request_System_EF.Controllers
 
         public void NotificationEmail(TravelRequests travelRequests, bool IsApproved)
         {
-            var url = string.Format("/TravelRequests/Details/{0}", travelRequests.ID);
-            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
+            string url = string.Format("/TravelRequests/Details/{0}", travelRequests.ID);
+            string link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
 
-            SendMail mail = new SendMail();
-            mail.ToAddresses = new List<string>() { travelRequests.Users1.Email };
-            if (IsApproved)
+            SendMail mail = new SendMail
             {
-                mail.MailSubject = "Travel Request " + travelRequests.ApplicationNumber + " Approved!";
-            }
-            else
-            {
-                mail.MailSubject = "Travel Request " + travelRequests.ApplicationNumber + " Rejected!";
-            }
-            mail.MailBody = "<br/> Please click on the following link to view the details of the Travel Request." + "<br/>Travel Request: <a href='" + link + "'>" + travelRequests.ApplicationNumber + "</a>";
+                ToAddresses = new List<string> { travelRequests.Users1.Email },
+                MailSubject = IsApproved
+                ? "Travel Request " + travelRequests.ApplicationNumber + " Approved!"
+                : "Travel Request " + travelRequests.ApplicationNumber + " Rejected!",
+                MailBody = "<br/> Please click on the following link to view the details of the Travel Request." + "<br/>Travel Request: <a href='" + link + "'>" + travelRequests.ApplicationNumber + "</a>"
+            };
 
             try
             {
@@ -965,13 +961,13 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        private string GenerateNextAgencyID(string currentID)
+        string GenerateNextAgencyID(string currentID)
         {
             string[] RFQno = currentID.Split('-');
             return RFQno[0] + '-' + RFQno[1] + '-' + RFQno[2] + '-' + String.Format("{0:D4}", (Convert.ToInt32(RFQno[3]) + 1));
         }
 
-        private void checkErrorMessages()
+        void CheckErrorMessages()
         {
             if (TempData["ErrorMessage"] != null)
             {

@@ -775,7 +775,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                                                         ") " +
                                             "AND EM.EntityTypeID = '101' ";
 
-                var sequenceQueryResult = db.Database.SqlQuery<EmailPersonDetails>(sequenceMaxQuery, new SqlParameter("employeeCode", employeeCode)).FirstOrDefault();
+                var sequenceQueryResult = db.Database.SqlQuery<EmailPersonDetails>(sequenceMaxQuery, new SqlParameter("employeeCode", EmployeeCode)).FirstOrDefault();
 
                 if (sequenceQueryResult != null)
                 {
@@ -796,10 +796,10 @@ namespace Travel_Request_System_EF.Models.ViewModel
                                             "ORG_EntityMaster EM " +
                                             "ON " +
                                             "(EM.EntityId=Oel.EntityId) " +
-                                            "WHERE EM.EntityTypeID='101' AND EM.Description = " + 
-                                            "(SELECT FullName from HRW_Employee where EmployeeCode = '" + employeeCode + "' RecordType = 'EMP' )) ";
+                                            "WHERE EM.EntityTypeID='101' AND EM.Description = " +
+                                            "(SELECT FullName from HRW_Employee where EmployeeCode = '@employeeCode' AND RecordType = 'EMP' )) ";
 
-                var sequenceQueryResult = db.Database.SqlQuery<List<string>>(sequenceMaxQuery, new SqlParameter("employeeCode", employeeCode)).FirstOrDefault();
+                var sequenceQueryResult = db.Database.SqlQuery<List<string>>(sequenceMaxQuery, new SqlParameter("employeeCode", EmployeeCode)).FirstOrDefault();
 
                 if (sequenceQueryResult != null)
                 {
