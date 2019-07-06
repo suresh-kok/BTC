@@ -9,9 +9,40 @@ namespace Travel_Request_System_EF.Models.ViewModel
     {
         string employeeCode = "";
 
-        public EmployeeDetailsDBService(string employeeCode)
+        public EmployeeDetailsDBService(string employeeCode = "", string employeeID = "")
         {
-            this.employeeCode = employeeCode;
+            if (string.IsNullOrEmpty(employeeCode))
+            {
+                this.employeeCode = getEmployeeCode(employeeID);
+            }
+            else
+            {
+                this.employeeCode = employeeCode;
+            }
+        }
+
+        public string getEmployeeCode(string employeeID)
+        {
+            using (var db = new BTCEntities())
+            {
+                string sequenceMaxQuery = "SELECT " +
+                                            "Emp.EmployeeCode " +
+                                            "FROM HRW_Employee Emp " +
+                                            "WHERE " +
+                                            "Emp.RecordType = 'EMP' " +
+                                            "AND Emp.EmployeeID = '" + employeeID + "'";
+
+                var sequenceQueryResult = db.Database.SqlQuery<string>(sequenceMaxQuery).FirstOrDefault();
+
+                string EmployeeCode = string.Empty;
+
+                if (sequenceQueryResult != null)
+                {
+                    EmployeeCode = sequenceQueryResult.ToString();
+                }
+
+                return EmployeeCode;
+            }
         }
 
         //Cost Center Manager of the Employee

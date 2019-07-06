@@ -77,7 +77,7 @@ namespace Travel_Request_System_EF.Controllers
                     ViewBag.Cities = db.City.ToList();
                     ViewBag.Currencies = db.Currency.ToList();
                     ViewBag.ApprovalBy = db.Users.ToList();
-                    using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
+                    using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService("", RFQList[0].TravelRequests.Users1.HREmployeeID.ToString()))
                     {
                         ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                     }
@@ -291,10 +291,6 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
-                {
-                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
-                }
 
                 var LPO = await db.LPO.Include(a => a.RFQ).Include(a => a.Quotation).Include(a => a.RFQ).Include("RFQ.TravelRequests").Include("Quotation.ATQuotation").Include("Quotation.HSQuotation").Include("Quotation.PCQuotation").Where(a => a.ID == id).FirstOrDefaultAsync();
                 if (db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.RFQ.TravelRequests.ApplicationNumber + "/AT-Q")).Count() > 0)
@@ -309,7 +305,10 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     ViewBag.PCfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.RFQ.TravelRequests.ApplicationNumber + "/PC-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
                 }
-
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService("", LPO.RFQ.TravelRequests.Users1.HREmployeeID.ToString()))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 return View(LPO);
             }
         }

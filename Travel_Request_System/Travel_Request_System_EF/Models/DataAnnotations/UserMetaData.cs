@@ -24,7 +24,6 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         public string FirstName { get; set; }
 
         [DisplayName("Last Name")]
-        [Required(ErrorMessage = "Last Name is Required")]
         [MaxLength(100)]
         public string LastName { get; set; }
 

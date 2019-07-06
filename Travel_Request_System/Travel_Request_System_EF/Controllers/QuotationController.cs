@@ -80,7 +80,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService("", rFQ.TravelRequests.Users1.HREmployeeID.ToString()))
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }

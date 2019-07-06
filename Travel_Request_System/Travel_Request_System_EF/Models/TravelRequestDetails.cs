@@ -11,9 +11,7 @@ namespace Travel_Request_System_EF.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using Travel_Request_System_EF.Models.DataAnnotations;
-
+    
     public partial class TravelRequestDetails
     {
         public int ID { get; set; }
@@ -73,5 +71,30 @@ namespace Travel_Request_System_EF.Models
         public Nullable<bool> IsDeleted { get; set; }
         public bool IsSubmitted { get; set; }
         public string ExpensesHandledBy { get; set; }
+        public string EmployeeID { get; set; }
+        public string EmployeeCode { get; set; }
+        public string FullName { get; set; }
+        public string Designation { get; set; }
+        public string Department { get; set; }
+        public string DepartmentHead { get; set; }
+        public string DepartmentHeadEmail { get; set; }
+        public string CostCenter { get; set; }
+        public string CostCenterHead { get; set; }
+        public string CostCenterHeadEmail { get; set; }
+        public string PassportID { get; set; }
+        public string PassportexpireDate { get; set; }
+        public string Passportissuedate { get; set; }
+        public string QatarID { get; set; }
+        public string QIDEDate { get; set; }
+        public string QIdfile { get; set; }
+        public string Location { get; set; }
+        public string Section { get; set; }
+        public string Contact { get; set; }
+        public string HireDate { get; set; }
+        public string TerminationDate { get; set; }
+        public string Email { get; set; }
+        public string nvDept { get; set; }
+        public string nvDeptCode { get; set; }
+        public string nvDesignation { get; set; }
     }
 }

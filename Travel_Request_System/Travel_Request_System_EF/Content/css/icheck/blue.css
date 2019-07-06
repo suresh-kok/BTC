@@ -10,7 +10,7 @@
     width: 18px;
     height: 18px;
     background: url(../../img/icheck/blue.png) no-repeat;
-    border: none;
+    border: solid;
     cursor: pointer;
 }
 

@@ -17,7 +17,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
             if (value != null)
             {
                 DateTime dt = (DateTime)value;
-                if (dt >= DateTime.UtcNow)
+                if (dt.Date >= DateTime.UtcNow.Date)
                 {
                     return ValidationResult.Success;
                 }
@@ -62,7 +62,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
             // Compare values
             if ((DateTime)value >= (DateTime)propertyTestedValue)
             {
-                if (allowEqualDates && value == propertyTestedValue)
+                if (allowEqualDates && ((DateTime)value).Date == ((DateTime)propertyTestedValue).Date)
                 {
                     return ValidationResult.Success;
                 }

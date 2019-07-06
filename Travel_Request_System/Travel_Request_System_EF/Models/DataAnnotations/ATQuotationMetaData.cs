@@ -53,6 +53,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
 
         [DisplayName("Amount")]
         [Required(ErrorMessage = "Amount is Required")]
+        [Range(1, 99999999, ErrorMessage = "Daily Allowance is Invalid")]
         public Nullable<decimal> Amount { get; set; }
 
         [DisplayName("Is Deleted")]

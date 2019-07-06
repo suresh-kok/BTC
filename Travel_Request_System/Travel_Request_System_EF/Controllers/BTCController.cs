@@ -653,7 +653,7 @@ namespace Travel_Request_System_EF.Controllers
                     db.SaveChanges();
                 }
 
-                VerificationEmail(userObj.Email, userObj.ActivationCode.ToString());
+                //VerificationEmail(userObj.Email, userObj.ActivationCode.ToString());
                 messageRegistration = "Your account has been created successfully. ^_^";
                 statusRegistration = true;
 
@@ -754,7 +754,7 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "Admin")]
         public ActionResult AnyEmployeeDetails(string id)
         {
-            using (EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService(id))
+            using (EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService("", id))
             {
                 var FullEmployeeDetails = employeeDetailsDBService.FullEmployeeDetails();
                 return View(FullEmployeeDetails);
@@ -818,7 +818,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     if (customMembership.ChangePassword(userdet.UserName, oldPassword, newPassword))
                     {
-                        messageReset = "Your account has password has been changed.";
+                        messageReset = "Your account password has been changed.";
                     }
                     else
                     {
@@ -977,7 +977,7 @@ namespace Travel_Request_System_EF.Controllers
 
         public string GetEmployeeDetails(string id)
         {
-            using (EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService(id))
+            using (EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService("", id))
             {
                 return new JavaScriptSerializer().Serialize(employeeDetailsDBService.FullEmployeeDetails());
             }

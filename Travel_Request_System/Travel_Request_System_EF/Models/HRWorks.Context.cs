@@ -62,7 +62,6 @@ namespace Travel_Request_System_EF.Models
         public virtual DbSet<HRW_VEmpDetailsWithAllEntities> HRW_VEmpDetailsWithAllEntities { get; set; }
         public virtual DbSet<HRW_VEmpEntityValues> HRW_VEmpEntityValues { get; set; }
         public virtual DbSet<HRW_VEmpEntityValues_GCC> HRW_VEmpEntityValues_GCC { get; set; }
-        public virtual DbSet<HRW_VEmployeeFields> HRW_VEmployeeFields { get; set; }
         public virtual DbSet<HRW_VEmpTypeParamValues> HRW_VEmpTypeParamValues { get; set; }
         public virtual DbSet<EmployeeTravelRequestDetails> EmployeeTravelRequestDetails { get; set; }
     }

@@ -206,7 +206,7 @@ namespace BTC_Web_API.Business
                 else
                 {
                     HRW_Employee Cust = EmployeeDB.Create(EmpData, out CustomException);
-                    SendMail(EmpData.Email, "Please click the below link to Activate User. <br/>" + ConfigurationManager.AppSettings["WebLink"] + "/api/Customer/ActivateCustomer/" + Cust.CustomerID, "User Activation");
+                    //SendMail(EmpData.Email, "Please click the below link to Activate User. <br/>" + ConfigurationManager.AppSettings["WebLink"] + "/api/Customer/ActivateCustomer/" + Cust.CustomerID, "User Activation");
                     return Cust;
                 }
             }

@@ -263,9 +263,6 @@
     <Compile Include="Models\HRW_VEmpEntityValues_GCC.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HRW_VEmployeeFields.cs">
-      <DependentUpon>HRWorks.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\HRW_VEmpTypeParamValues.cs">
       <DependentUpon>HRWorks.tt</DependentUpon>
     </Compile>
@@ -1312,9 +1309,9 @@
       <DependentUpon>BTCDataSet.xsd</DependentUpon>
     </Content>
     <None Include="BTCDataSet.xsd">
+      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>BTCDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </None>
     <Content Include="BTCDataSet.xss">
       <DependentUpon>BTCDataSet.xsd</DependentUpon>

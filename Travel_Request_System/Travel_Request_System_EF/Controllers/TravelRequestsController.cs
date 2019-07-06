@@ -117,7 +117,7 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 else
                 {
-                    return View();
+                    return View(new TravelRequests());
                 }
             }
         }

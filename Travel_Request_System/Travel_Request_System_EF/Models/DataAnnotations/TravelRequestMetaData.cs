@@ -28,7 +28,6 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         public string TicketClass { get; set; }
 
         [DisplayName("Daily Allowance")]
-        [Range(1, 100, ErrorMessage = "Daily Allowance is Invalid")]
         public Nullable<decimal> DailyAllowance { get; set; }
 
         [DisplayName("Currency")]
@@ -132,9 +131,11 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         public string PreferredVehicle { get; set; }
 
         [DisplayName("Check-In Date")]
+        [CheckDateRange]
         public Nullable<DateTime> CheckInDate { get; set; }
 
         [DisplayName("Check-Out Date")]
+        [IsDateAfter("CheckInDate", true, ErrorMessage = "Check-Out Date Cannot be less than Check-In Date")]
         public Nullable<DateTime> CheckOutDate { get; set; }
 
         [DisplayName("Check-In Time")]

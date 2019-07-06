@@ -184,12 +184,12 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.ApprovalBy = db.Users.ToList();
                 ViewBag.TravelAgency = db.TravelAgency.ToList();
 
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
+                TravelRequests travelRequest = await db.TravelRequests.Include(a => a.RFQ).Where(a => a.ID == id).FirstOrDefaultAsync();
+
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService("", travelRequest.Users1.HREmployeeID.ToString()))
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
-
-                TravelRequests travelRequest = await db.TravelRequests.Include(a => a.RFQ).Where(a => a.ID == id).FirstOrDefaultAsync();
 
                 ViewBag.AvailableCombinations = db.RFQ.Where(a => a.TravelRequestID == id && a.IsDeleted == false).ToList();
 
@@ -278,7 +278,7 @@ namespace Travel_Request_System_EF.Controllers
 
                 travelRequest = db.TravelRequests.Include(a => a.RFQ).Where(a => a.ID == rfq.TravelRequestID).FirstOrDefault();
 
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService("", travelRequest.Users1.HREmployeeID.ToString()))
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
@@ -365,11 +365,6 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
 
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
-                {
-                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
-                }
-
                 RFQ rfqlist = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == id).FirstOrDefaultAsync();
                 ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqlist.RFQName + "Pro" + rfqlist.ProcessingSection + "Trav" + rfqlist.TravelAgencyID)).Select(x => x.Attachments).ToList();
                 MasterRFQ = rfqlist;
@@ -410,6 +405,11 @@ namespace Travel_Request_System_EF.Controllers
                     pcquot.PreferredVehicle = rfqlist.TravelRequests.PreferredVehicle;
                     ViewBag.PCQuotation = pcquot;
                 }
+
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService("", rfqlist.TravelRequests.Users1.HREmployeeID.ToString()))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 return View(rfqlist);
             }
         }
@@ -423,10 +423,6 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
 
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
-                {
-                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
-                }
 
                 RFQ rfqitem = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == id).FirstOrDefaultAsync();
                 ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqitem.RFQName + "Pro" + rfqitem.ProcessingSection + "Trav" + rfqitem.TravelAgencyID)).Select(x => x.Attachments).ToList();
@@ -467,6 +463,10 @@ namespace Travel_Request_System_EF.Controllers
                     pcquot.PickUpTime = rfqitem.TravelRequests.PickUpTime;
                     pcquot.PreferredVehicle= rfqitem.TravelRequests.PreferredVehicle;
                     ViewBag.PCQuotation = pcquot;
+                }
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService("", rfqitem.TravelRequests.Users1.HREmployeeID.ToString()))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
                 return View(rfqitem);
             }
@@ -578,14 +578,13 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
 
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
-                {
-                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
-                }
-
                 RFQ rfqitem = db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == rfq.ID).FirstOrDefault();
                 ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqitem.RFQName + "Pro" + rfqitem.ProcessingSection + "Trav" + rfqitem.TravelAgencyID)).Select(x => x.Attachments).ToList();
                 MasterRFQ = rfqitem;
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService("", rfqitem.TravelRequests.Users1.HREmployeeID.ToString()))
+                {
+                    ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
+                }
                 return View(rfqitem);
             }
         }
@@ -621,14 +620,12 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
-
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
+                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqitem.RFQName + "Pro" + rfqitem.ProcessingSection + "Trav" + rfqitem.TravelAgencyID)).Select(x => x.Attachments).ToList();
+                MasterRFQ = rfqitem;
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService("", rfqitem.TravelRequests.Users1.HREmployeeID.ToString()))
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
-
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqitem.RFQName + "Pro" + rfqitem.ProcessingSection + "Trav" + rfqitem.TravelAgencyID)).Select(x => x.Attachments).ToList();
-                MasterRFQ = rfqitem;
                 return View(rfqitem);
             }
         }

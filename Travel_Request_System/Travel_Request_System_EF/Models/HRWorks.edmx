@@ -135,34 +135,6 @@
           <Property Name="RecordType" Type="varchar" MaxLength="3" />
           <Property Name="ReferenceID" Type="bigint" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'BTC.dbo.HRW_OrgChartData' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="HRW_OrgChartData">
-          <Property Name="ManagerID" Type="bigint" />
-          <Property Name="E1" Type="bigint" />
-          <Property Name="E2" Type="bigint" />
-          <Property Name="E3" Type="bigint" />
-          <Property Name="E4" Type="bigint" />
-          <Property Name="E5" Type="bigint" />
-          <Property Name="E6" Type="bigint" />
-          <Property Name="E7" Type="bigint" />
-          <Property Name="E8" Type="bigint" />
-          <Property Name="E9" Type="bigint" />
-          <Property Name="E10" Type="bigint" />
-          <Property Name="E1Desc" Type="varchar(max)" />
-          <Property Name="E2Desc" Type="varchar(max)" />
-          <Property Name="E3Desc" Type="varchar(max)" />
-          <Property Name="E4Desc" Type="varchar(max)" />
-          <Property Name="E5Desc" Type="varchar(max)" />
-          <Property Name="E6Desc" Type="varchar(max)" />
-          <Property Name="E7Desc" Type="varchar(max)" />
-          <Property Name="E8Desc" Type="varchar(max)" />
-          <Property Name="E9Desc" Type="varchar(max)" />
-          <Property Name="E10Desc" Type="varchar(max)" />
-          <Property Name="OrgChartEntityManagerID" Type="bigint" />
-          <Property Name="EntityIDList" Type="varchar(max)" />
-          <Property Name="OrgChartID" Type="bigint" />
-        </EntityType>-->
         <EntityType Name="HSQuotation">
           <Key>
             <PropertyRef Name="ID" />
@@ -731,26 +703,6 @@ warning 6002: The table/view 'BTC.dbo.HRW_VEmpDetailsWithAllEntities' does not h
           <Property Name="EntityGroupDesc" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'BTC.dbo.HRW_VEmpEntityTypes' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="HRW_VEmpEntityTypes">
-          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
-          <Property Name="TransactType" Type="int" />
-          <Property Name="TransactUserID" Type="bigint" />
-          <Property Name="TransactDateTime" Type="smalldatetime" />
-          <Property Name="MenuID" Type="varchar" MaxLength="50" />
-          <Property Name="EntityTypeId" Type="bigint" />
-          <Property Name="OrgChartId" Type="bigint" />
-          <Property Name="Description" Type="nvarchar" MaxLength="50" />
-          <Property Name="IsMandatory" Type="bit" />
-          <Property Name="IsCodeRequired" Type="bit" />
-          <Property Name="SortOrder" Type="int" />
-          <Property Name="EntityGroup" Type="int" />
-          <Property Name="MasterEntityTypeId" Type="bigint" />
-          <Property Name="HaveDataSecurity" Type="bit" />
-          <Property Name="ShowInReportFilter" Type="bit" />
-          <Property Name="RestrictDuplicate" Type="bit" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
 warning 6002: The table/view 'BTC.dbo.HRW_VEmpEntityValues' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="HRW_VEmpEntityValues">
           <Key>
@@ -795,27 +747,6 @@ warning 6002: The table/view 'BTC.dbo.HRW_VEmpEntityValues_GCC' does not have a 
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTC.dbo.HRW_VEmployeeFields' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="HRW_VEmployeeFields">
-          <Key>
-            <PropertyRef Name="IsMandatory" />
-            <PropertyRef Name="ORG_EntityTypeParamID" />
-            <PropertyRef Name="ParamLinkLevel" />
-            <PropertyRef Name="SortOrder" />
-          </Key>
-          <Property Name="IsMandatory" Type="bit" Nullable="false" />
-          <Property Name="CheckDuplicate" Type="int" />
-          <Property Name="ORG_EntityTypeParamID" Type="bigint" Nullable="false" />
-          <Property Name="ParamDescription" Type="nvarchar" MaxLength="500" />
-          <Property Name="DataType" Type="varchar" MaxLength="30" />
-          <Property Name="DataTypeEntityID" Type="bigint" />
-          <Property Name="ParamLinkLevel" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="EmpEntityParamID" Type="bigint" />
-          <Property Name="EntityTypeParamID" Type="bigint" />
-          <Property Name="SortOrder" Type="int" Nullable="false" />
-          <Property Name="ParamValue" Type="nvarchar" MaxLength="500" />
-          <Property Name="EmployeeID" Type="bigint" />
-          <Property Name="CompanyCode" Type="varchar" MaxLength="10" />
-        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTC.dbo.HRW_VEmpTypeParamValues' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="HRW_VEmpTypeParamValues">
@@ -1062,6 +993,31 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="TravelRemarks" Type="nvarchar(max)" />
           <Property Name="PurposeOfVisit" Type="nvarchar(max)" />
           <Property Name="ExpensesHandledBy" Type="nvarchar" MaxLength="500" />
+          <Property Name="EmployeeID" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmployeeCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="100" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepartmentHead" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepartmentHeadEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostCenter" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostCenterHead" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostCenterHeadEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="PassportID" Type="nvarchar" MaxLength="100" />
+          <Property Name="PassportexpireDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="Passportissuedate" Type="nvarchar" MaxLength="100" />
+          <Property Name="QatarID" Type="nvarchar" MaxLength="100" />
+          <Property Name="QIDEDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="QIdfile" Type="nvarchar" MaxLength="100" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="Section" Type="nvarchar" MaxLength="100" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="100" />
+          <Property Name="HireDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="TerminationDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="nvDept" Type="nvarchar" MaxLength="100" />
+          <Property Name="nvDeptCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="nvDesignation" Type="nvarchar" MaxLength="100" />
           <Property Name="DepartureDate" Type="nvarchar" MaxLength="4000" />
           <Property Name="DepartureTime" Type="nvarchar" MaxLength="4000" />
           <Property Name="ReturnDate" Type="nvarchar" MaxLength="4000" />
@@ -1810,23 +1766,6 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
     [HRW_VEmpEntityValues_GCC].[EffectiveFrom] AS [EffectiveFrom]
     FROM [dbo].[HRW_VEmpEntityValues_GCC] AS [HRW_VEmpEntityValues_GCC]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="HRW_VEmployeeFields" EntityType="Self.HRW_VEmployeeFields" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [HRW_VEmployeeFields].[IsMandatory] AS [IsMandatory], 
-    [HRW_VEmployeeFields].[CheckDuplicate] AS [CheckDuplicate], 
-    [HRW_VEmployeeFields].[ORG_EntityTypeParamID] AS [ORG_EntityTypeParamID], 
-    [HRW_VEmployeeFields].[ParamDescription] AS [ParamDescription], 
-    [HRW_VEmployeeFields].[DataType] AS [DataType], 
-    [HRW_VEmployeeFields].[DataTypeEntityID] AS [DataTypeEntityID], 
-    [HRW_VEmployeeFields].[ParamLinkLevel] AS [ParamLinkLevel], 
-    [HRW_VEmployeeFields].[EmpEntityParamID] AS [EmpEntityParamID], 
-    [HRW_VEmployeeFields].[EntityTypeParamID] AS [EntityTypeParamID], 
-    [HRW_VEmployeeFields].[SortOrder] AS [SortOrder], 
-    [HRW_VEmployeeFields].[ParamValue] AS [ParamValue], 
-    [HRW_VEmployeeFields].[EmployeeID] AS [EmployeeID], 
-    [HRW_VEmployeeFields].[CompanyCode] AS [CompanyCode]
-    FROM [dbo].[HRW_VEmployeeFields] AS [HRW_VEmployeeFields]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="HRW_VEmpTypeParamValues" EntityType="Self.HRW_VEmpTypeParamValues" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [HRW_VEmpTypeParamValues].[EmployeeID] AS [EmployeeID], 
@@ -2053,6 +1992,31 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
     [TravelRequestDetails].[TravelRemarks] AS [TravelRemarks], 
     [TravelRequestDetails].[PurposeOfVisit] AS [PurposeOfVisit], 
     [TravelRequestDetails].[ExpensesHandledBy] AS [ExpensesHandledBy], 
+    [TravelRequestDetails].[EmployeeID] AS [EmployeeID], 
+    [TravelRequestDetails].[EmployeeCode] AS [EmployeeCode], 
+    [TravelRequestDetails].[FullName] AS [FullName], 
+    [TravelRequestDetails].[Designation] AS [Designation], 
+    [TravelRequestDetails].[Department] AS [Department], 
+    [TravelRequestDetails].[DepartmentHead] AS [DepartmentHead], 
+    [TravelRequestDetails].[DepartmentHeadEmail] AS [DepartmentHeadEmail], 
+    [TravelRequestDetails].[CostCenter] AS [CostCenter], 
+    [TravelRequestDetails].[CostCenterHead] AS [CostCenterHead], 
+    [TravelRequestDetails].[CostCenterHeadEmail] AS [CostCenterHeadEmail], 
+    [TravelRequestDetails].[PassportID] AS [PassportID], 
+    [TravelRequestDetails].[PassportexpireDate] AS [PassportexpireDate], 
+    [TravelRequestDetails].[Passportissuedate] AS [Passportissuedate], 
+    [TravelRequestDetails].[QatarID] AS [QatarID], 
+    [TravelRequestDetails].[QIDEDate] AS [QIDEDate], 
+    [TravelRequestDetails].[QIdfile] AS [QIdfile], 
+    [TravelRequestDetails].[Location] AS [Location], 
+    [TravelRequestDetails].[Section] AS [Section], 
+    [TravelRequestDetails].[Contact] AS [Contact], 
+    [TravelRequestDetails].[HireDate] AS [HireDate], 
+    [TravelRequestDetails].[TerminationDate] AS [TerminationDate], 
+    [TravelRequestDetails].[Email] AS [Email], 
+    [TravelRequestDetails].[nvDept] AS [nvDept], 
+    [TravelRequestDetails].[nvDeptCode] AS [nvDeptCode], 
+    [TravelRequestDetails].[nvDesignation] AS [nvDesignation], 
     [TravelRequestDetails].[DepartureDate] AS [DepartureDate], 
     [TravelRequestDetails].[DepartureTime] AS [DepartureTime], 
     [TravelRequestDetails].[ReturnDate] AS [ReturnDate], 
@@ -2663,7 +2627,6 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <EntitySet Name="HRW_VEmpDetailsWithAllEntities" EntityType="HRWorksEntities.HRW_VEmpDetailsWithAllEntities" />
           <EntitySet Name="HRW_VEmpEntityValues" EntityType="HRWorksEntities.HRW_VEmpEntityValues" />
           <EntitySet Name="HRW_VEmpEntityValues_GCC" EntityType="HRWorksEntities.HRW_VEmpEntityValues_GCC" />
-          <EntitySet Name="HRW_VEmployeeFields" EntityType="HRWorksEntities.HRW_VEmployeeFields" />
           <EntitySet Name="HRW_VEmpTypeParamValues" EntityType="HRWorksEntities.HRW_VEmpTypeParamValues" />
           <AssociationSet Name="FK_HRW_Employee_HRW_Company" Association="HRWorksEntities.FK_HRW_Employee_HRW_Company">
             <End Role="HRW_Company" EntitySet="HRW_Company" />
@@ -3228,6 +3191,31 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="IsSubmitted" Type="Boolean" Nullable="false" />
           <Property Name="ExpensesHandledBy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentHead" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentHeadEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostCenter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostCenterHead" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostCenterHeadEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PassportID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PassportexpireDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Passportissuedate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QatarID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QIDEDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QIdfile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Section" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TerminationDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="nvDept" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="nvDeptCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="nvDesignation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="HRW_Company">
           <Key>
@@ -3607,27 +3595,6 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <Property Name="Value" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="RecordType" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="EffectiveFrom" Type="DateTime" Precision="0" />
-        </EntityType>
-        <EntityType Name="HRW_VEmployeeFields">
-          <Key>
-            <PropertyRef Name="IsMandatory" />
-            <PropertyRef Name="ORG_EntityTypeParamID" />
-            <PropertyRef Name="ParamLinkLevel" />
-            <PropertyRef Name="SortOrder" />
-          </Key>
-          <Property Name="IsMandatory" Type="Boolean" Nullable="false" />
-          <Property Name="CheckDuplicate" Type="Int32" />
-          <Property Name="ORG_EntityTypeParamID" Type="Int64" Nullable="false" />
-          <Property Name="ParamDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DataType" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="DataTypeEntityID" Type="Int64" />
-          <Property Name="ParamLinkLevel" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="EmpEntityParamID" Type="Int64" />
-          <Property Name="EntityTypeParamID" Type="Int64" />
-          <Property Name="SortOrder" Type="Int32" Nullable="false" />
-          <Property Name="ParamValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="EmployeeID" Type="Int64" />
-          <Property Name="CompanyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HRW_VEmpTypeParamValues">
           <Key>
@@ -4419,6 +4386,31 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
           <EntitySetMapping Name="TravelRequestDetails">
             <EntityTypeMapping TypeName="HRWorksEntities.TravelRequestDetails">
               <MappingFragment StoreEntitySet="TravelRequestDetails">
+                <ScalarProperty Name="nvDesignation" ColumnName="nvDesignation" />
+                <ScalarProperty Name="nvDeptCode" ColumnName="nvDeptCode" />
+                <ScalarProperty Name="nvDept" ColumnName="nvDept" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="QIdfile" ColumnName="QIdfile" />
+                <ScalarProperty Name="QIDEDate" ColumnName="QIDEDate" />
+                <ScalarProperty Name="QatarID" ColumnName="QatarID" />
+                <ScalarProperty Name="Passportissuedate" ColumnName="Passportissuedate" />
+                <ScalarProperty Name="PassportexpireDate" ColumnName="PassportexpireDate" />
+                <ScalarProperty Name="PassportID" ColumnName="PassportID" />
+                <ScalarProperty Name="CostCenterHeadEmail" ColumnName="CostCenterHeadEmail" />
+                <ScalarProperty Name="CostCenterHead" ColumnName="CostCenterHead" />
+                <ScalarProperty Name="CostCenter" ColumnName="CostCenter" />
+                <ScalarProperty Name="DepartmentHeadEmail" ColumnName="DepartmentHeadEmail" />
+                <ScalarProperty Name="DepartmentHead" ColumnName="DepartmentHead" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="ExpensesHandledBy" ColumnName="ExpensesHandledBy" />
                 <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
@@ -4824,25 +4816,6 @@ warning 6002: The table/view 'BTC.dbo.TravelRequestDetails' does not have a prim
                 <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HRW_VEmployeeFields">
-            <EntityTypeMapping TypeName="HRWorksEntities.HRW_VEmployeeFields">
-              <MappingFragment StoreEntitySet="HRW_VEmployeeFields">
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="ParamValue" ColumnName="ParamValue" />
-                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-                <ScalarProperty Name="EntityTypeParamID" ColumnName="EntityTypeParamID" />
-                <ScalarProperty Name="EmpEntityParamID" ColumnName="EmpEntityParamID" />
-                <ScalarProperty Name="ParamLinkLevel" ColumnName="ParamLinkLevel" />
-                <ScalarProperty Name="DataTypeEntityID" ColumnName="DataTypeEntityID" />
-                <ScalarProperty Name="DataType" ColumnName="DataType" />
-                <ScalarProperty Name="ParamDescription" ColumnName="ParamDescription" />
-                <ScalarProperty Name="ORG_EntityTypeParamID" ColumnName="ORG_EntityTypeParamID" />
-                <ScalarProperty Name="CheckDuplicate" ColumnName="CheckDuplicate" />
-                <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

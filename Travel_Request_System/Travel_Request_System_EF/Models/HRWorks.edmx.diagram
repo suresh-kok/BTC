@@ -65,7 +65,6 @@
         <EntityTypeShape EntityType="HRWorksEntities.HRW_VEmpDetailsWithAllEntities" Width="1.5" PointX="13.75" PointY="5.75" />
         <EntityTypeShape EntityType="HRWorksEntities.HRW_VEmpEntityValues" Width="1.5" PointX="10.75" PointY="0.75" />
         <EntityTypeShape EntityType="HRWorksEntities.HRW_VEmpEntityValues_GCC" Width="1.5" PointX="0.75" PointY="15.75" />
-        <EntityTypeShape EntityType="HRWorksEntities.HRW_VEmployeeFields" Width="1.5" PointX="17.75" PointY="13.75" />
         <EntityTypeShape EntityType="HRWorksEntities.HRW_VEmpTypeParamValues" Width="1.5" PointX="0.75" PointY="6.75" />
         <AssociationConnector Association="HRWorksEntities.FK_HRW_Employee_HRW_Company" />
         <AssociationConnector Association="HRWorksEntities.FK_ORG_ChartMaster_HRW_Company" />

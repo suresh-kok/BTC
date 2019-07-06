@@ -141,7 +141,7 @@ namespace Travel_Request_System_EF.Controllers
                 }
 
                 //Verification Email
-                VerificationEmail(registrationView.Email, registrationView.ActivationCode.ToString());
+                //VerificationEmail(registrationView.Email, registrationView.ActivationCode.ToString());
                 messageRegistration = "Your account has been created successfully. ^_^";
                 statusRegistration = true;
             }
@@ -219,8 +219,8 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     var user = Membership.GetUser(userName);
                     //Verification Email
-                    ForgotPasswordEmail(user.Email, user.UserName, user.GetPassword());
-                    messageReset = "Your account has password has been sent to your email.";
+                    //ForgotPasswordEmail(user.Email, user.UserName, user.GetPassword());
+                    messageReset = "Your account password has been sent to your email.";
                     statusReset = true;
                 }
             }
