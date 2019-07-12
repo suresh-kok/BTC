@@ -3921,10 +3921,6 @@
           <DataField>QIDEDate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="QIdfile">
-          <DataField>QIdfile</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="Location">
           <DataField>Location</DataField>
           <rd:TypeName>System.String</rd:TypeName>

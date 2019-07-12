@@ -664,7 +664,7 @@
         </div>
     </div>
 
-    @if (Model.ApprovalLevel > (int)ApprovalLevels.ToBeApproved)
+    @if (Model.ApprovalLevel > (int)ApprovalLevels.ToBeApproved && Model.ApprovalRemarks != null)
     {
         <div class="col-xs-12 col-md-12">
             <div class="box box-default collapsed-box">

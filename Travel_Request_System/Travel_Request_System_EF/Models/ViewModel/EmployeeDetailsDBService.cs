@@ -165,7 +165,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "        AND EntityTypeParamID = '15' " +
 "        ), '') AS Email " +
 "        ,CAST(( " +
-"                        SELECT Value " +
+"                        SELECT TOP 1 Value " +
 "                        FROM HRW_VEmpEntityValues " +
 "                        WHERE EmployeeId IN ( " +
 "                                        SELECT EmployeeId " +
@@ -176,7 +176,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND EntityTypeId = '88' " +
 "                        ) AS NVARCHAR(100)) AS Designation " +
 "        ,CAST(( " +
-"                        SELECT Value " +
+"                        SELECT TOP 1 Value " +
 "                        FROM HRW_VEmpEntityValues " +
 "                        WHERE EmployeeId IN ( " +
 "                                        SELECT EmployeeId " +
@@ -187,7 +187,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND EntityTypeId = '10' " +
 "                        ) AS NVARCHAR(100)) AS Department " +
 "        ,CAST(( " +
-"                        SELECT EM.Description " +
+"                        SELECT TOP 1 EM.Description " +
 "                        FROM HRW_Employee Emp " +
 "                        INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId) " +
 "                        INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId) " +
@@ -196,7 +196,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND Emp.RecordType = 'EMP' " +
 "                        ) AS NVARCHAR(100)) AS DepartmentHead " +
 "        ,CAST(isnull(( " +
-"                                SELECT ParamValue " +
+"                                SELECT TOP 1 ParamValue " +
 "                                FROM HRW_VEmployeeFields " +
 "                                WHERE EmployeeId IN ( " +
 "                                                SELECT Emp.EmployeeId " +
@@ -210,7 +210,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                        AND EntityTypeParamID = '15' " +
 "                                ), '') AS NVARCHAR(100)) AS DepartmentHeadEmail " +
 "        ,CAST(( " +
-"                        SELECT Value " +
+"                        SELECT TOP 1 Value " +
 "                        FROM HRW_VEmpEntityValues " +
 "                        WHERE EmployeeId IN ( " +
 "                                        SELECT EmployeeId " +
@@ -221,7 +221,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND EntityTypeId = '10' " +
 "                        ) AS NVARCHAR(100)) AS CostCenter " +
 "        ,CAST(( " +
-"                        SELECT EM.Description " +
+"                        SELECT TOP 1 EM.Description " +
 "                        FROM HRW_Employee Emp " +
 "                        INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId) " +
 "                        INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId) " +
@@ -230,7 +230,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND EM.EntityTypeID = '101' " +
 "                        ) AS NVARCHAR(100)) AS CostCenterHead " +
 "        ,CAST(isnull(( " +
-"                                SELECT ParamValue " +
+"                                SELECT TOP 1 ParamValue " +
 "                                FROM HRW_VEmployeeFields " +
 "                                WHERE EmployeeId IN ( " +
 "                                                SELECT Emp.EmployeeId " +
@@ -249,7 +249,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "        ,CAST(QID AS NVARCHAR(100)) QatarID " +
 "        ,CAST(QIDEDate AS NVARCHAR(100)) QIDEDate " +
 "        ,CAST(( " +
-"                        SELECT Value " +
+"                        SELECT TOP 1 Value " +
 "                        FROM HRW_VEmpEntityValues " +
 "                        WHERE EmployeeId IN ( " +
 "                                        SELECT EmployeeId " +
@@ -260,7 +260,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND EntityTypeId = '84' " +
 "                        ) AS NVARCHAR(100)) AS Location " +
 "        ,CAST(( " +
-"                        SELECT Value " +
+"                        SELECT TOP 1 Value " +
 "                        FROM HRW_VEmpEntityValues " +
 "                        WHERE EmployeeId IN ( " +
 "                                        SELECT EmployeeId " +
@@ -271,7 +271,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND EntityTypeId = '85' " +
 "                        ) AS NVARCHAR(100)) AS Section " +
 "        ,CAST(( " +
-"                        SELECT Value " +
+"                        SELECT TOP 1 Value " +
 "                        FROM HRW_VEmpEntityValues " +
 "                        WHERE EmployeeId IN ( " +
 "                                        SELECT EmployeeId " +
@@ -284,7 +284,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "        ,CAST(cast(a.HireDate AS DATE) AS NVARCHAR(100)) AS HireDate " +
 "        ,CAST(a.TerminationDate AS NVARCHAR(100)) " +
 "        ,CAST(isnull(( " +
-"                                SELECT ParamValue " +
+"                                SELECT TOP 1 ParamValue " +
 "                                FROM HRW_VEmployeeFields " +
 "                                WHERE EmployeeId IN ( " +
 "                                                SELECT EmployeeId " +
@@ -295,7 +295,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                        AND EntityTypeParamID = '15' " +
 "                                ), '') AS NVARCHAR(100)) AS Email " +
 "        ,CAST(isnull(( " +
-"                                SELECT Value " +
+"                                SELECT TOP 1 Value " +
 "                                FROM HRW_VEmpEntityValues " +
 "                                WHERE EmployeeId IN ( " +
 "                                                SELECT EmployeeId " +
@@ -306,7 +306,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                        AND EntityTypeId = '10' " +
 "                                ), '') AS NVARCHAR(100)) AS nvDept " +
 "        ,CAST(isnull(( " +
-"                                SELECT EntityCode " +
+"                                SELECT TOP 1 EntityCode " +
 "                                FROM ORG_EntityMaster " +
 "                                WHERE EntityId IN ( " +
 "                                                SELECT EntityId " +
@@ -317,7 +317,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                        AND EntityTypeId = '10' " +
 "                                ), '') AS NVARCHAR(100)) AS nvDeptCode " +
 "        ,CAST(isnull(( " +
-"                                SELECT Value " +
+"                                SELECT TOP 1 Value " +
 "                                FROM HRW_VEmpEntityValues " +
 "                                WHERE EmployeeId IN ( " +
 "                                                SELECT EmployeeId " +
@@ -362,7 +362,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "        AND EntityTypeParamID = '15' " +
 "        ), '') AS Email " +
 "        ,CAST((  " +
-"                        SELECT Value  " +
+"                        SELECT TOP 1 Value  " +
 "                        FROM HRW_VEmpEntityValues  " +
 "                        WHERE EmployeeId IN (  " +
 "                                        SELECT EmployeeId  " +
@@ -373,7 +373,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND EntityTypeId = '88'  " +
 "                        ) AS NVARCHAR(100)) AS Designation  " +
 "        ,CAST((  " +
-"                        SELECT Value  " +
+"                        SELECT TOP 1 Value  " +
 "                        FROM HRW_VEmpEntityValues  " +
 "                        WHERE EmployeeId IN (  " +
 "                                        SELECT EmployeeId  " +
@@ -384,7 +384,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND EntityTypeId = '10'  " +
 "                        ) AS NVARCHAR(100)) AS Department  " +
 "        ,CAST((  " +
-"                        SELECT EM.Description  " +
+"                        SELECT TOP 1 EM.Description  " +
 "                        FROM HRW_Employee Emp  " +
 "                        INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId)  " +
 "                        INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId)  " +
@@ -393,7 +393,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND Emp.RecordType = 'EMP' " +
 "                        ) AS NVARCHAR(100)) AS DepartmentHead  " +
 "        ,CAST(isnull((  " +
-"                                SELECT ParamValue  " +
+"                                SELECT TOP 1 ParamValue  " +
 "                                FROM HRW_VEmployeeFields  " +
 "                                WHERE EmployeeId IN (  " +
 "                                                SELECT Emp.EmployeeId  " +
@@ -407,7 +407,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                        AND EntityTypeParamID = '15'  " +
 "                                ), '') AS NVARCHAR(100)) AS DepartmentHeadEmail  " +
 "        ,CAST((  " +
-"                        SELECT Value  " +
+"                        SELECT TOP 1 Value  " +
 "                        FROM HRW_VEmpEntityValues  " +
 "                        WHERE EmployeeId IN (  " +
 "                                        SELECT EmployeeId  " +
@@ -418,7 +418,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND EntityTypeId = '10'  " +
 "                        ) AS NVARCHAR(100)) AS CostCenter  " +
 "        ,CAST((  " +
-"                        SELECT EM.Description  " +
+"                        SELECT TOP 1 EM.Description  " +
 "                        FROM HRW_Employee Emp  " +
 "                        INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId)  " +
 "                        INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId)  " +
@@ -427,7 +427,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND Emp.RecordType = 'EMP' " +
 "                        ) AS NVARCHAR(100)) AS CostCenterHead  " +
 "        ,CAST(isnull((  " +
-"                                SELECT ParamValue  " +
+"                                SELECT TOP 1 ParamValue  " +
 "                                FROM HRW_VEmployeeFields  " +
 "                                WHERE EmployeeId IN (  " +
 "                                                SELECT Emp.EmployeeId  " +
@@ -446,7 +446,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "        ,CAST(QID AS NVARCHAR(100)) QatarID  " +
 "        ,CAST(QIDEDate AS NVARCHAR(100)) QIDEDate  " +
 "        ,CAST((  " +
-"                        SELECT Value  " +
+"                        SELECT TOP 1 Value  " +
 "                        FROM HRW_VEmpEntityValues  " +
 "                        WHERE EmployeeId IN (  " +
 "                                        SELECT EmployeeId  " +
@@ -457,7 +457,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND EntityTypeId = '84'  " +
 "                        ) AS NVARCHAR(100)) AS Location  " +
 "        ,CAST((  " +
-"                        SELECT Value  " +
+"                        SELECT TOP 1 Value  " +
 "                        FROM HRW_VEmpEntityValues  " +
 "                        WHERE EmployeeId IN (  " +
 "                                        SELECT EmployeeId  " +
@@ -468,7 +468,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                AND EntityTypeId = '85'  " +
 "                        ) AS NVARCHAR(100)) AS Section  " +
 "        ,CAST((  " +
-"                        SELECT Value  " +
+"                        SELECT TOP 1 Value  " +
 "                        FROM HRW_VEmpEntityValues  " +
 "                        WHERE EmployeeId IN (  " +
 "                                        SELECT EmployeeId  " +
@@ -481,7 +481,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "        ,CAST(cast(a.HireDate AS DATE) AS NVARCHAR(100)) AS HireDate  " +
 "        ,CAST(a.TerminationDate AS NVARCHAR(100))  " +
 "        ,CAST(isnull((  " +
-"                                SELECT ParamValue  " +
+"                                SELECT TOP 1 ParamValue  " +
 "                                FROM HRW_VEmployeeFields  " +
 "                                WHERE EmployeeId IN (  " +
 "                                                SELECT EmployeeId  " +
@@ -492,7 +492,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                        AND EntityTypeParamID = '15'  " +
 "                                ), '') AS NVARCHAR(100)) AS Email  " +
 "        ,CAST(isnull((  " +
-"                                SELECT Value  " +
+"                                SELECT TOP 1 Value  " +
 "                                FROM HRW_VEmpEntityValues  " +
 "                                WHERE EmployeeId IN (  " +
 "                                                SELECT EmployeeId  " +
@@ -503,7 +503,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                        AND EntityTypeId = '10'  " +
 "                                ), '') AS NVARCHAR(100)) AS nvDept  " +
 "        ,CAST(isnull((  " +
-"                                SELECT EntityCode  " +
+"                                SELECT TOP 1 EntityCode  " +
 "                                FROM ORG_EntityMaster  " +
 "                                WHERE EntityId IN (  " +
 "                                                SELECT EntityId  " +
@@ -514,7 +514,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                        AND EntityTypeId = '10'  " +
 "                                ), '') AS NVARCHAR(100)) AS nvDeptCode  " +
 "        ,CAST(isnull((  " +
-"                                SELECT Value  " +
+"                                SELECT TOP 1 Value  " +
 "                                FROM HRW_VEmpEntityValues  " +
 "                                WHERE EmployeeId IN (  " +
 "                                                SELECT EmployeeId  " +

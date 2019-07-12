@@ -28,7 +28,7 @@ namespace Travel_Request_System_EF.Controllers
                 IsLoggedIn(roles.ToList());
                 using (BTCEntities db = new BTCEntities())
                 {
-                    dbuser = db.Users.Where(a => a.Username == user.UserName).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
+                    dbuser = db.Users.Where(a => a.Username == user.UserName && a.IsActive && a.IsDeleted == false).Include(a => a.Roles).Include(a => a.TravelRequests).Include(a => a.TravelRequests1).FirstOrDefault();
                     ViewBag.UserDetails = dbuser;
                     empCode = dbuser.HRW_Employee.EmployeeCode;
                 }

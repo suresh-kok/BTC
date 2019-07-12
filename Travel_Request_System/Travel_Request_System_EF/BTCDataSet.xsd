@@ -12,7 +12,7 @@
               <DbSource ConnectionRef="AuthenticationDB (Web.config)" DbObjectName="BTC.dbo.EmployeeTravelRequestDetails" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, ApplicationNumber, PortOfOriginID, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, ExpensesHandledBy, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted, EmployeeID, EmployeeCode, FullName, Designation, Department, DepartmentHead, DepartmentHeadEmail, CostCenter, CostCenterHead, CostCenterHeadEmail, PassportID, PassportexpireDate, Passportissuedate, QatarID, QIDEDate, QIdfile, Location, Section, Contact, HireDate, TerminationDate, Email, nvDept, nvDeptCode, nvDesignation FROM dbo.EmployeeTravelRequestDetails</CommandText>
+                    <CommandText>SELECT ID, ApplicationNumber, PortOfOriginID, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, ExpensesHandledBy, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted, EmployeeID, EmployeeCode, FullName, Designation, Department, DepartmentHead, DepartmentHeadEmail, CostCenter, CostCenterHead, CostCenterHeadEmail, PassportID, PassportexpireDate, Passportissuedate, QatarID, QIDEDate, Location, Section, Contact, HireDate, TerminationDate, Email, nvDept, nvDeptCode, nvDesignation FROM dbo.EmployeeTravelRequestDetails</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -91,7 +91,6 @@
               <Mapping SourceColumn="Passportissuedate" DataSetColumn="Passportissuedate" />
               <Mapping SourceColumn="QatarID" DataSetColumn="QatarID" />
               <Mapping SourceColumn="QIDEDate" DataSetColumn="QIDEDate" />
-              <Mapping SourceColumn="QIdfile" DataSetColumn="QIdfile" />
               <Mapping SourceColumn="Location" DataSetColumn="Location" />
               <Mapping SourceColumn="Section" DataSetColumn="Section" />
               <Mapping SourceColumn="Contact" DataSetColumn="Contact" />
@@ -109,7 +108,7 @@
               <DbSource ConnectionRef="AuthenticationDB (Web.config)" DbObjectName="BTC.dbo.LPODetails" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT LPOID, LPORemarks, isAT, IsHS, IsPC, RFQID, Processing, ProcessingSection, RFQRemarks, AgencyCode, username, ID, ApplicationNumber, PortOfOriginID, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, ExpensesHandledBy, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted, EmployeeID, EmployeeCode, FullName, Designation, Department, DepartmentHead, DepartmentHeadEmail, CostCenter, CostCenterHead, CostCenterHeadEmail, PassportID, PassportexpireDate, Passportissuedate, QatarID, QIDEDate, QIdfile, Location, Section, Contact, HireDate, TerminationDate, Email, nvDept, nvDeptCode, nvDesignation, Airlines, ATAmount, ATDepartureDate, ATDepartureTime, ATReturnDate, ATReturnTime, DestinationID, ATDCity, ATDCountry, OriginID, ATOCity, ATOCountry, ATQuotationName, ATTicketClass, TicketNo, HSAmount, HSCheckInDate, HSCheckOutDate, HSCheckInTime, HSCheckOutTime, HSHotelCategory, HSHotelName, HSQuotationName, HSRoomCategory, HSRoomType, HSTravelSector, PCAmount, PCPickUpLocation, PCPickUpDate, PCPickUpTime, PCDropOffLocation, PCDropOffDate, PCDropOffTime, PCPreferredVehicle, PCQuotationName, PCTravelSector FROM dbo.LPODetails</CommandText>
+                    <CommandText>SELECT LPOID, LPORemarks, isAT, IsHS, IsPC, RFQID, Processing, ProcessingSection, RFQRemarks, AgencyCode, username, ID, ApplicationNumber, PortOfOriginID, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, ExpensesHandledBy, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted, EmployeeID, EmployeeCode, FullName, Designation, Department, DepartmentHead, DepartmentHeadEmail, CostCenter, CostCenterHead, CostCenterHeadEmail, PassportID, PassportexpireDate, Passportissuedate, QatarID, QIDEDate, Location, Section, Contact, HireDate, TerminationDate, Email, nvDept, nvDeptCode, nvDesignation, Airlines, ATAmount, ATDepartureDate, ATDepartureTime, ATReturnDate, ATReturnTime, DestinationID, ATDCity, ATDCountry, OriginID, ATOCity, ATOCountry, ATQuotationName, ATTicketClass, TicketNo, HSAmount, HSCheckInDate, HSCheckOutDate, HSCheckInTime, HSCheckOutTime, HSHotelCategory, HSHotelName, HSQuotationName, HSRoomCategory, HSRoomType, HSTravelSector, PCAmount, PCPickUpLocation, PCPickUpDate, PCPickUpTime, PCDropOffLocation, PCDropOffDate, PCDropOffTime, PCPreferredVehicle, PCQuotationName, PCTravelSector FROM dbo.LPODetails</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -199,7 +198,6 @@
               <Mapping SourceColumn="Passportissuedate" DataSetColumn="Passportissuedate" />
               <Mapping SourceColumn="QatarID" DataSetColumn="QatarID" />
               <Mapping SourceColumn="QIDEDate" DataSetColumn="QIDEDate" />
-              <Mapping SourceColumn="QIdfile" DataSetColumn="QIdfile" />
               <Mapping SourceColumn="Location" DataSetColumn="Location" />
               <Mapping SourceColumn="Section" DataSetColumn="Section" />
               <Mapping SourceColumn="Contact" DataSetColumn="Contact" />
@@ -253,7 +251,7 @@
               <DbSource ConnectionRef="AuthenticationDB (Web.config)" DbObjectName="BTC.dbo.RFQDetails" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT RFQID, Processing, ProcessingSection, RFQRemarks, AgencyCode, username, ID, ApplicationNumber, PortOfOriginID, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, ExpensesHandledBy, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted, EmployeeID, EmployeeCode, FullName, Designation, Department, DepartmentHead, DepartmentHeadEmail, CostCenter, CostCenterHead, CostCenterHeadEmail, PassportID, PassportexpireDate, Passportissuedate, QatarID, QIDEDate, QIdfile, Location, Section, Contact, HireDate, TerminationDate, Email, nvDept, nvDeptCode, nvDesignation FROM dbo.RFQDetails</CommandText>
+                    <CommandText>SELECT RFQID, Processing, ProcessingSection, RFQRemarks, AgencyCode, username, ID, ApplicationNumber, PortOfOriginID, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, ExpensesHandledBy, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted, EmployeeID, EmployeeCode, FullName, Designation, Department, DepartmentHead, DepartmentHeadEmail, CostCenter, CostCenterHead, CostCenterHeadEmail, PassportID, PassportexpireDate, Passportissuedate, QatarID, QIDEDate, Location, Section, Contact, HireDate, TerminationDate, Email, nvDept, nvDeptCode, nvDesignation FROM dbo.RFQDetails</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -338,7 +336,6 @@
               <Mapping SourceColumn="Passportissuedate" DataSetColumn="Passportissuedate" />
               <Mapping SourceColumn="QatarID" DataSetColumn="QatarID" />
               <Mapping SourceColumn="QIDEDate" DataSetColumn="QIDEDate" />
-              <Mapping SourceColumn="QIdfile" DataSetColumn="QIdfile" />
               <Mapping SourceColumn="Location" DataSetColumn="Location" />
               <Mapping SourceColumn="Section" DataSetColumn="Section" />
               <Mapping SourceColumn="Contact" DataSetColumn="Contact" />
@@ -356,7 +353,7 @@
               <DbSource ConnectionRef="AuthenticationDB (Web.config)" DbObjectName="BTC.dbo.TravelRequestDetails" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, ApplicationNumber, PortOfOriginID, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, ExpensesHandledBy, EmployeeID, EmployeeCode, FullName, Designation, Department, DepartmentHead, DepartmentHeadEmail, CostCenter, CostCenterHead, CostCenterHeadEmail, PassportID, PassportexpireDate, Passportissuedate, QatarID, QIDEDate, QIdfile, Location, Section, Contact, HireDate, TerminationDate, Email, nvDept, nvDeptCode, nvDesignation, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted FROM dbo.TravelRequestDetails</CommandText>
+                    <CommandText>SELECT ID, ApplicationNumber, PortOfOriginID, OriginCIty, OriginCountry, PortOfDestinationID, DestinationCity, DestinationCountry, TicketClass, DailyAllowance, CurrencyID, CurrencyDesc, CurrencySymbol, TravelDays, TravelRemarks, PurposeOfVisit, ExpensesHandledBy, [Emp ID], EmployeeCode, FullName, Designation, Department, DepartmentHead, DepartmentHeadEmail, CostCenter, CostCenterHead, CostCenterHeadEmail, PassportID, PassportexpireDate, Passportissuedate, QatarID, QIDEDate, QIdfile, Location, Section, Contact, HireDate, TerminationDate, Email, nvDept, nvDeptCode, nvDesignation, DepartureDate, DepartureTime, ReturnDate, ReturnTime, FirstBusinessDay, LastBusinessDay, Remarks, AirTicketManagement, HotelName, TravelAllowance, HotelStay, HotelCategory, RoomCategory, RoomType, AdditionalAllowance, AirportPickUp, PickUpLocation, PickUpDate, PickUpTime, DropOffLocation, DropOffDate, DropOffTime, PreferredVehicle, TravelSector, CheckInDate, CheckOutDate, CheckInTime, CheckOutTime, ApprovalLevel, ApprovalBy, ApprovedByName, ApprovalRemarks, CreateOn, CreatedBy, CreatedByName, ModifiedOn, ModifiedBy, ModifiedByName, IsDeleted, IsSubmitted FROM dbo.TravelRequestDetails</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -380,7 +377,7 @@
               <Mapping SourceColumn="TravelRemarks" DataSetColumn="TravelRemarks" />
               <Mapping SourceColumn="PurposeOfVisit" DataSetColumn="PurposeOfVisit" />
               <Mapping SourceColumn="ExpensesHandledBy" DataSetColumn="ExpensesHandledBy" />
-              <Mapping SourceColumn="EmployeeID" DataSetColumn="EmployeeID" />
+              <Mapping SourceColumn="Emp ID" DataSetColumn="Emp ID" />
               <Mapping SourceColumn="EmployeeCode" DataSetColumn="EmployeeCode" />
               <Mapping SourceColumn="FullName" DataSetColumn="FullName" />
               <Mapping SourceColumn="Designation" DataSetColumn="Designation" />
@@ -445,6 +442,46 @@
               <Mapping SourceColumn="ModifiedByName" DataSetColumn="ModifiedByName" />
               <Mapping SourceColumn="IsDeleted" DataSetColumn="IsDeleted" />
               <Mapping SourceColumn="IsSubmitted" DataSetColumn="IsSubmitted" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EmployeeDetailsTableAdapter" GeneratorDataComponentClassName="EmployeeDetailsTableAdapter" Name="EmployeeDetails" UserDataComponentName="EmployeeDetailsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AuthenticationDB (Web.config)" DbObjectName="BTC.dbo.EmployeeDetails" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT [Emp ID], EmployeeCode, FullName, Designation, Department, DepartmentHead, DepartmentHeadEmail, CostCenter, CostCenterHead, CostCenterHeadEmail, PassportID, PassportexpireDate, Passportissuedate, QatarID, QIDEDate, QIdfile, Location, Section, Contact, HireDate, TerminationDate, Email, nvDept, nvDeptCode, nvDesignation FROM dbo.EmployeeDetails</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Emp ID" DataSetColumn="Emp ID" />
+              <Mapping SourceColumn="EmployeeCode" DataSetColumn="EmployeeCode" />
+              <Mapping SourceColumn="FullName" DataSetColumn="FullName" />
+              <Mapping SourceColumn="Designation" DataSetColumn="Designation" />
+              <Mapping SourceColumn="Department" DataSetColumn="Department" />
+              <Mapping SourceColumn="DepartmentHead" DataSetColumn="DepartmentHead" />
+              <Mapping SourceColumn="DepartmentHeadEmail" DataSetColumn="DepartmentHeadEmail" />
+              <Mapping SourceColumn="CostCenter" DataSetColumn="CostCenter" />
+              <Mapping SourceColumn="CostCenterHead" DataSetColumn="CostCenterHead" />
+              <Mapping SourceColumn="CostCenterHeadEmail" DataSetColumn="CostCenterHeadEmail" />
+              <Mapping SourceColumn="PassportID" DataSetColumn="PassportID" />
+              <Mapping SourceColumn="PassportexpireDate" DataSetColumn="PassportexpireDate" />
+              <Mapping SourceColumn="Passportissuedate" DataSetColumn="Passportissuedate" />
+              <Mapping SourceColumn="QatarID" DataSetColumn="QatarID" />
+              <Mapping SourceColumn="QIDEDate" DataSetColumn="QIDEDate" />
+              <Mapping SourceColumn="QIdfile" DataSetColumn="QIdfile" />
+              <Mapping SourceColumn="Location" DataSetColumn="Location" />
+              <Mapping SourceColumn="Section" DataSetColumn="Section" />
+              <Mapping SourceColumn="Contact" DataSetColumn="Contact" />
+              <Mapping SourceColumn="HireDate" DataSetColumn="HireDate" />
+              <Mapping SourceColumn="TerminationDate" DataSetColumn="TerminationDate" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+              <Mapping SourceColumn="nvDept" DataSetColumn="nvDept" />
+              <Mapping SourceColumn="nvDeptCode" DataSetColumn="nvDeptCode" />
+              <Mapping SourceColumn="nvDesignation" DataSetColumn="nvDesignation" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -879,13 +916,6 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="QIDEDate" msprop:Generator_ColumnVarNameInTable="columnQIDEDate" msprop:Generator_ColumnPropNameInRow="QIDEDate" msprop:Generator_ColumnPropNameInTable="QIDEDateColumn" msprop:Generator_UserColumnName="QIDEDate" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="QIdfile" msprop:Generator_ColumnVarNameInTable="columnQIdfile" msprop:Generator_ColumnPropNameInRow="QIdfile" msprop:Generator_ColumnPropNameInTable="QIdfileColumn" msprop:Generator_UserColumnName="QIdfile" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
@@ -1428,13 +1458,6 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="QIDEDate" msprop:Generator_ColumnVarNameInTable="columnQIDEDate" msprop:Generator_ColumnPropNameInRow="QIDEDate" msprop:Generator_ColumnPropNameInTable="QIDEDateColumn" msprop:Generator_UserColumnName="QIDEDate" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="QIdfile" msprop:Generator_ColumnVarNameInTable="columnQIdfile" msprop:Generator_ColumnPropNameInRow="QIdfile" msprop:Generator_ColumnPropNameInTable="QIdfileColumn" msprop:Generator_UserColumnName="QIdfile" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
@@ -2194,13 +2217,6 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="QIdfile" msprop:Generator_ColumnVarNameInTable="columnQIdfile" msprop:Generator_ColumnPropNameInRow="QIdfile" msprop:Generator_ColumnPropNameInTable="QIdfileColumn" msprop:Generator_UserColumnName="QIdfile" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
               <xs:element name="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -2353,7 +2369,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="EmployeeID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_UserColumnName="EmployeeID" minOccurs="0">
+              <xs:element name="Emp_x0020_ID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmp_ID" msprop:Generator_ColumnPropNameInRow="Emp_ID" msprop:Generator_ColumnPropNameInTable="Emp_IDColumn" msprop:Generator_UserColumnName="Emp ID" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
@@ -2766,6 +2782,187 @@
               </xs:element>
               <xs:element name="IsDeleted" msprop:Generator_ColumnVarNameInTable="columnIsDeleted" msprop:Generator_ColumnPropNameInRow="IsDeleted" msprop:Generator_ColumnPropNameInTable="IsDeletedColumn" msprop:Generator_UserColumnName="IsDeleted" type="xs:boolean" minOccurs="0" />
               <xs:element name="IsSubmitted" msprop:Generator_ColumnVarNameInTable="columnIsSubmitted" msprop:Generator_ColumnPropNameInRow="IsSubmitted" msprop:Generator_ColumnPropNameInTable="IsSubmittedColumn" msprop:Generator_UserColumnName="IsSubmitted" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EmployeeDetails" msprop:Generator_TableClassName="EmployeeDetailsDataTable" msprop:Generator_TableVarName="tableEmployeeDetails" msprop:Generator_TablePropName="EmployeeDetails" msprop:Generator_RowDeletingName="EmployeeDetailsRowDeleting" msprop:Generator_RowChangingName="EmployeeDetailsRowChanging" msprop:Generator_RowEvHandlerName="EmployeeDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="EmployeeDetailsRowDeleted" msprop:Generator_UserTableName="EmployeeDetails" msprop:Generator_RowChangedName="EmployeeDetailsRowChanged" msprop:Generator_RowEvArgName="EmployeeDetailsRowChangeEvent" msprop:Generator_RowClassName="EmployeeDetailsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Emp_x0020_ID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmp_ID" msprop:Generator_ColumnPropNameInRow="Emp_ID" msprop:Generator_ColumnPropNameInTable="Emp_IDColumn" msprop:Generator_UserColumnName="Emp ID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmployeeCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmployeeCode" msprop:Generator_ColumnPropNameInRow="EmployeeCode" msprop:Generator_ColumnPropNameInTable="EmployeeCodeColumn" msprop:Generator_UserColumnName="EmployeeCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FullName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" msprop:Generator_UserColumnName="FullName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Designation" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDesignation" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" msprop:Generator_UserColumnName="Designation" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Department" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDepartment" msprop:Generator_ColumnPropNameInRow="Department" msprop:Generator_ColumnPropNameInTable="DepartmentColumn" msprop:Generator_UserColumnName="Department" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepartmentHead" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDepartmentHead" msprop:Generator_ColumnPropNameInRow="DepartmentHead" msprop:Generator_ColumnPropNameInTable="DepartmentHeadColumn" msprop:Generator_UserColumnName="DepartmentHead" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepartmentHeadEmail" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDepartmentHeadEmail" msprop:Generator_ColumnPropNameInRow="DepartmentHeadEmail" msprop:Generator_ColumnPropNameInTable="DepartmentHeadEmailColumn" msprop:Generator_UserColumnName="DepartmentHeadEmail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CostCenter" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCostCenter" msprop:Generator_ColumnPropNameInRow="CostCenter" msprop:Generator_ColumnPropNameInTable="CostCenterColumn" msprop:Generator_UserColumnName="CostCenter" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CostCenterHead" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCostCenterHead" msprop:Generator_ColumnPropNameInRow="CostCenterHead" msprop:Generator_ColumnPropNameInTable="CostCenterHeadColumn" msprop:Generator_UserColumnName="CostCenterHead" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CostCenterHeadEmail" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCostCenterHeadEmail" msprop:Generator_ColumnPropNameInRow="CostCenterHeadEmail" msprop:Generator_ColumnPropNameInTable="CostCenterHeadEmailColumn" msprop:Generator_UserColumnName="CostCenterHeadEmail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PassportID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPassportID" msprop:Generator_ColumnPropNameInRow="PassportID" msprop:Generator_ColumnPropNameInTable="PassportIDColumn" msprop:Generator_UserColumnName="PassportID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PassportexpireDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPassportexpireDate" msprop:Generator_ColumnPropNameInRow="PassportexpireDate" msprop:Generator_ColumnPropNameInTable="PassportexpireDateColumn" msprop:Generator_UserColumnName="PassportexpireDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Passportissuedate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPassportissuedate" msprop:Generator_ColumnPropNameInRow="Passportissuedate" msprop:Generator_ColumnPropNameInTable="PassportissuedateColumn" msprop:Generator_UserColumnName="Passportissuedate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QatarID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnQatarID" msprop:Generator_ColumnPropNameInRow="QatarID" msprop:Generator_ColumnPropNameInTable="QatarIDColumn" msprop:Generator_UserColumnName="QatarID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QIDEDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnQIDEDate" msprop:Generator_ColumnPropNameInRow="QIDEDate" msprop:Generator_ColumnPropNameInTable="QIDEDateColumn" msprop:Generator_UserColumnName="QIDEDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QIdfile" msprop:Generator_ColumnVarNameInTable="columnQIdfile" msprop:Generator_ColumnPropNameInRow="QIdfile" msprop:Generator_ColumnPropNameInTable="QIdfileColumn" msprop:Generator_UserColumnName="QIdfile" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Location" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Section" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSection" msprop:Generator_ColumnPropNameInRow="Section" msprop:Generator_ColumnPropNameInTable="SectionColumn" msprop:Generator_UserColumnName="Section" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Contact" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnContact" msprop:Generator_ColumnPropNameInRow="Contact" msprop:Generator_ColumnPropNameInTable="ContactColumn" msprop:Generator_UserColumnName="Contact" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HireDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnHireDate" msprop:Generator_ColumnPropNameInRow="HireDate" msprop:Generator_ColumnPropNameInTable="HireDateColumn" msprop:Generator_UserColumnName="HireDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TerminationDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTerminationDate" msprop:Generator_ColumnPropNameInRow="TerminationDate" msprop:Generator_ColumnPropNameInTable="TerminationDateColumn" msprop:Generator_UserColumnName="TerminationDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nvDept" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnvDept" msprop:Generator_ColumnPropNameInRow="nvDept" msprop:Generator_ColumnPropNameInTable="nvDeptColumn" msprop:Generator_UserColumnName="nvDept" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nvDeptCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnvDeptCode" msprop:Generator_ColumnPropNameInRow="nvDeptCode" msprop:Generator_ColumnPropNameInTable="nvDeptCodeColumn" msprop:Generator_UserColumnName="nvDeptCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nvDesignation" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnvDesignation" msprop:Generator_ColumnPropNameInRow="nvDesignation" msprop:Generator_ColumnPropNameInTable="nvDesignationColumn" msprop:Generator_UserColumnName="nvDesignation" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
