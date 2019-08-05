@@ -134,12 +134,15 @@
                                     </div><!-- /.box-header -->
                                     <div class="box-body">
                                         <table class="table table-condensed table-bordered">
+                                            <thead>
                                             <tr>
                                                 <td>Travel Request #</td>
                                                 <td>Merged Sections</td>
                                                 <td>Travel Agency</td>
                                                 <td></td>
                                             </tr>
+                                                </thead>
+                                            <tbody>
                                             @foreach (var item in ViewBag.AvailableCombinations)
                                             {
                                                 <tr>
@@ -192,6 +195,7 @@
                                                     </td>
                                                 </tr>
                                             }
+                                                </tbody>
                                         </table>
                                     </div>
                                 </div>

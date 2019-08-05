@@ -26,62 +26,65 @@
                             }
                             else
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayName("Name")
-                                    </td>
-                                    <td>
-                                        @Html.DisplayName("Designation")
-                                    </td>
-                                    <td>
-                                        @Html.DisplayName("Position Code")
-                                    </td>
-                                    <td>
-                                        @Html.DisplayName("Department")
-                                    </td>
-                                    <td>
-                                        @Html.DisplayName("Cost Center")
-                                    </td>
-                                    <td>
-                                        @Html.DisplayName("Passport ID")
-                                    </td>
-                                    <td>
-                                        @Html.DisplayName("Qatar ID")
-                                    </td>
-                                    <th></th>
-                                </tr>
-
-                                foreach (var item in employeelist)
-                                {
+                                <thead>
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.FullName)
+                                            @Html.DisplayName("Name")
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Designation)
+                                            @Html.DisplayName("Designation")
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.PositionCode)
+                                            @Html.DisplayName("Position Code")
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Department)
+                                            @Html.DisplayName("Department")
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Costcenter)
+                                            @Html.DisplayName("Cost Center")
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.PassportID)
+                                            @Html.DisplayName("Passport ID")
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.QatarID)
+                                            @Html.DisplayName("Qatar ID")
                                         </td>
-                                        <td>
-                                            <span class="glyphicon">
-                                                @Html.ActionLink("  Details", "AnyEmployeeDetails", new { id = item.EmployeeID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
-                                            </span>
-                                        </td>
+                                        <th></th>
                                     </tr>
-                                }
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in employeelist)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FullName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Designation)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PositionCode)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Department)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Costcenter)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PassportID)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.QatarID)
+                                            </td>
+                                            <td>
+                                                <span class="glyphicon">
+                                                    @Html.ActionLink("  Details", "AnyEmployeeDetails", new { id = item.EmployeeID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
                             }
                         </table>
                     </div>

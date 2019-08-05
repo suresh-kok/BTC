@@ -26,80 +26,84 @@
                                 }
                                 else
                                 {
-                                    <tr class="success">
-                                        <th>RFQ #</th>
-                                        <th>Merged Sections</th>
-                                        <th>Travel Agency</th>
-                                        <th>Attachments</th>
-                                        <th>Action</th>
-                                        <th>
-                                        </th>
-                                    </tr>
-                                    foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td>@item.TravelRequests.ApplicationNumber</td>
-                                            <td>
-                                                @{
-                                                    if (item.ProcessingSection == 1)
-                                                    {
-                                                        @("AT");
-                                                    }
-                                                    else if (item.ProcessingSection == 2)
-                                                    {
-                                                        @("HS");
-                                                    }
-                                                    else if (item.ProcessingSection == 3)
-                                                    {
-                                                        @("PC");
-                                                    }
-                                                    else if (item.ProcessingSection == 4)
-                                                    {
-                                                        @("AT + HS");
-                                                    }
-                                                    else if (item.ProcessingSection == 5)
-                                                    {
-                                                        @("AT + PC");
-                                                    }
-                                                    else if (item.ProcessingSection == 6)
-                                                    {
-                                                        @("HS + PC");
-                                                    }
-                                                    else if (item.ProcessingSection == 7)
-                                                    {
-                                                        @("AT + HS + PC");
-                                                    }
-                                                }
-                                            </td>
-                                            <td>
-                                                @if (item.TravelAgencyID != null)
-                                                {
-                                                    var po = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).FirstOrDefault(rt => rt.ID == item.TravelAgencyID).AgencyCode.ToString();
-                                                    @po
-                                                }
-                                            </td>
-                                            <td>
-                                                @{
-                                                    var att = 0;
-                                                    using (Travel_Request_System_EF.Models.BTCEntities db = new Travel_Request_System_EF.Models.BTCEntities())
-                                                    {
-                                                        att = db.AttachmentLink.Where(x => x.AttachmentFor == (item.RFQName + "Pro" + item.ProcessingSection + "Trav" + item.TravelAgencyID)).Count();
-                                                    }
-                                                }
-                                                @att
-                                            </td>
-                                            <td>
-                                                <span class="glyphicon">
-                                                    @Html.ActionLink("  Email as PDF", "Email", new { id = item.ID }, new { @class = "form-control btn btn-info  glyphicon-envelope" })
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="glyphicon">
-                                                    @Html.ActionLink("  View", "RFQFinalPreview", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-edit" })
-                                                </span>
-                                            </td>
+                                    <thead>
+                                        <tr class="success">
+                                            <th>RFQ #</th>
+                                            <th>Merged Sections</th>
+                                            <th>Travel Agency</th>
+                                            <th>Attachments</th>
+                                            <th>Action</th>
+                                            <th>
+                                            </th>
                                         </tr>
-                                    }
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.TravelRequests.ApplicationNumber</td>
+                                                <td>
+                                                    @{
+                                                        if (item.ProcessingSection == 1)
+                                                        {
+                                                            @("AT");
+                                                        }
+                                                        else if (item.ProcessingSection == 2)
+                                                        {
+                                                            @("HS");
+                                                        }
+                                                        else if (item.ProcessingSection == 3)
+                                                        {
+                                                            @("PC");
+                                                        }
+                                                        else if (item.ProcessingSection == 4)
+                                                        {
+                                                            @("AT + HS");
+                                                        }
+                                                        else if (item.ProcessingSection == 5)
+                                                        {
+                                                            @("AT + PC");
+                                                        }
+                                                        else if (item.ProcessingSection == 6)
+                                                        {
+                                                            @("HS + PC");
+                                                        }
+                                                        else if (item.ProcessingSection == 7)
+                                                        {
+                                                            @("AT + HS + PC");
+                                                        }
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (item.TravelAgencyID != null)
+                                                    {
+                                                        var po = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).FirstOrDefault(rt => rt.ID == item.TravelAgencyID).AgencyCode.ToString();
+                                                        @po
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        var att = 0;
+                                                        using (Travel_Request_System_EF.Models.BTCEntities db = new Travel_Request_System_EF.Models.BTCEntities())
+                                                        {
+                                                            att = db.AttachmentLink.Where(x => x.AttachmentFor == (item.RFQName + "Pro" + item.ProcessingSection + "Trav" + item.TravelAgencyID)).Count();
+                                                        }
+                                                    }
+                                                    @att
+                                                </td>
+                                                <td>
+                                                    <span class="glyphicon">
+                                                        @Html.ActionLink("  Email as PDF", "Email", new { id = item.ID }, new { @class = "form-control btn btn-info  glyphicon-envelope" })
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="glyphicon">
+                                                        @Html.ActionLink("  View", "RFQFinalPreview", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
                                 }
                             </table>
                         </div><!-- /.box-body -->

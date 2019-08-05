@@ -372,7 +372,7 @@ namespace Travel_Request_System_EF.Controllers
             List<FullEmployeeDetail> employeeList = new List<FullEmployeeDetail>();
             using (EmployeeDetailsDBService db = new EmployeeDetailsDBService(empCode))
             {
-                ViewBag.employeeList = db.AllEmployeeDetails();
+                ViewBag.employeeList = db.AllEmployeeDetails(50);
             }
             return View();
         }
@@ -599,9 +599,14 @@ namespace Travel_Request_System_EF.Controllers
             using (BTCEntities db = new BTCEntities())
             {
                 List<Roles> allRoles = db.Roles.ToList();
-                List<HRW_Employee> allEmployees = db.HRW_Employee.ToList();
+                List<FullEmployeeDetail> allEmployees = new List<FullEmployeeDetail>();
+                using (EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService(empCode))
+                {
+                    allEmployees = employeeDetailsDBService.AllEmployeeDetails();
+                }
                 ViewBag.allRoles = allRoles;
                 ViewBag.allEmployees = allEmployees;
+                CheckErrorMessages();
                 return View();
             }
         }
@@ -625,13 +630,25 @@ namespace Travel_Request_System_EF.Controllers
                 if (!string.IsNullOrEmpty(userName))
                 {
                     ModelState.AddModelError("Warning Email", "Sorry: Email already Exists");
+                    var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
+                    List<string> sberr = new List<string>();
+                    foreach (var item in errlist)
+                    {
+                        sberr.Add(item[0].ErrorMessage);
+                    }
+                    TempData["ErrorMessage"] = sberr.ToList();
+                    CheckErrorMessages();
                     return RedirectToAction("CreateUser", userObj);
                 }
 
                 using (BTCEntities db = new BTCEntities())
                 {
                     List<Roles> allRoles = db.Roles.ToList();
-                    List<HRW_Employee> allEmployees = db.HRW_Employee.ToList();
+                    List<FullEmployeeDetail> allEmployees = new List<FullEmployeeDetail>();
+                    using (EmployeeDetailsDBService employeeDetailsDBService = new EmployeeDetailsDBService(empCode))
+                    {
+                        allEmployees = employeeDetailsDBService.AllEmployeeDetails();
+                    }
                     ViewBag.allRoles = allRoles;
                     ViewBag.allEmployees = allEmployees;
 

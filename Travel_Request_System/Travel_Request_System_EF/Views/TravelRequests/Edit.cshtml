@@ -436,12 +436,12 @@
                                     <label class="col-sm-3">Expenses Handled By</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="expensesHandledBy">
-                                            <option @(Model.HotelCategory == "None" ? " selected" : "")>Any</option>
-                                            <option @(Model.HotelCategory == "Vendor 1" ? " selected" : "")>1 Star Rated Hotels</option>
-                                            <option @(Model.HotelCategory == "Vendor 2" ? " selected" : "")>2 Star Rated Hotels</option>
-                                            <option @(Model.HotelCategory == "Vendor 3" ? " selected" : "")>3 Star Rated Hotels</option>
-                                            <option @(Model.HotelCategory == "Vendor 4" ? " selected" : "")>4 Star Rated Hotels</option>
-                                            <option @(Model.HotelCategory == "Vendor 5" ? " selected" : "")>5 or Above Star Rated Hotels</option>
+                                            <option @(Model.HotelCategory == "BTC" ? " selected" : "")>BTC</option>
+                                            <option @(Model.HotelCategory == "Vendor 1" ? " selected" : "")>Vendor 1</option>
+                                            <option @(Model.HotelCategory == "Vendor 2" ? " selected" : "")>Vendor 2</option>
+                                            <option @(Model.HotelCategory == "Vendor 3" ? " selected" : "")>Vendor 3</option>
+                                            <option @(Model.HotelCategory == "Vendor 4" ? " selected" : "")>Vendor 4</option>
+                                            <option @(Model.HotelCategory == "Vendor 5" ? " selected" : "")>Vendor 5</option>
                                         </select>
                                     </div>
                                 </div>
@@ -762,11 +762,13 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <select class="form-control" name="preferredVehicle">
-                                                <option @(Model.PreferredVehicle == "option 1" ? " selected" : "")>option 1</option>
-                                                <option @(Model.PreferredVehicle == "option 2" ? " selected" : "")>option 2</option>
-                                                <option @(Model.PreferredVehicle == "option 3" ? " selected" : "")>option 3</option>
-                                                <option @(Model.PreferredVehicle == "option 4" ? " selected" : "")>option 4</option>
-                                                <option @(Model.PreferredVehicle == "option 5" ? " selected" : "")>option 5</option>
+
+                                                <option @(Model.PreferredVehicle == "None" ? " selected" : "")>None</option>
+                                                <option @(Model.PreferredVehicle == "Hatchback" ? " selected" : "")>Hatchback</option>
+                                                <option @(Model.PreferredVehicle == "Sedan" ? " selected" : "")>Sedan</option>
+                                                <option @(Model.PreferredVehicle == "SUV" ? " selected" : "")>SUV</option>
+                                                <option @(Model.PreferredVehicle == "Luxury" ? " selected" : "")>Luxury</option>
+                                                <option @(Model.PreferredVehicle == "Others" ? " selected" : "")>Others</option>
                                             </select>
                                         </div>
                                     </div>

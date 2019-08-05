@@ -346,11 +346,16 @@ namespace Travel_Request_System_EF.Models.ViewModel
         }
 
         //Employee Details
-        public List<FullEmployeeDetail> AllEmployeeDetails()
+        public List<FullEmployeeDetail> AllEmployeeDetails(int numberOfRecords = 0)
         {
+            string Toprecords = "";
+            if (numberOfRecords > 0)
+            {
+                Toprecords = "TOP " + numberOfRecords + " ";
+            }
             using (var db = new BTCEntities())
             {
-                string sequenceMaxQuery = "SELECT CAST(a.EmployeeID AS NVARCHAR(100)) EmployeeID  " +
+                string sequenceMaxQuery = "SELECT " + Toprecords + " CAST(a.EmployeeID AS NVARCHAR(100)) EmployeeID  " +
 "        ,CAST(a.EmployeeCode AS NVARCHAR(100)) EmployeeCode  " +
 "        ,CAST(a.FullName AS NVARCHAR(100)) FullName  " +
 "        ,CAST(a.FirstName AS NVARCHAR(100)) FirstName  " +
@@ -367,7 +372,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                        WHERE EmployeeId IN (  " +
 "                                        SELECT EmployeeId  " +
 "                                        FROM HRW_Employee  " +
-"                                        WHERE EmployeeCode = a.EmployeeId  " +
+"                                        WHERE EmployeeCode = a.EmployeeCode  " +
 "                                                AND RecordType = 'EMP'  " +
 "                                        )  " +
 "                                AND EntityTypeId = '88'  " +
@@ -378,7 +383,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                        WHERE EmployeeId IN (  " +
 "                                        SELECT EmployeeId  " +
 "                                        FROM HRW_Employee  " +
-"                                        WHERE EmployeeCode = a.EmployeeId  " +
+"                                        WHERE EmployeeCode = a.EmployeeCode  " +
 "                                                AND RecordType = 'EMP'  " +
 "                                        )  " +
 "                                AND EntityTypeId = '10'  " +
@@ -388,7 +393,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                        FROM HRW_Employee Emp  " +
 "                        INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId)  " +
 "                        INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId)  " +
-"                        WHERE Emp.EmployeeCode = a.EmployeeId  " +
+"                        WHERE Emp.EmployeeCode = a.EmployeeCode  " +
 "                                AND EM.EntityTypeID = '96'  " +
 "                                AND Emp.RecordType = 'EMP' " +
 "                        ) AS NVARCHAR(100)) AS DepartmentHead  " +
@@ -400,7 +405,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                                FROM HRW_Employee Emp  " +
 "                                                INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId)  " +
 "                                                INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId)  " +
-"                                                WHERE Emp.EmployeeCode = a.EmployeeId  " +
+"                                                WHERE Emp.EmployeeCode = a.EmployeeCode  " +
 "                                                        AND EM.EntityTypeID = '96'  " +
 "                                                        AND Emp.RecordType = 'EMP' " +
 "                                                )  " +
@@ -412,7 +417,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                        WHERE EmployeeId IN (  " +
 "                                        SELECT EmployeeId  " +
 "                                        FROM HRW_Employee  " +
-"                                        WHERE EmployeeCode = a.EmployeeId  " +
+"                                        WHERE EmployeeCode = a.EmployeeCode  " +
 "                                                AND RecordType = 'EMP'  " +
 "                                        )  " +
 "                                AND EntityTypeId = '10'  " +
@@ -422,7 +427,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                        FROM HRW_Employee Emp  " +
 "                        INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId)  " +
 "                        INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId)  " +
-"                        WHERE Emp.EmployeeCode = a.EmployeeId  " +
+"                        WHERE Emp.EmployeeCode = a.EmployeeCode  " +
 "                                AND EM.EntityTypeID = '101'  " +
 "                                AND Emp.RecordType = 'EMP' " +
 "                        ) AS NVARCHAR(100)) AS CostCenterHead  " +
@@ -434,7 +439,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                                FROM HRW_Employee Emp  " +
 "                                                INNER JOIN ORG_EmpEntityLink Oel ON (Emp.EmployeeID = Oel.EmployeeId)  " +
 "                                                INNER JOIN ORG_EntityMaster EM ON (EM.EntityId = Oel.EntityId)  " +
-"                                                WHERE Emp.EmployeeCode = a.EmployeeId  " +
+"                                                WHERE Emp.EmployeeCode = a.EmployeeCode  " +
 "                                                        AND EM.EntityTypeID = '101'  " +
 "                                                        AND Emp.RecordType = 'EMP' " +
 "                                                )  " +
@@ -451,7 +456,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                        WHERE EmployeeId IN (  " +
 "                                        SELECT EmployeeId  " +
 "                                        FROM HRW_Employee  " +
-"                                        WHERE EmployeeCode = a.EmployeeId  " +
+"                                        WHERE EmployeeCode = a.EmployeeCode  " +
 "                                                AND RecordType = 'EMP'  " +
 "                                        )  " +
 "                                AND EntityTypeId = '84'  " +
@@ -462,7 +467,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                        WHERE EmployeeId IN (  " +
 "                                        SELECT EmployeeId  " +
 "                                        FROM HRW_Employee  " +
-"                                        WHERE EmployeeCode = a.EmployeeId  " +
+"                                        WHERE EmployeeCode = a.EmployeeCode  " +
 "                                                AND RecordType = 'EMP'  " +
 "                                        )  " +
 "                                AND EntityTypeId = '85'  " +
@@ -473,7 +478,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                        WHERE EmployeeId IN (  " +
 "                                        SELECT EmployeeId  " +
 "                                        FROM HRW_Employee  " +
-"                                        WHERE EmployeeCode = a.EmployeeId  " +
+"                                        WHERE EmployeeCode = a.EmployeeCode  " +
 "                                                AND RecordType = 'EMP'  " +
 "                                        )  " +
 "                                AND EntityTypeId = '93'  " +
@@ -486,7 +491,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                WHERE EmployeeId IN (  " +
 "                                                SELECT EmployeeId  " +
 "                                                FROM HRW_Employee  " +
-"                                                WHERE EmployeeCode = a.EmployeeId  " +
+"                                                WHERE EmployeeCode = a.EmployeeCode  " +
 "                                                        AND RecordType = 'EMP'  " +
 "                                                )  " +
 "                                        AND EntityTypeParamID = '15'  " +
@@ -497,7 +502,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                WHERE EmployeeId IN (  " +
 "                                                SELECT EmployeeId  " +
 "                                                FROM HRW_Employee  " +
-"                                                WHERE EmployeeCode = a.EmployeeId  " +
+"                                                WHERE EmployeeCode = a.EmployeeCode  " +
 "                                                        AND RecordType = 'EMP'  " +
 "                                                )  " +
 "                                        AND EntityTypeId = '10'  " +
@@ -508,7 +513,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                WHERE EntityId IN (  " +
 "                                                SELECT EntityId  " +
 "                                                FROM HRW_VEmpEntityValues  " +
-"                                                WHERE EmployeeCode = a.EmployeeId  " +
+"                                                WHERE EmployeeCode = a.EmployeeCode  " +
 "                                                        AND RecordType = 'EMP'  " +
 "                                                )  " +
 "                                        AND EntityTypeId = '10'  " +
@@ -519,7 +524,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                WHERE EmployeeId IN (  " +
 "                                                SELECT EmployeeId  " +
 "                                                FROM HRW_Employee  " +
-"                                                WHERE EmployeeCode = a.EmployeeId  " +
+"                                                WHERE EmployeeCode = a.EmployeeCode  " +
 "                                                        AND RecordType = 'EMP'  " +
 "                                                )  " +
 "                                        AND EntityTypeId = '88'  " +

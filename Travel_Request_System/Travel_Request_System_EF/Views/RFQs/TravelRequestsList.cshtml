@@ -24,117 +24,120 @@
                             }
                             else
                             {
-                                <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.ApplicationNumber)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.PortOfOriginID)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.PortOfDestinationID)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.TravelDays)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.DepartureDate)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.ReturnDate)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.ExpensesHandledBy)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.CreateOn)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.CreatedBy)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.IsSubmitted)
-                                    </th>
-                                    <th>
-                                        Actions
-                                    </th>
-                                </tr>
-
-                                foreach (var item in Model)
-                                {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelitem => item.ApplicationNumber)
-                                    </td>
-                                    <td>
-                                        @(new HtmlString(item.City1.CityDesc + " ," + item.City1.Country))
-                                    </td>
-                                    <td>
-                                        @(new HtmlString(item.City.CityDesc + " ," + item.City.Country))
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelitem => item.TravelDays)
-                                    </td>
-                                    <td>
-                                        @if (item.DepartureDate != null)
-                                        {
-                                            @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.DepartureDate.ToString()))));
-                                        }
-                                    </td>
-                                    <td>
-                                        @if (item.ReturnDate != null)
-                                        {
-                                            @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.ReturnDate.ToString()))));
-                                        }
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelitem => item.ExpensesHandledBy)
-                                    </td>
-                                    <td>
-                                        @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.CreateOn.ToString()))));
-                                    </td>
-                                    <td>
-                                        @(new HtmlString(item.Users1.FirstName + " ," + item.Users1.LastName))
-                                    </td>
-                                    <td>
-                                        @if (item.IsSubmitted != true)
-                                        {
-                                            @(new HtmlString("Draft"))
-                                        }
-                                        else
-                                        {
-                                            @(new HtmlString("Submitted"))
-                                        }
-                                    </td>
-                                    <td>
-                                        <span class="glyphicon">
-                                            @Html.ActionLink("  Details", "RFQProcessing", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
-                                        </span>
-                                        @*@{
-                var lpo = false;
-                using (Travel_Request_System_EF.Models.BTCEntities db = new Travel_Request_System_EF.Models.BTCEntities())
-                {
-                    if (db.RFQ.Where(a => a.TravelRequestID == item.ID && a.LPO.Where(b => !((bool)b.IsDeleted)).Count() > 0).Count() > 0)
-                    {
-                        lpo = true;
-                    }
-                }
-                if (lpo)
-                {
-                    <span class="glyphicon">
-                        @Html.ActionLink("  View LPO", "Index", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
-                    </span>
-                }
-                else
-                {
-                    <span class="glyphicon">
-                        @Html.ActionLink("  Details", "LPOProcessing", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
-                    </span>
-                }
-            }*@
-                                    </td>
-                                </tr>
-                                }
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ApplicationNumber)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.PortOfOriginID)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.PortOfDestinationID)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TravelDays)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.DepartureDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ReturnDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ExpensesHandledBy)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.CreateOn)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.CreatedBy)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.IsSubmitted)
+                                        </th>
+                                        <th>
+                                            Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelitem => item.ApplicationNumber)
+                                            </td>
+                                            <td>
+                                                @(new HtmlString(item.City1.CityDesc + " ," + item.City1.Country))
+                                            </td>
+                                            <td>
+                                                @(new HtmlString(item.City.CityDesc + " ," + item.City.Country))
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelitem => item.TravelDays)
+                                            </td>
+                                            <td>
+                                                @if (item.DepartureDate != null)
+                                                {
+                                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.DepartureDate.ToString()))));
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.ReturnDate != null)
+                                                {
+                                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.ReturnDate.ToString()))));
+                                                }
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelitem => item.ExpensesHandledBy)
+                                            </td>
+                                            <td>
+                                                @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.CreateOn.ToString()))));
+                                            </td>
+                                            <td>
+                                                @(new HtmlString(item.Users1.FirstName + " ," + item.Users1.LastName))
+                                            </td>
+                                            <td>
+                                                @if (item.IsSubmitted != true)
+                                                {
+                                                    @(new HtmlString("Draft"))
+                                                }
+                                                else
+                                                {
+                                                    @(new HtmlString("Submitted"))
+                                                }
+                                            </td>
+                                            <td>
+                                                <span class="glyphicon">
+                                                    @Html.ActionLink("  Details", "RFQProcessing", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                                                </span>
+                                                @*@{
+                                                        var lpo = false;
+                                                        using (Travel_Request_System_EF.Models.BTCEntities db = new Travel_Request_System_EF.Models.BTCEntities())
+                                                        {
+                                                            if (db.RFQ.Where(a => a.TravelRequestID == item.ID && a.LPO.Where(b => !((bool)b.IsDeleted)).Count() > 0).Count() > 0)
+                                                            {
+                                                                lpo = true;
+                                                            }
+                                                        }
+                                                        if (lpo)
+                                                        {
+                                                            <span class="glyphicon">
+                                                                @Html.ActionLink("  View LPO", "Index", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                                                            </span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="glyphicon">
+                                                                @Html.ActionLink("  Details", "LPOProcessing", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                                                            </span>
+                                                        }
+                                                    }*@
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
                             }
                         </table>
                     </div>

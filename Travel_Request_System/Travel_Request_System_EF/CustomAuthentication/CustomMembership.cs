@@ -31,7 +31,7 @@ namespace Travel_Request_System_EF.CustomAuthentication
                 var user = (from us in dbContext.Users
                             where string.Compare(username, us.Username, StringComparison.OrdinalIgnoreCase) == 0
                             && string.Compare(password, us.Password, StringComparison.OrdinalIgnoreCase) == 0
-                            && us.IsActive == true
+                            && us.IsActive == true && us.IsDeleted == false
                             select us).FirstOrDefault();
 
                 return (user != null) ? true : false;

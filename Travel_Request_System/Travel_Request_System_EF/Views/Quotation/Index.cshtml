@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Travel_Request_System_EF.Models.RFQ>
-@using Travel_Request_System_EF.Models 
+@using Travel_Request_System_EF.Models
 
 @{
     ViewBag.Title = "Manage Quotations";
@@ -27,74 +27,78 @@
                                 }
                                 else
                                 {
-                                    <tr class="success">
-                                        <th>RFQ #</th>
-                                        <th>Merged Sections</th>
-                                        <th>Travel Agency</th>
-                                        <th>Attachments</th>
-                                        <th>Action</th>
-                                        <th>
-                                        </th>
-                                    </tr>
-                                    foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td>@item.TravelRequests.ApplicationNumber</td>
-                                            <td>
-                                                @{
-                                                    if (item.ProcessingSection == 1)
-                                                    {
-                                                        @("AT");
-                                                    }
-                                                    else if (item.ProcessingSection == 2)
-                                                    {
-                                                        @("HS");
-                                                    }
-                                                    else if (item.ProcessingSection == 3)
-                                                    {
-                                                        @("PC");
-                                                    }
-                                                    else if (item.ProcessingSection == 4)
-                                                    {
-                                                        @("AT + HS");
-                                                    }
-                                                    else if (item.ProcessingSection == 5)
-                                                    {
-                                                        @("AT + PC");
-                                                    }
-                                                    else if (item.ProcessingSection == 6)
-                                                    {
-                                                        @("HS + PC");
-                                                    }
-                                                    else if (item.ProcessingSection == 7)
-                                                    {
-                                                        @("AT + HS + PC");
-                                                    }
-                                                }
-                                            </td>
-                                            <td>
-                                                @{
-                                                    var po = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).FirstOrDefault(rt => rt.ID == item.TravelAgencyID).AgencyCode.ToString();
-                                                }
-                                                @po
-                                            </td>
-                                            <td>
-                                                @{
-                                                    int att = 0;
-                                                    using (var dbvar = new BTCEntities())
-                                                    {
-                                                        att = dbvar.AttachmentLink.Where(a => a.AttachmentFor.Contains(item.RFQName + "Pro" + item.ProcessingSection + "Trav" + item.TravelAgencyID)).Count();
-                                                    }
-                                                }
-                                                @att
-                                            </td>
-                                            <td>
-                                                <span class="glyphicon">
-                                                    @Html.ActionLink("  View Details", "AddQuotation", new { id = item.ID }, new { @class = "form-control btn btn-info  glyphicon-envelope" })
-                                                </span>
-                                            </td>
+                                    <thead>
+                                        <tr class="success">
+                                            <th>RFQ #</th>
+                                            <th>Merged Sections</th>
+                                            <th>Travel Agency</th>
+                                            <th>Attachments</th>
+                                            <th>Action</th>
+                                            <th>
+                                            </th>
                                         </tr>
-                                    }
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.TravelRequests.ApplicationNumber</td>
+                                                <td>
+                                                    @{
+                                                        if (item.ProcessingSection == 1)
+                                                        {
+                                                            @("AT");
+                                                        }
+                                                        else if (item.ProcessingSection == 2)
+                                                        {
+                                                            @("HS");
+                                                        }
+                                                        else if (item.ProcessingSection == 3)
+                                                        {
+                                                            @("PC");
+                                                        }
+                                                        else if (item.ProcessingSection == 4)
+                                                        {
+                                                            @("AT + HS");
+                                                        }
+                                                        else if (item.ProcessingSection == 5)
+                                                        {
+                                                            @("AT + PC");
+                                                        }
+                                                        else if (item.ProcessingSection == 6)
+                                                        {
+                                                            @("HS + PC");
+                                                        }
+                                                        else if (item.ProcessingSection == 7)
+                                                        {
+                                                            @("AT + HS + PC");
+                                                        }
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        var po = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).FirstOrDefault(rt => rt.ID == item.TravelAgencyID).AgencyCode.ToString();
+                                                    }
+                                                    @po
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        int att = 0;
+                                                        using (var dbvar = new BTCEntities())
+                                                        {
+                                                            att = dbvar.AttachmentLink.Where(a => a.AttachmentFor.Contains(item.RFQName + "Pro" + item.ProcessingSection + "Trav" + item.TravelAgencyID)).Count();
+                                                        }
+                                                    }
+                                                    @att
+                                                </td>
+                                                <td>
+                                                    <span class="glyphicon">
+                                                        @Html.ActionLink("  View Details", "AddQuotation", new { id = item.ID }, new { @class = "form-control btn btn-info  glyphicon-envelope" })
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
                                 }
                             </table>
                         </div><!-- /.box-body -->
@@ -105,22 +109,22 @@
     </aside>
 
     @*@if (Model.ProcessingSection == (int)ProcessingSections.AT || Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC)
-    {
-        <div class="row" style="margin-bottom:15px">
-            @Html.Partial("_ATQuotation", (ATQuotation)ViewBag.ATQuotation)
-        </div>
-    }
-    @if (Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.HS || Model.ProcessingSection == (int)ProcessingSections.HSPC)
-    {
-        <div class="row" style="margin-bottom:15px">
-            @Html.Partial("_HSQuotation", (HSQuotation)ViewBag.HSQuotation)
-        </div>
-    }
-    @if (Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC || Model.ProcessingSection == (int)ProcessingSections.HSPC || Model.ProcessingSection == (int)ProcessingSections.PC)
-    {
-        <div class="row" style="margin-bottom:15px">
-            @Html.Partial("_PCQuotation", (PCQuotation)ViewBag.PCQuotation)
-        </div>
-    }*@
+        {
+            <div class="row" style="margin-bottom:15px">
+                @Html.Partial("_ATQuotation", (ATQuotation)ViewBag.ATQuotation)
+            </div>
+        }
+        @if (Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.HS || Model.ProcessingSection == (int)ProcessingSections.HSPC)
+        {
+            <div class="row" style="margin-bottom:15px">
+                @Html.Partial("_HSQuotation", (HSQuotation)ViewBag.HSQuotation)
+            </div>
+        }
+        @if (Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC || Model.ProcessingSection == (int)ProcessingSections.HSPC || Model.ProcessingSection == (int)ProcessingSections.PC)
+        {
+            <div class="row" style="margin-bottom:15px">
+                @Html.Partial("_PCQuotation", (PCQuotation)ViewBag.PCQuotation)
+            </div>
+        }*@
 
 </div>

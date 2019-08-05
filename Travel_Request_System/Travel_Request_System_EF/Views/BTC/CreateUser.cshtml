@@ -61,7 +61,7 @@ $(document).ready(function(){
                         <div class="form-group">
                             @Html.LabelFor(model => model.HREmployeeID, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.DropDownList("EmployeeID", (((IEnumerable<Travel_Request_System_EF.Models.HRW_Employee>)ViewBag.allEmployees).Select(m => new SelectListItem { Text = m.EmployeeCode + " - " + m.FullName, Value = m.EmployeeID.ToString() })))
+                                @Html.DropDownList("EmployeeID", (((IEnumerable<Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail>)ViewBag.allEmployees).Select(m => new SelectListItem { Text = m.EmployeeCode + " - " + m.FullName, Value = m.EmployeeID.ToString() })))
                                 @*@Html.ValidationMessageFor(model => model.HREmployeeID, "", new { @class = "text-danger" })*@
                             </div>
                         </div>
