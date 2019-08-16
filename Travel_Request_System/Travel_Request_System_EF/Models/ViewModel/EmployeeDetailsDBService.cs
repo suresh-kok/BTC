@@ -530,8 +530,8 @@ namespace Travel_Request_System_EF.Models.ViewModel
 "                                        AND EntityTypeId = '88'  " +
 "                                ), '') AS NVARCHAR(100)) AS nvDesignation  " +
 "FROM HRW_Employee AS a  " +
-"INNER JOIN QATARIDDetails AS d ON a.EmployeeCode = d.EMPLOYEECODE  " +
-"INNER JOIN PassportDetails AS e ON a.EmployeeCode = e.EMPLOYEECODE  " +
+"LEFT JOIN QATARIDDetails AS d ON a.EmployeeCode = d.EMPLOYEECODE  " +
+"LEFT JOIN PassportDetails AS e ON a.EmployeeCode = e.EMPLOYEECODE  " +
 "WHERE TerminationDate IS NULL  " +
 "        AND a.RecordType = 'EMP';";
 
