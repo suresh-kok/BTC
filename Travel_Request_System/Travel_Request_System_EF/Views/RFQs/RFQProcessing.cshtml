@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                @if (Model.RFQ.Where(a => a.Processing == 0).Count() > 0)
+                @if (Model.RFQ.Where(a => a.Processing == 0 && a.IsDeleted == false).Count() > 0)
                 {
                     @Html.ActionLink("Go to Merge Table", "RFQMerger", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
 

@@ -156,13 +156,14 @@
                                     <label class="col-sm-3">Preferred Vehicle Type</label>
                                     <div class="col-sm-9">
                                         <div class="form-group">
-                                            <select class="form-control" name="preferredVehicle">
-                                                <option @(Model.PreferredVehicle == "option 1" ? " selected" : "")>option 1</option>
-                                                <option @(Model.PreferredVehicle == "option 2" ? " selected" : "")>option 2</option>
-                                                <option @(Model.PreferredVehicle == "option 3" ? " selected" : "")>option 3</option>
-                                                <option @(Model.PreferredVehicle == "option 4" ? " selected" : "")>option 4</option>
-                                                <option @(Model.PreferredVehicle == "option 5" ? " selected" : "")>option 5</option>
-                                            </select>
+                                          <select class="form-control" name="preferredVehicle">
+                                            <option @(Model.PreferredVehicle == "None" ? " selected" : "")>None</option>
+                                            <option @(Model.PreferredVehicle == "Hatchback" ? " selected" : "")>Hatchback</option>
+                                            <option @(Model.PreferredVehicle == "Sedan" ? " selected" : "")>Sedan</option>
+                                            <option @(Model.PreferredVehicle == "SUV" ? " selected" : "")>SUV</option>
+                                            <option @(Model.PreferredVehicle == "Luxury" ? " selected" : "")>Luxury</option>
+                                            <option @(Model.PreferredVehicle == "Others" ? " selected" : "")>Others</option>
+                                          </select>
                                         </div>
                                     </div>
                                 </div>

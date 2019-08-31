@@ -336,11 +336,17 @@ namespace Travel_Request_System_EF.Controllers
             using (BTCEntities db = new BTCEntities())
             {
                 var rfqVal = db.RFQ.Where(a => a.ID == id).FirstOrDefault();
+                var travelRequestID = rfqVal.TravelRequestID;
+
                 rfqVal.IsDeleted = true;
                 db.RFQ.Add(rfqVal);
                 db.Entry(rfqVal).State = EntityState.Modified;
                 db.SaveChanges();
                 ViewBag.SuccessMessage = "Entry Marked for Deletion";
+                if (db.RFQ.Where(a => a.TravelRequestID == travelRequestID && a.Processing == 0 && a.IsDeleted == false).Count() <= 0)
+                {
+                    return RedirectToAction("RFQProcessing", new { id = travelRequestID });
+                }
                 return RedirectToAction("RFQMerger", new { id = rfqVal.TravelRequestID });
             }
         }

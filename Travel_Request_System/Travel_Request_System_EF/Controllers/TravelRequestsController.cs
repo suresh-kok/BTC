@@ -58,7 +58,7 @@ namespace Travel_Request_System_EF.Controllers
             {
                 if (roles.ToList()[0] == "Admin")
                 {
-                    return View(await db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency).Include(t => t.Users1).Include(t => t.Users).ToListAsync());
+                    return View(await db.TravelRequests.Include(t => t.City).Include(t => t.City1).Include(t => t.Currency).Include(t => t.Users1).Include(t => t.Users).Where(a => a.IsSubmitted == true).ToListAsync());
                 }
                 else
                 {
