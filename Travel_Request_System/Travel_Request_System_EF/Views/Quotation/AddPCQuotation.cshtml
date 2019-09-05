@@ -1,286 +1,286 @@
 ﻿@model Travel_Request_System_EF.Models.PCQuotation
 
 @{
-    ViewBag.Title = "Add PC Quotation";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "Add PC Quotation";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (!(bool)Model.IsActive)
+@if (Model.IsActive == null || !(bool)Model.IsActive)
 {
-    <div class="form-horizontal">
-        <div class="col-xs-12 col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Pickup Quotation</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    @Html.ValidationSummary(true, null, new { @class = "text-danger" })
-                    @using (Html.BeginForm("AddPCQuotation", "Quotation", new { ATQuotation = Model }, FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.HiddenFor(model => model.QuotationID)
-                        @Html.HiddenFor(model => model.ID)
-                        <input type="hidden" value="@Model.ID" name="PCId" />
-
-                        <div class="row" style="margin-bottom:15px">
-                            <div class="col-md-12">
-                                <div class="col-md-3">
-                                    <input type="submit" class="form-control btn btn-info btn-primary" value="Save To Records" />
-                                </div>
-                                <div class="col-md-9">
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row" style="margin-bottom:15px">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Travel Sector</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-group">
-                                            @Html.EditorFor(model => model.TravelSector, new { htmlAttributes = new { @class = "form-control" } })
-                                            @*@Html.ValidationMessageFor(model => model.DailyAllowance, null, new { @class = "text-danger" })*@
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                            </div>
-                        </div>
-                        <div class="row" style="margin-bottom:15px">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Pick Up Location</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-group">
-                                            @Html.EditorFor(model => model.PickupLocation, new { htmlAttributes = new { @class = "form-control" } })
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                            </div>
-                        </div>
-                        <div class="row" style="margin-bottom:15px">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Pick Up Date</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-group">
-                                            <div class="input-group date">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                @Html.EditorFor(model => model.PickUpDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                                @*@Html.ValidationMessageFor(model => model.PickUpDate, null , new { @class = "text-danger" })*@
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Pick Up Time</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-group">
-                                            <div class="bootstrap-timepicker" data-date-format="HH:mm">
-                                                <div class="input-group time">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-clock-o"></i>
-                                                    </div>
-                                                    @Html.EditorFor(model => model.PickUpTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                    @*@Html.ValidationMessageFor(model => model.PickUpTime, null , new { @class = "text-danger" })*@
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-bottom:15px">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Drop Off Location</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-group">
-                                            @Html.EditorFor(model => model.DropoffLocation, new { htmlAttributes = new { @class = "form-control" } })
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                            </div>
-                        </div>
-                        <div class="row" style="margin-bottom:15px">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Drop Off Date</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-group">
-                                            <div class="input-group date">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                @Html.EditorFor(model => model.DropOffDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-                                                @*@Html.ValidationMessageFor(model => model.DropOffDate, null , new { @class = "text-danger" })*@
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Drop Off Time</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-group">
-                                            <div class="bootstrap-timepicker" data-date-format="HH:mm">
-                                                <div class="input-group time">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-clock-o"></i>
-                                                    </div>
-                                                    @Html.EditorFor(model => model.DropOffTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
-                                                    @*@Html.ValidationMessageFor(model => model.DropOffTime, null , new { @class = "text-danger" })*@
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-bottom:15px">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Preferred Vehicle Type</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-group">
-                                          <select class="form-control" name="preferredVehicle">
-                                            <option @(Model.PreferredVehicle == "None" ? " selected" : "")>None</option>
-                                            <option @(Model.PreferredVehicle == "Hatchback" ? " selected" : "")>Hatchback</option>
-                                            <option @(Model.PreferredVehicle == "Sedan" ? " selected" : "")>Sedan</option>
-                                            <option @(Model.PreferredVehicle == "SUV" ? " selected" : "")>SUV</option>
-                                            <option @(Model.PreferredVehicle == "Luxury" ? " selected" : "")>Luxury</option>
-                                            <option @(Model.PreferredVehicle == "Others" ? " selected" : "")>Others</option>
-                                          </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Additional Expenses</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-group">
-                                            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00" } })
-                                            @*@Html.ValidationMessageFor(model => model.AdditionalAllowance, null , new { @class = "text-danger" })*@
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-bottom:15px">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Is Lowest</label>
-                                    <div class="col-sm-9">
-                                        @Html.EditorFor(model => model.IsLowest, new { htmlAttributes = new { @class = "form-control" } })
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                            </div>
-                        </div>
-
-                    }
-                    @using (Html.BeginForm("FileUpload", "Quotation", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <div class="row" style="margin-bottom:15px">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Attachment</label>
-                                    <div class="col-sm-9">
-                                        <input type="file" class="btn btn-default" id="filenames" name="file" />
-                                    </div>
-                                </div>
-                            </div><div class="col-sm-6">
-                                <button type="submit" name="Save" class="btn btn-info">Upload Files</button>
-                            </div>
-                        </div>
-                    }
-                    @if (ViewBag.fileUploader != null && ViewBag.fileUploader.Count > 0)
-                    {
-                        <div class="row" style="margin-bottom:15px">
-                            <aside class="right-side">
-                                <!-- Main content -->
-                                <section class="content">
-                                    <div class="container text-center">
-                                        <div class="col-xs-11">
-                                            <div class="box with-border">
-                                                <div class="box-header">
-                                                    <h3 class="box-title">Details</h3>
-                                                </div><!-- /.box-header -->
-                                                <div class="box-body table-responsive">
-                                                    <table id="uloadTable" class="table table-bordered table-hover table-responsive">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>File Name</th>
-                                                                <th>Uploaded Date</th>
-                                                                <th>Uploaded By</th>
-                                                                <th></th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewBag.fileUploader)
-                                                            {
-                                                                <tr id="@item.FileName">
-                                                                    <td>@item.FileName</td>
-                                                                    <td>@item.UploadedDate.ToShortDateString()</td>
-                                                                    <td>@(new HtmlString(item.Users.FirstName + " " + item.Users.LastName))</td>
-                                                                    <td style="text-align: center">
-                                                                        @Html.ActionLink("  Open File", "OpenFile", new { fileName = item.FileName }, new { @class = "form-control btn btn-info glyphicon-edit" })
-                                                                    </td>
-                                                                    <td>
-
-                                                                        @using (Html.BeginForm("RemoveUploadFile", "Quotation", new { fileName = item.FileName }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                                                        {
-                                                                            @Html.AntiForgeryToken()
-                                                                            <button type="submit" class="form-control btn btn-info glyphicon-edit">Delete File</button>
-                                                                        }
-                                                                    </td>
-                                                                </tr>
-                                                            }
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </aside>
-                        </div>
-                    }
-                </div>
-            </div>
+  <div class="form-horizontal">
+    <div class="col-xs-12 col-md-12">
+      <div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title">Pickup Quotation</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          </div>
         </div>
+        <div class="box-body">
+          @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+          @using (Html.BeginForm("AddPCQuotation", "Quotation", new { ATQuotation = Model }, FormMethod.Post))
+          {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.QuotationID)
+            @Html.HiddenFor(model => model.ID)
+            <input type="hidden" value="@Model.ID" name="PCId" />
+
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-md-12">
+                <div class="col-md-3">
+                  <input type="submit" class="form-control btn btn-info btn-primary" value="Save To Records" />
+                </div>
+                <div class="col-md-9">
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Travel Sector</label>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      @Html.EditorFor(model => model.TravelSector, new { htmlAttributes = new { @class = "form-control" } })
+                      @*@Html.ValidationMessageFor(model => model.DailyAllowance, null, new { @class = "text-danger" })*@
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Pick Up Location</label>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      @Html.EditorFor(model => model.PickupLocation, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Pick Up Date</label>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <div class="input-group date">
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                        @Html.EditorFor(model => model.PickUpDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                        @*@Html.ValidationMessageFor(model => model.PickUpDate, null , new { @class = "text-danger" })*@
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Pick Up Time</label>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <div class="bootstrap-timepicker" data-date-format="HH:mm">
+                        <div class="input-group time">
+                          <div class="input-group-addon">
+                            <i class="fa fa-clock-o"></i>
+                          </div>
+                          @Html.EditorFor(model => model.PickUpTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                          @*@Html.ValidationMessageFor(model => model.PickUpTime, null , new { @class = "text-danger" })*@
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Drop Off Location</label>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      @Html.EditorFor(model => model.DropoffLocation, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Drop Off Date</label>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <div class="input-group date">
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                        @Html.EditorFor(model => model.DropOffDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                        @*@Html.ValidationMessageFor(model => model.DropOffDate, null , new { @class = "text-danger" })*@
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Drop Off Time</label>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <div class="bootstrap-timepicker" data-date-format="HH:mm">
+                        <div class="input-group time">
+                          <div class="input-group-addon">
+                            <i class="fa fa-clock-o"></i>
+                          </div>
+                          @Html.EditorFor(model => model.DropOffTime, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                          @*@Html.ValidationMessageFor(model => model.DropOffTime, null , new { @class = "text-danger" })*@
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Preferred Vehicle Type</label>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      <select class="form-control" name="preferredVehicle">
+                        <option @(Model.PreferredVehicle == "None" ? " selected" : "")>None</option>
+                        <option @(Model.PreferredVehicle == "Hatchback" ? " selected" : "")>Hatchback</option>
+                        <option @(Model.PreferredVehicle == "Sedan" ? " selected" : "")>Sedan</option>
+                        <option @(Model.PreferredVehicle == "SUV" ? " selected" : "")>SUV</option>
+                        <option @(Model.PreferredVehicle == "Luxury" ? " selected" : "")>Luxury</option>
+                        <option @(Model.PreferredVehicle == "Others" ? " selected" : "")>Others</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Additional Expenses</label>
+                  <div class="col-sm-9">
+                    <div class="form-group">
+                      @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00" } })
+                      @*@Html.ValidationMessageFor(model => model.AdditionalAllowance, null , new { @class = "text-danger" })*@
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Is Lowest</label>
+                  <div class="col-sm-9">
+                    @Html.EditorFor(model => model.IsLowest, new { htmlAttributes = new { @class = "form-control" } })
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+              </div>
+            </div>
+
+          }
+          @using (Html.BeginForm("FileUpload", "Quotation", FormMethod.Post, new { enctype = "multipart/form-data" }))
+          {
+            @Html.AntiForgeryToken()
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Attachment</label>
+                  <div class="col-sm-9">
+                    <input type="file" class="btn btn-default" id="filenames" name="file" />
+                  </div>
+                </div>
+              </div><div class="col-sm-6">
+                <button type="submit" name="Save" class="btn btn-info">Upload Files</button>
+              </div>
+            </div>
+          }
+          @if (ViewBag.fileUploader != null && ViewBag.fileUploader.Count > 0)
+          {
+            <div class="row" style="margin-bottom:15px">
+              <aside class="right-side">
+                <!-- Main content -->
+                <section class="content">
+                  <div class="container text-center">
+                    <div class="col-xs-11">
+                      <div class="box with-border">
+                        <div class="box-header">
+                          <h3 class="box-title">Details</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body table-responsive">
+                          <table id="uloadTable" class="table table-bordered table-hover table-responsive">
+                            <thead>
+                              <tr>
+                                <th>File Name</th>
+                                <th>Uploaded Date</th>
+                                <th>Uploaded By</th>
+                                <th></th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewBag.fileUploader)
+                              {
+                                <tr id="@item.FileName">
+                                  <td>@item.FileName</td>
+                                  <td>@item.UploadedDate.ToShortDateString()</td>
+                                  <td>@(new HtmlString(item.Users.FirstName + " " + item.Users.LastName))</td>
+                                  <td style="text-align: center">
+                                    @Html.ActionLink("  Open File", "OpenFile", new { fileName = item.FileName }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                                  </td>
+                                  <td>
+
+                                    @using (Html.BeginForm("RemoveUploadFile", "Quotation", new { fileName = item.FileName }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                      @Html.AntiForgeryToken()
+                                      <button type="submit" class="form-control btn btn-info glyphicon-edit">Delete File</button>
+                                    }
+                                  </td>
+                                </tr>
+                              }
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </aside>
+            </div>
+          }
+        </div>
+      </div>
     </div>
+  </div>
 }
 else
 {
-    @Html.Partial("_PCQuotation", Model)
+  @Html.Partial("_PCQuotation", Model)
 }
 <div class="row" style="margin-bottom:15px">
-    <div class="col-md-6">
-        <div class="form-group">
-            <div class="col-md-3">
-                @Html.ActionLink("Back to List", "AddQuotation", new { id = Model.Quotation.RFQID }, new { @class = "form-control btn btn-info" })
-            </div>
-            @*<div class="col-md-3">
-                    @Html.ActionLink("Add Another Quotation", "AddPCQuotation", new { id = Model.Quotation.RFQID, addQuote = true }, new { @class = "form-control btn btn-info" })
-                </div>*@
-        </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <div class="col-md-3">
+        @Html.ActionLink("Back to List", "AddQuotation", new { id = Model.Quotation.RFQID }, new { @class = "form-control btn btn-info" })
+      </div>
+      @*<div class="col-md-3">
+            @Html.ActionLink("Add Another Quotation", "AddPCQuotation", new { id = Model.Quotation.RFQID, addQuote = true }, new { @class = "form-control btn btn-info" })
+        </div>*@
     </div>
+  </div>
 </div>

@@ -1470,6 +1470,7 @@
     <Content Include="Views\Account\TermsnCond.cshtml" />
     <Content Include="Views\Quotation\ViewATQuotations.cshtml" />
     <Content Include="Views\BTC\AnyEmployeeDetails.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

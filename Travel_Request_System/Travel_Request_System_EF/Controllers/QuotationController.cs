@@ -84,7 +84,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }
-                //ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(rFQ.TravelRequests.ApplicationNumber)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                //ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(rFQ.TravelRequests.ApplicationNumber)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                 return View(rFQ);
             }
         }
@@ -99,16 +99,16 @@ namespace Travel_Request_System_EF.Controllers
                 if (TempData["ATQuotationVal"] != null)
                 {
                     atQuote = (ATQuotation)TempData["ATQuotationVal"];
-                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                    ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                    ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                 }
                 else
                 {
-                    if (db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == false && a.IsDeleted == false).Count() > 0)
+                    if (db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == true && a.IsDeleted == false).Count() > 0)
                     {
-                        atQuote = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == false && a.IsDeleted == false).FirstOrDefault();
-                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                        ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                        atQuote = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == true && a.IsDeleted == false).FirstOrDefault();
+                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                     }
                     else
                     {
@@ -132,16 +132,15 @@ namespace Travel_Request_System_EF.Controllers
                         db.Configuration.ValidateOnSaveEnabled = false;
                         db.SaveChanges();
 
-                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                        ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                     }
                     pageNo = 1;
                     quotation.ATQuotation.Add(atQuote);
                     quotation.HSQuotation.Clear();
                     quotation.PCQuotation.Clear();
-
-                    CheckErrorMessages();
                 }
+                CheckErrorMessages();
                 return View(atQuote);
             }
         }
@@ -160,8 +159,8 @@ namespace Travel_Request_System_EF.Controllers
                     {
                         ATQuotation atQuote = item;
                         var ATID = atQuote.ID;
-                        ViewData.Add("fileUploader" + ATID, db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList());
-                        ViewData.Add("ATfileUploader" + ATID, db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList());
+                        ViewData.Add("fileUploader" + ATID, db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList());
+                        ViewData.Add("ATfileUploader" + ATID, db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList());
                         atQuotes.Add(atQuote);
                     }
                 }
@@ -179,14 +178,15 @@ namespace Travel_Request_System_EF.Controllers
             {
                 using (BTCEntities db = new BTCEntities())
                 {
-                    if ((bool)atquote.IsLowest && db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == atquote.QuotationID && (bool)a.IsLowest).Count() > 0)
+                    atquote.ID = string.IsNullOrEmpty(Convert.ToString(formCollection["ATId"])) ? 0 : Convert.ToInt32(formCollection["ATId"]);
+                    if ((bool)atquote.IsLowest && db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID != atquote.QuotationID && (bool)a.IsLowest).Count() > 0)
                     {
+                        atquote.Quotation = db.Quotation.Where(a => a.ID == atquote.QuotationID).FirstOrDefault();
                         TempData["ErrorMessage"] = new List<string>() { "Only One quotaiton can be the lowest" };
                         TempData["ATQuotationVal"] = atquote;
                         return View(new { id = atquote.QuotationID });
                     }
-                    atquote.ID = string.IsNullOrEmpty(Convert.ToString(formCollection["ATId"])) ? 0 : Convert.ToInt32(formCollection["ATId"]);
-                    var dbatquote = db.ATQuotation.Include(a => a.Quotation).Where(a => a.ID == atquote.ID).FirstOrDefault();
+                    var dbatquote = db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == atquote.QuotationID).FirstOrDefault();
                     dbatquote.Airlines = string.IsNullOrEmpty(atquote.Airlines) ? "" : atquote.Airlines;
                     dbatquote.TicketClass = string.IsNullOrEmpty(atquote.TicketClass) ? "" : atquote.TicketClass;
                     dbatquote.TicketNo = string.IsNullOrEmpty(atquote.TicketNo) ? "" : atquote.TicketNo;
@@ -230,6 +230,10 @@ namespace Travel_Request_System_EF.Controllers
             }
             else
             {
+                using (BTCEntities db = new BTCEntities())
+                {
+                    atquote.Quotation = db.Quotation.Where(a => a.ID == atquote.QuotationID).FirstOrDefault();
+                }
                 var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
                 List<string> sberr = new List<string>();
                 foreach (var item in errlist)
@@ -252,16 +256,16 @@ namespace Travel_Request_System_EF.Controllers
                 if (TempData["HSQuotationVal"] != null)
                 {
                     hsQuote = (HSQuotation)TempData["HSQuotationVal"];
-                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                    ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                    ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                 }
                 else
                 {
-                    if (db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == false && a.IsDeleted == false).Count() > 0)
+                    if (db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsDeleted == false).Count() > 0)
                     {
-                        hsQuote = db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == false && a.IsDeleted == false).FirstOrDefault();
-                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                        ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                        hsQuote = db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsDeleted == false).FirstOrDefault();
+                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                     }
                     else
                     {
@@ -283,16 +287,16 @@ namespace Travel_Request_System_EF.Controllers
                         db.HSQuotation.Add(hsQuote);
                         db.SaveChanges();
 
-                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                        ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                     }
                     pageNo = 2;
                     quotation.HSQuotation.Add(hsQuote);
                     quotation.ATQuotation.Clear();
                     quotation.PCQuotation.Clear();
 
-                    CheckErrorMessages();
                 }
+                CheckErrorMessages();
                 return View(hsQuote);
             }
         }
@@ -310,8 +314,8 @@ namespace Travel_Request_System_EF.Controllers
                     foreach (var item in db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == true && a.IsDeleted == false))
                     {
                         HSQuotation hsQuote = item;
-                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                        ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                         hsQuotes.Add(hsQuote);
                     }
                 }
@@ -329,14 +333,15 @@ namespace Travel_Request_System_EF.Controllers
             {
                 using (BTCEntities db = new BTCEntities())
                 {
-                    if ((bool)hsquote.IsLowest && db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == hsquote.QuotationID && (bool)a.IsLowest).Count() > 0)
+                    hsquote.ID = string.IsNullOrEmpty(Convert.ToString(formCollection["HSId"])) ? 0 : Convert.ToInt32(formCollection["HSId"]);
+                    if ((bool)hsquote.IsLowest && db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID != hsquote.QuotationID && (bool)a.IsLowest).Count() > 0)
                     {
+                        hsquote.Quotation = db.Quotation.Where(a => a.ID == hsquote.QuotationID).FirstOrDefault();
                         TempData["ErrorMessage"] = new List<string>() { "Only One quotaiton can be the lowest" };
                         TempData["HSQuotationVal"] = hsquote;
-                        return View(new { id = hsquote.QuotationID });
+                        return RedirectToAction("AddHSQuotation", new { id = hsquote.ID });
                     }
-                    hsquote.ID = string.IsNullOrEmpty(Convert.ToString(formCollection["HSId"])) ? 0 : Convert.ToInt32(formCollection["HSId"]);
-                    var dbhsquote = db.HSQuotation.Include(a => a.Quotation).Where(a => a.ID == hsquote.ID).FirstOrDefault();
+                    var dbhsquote = db.HSQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == hsquote.QuotationID).FirstOrDefault();
                     dbhsquote.HotelName = string.IsNullOrEmpty(hsquote.HotelName) ? "" : hsquote.HotelName;
                     dbhsquote.HotelCategory = string.IsNullOrEmpty(hsquote.HotelCategory) ? "" : hsquote.HotelCategory;
                     dbhsquote.RoomCategory = string.IsNullOrEmpty(hsquote.RoomCategory) ? "" : hsquote.RoomCategory;
@@ -375,6 +380,10 @@ namespace Travel_Request_System_EF.Controllers
             }
             else
             {
+                using (BTCEntities db = new BTCEntities())
+                {
+                    hsquote.Quotation = db.Quotation.Where(a => a.ID == hsquote.QuotationID).FirstOrDefault();
+                }
                 var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
                 List<string> sberr = new List<string>();
                 foreach (var item in errlist)
@@ -397,16 +406,16 @@ namespace Travel_Request_System_EF.Controllers
                 if (TempData["PCQuotationVal"] != null)
                 {
                     pcQuote = (PCQuotation)TempData["PCQuotationVal"];
-                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                    ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                    ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                    ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                 }
                 else
                 {
-                    if (db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == false && a.IsDeleted == false).Count() > 0)
+                    if (db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == true && a.IsDeleted == false).Count() > 0)
                     {
-                        pcQuote = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == false && a.IsDeleted == false).FirstOrDefault();
-                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                        ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                        pcQuote = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == true && a.IsDeleted == false).FirstOrDefault();
+                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                     }
                     else
                     {
@@ -428,16 +437,15 @@ namespace Travel_Request_System_EF.Controllers
                         db.PCQuotation.Add(pcQuote);
                         db.SaveChanges();
 
-                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                        ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                     }
                     pageNo = 3;
                     quotation.PCQuotation.Add(pcQuote);
                     quotation.HSQuotation.Clear();
                     quotation.ATQuotation.Clear();
-
-                    CheckErrorMessages();
                 }
+                CheckErrorMessages();
                 return View(pcQuote);
             }
         }
@@ -455,8 +463,8 @@ namespace Travel_Request_System_EF.Controllers
                     foreach (var item in db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == true && a.IsDeleted == false))
                     {
                         PCQuotation pcQuote = item;
-                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
-                        ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                         pcQuotes.Add(pcQuote);
                     }
                 }
@@ -474,14 +482,15 @@ namespace Travel_Request_System_EF.Controllers
             {
                 using (BTCEntities db = new BTCEntities())
                 {
-                    if ((bool)pcquote.IsLowest && db.PCQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == pcquote.QuotationID && (bool)a.IsLowest).Count() > 0)
+                    pcquote.ID = string.IsNullOrEmpty(Convert.ToString(formCollection["PCId"])) ? 0 : Convert.ToInt32(formCollection["PCId"]);
+                    if ((bool)pcquote.IsLowest && db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID != pcquote.QuotationID && (bool)a.IsLowest).Count() > 0)
                     {
+                        pcquote.Quotation = db.Quotation.Where(a => a.ID == pcquote.QuotationID).FirstOrDefault();
                         TempData["ErrorMessage"] = new List<string>() { "Only One quotaiton can be the lowest" };
                         TempData["PCQuotationVal"] = pcquote;
-                        return View(new { id = pcquote.QuotationID });
+                        return View(pcquote);
                     }
-                    pcquote.ID = string.IsNullOrEmpty(Convert.ToString(formCollection["PCId"])) ? 0 : Convert.ToInt32(formCollection["PCId"]);
-                    var dbpcquote = db.PCQuotation.Include(a => a.Quotation).Where(a => a.ID == pcquote.ID).FirstOrDefault();
+                    var dbpcquote = db.PCQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == pcquote.QuotationID).FirstOrDefault();
                     dbpcquote.PickupLocation = string.IsNullOrEmpty(pcquote.PickupLocation) ? "" : pcquote.PickupLocation;
                     dbpcquote.DropoffLocation = string.IsNullOrEmpty(pcquote.DropoffLocation) ? "" : pcquote.DropoffLocation;
                     dbpcquote.PreferredVehicle = string.IsNullOrEmpty(pcquote.PreferredVehicle) ? "" : pcquote.PreferredVehicle;
@@ -518,6 +527,10 @@ namespace Travel_Request_System_EF.Controllers
             }
             else
             {
+                using (BTCEntities db = new BTCEntities())
+                {
+                    pcquote.Quotation = db.Quotation.Where(a => a.ID == pcquote.QuotationID).FirstOrDefault();
+                }
                 var errlist = ModelState.Values.Where(e => e.Errors.Count > 0).Select(a => a.Errors);
                 List<string> sberr = new List<string>();
                 foreach (var item in errlist)
@@ -570,7 +583,7 @@ namespace Travel_Request_System_EF.Controllers
                         ViewBag.WarningMessage = "File is already exists";
                     }
                 }
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(attachmentsForVal)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(attachmentsForVal)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                 return RedirectToAction(retrunToVal, new { id = attachmentsForIDVal });
             }
         }
@@ -600,7 +613,7 @@ namespace Travel_Request_System_EF.Controllers
                     }
                     ViewBag.SuccessMessage = "File Deleted Successfully";
                 }
-                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(attachmentsForVal)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(attachmentsForVal)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                 return RedirectToAction(retrunToVal, new { id = attachmentsForIDVal });
             }
         }

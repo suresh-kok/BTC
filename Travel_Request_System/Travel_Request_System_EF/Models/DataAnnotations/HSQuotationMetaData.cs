@@ -49,8 +49,8 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         [DisplayName("Check Out Time")]
         public Nullable<System.TimeSpan> CheckOutTime { get; set; }
 
-        [DisplayName("Amount")]
-        [Required(ErrorMessage = "Amount is Required")]
+        [DisplayName("Additional Expenses")]
+        [Required(ErrorMessage = "Additional Expenses is Required")]
         public Nullable<decimal> Amount { get; set; }
 
         [DisplayName("Is Deleted")]

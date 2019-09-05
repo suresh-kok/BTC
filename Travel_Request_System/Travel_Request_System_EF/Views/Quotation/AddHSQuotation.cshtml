@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (!(bool)Model.IsActive)
+@if (Model.IsActive == null || !(bool)Model.IsActive)
 {
     <div class="form-horizontal">
         <div class="col-xs-12 col-md-12">
