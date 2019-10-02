@@ -89,13 +89,14 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        public ActionResult AddATQuotation(int? id)
+        public ActionResult AddATQuotation(int? quoteid, int? atquoteid)
         {
+            ModelState.Clear();
             using (BTCEntities db = new BTCEntities())
             {
                 ATQuotation atQuote = new ATQuotation();
                 ViewBag.Cities = db.City.ToList();
-                quotation = db.Quotation.Include(a => a.TravelRequests).Where(x => x.ID == id).FirstOrDefault();
+                quotation = db.Quotation.Include(a => a.TravelRequests).Where(x => x.ID == quoteid).FirstOrDefault();
                 if (TempData["ATQuotationVal"] != null)
                 {
                     atQuote = (ATQuotation)TempData["ATQuotationVal"];
@@ -104,42 +105,54 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 else
                 {
-                    if (db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == true && a.IsDeleted == false).Count() > 0)
+                    var atquotes = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsDeleted == false)?.ToList();
+
+                    if (atquoteid > 0 && atquotes.Where(a => a.ID == atquoteid).Count() > 0)
                     {
-                        atQuote = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == true && a.IsDeleted == false).FirstOrDefault();
+                        atQuote = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsDeleted == false).FirstOrDefault();
                         ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                         ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                     }
                     else
                     {
-                        var tempatQuote = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id).FirstOrDefault();
-                        atQuote.IsActive = false;
-                        atQuote.IsDeleted = false;
-                        atQuote.IsLowest = false;
-                        atQuote.OriginID = tempatQuote.OriginID;
-                        atQuote.QuotationID = tempatQuote.QuotationID;
-                        atQuote.QuotationName = tempatQuote.QuotationName;
-                        atQuote.ReturnDate = tempatQuote.ReturnDate;
-                        atQuote.ReturnTime = tempatQuote.ReturnTime;
-                        atQuote.TicketClass = tempatQuote.TicketClass;
-                        atQuote.DepartureDate = tempatQuote.DepartureDate;
-                        atQuote.DepartureTime = tempatQuote.DepartureTime;
-                        atQuote.DestinationID = tempatQuote.DestinationID;
-                        atQuote.City = tempatQuote.City;
-                        atQuote.City1 = tempatQuote.City1;
-                        atQuote.Quotation = tempatQuote.Quotation;
-                        db.ATQuotation.Add(atQuote);
-                        db.Configuration.ValidateOnSaveEnabled = false;
-                        db.SaveChanges();
+                        if (atquotes.Where(a => a.IsActive == false).Count() <= 0)
+                        {
+                            var tempatQuote = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid).FirstOrDefault();
+                            atQuote.IsActive = false;
+                            atQuote.IsDeleted = false;
+                            atQuote.IsLowest = false;
+                            atQuote.OriginID = tempatQuote.OriginID;
+                            atQuote.QuotationID = tempatQuote.QuotationID;
+                            atQuote.QuotationName = tempatQuote.QuotationName;
+                            atQuote.ReturnDate = tempatQuote.ReturnDate;
+                            atQuote.ReturnTime = tempatQuote.ReturnTime;
+                            atQuote.TicketClass = tempatQuote.TicketClass;
+                            atQuote.DepartureDate = tempatQuote.DepartureDate;
+                            atQuote.DepartureTime = tempatQuote.DepartureTime;
+                            atQuote.DestinationID = tempatQuote.DestinationID;
+                            atQuote.City = tempatQuote.City;
+                            atQuote.City1 = tempatQuote.City1;
+                            atQuote.Quotation = tempatQuote.Quotation;
+                            db.ATQuotation.Add(atQuote);
+                            db.Configuration.ValidateOnSaveEnabled = false;
+                            db.SaveChanges();
 
-                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
-                        ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                            ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                            ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        }
+                        else
+                        {
+                            atQuote = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsActive == false).FirstOrDefault();
+                            ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                            ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        }
                     }
-                    pageNo = 1;
-                    quotation.ATQuotation.Add(atQuote);
-                    quotation.HSQuotation.Clear();
-                    quotation.PCQuotation.Clear();
                 }
+                pageNo = 1;
+                quotation.ATQuotation.Add(atQuote);
+                quotation.HSQuotation.Clear();
+                quotation.PCQuotation.Clear();
+
                 CheckErrorMessages();
                 return View(atQuote);
             }
@@ -179,14 +192,14 @@ namespace Travel_Request_System_EF.Controllers
                 using (BTCEntities db = new BTCEntities())
                 {
                     atquote.ID = string.IsNullOrEmpty(Convert.ToString(formCollection["ATId"])) ? 0 : Convert.ToInt32(formCollection["ATId"]);
-                    if ((bool)atquote.IsLowest && db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID != atquote.QuotationID && (bool)a.IsLowest).Count() > 0)
+                    if ((bool)atquote.IsLowest && db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == atquote.QuotationID && a.ID != atquote.ID && (bool)a.IsLowest).Count() > 0)
                     {
                         atquote.Quotation = db.Quotation.Where(a => a.ID == atquote.QuotationID).FirstOrDefault();
                         TempData["ErrorMessage"] = new List<string>() { "Only One quotaiton can be the lowest" };
                         TempData["ATQuotationVal"] = atquote;
-                        return View(new { id = atquote.QuotationID });
+                        return RedirectToAction("AddATQuotation", new { quoteid = atquote.QuotationID });
                     }
-                    var dbatquote = db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == atquote.QuotationID).FirstOrDefault();
+                    var dbatquote = db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == atquote.QuotationID && a.ID == atquote.ID).FirstOrDefault();
                     dbatquote.Airlines = string.IsNullOrEmpty(atquote.Airlines) ? "" : atquote.Airlines;
                     dbatquote.TicketClass = string.IsNullOrEmpty(atquote.TicketClass) ? "" : atquote.TicketClass;
                     dbatquote.TicketNo = string.IsNullOrEmpty(atquote.TicketNo) ? "" : atquote.TicketNo;
@@ -243,16 +256,17 @@ namespace Travel_Request_System_EF.Controllers
                 TempData["ErrorMessage"] = sberr.ToList();
                 TempData["ATQuotationVal"] = atquote;
             }
-            return RedirectToAction("AddATQuotation", new { id = atquote.QuotationID });
+            return RedirectToAction("AddATQuotation", new { quoteid = atquote.QuotationID });
         }
 
-        public ActionResult AddHSQuotation(int? id)
+        public ActionResult AddHSQuotation(int? quoteid, int? hsquoteid)
         {
+            ModelState.Clear();
             using (BTCEntities db = new BTCEntities())
             {
                 HSQuotation hsQuote = new HSQuotation();
                 ViewBag.Cities = db.City.ToList();
-                quotation = db.Quotation.Include(a => a.TravelRequests).Where(x => x.ID == id).FirstOrDefault();
+                quotation = db.Quotation.Include(a => a.TravelRequests).Where(x => x.ID == quoteid).FirstOrDefault();
                 if (TempData["HSQuotationVal"] != null)
                 {
                     hsQuote = (HSQuotation)TempData["HSQuotationVal"];
@@ -261,41 +275,52 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 else
                 {
-                    if (db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsDeleted == false).Count() > 0)
+                    var hsquotes = db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsDeleted == false)?.ToList();
+
+                    if (hsquoteid > 0 && hsquotes.Where(a => a.ID == hsquoteid).Count() > 0)
                     {
-                        hsQuote = db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsDeleted == false).FirstOrDefault();
+                        hsQuote = db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsDeleted == false).FirstOrDefault();
                         ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                         ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                     }
                     else
                     {
-                        var tempatQuote = db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id).FirstOrDefault();
-                        hsQuote.IsActive = false;
-                        hsQuote.IsDeleted = false;
-                        hsQuote.IsLowest = false;
-                        hsQuote.CheckInDate = tempatQuote.CheckInDate;
-                        hsQuote.CheckInTime = tempatQuote.CheckInTime;
-                        hsQuote.CheckOutDate = tempatQuote.CheckOutDate;
-                        hsQuote.CheckOutTime = tempatQuote.CheckOutTime;
-                        hsQuote.HotelCategory = tempatQuote.HotelCategory;
-                        hsQuote.QuotationID = tempatQuote.QuotationID;
-                        hsQuote.QuotationName = tempatQuote.QuotationName;
-                        hsQuote.RoomCategory = tempatQuote.RoomCategory;
-                        hsQuote.RoomType = tempatQuote.RoomType;
-                        hsQuote.TravelSector = tempatQuote.TravelSector;
-                        hsQuote.Quotation = tempatQuote.Quotation;
-                        db.HSQuotation.Add(hsQuote);
-                        db.SaveChanges();
+                        if (hsquotes.Where(a => a.IsActive == false).Count() <= 0)
+                        {
+                            var tempatQuote = db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid).FirstOrDefault();
+                            hsQuote.IsActive = false;
+                            hsQuote.IsDeleted = false;
+                            hsQuote.IsLowest = false;
+                            hsQuote.CheckInDate = tempatQuote.CheckInDate;
+                            hsQuote.CheckInTime = tempatQuote.CheckInTime;
+                            hsQuote.CheckOutDate = tempatQuote.CheckOutDate;
+                            hsQuote.CheckOutTime = tempatQuote.CheckOutTime;
+                            hsQuote.HotelCategory = tempatQuote.HotelCategory;
+                            hsQuote.QuotationID = tempatQuote.QuotationID;
+                            hsQuote.QuotationName = tempatQuote.QuotationName;
+                            hsQuote.RoomCategory = tempatQuote.RoomCategory;
+                            hsQuote.RoomType = tempatQuote.RoomType;
+                            hsQuote.TravelSector = tempatQuote.TravelSector;
+                            hsQuote.Quotation = tempatQuote.Quotation;
+                            db.HSQuotation.Add(hsQuote);
+                            db.Configuration.ValidateOnSaveEnabled = false;
+                            db.SaveChanges();
 
-                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
-                        ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                            ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                            ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        }
+                        else
+                        {
+                            hsQuote = db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsActive == false).FirstOrDefault();
+                            ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                            ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        }
                     }
-                    pageNo = 2;
-                    quotation.HSQuotation.Add(hsQuote);
-                    quotation.ATQuotation.Clear();
-                    quotation.PCQuotation.Clear();
-
                 }
+                pageNo = 2;
+                quotation.HSQuotation.Add(hsQuote);
+                quotation.ATQuotation.Clear();
+                quotation.PCQuotation.Clear();
                 CheckErrorMessages();
                 return View(hsQuote);
             }
@@ -334,14 +359,14 @@ namespace Travel_Request_System_EF.Controllers
                 using (BTCEntities db = new BTCEntities())
                 {
                     hsquote.ID = string.IsNullOrEmpty(Convert.ToString(formCollection["HSId"])) ? 0 : Convert.ToInt32(formCollection["HSId"]);
-                    if ((bool)hsquote.IsLowest && db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID != hsquote.QuotationID && (bool)a.IsLowest).Count() > 0)
+                    if ((bool)hsquote.IsLowest && db.HSQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == hsquote.QuotationID && a.ID != hsquote.ID && (bool)a.IsLowest).Count() > 0)
                     {
                         hsquote.Quotation = db.Quotation.Where(a => a.ID == hsquote.QuotationID).FirstOrDefault();
                         TempData["ErrorMessage"] = new List<string>() { "Only One quotaiton can be the lowest" };
                         TempData["HSQuotationVal"] = hsquote;
-                        return RedirectToAction("AddHSQuotation", new { id = hsquote.ID });
+                        return RedirectToAction("AddHSQuotation", new { quoteid = hsquote.QuotationID});
                     }
-                    var dbhsquote = db.HSQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == hsquote.QuotationID).FirstOrDefault();
+                    var dbhsquote = db.HSQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == hsquote.QuotationID && a.ID == hsquote.ID).FirstOrDefault();
                     dbhsquote.HotelName = string.IsNullOrEmpty(hsquote.HotelName) ? "" : hsquote.HotelName;
                     dbhsquote.HotelCategory = string.IsNullOrEmpty(hsquote.HotelCategory) ? "" : hsquote.HotelCategory;
                     dbhsquote.RoomCategory = string.IsNullOrEmpty(hsquote.RoomCategory) ? "" : hsquote.RoomCategory;
@@ -393,16 +418,17 @@ namespace Travel_Request_System_EF.Controllers
                 TempData["ErrorMessage"] = sberr.ToList();
                 TempData["HSQuotationVal"] = hsquote;
             }
-            return RedirectToAction("AddHSQuotation", new { id = hsquote.QuotationID });
+            return RedirectToAction("AddHSQuotation", new { quoteid = hsquote.QuotationID });
         }
 
-        public ActionResult AddPCQuotation(int? id)
+        public ActionResult AddPCQuotation(int? quoteid, int? pcquoteid)
         {
+            ModelState.Clear();
             using (BTCEntities db = new BTCEntities())
             {
                 PCQuotation pcQuote = new PCQuotation();
                 ViewBag.Cities = db.City.ToList();
-                quotation = db.Quotation.Include(a => a.TravelRequests).Where(x => x.ID == id).FirstOrDefault();
+                quotation = db.Quotation.Include(a => a.TravelRequests).Where(x => x.ID == quoteid).FirstOrDefault();
                 if (TempData["PCQuotationVal"] != null)
                 {
                     pcQuote = (PCQuotation)TempData["PCQuotationVal"];
@@ -411,40 +437,53 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 else
                 {
-                    if (db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == true && a.IsDeleted == false).Count() > 0)
+                    var pcquotes = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsDeleted == false)?.ToList();
+
+                    if (pcquoteid > 0 && pcquotes.Where(a => a.ID == pcquoteid).Count() > 0)
                     {
-                        pcQuote = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id && a.IsActive == true && a.IsDeleted == false).FirstOrDefault();
+                        pcQuote = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsDeleted == false).FirstOrDefault();
                         ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                         ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                     }
                     else
                     {
-                        var tempatQuote = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == id).FirstOrDefault();
-                        pcQuote.IsActive = false;
-                        pcQuote.IsDeleted = false;
-                        pcQuote.IsLowest = false;
-                        pcQuote.DropOffDate = tempatQuote.DropOffDate;
-                        pcQuote.DropoffLocation = tempatQuote.DropoffLocation;
-                        pcQuote.DropOffTime = tempatQuote.DropOffTime;
-                        pcQuote.PickUpDate = tempatQuote.PickUpDate;
-                        pcQuote.PickupLocation = tempatQuote.PickupLocation;
-                        pcQuote.PickUpTime = tempatQuote.PickUpTime;
-                        pcQuote.PreferredVehicle = tempatQuote.PreferredVehicle;
-                        pcQuote.QuotationID = tempatQuote.QuotationID;
-                        pcQuote.QuotationName = tempatQuote.QuotationName;
-                        pcQuote.TravelSector = tempatQuote.TravelSector;
-                        pcQuote.Quotation = tempatQuote.Quotation;
-                        db.PCQuotation.Add(pcQuote);
-                        db.SaveChanges();
+                        if (pcquotes.Where(a => a.IsActive == false).Count() <= 0)
+                        {
+                            var tempatQuote = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid).FirstOrDefault();
+                            pcQuote.IsActive = false;
+                            pcQuote.IsDeleted = false;
+                            pcQuote.IsLowest = false;
+                            pcQuote.DropOffDate = tempatQuote.DropOffDate;
+                            pcQuote.DropoffLocation = tempatQuote.DropoffLocation;
+                            pcQuote.DropOffTime = tempatQuote.DropOffTime;
+                            pcQuote.PickUpDate = tempatQuote.PickUpDate;
+                            pcQuote.PickupLocation = tempatQuote.PickupLocation;
+                            pcQuote.PickUpTime = tempatQuote.PickUpTime;
+                            pcQuote.PreferredVehicle = tempatQuote.PreferredVehicle;
+                            pcQuote.QuotationID = tempatQuote.QuotationID;
+                            pcQuote.QuotationName = tempatQuote.QuotationName;
+                            pcQuote.TravelSector = tempatQuote.TravelSector;
+                            pcQuote.Quotation = tempatQuote.Quotation;
+                            db.PCQuotation.Add(pcQuote);
+                            db.Configuration.ValidateOnSaveEnabled = false;
+                            db.SaveChanges();
 
-                        ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
-                        ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                            ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                            ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                        }
+                        else
+                        {
+                            pcQuote = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsActive == false).FirstOrDefault();
+                            ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+                            ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
+
+                        }
                     }
-                    pageNo = 3;
-                    quotation.PCQuotation.Add(pcQuote);
-                    quotation.HSQuotation.Clear();
-                    quotation.ATQuotation.Clear();
                 }
+                pageNo = 3;
+                quotation.PCQuotation.Add(pcQuote);
+                quotation.HSQuotation.Clear();
+                quotation.ATQuotation.Clear();
                 CheckErrorMessages();
                 return View(pcQuote);
             }
@@ -483,14 +522,14 @@ namespace Travel_Request_System_EF.Controllers
                 using (BTCEntities db = new BTCEntities())
                 {
                     pcquote.ID = string.IsNullOrEmpty(Convert.ToString(formCollection["PCId"])) ? 0 : Convert.ToInt32(formCollection["PCId"]);
-                    if ((bool)pcquote.IsLowest && db.ATQuotation.Include(a => a.Quotation).Where(a => a.QuotationID != pcquote.QuotationID && (bool)a.IsLowest).Count() > 0)
+                    if ((bool)pcquote.IsLowest && db.PCQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == pcquote.QuotationID && a.ID != pcquote.ID && (bool)a.IsLowest).Count() > 0)
                     {
                         pcquote.Quotation = db.Quotation.Where(a => a.ID == pcquote.QuotationID).FirstOrDefault();
                         TempData["ErrorMessage"] = new List<string>() { "Only One quotaiton can be the lowest" };
                         TempData["PCQuotationVal"] = pcquote;
-                        return View(pcquote);
+                        return RedirectToAction("AddPCQuotation", new { quoteid = pcquote.QuotationID});
                     }
-                    var dbpcquote = db.PCQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == pcquote.QuotationID).FirstOrDefault();
+                    var dbpcquote = db.PCQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == pcquote.QuotationID && a.ID == pcquote.ID).FirstOrDefault();
                     dbpcquote.PickupLocation = string.IsNullOrEmpty(pcquote.PickupLocation) ? "" : pcquote.PickupLocation;
                     dbpcquote.DropoffLocation = string.IsNullOrEmpty(pcquote.DropoffLocation) ? "" : pcquote.DropoffLocation;
                     dbpcquote.PreferredVehicle = string.IsNullOrEmpty(pcquote.PreferredVehicle) ? "" : pcquote.PreferredVehicle;
@@ -540,7 +579,7 @@ namespace Travel_Request_System_EF.Controllers
                 TempData["ErrorMessage"] = sberr.ToList();
                 TempData["PCQuotationVal"] = pcquote;
             }
-            return RedirectToAction("AddPCQuotation", new { id = pcquote.QuotationID });
+            return RedirectToAction("AddPCQuotation", new { quoteid = pcquote.QuotationID });
         }
 
         [HttpPost]

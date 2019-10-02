@@ -16,7 +16,7 @@
                 @Html.ActionLink("Back to List", "AddQuotation", new { id = Model.FirstOrDefault().Quotation.RFQID }, new { @class = "form-control btn btn-info" })
             </div>
             <div class="col-md-3">
-                @Html.ActionLink("Add Another Quotation", "AddATQuotation", new { id = Model.FirstOrDefault().QuotationID}, new { @class = "form-control btn btn-info" })
+                @Html.ActionLink("Add Another Quotation", "AddATQuotation", new { quoteid = Model.FirstOrDefault().QuotationID}, new { @class = "form-control btn btn-info" })
             </div>
         </div>
     </div>

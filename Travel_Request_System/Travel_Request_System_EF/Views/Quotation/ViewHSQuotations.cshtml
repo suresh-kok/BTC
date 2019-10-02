@@ -1,0 +1,25 @@
+﻿@model List<Travel_Request_System_EF.Models.HSQuotation>
+
+@{
+  ViewBag.Title = "View HS Quotations";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var quote in Model)
+{
+  @Html.Partial("_HSQuotation", quote)
+}
+<div class="row" style="margin-bottom:15px">
+  <div class="col-md-6">
+    <div class="form-group">
+      <div class="col-md-3">
+        @Html.ActionLink("Back to List", "AddQuotation", new { id = Model.FirstOrDefault().Quotation.RFQID }, new { @class = "form-control btn btn-info" })
+      </div>
+      <div class="col-md-3">
+        @Html.ActionLink("Add Another Quotation", "AddHSQuotation", new { quoteid = Model.FirstOrDefault().QuotationID }, new { @class = "form-control btn btn-info" })
+      </div>
+    </div>
+  </div>
+</div>
+
+

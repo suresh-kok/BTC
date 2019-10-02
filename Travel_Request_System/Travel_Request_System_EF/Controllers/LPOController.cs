@@ -84,7 +84,9 @@ namespace Travel_Request_System_EF.Controllers
                     return View(RFQList.ToList());
                 }
                 else
+                {
                     return RedirectToAction("Index", new { id = id });
+                }
             }
         }
 
@@ -203,43 +205,43 @@ namespace Travel_Request_System_EF.Controllers
         {
             try
             {
-            List<LPO> lpoList = new List<LPO>();
-            List<string> RfqList = new List<string>();
+                List<LPO> lpoList = new List<LPO>();
+                List<string> RfqList = new List<string>();
 
-            foreach (var item in collection)
-            {
-                if (item.Value.ToLower() == "true")
-                {
-                    RfqList.Add(item.Key.Split('-')[0]);
-                }
-            }
-
-            foreach (var rfq in RfqList.Distinct())
-            {
-                LPO lpoObject = new LPO();
                 foreach (var item in collection)
                 {
-                    if (item.Value.ToLower() == "true" && item.Key.Contains(rfq))
+                    if (item.Value.ToLower() == "true")
                     {
-                        lpoObject.RFQID = Convert.ToInt32(item.Key.Split('-')[0].Substring(item.Key.Split('-')[0].IndexOf('Q') + 1));
-                        lpoObject.QuotationID = Convert.ToInt32(item.Key.Split('-')[1].Substring(item.Key.Split('-')[1].IndexOf('t') + 1));
-                        if (item.Key.Split('-')[2].Contains("ATCheck"))
-                        {
-                            lpoObject.IsAT = true;
-                        }
-                        if (item.Key.Split('-')[2].Contains("HSCheck"))
-                        {
-                            lpoObject.IsHS = true;
-                        }
-                        if (item.Key.Split('-')[2].Contains("PCCheck"))
-                        {
-                            lpoObject.IsPC = true;
-                        }
-                        lpoObject.IsDeleted = true;
+                        RfqList.Add(item.Key.Split('-')[0]);
                     }
                 }
-                lpoList.Add(lpoObject);
-            }
+
+                foreach (var rfq in RfqList.Distinct())
+                {
+                    LPO lpoObject = new LPO();
+                    foreach (var item in collection)
+                    {
+                        if (item.Value.ToLower() == "true" && item.Key.Contains(rfq))
+                        {
+                            lpoObject.RFQID = Convert.ToInt32(item.Key.Split('-')[0].Substring(item.Key.Split('-')[0].IndexOf('Q') + 1));
+                            lpoObject.QuotationID = Convert.ToInt32(item.Key.Split('-')[1].Substring(item.Key.Split('-')[1].IndexOf('t') + 1));
+                            if (item.Key.Split('-')[2].Contains("ATCheck"))
+                            {
+                                lpoObject.IsAT = true;
+                            }
+                            if (item.Key.Split('-')[2].Contains("HSCheck"))
+                            {
+                                lpoObject.IsHS = true;
+                            }
+                            if (item.Key.Split('-')[2].Contains("PCCheck"))
+                            {
+                                lpoObject.IsPC = true;
+                            }
+                            lpoObject.IsDeleted = true;
+                        }
+                    }
+                    lpoList.Add(lpoObject);
+                }
 
                 if (lpoList.Count > 0)
                 {
@@ -292,20 +294,32 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
 
-                var LPO = await db.LPO.Include(a => a.RFQ).Include(a => a.Quotation).Include(a => a.RFQ).Include("RFQ.TravelRequests").Include("Quotation.ATQuotation").Include("Quotation.HSQuotation").Include("Quotation.PCQuotation").Where(a => a.ID == id).FirstOrDefaultAsync();
-                if (db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.RFQ.TravelRequests.ApplicationNumber + "/AT-Q")).Count() > 0)
+                var LPO = db.LPO.Include(a => a.RFQ).Include(a => a.Quotation).Include(a => a.RFQ).Include("Quotation.TravelRequests").Include("RFQ.TravelRequests").Include("Quotation.ATQuotation").Include("Quotation.HSQuotation").Include("Quotation.PCQuotation").Where(a => a.ID == id).FirstOrDefault();
+                if (LPO.Quotation.ATQuotation.Where(b => b.IsLowest == true).ToList().Count > 0)
                 {
-                    ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.RFQ.TravelRequests.ApplicationNumber + "/AT-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                    var atqouteid = LPO.Quotation.ATQuotation.Where(b => b.IsLowest == true).FirstOrDefault().ID;
+                    if (db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.Quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atqouteid)).Count() > 0)
+                    {
+                        ViewData.Add("ATfileUploader" + atqouteid, db.AttachmentLink.Where(a => a.AttachmentFor == LPO.Quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atqouteid).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList());
+                    }
                 }
-                if (db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.RFQ.TravelRequests.ApplicationNumber + "/HS-Q")).Count() > 0)
+                if (LPO.Quotation.HSQuotation.Where(b => b.IsLowest == true).ToList().Count > 0)
                 {
-                    ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.RFQ.TravelRequests.ApplicationNumber + "/HS-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                    var hsqouteid = LPO.Quotation.HSQuotation.Where(b => b.IsLowest == true).FirstOrDefault().ID;
+                    if (db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.Quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsqouteid)).Count() > 0)
+                    {
+                        ViewData.Add("HSfileUploader" + hsqouteid, db.AttachmentLink.Where(a => a.AttachmentFor == LPO.Quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsqouteid).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList());
+                    }
                 }
-                if (db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.RFQ.TravelRequests.ApplicationNumber + "/PC-Q")).Count() > 0)
+                if (LPO.Quotation.PCQuotation.Where(b => b.IsLowest == true).ToList().Count > 0)
                 {
-                    ViewBag.PCfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.RFQ.TravelRequests.ApplicationNumber + "/PC-Q")).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users).ToList();
+                    var pcqouteid = LPO.Quotation.PCQuotation.Where(b => b.IsLowest == true).FirstOrDefault().ID;
+                    if (db.AttachmentLink.Where(a => a.AttachmentFor.Contains(LPO.Quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcqouteid)).Count() > 0)
+                    {
+                        ViewData.Add("PCfileUploader" + pcqouteid, db.AttachmentLink.Where(a => a.AttachmentFor == LPO.Quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcqouteid).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList());
+                    }
                 }
-                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService("", LPO.RFQ.TravelRequests.Users1.HREmployeeID.ToString()))
+                using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService("", LPO.Quotation.TravelRequests.Users1.HREmployeeID.ToString()))
                 {
                     ViewBag.FullEmployeeDetails = EmpDBService.FullEmployeeDetails();
                 }

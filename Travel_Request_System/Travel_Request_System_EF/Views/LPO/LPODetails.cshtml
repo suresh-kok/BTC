@@ -1,64 +1,64 @@
 ﻿@model Travel_Request_System_EF.Models.LPO
 
 @{
-    ViewBag.Title = "LPO Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "LPO Details";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+  @Html.AntiForgeryToken()
 
-    <aside class="right-side">
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">LPO-@Model.ID - @Model.Quotation.TravelRequests.ExpensesHandledBy/ @Model.Quotation.TravelRequests.ApplicationNumber</h3>
-                        </div><!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="row" style="margin-bottom:15px">
-                                <div id="detailsDiv" style="height:auto">
-                                    @Html.Partial("_TravelRequestDetails", Model.RFQ.TravelRequests)
-                                </div>
-                            </div>
-                            @if (Model.IsAT != null && (bool)Model.IsAT)
-                            {
-                                <div class="row" style="margin-bottom:15px">
-                                    @Html.Partial("_ATQuotation", Model.Quotation.ATQuotation.FirstOrDefault())
-                                </div>
-                            }
-                            @if (Model.IsHS != null && (bool)Model.IsHS)
-                            {
-                                <div class="row" style="margin-bottom:15px">
-                                    @Html.Partial("_HSQuotation", Model.Quotation.HSQuotation.FirstOrDefault())
-                                </div>
-                            }
-                            @if (Model.IsPC != null && (bool)Model.IsPC)
-                            {
-                                <div class="row" style="margin-bottom:15px">
-                                    @Html.Partial("_PCQuotation", Model.Quotation.PCQuotation.FirstOrDefault())
-                                </div>
-                            }
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
+  <aside class="right-side">
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">LPO-@Model.ID - @Model.Quotation.TravelRequests.ExpensesHandledBy/ @Model.Quotation.TravelRequests.ApplicationNumber</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+              <div class="row" style="margin-bottom:15px">
+                <div id="detailsDiv" style="height:auto">
+                  @Html.Partial("_TravelRequestDetails", Model.RFQ.TravelRequests)
                 </div>
-            </div>
-        </section>
-    </aside>
-    <div class="row" style="margin-bottom:15px">
-        <div class="col-md-3">
-            @Html.ActionLink("  Print", "PrintLPO", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
+              </div>
+              @if (Model.IsAT != null && (bool)Model.IsAT)
+              {
+                <div class="row" style="margin-bottom:15px">
+                  @Html.Partial("_ATQuotation", Model.Quotation.ATQuotation.Where(a => a.IsLowest == true).FirstOrDefault())
+                </div>
+              }
+              @if (Model.IsHS != null && (bool)Model.IsHS)
+              {
+                <div class="row" style="margin-bottom:15px">
+                  @Html.Partial("_HSQuotation", Model.Quotation.HSQuotation.Where(a => a.IsLowest == true).FirstOrDefault())
+                </div>
+              }
+              @if (Model.IsPC != null && (bool)Model.IsPC)
+              {
+                <div class="row" style="margin-bottom:15px">
+                  @Html.Partial("_PCQuotation", Model.Quotation.PCQuotation.Where(a => a.IsLowest == true).FirstOrDefault())
+                </div>
+              }
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
         </div>
-        <div class="col-md-3">
-            @Html.ActionLink("Back to List", "Index", new { id = Model.Quotation.TravelRequestID}, new { @class = "form-control btn btn-info" })
-        </div>
+      </div>
+    </section>
+  </aside>
+  <div class="row" style="margin-bottom:15px">
+    <div class="col-md-3">
+      @Html.ActionLink("  Print", "PrintLPO", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
     </div>
+    <div class="col-md-3">
+      @Html.ActionLink("Back to List", "Index", new { id = Model.Quotation.TravelRequestID }, new { @class = "form-control btn btn-info" })
+    </div>
+  </div>
 }
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+  @Scripts.Render("~/bundles/jqueryval")
 }
 

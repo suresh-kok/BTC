@@ -49,13 +49,13 @@
                                             <th>Travel Agency</th>
                                             <th>Attachments</th>
                                             <th>Action</th>
-                                            <th>
+                                            @*<th>
                                                 <div class="checkbox">
                                                     <label>
                                                         <input type="checkbox" id="AllCheck">
                                                     </label>
                                                 </div>
-                                            </th>
+                                            </th>*@
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -120,13 +120,13 @@
                                                         @Html.ActionLink("  Delete", "DeleteRFQProcessing", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
                                                     </span>
                                                 </td>
-                                                <td>
+                                                @*<td>
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" name="ids" id="ids" value="@item.IsDeleted" />
                                                         </label>
                                                     </div>
-                                                </td>
+                                                </td>*@
                                             </tr>
                                         }
                                     </tbody>

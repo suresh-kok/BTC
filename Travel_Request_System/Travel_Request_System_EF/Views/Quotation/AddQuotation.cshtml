@@ -61,7 +61,7 @@
                                                     {
                                                         <td>
                                                             <span class="glyphicon">
-                                                                @Html.ActionLink("  View to Add Details", "AddATQuotation", new { id = Model.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
+                                                                @Html.ActionLink("  View to Add Details", "AddATQuotation", new { quoteid = Model.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
                                                             </span>
                                                         </td>
                                                         <td>
@@ -95,7 +95,7 @@
                                                     {
                                                         <td>
                                                             <span class="glyphicon">
-                                                                @Html.ActionLink("  View to Add Details", "AddHSQuotation", new { id = Model.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
+                                                                @Html.ActionLink("  View to Add Details", "AddHSQuotation", new { quoteid = Model.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
                                                             </span>
                                                         </td>
                                                         <td>
@@ -108,7 +108,7 @@
                                                     {
                                                         <td>
                                                             <span class="glyphicon">
-                                                                @Html.ActionLink("  View Details", "AddHSQuotation", new { id = Model.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
+                                                                @Html.ActionLink("  View Details", "ViewHSQuotations", new { id = Model.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
                                                             </span>
                                                         </td>
                                                         <td></td>
@@ -128,7 +128,7 @@
                                                     {
                                                         <td>
                                                             <span class="glyphicon">
-                                                                @Html.ActionLink("  View to Add Details", "AddPCQuotation", new { id = Model.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
+                                                                @Html.ActionLink("  View to Add Details", "AddPCQuotation", new { quoteid = Model.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
                                                             </span>
                                                         </td>
                                                         <td>
@@ -141,7 +141,7 @@
                                                     {
                                                         <td>
                                                             <span class="glyphicon">
-                                                                @Html.ActionLink("  View Details", "AddPCQuotation", new { id = Model.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
+                                                                @Html.ActionLink("  View Details", "ViewPCQuotations", new { id = Model.Quotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info  glyphicon-info-sign" })
                                                             </span>
                                                         </td>
                                                         <td></td>

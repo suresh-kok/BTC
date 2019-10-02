@@ -51,6 +51,7 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
 
         [DisplayName("Additional Expenses")]
         [Required(ErrorMessage = "Additional Expenses is Required")]
+        [Range(1, 99999999, ErrorMessage = "Additional Expenses is Invalid")]
         public Nullable<decimal> Amount { get; set; }
 
         [DisplayName("Is Deleted")]

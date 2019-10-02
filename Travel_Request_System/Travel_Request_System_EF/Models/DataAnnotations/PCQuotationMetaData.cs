@@ -46,9 +46,9 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
         [DisplayName("Drop Off Time")]
         public Nullable<System.TimeSpan> DropOffTime { get; set; }
 
-        [DisplayName("Amount")]
-        [Required(ErrorMessage = "Amount is Required")]
-        [Range(1, 99999999, ErrorMessage = "Amount is Invalid")]
+        [DisplayName("Additional Expenses")]
+        [Required(ErrorMessage = "Additional Expenses is Required")]
+        [Range(1, 99999999, ErrorMessage = "Additional Expenses is Invalid")]
         public Nullable<decimal> Amount { get; set; }
 
         [DisplayName("Is Deleted")]
