@@ -109,7 +109,7 @@ namespace Travel_Request_System_EF.Controllers
 
                     if (atquoteid > 0 && atquotes.Where(a => a.ID == atquoteid).Count() > 0)
                     {
-                        atQuote = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsDeleted == false).FirstOrDefault();
+                        atQuote = db.ATQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.ID == atquoteid && a.IsDeleted == false).FirstOrDefault();
                         ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                         ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".AT-Q" + atQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                     }
@@ -279,7 +279,7 @@ namespace Travel_Request_System_EF.Controllers
 
                     if (hsquoteid > 0 && hsquotes.Where(a => a.ID == hsquoteid).Count() > 0)
                     {
-                        hsQuote = db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsDeleted == false).FirstOrDefault();
+                        hsQuote = db.HSQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.ID == hsquoteid && a.IsDeleted == false).FirstOrDefault();
                         ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                         ViewBag.HSfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".HS-Q" + hsQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                     }
@@ -437,7 +437,7 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 else
                 {
-                    var pcquotes = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsDeleted == false)?.ToList();
+                    var pcquotes = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.ID == pcquoteid && a.IsDeleted == false)?.ToList();
 
                     if (pcquoteid > 0 && pcquotes.Where(a => a.ID == pcquoteid).Count() > 0)
                     {
@@ -584,20 +584,21 @@ namespace Travel_Request_System_EF.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult FileUpload()
+        public ActionResult FileUpload(FormCollection formCollection)
         {
             using (BTCEntities db = new BTCEntities())
             {
                 string attachmentsForVal = "Unknown", retrunToVal = "Index";
-                int attachmentsForIDVal = 1;
+                string IDVal = "";
+                int QuoteID = Convert.ToInt32(formCollection["QuotationID"]);
+                int ID = Convert.ToInt32(formCollection["ID"]);
 
                 if (Request.Files != null && Request.Files.Count > 0)
                 {
                     string fileName = string.Empty;
                     string destinationPath = string.Empty;
                     List<Attachments> uploadFileModel = new List<Attachments>();
-
-                    SetQuotation(pageNo, out attachmentsForVal, out attachmentsForIDVal, out retrunToVal);
+                    SetQuotation(pageNo, ID, out attachmentsForVal, out IDVal, out retrunToVal);
 
                     fileName = Path.GetFileName(Request.Files[0].FileName);
                     destinationPath = Path.Combine(Server.MapPath("~/UploadedFiles/" + attachmentsForVal) + "/", fileName);
@@ -623,18 +624,30 @@ namespace Travel_Request_System_EF.Controllers
                     }
                 }
                 ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(attachmentsForVal)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
-                return RedirectToAction(retrunToVal, new { id = attachmentsForIDVal });
+                switch (pageNo)
+                {
+                    case 1:
+                        return RedirectToAction(retrunToVal, new { QuoteID, atquoteID = ID });
+                    case 2:
+                        return RedirectToAction(retrunToVal, new { QuoteID, hsquoteID = ID });
+                    case 3:
+                        return RedirectToAction(retrunToVal, new { QuoteID, pcquoteID = ID });
+                    default:
+                        return RedirectToAction(retrunToVal, new { QuoteID });
+                }
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RemoveUploadFile(string fileName)
+        public ActionResult RemoveUploadFile(string fileName, FormCollection formCollection)
         {
             using (BTCEntities db = new BTCEntities())
             {
                 string attachmentsForVal = "Unknown", retrunToVal = "Index";
-                int attachmentsForIDVal = 1;
+                string IDVal = "";
+                int QuoteID = Convert.ToInt32(formCollection["QuotationID"]);
+                int ID = Convert.ToInt32(formCollection["ID"]);
 
                 if (fileName != null && fileName != string.Empty)
                 {
@@ -643,7 +656,7 @@ namespace Travel_Request_System_EF.Controllers
                     db.Attachments.Remove(dbfile);
                     db.SaveChanges();
 
-                    SetQuotation(pageNo, out attachmentsForVal, out attachmentsForIDVal, out retrunToVal);
+                    SetQuotation(pageNo, ID, out attachmentsForVal, out IDVal, out retrunToVal);
 
                     FileInfo file = new FileInfo(Server.MapPath("~/UploadedFiles/" + fileName));
                     if (file.Exists)
@@ -653,53 +666,63 @@ namespace Travel_Request_System_EF.Controllers
                     ViewBag.SuccessMessage = "File Deleted Successfully";
                 }
                 ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor.Contains(attachmentsForVal)).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
-                return RedirectToAction(retrunToVal, new { id = attachmentsForIDVal });
+                switch (pageNo)
+                {
+                    case 1:
+                        return RedirectToAction(retrunToVal, new { QuoteID, atquoteID = ID });
+                    case 2:
+                        return RedirectToAction(retrunToVal, new { QuoteID, hsquoteID = ID });
+                    case 3:
+                        return RedirectToAction(retrunToVal, new { QuoteID, pcquoteID = ID });
+                    default:
+                        return RedirectToAction(retrunToVal, new { QuoteID});
+                }
             }
         }
 
-        [ValidateAntiForgeryToken]
         public ActionResult DeletePCQuotation(int id)
         {
             using (BTCEntities db = new BTCEntities())
             {
                 var dbpcquote = db.PCQuotation.Find(id);
-                dbpcquote.IsDeleted = false;
+                dbpcquote.IsDeleted = true;
 
                 db.PCQuotation.Attach(dbpcquote);
                 var entry = db.Entry(dbpcquote);
                 entry.Property(a => a.IsDeleted).IsModified = true;
+                db.SaveChanges();
 
                 return RedirectToAction("AddQuotation", new { id = dbpcquote.Quotation.RFQID });
             }
         }
 
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteHSQuotation(int id)
         {
             using (BTCEntities db = new BTCEntities())
             {
                 var dbhsquote = db.HSQuotation.Find(id);
-                dbhsquote.IsDeleted = false;
+                dbhsquote.IsDeleted = true;
 
                 db.HSQuotation.Attach(dbhsquote);
                 var entry = db.Entry(dbhsquote);
                 entry.Property(a => a.IsDeleted).IsModified = true;
+                db.SaveChanges();
 
                 return RedirectToAction("AddQuotation", new { id = dbhsquote.Quotation.RFQID });
             }
         }
 
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteATQuotation(int id)
         {
             using (BTCEntities db = new BTCEntities())
             {
                 var dbatquote = db.ATQuotation.Find(id);
-                dbatquote.IsDeleted = false;
+                dbatquote.IsDeleted = true;
 
                 db.ATQuotation.Attach(dbatquote);
                 var entry = db.Entry(dbatquote);
                 entry.Property(a => a.IsDeleted).IsModified = true;
+                db.SaveChanges();
 
                 return RedirectToAction("AddQuotation", new { id = dbatquote.Quotation.RFQID });
             }
@@ -759,28 +782,28 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        private void SetQuotation(int QuotationType, out string attachmentsForVal, out int attachmentsForIDVal, out string retrunToVal)
+        private void SetQuotation(int QuotationType, int SubQuoteID, out string attachmentsForVal, out string IDVal, out string retrunToVal)
         {
             switch (QuotationType)
             {
                 case 1:
-                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".AT-Q" + quotation.ATQuotation.FirstOrDefault().ID;
-                    attachmentsForIDVal = quotation.ID;
+                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".AT-Q" + SubQuoteID;
+                    IDVal = "atQuote";
                     retrunToVal = "AddATQuotation";
                     break;
                 case 2:
-                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".HS-Q" + quotation.HSQuotation.FirstOrDefault().ID;
-                    attachmentsForIDVal = quotation.ID;
+                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".HS-Q" + SubQuoteID;
+                    IDVal = "hsQuote";
                     retrunToVal = "AddHSQuotation";
                     break;
                 case 3:
-                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".PC-Q" + quotation.PCQuotation.FirstOrDefault().ID;
-                    attachmentsForIDVal = quotation.ID;
+                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".PC-Q" + SubQuoteID;
+                    IDVal = "pcQuote";
                     retrunToVal = "AddPCQuotation";
                     break;
                 default:
-                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".AT-Q" + quotation.ATQuotation.FirstOrDefault().ID;
-                    attachmentsForIDVal = quotation.ID;
+                    attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".AT-Q" + SubQuoteID;
+                    IDVal = "";
                     retrunToVal = "Index";
                     break;
             }

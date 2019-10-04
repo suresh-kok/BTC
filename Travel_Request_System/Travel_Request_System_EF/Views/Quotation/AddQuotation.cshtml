@@ -57,7 +57,7 @@
                                                     <td>
                                                         Air Ticket Quotation list
                                                     </td>
-                                                    @if (!(bool)Model.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsDeleted && !(bool)Model.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsActive)
+                                                    @if (Model.Quotation.FirstOrDefault().ATQuotation.Where(a => a.IsActive == false && a.IsDeleted == false).Count() > 0)
                                                     {
                                                         <td>
                                                             <span class="glyphicon">
@@ -65,12 +65,12 @@
                                                             </span>
                                                         </td>
                                                         <td>
-                                                            <span class="glyphicon">
+                                                            <span class="glyphicon" style="visibility:hidden">
                                                                 @Html.ActionLink("  Delete", "DeleteATQuotation", new { id = Model.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
                                                             </span>
                                                         </td>
                                                     }
-                                                    else if (!(bool)Model.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsDeleted && (bool)Model.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsActive)
+                                                    else if (Model.Quotation.FirstOrDefault().ATQuotation.Where(a => a.IsActive == true && a.IsDeleted == false).Count() > 0)
                                                     {
                                                         <td>
                                                             <span class="glyphicon">
@@ -91,7 +91,7 @@
                                                     <td>
                                                         Hotel Stay Quotation list
                                                     </td>
-                                                    @if (!(bool)Model.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsDeleted && !(bool)Model.Quotation.FirstOrDefault().HSQuotation.FirstOrDefault().IsActive)
+                                                    @if (Model.Quotation.FirstOrDefault().HSQuotation.Where(a => a.IsActive == false && a.IsDeleted == false).Count() > 0)
                                                     {
                                                         <td>
                                                             <span class="glyphicon">
@@ -99,12 +99,12 @@
                                                             </span>
                                                         </td>
                                                         <td>
-                                                            <span class="glyphicon">
+                                                            <span class="glyphicon" style="visibility:hidden">
                                                                 @Html.ActionLink("  Delete", "DeleteHSQuotation", new { id = Model.Quotation.FirstOrDefault().HSQuotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
                                                             </span>
                                                         </td>
                                                     }
-                                                    else if (!(bool)Model.Quotation.FirstOrDefault().HSQuotation.FirstOrDefault().IsDeleted && (bool)Model.Quotation.FirstOrDefault().HSQuotation.FirstOrDefault().IsActive)
+                                                    else if (Model.Quotation.FirstOrDefault().HSQuotation.Where(a => a.IsActive == true && a.IsDeleted == false).Count() > 0)
                                                     {
                                                         <td>
                                                             <span class="glyphicon">
@@ -124,7 +124,7 @@
                                                     <td>
                                                         Airport Pickup Quotation list
                                                     </td>
-                                                    @if (!(bool)Model.Quotation.FirstOrDefault().ATQuotation.FirstOrDefault().IsDeleted && !(bool)Model.Quotation.FirstOrDefault().PCQuotation.FirstOrDefault().IsActive)
+                                                    @if (Model.Quotation.FirstOrDefault().PCQuotation.Where(a => a.IsActive == false && a.IsDeleted == false).Count() > 0)
                                                     {
                                                         <td>
                                                             <span class="glyphicon">
@@ -132,12 +132,12 @@
                                                             </span>
                                                         </td>
                                                         <td>
-                                                            <span class="glyphicon">
+                                                            <span class="glyphicon" style="visibility:hidden">
                                                                 @Html.ActionLink("  Delete", "DeletePCQuotation", new { id = Model.Quotation.FirstOrDefault().PCQuotation.FirstOrDefault().ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
                                                             </span>
                                                         </td>
                                                     }
-                                                    else if (!(bool)Model.Quotation.FirstOrDefault().PCQuotation.FirstOrDefault().IsDeleted && (bool)Model.Quotation.FirstOrDefault().PCQuotation.FirstOrDefault().IsActive)
+                                                    else if (Model.Quotation.FirstOrDefault().PCQuotation.Where(a => a.IsActive == true && a.IsDeleted == false).Count() > 0)
                                                     {
                                                         <td>
                                                             <span class="glyphicon">

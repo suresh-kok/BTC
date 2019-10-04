@@ -1,25 +1,30 @@
 ﻿@model List<Travel_Request_System_EF.Models.ATQuotation>
 
 @{
-    ViewBag.Title = "View AT Quotations";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "View AT Quotations";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @foreach (var quote in Model)
 {
-    @Html.Partial("_ATQuotation", quote)
+  <div>
+    @{
+      ViewBag.ShouldDelete = "True";
+      @Html.Partial("_ATQuotation", quote)
+    }
+  </div>
 }
 <div class="row" style="margin-bottom:15px">
-    <div class="col-md-6">
-        <div class="form-group">
-            <div class="col-md-3">
-                @Html.ActionLink("Back to List", "AddQuotation", new { id = Model.FirstOrDefault().Quotation.RFQID }, new { @class = "form-control btn btn-info" })
-            </div>
-            <div class="col-md-3">
-                @Html.ActionLink("Add Another Quotation", "AddATQuotation", new { quoteid = Model.FirstOrDefault().QuotationID}, new { @class = "form-control btn btn-info" })
-            </div>
-        </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <div class="col-md-3">
+        @Html.ActionLink("Back to List", "AddQuotation", new { id = Model.FirstOrDefault().Quotation.RFQID }, new { @class = "form-control btn btn-info" })
+      </div>
+      <div class="col-md-3">
+        @Html.ActionLink("Add Another Quotation", "AddATQuotation", new { quoteid = Model.FirstOrDefault().QuotationID }, new { @class = "form-control btn btn-info" })
+      </div>
     </div>
+  </div>
 </div>
 
 

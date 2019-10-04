@@ -12,184 +12,194 @@
                 </div>
             </div>
             <div class="box-body">
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Travel Sector</label>
-                            <div class="col-sm-9">
-                                @Html.DisplayFor(model => model.TravelSector, new { htmlAttributes = new { @class = "form-control" } })
-                            </div>
-                        </div>
+              <div class="row" style="margin-bottom:15px">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="col-sm-3">Travel Sector</label>
+                    <div class="col-sm-9">
+                      @Html.DisplayFor(model => model.TravelSector, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-                    <div class="col-sm-6">
-                    </div>
+                  </div>
                 </div>
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Hotel Name</label>
-                            <div class="col-sm-9">
-                                @Html.DisplayFor(model => model.HotelName, new { htmlAttributes = new { @class = "form-control" } })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Hotel Category</label>
-                            <div class="col-sm-9">
-                                @Html.DisplayFor(model => model.HotelCategory, new { htmlAttributes = new { @class = "form-control" } })
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-sm-6">
                 </div>
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Room Category</label>
-                            <div class="col-sm-9">
-                                @Html.DisplayFor(model => model.RoomCategory, new { htmlAttributes = new { @class = "form-control" } })
-                            </div>
-                        </div>
+              </div>
+              <div class="row" style="margin-bottom:15px">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="col-sm-3">Hotel Name</label>
+                    <div class="col-sm-9">
+                      @Html.DisplayFor(model => model.HotelName, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Room Type</label>
-                            <div class="col-sm-9">
-                                @Html.DisplayFor(model => model.RoomType, new { htmlAttributes = new { @class = "form-control" } })
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Check In Date</label>
-                            <div class="col-sm-9">
-                                @if (Model.CheckInDate != null)
-                                {
-                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.CheckInDate.ToString()))));
-                                }
-                            </div>
-                        </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="col-sm-3">Hotel Category</label>
+                    <div class="col-sm-9">
+                      @Html.DisplayFor(model => model.HotelCategory, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Check In Time</label>
-                            <div class="col-sm-9">
-                                @if (Model.CheckInTime != null)
-                                {
-                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.CheckInTime.ToString()))));
-                                }
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Check Out Date</label>
-                            <div class="col-sm-9">
-                                @if (Model.CheckOutDate != null)
-                                {
-                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.CheckOutDate.ToString()))));
-                                }
-                            </div>
-                        </div>
+              </div>
+              <div class="row" style="margin-bottom:15px">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="col-sm-3">Room Category</label>
+                    <div class="col-sm-9">
+                      @Html.DisplayFor(model => model.RoomCategory, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Check Out Time</label>
-                            <div class="col-sm-9">
-                                @if (Model.CheckOutTime != null)
-                                {
-                                    @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.CheckOutTime.ToString()))));
-                                }
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Additional Expenses</label>
-                            <div class="col-sm-9">
-                                @Html.DisplayFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00", @Value = "0.00" } })
-                            </div>
-                        </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="col-sm-3">Room Type</label>
+                    <div class="col-sm-9">
+                      @Html.DisplayFor(model => model.RoomType, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
+                  </div>
                 </div>
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Is Lowest</label>
-                            <div class="col-sm-9">
-                                @{
-                                    var il = Model.IsLowest;
+              </div>
+              <div class="row" style="margin-bottom:15px">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="col-sm-3">Check In Date</label>
+                    <div class="col-sm-9">
+                      @if (Model.CheckInDate != null)
+                      {
+                        @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.CheckInDate.ToString()))));
+                      }
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="col-sm-3">Check In Time</label>
+                    <div class="col-sm-9">
+                      @if (Model.CheckInTime != null)
+                      {
+                        @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.CheckInTime.ToString()))));
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="margin-bottom:15px">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="col-sm-3">Check Out Date</label>
+                    <div class="col-sm-9">
+                      @if (Model.CheckOutDate != null)
+                      {
+                        @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.CheckOutDate.ToString()))));
+                      }
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="col-sm-3">Check Out Time</label>
+                    <div class="col-sm-9">
+                      @if (Model.CheckOutTime != null)
+                      {
+                        @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.CheckOutTime.ToString()))));
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="margin-bottom:15px">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="col-sm-3">Additional Expenses</label>
+                    <div class="col-sm-9">
+                      @Html.DisplayFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00", @Value = "0.00" } })
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="margin-bottom:15px">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-sm-3">Is Lowest</label>
+                    <div class="col-sm-9">
+                      @{
+                        var il = Model.IsLowest;
 
-                                    string ilVal;
-                                    if (Convert.ToInt32(il) == 1)
-                                    {
-                                        ilVal = "Yes";
-                                    }
-                                    else
-                                    {
-                                        ilVal = "No";
-                                    }
-                                }
-                                <label id="islowest">@ilVal</label>
-                            </div>
-                        </div>
+                        string ilVal;
+                        if (Convert.ToInt32(il) == 1)
+                        {
+                          ilVal = "Yes";
+                        }
+                        else
+                        {
+                          ilVal = "No";
+                        }
+                      }
+                      <label id="islowest">@ilVal</label>
                     </div>
-                    <div class="col-md-6">
-                    </div>
+                  </div>
                 </div>
+                <div class="col-md-6">
+                </div>
+              </div>
 
-                @if (ViewBag.HSfileUploader != null && ViewBag.HSfileUploader.Count > 0)
-                {
-                    <div class="row" style="margin-bottom:15px">
-                        <aside class="right-side">
-                            <!-- Main content -->
-                            <section class="content">
-                                <div class="container text-center">
-                                    <div class="col-xs-11">
-                                        <div class="box with-border">
-                                            <div class="box-header">
-                                                <h3 class="box-title">Details</h3>
-                                            </div><!-- /.box-header -->
-                                            <div class="box-body table-responsive">
-                                                <table id="uloadTable" class="table table-bordered table-hover table-responsive">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>File Name</th>
-                                                            <th>Uploaded Date</th>
-                                                            <th>Uploaded By</th>
-                                                            <th></th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewBag.HSfileUploader)
-                                                        {
-                                                            <tr id="@item.FileName">
-                                                                <td>@item.FileName</td>
-                                                                <td>@item.UploadedDate.ToShortDateString()</td>
-                                                                <td>@(new HtmlString(item.Users.FirstName + " " + item.Users.LastName))</td>
-                                                                <td style="text-align: center">
-                                                                    @Html.ActionLink("  Open File", "OpenFile", new { fileName = item.FileName }, new { @class = "form-control btn btn-info glyphicon-edit" })
-                                                                </td>
-                                                                <td></td>
-                                                            </tr>
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </aside>
-                    </div>
-                }
+              @if (ViewBag.HSfileUploader != null && ViewBag.HSfileUploader.Count > 0)
+              {
+                <div class="row" style="margin-bottom:15px">
+                  <aside class="right-side">
+                    <!-- Main content -->
+                    <section class="content">
+                      <div class="container text-center">
+                        <div class="col-xs-11">
+                          <div class="box with-border">
+                            <div class="box-header">
+                              <h3 class="box-title">Details</h3>
+                            </div><!-- /.box-header -->
+                            <div class="box-body table-responsive">
+                              <table id="uloadTable" class="table table-bordered table-hover table-responsive">
+                                <thead>
+                                  <tr>
+                                    <th>File Name</th>
+                                    <th>Uploaded Date</th>
+                                    <th>Uploaded By</th>
+                                    <th></th>
+                                    <th></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewBag.HSfileUploader)
+                                  {
+                                    <tr id="@item.FileName">
+                                      <td>@item.FileName</td>
+                                      <td>@item.UploadedDate.ToShortDateString()</td>
+                                      <td>@(new HtmlString(item.Users.FirstName + " " + item.Users.LastName))</td>
+                                      <td style="text-align: center">
+                                        @Html.ActionLink("  Open File", "OpenFile", new { fileName = item.FileName }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                                      </td>
+                                      <td></td>
+                                    </tr>
+                                  }
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </aside>
+                </div>
+              }
+
+              @if (ViewBag.ShouldDelete != null && ViewBag.ShouldDelete == "True")
+              {
+                <p>
+                  <span class="glyphicon">
+                    @Html.ActionLink("  Delete", "DeleteHSQuotation", new { id = Model.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
+                  </span>
+                  <br />
+                </p>
+              }
             </div>
         </div>
     </div>

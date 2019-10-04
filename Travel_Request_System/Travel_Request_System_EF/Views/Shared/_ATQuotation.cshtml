@@ -192,6 +192,15 @@
             </aside>
           </div>
         }
+        @if (ViewBag.ShouldDelete!=null && ViewBag.ShouldDelete == "True")
+        {
+        <p>
+          <span class="glyphicon">
+            @Html.ActionLink("  Delete", "DeleteATQuotation", new { id = Model.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
+          </span>
+          <br />
+        </p>
+        }
       </div>
     </div>
   </div>

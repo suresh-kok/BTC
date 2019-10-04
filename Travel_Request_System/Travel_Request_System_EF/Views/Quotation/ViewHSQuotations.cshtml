@@ -7,7 +7,12 @@
 
 @foreach (var quote in Model)
 {
-  @Html.Partial("_HSQuotation", quote)
+  <div>
+    @{
+      ViewBag.ShouldDelete = "True";
+      @Html.Partial("_HSQuotation", quote)
+    }
+  </div>
 }
 <div class="row" style="margin-bottom:15px">
   <div class="col-md-6">

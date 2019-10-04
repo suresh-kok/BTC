@@ -568,7 +568,7 @@ namespace Travel_Request_System_EF.Controllers
             List<Users> usersList = new List<Users>();
             using (BTCEntities db = new BTCEntities())
             {
-                usersList = db.Users.Include(a => a.Roles).Include(a => a.HRW_Employee).Where(a => a.IsDeleted == false).OrderBy(a => a.ID).ToList();
+                usersList = db.Users.Include(a => a.Roles).Include(a => a.HRW_Employee).Where(a => a.IsDeleted == false).OrderByDescending(a => a.ID).ToList();
             }
             return View(usersList);
 
