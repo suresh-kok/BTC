@@ -240,25 +240,53 @@ namespace Travel_Request_System_EF.Controllers
                     await dbcontext.SaveChangesAsync();
                     using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                     {
-                        EmailPersonDetails emailPersonDetails = EmpDBService.HRDetails();
-                        //NotificationEmail(travelRequest, emailPersonDetails.Email);
+                        EmailPersonDetails emailPersonDetails = EmpDBService.DepartmentHeadMailDetails(empCode);
 
-                        emailPersonDetails = EmpDBService.HRNotificationDetails();
-                        //NotificationEmail(travelRequest, emailPersonDetails.Email);
-
-                        emailPersonDetails = EmpDBService.DepartmentHeadMailDetails(empCode);
                         if (emailPersonDetails != null && emailPersonDetails.Email != "")
                         {
                             //NotificationEmail(travelRequest, emailPersonDetails.Email);
                         }
                         else
                         {
-                            var travelRequestData = dbcontext.TravelRequests.Where(x => x.ID == travelRequest.ID).FirstOrDefault();
-                            travelRequestData.ApprovalLevel = (int)ApprovalLevels.ApprovedByManager;
-                            dbcontext.Entry(travelRequestData).State = EntityState.Modified;
-                            dbcontext.TravelRequests.Attach(travelRequestData);
-                            dbcontext.Entry(travelRequestData).Property(x => x.ApprovalLevel).IsModified = true;
-                            await dbcontext.SaveChangesAsync();
+                            emailPersonDetails = EmpDBService.HRDetails();
+                            //NotificationEmail(travelRequest, emailPersonDetails.Email);
+
+                            if (emailPersonDetails != null && emailPersonDetails.Email != "")
+                            {
+
+                                var travelRequestData = dbcontext.TravelRequests.Where(x => x.ID == travelRequest.ID).FirstOrDefault();
+                                travelRequestData.ApprovalLevel = (int)ApprovalLevels.ApprovedByManager;
+                                dbcontext.Entry(travelRequestData).State = EntityState.Modified;
+                                dbcontext.TravelRequests.Attach(travelRequestData);
+                                dbcontext.Entry(travelRequestData).Property(x => x.ApprovalLevel).IsModified = true;
+                                await dbcontext.SaveChangesAsync();
+                                //NotificationEmail(travelRequest, emailPersonDetails.Email);
+                            }
+                            else
+                            {
+                                emailPersonDetails = EmpDBService.HRNotificationDetails();
+                                //NotificationEmail(travelRequest, emailPersonDetails.Email);
+
+                                if (emailPersonDetails != null && emailPersonDetails.Email != "")
+                                {
+                                    var travelRequestData = dbcontext.TravelRequests.Where(x => x.ID == travelRequest.ID).FirstOrDefault();
+                                    travelRequestData.ApprovalLevel = (int)ApprovalLevels.ApprovedByManager;
+                                    dbcontext.Entry(travelRequestData).State = EntityState.Modified;
+                                    dbcontext.TravelRequests.Attach(travelRequestData);
+                                    dbcontext.Entry(travelRequestData).Property(x => x.ApprovalLevel).IsModified = true;
+                                    await dbcontext.SaveChangesAsync();
+                                    //NotificationEmail(travelRequest, emailPersonDetails.Email);
+                                }
+                                else
+                                {
+                                    var travelRequestData = dbcontext.TravelRequests.Where(x => x.ID == travelRequest.ID).FirstOrDefault();
+                                    travelRequestData.ApprovalLevel = (int)ApprovalLevels.ApprovedByHR;
+                                    dbcontext.Entry(travelRequestData).State = EntityState.Modified;
+                                    dbcontext.TravelRequests.Attach(travelRequestData);
+                                    dbcontext.Entry(travelRequestData).Property(x => x.ApprovalLevel).IsModified = true;
+                                    await dbcontext.SaveChangesAsync();
+                                }
+                            }
                         }
                     }
                     return RedirectToAction("Index");
