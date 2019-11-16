@@ -73,7 +73,7 @@ namespace Travel_Request_System_EF.Controllers
         [CustomAuthorize(Roles = "HR")]
         public ActionResult HRDashboard()
         {
-            return View(ViewApprovalTravelRequests((int)ApprovalLevels.ApprovedByManager));
+            return View(ViewApprovalTravelRequests((int)ApprovalLevels.ApprovedByManager, empCode));
         }
 
         [CustomAuthorize(Roles = "HR")]
@@ -205,7 +205,7 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (var dbcontext = new BTCEntities())
             {
-                return View(ViewApprovalTravelRequests((int)ApprovalLevels.ToBeApproved, dbcontext.Users.Include(a => a.HRW_Employee).Where(u => u.Username == user.UserName).FirstOrDefault().HRW_Employee.EmployeeCode));
+                return View(ViewApprovalTravelRequests((int)ApprovalLevels.ToBeApproved, empCode));
             }
         }
 
@@ -870,12 +870,15 @@ namespace Travel_Request_System_EF.Controllers
                     using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                     {
                         List<string> EmpCodes = EmpDBService.EmployeesUnderDepartmentHeadDetails(empCode);
-                        return db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Include("Users1.HRW_employee").Include("Users.HRW_employee").Where(a => a.ApprovalLevel == level && EmpCodes.Contains(a.Users1.HRW_Employee.EmployeeCode)).ToList();
+                        var tr = db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Where(a => a.ApprovalLevel == level).ToList();
+                        var trf = tr.Where(a=> EmpCodes.Any(s=>s.Equals(a.Users1.HRW_Employee.EmployeeCode))).ToList();
+                        return trf;
                     }
                 }
                 else
                 {
-                    return db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Where(a => a.ApprovalLevel == level).ToList();
+                    var tr = db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Where(a => a.ApprovalLevel == level).ToList();
+                    return tr;
                 }
             }
         }
