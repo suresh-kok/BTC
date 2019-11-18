@@ -865,7 +865,7 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-                if (!string.IsNullOrEmpty(employeeCode))
+                if (!string.IsNullOrEmpty(employeeCode) && level != 2)
                 {
                     using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService(empCode))
                     {
@@ -874,6 +874,11 @@ namespace Travel_Request_System_EF.Controllers
                         var trf = tr.Where(a=> EmpCodes.Any(s=>s.Equals(a.Users1.HRW_Employee.EmployeeCode))).ToList();
                         return trf;
                     }
+                }
+                else if(level == 2)
+                {
+                    var tr = db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Where(a => a.ApprovalLevel == level).ToList();
+                    return tr;
                 }
                 else
                 {

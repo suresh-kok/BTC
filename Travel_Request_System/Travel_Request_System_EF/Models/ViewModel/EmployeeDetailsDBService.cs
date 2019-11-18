@@ -673,7 +673,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                                                             "FROM HRW_Employee Emp " +
                                                             "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
                                                             "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
-                                                            "WHERE Emp.EmployeeCode = '164' " +
+                                                            "WHERE Emp.EmployeeID = 164 " +
                                                                 "AND EM.EntityTypeID = '101' " +
                                                             ") " +
                                                         "AND EntityTypeParamID = '15' " +
@@ -681,7 +681,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                                         "FROM HRW_Employee Emp " +
                                         "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
                                         "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
-                                        "WHERE Emp.EmployeeCode = '164' " +
+                                        "WHERE Emp.EmployeeID = 164 " +
                                             "AND EM.EntityTypeID = '101' ";
 
                 var sequenceQueryResult = db.Database.SqlQuery<EmailPersonDetails>(sequenceMaxQuery).FirstOrDefault();
@@ -710,7 +710,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                                                             "FROM HRW_Employee Emp " +
                                                             "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
                                                             "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
-                                                            "WHERE Emp.EmployeeCode = '9' " +
+                                                            "WHERE Emp.EmployeeID = 164 " +
                                                                 "AND EM.EntityTypeID = '101' " +
                                                             ") " +
                                                         "AND EntityTypeParamID = '15' " +
@@ -718,7 +718,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
                                         "FROM HRW_Employee Emp " +
                                         "INNER JOIN ORG_EmpEntityLink Oel ON(Emp.EmployeeID = Oel.EmployeeId) " +
                                         "INNER JOIN ORG_EntityMaster EM ON(EM.EntityId = Oel.EntityId) " +
-                                        "WHERE Emp.EmployeeCode = '9' " +
+                                        "WHERE Emp.EmployeeID = 164 " +
                                             "AND EM.EntityTypeID = '101' ";
 
                 var sequenceQueryResult = db.Database.SqlQuery<EmailPersonDetails>(sequenceMaxQuery).FirstOrDefault();

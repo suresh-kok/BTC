@@ -437,7 +437,7 @@ namespace Travel_Request_System_EF.Controllers
                 }
                 else
                 {
-                    var pcquotes = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.ID == pcquoteid && a.IsDeleted == false)?.ToList();
+                    var pcquotes = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsDeleted == false)?.ToList();
 
                     if (pcquoteid > 0 && pcquotes.Where(a => a.ID == pcquoteid).Count() > 0)
                     {
