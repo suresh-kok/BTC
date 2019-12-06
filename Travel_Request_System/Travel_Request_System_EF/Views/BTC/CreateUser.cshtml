@@ -28,125 +28,124 @@ $(document).ready(function(){
             }
         });
     });
-
 </script>
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
 
-    <div class="col-xs-12 col-md-12">
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">User Information</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Role</label>
-                            <div class="col-md-10">
-                                <div class="dropdown">
-                                    @Html.DropDownList("RoleID", ((IEnumerable<Travel_Request_System_EF.Models.Roles>)ViewBag.allRoles).Select(m => new SelectListItem { Text = m.RoleName, Value = m.ID.ToString() }))
-                                    @*@Html.ValidationMessageFor(Model => Model.roleDet, "", new { @class = "text-danger" })*@
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.HREmployeeID, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("EmployeeID", (((IEnumerable<Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail>)ViewBag.allEmployees).Select(m => new SelectListItem { Text = m.EmployeeCode + " - " + m.FullName, Value = m.EmployeeID.ToString() })))
-                                @*@Html.ValidationMessageFor(model => model.HREmployeeID, "", new { @class = "text-danger" })*@
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="form-group">
-                            @Html.LabelFor(Model => Model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(Model => Model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(Model => Model.Username, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="form-group">
-                            @Html.LabelFor(Model => Model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(Model => Model.FirstName, new { id = "FirstName", htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(Model => Model.FirstName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="form-group">
-                            @Html.LabelFor(Model => Model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(Model => Model.LastName, new { id = "LastName", htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(Model => Model.LastName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="form-group">
-                            @Html.LabelFor(Model => Model.Email, htmlAttributes: new { id = "Email", @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(Model => Model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="form-group">
-                            @Html.LabelFor(Model => Model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.PasswordFor(Model => Model.Password, new { @style = "width:100%;" })
-                                @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                    @*<div class="row" style="margin-bottom:15px">
-                            <div class="form-group">
-                                @Html.LabelFor(Model => Model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    <div class="checkbox">
-                                        @Html.EditorFor(Model => Model.IsActive)
-                                        @Html.ValidationMessageFor(Model => Model.IsActive, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="row" style="margin-bottom:15px">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="col-md-3">
-                                        <input type="submit" value="Create" class="form-control btn btn-info" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="col-xs-12 col-md-12">
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">User Information</h3>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
     </div>
+    <div class="box-body">
+      <div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row" style="margin-bottom:15px">
+          <div class="form-group">
+            <label class="control-label col-md-2">Role</label>
+            <div class="col-md-10">
+              <div class="dropdown">
+                @Html.DropDownList("RoleID", ((IEnumerable<Travel_Request_System_EF.Models.Roles>)ViewBag.allRoles).Select(m => new SelectListItem { Text = m.RoleName, Value = m.ID.ToString() }))
+                @*@Html.ValidationMessageFor(Model => Model.roleDet, "", new { @class = "text-danger" })*@
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="form-group">
+            @Html.LabelFor(model => model.HREmployeeID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @Html.DropDownList("EmployeeID", (((IEnumerable<Travel_Request_System_EF.Models.ViewModel.FullEmployeeDetail>)ViewBag.allEmployees).Select(m => new SelectListItem { Text = m.EmployeeCode + " - " + m.FullName, Value = m.EmployeeID.ToString() })))
+              @*@Html.ValidationMessageFor(model => model.HREmployeeID, "", new { @class = "text-danger" })*@
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="form-group">
+            @Html.LabelFor(Model => Model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @Html.EditorFor(Model => Model.Username, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(Model => Model.Username, "", new { @class = "text-danger" })
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="form-group">
+            @Html.LabelFor(Model => Model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @Html.EditorFor(Model => Model.FirstName, new { id = "FirstName", htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(Model => Model.FirstName, "", new { @class = "text-danger" })
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="form-group">
+            @Html.LabelFor(Model => Model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @Html.EditorFor(Model => Model.LastName, new { id = "LastName", htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(Model => Model.LastName, "", new { @class = "text-danger" })
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="form-group">
+            @Html.LabelFor(Model => Model.Email, htmlAttributes: new { id = "Email", @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @Html.EditorFor(Model => Model.Email, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger" })
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="form-group">
+            @Html.LabelFor(Model => Model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @Html.PasswordFor(Model => Model.Password, new { @style = "width:100%;" })
+              @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
+            </div>
+          </div>
+        </div>
+        @*<div class="row" style="margin-bottom:15px">
+              <div class="form-group">
+                  @Html.LabelFor(Model => Model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                  <div class="col-md-10">
+                      <div class="checkbox">
+                          @Html.EditorFor(Model => Model.IsActive)
+                          @Html.ValidationMessageFor(Model => Model.IsActive, "", new { @class = "text-danger" })
+                      </div>
+                  </div>
+              </div>
+          </div>*@
+        <div class="row" style="margin-bottom:15px">
+          <div class="row" style="margin-bottom:15px">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="col-md-3">
+                  <input type="submit" value="Create" class="form-control btn btn-info" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 }
 
 <div>
-    <div class="row" style="margin-bottom:15px">
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="col-md-3">
-                    @Html.ActionLink("Back to List", "ManageUsers", null, new { @class = "form-control btn btn-info" })
-                </div>
-            </div>
+  <div class="row" style="margin-bottom:15px">
+    <div class="col-md-6">
+      <div class="form-group">
+        <div class="col-md-3">
+          @Html.ActionLink("Back to List", "ManageUsers", null, new { @class = "form-control btn btn-info" })
         </div>
+      </div>
     </div>
+  </div>
 </div>

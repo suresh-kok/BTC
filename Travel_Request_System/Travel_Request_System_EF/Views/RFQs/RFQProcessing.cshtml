@@ -7,214 +7,212 @@
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
 
-    <div style="height:auto">
-        <div class="row" style="margin-bottom:15px">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <input type="submit" class="form-control btn btn-info btn-primary" value="Add to Processing Table" />
-                    @*@Html.ActionLink("Add to Processing Table", "RFQMerger", new { id = Model.RFQID }, new { @class = "form-control btn btn-info" })*@
-                </div>
-            </div>
-            <div class="col-md-3">
-                @if (Model.RFQ.Where(a => a.Processing == 0 && a.IsDeleted == false).Count() > 0)
+<div style="height:auto">
+  <div class="row" style="margin-bottom:15px">
+    <div class="col-md-3">
+      <div class="form-group">
+        <input type="submit" class="form-control btn btn-info btn-primary" value="Add to Processing Table" />
+        @*@Html.ActionLink("Add to Processing Table", "RFQMerger", new { id = Model.RFQID }, new { @class = "form-control btn btn-info" })*@
+      </div>
+    </div>
+    <div class="col-md-3">
+      @if (Model.RFQ.Where(a => a.Processing == 0 && a.IsDeleted == false).Count() > 0)
                 {
-                    @Html.ActionLink("Go to Merge Table", "RFQMerger", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
+      @Html.ActionLink("Go to Merge Table", "RFQMerger", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
 
                 }
-            </div>
-            <div class="col-md-3">
-                @if (Model.RFQ.Where(a => a.Processing > 0).Count() > 0)
+    </div>
+    <div class="col-md-3">
+      @if (Model.RFQ.Where(a => a.Processing > 0).Count() > 0)
                 {
-                    @Html.ActionLink("Go to Post Merge Table", "RFQPostMerger", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
+      @Html.ActionLink("Go to Post Merge Table", "RFQPostMerger", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
                 }
-            </div>
-            <div class="col-md-3">
-                    @Html.ActionLink("Back to List", "Index", null, new { @class = "form-control btn btn-info" })
-            </div>
-        </div>
+    </div>
+    <div class="col-md-3">
+      @Html.ActionLink("Back to List", "Index", null, new { @class = "form-control btn btn-info" })
+    </div>
+  </div>
 
-        <div class="row" style="margin-bottom:15px">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label class="col-sm-3">Associated Travel Agency</label>
-                    <div class="col-sm-9">
-                        @Html.DropDownList("TravelAgencySelected", ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).Select(m => new SelectListItem { Text = m.AgencyCode, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6"></div>
+  <div class="row" style="margin-bottom:15px">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="col-sm-3">Associated Travel Agency</label>
+        <div class="col-sm-9">
+          @Html.DropDownList("TravelAgencySelected", ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).Select(m => new SelectListItem { Text = m.AgencyCode, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })
         </div>
-        <div class="form-horizontal">
-            <aside class="right-side">
-                <!-- Main content -->
-                <section class="content">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">RFQ Processing Table</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">
-                                    <table class="table table-condensed table-bordered">
-                                        <thead>
-                                            <tr class="success">
-                                                <th>##</th>
-                                                <th>Details To be Extracted </th>
-                                                <th>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="checkAll" id="checkAll">
-                                                        </label>
-                                                    </div>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>AT</td>
-                                                <td>
-                                                    Specific details captured from Air Ticket Arrangement section
-                                                </td>
-                                                <td>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="ATCheck" id="ATCheck">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>HS</td>
-                                                <td>
-                                                    Specific details captured from Hotel Stay section
-                                                </td>
-                                                <td>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="HSCheck" id="HSCheck">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>PC</td>
-                                                <td>
-                                                    Specific details captured from Airport Pickup section
-                                                </td>
-                                                <td>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="PCCheck" id="PCCheck">
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
+      </div>
+    </div>
+    <div class="col-sm-6"></div>
+  </div>
+  <div class="form-horizontal">
+    <aside class="right-side">
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">RFQ Processing Table</h3>
+              </div><!-- /.box-header -->
+              <div class="box-body">
+                <table class="table table-condensed table-bordered">
+                  <thead>
+                    <tr class="success">
+                      <th>##</th>
+                      <th>Details To be Extracted </th>
+                      <th>
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" name="checkAll" id="checkAll">
+                          </label>
                         </div>
-                    </div>
-                </section>
-            </aside>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>AT</td>
+                      <td>
+                        Specific details captured from Air Ticket Arrangement section
+                      </td>
+                      <td>
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" name="ATCheck" id="ATCheck">
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>HS</td>
+                      <td>
+                        Specific details captured from Hotel Stay section
+                      </td>
+                      <td>
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" name="HSCheck" id="HSCheck">
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>PC</td>
+                      <td>
+                        Specific details captured from Airport Pickup section
+                      </td>
+                      <td>
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" name="PCCheck" id="PCCheck">
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+          </div>
+        </div>
+      </section>
+    </aside>
 
-
-            @if (ViewBag.AvailableCombinations != null && ViewBag.AvailableCombinations.Count > 0)
+    @if (ViewBag.AvailableCombinations != null && ViewBag.AvailableCombinations.Count > 0)
             {
-                <aside class="right-side">
-                    <!-- Main content -->
-                    <section class="content">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="box">
-                                    <div class="box-header">
-                                        <h3 class="box-title">Sections already added</h3>
-                                    </div><!-- /.box-header -->
-                                    <div class="box-body">
-                                        <table class="table table-condensed table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <td>Travel Request #</td>
-                                                <td>Merged Sections</td>
-                                                <td>Travel Agency</td>
-                                                <td></td>
-                                            </tr>
-                                                </thead>
-                                            <tbody>
-                                            @foreach (var item in ViewBag.AvailableCombinations)
+    <aside class="right-side">
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">Sections already added</h3>
+              </div><!-- /.box-header -->
+              <div class="box-body">
+                <table class="table table-condensed table-bordered">
+                  <thead>
+                    <tr>
+                      <td>Travel Request #</td>
+                      <td>Merged Sections</td>
+                      <td>Travel Agency</td>
+                      <td></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach (var item in ViewBag.AvailableCombinations)
                                             {
-                                                <tr>
-                                                    <td> @Model.ApplicationNumber </td>
-                                                    <td>
-                                                        @{
+                    <tr>
+                      <td> @Model.ApplicationNumber </td>
+                      <td>
+                        @{
                                                             if (item.ProcessingSection == 1)
                                                             {
-                                                                @("AT");
+                          @("AT");
                                                             }
                                                             else if (item.ProcessingSection == 2)
                                                             {
-                                                                @("HS");
+                          @("HS");
                                                             }
                                                             else if (item.ProcessingSection == 3)
                                                             {
-                                                                @("PC");
+                          @("PC");
                                                             }
                                                             else if (item.ProcessingSection == 4)
                                                             {
-                                                                @("AT + HS");
+                          @("AT + HS");
                                                             }
                                                             else if (item.ProcessingSection == 5)
                                                             {
-                                                                @("AT + PC");
+                          @("AT + PC");
                                                             }
                                                             else if (item.ProcessingSection == 6)
                                                             {
-                                                                @("HS + PC");
+                          @("HS + PC");
                                                             }
                                                             else if (item.ProcessingSection == 7)
                                                             {
-                                                                @("AT + HS + PC");
+                          @("AT + HS + PC");
                                                             }
-                                                        }
-                                                    </td>
-                                                    <td width="30%">
-                                                        @{
+                        }
+                      </td>
+                      <td width="30%">
+                        @{
                                                             var pd = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).FirstOrDefault(rt => rt.ID == item.TravelAgencyID).AgencyCode.ToString();
-                                                        }
-                                                        @pd
-                                                    </td>
-                                                    <td>
-                                                        @if (item.Processing == 0)
+                        }
+                        @pd
+                      </td>
+                      <td>
+                        @if (item.Processing == 0)
                                                         {
-                                                            <span class="glyphicon">
-                                                                @Html.ActionLink("  Delete", "RemoveRFQ", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
-                                                            </span>
+                        <span class="glyphicon">
+                          @Html.ActionLink("  Delete", "RemoveRFQ", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
+                        </span>
                                                         }
-                                                    </td>
-                                                </tr>
+                      </td>
+                    </tr>
                                             }
-                                                </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </aside>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </aside>
             }
 
-            @{ Html.EnableClientValidation(false); }
-            @Html.Partial("_TravelRequestDetails", Model)
-            @{ Html.EnableClientValidation(true); }
-
-        </div>
-    </div>
+    @{ Html.EnableClientValidation(false); }
+    @Html.Partial("_TravelRequestDetails", Model)
+    @{ Html.EnableClientValidation(true); }
+  </div>
+</div>
 }
 
 @section Scripts {
-    <script type="text/javascript">
+  <script type="text/javascript">
         if ($('#airportpic').text() == "Yes") {
             $('#PickUpDetailsDiv').show()
         }
@@ -326,6 +324,5 @@
         });
         return false;
     });*@
-
-    </script>
+  </script>
 }

@@ -66,7 +66,7 @@ namespace Travel_Request_System_EF.Controllers
             return View();
         }
 
-        #endregion
+        #endregion Employee
 
         #region HR
 
@@ -195,8 +195,7 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-
-        #endregion
+        #endregion HR
 
         #region Manager
 
@@ -329,7 +328,7 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        #endregion
+        #endregion Manager
 
         #region TravelCo
 
@@ -357,7 +356,7 @@ namespace Travel_Request_System_EF.Controllers
             return View();
         }
 
-        #endregion
+        #endregion TravelCo
 
         #region Admin
 
@@ -571,7 +570,6 @@ namespace Travel_Request_System_EF.Controllers
                 usersList = db.Users.Include(a => a.Roles).Include(a => a.HRW_Employee).Where(a => a.IsDeleted == false).OrderByDescending(a => a.ID).ToList();
             }
             return View(usersList);
-
         }
 
         [CustomAuthorize(Roles = "Admin")]
@@ -618,7 +616,6 @@ namespace Travel_Request_System_EF.Controllers
         {
             try
             {
-
                 bool statusRegistration = false;
                 string messageRegistration = string.Empty;
                 int empValue = Convert.ToInt32(form["EmployeeID"].ToString());
@@ -778,7 +775,7 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        #endregion
+        #endregion Admin
 
         #region MultiRole
 
@@ -853,7 +850,7 @@ namespace Travel_Request_System_EF.Controllers
             return RedirectToAction("ChangePassword");
         }
 
-        List<TravelRequests> ViewMyTravelRequests()
+        private List<TravelRequests> ViewMyTravelRequests()
         {
             using (BTCEntities db = new BTCEntities())
             {
@@ -861,7 +858,7 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        List<TravelRequests> ViewApprovalTravelRequests(int level, string employeeCode = "")
+        private List<TravelRequests> ViewApprovalTravelRequests(int level, string employeeCode = "")
         {
             using (BTCEntities db = new BTCEntities())
             {
@@ -871,11 +868,11 @@ namespace Travel_Request_System_EF.Controllers
                     {
                         List<string> EmpCodes = EmpDBService.EmployeesUnderDepartmentHeadDetails(empCode);
                         var tr = db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Where(a => a.ApprovalLevel == level).ToList();
-                        var trf = tr.Where(a=> EmpCodes.Any(s=>s.Equals(a.Users1.HRW_Employee.EmployeeCode))).ToList();
+                        var trf = tr.Where(a => EmpCodes.Any(s => s.Equals(a.Users1.HRW_Employee.EmployeeCode))).ToList();
                         return trf;
                     }
                 }
-                else if(level == 2)
+                else if (level == 2)
                 {
                     var tr = db.TravelRequests.Include(a => a.City).Include(a => a.City1).Include(a => a.Users).Include(a => a.Users1).Where(a => a.ApprovalLevel == level).ToList();
                     return tr;
@@ -896,7 +893,7 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        #endregion
+        #endregion MultiRole
 
         #region General
 
@@ -905,7 +902,7 @@ namespace Travel_Request_System_EF.Controllers
             return View();
         }
 
-        void IsLoggedIn()
+        private void IsLoggedIn()
         {
             bool Val = true;
             ViewBag.LoggedOut = !Val;
@@ -987,13 +984,13 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        string GenerateNextAgencyID(string currentID)
+        private string GenerateNextAgencyID(string currentID)
         {
             string[] RFQno = currentID.Split('-');
             return RFQno[0] + '-' + RFQno[1] + '-' + RFQno[2] + '-' + String.Format("{0:D4}", (Convert.ToInt32(RFQno[3]) + 1));
         }
 
-        void CheckErrorMessages()
+        private void CheckErrorMessages()
         {
             if (TempData["ErrorMessage"] != null)
             {
@@ -1009,6 +1006,6 @@ namespace Travel_Request_System_EF.Controllers
             }
         }
 
-        #endregion
+        #endregion General
     }
 }

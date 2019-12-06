@@ -10,7 +10,6 @@ using System.Text;
 
 namespace Travel_Request_System_EF.Mail
 {
-
     public class SendMail
     {
         public List<string> ToAddresses;
@@ -37,7 +36,6 @@ namespace Travel_Request_System_EF.Mail
                 foreach (var item in ToAddresses)
                 {
                     mail.To.Add(new MailAddress(item));
-
                 }
                 mail.From = new MailAddress(fromAddress);
                 mail.Subject = MailSubject;
@@ -74,7 +72,6 @@ namespace Travel_Request_System_EF.Mail
 
         public static string GetMyTable<T>(IEnumerable<T> list, params Expression<Func<T, object>>[] fxns)
         {
-
             StringBuilder sb = new StringBuilder();
             sb.Append("<TABLE>\n");
 
@@ -86,7 +83,6 @@ namespace Travel_Request_System_EF.Mail
                 sb.Append("</TH>");
             }
             sb.Append("</TR> <!-- HEADER -->\n");
-
 
             foreach (var item in list)
             {

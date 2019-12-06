@@ -9,187 +9,181 @@
 }
 
 <aside class="right-side">
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Employee Details</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body table-responsive">
-                        <table id="detailsGrid1" class="table table-bordered table-hover">
-                            @if (employeelist == null || (employeelist.Count() == 0))
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">Employee Details</h3>
+          </div><!-- /.box-header -->
+          <div class="box-body table-responsive">
+            <table id="detailsGrid1" class="table table-bordered table-hover">
+              @if (employeelist == null || (employeelist.Count() == 0))
                             {
-                                <tr>
-                                    <td colspan="10">No Record's found.</td>
-                                </tr>
+              <tr>
+                <td colspan="10">No Record's found.</td>
+              </tr>
                             }
                             else
                             {
-                                <thead>
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayName("Name")
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName("Designation")
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName("Position Code")
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName("Department")
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName("Cost Center")
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName("Passport ID")
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName("Qatar ID")
-                                        </td>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in employeelist)
+              <thead>
+                <tr>
+                  <td>
+                    @Html.DisplayName("Name")
+                  </td>
+                  <td>
+                    @Html.DisplayName("Designation")
+                  </td>
+                  <td>
+                    @Html.DisplayName("Position Code")
+                  </td>
+                  <td>
+                    @Html.DisplayName("Department")
+                  </td>
+                  <td>
+                    @Html.DisplayName("Cost Center")
+                  </td>
+                  <td>
+                    @Html.DisplayName("Passport ID")
+                  </td>
+                  <td>
+                    @Html.DisplayName("Qatar ID")
+                  </td>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach (var item in employeelist)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.FullName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Designation)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.PositionCode)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Department)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Costcenter)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.PassportID)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.QatarID)
-                                            </td>
-                                            <td>
-                                                <span class="glyphicon">
-                                                    @Html.ActionLink("  Details", "AnyEmployeeDetails", new { id = item.EmployeeID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
-                                                </span>
-                                            </td>
-                                        </tr>
+                <tr>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Designation)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.PositionCode)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Costcenter)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.PassportID)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.QatarID)
+                  </td>
+                  <td>
+                    <span class="glyphicon">
+                      @Html.ActionLink("  Details", "AnyEmployeeDetails", new { id = item.EmployeeID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                    </span>
+                  </td>
+                </tr>
                                     }
-                                </tbody>
+              </tbody>
                             }
-                        </table>
-                    </div>
-                </div>
-            </div>
+            </table>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </aside>
 
 <aside class="right-side">
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">User Details</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body table-responsive">
-                        <table id="detailsGrid2" class="table table-bordered table-hover">
-                            @if (userslist == null || (userslist.Count() == 0))
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">User Details</h3>
+          </div><!-- /.box-header -->
+          <div class="box-body table-responsive">
+            <table id="detailsGrid2" class="table table-bordered table-hover">
+              @if (userslist == null || (userslist.Count() == 0))
                             {
-                                <tr>
-                                    <td colspan="10">No Record's found.</td>
-                                </tr>
+              <tr>
+                <td colspan="10">No Record's found.</td>
+              </tr>
                             }
                             else
                             {
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            @Html.DisplayName("Role")
-                                        </th>
-                                        <th>
-                                            @Html.DisplayName("Employee Name")
-                                        </th>
-                                        <th>
-                                            @Html.DisplayName("Username")
-                                        </th>
-                                        <th>
-                                            @Html.DisplayName("FirstName")
-                                        </th>
-                                        <th>
-                                            @Html.DisplayName("LastName")
-                                        </th>
-                                        <th>
-                                            @Html.DisplayName("Email")
-                                        </th>
-                                        <th>
-                                            @Html.DisplayName("IsActive")
-                                        </th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in userslist)
+              <thead>
+                <tr>
+                  <th>
+                    @Html.DisplayName("Role")
+                  </th>
+                  <th>
+                    @Html.DisplayName("Employee Name")
+                  </th>
+                  <th>
+                    @Html.DisplayName("Username")
+                  </th>
+                  <th>
+                    @Html.DisplayName("FirstName")
+                  </th>
+                  <th>
+                    @Html.DisplayName("LastName")
+                  </th>
+                  <th>
+                    @Html.DisplayName("Email")
+                  </th>
+                  <th>
+                    @Html.DisplayName("IsActive")
+                  </th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach (var item in userslist)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Roles.FirstOrDefault().RoleName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.HRW_Employee.FullName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Username)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.FirstName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.LastName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Email)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.IsActive)
-                                            </td>
-                                            <td>
-                                                <span class="glyphicon">
-                                                    @Html.ActionLink("  Edit", "EditUser", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-edit" })
-                                                </span>
-                                                <span class="glyphicon">
-                                                    @Html.ActionLink("  Details", "ViewUserDetails", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
-                                                </span>
-                                                <span class="glyphicon">
-                                                    @Html.ActionLink("  Delete", "DeleteUser", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove" })
-                                                </span>
-                                            </td>
-                                        </tr>
+                <tr>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Roles.FirstOrDefault().RoleName)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.HRW_Employee.FullName)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                  </td>
+                  <td>
+                    <span class="glyphicon">
+                      @Html.ActionLink("  Edit", "EditUser", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                    </span>
+                    <span class="glyphicon">
+                      @Html.ActionLink("  Details", "ViewUserDetails", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-info-sign" })
+                    </span>
+                    <span class="glyphicon">
+                      @Html.ActionLink("  Delete", "DeleteUser", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove" })
+                    </span>
+                  </td>
+                </tr>
                                     }
-                                </tbody>
+              </tbody>
                             }
-                        </table>
-                    </div>
-                </div>
-            </div>
+            </table>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </aside>
-
-
-
-
-
-

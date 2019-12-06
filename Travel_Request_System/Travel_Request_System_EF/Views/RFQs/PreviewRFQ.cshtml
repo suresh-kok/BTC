@@ -9,155 +9,155 @@
 
 <div id="detailsDiv" style="height:auto">
 
-    @if (Model.ProcessingSection == (int)ProcessingSections.AT || Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC)
+  @if (Model.ProcessingSection == (int)ProcessingSections.AT || Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC)
     {
-        <div class="row" style="margin-bottom:15px">
-            @Html.Partial("_ATQuotation", (ATQuotation)ViewBag.ATQuotation)
-        </div>
+  <div class="row" style="margin-bottom:15px">
+    @Html.Partial("_ATQuotation", (ATQuotation)ViewBag.ATQuotation)
+  </div>
     }
-    @if (Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.HS || Model.ProcessingSection == (int)ProcessingSections.HSPC)
+  @if (Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.HS || Model.ProcessingSection == (int)ProcessingSections.HSPC)
     {
-        <div class="row" style="margin-bottom:15px">
-            @Html.Partial("_HSQuotation", (HSQuotation)ViewBag.HSQuotation)
-        </div>
+  <div class="row" style="margin-bottom:15px">
+    @Html.Partial("_HSQuotation", (HSQuotation)ViewBag.HSQuotation)
+  </div>
     }
-    @if (Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC || Model.ProcessingSection == (int)ProcessingSections.HSPC || Model.ProcessingSection == (int)ProcessingSections.PC)
+  @if (Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC || Model.ProcessingSection == (int)ProcessingSections.HSPC || Model.ProcessingSection == (int)ProcessingSections.PC)
     {
-        <div class="row" style="margin-bottom:15px">
-            @Html.Partial("_PCQuotation", (PCQuotation)ViewBag.PCQuotation)
-        </div>
+  <div class="row" style="margin-bottom:15px">
+    @Html.Partial("_PCQuotation", (PCQuotation)ViewBag.PCQuotation)
+  </div>
     }
 
-    <div class="col-xs-12 col-md-12">
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">Remarks</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
+  <div class="col-xs-12 col-md-12">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">Remarks</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+        @using (Html.BeginForm("FileUpload", "RFQs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("RFQname", Model.RFQName)
+        @Html.Hidden("RFQSections", Model.ProcessingSection)
+
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Attachment</label>
+              <div class="col-sm-9">
+                <input type="file" class="btn btn-default" id="filenames" name="file" />
+              </div>
             </div>
-            <div class="box-body">
-                @using (Html.BeginForm("FileUpload", "RFQs", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.Hidden("RFQname", Model.RFQName)
-                    @Html.Hidden("RFQSections", Model.ProcessingSection)
-
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Attachment</label>
-                                <div class="col-sm-9">
-                                    <input type="file" class="btn btn-default" id="filenames" name="file" />
-                                </div>
-                            </div>
-                        </div><div class="col-sm-6">
-                            <button type="submit" name="Save" class="btn btn-info">Upload Files</button>
-                        </div>
-                    </div>
+          </div><div class="col-sm-6">
+            <button type="submit" name="Save" class="btn btn-info">Upload Files</button>
+          </div>
+        </div>
                 }
-                @if (ViewBag.fileUploader != null && ViewBag.fileUploader.Count > 0)
+        @if (ViewBag.fileUploader != null && ViewBag.fileUploader.Count > 0)
                 {
-                    <div class="row" style="margin-bottom:15px">
-                        <aside class="right-side">
-                            <!-- Main content -->
-                            <section class="content">
-                                <div class="container text-center">
-                                    <div class="col-xs-11">
-                                        <div class="box with-border">
-                                            <div class="box-header">
-                                                <h3 class="box-title">Details</h3>
-                                            </div><!-- /.box-header -->
-                                            <div class="box-body table-responsive">
-                                                <table id="uloadTable" class="table table-bordered table-hover table-responsive">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>File Name</th>
-                                                            <th>Uploaded Date</th>
-                                                            <th>Uploaded By</th>
-                                                            <th></th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewBag.fileUploader)
+        <div class="row" style="margin-bottom:15px">
+          <aside class="right-side">
+            <!-- Main content -->
+            <section class="content">
+              <div class="container text-center">
+                <div class="col-xs-11">
+                  <div class="box with-border">
+                    <div class="box-header">
+                      <h3 class="box-title">Details</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                      <table id="uloadTable" class="table table-bordered table-hover table-responsive">
+                        <thead>
+                          <tr>
+                            <th>File Name</th>
+                            <th>Uploaded Date</th>
+                            <th>Uploaded By</th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewBag.fileUploader)
                                                         {
-                                                            <tr id="@item.FileName">
-                                                                <td>@item.FileName</td>
-                                                                <td>@item.UploadedDate.ToShortDateString()</td>
-                                                                <td>@(new HtmlString(item.Users.FirstName + " " + item.Users.LastName))</td>
-                                                                <td style="text-align: center">
-                                                                    @Html.ActionLink("  Open File", "OpenFile", new { fileName = item.FileName }, new { @class = "form-control btn btn-info glyphicon-edit" })
-                                                                </td>
-                                                                <td>
+                          <tr id="@item.FileName">
+                            <td>@item.FileName</td>
+                            <td>@item.UploadedDate.ToShortDateString()</td>
+                            <td>@(new HtmlString(item.Users.FirstName + " " + item.Users.LastName))</td>
+                            <td style="text-align: center">
+                              @Html.ActionLink("  Open File", "OpenFile", new { fileName = item.FileName }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                            </td>
+                            <td>
 
-                                                                    @using (Html.BeginForm("RemoveUploadFile", "RFQs", new { fileName = item.FileName }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                              @using (Html.BeginForm("RemoveUploadFile", "RFQs", new { fileName = item.FileName }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                                     {
-                                                                        @Html.AntiForgeryToken()
-                                                                        <button type="submit" class="form-control btn btn-info glyphicon-edit">Delete File</button>
+                              @Html.AntiForgeryToken()
+                              <button type="submit" class="form-control btn btn-info glyphicon-edit">Delete File</button>
                                                                     }
-                                                                </td>
-                                                            </tr>
+                            </td>
+                          </tr>
                                                         }
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </aside>
+                        </tbody>
+                      </table>
                     </div>
-                }
-                @using (Html.BeginForm("PreviewRFQ", "RFQs", FormMethod.Post))
-                {
-                    @Html.HiddenFor(model => model.TravelRequestID)
-                    @Html.HiddenFor(model => model.UserID)
-                    @Html.AntiForgeryToken()
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Travel Agency</label>
-                                <div class="col-sm-9">
-                                    @*@Html.DropDownListFor(model => model.TravelAgencyID, ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).Select(m => new SelectListItem { Text = m.AgencyCode, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })*@
-                                    @{
-                                        var pd = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).FirstOrDefault(rt => rt.ID == Model.TravelAgencyID).AgencyCode.ToString();
-                                    }
-                                    @pd
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6"></div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="col-sm-2">Remarks</label>
-                                <div class="col-sm-12">
-                                    @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "3", @placeholder = "Enter Travel Remarks..." })
-                                    @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-md-3">
-                            <input type="submit" class="form-control btn btn-info btn-primary" value="Create RFQ" />
-                        </div>
-                        <div class="col-md-3">
-                            @Html.ActionLink("Back to List", "RFQMerger", new { id = Model.TravelRequestID }, new { @class = "form-control btn btn-info" })
-                        </div>
-                        <div class="col-md-6">
-                        </div>
-                    </div>
-                }
-            </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </aside>
         </div>
+                }
+        @using (Html.BeginForm("PreviewRFQ", "RFQs", FormMethod.Post))
+                {
+        @Html.HiddenFor(model => model.TravelRequestID)
+        @Html.HiddenFor(model => model.UserID)
+        @Html.AntiForgeryToken()
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Travel Agency</label>
+              <div class="col-sm-9">
+                @*@Html.DropDownListFor(model => model.TravelAgencyID, ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).Select(m => new SelectListItem { Text = m.AgencyCode, Value = m.ID.ToString() }), htmlAttributes: new { @class = "form-control select2" })*@
+                @{
+                                        var pd = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).FirstOrDefault(rt => rt.ID == Model.TravelAgencyID).AgencyCode.ToString();
+                }
+                @pd
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6"></div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="col-sm-2">Remarks</label>
+              <div class="col-sm-12">
+                @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "3", @placeholder = "Enter Travel Remarks..." })
+                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-md-3">
+            <input type="submit" class="form-control btn btn-info btn-primary" value="Create RFQ" />
+          </div>
+          <div class="col-md-3">
+            @Html.ActionLink("Back to List", "RFQMerger", new { id = Model.TravelRequestID }, new { @class = "form-control btn btn-info" })
+          </div>
+          <div class="col-md-6">
+          </div>
+        </div>
+                }
+      </div>
     </div>
+  </div>
 </div>
 
 @section Scripts {
-    <script type="text/javascript">
+  <script type="text/javascript">
                                         //$(document).ready(function () {
                                         //    $('#uloadTable td a.Deletefilelink').click(function () {
                                         //        event.preventDefault();
@@ -201,5 +201,5 @@
                                         //        });
                                         //    }
                                         //});
-    </script>
+  </script>
 }

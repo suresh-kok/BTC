@@ -1,40 +1,40 @@
 ﻿<aside class="main-sidebar">
-    <section class="sidebar">
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="../../Content/img/guest.jpg" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-                <p>@ViewBag.username</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>
+  <section class="sidebar">
+    <div class="user-panel">
+      <div class="pull-left image">
+        <img src="../../Content/img/guest.jpg" class="img-circle" alt="User Image">
+      </div>
+      <div class="pull-left info">
+        <p>@ViewBag.username</p>
+        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+      </div>
+    </div>
 
-        <form action="#" method="get" class="sidebar-form">
-            @*<div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>*@
-        </form>
-        <ul class="sidebar-menu" data-widget="tree">
-            <li class="list-header">Navigation Links</li>
-            @if (ViewBag.LoggedOut == null || (ViewBag.LoggedOut != null && ViewBag.LoggedOut))
+    <form action="#" method="get" class="sidebar-form">
+      @*<div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>*@
+    </form>
+    <ul class="sidebar-menu" data-widget="tree">
+      <li class="list-header">Navigation Links</li>
+      @if (ViewBag.LoggedOut == null || (ViewBag.LoggedOut != null && ViewBag.LoggedOut))
             {
-                <li>
-                    <a href="@Url.Action("Index", "Account")"><i class="fa fa-link"></i> <span>Home</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("Index", "Account")"><i class="fa fa-link"></i> <span>Home</span></a>
+      </li>
             }
-            @if (ViewBag.LoggedOut == null || (ViewBag.LoggedOut != null && ViewBag.LoggedOut))
+      @if (ViewBag.LoggedOut == null || (ViewBag.LoggedOut != null && ViewBag.LoggedOut))
             {
-                <li>
-                    <a href="@Url.Action("Index", "Account")"><i class="fa fa-link"></i> <span>Login</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("Index", "Account")"><i class="fa fa-link"></i> <span>Login</span></a>
+      </li>
             }
-            @if ((ViewBag.IsEmployee != null && ViewBag.IsEmployee) ||
+      @if ((ViewBag.IsEmployee != null && ViewBag.IsEmployee) ||
                 (ViewBag.IsHR != null && ViewBag.IsHR) ||
                 (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo) ||
                 (ViewBag.IsManager != null && ViewBag.IsManager) ||
@@ -42,121 +42,121 @@
             {
                 if (ViewBag.IsEmployee != null && ViewBag.IsEmployee)
                 {
-                    <li>
-                        <a href="@Url.Action("EmployeeDashboard", "BTC")"><i class="fa fa-link"></i> <span>Dashboard</span></a>
-                    </li>
+      <li>
+        <a href="@Url.Action("EmployeeDashboard", "BTC")"><i class="fa fa-link"></i> <span>Dashboard</span></a>
+      </li>
                 }
                 else if (ViewBag.IsHR != null && ViewBag.IsHR)
                 {
-                    <li>
-                        <a href="@Url.Action("HRDashboard", "BTC")"><i class="fa fa-link"></i> <span>Dashboard</span></a>
-                    </li>
+      <li>
+        <a href="@Url.Action("HRDashboard", "BTC")"><i class="fa fa-link"></i> <span>Dashboard</span></a>
+      </li>
                 }
                 else if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)
                 {
-                    <li>
-                        <a href="@Url.Action("TravelCoDashboard", "BTC")"><i class="fa fa-link"></i> <span>Dashboard</span></a>
-                    </li>
+      <li>
+        <a href="@Url.Action("TravelCoDashboard", "BTC")"><i class="fa fa-link"></i> <span>Dashboard</span></a>
+      </li>
                 }
                 else if (ViewBag.IsManager != null && ViewBag.IsManager)
                 {
-                    <li>
-                        <a href="@Url.Action("ManagerDashboard", "BTC")"><i class="fa fa-link"></i> <span>Dashboard</span></a>
-                    </li>
+      <li>
+        <a href="@Url.Action("ManagerDashboard", "BTC")"><i class="fa fa-link"></i> <span>Dashboard</span></a>
+      </li>
                 }
                 else if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
                 {
-                    <li>
-                        <a href="@Url.Action("AdminDashboard", "BTC")"><i class="fa fa-link"></i> <span>Dashboard</span></a>
-                    </li>
+      <li>
+        <a href="@Url.Action("AdminDashboard", "BTC")"><i class="fa fa-link"></i> <span>Dashboard</span></a>
+      </li>
                 }
 
             }
-            @if (ViewBag.IsEmployee != null && ViewBag.IsEmployee)
+      @if (ViewBag.IsEmployee != null && ViewBag.IsEmployee)
             {
-                <li>
-                    <a href="@Url.Action("Create", "TravelRequests")"><i class="fa fa-link"></i> <span>Raise Travel Request</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("Create", "TravelRequests")"><i class="fa fa-link"></i> <span>Raise Travel Request</span></a>
+      </li>
             }
-            @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
+      @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
             {
-                <li>
-                    <a href="@Url.Action("ManageEmployees", "BTC")"><i class="fa fa-link"></i> <span>Manage Employees</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("ManageEmployees", "BTC")"><i class="fa fa-link"></i> <span>Manage Employees</span></a>
+      </li>
             }
-            @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
+      @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
             {
-                <li>
-                    <a href="@Url.Action("ManageUsers", "BTC")"><i class="fa fa-link"></i> <span>Manage Users</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("ManageUsers", "BTC")"><i class="fa fa-link"></i> <span>Manage Users</span></a>
+      </li>
             }
-            @if ((ViewBag.IsEmployee != null && ViewBag.IsEmployee) ||
+      @if ((ViewBag.IsEmployee != null && ViewBag.IsEmployee) ||
                 (ViewBag.IsHR != null && ViewBag.IsHR) ||
                 //(ViewBag.IsTravelCo != null && ViewBag.IsTravelCo) ||
                 (ViewBag.IsManager != null && ViewBag.IsManager) ||
                 (ViewBag.IsAdmin != null && ViewBag.IsAdmin))
             {
-                <li>
-                    <a href="@Url.Action("Index", "TravelRequests")"><i class="fa fa-link"></i> <span>View Travel Requests</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("Index", "TravelRequests")"><i class="fa fa-link"></i> <span>View Travel Requests</span></a>
+      </li>
             }
-            @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)
+      @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)
             {
-                <li>
-                    <a href="@Url.Action("TravelRequestsList", "RFQs")"><i class="fa fa-link"></i> <span>Manage RFQ</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("TravelRequestsList", "RFQs")"><i class="fa fa-link"></i> <span>Manage RFQ</span></a>
+      </li>
             }
-            @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
+      @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
             {
-                <li>
-                    <a href="@Url.Action("ManageTravelAgency", "BTC")"><i class="fa fa-link"></i> <span>Manage Travel Agencies</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("ManageTravelAgency", "BTC")"><i class="fa fa-link"></i> <span>Manage Travel Agencies</span></a>
+      </li>
             }
-            @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)
+      @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)
             {
-                <li>
-                    <a href="@Url.Action("Index", "Quotation")"><i class="fa fa-link"></i> <span>Manage Quotations</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("Index", "Quotation")"><i class="fa fa-link"></i> <span>Manage Quotations</span></a>
+      </li>
             }
-            @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)
+      @if (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo)
             {
-                <li>
-                    <a href="@Url.Action("TravelRequestsList", "LPO")"><i class="fa fa-link"></i> <span>Manage LPO</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("TravelRequestsList", "LPO")"><i class="fa fa-link"></i> <span>Manage LPO</span></a>
+      </li>
             }
-            @if ((ViewBag.IsHR != null && ViewBag.IsHR) ||
+      @if ((ViewBag.IsHR != null && ViewBag.IsHR) ||
                 (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo) ||
                 (ViewBag.IsManager != null && ViewBag.IsManager) ||
                 (ViewBag.IsAdmin != null && ViewBag.IsAdmin))
             {
-                <li>
-                    <a href="@Url.Action("Reports", "BTC")"><i class="fa fa-link"></i> <span>Reports</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("Reports", "BTC")"><i class="fa fa-link"></i> <span>Reports</span></a>
+      </li>
             }
-            @if ((ViewBag.IsEmployee != null && ViewBag.IsEmployee) ||
+      @if ((ViewBag.IsEmployee != null && ViewBag.IsEmployee) ||
                 (ViewBag.IsHR != null && ViewBag.IsHR) ||
                 (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo) ||
                 (ViewBag.IsManager != null && ViewBag.IsManager) ||
                 (ViewBag.IsAdmin != null && ViewBag.IsAdmin))
             {
-                <li>
-                    <a href="@Url.Action("EmployeeDetails", "BTC")"><i class="fa fa-link"></i> <span>View Personal Details</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("EmployeeDetails", "BTC")"><i class="fa fa-link"></i> <span>View Personal Details</span></a>
+      </li>
             }
-            @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
+      @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin)
             {
-                <li>
-                    <a href="@Url.Action("OrganisationalChart", "BTC")"><i class="fa fa-link"></i> <span>Organisational Chart</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("OrganisationalChart", "BTC")"><i class="fa fa-link"></i> <span>Organisational Chart</span></a>
+      </li>
             }
-            @if ((ViewBag.IsEmployee != null && ViewBag.IsEmployee) || (ViewBag.IsHR != null && ViewBag.IsHR) || (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo) || (ViewBag.IsManager != null && ViewBag.IsManager))
+      @if ((ViewBag.IsEmployee != null && ViewBag.IsEmployee) || (ViewBag.IsHR != null && ViewBag.IsHR) || (ViewBag.IsTravelCo != null && ViewBag.IsTravelCo) || (ViewBag.IsManager != null && ViewBag.IsManager))
             {
-                <li>
-                    <a href="@Url.Action("ChangePassword", "BTC")"><i class="fa fa-link"></i> <span>Change Password</span></a>
-                </li>
+      <li>
+        <a href="@Url.Action("ChangePassword", "BTC")"><i class="fa fa-link"></i> <span>Change Password</span></a>
+      </li>
             }
 
-            @*<li class="treeview">
+      @*<li class="treeview">
             <a href="#">
                 <i class="fa fa-link"></i> <span>Multilevel</span>
                 <span class="pull-right-container">
@@ -168,7 +168,7 @@
                 <li><a href="#">Link in level 2</a></li>
             </ul>
         </li>*@
-        </ul>
-        @* END Menu *@
-    </section>
+    </ul>
+    @* END Menu *@
+  </section>
 </aside>

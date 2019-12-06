@@ -8,7 +8,6 @@ namespace Travel_Request_System_EF.DataAccess
         public AuthenticationDB()
             : base("AuthenticationDB")
         {
-
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

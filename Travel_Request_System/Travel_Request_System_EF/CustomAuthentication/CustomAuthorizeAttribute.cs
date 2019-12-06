@@ -44,6 +44,5 @@ namespace Travel_Request_System_EF.CustomAuthentication
 
             filterContext.Result = routeData;
         }
-
     }
 }

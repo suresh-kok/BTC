@@ -1,161 +1,160 @@
 ﻿@if (ViewBag.DefaultMessage != null)
 {
-    <div class="modal" id="modal-default" style="display: block;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title">Notification</h4>
-                </div>
-                <div class="modal-body">
-                    <p>@ViewBag.DefaultMessage</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+<div class="modal" id="modal-default" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title">Notification</h4>
+      </div>
+      <div class="modal-body">
+        <p>@ViewBag.DefaultMessage</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+      </div>
     </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 }
 @if (ViewBag.PrimaryMessage != null)
 {
-    <div class="modal modal-primary" id="modal-primary" style="display: block;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title">Primary Message</h4>
-                </div>
-                <div class="modal-body">
-                    <p>@ViewBag.PrimaryMessage</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+<div class="modal modal-primary" id="modal-primary" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title">Primary Message</h4>
+      </div>
+      <div class="modal-body">
+        <p>@ViewBag.PrimaryMessage</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+      </div>
     </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 }
 @if (ViewBag.InfoMessage != null)
 {
-    <div class="modal modal-info" id="modal-info" style="display: block;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title">Information !</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Info</p>
-                    @foreach (string error in ViewBag.InfoMessage)
+<div class="modal modal-info" id="modal-info" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title">Information !</h4>
+      </div>
+      <div class="modal-body">
+        <p>Info</p>
+        @foreach (string error in ViewBag.InfoMessage)
                     {
-                        @Html.Label(error)
-                        <br />
+        @Html.Label(error)
+        <br />
                     }
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+      </div>
     </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 }
 @if (ViewBag.WarningMessage != null)
 {
-    <div class="modal modal-warning" id="modal-warning" style="display: block;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title">Warning !!</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Warning</p>
-                    @foreach (string error in ViewBag.WarningMessage)
+<div class="modal modal-warning" id="modal-warning" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title">Warning !!</h4>
+      </div>
+      <div class="modal-body">
+        <p>Warning</p>
+        @foreach (string error in ViewBag.WarningMessage)
                     {
-                        @Html.Label(error)
-                        <br />
+        @Html.Label(error)
+        <br />
                     }
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+      </div>
     </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 }
 @if (ViewBag.SuccessMessage != null)
 {
-    <div class="modal modal-success" id="modal-success" style="display: block;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title">Success</h4>
-                </div>
-                <div class="modal-body">
-                    <p>@ViewBag.SuccessMessage</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+<div class="modal modal-success" id="modal-success" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title">Success</h4>
+      </div>
+      <div class="modal-body">
+        <p>@ViewBag.SuccessMessage</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+      </div>
     </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 }
 @if (ViewBag.ErrorMessage != null)
 {
-    <div class="modal modal-danger" id="modal-danger" style="display: block;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title">Error!!</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Error Occoured</p>
-                    @if (!(ViewBag.ErrorMessage is string))
+<div class="modal modal-danger" id="modal-danger" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title">Error!!</h4>
+      </div>
+      <div class="modal-body">
+        <p>Error Occoured</p>
+        @if (!(ViewBag.ErrorMessage is string))
                     {
                         foreach (string error in ViewBag.ErrorMessage)
                         {
-                            <span>@error</span>
-                            <br />
+        <span>@error</span>
+        <br />
                         }
                     }
                     else
                     {
-                        <span>@ViewBag.ErrorMessage</span>
+        <span>@ViewBag.ErrorMessage</span>
                     }
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+      </div>
     </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 }
-

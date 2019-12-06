@@ -52,7 +52,6 @@ namespace Travel_Request_System_EF.Controllers
         {
             using (BTCEntities db = new BTCEntities())
             {
-
                 ViewBag.TravelAgency = db.TravelAgency.ToList();
                 ViewBag.Cities = db.City.ToList();
                 ViewBag.Currencies = db.Currency.ToList();
@@ -364,7 +363,7 @@ namespace Travel_Request_System_EF.Controllers
                         hsquote.Quotation = db.Quotation.Where(a => a.ID == hsquote.QuotationID).FirstOrDefault();
                         TempData["ErrorMessage"] = new List<string>() { "Only One quotaiton can be the lowest" };
                         TempData["HSQuotationVal"] = hsquote;
-                        return RedirectToAction("AddHSQuotation", new { quoteid = hsquote.QuotationID});
+                        return RedirectToAction("AddHSQuotation", new { quoteid = hsquote.QuotationID });
                     }
                     var dbhsquote = db.HSQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == hsquote.QuotationID && a.ID == hsquote.ID).FirstOrDefault();
                     dbhsquote.HotelName = string.IsNullOrEmpty(hsquote.HotelName) ? "" : hsquote.HotelName;
@@ -476,7 +475,6 @@ namespace Travel_Request_System_EF.Controllers
                             pcQuote = db.PCQuotation.Include(x => x.Quotation).Include(x => x.Quotation.TravelRequests).Where(a => a.QuotationID == quoteid && a.IsActive == false).FirstOrDefault();
                             ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
                             ViewBag.ATfileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == quotation.TravelRequests.ApplicationNumber + ".PC-Q" + pcQuote.ID).Select(x => x.Attachments).Include(a => a.AttachmentLink).Include(a => a.Users)?.ToList();
-
                         }
                     }
                 }
@@ -527,7 +525,7 @@ namespace Travel_Request_System_EF.Controllers
                         pcquote.Quotation = db.Quotation.Where(a => a.ID == pcquote.QuotationID).FirstOrDefault();
                         TempData["ErrorMessage"] = new List<string>() { "Only One quotaiton can be the lowest" };
                         TempData["PCQuotationVal"] = pcquote;
-                        return RedirectToAction("AddPCQuotation", new { quoteid = pcquote.QuotationID});
+                        return RedirectToAction("AddPCQuotation", new { quoteid = pcquote.QuotationID });
                     }
                     var dbpcquote = db.PCQuotation.Include(a => a.Quotation).Where(a => a.QuotationID == pcquote.QuotationID && a.ID == pcquote.ID).FirstOrDefault();
                     dbpcquote.PickupLocation = string.IsNullOrEmpty(pcquote.PickupLocation) ? "" : pcquote.PickupLocation;
@@ -628,10 +626,13 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     case 1:
                         return RedirectToAction(retrunToVal, new { QuoteID, atquoteID = ID });
+
                     case 2:
                         return RedirectToAction(retrunToVal, new { QuoteID, hsquoteID = ID });
+
                     case 3:
                         return RedirectToAction(retrunToVal, new { QuoteID, pcquoteID = ID });
+
                     default:
                         return RedirectToAction(retrunToVal, new { QuoteID });
                 }
@@ -670,12 +671,15 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     case 1:
                         return RedirectToAction(retrunToVal, new { QuoteID, atquoteID = ID });
+
                     case 2:
                         return RedirectToAction(retrunToVal, new { QuoteID, hsquoteID = ID });
+
                     case 3:
                         return RedirectToAction(retrunToVal, new { QuoteID, pcquoteID = ID });
+
                     default:
-                        return RedirectToAction(retrunToVal, new { QuoteID});
+                        return RedirectToAction(retrunToVal, new { QuoteID });
                 }
             }
         }
@@ -791,16 +795,19 @@ namespace Travel_Request_System_EF.Controllers
                     IDVal = "atQuote";
                     retrunToVal = "AddATQuotation";
                     break;
+
                 case 2:
                     attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".HS-Q" + SubQuoteID;
                     IDVal = "hsQuote";
                     retrunToVal = "AddHSQuotation";
                     break;
+
                 case 3:
                     attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".PC-Q" + SubQuoteID;
                     IDVal = "pcQuote";
                     retrunToVal = "AddPCQuotation";
                     break;
+
                 default:
                     attachmentsForVal = quotation.TravelRequests.ApplicationNumber + ".AT-Q" + SubQuoteID;
                     IDVal = "";

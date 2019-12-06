@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using Newtonsoft.Json;
 using Travel_Request_System_EF.CustomAuthentication;
 using Travel_Request_System_EF.DataAccess;
 using Travel_Request_System_EF.Mail;
@@ -26,6 +26,7 @@ namespace Travel_Request_System_EF.Controllers
             }
             return View();
         }
+
         public ActionResult LogOut()
         {
             HttpCookie cookie = new HttpCookie("authCookie", "")
@@ -123,7 +124,7 @@ namespace Travel_Request_System_EF.Controllers
                     return View(registrationView);
                 }
 
-                //Save User Data 
+                //Save User Data
                 using (AuthenticationDB dbContext = new AuthenticationDB())
                 {
                     var user = new User()
@@ -173,7 +174,6 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     ViewBag.Message = "Something Wrong !!";
                 }
-
             }
             ViewBag.Status = statusAccount;
             return View();
@@ -252,6 +252,5 @@ namespace Travel_Request_System_EF.Controllers
                 TempData["ErrorMessage"] = new List<string>() { ex.Message, "Unable to send Message" };
             }
         }
-        
     }
 }

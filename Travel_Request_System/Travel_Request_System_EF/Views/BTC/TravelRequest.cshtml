@@ -1,871 +1,867 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Travel Request";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using (Html.BeginForm())
 {
-    <div class="col-xs-12 col-md-12">
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">Employee Information</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-8">
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-sm-3">Application/ Form No.</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control pull-right" id="applicatioNo" name="applicatioNo" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin-bottom:15px">
-                    </div>
-                    <div class="row" style="margin-bottom:15px" hidden="hidden">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Employee ID</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="employeeID" name="employeeID" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">BTC Employee Code</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control pull-right" id="employeeCode" name="employeeCode" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Employee Name</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="employeeName" name="employeeName" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Employee Position Code</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="employeePositionCode" name="employeePositionCode" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Designation</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control pull-right" id="designation" name="designation" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Department</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="department" name="department" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Department Head</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control pull-right" id="departmentHead" name="departmentHead" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Cost Center</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="costCenter" name="costCenter" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Cost Center Head</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control pull-right" id="costCenterHead" name="costCenterHead" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Passport Number</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="passportNumber" name="passportNumber" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Passport Epiry</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control pull-right" id="passportEpiry" name="passportEpiry" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Qatar ID</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="qatarID" name="qatarID" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Qatar ID Expiry</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control pull-right" id="qatarExpiry" name="qatarExpiry" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Location</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="location" name="location" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Section</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control pull-right" id="section" name="section" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Contact Details</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="contactDetails" name="contactDetails" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="col-xs-12 col-md-12">
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">Employee Information</h3>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
     </div>
-
-    <div class="col-xs-12 col-md-12">
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">Travel Details</h3>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
-                        <li class="active">
-                            <a href="#tab_1" data-toggle="tab">Enter Travel Details</a>
-                        </li>
-                        <li>
-                            <a href="#tab_2" data-toggle="tab">View Details</a>
-                        </li>
-                        <li>
-                            <a href="#tab_3" data-toggle="tab">Purpose of Visit</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab_1">
-                            <div class="row" style="margin-bottom:15px">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-3">Port Of Origin</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control select2" style="width: 100%;">
-                                                <option>Alabama</option>
-                                                <option>Alaska</option>
-                                                <option>California</option>
-                                                <option>Delaware</option>
-                                                <option>Tennessee</option>
-                                                <option>Texas</option>
-                                                <option>Washington</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-3">Port Of Destination</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control select2" style="width: 100%;">
-                                                <option>Alabama</option>
-                                                <option>Alabama</option>
-                                                <option>Alaska</option>
-                                                <option>California</option>
-                                                <option>Delaware</option>
-                                                <option>Tennessee</option>
-                                                <option>Texas</option>
-                                                <option>Washington</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-bottom:15px">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-3">Ticket Class</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control">
-                                                <option>option 1</option>
-                                                <option>option 2</option>
-                                                <option>option 3</option>
-                                                <option>option 4</option>
-                                                <option>option 5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-3">Travel Days</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="travelDays" name="travelDays" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-bottom:15px">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-3">Daily Allowance</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="dailyAllowance" name="dailyAllowance" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-3">Currency</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control select2" style="width: 100%;">
-                                                <option>option 1</option>
-                                                <option>option 2</option>
-                                                <option>option 3</option>
-                                                <option>option 4</option>
-                                                <option>option 5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-bottom:15px">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label class="col-sm-2">Remarks</label>
-                                        <div class="col-sm-12">
-                                            <textarea class="form-control" rows="2" placeholder="Enter ..." id="travelDetailsRemarks" name="travelDetailsRemarks"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-bottom:15px">
-                                <div class="col-sm-3">
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <input type="button" class="form-control btn btn-info" value="Add" />
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <input type="button" class="form-control btn btn-info" value="Reset" />
-
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.tab-pane -->
-                        <div class="tab-pane" id="tab_2">
-                            @*@Html.Partial("_DetailsGrid")*@
-                        </div>
-                        <!-- /.tab-pane -->
-                        <div class="tab-pane" id="tab_3">
-                            <div class="row" style="margin-bottom:15px">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label class="col-sm-3">Purpose of Visit</label>
-                                        <div class="col-sm-12">
-                                            <textarea class="form-control" rows="5" placeholder="Enter ..." id="purposeOfVisit" name="purposeOfVisit"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.tab-pane -->
-                    </div>
-                    <!-- /.tab-content -->
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xs-12 col-md-12">
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">Flight Booking Details</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div>
-                    <div style="margin-bottom:15px">
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Airlines</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="airlines" name="airlines" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Departure Date</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control pull-right datepicker" id="departureDate" name="departureDate">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Return Date</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control pull-right datepicker" id="returnDate" name="returnDate" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Preferred Departure Time</label>
-                                <div class="col-sm-9">
-                                    <div class="bootstrap-timepicker">
-                                        <div class="input-group time">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-clock-o"></i>
-                                            </div>
-                                            <input type="text" class="form-control timepicker" id="departureTime" name="departureTime" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Preferred Return Time</label>
-                                <div class="col-sm-9">
-                                    <div class="bootstrap-timepicker">
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-clock-o"></i>
-                                            </div>
-                                            <input type="text" class="form-control timepicker" id="returnTime" name="returnTime" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">First Day of Business</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control pull-right datepicker" id="firstDayOfBusiness" name="firstDayOfBusiness" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Last Day of Business</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control pull-right datepicker" id="lastDayOfBusiness" name="lastDayOfBusiness" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @*<div class="row" style="margin-bottom:15px">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label class="col-sm-2">Remarks</label>
-                                    <div class="col-sm-12">
-                                        <textarea class="form-control" rows="2" placeholder="Enter ..." id="FlightBookingRemarks" name="FlightBookingRemarks"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xs-12 col-md-12">
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">Additonal Travel Details</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div>
-                    <div style="margin-bottom:15px">
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Air Ticket Arrangement</label>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <label>
-                                            <input type="radio" name="r3" class="flat-red" checked> BTC
-                                        </label>
-                                        &emsp;
-                                        &emsp;
-                                        &emsp;
-                                        <label>
-                                            <input type="radio" name="r3" class="flat-red"> Other
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Hotel Name</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control pull-right" id="hotelName" name="hotelName" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Travel Allowance</label>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <label>
-                                            <input type="radio" name="r3" class="flat-red" checked> BTC
-                                        </label>
-                                        &emsp;
-                                        &emsp;
-                                        &emsp;
-                                        <label>
-                                            <input type="radio" name="r3" class="flat-red"> Other
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Check In Date</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control pull-right datepicker" id="checkInDate" name="checkInDate" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Hotel Stay</label>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <label>
-                                            <input type="radio" name="r3" class="flat-red" checked> BTC
-                                        </label>
-                                        &emsp;
-                                        &emsp;
-                                        &emsp;
-                                        <label>
-                                            <input type="radio" name="r3" class="flat-red"> Other
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Check In Time</label>
-                                <div class="col-sm-9">
-                                    <div class="bootstrap-timepicker">
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-clock-o"></i>
-                                            </div>
-                                            <input type="text" class="form-control timepicker" id="checkInTime" name="checkInTime" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Hotel Category</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Check Out Date</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control pull-right datepicker" id="checkOutDate" name="checkOutDate" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Room Category</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Check Out Time</label>
-                                <div class="col-sm-9">
-                                    <div class="bootstrap-timepicker">
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-clock-o"></i>
-                                            </div>
-                                            <input type="text" class="form-control timepicker" id="checkOutTime" name="checkOutTime" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Room Type</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Airport Pickup</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" onchange="funcpickup(this.selectedIndex);">
-                                        <option value="-1">----</option>
-                                        <option value="0">Yes</option>
-                                        <option value="1">No</option>
-                                    </select>
-                                    @*<label>
-                                            <input type="radio" class="flat-red auto-submit-star {split:4}" name="apr" id="aprYes" onclick="alert('test');"> Yes
-                                        </label>
-                                        &emsp;
-                                        &emsp;
-                                        &emsp;
-                                        <label>
-                                            <input type="radio" name="apr" id="aprNo" onclick="alert('test');"> No
-                                        </label>*@
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @*<div class="row" style="margin-bottom:15px">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Additional Expenses</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="additionalExpenses" name="additionalExpenses" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-sm-3">Pickup By</label>
-                                    <div class="col-sm-9">
-                                        <div class="form-group">
-                                            <label>
-                                                <input type="radio" name="r3" class="flat-red" checked> Hotel
-                                            </label>
-                                            &emsp;
-                                            &emsp;
-                                            &emsp;
-                                            <label>
-                                                <input type="radio" name="r3" class="flat-red"> Other
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="PickUpDetailsDiv" class="col-xs-12 col-md-12" style="display:none">
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">Pick Up Details</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div>
-                    <div style="margin-bottom:15px">
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Pick Up Location</label>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control pull-right" id="pickUpLocation" name="pickUpLocation" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Pick Up Date</label>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control pull-right datepicker" id="pickUpDate" name="pickUpDate" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Pick Up Time</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control pull-right datepicker" id="pickUpTime" name="pickUpTime" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Drop Off Location</label>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control pull-right" id="dropOffLocation" name="dropOffLocation" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Drop Off Date</label>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control pull-right datepicker" id="dropOffDate" name="dropOffDate" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Drop Off Time</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input type="text" class="form-control pull-right datepicker" id="dropOffTime" name="dropOffTime" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-3">Preferred Vehicle Type</label>
-                                <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <select class="form-control">
-                                            <option>option 1</option>
-                                            <option>option 2</option>
-                                            <option>option 3</option>
-                                            <option>option 4</option>
-                                            <option>option 5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xs-12 col-md-12">
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">Remarks</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div>
-                    <div style="margin-bottom:15px">
-                    </div>
-                    <div class="row" style="margin-bottom:15px">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="col-sm-2">Remarks</label>
-                                <div class="col-sm-12">
-                                    <textarea class="form-control" rows="2" placeholder="Enter ..." id="PickUpRemarks" name="PickUpRemarks"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row" style="margin-bottom:15px">
-        <div class="col-sm-3">
-        </div>
-        <div class="col-sm-3">
+    <div class="box-body">
+      <div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-8">
+          </div>
+          <div class="col-sm-4">
             <div class="form-group">
-                <input type="submit" class="form-control btn btn-primary" value="Submit" />
+              <label class="col-sm-3">Application/ Form No.</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control pull-right" id="applicatioNo" name="applicatioNo" />
+              </div>
             </div>
+          </div>
         </div>
-        <div class="col-sm-3">
+        <div style="margin-bottom:15px">
+        </div>
+        <div class="row" style="margin-bottom:15px" hidden="hidden">
+          <div class="col-sm-6">
             <div class="form-group">
-                <input type="button" class="form-control btn btn-info" value="Reset" />
-
+              <label class="col-sm-3">Employee ID</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="employeeID" name="employeeID" />
+              </div>
             </div>
+          </div>
+          <div class="col-sm-6">
+          </div>
         </div>
-        <div class="col-sm-3">
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">BTC Employee Code</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control pull-right" id="employeeCode" name="employeeCode" />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Employee Name</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="employeeName" name="employeeName" />
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Employee Position Code</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="employeePositionCode" name="employeePositionCode" />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Designation</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control pull-right" id="designation" name="designation" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Department</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="department" name="department" />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Department Head</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control pull-right" id="departmentHead" name="departmentHead" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Cost Center</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="costCenter" name="costCenter" />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Cost Center Head</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control pull-right" id="costCenterHead" name="costCenterHead" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Passport Number</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="passportNumber" name="passportNumber" />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Passport Epiry</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control pull-right" id="passportEpiry" name="passportEpiry" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Qatar ID</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="qatarID" name="qatarID" />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Qatar ID Expiry</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control pull-right" id="qatarExpiry" name="qatarExpiry" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Location</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="location" name="location" />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Section</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control pull-right" id="section" name="section" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Contact Details</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="contactDetails" name="contactDetails" />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="col-xs-12 col-md-12">
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">Travel Details</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#tab_1" data-toggle="tab">Enter Travel Details</a>
+          </li>
+          <li>
+            <a href="#tab_2" data-toggle="tab">View Details</a>
+          </li>
+          <li>
+            <a href="#tab_3" data-toggle="tab">Purpose of Visit</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_1">
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Port Of Origin</label>
+                  <div class="col-sm-9">
+                    <select class="form-control select2" style="width: 100%;">
+                      <option>Alabama</option>
+                      <option>Alaska</option>
+                      <option>California</option>
+                      <option>Delaware</option>
+                      <option>Tennessee</option>
+                      <option>Texas</option>
+                      <option>Washington</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Port Of Destination</label>
+                  <div class="col-sm-9">
+                    <select class="form-control select2" style="width: 100%;">
+                      <option>Alabama</option>
+                      <option>Alabama</option>
+                      <option>Alaska</option>
+                      <option>California</option>
+                      <option>Delaware</option>
+                      <option>Tennessee</option>
+                      <option>Texas</option>
+                      <option>Washington</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Ticket Class</label>
+                  <div class="col-sm-9">
+                    <select class="form-control">
+                      <option>option 1</option>
+                      <option>option 2</option>
+                      <option>option 3</option>
+                      <option>option 4</option>
+                      <option>option 5</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Travel Days</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="travelDays" name="travelDays" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Daily Allowance</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="dailyAllowance" name="dailyAllowance" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">Currency</label>
+                  <div class="col-sm-9">
+                    <select class="form-control select2" style="width: 100%;">
+                      <option>option 1</option>
+                      <option>option 2</option>
+                      <option>option 3</option>
+                      <option>option 4</option>
+                      <option>option 5</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="col-sm-2">Remarks</label>
+                  <div class="col-sm-12">
+                    <textarea class="form-control" rows="2" placeholder="Enter ..." id="travelDetailsRemarks" name="travelDetailsRemarks"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-3">
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <input type="button" class="form-control btn btn-info" value="Add" />
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <input type="button" class="form-control btn btn-info" value="Reset" />
+                </div>
+              </div>
+              <div class="col-sm-3">
+              </div>
+            </div>
+          </div>
+          <!-- /.tab-pane -->
+          <div class="tab-pane" id="tab_2">
+            @*@Html.Partial("_DetailsGrid")*@
+          </div>
+          <!-- /.tab-pane -->
+          <div class="tab-pane" id="tab_3">
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="col-sm-3">Purpose of Visit</label>
+                  <div class="col-sm-12">
+                    <textarea class="form-control" rows="5" placeholder="Enter ..." id="purposeOfVisit" name="purposeOfVisit"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.tab-pane -->
+        </div>
+        <!-- /.tab-content -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-12 col-md-12">
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">Flight Booking Details</h3>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+      <div>
+        <div style="margin-bottom:15px">
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Airlines</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="airlines" name="airlines" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Departure Date</label>
+              <div class="col-sm-9">
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right datepicker" id="departureDate" name="departureDate">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Return Date</label>
+              <div class="col-sm-9">
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right datepicker" id="returnDate" name="returnDate" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Preferred Departure Time</label>
+              <div class="col-sm-9">
+                <div class="bootstrap-timepicker">
+                  <div class="input-group time">
+                    <div class="input-group-addon">
+                      <i class="fa fa-clock-o"></i>
+                    </div>
+                    <input type="text" class="form-control timepicker" id="departureTime" name="departureTime" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Preferred Return Time</label>
+              <div class="col-sm-9">
+                <div class="bootstrap-timepicker">
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-clock-o"></i>
+                    </div>
+                    <input type="text" class="form-control timepicker" id="returnTime" name="returnTime" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">First Day of Business</label>
+              <div class="col-sm-9">
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right datepicker" id="firstDayOfBusiness" name="firstDayOfBusiness" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Last Day of Business</label>
+              <div class="col-sm-9">
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right datepicker" id="lastDayOfBusiness" name="lastDayOfBusiness" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        @*<div class="row" style="margin-bottom:15px">
+              <div class="col-sm-12">
+                  <div class="form-group">
+                      <label class="col-sm-2">Remarks</label>
+                      <div class="col-sm-12">
+                          <textarea class="form-control" rows="2" placeholder="Enter ..." id="FlightBookingRemarks" name="FlightBookingRemarks"></textarea>
+                      </div>
+                  </div>
+              </div>
+          </div>*@
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-12 col-md-12">
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">Additonal Travel Details</h3>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+      <div>
+        <div style="margin-bottom:15px">
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Air Ticket Arrangement</label>
+              <div class="col-sm-9">
+                <div class="form-group">
+                  <label>
+                    <input type="radio" name="r3" class="flat-red" checked> BTC
+                  </label>
+                  &emsp;
+                  &emsp;
+                  &emsp;
+                  <label>
+                    <input type="radio" name="r3" class="flat-red"> Other
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Hotel Name</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control pull-right" id="hotelName" name="hotelName" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Travel Allowance</label>
+              <div class="col-sm-9">
+                <div class="form-group">
+                  <label>
+                    <input type="radio" name="r3" class="flat-red" checked> BTC
+                  </label>
+                  &emsp;
+                  &emsp;
+                  &emsp;
+                  <label>
+                    <input type="radio" name="r3" class="flat-red"> Other
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Check In Date</label>
+              <div class="col-sm-9">
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right datepicker" id="checkInDate" name="checkInDate" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Hotel Stay</label>
+              <div class="col-sm-9">
+                <div class="form-group">
+                  <label>
+                    <input type="radio" name="r3" class="flat-red" checked> BTC
+                  </label>
+                  &emsp;
+                  &emsp;
+                  &emsp;
+                  <label>
+                    <input type="radio" name="r3" class="flat-red"> Other
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Check In Time</label>
+              <div class="col-sm-9">
+                <div class="bootstrap-timepicker">
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-clock-o"></i>
+                    </div>
+                    <input type="text" class="form-control timepicker" id="checkInTime" name="checkInTime" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Hotel Category</label>
+              <div class="col-sm-9">
+                <select class="form-control">
+                  <option>option 1</option>
+                  <option>option 2</option>
+                  <option>option 3</option>
+                  <option>option 4</option>
+                  <option>option 5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Check Out Date</label>
+              <div class="col-sm-9">
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right datepicker" id="checkOutDate" name="checkOutDate" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Room Category</label>
+              <div class="col-sm-9">
+                <select class="form-control">
+                  <option>option 1</option>
+                  <option>option 2</option>
+                  <option>option 3</option>
+                  <option>option 4</option>
+                  <option>option 5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Check Out Time</label>
+              <div class="col-sm-9">
+                <div class="bootstrap-timepicker">
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-clock-o"></i>
+                    </div>
+                    <input type="text" class="form-control timepicker" id="checkOutTime" name="checkOutTime" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Room Type</label>
+              <div class="col-sm-9">
+                <select class="form-control">
+                  <option>option 1</option>
+                  <option>option 2</option>
+                  <option>option 3</option>
+                  <option>option 4</option>
+                  <option>option 5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Airport Pickup</label>
+              <div class="col-sm-9">
+                <select class="form-control" onchange="funcpickup(this.selectedIndex);">
+                  <option value="-1">----</option>
+                  <option value="0">Yes</option>
+                  <option value="1">No</option>
+                </select>
+                @*<label>
+                      <input type="radio" class="flat-red auto-submit-star {split:4}" name="apr" id="aprYes" onclick="alert('test');"> Yes
+                  </label>
+                  &emsp;
+                  &emsp;
+                  &emsp;
+                  <label>
+                      <input type="radio" name="apr" id="aprNo" onclick="alert('test');"> No
+                  </label>*@
+              </div>
+            </div>
+          </div>
+        </div>
+        @*<div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label class="col-sm-3">Additional Expenses</label>
+                      <div class="col-sm-9">
+                          <input type="text" class="form-control" id="additionalExpenses" name="additionalExpenses" />
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label class="col-sm-3">Pickup By</label>
+                      <div class="col-sm-9">
+                          <div class="form-group">
+                              <label>
+                                  <input type="radio" name="r3" class="flat-red" checked> Hotel
+                              </label>
+                              &emsp;
+                              &emsp;
+                              &emsp;
+                              <label>
+                                  <input type="radio" name="r3" class="flat-red"> Other
+                              </label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>*@
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="PickUpDetailsDiv" class="col-xs-12 col-md-12" style="display:none">
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">Pick Up Details</h3>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+      <div>
+        <div style="margin-bottom:15px">
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Pick Up Location</label>
+              <div class="col-sm-9">
+                <div class="form-group">
+                  <input type="text" class="form-control pull-right" id="pickUpLocation" name="pickUpLocation" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Pick Up Date</label>
+              <div class="col-sm-9">
+                <div class="form-group">
+                  <input type="text" class="form-control pull-right datepicker" id="pickUpDate" name="pickUpDate" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Pick Up Time</label>
+              <div class="col-sm-9">
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right datepicker" id="pickUpTime" name="pickUpTime" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Drop Off Location</label>
+              <div class="col-sm-9">
+                <div class="form-group">
+                  <input type="text" class="form-control pull-right" id="dropOffLocation" name="dropOffLocation" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Drop Off Date</label>
+              <div class="col-sm-9">
+                <div class="form-group">
+                  <input type="text" class="form-control pull-right datepicker" id="dropOffDate" name="dropOffDate" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Drop Off Time</label>
+              <div class="col-sm-9">
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right datepicker" id="dropOffTime" name="dropOffTime" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Preferred Vehicle Type</label>
+              <div class="col-sm-9">
+                <div class="form-group">
+                  <select class="form-control">
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-12 col-md-12">
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">Remarks</h3>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+      <div>
+        <div style="margin-bottom:15px">
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="col-sm-2">Remarks</label>
+              <div class="col-sm-12">
+                <textarea class="form-control" rows="2" placeholder="Enter ..." id="PickUpRemarks" name="PickUpRemarks"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:15px">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <input type="submit" class="form-control btn btn-primary" value="Submit" />
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <input type="button" class="form-control btn btn-info" value="Reset" />
+    </div>
+  </div>
+  <div class="col-sm-3">
+  </div>
+</div>
 
 }

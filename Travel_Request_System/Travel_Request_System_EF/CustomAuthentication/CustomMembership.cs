@@ -12,9 +12,8 @@ namespace Travel_Request_System_EF.CustomAuthentication
         {
         }
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
@@ -39,7 +38,7 @@ namespace Travel_Request_System_EF.CustomAuthentication
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
@@ -56,7 +55,7 @@ namespace Travel_Request_System_EF.CustomAuthentication
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="username"></param>
         /// <param name="userIsOnline"></param>
@@ -66,8 +65,8 @@ namespace Travel_Request_System_EF.CustomAuthentication
             using (AuthenticationDB dbContext = new AuthenticationDB())
             {
                 Users user = (from us in dbContext.Users
-                             where string.Compare(username, us.Username, StringComparison.OrdinalIgnoreCase) == 0
-                             select us).FirstOrDefault();
+                              where string.Compare(username, us.Username, StringComparison.OrdinalIgnoreCase) == 0
+                              select us).FirstOrDefault();
 
                 if (user == null)
                 {
@@ -274,6 +273,6 @@ namespace Travel_Request_System_EF.CustomAuthentication
             throw new NotImplementedException();
         }
 
-        #endregion
+        #endregion Overrides of Membership Provider
     }
 }

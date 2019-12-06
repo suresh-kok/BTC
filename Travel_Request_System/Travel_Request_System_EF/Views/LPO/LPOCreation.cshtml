@@ -7,97 +7,97 @@
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
 
-    <aside class="right-side">
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">LPO-@Model.ID - @Model.Quotation.TravelRequests.ExpensesHandledBy / @Model.Quotation.TravelRequests.ApplicationNumber</h3>
-                        </div><!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="row" style="margin-bottom:15px">
-                                <div id="detailsDiv" style="height:auto">
-                                    @Html.Partial("_TravelRequestDetails", Model.RFQ.TravelRequests)
-                                </div>
-                            </div>
-                            @if (Model.IsAT != null && (bool)Model.IsAT)
-                            {
-                                <div class="row" style="margin-bottom:15px">
-                                    @Html.Partial("_ATQuotation", Model.Quotation.ATQuotation.FirstOrDefault())
-                                </div>
-                            }
-                            @if (Model.IsHS != null && (bool)Model.IsHS)
-                            {
-                                <div class="row" style="margin-bottom:15px">
-                                    @Html.Partial("_HSQuotation", Model.Quotation.HSQuotation.FirstOrDefault())
-                                </div>
-                            }
-                            @if (Model.IsPC != null && (bool)Model.IsPC)
-                            {
-                                <div class="row" style="margin-bottom:15px">
-                                    @Html.Partial("_PCQuotation", Model.Quotation.PCQuotation.FirstOrDefault())
-                                </div>
-                            }
-                            <div class="row" style="margin-bottom:15px">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-3">To </label>
-                                        <div class="col-sm-9">
-                                            @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
-                                            @*@Html.ValidationMessageFor(model => model.HotelName, null, new { @class = "text-danger" })*@
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-bottom:15px">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-3">From </label>
-                                        <div class="col-sm-9">
-                                            @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
-                                            @*@Html.ValidationMessageFor(model => model.HotelName, null, new { @class = "text-danger" })*@
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-bottom:15px">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label class="col-sm-1">Remarks</label>
-                                        <div class="col-sm-12">
-                                            @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "7", @placeholder = "Enter Travel Request Remarks..." })
-                                            @*@Html.ValidationMessageFor(model => model.HotelName, null, new { @class = "text-danger" })*@
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-bottom:15px">
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <input type="button" class="form-control btn btn-info btn-primary" value="Send LPO as Email" formaction="SendEmail" />
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    @*<div class="form-group">
-                                            <input type="button" class="form-control btn btn-info btn-primary" value="Save LPO" formaction="SaveLPO" />
-                                        </div>*@
-                                </div>
-                                <div class="col-sm-6">
-                                </div>
-                            </div>
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                </div>
+<aside class="right-side">
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">LPO-@Model.ID - @Model.Quotation.TravelRequests.ExpensesHandledBy / @Model.Quotation.TravelRequests.ApplicationNumber</h3>
+          </div><!-- /.box-header -->
+          <div class="box-body">
+            <div class="row" style="margin-bottom:15px">
+              <div id="detailsDiv" style="height:auto">
+                @Html.Partial("_TravelRequestDetails", Model.RFQ.TravelRequests)
+              </div>
             </div>
-        </section>
-    </aside>
+            @if (Model.IsAT != null && (bool)Model.IsAT)
+                            {
+            <div class="row" style="margin-bottom:15px">
+              @Html.Partial("_ATQuotation", Model.Quotation.ATQuotation.FirstOrDefault())
+            </div>
+                            }
+            @if (Model.IsHS != null && (bool)Model.IsHS)
+                            {
+            <div class="row" style="margin-bottom:15px">
+              @Html.Partial("_HSQuotation", Model.Quotation.HSQuotation.FirstOrDefault())
+            </div>
+                            }
+            @if (Model.IsPC != null && (bool)Model.IsPC)
+                            {
+            <div class="row" style="margin-bottom:15px">
+              @Html.Partial("_PCQuotation", Model.Quotation.PCQuotation.FirstOrDefault())
+            </div>
+                            }
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">To </label>
+                  <div class="col-sm-9">
+                    @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.HotelName, null, new { @class = "text-danger" })*@
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3">From </label>
+                  <div class="col-sm-9">
+                    @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.HotelName, null, new { @class = "text-danger" })*@
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="col-sm-1">Remarks</label>
+                  <div class="col-sm-12">
+                    @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "7", @placeholder = "Enter Travel Request Remarks..." })
+                    @*@Html.ValidationMessageFor(model => model.HotelName, null, new { @class = "text-danger" })*@
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <input type="button" class="form-control btn btn-info btn-primary" value="Send LPO as Email" formaction="SendEmail" />
+                </div>
+              </div>
+              <div class="col-sm-3">
+                @*<div class="form-group">
+                      <input type="button" class="form-control btn btn-info btn-primary" value="Save LPO" formaction="SaveLPO" />
+                  </div>*@
+              </div>
+              <div class="col-sm-6">
+              </div>
+            </div>
+          </div><!-- /.box-body -->
+        </div><!-- /.box -->
+      </div>
+    </div>
+  </section>
+</aside>
 
 }
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+  @Scripts.Render("~/bundles/jqueryval")
 }

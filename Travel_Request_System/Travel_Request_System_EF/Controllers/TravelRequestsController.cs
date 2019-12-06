@@ -253,7 +253,6 @@ namespace Travel_Request_System_EF.Controllers
 
                             if (emailPersonDetails != null && emailPersonDetails.Email != "")
                             {
-
                                 var travelRequestData = dbcontext.TravelRequests.Where(x => x.ID == travelRequest.ID).FirstOrDefault();
                                 travelRequestData.ApprovalLevel = (int)ApprovalLevels.ApprovedByManager;
                                 dbcontext.Entry(travelRequestData).State = EntityState.Modified;
@@ -378,7 +377,6 @@ namespace Travel_Request_System_EF.Controllers
                         travelRequestData.TravelRemarks = travelRequest.TravelRemarks;
                         travelRequestData.TravelSector = travelRequest.TravelSector;
 
-
                         dbcontext.Entry(travelRequestData).State = EntityState.Modified;
                         dbcontext.TravelRequests.Attach(travelRequestData);
                         dbcontext.Entry(travelRequestData).Property(x => x.AdditionalAllowance).IsModified = true;
@@ -455,7 +453,6 @@ namespace Travel_Request_System_EF.Controllers
                 TempData["tempTravelRequest"] = travelRequest;
 
                 return RedirectToAction("Create");
-
             }
         }
 
@@ -545,7 +542,6 @@ namespace Travel_Request_System_EF.Controllers
                     travelRequestData.TravelDays = travelRequest.TravelDays;
                     travelRequestData.TravelRemarks = travelRequest.TravelRemarks;
                     travelRequestData.TravelSector = travelRequest.TravelSector;
-
 
                     dbcontext.Entry(travelRequestData).State = EntityState.Modified;
                     dbcontext.TravelRequests.Attach(travelRequestData);
@@ -691,10 +687,9 @@ namespace Travel_Request_System_EF.Controllers
             Response.Clear();
             Response.ContentType = mimeType;
             Response.AddHeader("content-disposition", "attachment; filename= outputreport" + "." + extension);
-            Response.OutputStream.Write(bytes, 0, bytes.Length); // create the file  
-            Response.Flush(); // send it to the client to download  
+            Response.OutputStream.Write(bytes, 0, bytes.Length); // create the file
+            Response.Flush(); // send it to the client to download
             Response.End();
-
         }
 
         private void IsLoggedIn()
@@ -795,6 +790,5 @@ namespace Travel_Request_System_EF.Controllers
                 TempData["ErrorMessage"] = new List<string>() { ex.Message, "Unable to send Message" };
             }
         }
-
     }
 }

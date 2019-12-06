@@ -7,54 +7,54 @@
 
 @using (Html.BeginForm())
 {
-    @Html.Partial("_TravelRequestDetails", Model);
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.ID)
+@Html.Partial("_TravelRequestDetails", Model);
+@Html.AntiForgeryToken()
+@Html.HiddenFor(model => model.ID)
 
-    <div class="row" style="margin-bottom:15px">
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label class="col-sm-3">Additional Expenses</label>
-                <div class="col-sm-9">
-                    @Html.EditorFor(model => model.AdditionalAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00", @Value = "0.00" } })
-                    @*@Html.ValidationMessageFor(model => model.AdditionalAllowance, null, new { @class = "text-danger" })*@
-                </div>
-            </div>
-        </div>
+<div class="row" style="margin-bottom:15px">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label class="col-sm-3">Additional Expenses</label>
+      <div class="col-sm-9">
+        @Html.EditorFor(model => model.AdditionalAllowance, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "10.00", @Value = "0.00" } })
+        @*@Html.ValidationMessageFor(model => model.AdditionalAllowance, null, new { @class = "text-danger" })*@
+      </div>
     </div>
+  </div>
+</div>
 
-    <div class="row" style="margin-bottom:15px">
-        <div class="col-sm-12">
-            <div class="form-group">
-                <label class="col-sm-3">Remarks / Comments</label>
-                <div class="col-sm-12">
-                    @if (Model.ApprovalRemarks != null)
+<div class="row" style="margin-bottom:15px">
+  <div class="col-sm-12">
+    <div class="form-group">
+      <label class="col-sm-3">Remarks / Comments</label>
+      <div class="col-sm-12">
+        @if (Model.ApprovalRemarks != null)
                     {
-                        <div class="callout callout-info">
-                            <h4>Past Comments</h4>
+        <div class="callout callout-info">
+          <h4>Past Comments</h4>
 
-                            <p>@Html.Raw(Model.ApprovalRemarks.Replace("\\n", "<br />"))</p>
-                        </div>
+          <p>@Html.Raw(Model.ApprovalRemarks.Replace("\\n", "<br />"))</p>
+        </div>
                     }
-                    @Html.TextArea("ApprovalRemarksUser", htmlAttributes: new { @class = "form-control", @rows = "5", @placeholder = "Enter Comments..." })
-                </div>
-            </div>
-        </div>
+        @Html.TextArea("ApprovalRemarksUser", htmlAttributes: new { @class = "form-control", @rows = "5", @placeholder = "Enter Comments..." })
+      </div>
     </div>
-    <div class="row" style="margin-bottom:15px">
-        <div class="col-sm-3">
-        </div>
-        <div class="col-sm-3">
-            <div class="form-group">
-                <input type="submit" class="form-control btn btn-info btn-primary" value="Approve" formmethod="post" formaction="@Url.Action("ApproveManagerRequest")" />
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="form-group">
-                <input type="submit" class="form-control btn btn-info btn-primary" value="Reject" formmethod="post" formaction="@Url.Action("RejectManagerRequest")" />
-            </div>
-        </div>
-        <div class="col-sm-3">
-        </div>
+  </div>
+</div>
+<div class="row" style="margin-bottom:15px">
+  <div class="col-sm-3">
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <input type="submit" class="form-control btn btn-info btn-primary" value="Approve" formmethod="post" formaction="@Url.Action("ApproveManagerRequest")" />
     </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <input type="submit" class="form-control btn btn-info btn-primary" value="Reject" formmethod="post" formaction="@Url.Action("RejectManagerRequest")" />
+    </div>
+  </div>
+  <div class="col-sm-3">
+  </div>
+</div>
 }

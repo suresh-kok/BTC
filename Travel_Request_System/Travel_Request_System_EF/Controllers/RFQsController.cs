@@ -64,7 +64,7 @@ namespace Travel_Request_System_EF.Controllers
         }
 
         // POST: RFQ/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -109,7 +109,7 @@ namespace Travel_Request_System_EF.Controllers
         }
 
         // POST: RFQ/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -227,7 +227,7 @@ namespace Travel_Request_System_EF.Controllers
                 else if ((formCollection.AllKeys.Contains("ATCheck") && formCollection["ATCheck"].ToString().ToLower() == "on"))
                 {
                     rfq.ProcessingSection = (int)ProcessingSections.AT;
-                } 
+                }
                 else if ((formCollection.AllKeys.Contains("HSCheck") && formCollection["HSCheck"].ToString().ToLower() == "on"))
                 {
                     rfq.ProcessingSection = (int)ProcessingSections.HS;
@@ -429,7 +429,6 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.Currencies = db.Currency.ToList();
                 ViewBag.ApprovalBy = db.Users.ToList();
 
-
                 RFQ rfqitem = await db.RFQ.Include(a => a.TravelRequests).Include(a => a.TravelAgency).Include(a => a.Users).Where(a => a.ID == id).FirstOrDefaultAsync();
                 ViewBag.fileUploader = db.AttachmentLink.Where(a => a.AttachmentFor == (rfqitem.RFQName + "Pro" + rfqitem.ProcessingSection + "Trav" + rfqitem.TravelAgencyID)).Select(x => x.Attachments).ToList();
                 MasterRFQ = rfqitem;
@@ -449,7 +448,7 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     HSQuotation hsquot = new HSQuotation();
                     hsquot.CheckInDate = rfqitem.TravelRequests.CheckInDate;
-                    hsquot.CheckInTime= rfqitem.TravelRequests.CheckInTime;
+                    hsquot.CheckInTime = rfqitem.TravelRequests.CheckInTime;
                     hsquot.CheckOutDate = rfqitem.TravelRequests.CheckOutDate;
                     hsquot.CheckOutTime = rfqitem.TravelRequests.CheckOutTime;
                     hsquot.HotelCategory = rfqitem.TravelRequests.HotelCategory;
@@ -463,11 +462,11 @@ namespace Travel_Request_System_EF.Controllers
                     PCQuotation pcquot = new PCQuotation();
                     pcquot.DropOffDate = rfqitem.TravelRequests.DropOffDate;
                     pcquot.DropoffLocation = rfqitem.TravelRequests.DropOffLocation;
-                    pcquot.DropOffTime= rfqitem.TravelRequests.DropOffTime;
-                    pcquot.PickUpDate= rfqitem.TravelRequests.PickUpDate;
-                    pcquot.PickupLocation= rfqitem.TravelRequests.PickUpLocation;
+                    pcquot.DropOffTime = rfqitem.TravelRequests.DropOffTime;
+                    pcquot.PickUpDate = rfqitem.TravelRequests.PickUpDate;
+                    pcquot.PickupLocation = rfqitem.TravelRequests.PickUpLocation;
                     pcquot.PickUpTime = rfqitem.TravelRequests.PickUpTime;
-                    pcquot.PreferredVehicle= rfqitem.TravelRequests.PreferredVehicle;
+                    pcquot.PreferredVehicle = rfqitem.TravelRequests.PreferredVehicle;
                     ViewBag.PCQuotation = pcquot;
                 }
                 using (EmployeeDetailsDBService EmpDBService = new EmployeeDetailsDBService("", rfqitem.TravelRequests.Users1.HREmployeeID.ToString()))
@@ -655,7 +654,6 @@ namespace Travel_Request_System_EF.Controllers
                         Directory.CreateDirectory(Server.MapPath("~/UploadedFiles/" + MasterRFQ.RFQName + "Pro" + MasterRFQ.ProcessingSection + "Trav" + MasterRFQ.TravelAgencyID));
                         Request.Files[0].SaveAs(destinationPath);
 
-
                         var isFileNameRepete = (db.Attachments.AsEnumerable().Where(x => x.FileName == destinationPath).ToList());
                         if (isFileNameRepete == null || isFileNameRepete.Count <= 0)
                         {
@@ -749,8 +747,8 @@ namespace Travel_Request_System_EF.Controllers
             Response.Clear();
             Response.ContentType = mimeType;
             Response.AddHeader("content-disposition", "attachment; filename= outputreport" + "." + extension);
-            Response.OutputStream.Write(bytes, 0, bytes.Length); // create the file  
-            Response.Flush(); // send it to the client to download  
+            Response.OutputStream.Write(bytes, 0, bytes.Length); // create the file
+            Response.Flush(); // send it to the client to download
             Response.End();
         }
 

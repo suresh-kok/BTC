@@ -191,7 +191,6 @@ namespace Travel_Request_System_EF.Controllers
                 {
                     return Json("LPO Creation Failed", JsonRequestBehavior.AllowGet);
                 }
-
             }
             catch (Exception)
             {
@@ -274,7 +273,6 @@ namespace Travel_Request_System_EF.Controllers
 
                         return Json("Created Travel Grid", JsonRequestBehavior.AllowGet);
                     }
-
                 }
                 return Json("Error While Creating Travel Grid", JsonRequestBehavior.AllowGet);
             }
@@ -282,7 +280,6 @@ namespace Travel_Request_System_EF.Controllers
             {
                 return Json("Error While Creating Travel Grid", JsonRequestBehavior.AllowGet);
             }
-
         }
 
         public async Task<ActionResult> LPODetails(int id)
@@ -364,8 +361,8 @@ namespace Travel_Request_System_EF.Controllers
             Response.Clear();
             Response.ContentType = mimeType;
             Response.AddHeader("content-disposition", "attachment; filename= outputreport" + "." + extension);
-            Response.OutputStream.Write(bytes, 0, bytes.Length); // create the file  
-            Response.Flush(); // send it to the client to download  
+            Response.OutputStream.Write(bytes, 0, bytes.Length); // create the file
+            Response.Flush(); // send it to the client to download
             Response.End();
         }
 
@@ -378,7 +375,6 @@ namespace Travel_Request_System_EF.Controllers
             var subject = "TEST SUBJECT";
             var attachmentPath = ExportReportToPDF(id);
             var mailBody = "<b>test</b>";
-
 
             NetworkCredential cred = new NetworkCredential(username, password);
 
@@ -459,7 +455,9 @@ namespace Travel_Request_System_EF.Controllers
             return filename;
         }
 
-        public void IntimateEmployee() { }
+        public void IntimateEmployee()
+        {
+        }
 
         private void IsLoggedIn(List<string> Role)
         {

@@ -7,136 +7,135 @@
 
 <div id="detailsDiv" style="height:auto">
 
-    <div class="row" style="margin-bottom:15px">
-        <div class="col-md-3">
-            @if (Model.Where(a => a.Processing > 0).Count() > 0)
+  <div class="row" style="margin-bottom:15px">
+    <div class="col-md-3">
+      @if (Model.Where(a => a.Processing > 0).Count() > 0)
             {
-                @Html.ActionLink("Go to Post Merge Table", "RFQPostMerger", new { id = Model.FirstOrDefault().TravelRequestID }, new { @class = "form-control btn btn-info" })
+      @Html.ActionLink("Go to Post Merge Table", "RFQPostMerger", new { id = Model.FirstOrDefault().TravelRequestID }, new { @class = "form-control btn btn-info" })
             }
-        </div>
-        <div class="col-md-3">
-        </div>
-        <div class="col-md-3">
-        </div>
-        <div class="col-md-3">
-            @Html.ActionLink("Back to List", "RFQProcessing", new { id = Model.FirstOrDefault().TravelRequestID }, new { @class = "form-control btn btn-info" })
-        </div>
     </div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-3">
+      @Html.ActionLink("Back to List", "RFQProcessing", new { id = Model.FirstOrDefault().TravelRequestID }, new { @class = "form-control btn btn-info" })
+    </div>
+  </div>
 
-    <aside class="right-side">
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">RFQ Merge Table</h3>
-                        </div><!-- /.box-header -->
-                        <div class="box-body">
-                            <table class="table table-condensed table-bordered">
-                                @if (Model == null || (Model.Count() == 0))
+  <aside class="right-side">
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">RFQ Merge Table</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-condensed table-bordered">
+                @if (Model == null || (Model.Count() == 0))
                                 {
-                                    <tr>
-                                        <td colspan="10">No Record's found.</td>
-                                    </tr>
+                <tr>
+                  <td colspan="10">No Record's found.</td>
+                </tr>
                                 }
                                 else
                                 {
-                                    <thead>
-                                        <tr class="success">
-                                            <th>RFQ #</th>
-                                            <th>Merged Sections</th>
-                                            <th>Travel Agency</th>
-                                            <th>Attachments</th>
-                                            <th>Action</th>
-                                            @*<th>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" id="AllCheck">
-                                                    </label>
-                                                </div>
-                                            </th>*@
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model)
+                <thead>
+                  <tr class="success">
+                    <th>RFQ #</th>
+                    <th>Merged Sections</th>
+                    <th>Travel Agency</th>
+                    <th>Attachments</th>
+                    <th>Action</th>
+                    @*<th>
+                          <div class="checkbox">
+                              <label>
+                                  <input type="checkbox" id="AllCheck">
+                              </label>
+                          </div>
+                      </th>*@
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach (var item in Model)
                                         {
-                                            <tr>
-                                                <td>@item.TravelRequests.ApplicationNumber</td>
-                                                <td>
-                                                    @{
+                  <tr>
+                    <td>@item.TravelRequests.ApplicationNumber</td>
+                    <td>
+                      @{
                                                         if (item.ProcessingSection == 1)
                                                         {
-                                                            @("AT");
+                        @("AT");
                                                         }
                                                         else if (item.ProcessingSection == 2)
                                                         {
-                                                            @("HS");
+                        @("HS");
                                                         }
                                                         else if (item.ProcessingSection == 3)
                                                         {
-                                                            @("PC");
+                        @("PC");
                                                         }
                                                         else if (item.ProcessingSection == 4)
                                                         {
-                                                            @("AT + HS");
+                        @("AT + HS");
                                                         }
                                                         else if (item.ProcessingSection == 5)
                                                         {
-                                                            @("AT + PC");
+                        @("AT + PC");
                                                         }
                                                         else if (item.ProcessingSection == 6)
                                                         {
-                                                            @("HS + PC");
+                        @("HS + PC");
                                                         }
                                                         else if (item.ProcessingSection == 7)
                                                         {
-                                                            @("AT + HS + PC");
+                        @("AT + HS + PC");
                                                         }
-                                                    }
-                                                </td>
-                                                <td>
-                                                    @if (item.TravelAgencyID != null)
+                      }
+                    </td>
+                    <td>
+                      @if (item.TravelAgencyID != null)
                                                     {
                                                         var po = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).FirstOrDefault(rt => rt.ID == item.TravelAgencyID).AgencyCode.ToString();
-                                                        @po
+                      @po
                                                     }
-                                                </td>
-                                                <td>
-                                                    @{
+                    </td>
+                    <td>
+                      @{
                                                         var att = 0;
                                                         using (Travel_Request_System_EF.Models.BTCEntities db = new Travel_Request_System_EF.Models.BTCEntities())
                                                         {
                                                             att = db.AttachmentLink.Where(x => x.AttachmentFor == (item.RFQName + "Pro" + item.ProcessingSection + "Trav" + item.TravelAgencyID)).Count();
                                                         }
-                                                    }
-                                                    @att
-                                                </td>
-                                                <td>
-                                                    <span class="glyphicon">
-                                                        @Html.ActionLink("  Preview", "PreviewRFQ", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-edit" })
-                                                    </span>
-                                                    <span class="glyphicon">
-                                                        @Html.ActionLink("  Delete", "DeleteRFQProcessing", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
-                                                    </span>
-                                                </td>
-                                                @*<td>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" name="ids" id="ids" value="@item.IsDeleted" />
-                                                        </label>
-                                                    </div>
-                                                </td>*@
-                                            </tr>
+                      }
+                      @att
+                    </td>
+                    <td>
+                      <span class="glyphicon">
+                        @Html.ActionLink("  Preview", "PreviewRFQ", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                      </span>
+                      <span class="glyphicon">
+                        @Html.ActionLink("  Delete", "DeleteRFQProcessing", new { id = item.ID }, new { @class = "form-control btn btn-info glyphicon-remove-sign" })
+                      </span>
+                    </td>
+                    @*<td>
+                          <div class="checkbox">
+                              <label>
+                                  <input type="checkbox" name="ids" id="ids" value="@item.IsDeleted" />
+                              </label>
+                          </div>
+                      </td>*@
+                  </tr>
                                         }
-                                    </tbody>
+                </tbody>
                                 }
-                            </table>
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                </div>
-            </div>
-        </section>
-    </aside>
-
+              </table>
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div>
+      </div>
+    </section>
+  </aside>
 </div>

@@ -1,40 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net.Mail;
-using System.Web;
 
 namespace Travel_Request_System_EF.Mail
 {
     public class MailAttachment
     {
         #region Fields
+
         private MemoryStream stream;
         private string filename;
         private string mediaType;
-        #endregion
+
+        #endregion Fields
 
         #region Properties
+
         /// <summary>
         /// Gets the data stream for this attachment
         /// </summary>
         public Stream Data { get { return stream; } }
+
         /// <summary>
         /// Gets the original filename for this attachment
         /// </summary>
         public string Filename { get { return filename; } }
+
         /// <summary>
         /// Gets the attachment type: Bytes or String
         /// </summary>
         public string MediaType { get { return mediaType; } }
+
         /// <summary>
         /// Gets the file for this attachment (as a new attachment)
         /// </summary>
         public Attachment File { get { return new Attachment(Data, Filename, MediaType); } }
-        #endregion
+
+        #endregion Properties
 
         #region Constructors
+
         /// <summary>
         /// Construct a mail attachment form a byte array
         /// </summary>
@@ -46,6 +50,7 @@ namespace Travel_Request_System_EF.Mail
             this.filename = filename;
             this.mediaType = System.Net.Mime.MediaTypeNames.Application.Octet;
         }
+
         /// <summary>
         /// Construct a mail attachment from a string
         /// </summary>
@@ -57,6 +62,7 @@ namespace Travel_Request_System_EF.Mail
             this.filename = filename;
             this.mediaType = System.Net.Mime.MediaTypeNames.Text.Html;
         }
-        #endregion
+
+        #endregion Constructors
     }
 }

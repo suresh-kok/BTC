@@ -38,6 +38,7 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.ErrorMessage = "Your Login has expired!! Please login again.";
             }
         }
+
         public ActionResult Index(int statusCode, Exception exception)
         {
             Response.StatusCode = statusCode;
@@ -79,6 +80,5 @@ namespace Travel_Request_System_EF.Controllers
                 ViewBag.IsTravelCo = Val;
             }
         }
-
     }
 }

@@ -1,43 +1,43 @@
 ﻿@* BEGIN Notifications *@
 <li class="dropdown notifications-menu">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <i class="fa fa-bell-o"></i>
-        @if (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0)
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-bell-o"></i>
+    @if (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0)
         {
-            <span class="label label-warning">@ViewBag.NotificationsList.Count</span>
+    <span class="label label-warning">@ViewBag.NotificationsList.Count</span>
         }
         else
         {
-            <span class="label label-warning">0</span>
+    <span class="label label-warning">0</span>
         }
-    </a>
-    <ul class="dropdown-menu">
-        @if (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0)
+  </a>
+  <ul class="dropdown-menu">
+    @if (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0)
         {
-            <li class="header">You have @ViewBag.NotificationsList.Count notifications</li>
+    <li class="header">You have @ViewBag.NotificationsList.Count notifications</li>
         }
         else
         {
-            <li class="header">You have no new updates</li>
+    <li class="header">You have no new updates</li>
         }
+    <li>
+      <ul class="menu">
         <li>
-            <ul class="menu">
-                <li>
-                    <a href="@Url.Action("ViewTravelRequests", "BTC")">
-                        @if (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0)
+          <a href="@Url.Action("ViewTravelRequests", "BTC")">
+            @if (ViewBag.NotificationsList != null && ViewBag.NotificationsList.Count == 0)
                         {
-                            <i class="fa fa-users text-aqua"></i><span>@ViewBag.NotificationsList.Count Updates for you</span>
+            <i class="fa fa-users text-aqua"></i><span>@ViewBag.NotificationsList.Count Updates for you</span>
                         }
                         else
                         { <i class="fa fa-users text-aqua"></i>
 
-                            <span class="label label-warning">No New Updates</span>
+            <span class="label label-warning">No New Updates</span>
                         }
-                    </a>
-                </li>
-            </ul>
+          </a>
         </li>
-        <li class="footer"><a href="@Url.Action("ViewTravelRequests", "BTC")">View all</a></li>
-    </ul>
+      </ul>
+    </li>
+    <li class="footer"><a href="@Url.Action("ViewTravelRequests", "BTC")">View all</a></li>
+  </ul>
 </li>
 @* END Notifications *@

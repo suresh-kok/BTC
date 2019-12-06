@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Error";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -23,16 +22,16 @@ else
 <div style="background-color: #ff0000; color: White; height: 10px;">
 </div>
 <div style="background-color: #F5F5DC; color: black; height: auto;">
-    <div style=" padding:20px;">
-        <h3>
-            @*Application Error: @(!String.IsNullOrEmpty(ViewBag.ErrorText) ? ViewBag.ErrorText : "Unknown Error")*@
-            Application Error Occurred. Please Contact the Administrator to get more details.
-        </h3>
-        <h3>
-            Sorry, The Page, You are Looking for is not found.
-        </h3>
-        <br />
-    </div>
+  <div style=" padding:20px;">
+    <h3>
+      @*Application Error: @(!String.IsNullOrEmpty(ViewBag.ErrorText) ? ViewBag.ErrorText : "Unknown Error")*@
+      Application Error Occurred. Please Contact the Administrator to get more details.
+    </h3>
+    <h3>
+      Sorry, The Page, You are Looking for is not found.
+    </h3>
+    <br />
+  </div>
 </div>
 <div style="background-color: #ff0000; color: White; height: 10px;">
 </div>

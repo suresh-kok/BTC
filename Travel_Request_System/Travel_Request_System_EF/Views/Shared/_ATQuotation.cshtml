@@ -61,7 +61,7 @@
               <div class="col-sm-9">
                 @if (Model.DepartureDate != null)
                 {
-                  @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.DepartureDate.ToString()))));
+                @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.DepartureDate.ToString()))));
                 }
               </div>
             </div>
@@ -72,7 +72,7 @@
               <div class="col-sm-9">
                 @if (Model.ReturnDate != null)
                 {
-                  @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.ReturnDate.ToString()))));
+                @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(Model.ReturnDate.ToString()))));
                 }
               </div>
             </div>
@@ -85,7 +85,7 @@
               <div class="col-sm-9">
                 @if (Model.DepartureTime != null)
                 {
-                  @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.DepartureTime.ToString()))));
+                @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.DepartureTime.ToString()))));
                 }
               </div>
             </div>
@@ -96,7 +96,7 @@
               <div class="col-sm-9">
                 @if (Model.ReturnTime != null)
                 {
-                  @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.ReturnTime.ToString()))));
+                @(new HtmlString(string.Format("{0:hh:mm tt}", Convert.ToDateTime(Model.ReturnTime.ToString()))));
                 }
               </div>
             </div>
@@ -148,49 +148,49 @@
 
         @if (ViewData["ATfileUploader" + Model.ID] != null)
         {
-          <div class="row" style="margin-bottom:15px">
-            <aside class="right-side">
-              <!-- Main content -->
-              <section class="content">
-                <div class="container text-center">
-                  <div class="col-xs-11">
-                    <div class="box with-border">
-                      <div class="box-header">
-                        <h3 class="box-title">Details</h3>
-                      </div><!-- /.box-header -->
-                      <div class="box-body table-responsive">
-                        <table id="uloadTable" class="table table-bordered table-hover table-responsive">
-                          <thead>
-                            <tr>
-                              <th>File Name</th>
-                              <th>Uploaded Date</th>
-                              <th>Uploaded By</th>
-                              <th></th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewData["ATfileUploader" + Model.ID])
+        <div class="row" style="margin-bottom:15px">
+          <aside class="right-side">
+            <!-- Main content -->
+            <section class="content">
+              <div class="container text-center">
+                <div class="col-xs-11">
+                  <div class="box with-border">
+                    <div class="box-header">
+                      <h3 class="box-title">Details</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                      <table id="uloadTable" class="table table-bordered table-hover table-responsive">
+                        <thead>
+                          <tr>
+                            <th>File Name</th>
+                            <th>Uploaded Date</th>
+                            <th>Uploaded By</th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewData["ATfileUploader" + Model.ID])
                             {
-                              <tr id="@item.FileName">
-                                <td>@item.FileName</td>
-                                <td>@item.UploadedDate.ToShortDateString()</td>
-                                <td>@(new HtmlString(item.Users.FirstName + " " + item.Users.LastName))</td>
-                                <td style="text-align: center">
-                                  @Html.ActionLink("  Open File", "OpenFile", new { fileName = item.FileName }, new { @class = "form-control btn btn-info glyphicon-edit" })
-                                </td>
-                                <td></td>
-                              </tr>
+                          <tr id="@item.FileName">
+                            <td>@item.FileName</td>
+                            <td>@item.UploadedDate.ToShortDateString()</td>
+                            <td>@(new HtmlString(item.Users.FirstName + " " + item.Users.LastName))</td>
+                            <td style="text-align: center">
+                              @Html.ActionLink("  Open File", "OpenFile", new { fileName = item.FileName }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                            </td>
+                            <td></td>
+                          </tr>
                             }
-                          </tbody>
-                        </table>
-                      </div>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
-              </section>
-            </aside>
-          </div>
+              </div>
+            </section>
+          </aside>
+        </div>
         }
         @if (ViewBag.ShouldDelete!=null && ViewBag.ShouldDelete == "True")
         {

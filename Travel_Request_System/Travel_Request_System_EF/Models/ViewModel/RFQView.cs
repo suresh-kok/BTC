@@ -15,6 +15,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 
         //Employee
         public int UserID { get; set; }
+
         public string EmployeeID { get; set; }
         public string BTCEmployeeCode { get; set; }
         public string EmployeeName { get; set; }
@@ -25,6 +26,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 
         //AT
         public string TicketClass { get; set; }
+
         public Nullable<int> PortOfOriginID { get; set; }
         public Nullable<int> PortOfDestinationID { get; set; }
         public Nullable<DateTime> DepartureDate { get; set; }
@@ -35,6 +37,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 
         //HS
         public string TravelSectorHS { get; set; }
+
         public string HotelName { get; set; }
         public string HotelCategory { get; set; }
         public string RoomCategory { get; set; }
@@ -46,6 +49,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 
         //PC
         public string TravelSectorPC { get; set; }
+
         public string PickUpLocation { get; set; }
         public Nullable<DateTime> PickUpDate { get; set; }
         public Nullable<TimeSpan> PickUpTime { get; set; }
@@ -53,6 +57,5 @@ namespace Travel_Request_System_EF.Models.ViewModel
         public Nullable<DateTime> DropOffDate { get; set; }
         public Nullable<TimeSpan> DropOffTime { get; set; }
         public string PreferredVehicle { get; set; }
-
     }
 }

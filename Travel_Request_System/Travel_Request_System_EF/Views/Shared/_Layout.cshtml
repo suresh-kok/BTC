@@ -1,96 +1,95 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>
-        @if (!string.IsNullOrWhiteSpace(ViewBag.Title))
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Title))
         {
-            @ViewBag.Title@: - BTC
+    @ViewBag.Title@: - BTC
         }
-    </title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    @Styles.Render("~/Bundles/css")
-    @*@Styles.Render("~/Content/css")*@
+  </title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  @Styles.Render("~/Bundles/css")
+  @*@Styles.Render("~/Content/css")*@
 </head>
 <body class="hold-transition skin-black sidebar-mini">
-    <div class="wrapper">
-        <style type="text/css">
-            .no-js #loader {
-                display: none;
-            }
+  <div class="wrapper">
+    <style type="text/css">
+      .no-js #loader {
+        display: none;
+      }
 
-            .js #loader {
-                display: block;
-                position: absolute;
-                left: 100px;
-                top: 0;
-            }
+      .js #loader {
+        display: block;
+        position: absolute;
+        left: 100px;
+        top: 0;
+      }
 
-            .se-pre-con {
-                position: fixed;
-                left: 0px;
-                top: 0px;
-                width: 100%;
-                height: 100%;
-                z-index: 9999;
-                background: url(../../Content/img/Preloader_2.gif) center no-repeat #fff;
-            }
-        </style>
+      .se-pre-con {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url(../../Content/img/Preloader_2.gif) center no-repeat #fff;
+      }
+    </style>
 
-        <div class="se-pre-con"></div>
+    <div class="se-pre-con"></div>
 
-        @Html.Partial("_Header")
-        @Html.Partial("_Sidebar")
+    @Html.Partial("_Header")
+    @Html.Partial("_Sidebar")
 
+    <div class="content-wrapper">
+      @*style="background: url(../../Content/img/2.jpg)">*@
+      <section class="content-header">
+        <h1>
+          @ViewBag.Title
+          <small>@ViewBag.Description</small>
+        </h1>
+      </section>
 
-        <div class="content-wrapper">
-            @*style="background: url(../../Content/img/2.jpg)">*@
-            <section class="content-header">
-                <h1>
-                    @ViewBag.Title
-                    <small>@ViewBag.Description</small>
-                </h1>
-            </section>
-
-            <section class="content">
-                @RenderBody()
-            </section>
-        </div>
-
-        @Html.Partial("_Modal")
-        @Html.Partial("_ControlSidebar")
+      <section class="content">
+        @RenderBody()
+      </section>
     </div>
 
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 1.0.0
-        </div>
-        <strong>
-            @if (ViewBag.LoggedOut == null || (ViewBag.LoggedOut != null && ViewBag.LoggedOut))
+    @Html.Partial("_Modal")
+    @Html.Partial("_ControlSidebar")
+  </div>
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0.0
+    </div>
+    <strong>
+      @if (ViewBag.LoggedOut == null || (ViewBag.LoggedOut != null && ViewBag.LoggedOut))
             {
-                <span>Copyright © 2018 - 2019 <a href="@Url.Action("TermsnCond", "Account")"><span> Terms and Conditions. </span></a></span>
+      <span>Copyright © 2018 - 2019 <a href="@Url.Action("TermsnCond", "Account")"><span> Terms and Conditions. </span></a></span>
             }
             else
             {
-                <span>Copyright © 2018 - 2019 <a href="@Url.Action("TermsnCond", "BTC")"><span> Terms and Conditions. </span></a></span>
+      <span>Copyright © 2018 - 2019 <a href="@Url.Action("TermsnCond", "BTC")"><span> Terms and Conditions. </span></a></span>
             }
-        </strong> All rights
-        reserved.
-    </footer>
-    @*<script src="@RouteJs.RouteJsHandler.HandlerUrl"></script>
-        <script src="@EnumHandler.HandlerUrl"></script>*@
-    @Scripts.Render("~/bundles/jquery")
-    @*@Scripts.Render("~/bundles/bootstrap")*@
-    @Scripts.Render("~/Bundles/js")
-    @RenderSection("scripts", required: false)
+    </strong> All rights
+    reserved.
+  </footer>
+  @*<script src="@RouteJs.RouteJsHandler.HandlerUrl"></script>
+    <script src="@EnumHandler.HandlerUrl"></script>*@
+  @Scripts.Render("~/bundles/jquery")
+  @*@Scripts.Render("~/bundles/bootstrap")*@
+  @Scripts.Render("~/Bundles/js")
+  @RenderSection("scripts", required: false)
 
-    @RenderSection("ViewSpecificJavascript", required: false)
-    <script type="text/javascript">
+  @RenderSection("ViewSpecificJavascript", required: false)
+  <script type="text/javascript">
         $(document).ready(function () {
             $(".se-pre-con").hide();
         });
-    </script>
+  </script>
 </body>
 </html>

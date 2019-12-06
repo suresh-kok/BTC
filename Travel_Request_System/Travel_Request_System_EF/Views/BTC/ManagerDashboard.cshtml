@@ -7,129 +7,129 @@
 }
 
 <aside class="right-side">
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Details</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body table-responsive">
-                        <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
-                            @if (Model == null || (Model.Count() == 0))
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">Details</h3>
+          </div><!-- /.box-header -->
+          <div class="box-body table-responsive">
+            <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
+              @if (Model == null || (Model.Count() == 0))
                             {
-                                <tr>
-                                    <td colspan="10">No Record's found.</td>
-                                </tr>
+              <tr>
+                <td colspan="10">No Record's found.</td>
+              </tr>
                             }
                             else
                             {
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.ApplicationNumber)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.PortOfOriginID)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.PortOfDestinationID)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.TravelDays)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.DepartureDate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.ReturnDate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.ExpensesHandledBy)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.CreateOn)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.CreatedBy)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.ApprovalLevel)
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
+              <thead>
+                <tr>
+                  <th>
+                    @Html.DisplayNameFor(model => model.ApplicationNumber)
+                  </th>
+                  <th>
+                    @Html.DisplayNameFor(model => model.PortOfOriginID)
+                  </th>
+                  <th>
+                    @Html.DisplayNameFor(model => model.PortOfDestinationID)
+                  </th>
+                  <th>
+                    @Html.DisplayNameFor(model => model.TravelDays)
+                  </th>
+                  <th>
+                    @Html.DisplayNameFor(model => model.DepartureDate)
+                  </th>
+                  <th>
+                    @Html.DisplayNameFor(model => model.ReturnDate)
+                  </th>
+                  <th>
+                    @Html.DisplayNameFor(model => model.ExpensesHandledBy)
+                  </th>
+                  <th>
+                    @Html.DisplayNameFor(model => model.CreateOn)
+                  </th>
+                  <th>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                  </th>
+                  <th>
+                    @Html.DisplayNameFor(model => model.ApprovalLevel)
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.ActionLink(item.ApplicationNumber, "ManagerApprovalForm", "BTC", new { @item.ID }, null)
-                                            </td>
-                                            <td>
-                                                @(new HtmlString(item.City1.CityDesc + " ," + item.City1.Country))
-                                            </td>
-                                            <td>
-                                                @(new HtmlString(item.City.CityDesc + " ," + item.City.Country))
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelitem => item.TravelDays)
-                                            </td>
-                                            <td>
-                                                @if (item.DepartureDate != null)
+                <tr>
+                  <td>
+                    @Html.ActionLink(item.ApplicationNumber, "ManagerApprovalForm", "BTC", new { @item.ID }, null)
+                  </td>
+                  <td>
+                    @(new HtmlString(item.City1.CityDesc + " ," + item.City1.Country))
+                  </td>
+                  <td>
+                    @(new HtmlString(item.City.CityDesc + " ," + item.City.Country))
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelitem => item.TravelDays)
+                  </td>
+                  <td>
+                    @if (item.DepartureDate != null)
                                                 {
-                                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.DepartureDate.ToString()))));
+                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.DepartureDate.ToString()))));
                                                 }
-                                            </td>
-                                            <td>
-                                                @if (item.ReturnDate != null)
+                  </td>
+                  <td>
+                    @if (item.ReturnDate != null)
                                                 {
-                                                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.ReturnDate.ToString()))));
+                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.ReturnDate.ToString()))));
                                                 }
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelitem => item.ExpensesHandledBy)
-                                            </td>
-                                            <td>
-                                                @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.CreateOn.ToString()))));
-                                            </td>
-                                            <td>
-                                                @(new HtmlString(item.Users1.FirstName + " ," + item.Users1.LastName))
-                                            </td>
-                                            <td>
-                                                @switch (item.ApprovalLevel)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelitem => item.ExpensesHandledBy)
+                  </td>
+                  <td>
+                    @(new HtmlString(string.Format("{0:dd MMM yyyy}", Convert.ToDateTime(item.CreateOn.ToString()))));
+                  </td>
+                  <td>
+                    @(new HtmlString(item.Users1.FirstName + " ," + item.Users1.LastName))
+                  </td>
+                  <td>
+                    @switch (item.ApprovalLevel)
                                                 {
                                                     case (int)ApprovalLevels.ToBeApproved:
-                                                        @(new HtmlString("To Be Approved"))
+                    @(new HtmlString("To Be Approved"))
                                                         break;
                                                     case (int)ApprovalLevels.ApprovedByManager:
-                                                        @(new HtmlString("Approved By Manager"))
+                    @(new HtmlString("Approved By Manager"))
                                                         break;
                                                     case (int)ApprovalLevels.RejectedByManager:
-                                                        @(new HtmlString("Rejected By Manager"))
+                    @(new HtmlString("Rejected By Manager"))
                                                         break;
                                                     case (int)ApprovalLevels.ApprovedByHR:
-                                                        @(new HtmlString("Approved By HR"))
+                    @(new HtmlString("Approved By HR"))
                                                         break;
                                                     case (int)ApprovalLevels.RejectedByHR:
-                                                        @(new HtmlString("Rejected By HR"))
+                    @(new HtmlString("Rejected By HR"))
                                                         break;
                                                     case (int)ApprovalLevels.ApprovedbyTravelCo:
-                                                        @(new HtmlString("Approved By Travel Co"))
+                    @(new HtmlString("Approved By Travel Co"))
                                                         break;
                                                     default:
-                                                        @(new HtmlString("Unknown"))
+                    @(new HtmlString("Unknown"))
                                                         break;
                                                 }
-                                            </td>
-                                        </tr>
+                  </td>
+                </tr>
                                     }
-                                </tbody>
+              </tbody>
                             }
-                        </table>
-                    </div><!-- /.box-body -->
-                </div><!-- /.box -->
-            </div>
-        </div>
-    </section>
+            </table>
+          </div><!-- /.box-body -->
+        </div><!-- /.box -->
+      </div>
+    </div>
+  </section>
 </aside>

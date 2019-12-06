@@ -4,15 +4,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Travel_Request_System_EF.Models.ViewModel
 {
-
     public class LoginView
     {
         [Required]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
+
         [Required]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
         [Display(Name = "Remember Me")]
         public bool RememberMe { get; set; }
     }
@@ -23,7 +24,6 @@ namespace Travel_Request_System_EF.Models.ViewModel
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public List<string> RoleName { get; set; }
-
     }
 
     public class RegistrationView
@@ -44,6 +44,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
         [Required]
         public Guid ActivationCode { get; set; }
 
@@ -57,8 +58,5 @@ namespace Travel_Request_System_EF.Models.ViewModel
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Error : Confirm password does not match with password")]
         public string ConfirmPassword { get; set; }
-
-
-
     }
 }

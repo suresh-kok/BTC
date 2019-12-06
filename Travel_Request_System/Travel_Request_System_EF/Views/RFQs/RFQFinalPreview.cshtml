@@ -9,113 +9,113 @@
 
 <div id="detailsDiv" style="height:auto">
 
-    @Html.AntiForgeryToken()
+  @Html.AntiForgeryToken()
 
-    @if (Model.ProcessingSection == (int)ProcessingSections.AT || Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC)
+  @if (Model.ProcessingSection == (int)ProcessingSections.AT || Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC)
     {
-        <div class="row" style="margin-bottom:15px">
-            @Html.Partial("_ATQuotation", (ATQuotation)ViewBag.ATQuotation)
-        </div>
+  <div class="row" style="margin-bottom:15px">
+    @Html.Partial("_ATQuotation", (ATQuotation)ViewBag.ATQuotation)
+  </div>
     }
-    @if (Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.HS || Model.ProcessingSection == (int)ProcessingSections.HSPC)
+  @if (Model.ProcessingSection == (int)ProcessingSections.ATHS || Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.HS || Model.ProcessingSection == (int)ProcessingSections.HSPC)
     {
-        <div class="row" style="margin-bottom:15px">
-            @Html.Partial("_HSQuotation", (HSQuotation)ViewBag.HSQuotation)
-        </div>
+  <div class="row" style="margin-bottom:15px">
+    @Html.Partial("_HSQuotation", (HSQuotation)ViewBag.HSQuotation)
+  </div>
     }
-    @if (Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC || Model.ProcessingSection == (int)ProcessingSections.HSPC || Model.ProcessingSection == (int)ProcessingSections.PC)
+  @if (Model.ProcessingSection == (int)ProcessingSections.ATHSPC || Model.ProcessingSection == (int)ProcessingSections.ATPC || Model.ProcessingSection == (int)ProcessingSections.HSPC || Model.ProcessingSection == (int)ProcessingSections.PC)
     {
-        <div class="row" style="margin-bottom:15px">
-            @Html.Partial("_PCQuotation", (PCQuotation)ViewBag.PCQuotation)
-        </div>
+  <div class="row" style="margin-bottom:15px">
+    @Html.Partial("_PCQuotation", (PCQuotation)ViewBag.PCQuotation)
+  </div>
     }
 
-    <div class="col-xs-12 col-md-12">
-        <div class="box box-default">
-            <div class="box-header with-border">
-                <h3 class="box-title">Remarks</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="row" style="margin-bottom:15px">
-                    <aside class="right-side">
-                        <!-- Main content -->
-                        <section class="content">
-                            <div class="container text-center">
-                                <div class="col-xs-11">
-                                    <div class="box with-border">
-                                        <div class="box-header">
-                                            <h3 class="box-title">Details</h3>
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body table-responsive">
-                                            <table id="uloadTable" class="table table-bordered table-hover table-responsive">
-                                                <thead>
-                                                    <tr>
-                                                        <th>File Name</th>
-                                                        <th>Uploaded Date</th>
-                                                        <th>Uploaded By</th>
-                                                        <th></th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewBag.fileUploader)
+  <div class="col-xs-12 col-md-12">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">Remarks</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="row" style="margin-bottom:15px">
+          <aside class="right-side">
+            <!-- Main content -->
+            <section class="content">
+              <div class="container text-center">
+                <div class="col-xs-11">
+                  <div class="box with-border">
+                    <div class="box-header">
+                      <h3 class="box-title">Details</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                      <table id="uloadTable" class="table table-bordered table-hover table-responsive">
+                        <thead>
+                          <tr>
+                            <th>File Name</th>
+                            <th>Uploaded Date</th>
+                            <th>Uploaded By</th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach (var item in (List<Travel_Request_System_EF.Models.Attachments>)ViewBag.fileUploader)
                                                     {
-                                                        <tr id="@item.FileName">
-                                                            <td>@item.FileName</td>
-                                                            <td>@item.UploadedDate.ToShortDateString()</td>
-                                                            <td>@(new HtmlString(item.Users.FirstName + " " + item.Users.LastName))</td>
-                                                            <td style="text-align: center">
-                                                                @Html.ActionLink("  Open File", "OpenFile", new { fileName = item.FileName }, new { @class = "form-control btn btn-info glyphicon-edit" })
-                                                            </td>
-                                                        </tr>
+                          <tr id="@item.FileName">
+                            <td>@item.FileName</td>
+                            <td>@item.UploadedDate.ToShortDateString()</td>
+                            <td>@(new HtmlString(item.Users.FirstName + " " + item.Users.LastName))</td>
+                            <td style="text-align: center">
+                              @Html.ActionLink("  Open File", "OpenFile", new { fileName = item.FileName }, new { @class = "form-control btn btn-info glyphicon-edit" })
+                            </td>
+                          </tr>
                                                     }
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </aside>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="col-sm-3">Travel Agency</label>
-                            <div class="col-sm-9">
-                                @{
-                                    var pd = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).FirstOrDefault(rt => rt.ID == Model.TravelAgencyID).AgencyCode.ToString();
-                                }
-                                @pd
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6"></div>
-                </div>
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label class="col-sm-2">Remarks</label>
-                            <div class="col-sm-12">
-                                @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "3", @readonly = "readonly" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-md-3">
-                        @Html.ActionLink("Back to List", "RFQPostMerger", new { id = Model.TravelRequestID }, new { @class = "form-control btn btn-info" })
-                    </div>
-                    <div class="col-md-3">
-                        @Html.ActionLink("  Print", "PrintRFQ", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
-                    </div>
-                    <div class="col-md-3">
-                    </div>
-                </div>
-            </div>
+              </div>
+            </section>
+          </aside>
         </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-3">Travel Agency</label>
+              <div class="col-sm-9">
+                @{
+                                    var pd = ((IEnumerable<Travel_Request_System_EF.Models.TravelAgency>)ViewBag.TravelAgency).FirstOrDefault(rt => rt.ID == Model.TravelAgencyID).AgencyCode.ToString();
+                }
+                @pd
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6"></div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="col-sm-2">Remarks</label>
+              <div class="col-sm-12">
+                @Html.TextAreaFor(model => model.Remarks, htmlAttributes: new { @class = "form-control", @rows = "3", @readonly = "readonly" })
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-bottom:15px">
+          <div class="col-md-3">
+            @Html.ActionLink("Back to List", "RFQPostMerger", new { id = Model.TravelRequestID }, new { @class = "form-control btn btn-info" })
+          </div>
+          <div class="col-md-3">
+            @Html.ActionLink("  Print", "PrintRFQ", new { id = Model.ID }, new { @class = "form-control btn btn-info" })
+          </div>
+          <div class="col-md-3">
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

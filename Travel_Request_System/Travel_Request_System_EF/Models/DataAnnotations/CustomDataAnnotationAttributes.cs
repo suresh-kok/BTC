@@ -7,7 +7,6 @@ namespace Travel_Request_System_EF.Models.DataAnnotations
 {
     public class CustomDataAnnotationAttributes
     {
-
     }
 
     public class CheckDateRangeAttribute : ValidationAttribute

@@ -9,7 +9,7 @@ namespace Travel_Request_System_EF.CustomAuthentication
     public class CustomRole : RoleProvider
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="username"></param>
         /// <param name="roleName"></param>
@@ -21,7 +21,7 @@ namespace Travel_Request_System_EF.CustomAuthentication
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
@@ -40,7 +40,6 @@ namespace Travel_Request_System_EF.CustomAuthentication
                                     where string.Compare(us.Username, username, StringComparison.OrdinalIgnoreCase) == 0
                                     select us).FirstOrDefault();
 
-
                 if (selectedUser != null)
                 {
                     userRoles = selectedUser.Roles.Select(r => r.RoleName).ToArray();
@@ -49,8 +48,6 @@ namespace Travel_Request_System_EF.CustomAuthentication
                 return userRoles.ToArray();
             }
         }
-
-
 
         #region Overrides of Role Provider
 
@@ -97,7 +94,6 @@ namespace Travel_Request_System_EF.CustomAuthentication
             throw new NotImplementedException();
         }
 
-
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
         {
             throw new NotImplementedException();
@@ -108,6 +104,6 @@ namespace Travel_Request_System_EF.CustomAuthentication
             throw new NotImplementedException();
         }
 
-        #endregion
+        #endregion Overrides of Role Provider
     }
 }

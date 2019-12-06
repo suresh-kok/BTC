@@ -6,91 +6,89 @@
 }
 
 <aside class="right-side">
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Employee Details</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body table-responsive">
-                        <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
-                            @if (Model == null || (Model.EmployeeID == ""))
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">Employee Details</h3>
+          </div><!-- /.box-header -->
+          <div class="box-body table-responsive">
+            <table id="detailsGrid1" class="table table-bordered table-hover table-responsive">
+              @if (Model == null || (Model.EmployeeID == ""))
                             {
-                                <tr>
-                                    <td colspan="10">No Record's found.</td>
-                                </tr>
+              <tr>
+                <td colspan="10">No Record's found.</td>
+              </tr>
                             }
                             else
                             {
-                                <thead>
-                                    <tr class="info">
-                                        <td>
-                                            @Html.DisplayName("Name")
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName("Designation")
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName("Position Code")
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName("Department")
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName("Cost Center")
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName("Passport ID")
-                                        </td>
-                                        <td>
-                                            @Html.DisplayName("Qatar ID")
-                                        </td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(model => model.FullName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.Designation)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.PositionCode)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.Department)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.Costcenter)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.PassportID)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(model => model.QatarID)
-                                        </td>
-                                    </tr>
-                                </tbody>
+              <thead>
+                <tr class="info">
+                  <td>
+                    @Html.DisplayName("Name")
+                  </td>
+                  <td>
+                    @Html.DisplayName("Designation")
+                  </td>
+                  <td>
+                    @Html.DisplayName("Position Code")
+                  </td>
+                  <td>
+                    @Html.DisplayName("Department")
+                  </td>
+                  <td>
+                    @Html.DisplayName("Cost Center")
+                  </td>
+                  <td>
+                    @Html.DisplayName("Passport ID")
+                  </td>
+                  <td>
+                    @Html.DisplayName("Qatar ID")
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    @Html.DisplayFor(model => model.FullName)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(model => model.Designation)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(model => model.PositionCode)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(model => model.Department)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(model => model.Costcenter)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(model => model.PassportID)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(model => model.QatarID)
+                  </td>
+                </tr>
+              </tbody>
                             }
-                        </table>
-                    </div>
-                </div>
-            </div>
+            </table>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </aside>
 
 <div class="row" style="margin-bottom:15px">
-    <div class="col-md-6">
-        <div class="form-group">
-            <div class="col-md-3">
-                @Html.ActionLink("Back to List", "AdminDashboard", null, new { @class = "form-control btn btn-info" })
-            </div>
-        </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <div class="col-md-3">
+        @Html.ActionLink("Back to List", "AdminDashboard", null, new { @class = "form-control btn btn-info" })
+      </div>
     </div>
+  </div>
 </div>
-
-

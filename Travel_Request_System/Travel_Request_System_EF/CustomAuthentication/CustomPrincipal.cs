@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Principal;
-using System.Web;
 
 namespace Travel_Request_System_EF.CustomAuthentication
 {
@@ -15,7 +12,8 @@ namespace Travel_Request_System_EF.CustomAuthentication
         public string LastName { get; set; }
         public string Email { get; set; }
         public string[] Roles { get; set; }
-        #endregion
+
+        #endregion Identity Properties
 
         public IIdentity Identity
         {

@@ -7,7 +7,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
 {
     public class EmployeeDetailsDBService : IDisposable
     {
-        string employeeCode = "";
+        private string employeeCode = "";
 
         public EmployeeDetailsDBService(string employeeCode = "", string employeeID = "")
         {
@@ -571,7 +571,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
             return null;
         }
 
-        //Department Head of the Employee  
+        //Department Head of the Employee
         public dynamic DepartmentHead(string entityID)
         {
             using (var db = new BTCEntities())
@@ -604,7 +604,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
             return null;
         }
 
-        //Qatar ID Details - View 
+        //Qatar ID Details - View
         public QatarDetails QatarIDDetails()
         {
             using (var db = new BTCEntities())
@@ -631,7 +631,7 @@ namespace Travel_Request_System_EF.Models.ViewModel
             return null;
         }
 
-        //Passport ID Details - View 
+        //Passport ID Details - View
         public PassportDetails PassportDetails()
         {
             using (var db = new BTCEntities())
